@@ -1,0 +1,273 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		45B5E6A31EF7C25200A6A3E2 /* Simpleton_Engine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E6A21EF7C25200A6A3E2 /* Simpleton_Engine.hpp */; };
+		45B5E6A51EF7C25200A6A3E2 /* Simpleton_EnginePriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E6A41EF7C25200A6A3E2 /* Simpleton_EnginePriv.hpp */; };
+		45B5E6A71EF7C25200A6A3E2 /* Simpleton_Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E6A61EF7C25200A6A3E2 /* Simpleton_Engine.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		45B5E6A21EF7C25200A6A3E2 /* Simpleton_Engine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Simpleton_Engine.hpp; sourceTree = "<group>"; };
+		45B5E6A41EF7C25200A6A3E2 /* Simpleton_EnginePriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Simpleton_EnginePriv.hpp; sourceTree = "<group>"; };
+		45B5E6A61EF7C25200A6A3E2 /* Simpleton_Engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Simpleton_Engine.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		45B5E69C1EF7C25200A6A3E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		45B5E6961EF7C25200A6A3E2 = {
+			isa = PBXGroup;
+			children = (
+				45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */,
+				45B5E6A01EF7C25200A6A3E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		45B5E6A01EF7C25200A6A3E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
+			isa = PBXGroup;
+			children = (
+				45B5E6A21EF7C25200A6A3E2 /* Simpleton_Engine.hpp */,
+				45B5E6A41EF7C25200A6A3E2 /* Simpleton_EnginePriv.hpp */,
+				45B5E6A61EF7C25200A6A3E2 /* Simpleton_Engine.cpp */,
+			);
+			path = "Simpleton Engine";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		45B5E69D1EF7C25200A6A3E2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45B5E6A31EF7C25200A6A3E2 /* Simpleton_Engine.hpp in Headers */,
+				45B5E6A51EF7C25200A6A3E2 /* Simpleton_EnginePriv.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45B5E6AA1EF7C25200A6A3E2 /* Build configuration list for PBXNativeTarget "Simpleton Engine" */;
+			buildPhases = (
+				45B5E69B1EF7C25200A6A3E2 /* Sources */,
+				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
+				45B5E69D1EF7C25200A6A3E2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Simpleton Engine";
+			productName = "Simpleton Engine";
+			productReference = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		45B5E6971EF7C25200A6A3E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Indi Kernick";
+				TargetAttributes = {
+					45B5E69E1EF7C25200A6A3E2 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 45B5E69A1EF7C25200A6A3E2 /* Build configuration list for PBXProject "Simpleton Engine" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 45B5E6961EF7C25200A6A3E2;
+			productRefGroup = 45B5E6A01EF7C25200A6A3E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		45B5E69B1EF7C25200A6A3E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45B5E6A71EF7C25200A6A3E2 /* Simpleton_Engine.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		45B5E6A81EF7C25200A6A3E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		45B5E6A91EF7C25200A6A3E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		45B5E6AB1EF7C25200A6A3E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		45B5E6AC1EF7C25200A6A3E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		45B5E69A1EF7C25200A6A3E2 /* Build configuration list for PBXProject "Simpleton Engine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45B5E6A81EF7C25200A6A3E2 /* Debug */,
+				45B5E6A91EF7C25200A6A3E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45B5E6AA1EF7C25200A6A3E2 /* Build configuration list for PBXNativeTarget "Simpleton Engine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45B5E6AB1EF7C25200A6A3E2 /* Debug */,
+				45B5E6AC1EF7C25200A6A3E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 45B5E6971EF7C25200A6A3E2 /* Project object */;
+}
