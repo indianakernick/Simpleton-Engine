@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D70618478E05DBA1A906CD898F2B0CF4843DE218",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "77331696EFD214136234D282E510123E5A3A81EA" : 9223372036854775807,
+    "D70618478E05DBA1A906CD898F2B0CF4843DE218" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2C0EF876-AF88-4EA9-837B-5F3063DE7EBE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "77331696EFD214136234D282E510123E5A3A81EA" : "..\/Game%20Engine",
+    "D70618478E05DBA1A906CD898F2B0CF4843DE218" : "Simpleton%20Engine\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Simpleton Engine",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Simpleton Engine.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kerndog73\/Game-Engine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "77331696EFD214136234D282E510123E5A3A81EA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kerndog73\/Simpleton-Engine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D70618478E05DBA1A906CD898F2B0CF4843DE218"
+    }
+  ]
+}
