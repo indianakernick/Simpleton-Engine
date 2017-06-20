@@ -288,6 +288,7 @@
 		45B5E8051EF8ADCB00A6A3E2 /* constants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = constants.hpp; sourceTree = "<group>"; };
 		45B5E8061EF8ADCB00A6A3E2 /* byteconstants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = byteconstants.hpp; sourceTree = "<group>"; };
 		45B5E8071EF8ADCB00A6A3E2 /* siconstants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = siconstants.hpp; sourceTree = "<group>"; };
+		45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "dir pair.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +380,7 @@
 				45B5E7701EF8A8A700A6A3E2 /* vectors.hpp */,
 				45B5E7711EF8A8A700A6A3E2 /* rect.hpp */,
 				45B5E7721EF8A8A700A6A3E2 /* dir.hpp */,
+				45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";
