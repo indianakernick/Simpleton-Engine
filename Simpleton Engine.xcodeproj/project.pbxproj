@@ -297,7 +297,7 @@
 		45B5E8BE1EF903C500A6A3E2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Platform;
+			dstPath = /usr/local/include/Simpleton/Platform;
 			dstSubfolderSpec = 0;
 			files = (
 				45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */,
