@@ -17,6 +17,8 @@
 namespace Platform {
   class InputManager {
   public:
+    using Ptr = std::shared_ptr<InputManager>;
+  
     explicit InputManager(std::weak_ptr<WindowManager>);
     ~InputManager() = default;
     

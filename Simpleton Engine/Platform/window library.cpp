@@ -13,17 +13,25 @@ using namespace Platform;
 LibInitError::LibInitError(const char *what)
   : std::runtime_error(what) {}
 
-void Platform::initLib() {
+Platform::WindowLibrary::WindowLibrary() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     throw LibInitError(SDL_GetError());
   }
 }
 
-void Platform::quitLib() {
+Platform::WindowLibrary::~WindowLibrary() {
   SDL_Quit();
 }
 
-Renderer::Ptr Platform::makeRenderer(const Window::Ptr window, const bool vsync) {
+WindowManager::Ptr Platform::WindowLibrary::makeWindowManager() {
+  return std::make_shared<WindowManager>();
+}
+
+InputManager::Ptr Platform::WindowLibrary::makeInputManager(const WindowManager::Ptr windowManager) {
+  return std::make_shared<InputManager>(windowManager);
+}
+
+Renderer::Ptr Platform::WindowLibrary::makeRenderer(const Window::Ptr window, const bool vsync) {
   return std::make_shared<Renderer>(
     SDL_CreateRenderer(
       window->get(),

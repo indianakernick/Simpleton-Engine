@@ -12,6 +12,9 @@
 #include <SDL2/SDL.h>
 #include "window.hpp"
 #include "renderer.hpp"
+#include "window manager.hpp"
+#include "input manager.hpp"
+#include "../Utils/instance limiter.hpp"
 
 namespace Platform {
   class LibInitError : public std::runtime_error {
@@ -19,10 +22,15 @@ namespace Platform {
     explicit LibInitError(const char *);
   };
 
-  void initLib();
-  void quitLib();
-  
-  Renderer::Ptr makeRenderer(const Window::Ptr, bool);
+  class WindowLibrary final : public Utils::ForceSingleton<WindowLibrary> {
+  public:
+    WindowLibrary();
+    ~WindowLibrary();
+    
+    WindowManager::Ptr makeWindowManager();
+    InputManager::Ptr makeInputManager(WindowManager::Ptr);
+    Renderer::Ptr makeRenderer(const Window::Ptr, bool);
+  };
 }
 
 #endif
