@@ -15,6 +15,16 @@ Renderer::Renderer(SDL_Renderer *renderer)
   assert(renderer);
 }
 
+void Renderer::setColor(const glm::tvec4<uint8_t> color) {
+  SDL_SetRenderDrawColor(ptr, color.r, color.g, color.b, color.a);
+}
+
+glm::tvec4<uint8_t> Renderer::getColor() const {
+  glm::tvec4<uint8_t> color;
+  SDL_GetRenderDrawColor(ptr, &color.r, &color.g, &color.b, &color.a);
+  return color;
+}
+
 void Renderer::present() {
   SDL_RenderPresent(ptr);
 }

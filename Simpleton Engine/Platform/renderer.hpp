@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <cassert>
+#include <glm/vec4.hpp>
 #include <SDL2/SDL_render.h>
 #include "../Utils/implicit unique ptr.hpp"
 
@@ -19,6 +20,9 @@ namespace Platform {
   public:
     //not explicit
     Renderer(SDL_Renderer *);
+  
+    void setColor(glm::tvec4<uint8_t>);
+    glm::tvec4<uint8_t> getColor() const;
   
     void present();
     void clear();

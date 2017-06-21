@@ -154,7 +154,6 @@
 		45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C61EF9047000A6A3E2 /* system info.mm */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8CC1EF91AAA00A6A3E2 /* implicit unique ptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */; };
-		45B5E8CE1EFA016700A6A3E2 /* update loop.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8CD1EFA005200A6A3E2 /* update loop.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -164,7 +163,6 @@
 			dstPath = /usr/local/include/Simpleton/Time;
 			dstSubfolderSpec = 0;
 			files = (
-				45B5E8CE1EFA016700A6A3E2 /* update loop.hpp in CopyFiles */,
 				45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */,
 				45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */,
 				45B5E80E1EF8AE8700A6A3E2 /* frame anim.hpp in CopyFiles */,
@@ -384,7 +382,6 @@
 		45B5E8C51EF9047000A6A3E2 /* system info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "system info.hpp"; sourceTree = "<group>"; };
 		45B5E8C61EF9047000A6A3E2 /* system info.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "system info.mm"; sourceTree = "<group>"; };
 		45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "implicit unique ptr.hpp"; sourceTree = "<group>"; };
-		45B5E8CD1EFA005200A6A3E2 /* update loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "update loop.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,7 +521,6 @@
 				45B5E7B01EF8A92500A6A3E2 /* fps.hpp */,
 				45B5E7B11EF8A92500A6A3E2 /* delta anim.cpp */,
 				45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */,
-				45B5E8CD1EFA005200A6A3E2 /* update loop.hpp */,
 			);
 			path = Time;
 			sourceTree = "<group>";
