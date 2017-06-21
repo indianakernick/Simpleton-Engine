@@ -11,19 +11,15 @@
 using namespace Platform;
 
 Renderer::Renderer(SDL_Renderer *renderer)
-  : renderer(renderer, &SDL_DestroyRenderer) {
+  : ImplicitUniquePtr(renderer) {
   assert(renderer);
 }
 
 void Renderer::present() {
-  SDL_RenderPresent(renderer.get());
+  SDL_RenderPresent(ptr);
 }
 
 void Renderer::clear() {
-  SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
-  SDL_RenderClear(renderer.get());
-}
-
-SDL_Renderer *Renderer::get() const {
-  return renderer.get();
+  SDL_SetRenderDrawColor(ptr, 0, 0, 0, 0);
+  SDL_RenderClear(ptr);
 }

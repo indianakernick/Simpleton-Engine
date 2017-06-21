@@ -13,6 +13,12 @@ using namespace Platform;
 LibInitError::LibInitError(const char *what)
   : std::runtime_error(what) {}
 
+WindowOpenError::WindowOpenError(const char *what)
+  : std::runtime_error(what) {}
+
+RendererCreateError::RendererCreateError(const char *what)
+  : std::runtime_error(what) {}
+
 Platform::WindowLibrary::WindowLibrary() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     throw LibInitError(SDL_GetError());
@@ -23,22 +29,34 @@ Platform::WindowLibrary::~WindowLibrary() {
   SDL_Quit();
 }
 
-WindowManager::Ptr Platform::WindowLibrary::makeWindowManager() {
-  return std::make_shared<WindowManager>();
-}
-
-InputManager::Ptr Platform::WindowLibrary::makeInputManager(const WindowManager::Ptr windowManager) {
-  return std::make_shared<InputManager>(windowManager);
-}
-
-Renderer::Ptr Platform::WindowLibrary::makeRenderer(const Window::Ptr window, const bool vsync) {
-  return std::make_shared<Renderer>(
-    SDL_CreateRenderer(
-      window->get(),
-      -1,
-      SDL_RENDERER_ACCELERATED |
-      Utils::boolEnable(vsync, SDL_RENDERER_PRESENTVSYNC)
-    )
+Window Platform::WindowLibrary::makeWindow(const Window::Desc &desc) {
+  SDL_Window *window = SDL_CreateWindow(
+    desc.title.c_str(),
+    SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+    desc.size.x, desc.size.y,
+    SDL_WINDOW_SHOWN |
+    Utils::boolEnable(desc.resizable, SDL_WINDOW_RESIZABLE) |
+    Utils::boolEnable(desc.openGL, SDL_WINDOW_OPENGL)
   );
+  
+  if (window == nullptr) {
+    throw WindowOpenError(SDL_GetError());
+  }
+  
+  return window;
 }
 
+Renderer Platform::WindowLibrary::makeRenderer(Window &window, const bool vsync) {
+  SDL_Renderer *renderer = SDL_CreateRenderer(
+    window,
+    -1,
+    SDL_RENDERER_ACCELERATED |
+    Utils::boolEnable(vsync, SDL_RENDERER_PRESENTVSYNC)
+  );
+  
+  if (renderer == nullptr) {
+    throw RendererCreateError(SDL_GetError());
+  }
+  
+  return renderer;
+}

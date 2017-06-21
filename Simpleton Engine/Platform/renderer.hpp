@@ -12,21 +12,16 @@
 #include <memory>
 #include <cassert>
 #include <SDL2/SDL_render.h>
+#include "../Utils/implicit unique ptr.hpp"
 
 namespace Platform {
-  class Renderer {
+  class Renderer : public Utils::ImplicitUniquePtr<SDL_Renderer, &SDL_DestroyRenderer> {
   public:
-    using Ptr = std::shared_ptr<Renderer>;
-    
-    explicit Renderer(SDL_Renderer *);
+    //not explicit
+    Renderer(SDL_Renderer *);
   
     void present();
     void clear();
-  
-    SDL_Renderer *get() const;
-    
-  private:
-    std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer *)> renderer;
   };
 }
 
