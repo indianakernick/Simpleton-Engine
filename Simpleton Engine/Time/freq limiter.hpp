@@ -12,6 +12,10 @@
 #include "get.hpp"
 
 namespace Time {
+  class OpPerSec {};
+  
+  constexpr OpPerSec OP_PER_SEC {};
+
   ///Limits the frequency of some operation in real-time
   template <typename Duration>
   class RealFreqLimiter {
@@ -23,6 +27,9 @@ namespace Time {
     explicit RealFreqLimiter(const Int count)
       : duration(count),
         lastDo(getPoint<Duration>() - duration) {}
+    template <typename Int>
+    explicit RealFreqLimiter(OpPerSec, const Int count)
+      : duration((static_cast<float>(Duration::period::den) / Duration::period::num) / count) {}
     ~RealFreqLimiter() = default;
     
     ///Change the duration
@@ -84,7 +91,9 @@ namespace Time {
     DeltaFreqLimiter()
       : duration(0) {}
     explicit DeltaFreqLimiter(const Number duration)
-      : duration(duration) {}
+      : duration(duration) {}                                  //assumes milliseconds
+    explicit DeltaFreqLimiter(OpPerSec, const Number count, const Number secToDur = 1000)
+      : duration(secToDur / count) {}
     ~DeltaFreqLimiter() = default;
     
     ///Change the duration

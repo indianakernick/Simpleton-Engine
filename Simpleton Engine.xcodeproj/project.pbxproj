@@ -24,10 +24,6 @@
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
 		45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7A01EF8A90D00A6A3E2 /* view.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7911EF8A90D00A6A3E2 /* view.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E7A11EF8A90D00A6A3E2 /* blockallocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7921EF8A90D00A6A3E2 /* blockallocator.cpp */; };
-		45B5E7A21EF8A90D00A6A3E2 /* blockallocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7931EF8A90D00A6A3E2 /* blockallocator.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E7A31EF8A90D00A6A3E2 /* blockallocatorview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7941EF8A90D00A6A3E2 /* blockallocatorview.cpp */; };
-		45B5E7A41EF8A90D00A6A3E2 /* blockallocatorview.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7951EF8A90D00A6A3E2 /* blockallocatorview.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
 		45B5E7A61EF8A90D00A6A3E2 /* file io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7971EF8A90D00A6A3E2 /* file io.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7B31EF8A92500A6A3E2 /* get.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,8 +85,6 @@
 		45B5E8181EF8AEAE00A6A3E2 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78E1EF8A90D00A6A3E2 /* bits.hpp */; };
 		45B5E8191EF8AEAE00A6A3E2 /* buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */; };
 		45B5E81A1EF8AEAE00A6A3E2 /* view.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7911EF8A90D00A6A3E2 /* view.hpp */; };
-		45B5E81B1EF8AEAE00A6A3E2 /* blockallocator.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7931EF8A90D00A6A3E2 /* blockallocator.hpp */; };
-		45B5E81C1EF8AEAE00A6A3E2 /* blockallocatorview.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7951EF8A90D00A6A3E2 /* blockallocatorview.hpp */; };
 		45B5E81D1EF8AEAE00A6A3E2 /* file io.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7971EF8A90D00A6A3E2 /* file io.hpp */; };
 		45B5E81F1EF8AECF00A6A3E2 /* constants.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8051EF8ADCB00A6A3E2 /* constants.hpp */; };
 		45B5E8201EF8AECF00A6A3E2 /* byteconstants.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8061EF8ADCB00A6A3E2 /* byteconstants.hpp */; };
@@ -154,6 +148,7 @@
 		45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C61EF9047000A6A3E2 /* system info.mm */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8CC1EF91AAA00A6A3E2 /* implicit unique ptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */; };
+		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -186,8 +181,6 @@
 				45B5E8181EF8AEAE00A6A3E2 /* bits.hpp in CopyFiles */,
 				45B5E8191EF8AEAE00A6A3E2 /* buffer.hpp in CopyFiles */,
 				45B5E81A1EF8AEAE00A6A3E2 /* view.hpp in CopyFiles */,
-				45B5E81B1EF8AEAE00A6A3E2 /* blockallocator.hpp in CopyFiles */,
-				45B5E81C1EF8AEAE00A6A3E2 /* blockallocatorview.hpp in CopyFiles */,
 				45B5E81D1EF8AEAE00A6A3E2 /* file io.hpp in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,15 +262,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		45B5E8BA1EF9038400A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Input;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		45B5E8BE1EF903C500A6A3E2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -288,6 +272,16 @@
 				45B5E8BF1EF903D900A6A3E2 /* window library.hpp in CopyFiles */,
 				45B5E8C01EF903D900A6A3E2 /* window.hpp in CopyFiles */,
 				45B5E8C11EF903D900A6A3E2 /* renderer.hpp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45B5E8D81EFA19BA00A6A3E2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/local/lib;
+			dstSubfolderSpec = 0;
+			files = (
+				45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,10 +306,6 @@
 		45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
 		45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffer.hpp; sourceTree = "<group>"; };
 		45B5E7911EF8A90D00A6A3E2 /* view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = view.hpp; sourceTree = "<group>"; };
-		45B5E7921EF8A90D00A6A3E2 /* blockallocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blockallocator.cpp; sourceTree = "<group>"; };
-		45B5E7931EF8A90D00A6A3E2 /* blockallocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blockallocator.hpp; sourceTree = "<group>"; };
-		45B5E7941EF8A90D00A6A3E2 /* blockallocatorview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blockallocatorview.cpp; sourceTree = "<group>"; };
-		45B5E7951EF8A90D00A6A3E2 /* blockallocatorview.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blockallocatorview.hpp; sourceTree = "<group>"; };
 		45B5E7961EF8A90D00A6A3E2 /* file io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "file io.cpp"; sourceTree = "<group>"; };
 		45B5E7971EF8A90D00A6A3E2 /* file io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "file io.hpp"; sourceTree = "<group>"; };
 		45B5E7A71EF8A92500A6A3E2 /* get.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = get.hpp; sourceTree = "<group>"; };
@@ -496,10 +486,6 @@
 				45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */,
 				45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */,
 				45B5E7911EF8A90D00A6A3E2 /* view.hpp */,
-				45B5E7921EF8A90D00A6A3E2 /* blockallocator.cpp */,
-				45B5E7931EF8A90D00A6A3E2 /* blockallocator.hpp */,
-				45B5E7941EF8A90D00A6A3E2 /* blockallocatorview.cpp */,
-				45B5E7951EF8A90D00A6A3E2 /* blockallocatorview.hpp */,
 				45B5E7961EF8A90D00A6A3E2 /* file io.cpp */,
 				45B5E7971EF8A90D00A6A3E2 /* file io.hpp */,
 			);
@@ -582,7 +568,6 @@
 				45B5E7831EF8A8A700A6A3E2 /* round.hpp in Headers */,
 				45B5E7B81EF8A92500A6A3E2 /* interval.hpp in Headers */,
 				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
-				45B5E7A41EF8A90D00A6A3E2 /* blockallocatorview.hpp in Headers */,
 				45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */,
 				45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */,
 				45B5E7F61EF8A93900A6A3E2 /* bool enable.hpp in Headers */,
@@ -597,7 +582,6 @@
 				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
 				45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */,
 				45B5E7FF1EF8A93900A6A3E2 /* string enum.hpp in Headers */,
-				45B5E7A21EF8A90D00A6A3E2 /* blockallocator.hpp in Headers */,
 				45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */,
 				45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */,
 				45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */,
@@ -652,12 +636,12 @@
 				45B5E69D1EF7C25200A6A3E2 /* Headers */,
 				45B5E8B31EF902F100A6A3E2 /* CopyFiles */,
 				45B5E8B71EF9032E00A6A3E2 /* CopyFiles */,
-				45B5E8BA1EF9038400A6A3E2 /* CopyFiles */,
 				45B5E8BE1EF903C500A6A3E2 /* CopyFiles */,
 				45B5E80B1EF8AE5800A6A3E2 /* CopyFiles */,
 				45B5E8151EF8AE9500A6A3E2 /* CopyFiles */,
 				45B5E81E1EF8AEB800A6A3E2 /* CopyFiles */,
 				45B5E82A1EF8AED500A6A3E2 /* CopyFiles */,
+				45B5E8D81EFA19BA00A6A3E2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -712,11 +696,9 @@
 				45B5E8921EF8DCC400A6A3E2 /* manager.cpp in Sources */,
 				45B5E8AD1EF8E3ED00A6A3E2 /* renderer.cpp in Sources */,
 				45B5E7BD1EF8A92500A6A3E2 /* delta anim.cpp in Sources */,
-				45B5E7A31EF8A90D00A6A3E2 /* blockallocatorview.cpp in Sources */,
 				45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */,
 				45B5E8A41EF8E14300A6A3E2 /* window library.cpp in Sources */,
 				45B5E7F91EF8A93900A6A3E2 /* type name.cpp in Sources */,
-				45B5E7A11EF8A90D00A6A3E2 /* blockallocator.cpp in Sources */,
 				45B5E7ED1EF8A93900A6A3E2 /* any.cpp in Sources */,
 				45B5E79A1EF8A90D00A6A3E2 /* byteptr.cpp in Sources */,
 				45B5E8A81EF8E14300A6A3E2 /* window.cpp in Sources */,
