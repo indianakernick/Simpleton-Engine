@@ -133,7 +133,6 @@
 		45B5E8A91EF8E14300A6A3E2 /* window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8A11EF8E14300A6A3E2 /* window.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8AD1EF8E3ED00A6A3E2 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */; };
 		45B5E8AE1EF8E3ED00A6A3E2 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E8B11EF9028700A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
 		45B5E8B21EF902D800A6A3E2 /* dir pair.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */; };
 		45B5E8B41EF9032200A6A3E2 /* local.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8941EF8DCCF00A6A3E2 /* local.hpp */; };
 		45B5E8B51EF9032200A6A3E2 /* global.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8951EF8DCCF00A6A3E2 /* global.hpp */; };
@@ -149,6 +148,7 @@
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8CC1EF91AAA00A6A3E2 /* implicit unique ptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
+		45B5E9111EFF961E00A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -379,7 +379,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B5E8B11EF9028700A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */,
+				45B5E9111EFF961E00A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,6 +810,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CODE_SIGN_IDENTITY = "-";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
@@ -824,6 +825,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
+					/usr/local/Cellar/sdl2/2.0.5/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -842,6 +844,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CODE_SIGN_IDENTITY = "-";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
@@ -856,6 +859,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
+					/usr/local/Cellar/sdl2/2.0.5/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -889,6 +893,7 @@
 				45B5E6AC1EF7C25200A6A3E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
