@@ -27,7 +27,7 @@ namespace Math {
     DOWN_UP,
     DOWN_RIGHT,
     DOWN_DOWN,
-    DOWN_LEFT
+    DOWN_LEFT,
     
     LEFT_UP,
     LEFT_RIGHT,

@@ -9,6 +9,7 @@
 #ifndef engine_math_dir_hpp
 #define engine_math_dir_hpp
 
+#include <stdexcept>
 #include <glm/vec2.hpp>
 
 namespace Math {
@@ -95,7 +96,7 @@ namespace Math {
           return {ZERO, -dist};
         
         default:
-          throw std::invalid_arguments("Invalid direction");
+          throw std::invalid_argument("Invalid direction");
       }
     }
   };
@@ -116,16 +117,17 @@ namespace Math {
   public:
     ///Convert a 2D unit vector to a direction
     static Dir conv(const glm::tvec2<Number> vec, const Number dist = ONE) {
-      if (vec == {dist, ZERO}) {
+      using Dir = glm::tvec2<Number>;
+      if (vec == Dir(dist, ZERO)) {
         return PLUS_X;
-      } else if (vec == {-dist, ZERO}) {
+      } else if (vec == Dir(-dist, ZERO)) {
         return opposite(PLUS_X);
-      } else if (vec == {ZERO, dist}) {
+      } else if (vec == Dir(ZERO, dist)) {
         return PLUS_Y;
-      } else if (vec == {ZERO, -dist}) {
+      } else if (vec == Dir(ZERO, -dist)) {
         return opposite(PLUS_Y);
       } else {
-        throw std::invalid_arguments("Vector cannot be converted to direction");
+        throw std::invalid_argument("Vector cannot be converted to direction");
       }
     }
   };
