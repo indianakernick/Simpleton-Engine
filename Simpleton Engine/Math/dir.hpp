@@ -9,7 +9,6 @@
 #ifndef engine_math_dir_hpp
 #define engine_math_dir_hpp
 
-#include <cassert>
 #include <glm/vec2.hpp>
 
 namespace Math {
@@ -96,7 +95,37 @@ namespace Math {
           return {ZERO, -dist};
         
         default:
-          assert(false);
+          throw std::invalid_arguments("Invalid direction");
+      }
+    }
+  };
+  
+  ///Configuration template for converting a 2D unit vector to a direction
+  template <typename Number, Dir PLUS_X, Dir PLUS_Y>
+  struct FromVec {
+    static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
+    static_assert(
+      std::is_floating_point<Number>::value || std::is_signed<Number>::value,
+      "Number must be a float or a signed int"
+    );
+  
+  private:
+    static constexpr Number ONE = Number(1);
+    static constexpr Number ZERO = Number(0);
+  
+  public:
+    ///Convert a 2D unit vector to a direction
+    static Dir conv(const glm::tvec2<Number> vec, const Number dist = ONE) {
+      if (vec == {dist, ZERO}) {
+        return PLUS_X;
+      } else if (vec == {-dist, ZERO}) {
+        return opposite(PLUS_X);
+      } else if (vec == {ZERO, dist}) {
+        return PLUS_Y;
+      } else if (vec == {ZERO, -dist}) {
+        return opposite(PLUS_Y);
+      } else {
+        throw std::invalid_arguments("Vector cannot be converted to direction");
       }
     }
   };
@@ -119,6 +148,27 @@ namespace Math {
     ///Convert a direction to a number
     static Number conv(const Dir dir) {
       return static_cast<Number>(dir);
+    }
+  };
+  
+  ///Configuration template for converting a number to a direction
+  template <typename Number>
+  struct FromNum {
+    static_assert(std::is_arithmetic<Number>::value, "Number must be an arithmetic type");
+    
+    ///Convert a number to a direction
+    static Dir conv(const Number num, const Number stride, const Number offset) {
+      return static_cast<Dir>((num - offset) / stride);
+    }
+    
+    ///Convert a number to a direction
+    static Dir conv(const Number num, const Number stride) {
+      return static_cast<Dir>(num / stride);
+    }
+    
+    ///Convert a number to a direction
+    static Dir conv(const Number num) {
+      return static_cast<Dir>(num);
     }
   };
 }

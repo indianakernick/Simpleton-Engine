@@ -16,21 +16,21 @@ namespace Math {
   enum class DirPair : DirType {
     UP_UP,
     UP_RIGHT,
-    UP_DOWN,//0b0010
+    UP_DOWN,
     UP_LEFT,
     
     RIGHT_UP,
     RIGHT_RIGHT,
     RIGHT_DOWN,
-    RIGHT_LEFT,//0b0111
+    RIGHT_LEFT,
     
-    DOWN_UP,//0b1000
+    DOWN_UP,
     DOWN_RIGHT,
     DOWN_DOWN,
     DOWN_LEFT
     
     LEFT_UP,
-    LEFT_RIGHT,//0b1101
+    LEFT_RIGHT,
     LEFT_DOWN,
     LEFT_LEFT
   };
@@ -72,7 +72,10 @@ namespace Math {
   
   ///Are the directions in the pair opposite
   constexpr bool pairOpposite(const DirPair pair) {
-    return first(pair) == opposite(second(pair));
+    return pair == DirPair::UP_DOWN    ||
+           pair == DirPair::RIGHT_LEFT ||
+           pair == DirPair::DOWN_UP    ||
+           pair == DirPair::LEFT_RIGHT;
   }
   
   ///Get the opposites of a pair
