@@ -14,10 +14,9 @@
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_mouse.h>
 #include "../Utils/bool enable.hpp"
-#include "../Utils/implicit unique ptr.hpp"
 
 namespace Platform {
-  class Window : public Utils::ImplicitUniquePtr<SDL_Window, &SDL_DestroyWindow> {
+  class Window {
   public:
     using ID = Uint32;
   
@@ -28,8 +27,7 @@ namespace Platform {
       bool openGL = false;
     };
   
-    //not explicit
-    Window(SDL_Window *);
+    explicit Window(SDL_Window *);
     
     ID getID() const;
     
@@ -56,7 +54,11 @@ namespace Platform {
     
     void raise();
     
+    SDL_Window *get() const;
+    void reset(SDL_Window * = nullptr);
+    
   private:
+    std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
     bool mouseCaptured = false;
   };
 }

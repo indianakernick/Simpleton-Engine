@@ -13,19 +13,23 @@
 #include <cassert>
 #include <glm/vec4.hpp>
 #include <SDL2/SDL_render.h>
-#include "../Utils/implicit unique ptr.hpp"
 
 namespace Platform {
-  class Renderer : public Utils::ImplicitUniquePtr<SDL_Renderer, &SDL_DestroyRenderer> {
+  class Renderer {
   public:
-    //not explicit
-    Renderer(SDL_Renderer *);
+    explicit Renderer(SDL_Renderer *);
   
     void setColor(glm::tvec4<uint8_t>);
     glm::tvec4<uint8_t> getColor() const;
   
     void present();
     void clear();
+    
+    SDL_Renderer *get() const;
+    void reset(SDL_Renderer * = nullptr);
+  
+  private:
+    std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> renderer;
   };
 }
 

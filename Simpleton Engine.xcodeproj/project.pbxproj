@@ -146,7 +146,6 @@
 		45B5E8C81EF9047000A6A3E2 /* system info.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C61EF9047000A6A3E2 /* system info.mm */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
-		45B5E8CC1EF91AAA00A6A3E2 /* implicit unique ptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 		45B5E9111EFF961E00A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
 /* End PBXBuildFile section */
@@ -212,7 +211,6 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
-				45B5E8CC1EF91AAA00A6A3E2 /* implicit unique ptr.hpp in CopyFiles */,
 				45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */,
 				45B5E8431EF8AF5000A6A3E2 /* profiler.hpp in CopyFiles */,
 				45B5E8441EF8AF5000A6A3E2 /* benchmark.hpp in CopyFiles */,
@@ -371,7 +369,6 @@
 		45B5E8C41EF9047000A6A3E2 /* system info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "system info.cpp"; sourceTree = "<group>"; };
 		45B5E8C51EF9047000A6A3E2 /* system info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "system info.hpp"; sourceTree = "<group>"; };
 		45B5E8C61EF9047000A6A3E2 /* system info.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "system info.mm"; sourceTree = "<group>"; };
-		45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "implicit unique ptr.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,7 +447,6 @@
 				45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */,
 				45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */,
 				45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */,
-				45B5E8CB1EF9144200A6A3E2 /* implicit unique ptr.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

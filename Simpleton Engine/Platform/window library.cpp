@@ -43,12 +43,12 @@ Window Platform::WindowLibrary::makeWindow(const Window::Desc &desc) {
     throw WindowOpenError(SDL_GetError());
   }
   
-  return window;
+  return Window(window);
 }
 
 Renderer Platform::WindowLibrary::makeRenderer(Window &window, const bool vsync) {
   SDL_Renderer *renderer = SDL_CreateRenderer(
-    window,
+    window.get(),
     -1,
     SDL_RENDERER_ACCELERATED |
     Utils::boolEnable(vsync, SDL_RENDERER_PRESENTVSYNC)
@@ -58,5 +58,5 @@ Renderer Platform::WindowLibrary::makeRenderer(Window &window, const bool vsync)
     throw RendererCreateError(SDL_GetError());
   }
   
-  return renderer;
+  return Renderer(renderer);
 }
