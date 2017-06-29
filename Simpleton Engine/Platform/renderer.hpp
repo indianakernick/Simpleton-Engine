@@ -23,7 +23,7 @@ namespace Platform {
     glm::tvec4<uint8_t> getColor() const;
   
     void present();
-    void clear();
+    void clear(glm::tvec4<uint8_t> = {0, 0, 0, 0});
     
     SDL_Renderer *get() const;
     void reset(SDL_Renderer * = nullptr);

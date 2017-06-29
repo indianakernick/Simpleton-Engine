@@ -29,8 +29,8 @@ void Renderer::present() {
   SDL_RenderPresent(renderer.get());
 }
 
-void Renderer::clear() {
-  SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
+void Renderer::clear(const glm::tvec4<uint8_t> color) {
+  SDL_SetRenderDrawColor(renderer.get(), color.r, color.g, color.b, color.a);
   SDL_RenderClear(renderer.get());
 }
 
