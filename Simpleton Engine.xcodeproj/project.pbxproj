@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
+		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7691EF8A8A700A6A3E2 /* pow.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,6 +159,7 @@
 			dstPath = /usr/local/include/Simpleton/Time;
 			dstSubfolderSpec = 0;
 			files = (
+				4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */,
 				45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */,
 				45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */,
 				45B5E80E1EF8AE8700A6A3E2 /* frame anim.hpp in CopyFiles */,
@@ -286,6 +289,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -503,6 +507,7 @@
 				45B5E7B01EF8A92500A6A3E2 /* fps.hpp */,
 				45B5E7B11EF8A92500A6A3E2 /* delta anim.cpp */,
 				45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */,
+				4592B49C1F06427200D1640D /* frame.hpp */,
 			);
 			path = Time;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */,
 				45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */,
 				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
+				4592B49E1F06427200D1640D /* frame.hpp in Headers */,
 				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
 				45B5E8021EF8A93900A6A3E2 /* construct from tuple.hpp in Headers */,
 				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
