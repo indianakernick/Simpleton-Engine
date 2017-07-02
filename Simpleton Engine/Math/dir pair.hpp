@@ -14,6 +14,8 @@
 namespace Math {
   ///A pair of 2D orthogonal directions
   enum class DirPair : DirType {
+    //don't reoder this
+  
     UP_UP,
     UP_RIGHT,
     UP_DOWN,
@@ -50,19 +52,25 @@ namespace Math {
     return static_cast<Dir>(static_cast<DirType>(pair) & DirType(0b0011));
   }
   
-  ///Divide a DirPair into a std::pair<Dir>
+  ///Divide a DirPair into a std::pair<Dir, Dir>
   constexpr std::pair<Dir, Dir> splitPair(const DirPair pair) {
     return {first(pair), second(pair)};
   }
   
   ///Set the first Dir of a DirPair
   constexpr DirPair setFirst(const DirPair pair, const Dir dir) {
-    return (static_cast<DirType>(dir) << 2) | (static_cast<DirType>(pair) & DirType(0b0011));
+    return static_cast<DirPair>(
+      (static_cast<DirType>(dir) << 2) |
+      (static_cast<DirType>(pair) & DirType(0b0011))
+    );
   }
   
   ///Set the second Dir of a DirPair
   constexpr DirPair setSecond(const DirPair pair, const Dir dir) {
-    return (static_cast<DirType>(pair) & DirType(0b1100)) | static_cast<DirType>(dir);
+    return static_cast<DirPair>(
+      (static_cast<DirType>(pair) & DirType(0b1100)) |
+      static_cast<DirType>(dir)
+    );
   }
   
   ///Are the directions in the pair equal

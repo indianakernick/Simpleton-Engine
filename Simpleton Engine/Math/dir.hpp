@@ -16,6 +16,8 @@ namespace Math {
   ///The underlying type of Dir and Axis
   using DirType = uint8_t;
   
+  using SignedDirType = std::make_signed_t<DirType>;
+  
   ///A 2D orthogonal direction
   enum class Dir : DirType {
     //don't reoder this
@@ -56,6 +58,34 @@ namespace Math {
   ///Rotate a direction counter-clockwise (anti-clockwise)
   constexpr Dir rotateCCW(const Dir dir, const DirType count = 1) {
     return static_cast<Dir>((static_cast<DirType>(dir) - count) & DirType(0b11));
+  }
+  
+  ///Get the distance between directions
+  constexpr DirType dist(const Dir a, const Dir b) {
+    const SignedDirType diff = static_cast<SignedDirType>(a) - static_cast<SignedDirType>(b);
+    const DirType sign = diff >> (sizeof(DirType) * 8 - 1);
+    const DirType dist = (diff ^ sign) + (sign & 1);
+    
+    //@TODO remove branch
+    if (dist == 3) {
+      return 1;
+    } else {
+      return dist;
+    }
+  }
+  
+  ///Get the difference between directions
+  constexpr SignedDirType diff(const Dir a, const Dir b) {
+    const SignedDirType diff = static_cast<SignedDirType>(b) - static_cast<SignedDirType>(a);
+    
+    //@TODO remove branch
+    if (diff == 3) {
+      return -1;
+    } else if (diff == -3) {
+      return 1;
+    } else {
+      return diff;
+    }
   }
   
   ///Get the axis that a direction is on
