@@ -8,6 +8,8 @@
 
 #include "system info.hpp"
 
+#include <SDL2/SDL.h>
+
 Platform::ResPathError::ResPathError(const char *what)
   : std::logic_error(what) {}
 

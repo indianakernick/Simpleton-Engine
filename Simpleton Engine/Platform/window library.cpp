@@ -10,7 +10,7 @@
 
 using namespace Platform;
 
-LibInitError::LibInitError(const char *what)
+WindowLibInitError::WindowLibInitError(const char *what)
   : std::runtime_error(what) {}
 
 WindowOpenError::WindowOpenError(const char *what)
@@ -21,7 +21,7 @@ RendererCreateError::RendererCreateError(const char *what)
 
 Platform::WindowLibrary::WindowLibrary() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-    throw LibInitError(SDL_GetError());
+    throw WindowLibInitError(SDL_GetError());
   }
 }
 

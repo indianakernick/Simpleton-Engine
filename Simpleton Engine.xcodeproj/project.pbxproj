@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
+		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; };
+		4592B9681F0A267900D1640D /* sdl object.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; };
+		4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.cpp */; };
+		4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
+		4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
+		4592B9701F0A2E5E00D1640D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
+		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
 		45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7691EF8A8A700A6A3E2 /* pow.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,7 +156,6 @@
 		45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C61EF9047000A6A3E2 /* system info.mm */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
-		45B5E9111EFF961E00A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -269,6 +275,8 @@
 			dstPath = /usr/local/include/Simpleton/Platform;
 			dstSubfolderSpec = 0;
 			files = (
+				4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */,
+				4592B9681F0A267900D1640D /* sdl object.hpp in CopyFiles */,
 				45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */,
 				45B5E8BF1EF903D900A6A3E2 /* window library.hpp in CopyFiles */,
 				45B5E8C01EF903D900A6A3E2 /* window.hpp in CopyFiles */,
@@ -290,6 +298,10 @@
 
 /* Begin PBXFileReference section */
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
+		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
+		4592B96B1F0A2BA600D1640D /* font library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "font library.cpp"; sourceTree = "<group>"; };
+		4592B96C1F0A2BA600D1640D /* font library.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "font library.hpp"; sourceTree = "<group>"; };
+		4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -380,7 +392,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B5E9111EFF961E00A6A3E2 /* libSDL2-2.0.0.dylib in Frameworks */,
+				4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */,
+				4592B9701F0A2E5E00D1640D /* libSDL2-2.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +530,8 @@
 			children = (
 				45B5E89C1EF8E14300A6A3E2 /* window library.cpp */,
 				45B5E89D1EF8E14300A6A3E2 /* window library.hpp */,
+				4592B96B1F0A2BA600D1640D /* font library.cpp */,
+				4592B96C1F0A2BA600D1640D /* font library.hpp */,
 				45B5E8A01EF8E14300A6A3E2 /* window.cpp */,
 				45B5E8A11EF8E14300A6A3E2 /* window.hpp */,
 				45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */,
@@ -524,6 +539,7 @@
 				45B5E8C41EF9047000A6A3E2 /* system info.cpp */,
 				45B5E8C61EF9047000A6A3E2 /* system info.mm */,
 				45B5E8C51EF9047000A6A3E2 /* system info.hpp */,
+				4592B9651F0A24C800D1640D /* sdl object.hpp */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
@@ -552,6 +568,7 @@
 		45B5E8AF1EF9028600A6A3E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */,
 				45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */,
 			);
 			name = Frameworks;
@@ -570,6 +587,7 @@
 				45B5E7B81EF8A92500A6A3E2 /* interval.hpp in Headers */,
 				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
 				45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */,
+				4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */,
 				45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */,
 				45B5E7F61EF8A93900A6A3E2 /* bool enable.hpp in Headers */,
 				45B5E7991EF8A90D00A6A3E2 /* exceptions.hpp in Headers */,
@@ -578,6 +596,7 @@
 				45B5E8001EF8A93900A6A3E2 /* null check.hpp in Headers */,
 				45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */,
 				45B5E8091EF8ADCB00A6A3E2 /* byteconstants.hpp in Headers */,
+				4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */,
 				45B5E7801EF8A8A700A6A3E2 /* scale.hpp in Headers */,
 				45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */,
 				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
@@ -710,6 +729,7 @@
 				45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */,
 				45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */,
 				45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */,
+				4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */,
 				45B5E7B51EF8A92500A6A3E2 /* frame anim.cpp in Sources */,
 				45B5E7F01EF8A93900A6A3E2 /* point in polygon.cpp in Sources */,
 				45B5E7EB1EF8A93900A6A3E2 /* move test.cpp in Sources */,
@@ -823,11 +843,14 @@
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glm/**",
 					"/usr/local/Cellar/sdl2/**",
+					"/usr/local/Cellar/sdl2_ttf/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
+					"/usr/local/Cellar/sdl2_ttf/**",
 					/usr/local/Cellar/sdl2/2.0.5/lib,
+					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -857,11 +880,14 @@
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/Cellar/glm/**",
 					"/usr/local/Cellar/sdl2/**",
+					"/usr/local/Cellar/sdl2_ttf/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
+					"/usr/local/Cellar/sdl2_ttf/**",
 					/usr/local/Cellar/sdl2/2.0.5/lib,
+					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",

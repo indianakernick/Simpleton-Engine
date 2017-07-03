@@ -9,7 +9,6 @@
 #ifndef engine_platform_system_info_hpp
 #define engine_platform_system_info_hpp
 
-#include <SDL2/SDL.h>
 #include <string>
 
 namespace Platform {

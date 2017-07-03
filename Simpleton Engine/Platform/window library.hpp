@@ -15,9 +15,9 @@
 #include "../Utils/instance limiter.hpp"
 
 namespace Platform {
-  class LibInitError : public std::runtime_error {
+  class WindowLibInitError : public std::runtime_error {
   public:
-    explicit LibInitError(const char *);
+    explicit WindowLibInitError(const char *);
   };
   
   class WindowOpenError : public std::runtime_error {
