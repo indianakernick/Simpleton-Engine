@@ -11,7 +11,7 @@
 Time::DeltaAnim::DeltaAnim(uint64_t duration, EdgeMode edgeMode)
   : duration(duration), edgeMode(edgeMode) {}
 
-void Time::DeltaAnim::update(uint64_t delta) {
+void Time::DeltaAnim::advance(uint64_t delta) {
   if (state == RUNNING) {
     if (dir == FORWARD) {
       progressTime += delta;

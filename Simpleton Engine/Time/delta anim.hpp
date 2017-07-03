@@ -36,7 +36,7 @@ namespace Time {
   
     DeltaAnim(uint64_t, EdgeMode = EdgeMode::REPEAT);
     
-    void update(uint64_t);
+    void advance(uint64_t);
     
     ///Start the animation
     void start();
