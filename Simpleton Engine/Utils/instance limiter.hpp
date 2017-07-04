@@ -73,14 +73,14 @@ namespace Utils {
       }
     }
     LimitInstances(const LimitInstances &) = delete;
-    LimitInstances(LimitInstances &&) = delete;
+    LimitInstances(LimitInstances &&) = default;
     ~LimitInstances() {
       static_assert(std::is_base_of<LimitInstances, T>::value);
       created = false;
     }
     
     LimitInstances &operator=(const LimitInstances &) = delete;
-    LimitInstances &operator=(LimitInstances &&) = delete;
+    LimitInstances &operator=(LimitInstances &&) = default;
 
   private:
     static bool created;
@@ -114,13 +114,13 @@ namespace Utils {
   protected:
     LimitInstances() = default;
     LimitInstances(const LimitInstances &) = delete;
-    LimitInstances(LimitInstances &&) = delete;
+    LimitInstances(LimitInstances &&) = default;
     ~LimitInstances() {
       static_assert(std::is_base_of<LimitInstances, T>::value);
     }
     
     LimitInstances &operator=(const LimitInstances &) = delete;
-    LimitInstances &operator=(LimitInstances &&) = delete;
+    LimitInstances &operator=(LimitInstances &&) = default;
   };
 }
 
