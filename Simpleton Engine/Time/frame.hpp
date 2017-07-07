@@ -13,45 +13,38 @@
 #include <type_traits>
 
 namespace Time {
-  template <typename Frame, typename Progress>
-  std::enable_if_t<
-    std::is_integral<Frame>::value &&
-    std::is_floating_point<Progress>::value,
-    Frame
-  >
-  progToFrame(const Progress prog, const Frame numFrames) {
-    return static_cast<Frame>(prog * static_cast<Progress>(numFrames));
-  }
+  enum class Round {
+    FLOOR,
+    ROUND,
+    CEIL
+  };
   
-  template <typename Frame, typename Progress>
-  std::enable_if_t<
-    std::is_integral<Frame>::value &&
-    std::is_floating_point<Progress>::value,
-    Frame
-  >
-  wrapProgToFrame(const Progress prog, const Frame numFrames) {
-    return static_cast<Frame>(prog * static_cast<Progress>(numFrames)) % numFrames;
-  }
-  
-  template <typename Frame, typename Progress>
-  std::enable_if_t<
-    std::is_integral<Frame>::value &&
-    std::is_floating_point<Progress>::value,
-    Frame
-  >
-  progToNearestFrame(const Progress prog, const Frame numFrames) {
-    return static_cast<Frame>(std::round(prog * static_cast<Progress>(numFrames)));
-  }
-  
-  template <typename Frame, typename Progress>
-  std::enable_if_t<
-    std::is_integral<Frame>::value &&
-    std::is_floating_point<Progress>::value,
-    Frame
-  >
-  wrapProgToNearestFrame(const Progress prog, const Frame numFrames) {
-    return static_cast<Frame>(std::round(prog * static_cast<Progress>(numFrames))) % numFrames;
-  }
+  template <typename Frame, Round ROUND = Round::FLOOR, bool WRAP = false, bool REVERSE = false>
+  struct ProgToFrame {
+    static_assert(std::is_integral<Frame>::value);
+    
+    template <typename Progress>
+    static std::enable_if_t<
+      std::is_floating_point<Progress>::value,
+      Frame
+    >
+    conv(Progress prog, const Frame numFrames) {
+      prog = prog * static_cast<Progress>(numFrames);
+      if constexpr (ROUND == Round::ROUND) {
+        prog = std::round(prog);
+      } else if (ROUND == Round::CEIL) {
+        prog = std::ceil(prog);
+      }
+      Frame frame = static_cast<Frame>(prog);
+      if constexpr (REVERSE) {
+        frame = numFrames - 1 - frame;
+      }
+      if constexpr (WRAP) {
+        frame = frame % numFrames;
+      }
+      return frame;
+    }
+  };
 }
 
 #endif
