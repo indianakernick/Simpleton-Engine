@@ -26,7 +26,7 @@ namespace Game {
     using Listener = DispatcherImpl::Listener;
     using ListenerID = DispatcherImpl::ListenerID;
 
-    explicit EventManager(uint64_t);
+    explicit EventManager(uint64_t = std::numeric_limits<uint64_t>::max());
     ~EventManager() = default;
     
     ///Call the event listeners for each event. Never takes longer than
@@ -49,6 +49,8 @@ namespace Game {
     ///Emit an event
     template <typename EventClass, typename ...Args>
     void emit(Args &&... args) {
+      PROFILE(Game::EventManager::emit);
+    
       emit(std::make_shared<EventClass>(std::forward<Args>(args)...));
     }
     
@@ -67,6 +69,8 @@ namespace Game {
     template <typename EventClass>
     void emitNow(const std::shared_ptr<EventClass> event) {
       assert(event);
+      PROFILE(Game::EventManager::emitNow);
+      
       dispatcher.dispatch(GetEventType<EventClass>::get(), event);
       dispatcher.dispatch(ANY_TYPE, event);
     }
@@ -74,6 +78,8 @@ namespace Game {
     ///Add a event listener
     template <typename Function>
     ListenerID addListener(Function &&listener) {
+      PROFILE(Game::EventManager::addListener);
+    
       using EventClass = typename Utils::function_arg<Function, 0>::element_type;
       return addListener(
         GetEventType<EventClass>::get(),
