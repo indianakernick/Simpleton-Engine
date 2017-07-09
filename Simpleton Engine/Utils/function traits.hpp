@@ -138,7 +138,7 @@ namespace Utils {
 
   //rvalue reference to function
   template <typename Function>
-struct function_traits<Function &&> : function_traits<Function> {};
+  struct function_traits<Function &&> : function_traits<Function> {};
 }
 
 #endif
