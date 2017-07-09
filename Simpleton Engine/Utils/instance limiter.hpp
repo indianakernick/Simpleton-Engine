@@ -11,11 +11,12 @@
 
 #include <string>
 #include <stdexcept>
+#include <experimental/string_view>
 
 namespace Utils {
   class TooManyInstances final : std::logic_error {
   public:
-    TooManyInstances(const std::string &, size_t);
+    TooManyInstances(std::experimental::string_view, size_t);
   };
 }
 

@@ -18,35 +18,35 @@ namespace Utils {
   public:
     MoveTest() {
       if (logging) {
-        std::cerr << name << " - Default constructor\n";
+        std::cerr << typeName<T>() << " - Default constructor\n";
       }
     }
     MoveTest(const MoveTest &) {
       if (logging) {
-        std::cerr << name << " - Copy constructor\n";
+        std::cerr << typeName<T>() << " - Copy constructor\n";
       }
     }
     MoveTest(MoveTest &&) {
       if (logging) {
-        std::cerr << name << " - Move constructor\n";
+        std::cerr << typeName<T>() << " - Move constructor\n";
       }
     }
     
     virtual ~MoveTest() {
       if (logging) {
-        std::cerr << name << " - Destructor\n";
+        std::cerr << typeName<T>() << " - Destructor\n";
       }
     }
     
     MoveTest &operator=(const MoveTest &) {
       if (logging) {
-        std::cerr << name << " - Copy assignment\n";
+        std::cerr << typeName<T>() << " - Copy assignment\n";
       }
       return *this;
     }
     MoveTest &operator=(MoveTest &&) {
       if (logging) {
-        std::cerr << name << " - Move assignment\n";
+        std::cerr << typeName<T>() << " - Move assignment\n";
       }
       return *this;
     }
@@ -65,7 +65,6 @@ namespace Utils {
     
   private:
     static bool logging;
-    static const std::string name;
   };
 
   template <typename T>
@@ -73,9 +72,6 @@ namespace Utils {
 
   template <typename T>
   bool MoveTest<T>::logging = false;
-
-  template <typename T>
-  const std::string MoveTest<T>::name = typeName<T>();
 
   template <typename T>
   class MoveCounter {

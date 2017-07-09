@@ -13,6 +13,7 @@
 #include <memory>
 #include <cassert>
 #include "../ID/type.hpp"
+#include "../Utils/type name.hpp"
 
 namespace Game {
   class Event {
@@ -30,7 +31,7 @@ namespace Game {
   template <typename EventClass>
   using GetEventType = ID::TypeCounter<Event::Type, EventClass, Event>;
   
-  template <typename EventClass, const char *NAME>
+  template <typename EventClass>
   class StaticEvent : public Event {
   public:
     using Ptr = std::shared_ptr<EventClass>;
@@ -45,7 +46,7 @@ namespace Game {
     }
     
     const char *getName() const override final {
-      return NAME;
+      return Utils::typeName<EventClass>().data();
     }
   };
 }
