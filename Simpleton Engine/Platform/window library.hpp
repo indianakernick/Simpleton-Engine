@@ -34,10 +34,10 @@ namespace Platform {
   public:
     WindowLibrary();
     ~WindowLibrary();
-    
-    Window makeWindow(const Window::Desc &);
-    Renderer makeRenderer(Window &, bool);
   };
+  
+  Window makeWindow(const Window::Desc &);
+  Renderer makeRenderer(Window &, bool);
 }
 
 #endif

@@ -29,7 +29,7 @@ Platform::WindowLibrary::~WindowLibrary() {
   SDL_Quit();
 }
 
-Window Platform::WindowLibrary::makeWindow(const Window::Desc &desc) {
+Window Platform::makeWindow(const Window::Desc &desc) {
   SDL_Window *window = SDL_CreateWindow(
     desc.title.c_str(),
     SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -46,7 +46,7 @@ Window Platform::WindowLibrary::makeWindow(const Window::Desc &desc) {
   return Window(window);
 }
 
-Renderer Platform::WindowLibrary::makeRenderer(Window &window, const bool vsync) {
+Renderer Platform::makeRenderer(Window &window, const bool vsync) {
   SDL_Renderer *renderer = SDL_CreateRenderer(
     window.get(),
     -1,

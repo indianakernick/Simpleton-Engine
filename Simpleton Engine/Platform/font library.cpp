@@ -24,7 +24,7 @@ Platform::FontLibrary::~FontLibrary() {
   TTF_Quit();
 }
 
-Platform::Font Platform::FontLibrary::openFont(const std::string &path, const int size) {
+Platform::Font Platform::openFont(const std::string &path, const int size) {
   TTF_Font *font = TTF_OpenFont(path.c_str(), size);
   if (font == nullptr) {
     throw FontOpenError(TTF_GetError());

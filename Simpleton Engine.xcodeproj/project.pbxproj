@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
+		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
-		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; };
+		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B9681F0A267900D1640D /* sdl object.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; };
 		4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.cpp */; };
-		4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
+		4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
 		4592B9701F0A2E5E00D1640D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
 		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
+		4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
+		4592BAEB1F11C3CB00D1640D /* app.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BAE91F11C3CB00D1640D /* app.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
+		4592BAEF1F11C50F00D1640D /* sdl app.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BAED1F11C50F00D1640D /* sdl app.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		4592BAF11F11C94500D1640D /* app.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BAE91F11C3CB00D1640D /* app.hpp */; };
+		4592BAF21F11C94500D1640D /* sdl app.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BAED1F11C50F00D1640D /* sdl app.hpp */; };
 		45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7691EF8A8A700A6A3E2 /* pow.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -159,6 +165,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4592BAF01F11C90E00D1640D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/local/include/Simpleton/Application;
+			dstSubfolderSpec = 0;
+			files = (
+				4592BAF11F11C94500D1640D /* app.hpp in CopyFiles */,
+				4592BAF21F11C94500D1640D /* sdl app.hpp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45B5E80B1EF8AE5800A6A3E2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -302,6 +319,10 @@
 		4592B96B1F0A2BA600D1640D /* font library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "font library.cpp"; sourceTree = "<group>"; };
 		4592B96C1F0A2BA600D1640D /* font library.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "font library.hpp"; sourceTree = "<group>"; };
 		4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
+		4592BAE81F11C3CB00D1640D /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
+		4592BAE91F11C3CB00D1640D /* app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
+		4592BAEC1F11C50F00D1640D /* sdl app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "sdl app.cpp"; sourceTree = "<group>"; };
+		4592BAED1F11C50F00D1640D /* sdl app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl app.hpp"; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -400,6 +421,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4592BAE71F11C3A400D1640D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4592BAE81F11C3CB00D1640D /* app.cpp */,
+				4592BAE91F11C3CB00D1640D /* app.hpp */,
+				4592BAEC1F11C50F00D1640D /* sdl app.cpp */,
+				4592BAED1F11C50F00D1640D /* sdl app.hpp */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		45B5E6961EF7C25200A6A3E2 = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +452,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				4592BAE71F11C3A400D1640D /* Application */,
 				45B5E88B1EF8DCA000A6A3E2 /* ID */,
 				45B5E8821EF8DC5C00A6A3E2 /* Event */,
 				45B5E85A1EF8D8B900A6A3E2 /* Platform */,
@@ -587,7 +620,6 @@
 				45B5E7B81EF8A92500A6A3E2 /* interval.hpp in Headers */,
 				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
 				45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */,
-				4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */,
 				45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */,
 				45B5E7F61EF8A93900A6A3E2 /* bool enable.hpp in Headers */,
 				45B5E7991EF8A90D00A6A3E2 /* exceptions.hpp in Headers */,
@@ -596,7 +628,6 @@
 				45B5E8001EF8A93900A6A3E2 /* null check.hpp in Headers */,
 				45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */,
 				45B5E8091EF8ADCB00A6A3E2 /* byteconstants.hpp in Headers */,
-				4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */,
 				45B5E7801EF8A8A700A6A3E2 /* scale.hpp in Headers */,
 				45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */,
 				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
@@ -634,10 +665,14 @@
 				45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */,
 				45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */,
 				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
-				4592B49E1F06427200D1640D /* frame.hpp in Headers */,
 				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
 				45B5E8021EF8A93900A6A3E2 /* construct from tuple.hpp in Headers */,
 				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
+				4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */,
+				4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */,
+				4592BAEB1F11C3CB00D1640D /* app.hpp in Headers */,
+				4592B49E1F06427200D1640D /* frame.hpp in Headers */,
+				4592BAEF1F11C50F00D1640D /* sdl app.hpp in Headers */,
 				45B5E7EF1EF8A93900A6A3E2 /* combine.hpp in Headers */,
 				45B5E7F11EF8A93900A6A3E2 /* point in polygon.hpp in Headers */,
 				45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */,
@@ -655,6 +690,7 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				45B5E69D1EF7C25200A6A3E2 /* Headers */,
+				4592BAF01F11C90E00D1640D /* CopyFiles */,
 				45B5E8B31EF902F100A6A3E2 /* CopyFiles */,
 				45B5E8B71EF9032E00A6A3E2 /* CopyFiles */,
 				45B5E8BE1EF903C500A6A3E2 /* CopyFiles */,
@@ -719,6 +755,7 @@
 				45B5E7BD1EF8A92500A6A3E2 /* delta anim.cpp in Sources */,
 				45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */,
 				45B5E8A41EF8E14300A6A3E2 /* window library.cpp in Sources */,
+				4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */,
 				45B5E7F91EF8A93900A6A3E2 /* type name.cpp in Sources */,
 				45B5E7ED1EF8A93900A6A3E2 /* any.cpp in Sources */,
 				45B5E79A1EF8A90D00A6A3E2 /* byteptr.cpp in Sources */,
@@ -729,6 +766,7 @@
 				45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */,
 				45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */,
 				45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */,
+				4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */,
 				4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */,
 				45B5E7B51EF8A92500A6A3E2 /* frame anim.cpp in Sources */,
 				45B5E7F01EF8A93900A6A3E2 /* point in polygon.cpp in Sources */,

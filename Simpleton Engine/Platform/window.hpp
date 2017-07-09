@@ -27,7 +27,12 @@ namespace Platform {
       bool openGL = false;
     };
   
+    Window();
     explicit Window(SDL_Window *);
+    Window(Window &&) = default;
+    ~Window() = default;
+    
+    Window &operator=(Window &&) = default;
     
     ID getID() const;
     

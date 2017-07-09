@@ -10,6 +10,9 @@
 
 using namespace Platform;
 
+Renderer::Renderer()
+  : renderer(nullptr, &SDL_DestroyRenderer) {}
+
 Renderer::Renderer(SDL_Renderer *renderer)
   : renderer(renderer, &SDL_DestroyRenderer) {
   assert(renderer);

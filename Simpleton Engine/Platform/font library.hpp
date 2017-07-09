@@ -23,15 +23,15 @@ namespace Platform {
     explicit FontOpenError(const char *);
   };
   
-  using Font = std::unique_ptr<TTF_Font, decltype(&TTF_CloseFont)>;
-  
   class FontLibrary : public Utils::ForceSingleton<FontLibrary> {
   public:
     FontLibrary();
     ~FontLibrary();
-    
-    Font openFont(const std::string &, int);
   };
+  
+  using Font = std::unique_ptr<TTF_Font, decltype(&TTF_CloseFont)>;
+  
+  Font openFont(const std::string &, int);
 }
 
 #endif

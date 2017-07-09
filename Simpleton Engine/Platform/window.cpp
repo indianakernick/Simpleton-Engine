@@ -10,6 +10,9 @@
 
 using namespace Platform;
 
+Window::Window()
+  : window(nullptr, &SDL_DestroyWindow) {}
+
 Window::Window(SDL_Window *window)
   : window(window, &SDL_DestroyWindow) {
   assert(window);

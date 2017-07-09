@@ -17,7 +17,12 @@
 namespace Platform {
   class Renderer {
   public:
+    Renderer();
     explicit Renderer(SDL_Renderer *);
+    Renderer(Renderer &&) = default;
+    ~Renderer() = default;
+    
+    Renderer &operator=(Renderer &&) = default;
   
     void setColor(glm::tvec4<uint8_t>);
     glm::tvec4<uint8_t> getColor() const;
