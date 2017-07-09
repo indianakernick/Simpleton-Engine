@@ -9,7 +9,8 @@
 #ifndef engine_application_app_hpp
 #define engine_application_app_hpp
 
-#include "../Time/delta.hpp"
+#include "../Utils/member function.hpp"
+#include "../Time/main loop.hpp"
 
 namespace Game {
   class App {
@@ -17,22 +18,22 @@ namespace Game {
     App() = default;
     virtual ~App() = default;
     
-    template <typename DurationType>
-    void mainLoop() {
-      bool running = init();
-      Time::Delta<DurationType> deltaTime;
-      while (running) {
-        const uint64_t delta = deltaTime.get();
-        running = running && input(delta);
-        running = running && update(delta);
-        render(delta);
+    template <typename Duration>
+    void mainLoop(const uint64_t step, const uint32_t maxSteps) {
+      if (!init()) {
+        return;
       }
+      
+      Time::Mainloop<Duration>::fixedWithVarPrePost(
+        Utils::memFunWrap(this, &App::input),
+        Utils::memFunWrap(this, &App::update),
+        Utils::memFunWrap(this, &App::render),
+        step,
+        maxSteps
+      );
+      
       quit();
     }
-
-  protected:
-    static constexpr bool RUN = true;
-    static constexpr bool QUIT = false;
     
   private:
     virtual bool init() = 0;

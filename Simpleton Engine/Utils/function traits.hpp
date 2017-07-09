@@ -21,6 +21,9 @@ namespace Utils {
 
   template <typename Function, size_t I>
   using function_arg = typename function_traits<Function>::template arg<I>;
+  
+  template <typename Function>
+  constexpr size_t function_arity = function_traits<Function>::arity;
 
   template <typename Function>
   constexpr bool is_member_variable = function_traits<Function>::is_member && function_traits<Function>::mem::is_var;

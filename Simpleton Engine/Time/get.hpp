@@ -16,38 +16,38 @@
 
 namespace Time {
   ///Get the current time as an integer
-  template <typename DURATION_TYPE>
-  inline uint64_t getI() {
-    return std::chrono::duration_cast<DURATION_TYPE>(
+  template <typename Duration>
+  uint64_t getI() {
+    return std::chrono::duration_cast<Duration>(
       std::chrono::high_resolution_clock::now()
       .time_since_epoch()
     )
     .count();
   }
   
-  template <typename DURATION_TYPE>
-  using Point = std::chrono::time_point<std::chrono::high_resolution_clock, DURATION_TYPE>;
+  template <typename Duration>
+  using Point = std::chrono::time_point<std::chrono::high_resolution_clock, Duration>;
   
   ///Get the current time as a std::chrono::time_point
-  template <typename DURATION_TYPE>
-  inline Point<DURATION_TYPE> getPoint() {
-    return std::chrono::time_point_cast<DURATION_TYPE>(
+  template <typename Duration>
+  Point<Duration> getPoint() {
+    return std::chrono::time_point_cast<Duration>(
       std::chrono::high_resolution_clock::now()
     );
   }
   
   ///Get the current time as a std::chrono::duration since epoch
-  template <typename DURATION_TYPE>
-  inline DURATION_TYPE getDuration() {
-    return std::chrono::duration_cast<DURATION_TYPE>(
+  template <typename Duration>
+  Duration getDuration() {
+    return std::chrono::duration_cast<Duration>(
       std::chrono::high_resolution_clock::now()
       .time_since_epoch()
     );
   }
   
   ///Get the current time as a floating-point number
-  template <typename DURATION_TYPE>
-  inline double getF();
+  template <typename>
+  double getF();
   
   template <>
   inline double getF<std::chrono::nanoseconds>() {
