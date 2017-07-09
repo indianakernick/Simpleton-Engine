@@ -9,8 +9,8 @@
 #ifndef engine_utils_instance_limiter_hpp
 #define engine_utils_instance_limiter_hpp
 
+#include <string>
 #include <stdexcept>
-#include <experimental/string_view>
 
 namespace Utils {
   class TooManyInstances final : std::logic_error {
@@ -82,6 +82,11 @@ namespace Utils {
     LimitInstances &operator=(const LimitInstances &) = delete;
     LimitInstances &operator=(LimitInstances &&) = default;
 
+  public:
+    static bool wasCreated() {
+      return created;
+    }
+    
   private:
     static bool created;
   };
@@ -121,14 +126,19 @@ namespace Utils {
     
     LimitInstances &operator=(const LimitInstances &) = delete;
     LimitInstances &operator=(LimitInstances &&) = default;
+  
+  public:
+    static bool wasCreated() {
+      return true;
+    }
   };
 }
 
 #endif
 
-//I don't think there is any point in this
-
 namespace Utils {
+  //I don't think there is any point in this
+  
   ///Limit the number of instances of a derived class
   template <typename T>
   class LimitInstances<T, 0> {
