@@ -29,6 +29,7 @@ namespace Game {
     virtual ~Component() = default;
     
     virtual void init() = 0;
+    virtual void quit() = 0;
     virtual void update(uint64_t) = 0;
     
   protected:

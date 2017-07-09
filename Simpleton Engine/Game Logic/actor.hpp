@@ -132,8 +132,10 @@ namespace Game {
     }
     
     ID getID() const;
-    void update(uint64_t);
     void flushMessages();
+    void initComponents();
+    void quitComponents();
+    void updateComponents(uint64_t);
     
   private:
     ID id;

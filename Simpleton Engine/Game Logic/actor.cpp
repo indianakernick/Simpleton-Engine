@@ -36,18 +36,29 @@ Game::Actor::ID Game::Actor::getID() const {
   return id;
 }
 
-void Game::Actor::update(const uint64_t delta) {
-  flushMessages();
-  for (auto c = components.cbegin(); c != components.cend(); ++c) {
-    (*c)->update(delta);
-  }
-}
-
 void Game::Actor::flushMessages() {
   try {
     MessageManager<Component::ID>::flushMessages();
   } catch (MissingMessenger &e) {
     throw MissingComponent("Tried to send a message to a component that doesn't exist");
+  }
+}
+
+void Game::Actor::initComponents() {
+  for (auto c = components.cbegin(); c != components.cend(); ++c) {
+    (*c)->init();
+  }
+}
+
+void Game::Actor::quitComponents() {
+  for (auto c = components.cbegin(); c != components.cend(); ++c) {
+    (*c)->quit();
+  }
+}
+
+void Game::Actor::updateComponents(const uint64_t delta) {
+  for (auto c = components.cbegin(); c != components.cend(); ++c) {
+    (*c)->update(delta);
   }
 }
 
