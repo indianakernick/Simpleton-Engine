@@ -64,7 +64,7 @@ namespace Utils {
 namespace Utils {
   ///Dynamic cast and throw std::bad_cast on failure
   template <typename Derived, typename Base>
-  inline std::enable_if_t<
+  std::enable_if_t<
     std::is_base_of<Base, Derived>::value &&
     !std::is_same<Base, Derived>::value,
     Derived *
