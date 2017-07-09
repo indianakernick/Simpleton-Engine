@@ -68,7 +68,12 @@ namespace Game {
     
     ///Get a pointer to a component
     template <typename Comp>
-    Comp *getComponentPtr() const {
+    std::enable_if_t<
+      std::is_base_of<Component, Comp>::value &&
+      !std::is_same<Component, Comp>::value,
+      Comp *
+    >
+    getComponentPtr() const {
       const Component::ID compID = GetComponentID<Comp>::get();
       if (compID < components.size() && components[compID]) {
         return Utils::safeDownCast<Comp>(components[compID].get());
