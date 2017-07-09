@@ -71,6 +71,7 @@ namespace Time {
         lastDo += duration;
         count++;
       }
+      lastDo = now;
       return count;
     }
     
@@ -136,6 +137,7 @@ namespace Time {
         count++;
         timeSinceLast -= duration;
       }
+      timeSinceLast = 0;
       return count;
     }
     
