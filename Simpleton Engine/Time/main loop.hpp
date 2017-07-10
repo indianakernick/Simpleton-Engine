@@ -78,6 +78,7 @@ namespace Time {
     ) {
       uint64_t lag = 0;
       uint64_t last = getI<Duration>();
+      const uint64_t maxStep = step * maxSteps;
       bool ok = true;
       
       while (ok) {
@@ -86,7 +87,8 @@ namespace Time {
         last = now;
         lag += elapsed;
         
-        ok = update(preFunc, step);
+        const uint64_t actualStep = std::min(lag - lag % step, maxStep);
+        ok = update(preFunc, actualStep);
         
         uint32_t steps = maxSteps;
         
@@ -96,7 +98,7 @@ namespace Time {
           steps--;
         }
         
-        ok = ok && update(postFunc, step);
+        ok = ok && update(postFunc, actualStep);
       }
     }
   };
