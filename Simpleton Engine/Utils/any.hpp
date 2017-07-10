@@ -13,18 +13,18 @@
 #include <cassert>
 #include <memory>
 
-namespace Utils {
+/*namespace Utils {
   class Any;
 }
 
 template <>
 struct std::hash<Utils::Any> {
   size_t operator()(const Utils::Any &) const;
-};
+};*/
 
 namespace Utils {
   class Any {
-  friend size_t std::hash<Any>::operator()(const Any &) const;
+  //friend size_t std::hash<Any>::operator()(const Any &) const;
   public:
     Any()
       : deleter(nullptr) {}
@@ -94,7 +94,7 @@ namespace Utils {
       Deleter() = default;
       virtual ~Deleter() = default;
       
-      virtual size_t getValHash() const = 0;
+      //virtual size_t getValHash() const = 0;
       virtual size_t getTypeHash() const = 0;
       virtual void *getPtr() const = 0;
       virtual bool compare(const Ptr &) const = 0;
@@ -109,17 +109,17 @@ namespace Utils {
       explicit DeleterImpl(const T &val)
         : ptr(std::make_unique<T>(val)) {}
       
-      size_t getValHash() const override {
-        return hasher(*ptr);
-      }
+      //size_t getValHash() const override {
+      //  return hasher(*ptr);
+      //}
       size_t getTypeHash() const override {
         return TYPE_HASH;
       }
       void *getPtr() const override {
-        return ptr;
+        return ptr.get();
       }
       bool compare(const Deleter::Ptr &other) const override {
-        return *ptr == *std::dynamic_pointer_cast<DeleterImpl<T>>(other)->ptr;
+        return *ptr == *(dynamic_cast<DeleterImpl *>(other.get())->ptr);
       }
       Deleter::Ptr make() const override {
         return std::make_unique<DeleterImpl<T>>(T());
@@ -128,11 +128,11 @@ namespace Utils {
         return std::make_unique<DeleterImpl<T>>(*ptr);
       }
       void assign(const Deleter::Ptr &other) const override {
-        *ptr = *std::dynamic_pointer_cast<DeleterImpl<T>>(other)->ptr;
+        *ptr = *(dynamic_cast<DeleterImpl *>(other.get())->ptr);
       }
       
     private:
-      static const std::hash<T> hasher;
+      //static const std::hash<T> hasher;
       static const size_t TYPE_HASH;
       std::unique_ptr<T> ptr;
     };
@@ -140,8 +140,8 @@ namespace Utils {
     Deleter::Ptr deleter;
   };
 
-  template <typename T>
-  const std::hash<T> Any::DeleterImpl<T>::hasher {};
+  //template <typename T>
+  //const std::hash<T> Any::DeleterImpl<T>::hasher {};
 
   template <typename T>
   const size_t Any::DeleterImpl<T>::TYPE_HASH = typeid(T).hash_code();

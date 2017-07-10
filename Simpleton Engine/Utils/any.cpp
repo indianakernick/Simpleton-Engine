@@ -8,6 +8,6 @@
 
 #include "any.hpp"
 
-size_t std::hash<Utils::Any>::operator()(const Utils::Any &any) const {
-  return any.deleter ? any.deleter->getValHash() : 0;
-};
+//size_t std::hash<Utils::Any>::operator()(const Utils::Any &any) const {
+//  return any.deleter ? any.deleter->getValHash() : 0;
+//}
