@@ -35,16 +35,41 @@ namespace Game {
   protected:
     Actor *actor = nullptr;
     
-    using Messenger::sendMessage;
+    template <typename ComponentClass, typename MessageClass>
+    void sendMessage();
+    template <typename ComponentClass, typename MessageClass, typename MessageData>
+    void sendMessage(MessageData &&);
     
   private:
     using Messenger::onMessage;
+    using Messenger::sendMessage;
   
     MessageManager<ID> *getManager() const override;
   };
   
   template <typename ComponentClass>
   using GetComponentID = ID::TypeCounter<Component::ID, ComponentClass, Component>;
+  
+  template <typename ComponentClass, typename MessageClass>
+  void Component::sendMessage() {
+    sendMessage(
+      GetComponentID<ComponentClass>::get(),
+      Game::Message(
+        GetMessageID<MessageClass>::get()
+      )
+    );
+  }
+  
+  template <typename ComponentClass, typename MessageClass, typename MessageData>
+  void Component::sendMessage(MessageData &&data) {
+    sendMessage(
+      GetComponentID<ComponentClass>::get(),
+      Game::Message(
+        GetMessageID<MessageClass>::get(),
+        Utils::Any(std::forward<MessageData>(data))
+      )
+    );
+  }
 }
 
 #endif

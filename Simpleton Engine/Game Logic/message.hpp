@@ -10,6 +10,7 @@
 #define engine_game_logic_message_hpp
 
 #include <queue>
+#include "../ID/type.hpp"
 #include "../Utils/any.hpp"
 
 namespace Game {
@@ -17,13 +18,16 @@ namespace Game {
   public:
     using ID = uint32_t;
     
-    explicit Message(ID, const Utils::Any & = {});
+    Message(ID, const Utils::Any &);
     explicit Message(ID, Utils::Any && = {});
     ~Message() = default;
     
     Utils::Any data;
     ID id;
   };
+  
+  template <typename MessageClass>
+  using GetMessageID = ID::TypeCounter<Message::ID, MessageClass>;
   
   class NullManager final : public std::runtime_error {
   public:

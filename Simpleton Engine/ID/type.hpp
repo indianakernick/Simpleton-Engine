@@ -64,7 +64,7 @@ namespace ID {
   
   ///Creates an ID unique to the type within the Group. IDs are hashes and
   ///available at compile time
-  template <typename Int, typename T, typename Group>
+  template <typename Int, typename T, typename Group = void>
   class TypeHasher : private Hasher<T, Group> {
   
     static_assert(std::is_integral<Int>::value, "Int must be an integral type");
