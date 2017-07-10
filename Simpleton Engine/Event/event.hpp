@@ -32,13 +32,13 @@ namespace Game {
   using GetEventType = ID::TypeCounter<Event::Type, EventClass, Event>;
   
   template <typename EventClass>
-  class StaticEvent : public Event {
+  class EventImpl : public Event {
   public:
     using Ptr = std::shared_ptr<EventClass>;
     
-    StaticEvent() = default;
-    ~StaticEvent() {
-      static_assert(std::is_base_of<StaticEvent, EventClass>::value);
+    EventImpl() = default;
+    ~EventImpl() {
+      static_assert(std::is_base_of<EventImpl, EventClass>::value);
     }
     
     Type getType() const override final {

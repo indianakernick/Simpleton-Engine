@@ -8,6 +8,8 @@
 
 #include "manager.hpp"
 
+#include <iostream>
+
 using namespace Game;
 
 const Event::Type EventManager::ANY_TYPE = GetEventType<EventManager>::get();
@@ -16,6 +18,14 @@ std::unique_ptr<EventManager> evtMan = nullptr;
 EventManager::EventManager(const uint64_t timeLimit)
   : timeLimit(timeLimit) {
   dispatcher.createGroup(ANY_TYPE);
+}
+
+void EventManager::printQueue(std::ostream &stream, const char sep) const {
+  const auto begin = queue[currentQueue].cbegin();
+  const auto end = queue[currentQueue].cend();
+  for (auto e = begin; e != end; ++e) {
+    stream << (*e)->getName() << sep;
+  }
 }
 
 void EventManager::update() {
@@ -74,5 +84,5 @@ void EventManager::remListener(const ListenerID id) {
 
 EventManager::ListenerID EventManager::addAnyListener(const Listener &listener) {
   PROFILE(Game::EventManager::addAnyListener);
-  return dispatcher.addListenerAndCreateGroup(ANY_TYPE, listener);
+  return dispatcher.addListener(ANY_TYPE, listener);
 }

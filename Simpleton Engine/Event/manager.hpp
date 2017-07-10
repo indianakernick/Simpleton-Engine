@@ -10,6 +10,7 @@
 #define engine_event_manager_hpp
 
 #include <deque>
+#include <iosfwd>
 #include "event.hpp"
 #include "../Utils/profiler.hpp"
 #include "../Utils/dispatcher.hpp"
@@ -28,6 +29,9 @@ namespace Game {
 
     explicit EventManager(uint64_t = std::numeric_limits<uint64_t>::max());
     ~EventManager() = default;
+    
+    ///Write the names of all events in the queue to the given stream
+    void printQueue(std::ostream &, char = '\n') const;
     
     ///Call the event listeners for each event. Never takes longer than
     ///timeLimit nanoseconds to process.
