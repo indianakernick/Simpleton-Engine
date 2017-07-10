@@ -8,8 +8,6 @@
 
 #include "actor.hpp"
 
-const Game::Actor::ID Game::Actor::NULL_ID = 0;
-
 Game::MissingComponent::MissingComponent(const char *what)
   : std::runtime_error(what) {}
 
@@ -19,21 +17,14 @@ Game::DuplicateComponent::DuplicateComponent()
 Game::BadActorPtr::BadActorPtr(const char *what)
   : std::runtime_error(what) {}
 
-Game::Actor::Actor(const ID id)
-  : id(id) {}
-
-Game::Actor::Actor(const ID id, const Components &newComponents)
-  : id(id), components(newComponents) {
+Game::Actor::Actor(const Components &newComponents)
+  : components(newComponents) {
   setActorPtr();
 }
 
-Game::Actor::Actor(const ID id, Components &&newComponents)
-  : id(id), components(std::move(newComponents)) {
+Game::Actor::Actor(Components &&newComponents)
+  : components(std::move(newComponents)) {
   setActorPtr();
-}
-
-Game::Actor::ID Game::Actor::getID() const {
-  return id;
 }
 
 void Game::Actor::flushMessages() {

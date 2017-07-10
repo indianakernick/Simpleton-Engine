@@ -33,17 +33,15 @@ namespace Game {
 
   using Components = std::vector<Component::Ptr>;
 
-  class Actor final : public MessageManager<Component::ID> {
+  class Actor : public MessageManager<Component::ID> {
   public:
     using Ptr = std::shared_ptr<Actor>;
     using ID = uint64_t;
     
-    static const ID NULL_ID;
-    
-    explicit Actor(ID);
-    Actor(ID, const Components &);
-    Actor(ID, Components &&);
-    ~Actor() = default;
+    Actor() = default;
+    explicit Actor(const Components &);
+    explicit Actor(Components &&);
+    virtual ~Actor() = default;
     
     ///Get a shared_ptr to a component
     template <typename Comp>
@@ -136,14 +134,12 @@ namespace Game {
       }
     }
     
-    ID getID() const;
     void flushMessages();
     void initComponents();
     void quitComponents();
     void updateComponents(uint64_t);
     
   private:
-    ID id;
     Components components;
     
     void setActorPtr();
