@@ -138,8 +138,6 @@ namespace Utils {
 #endif
 
 namespace Utils {
-  //I don't think there is any point in this
-  
   ///Limit the number of instances of a derived class
   template <typename T>
   class LimitInstances<T, 0> {
@@ -156,6 +154,11 @@ namespace Utils {
   ///Force a derived class to be a singleton
   template <typename T>
   using ForceSingleton = LimitInstances<T, 1>;
+  
+  ///Force a derived class to never be constructed. The resulting class will be
+  ///a symbol
+  template <typename T>
+  using ForceSymbol = LimitInstances<T, 0>;
 }
 
 #endif
