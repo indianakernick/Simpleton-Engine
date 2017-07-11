@@ -37,19 +37,25 @@ void Game::Actor::flushMessages() {
 
 void Game::Actor::initComponents() {
   for (auto c = components.cbegin(); c != components.cend(); ++c) {
-    (*c)->init();
+    if (const Component::Ptr comp = *c) {
+      comp->init();
+    }
   }
 }
 
 void Game::Actor::quitComponents() {
   for (auto c = components.cbegin(); c != components.cend(); ++c) {
-    (*c)->quit();
+    if (const Component::Ptr comp = *c) {
+      comp->quit();
+    }
   }
 }
 
 void Game::Actor::updateComponents(const uint64_t delta) {
   for (auto c = components.cbegin(); c != components.cend(); ++c) {
-    (*c)->update(delta);
+    if (const Component::Ptr comp = *c) {
+      comp->update(delta);
+    }
   }
 }
 
