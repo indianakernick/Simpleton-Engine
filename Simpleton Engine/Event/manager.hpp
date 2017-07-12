@@ -100,10 +100,10 @@ namespace Game {
     DispatcherImpl dispatcher;
     std::deque<Event::Ptr> queue[2];
     uint64_t timeLimit;
-    uint8_t currentQueue = 0;
+    size_t currentQueue = 0;
   };
+  
+  extern std::unique_ptr<Game::EventManager> evtMan;
 }
-
-extern std::unique_ptr<Game::EventManager> evtMan;
 
 #endif

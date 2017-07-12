@@ -52,6 +52,7 @@ namespace ID {
       prevIsMax = false;
       #endif
     }
+    
   private:
     Int prev = -1;
     #ifdef DEBUG

@@ -13,7 +13,7 @@
 using namespace Game;
 
 const Event::Type EventManager::ANY_TYPE = GetEventType<EventManager>::get();
-std::unique_ptr<EventManager> evtMan = nullptr;
+std::unique_ptr<EventManager> Game::evtMan = nullptr;
 
 EventManager::EventManager(const uint64_t timeLimit)
   : timeLimit(timeLimit) {
@@ -32,7 +32,7 @@ void EventManager::update() {
   PROFILE(Game::EventManager::update);
   
   Time::StopWatch<std::chrono::nanoseconds> stopwatch(true);
-  const uint8_t processingQueue = currentQueue;
+  const size_t processingQueue = currentQueue;
   currentQueue = (currentQueue + 1) % 2;
   
   while (!queue[processingQueue].empty()) {
