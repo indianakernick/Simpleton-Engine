@@ -21,15 +21,18 @@ namespace Math {
   template <typename T>
   class RectPP {
   
-    static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
+    static_assert(std::is_arithmetic<Scalar>::value, "Scalar must be an arithmetic type");
   
   public:
-    static constexpr T EPSILON = std::is_integral<T>::value ? T(1) : T(0);
+    using Scalar = T;
+    using Vector = glm::tvec2<Scalar>;
+  
+    static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
     static const RectPP NORM_0_1;
     static const RectPP LARGEST;
     
     RectPP()
-      : tl(T(0), T(0)), br(-EPSILON, -EPSILON) {}
+      : tl(Scalar(0), Scalar(0)), br(-EPSILON, -EPSILON) {}
     RectPP(const RectPP &) = default;
     RectPP(RectPP &&) = default;
     ~RectPP() = default;
@@ -37,26 +40,26 @@ namespace Math {
     RectPP &operator=(const RectPP &) = default;
     RectPP &operator=(RectPP &&) = default;
     
-    explicit RectPP(const glm::tvec2<T> size)
-      : tl(T(0), T(0)), br(size - EPSILON) {}
-    RectPP(const glm::tvec2<T> tl, const glm::tvec2<T> br)
+    explicit RectPP(const Vector size)
+      : tl(Scalar(0), Scalar(0)), br(size - EPSILON) {}
+    RectPP(const Vector tl, const Vector br)
       : tl(tl), br(br) {}
-    RectPP(const T left, const T top, const T right, const T bottom)
+    RectPP(const Scalar left, const Scalar top, const Scalar right, const Scalar bottom)
       : tl(left, top), br(right, bottom) {}
     
     template <typename U>
     explicit RectPP(const RectPP<U> other)
-      : tl(static_cast<T>(other.tl.x),
-           static_cast<T>(other.tl.y)),
-        br(static_cast<T>(other.br.x + RectPP<U>::EPSILON) - EPSILON,
-           static_cast<T>(other.br.y + RectPP<U>::EPSILON) - EPSILON) {}
+      : tl(static_cast<Scalar>(other.tl.x),
+           static_cast<Scalar>(other.tl.y)),
+        br(static_cast<Scalar>(other.br.x + RectPP<U>::EPSILON) - EPSILON,
+           static_cast<Scalar>(other.br.y + RectPP<U>::EPSILON) - EPSILON) {}
     
     template <typename U>
     explicit RectPP(const RectPS<U> other)
-      : tl(static_cast<T>(other.p.x),
-           static_cast<T>(other.p.y)),
-        br(static_cast<T>(other.p.x + other.s.x) - EPSILON,
-           static_cast<T>(other.p.y + other.s.y) - EPSILON) {}
+      : tl(static_cast<Scalar>(other.p.x),
+           static_cast<Scalar>(other.p.y)),
+        br(static_cast<Scalar>(other.p.x + other.s.x) - EPSILON,
+           static_cast<Scalar>(other.p.y + other.s.y) - EPSILON) {}
     
     template <typename U>
     explicit operator RectPP<U>() const {
@@ -94,48 +97,48 @@ namespace Math {
     }
     
     //add and substract mean translate
-    RectPP &operator+=(const glm::tvec2<T> other) {
+    RectPP &operator+=(const Vector other) {
       tl += other;
       br += other;
       return *this;
     }
-    RectPP &operator-=(const glm::tvec2<T> other) {
+    RectPP &operator-=(const Vector other) {
       tl -= other;
       br -= other;
     }
     //multiply and divide mean scale
-    RectPP &operator*=(const glm::tvec2<T> other) {
+    RectPP &operator*=(const Vector other) {
       tl *= other;
       br *= other;
       return *this;
     }
-    RectPP &operator/=(const glm::tvec2<T> other) {
+    RectPP &operator/=(const Vector other) {
       tl /= other;
       br /= other;
       return *this;
     }
     
     //add and substract mean translate
-    RectPP operator+(const glm::tvec2<T> other) const {
+    RectPP operator+(const Vector other) const {
       return {
         tl + other,
         br + other
       };
     }
-    RectPP operator-(const glm::tvec2<T> other) const {
+    RectPP operator-(const Vector other) const {
       return {
         tl - other,
         br - other
       };
     }
     //multiply and divide mean scale
-    RectPP operator*(const glm::tvec2<T> other) const {
+    RectPP operator*(const Vector other) const {
       return {
         tl * other,
         br * other
       };
     }
-    RectPP operator/(const glm::tvec2<T> other) const {
+    RectPP operator/(const Vector other) const {
       return {
         tl / other,
         br / other
@@ -184,64 +187,64 @@ namespace Math {
       };
     }
     
-    glm::tvec2<T> topLeft() const {
+    Vector topLeft() const {
       return tl;
     }
-    glm::tvec2<T> topRight() const {
+    Vector topRight() const {
       return {br.x, tl.y};
     }
-    glm::tvec2<T> bottomRight() const {
+    Vector bottomRight() const {
       return br;
     }
-    glm::tvec2<T> bottomLeft() const {
+    Vector bottomLeft() const {
       return {tl.x, br.y};
     }
     
-    void topLeft(const glm::tvec2<T> val) {
+    void topLeft(const Vector val) {
       tl = val;
     }
-    void topRight(const glm::tvec2<T> val) {
+    void topRight(const Vector val) {
       br.x = val.x;
       tl.y = val.y;
     }
-    void bottomRight(const glm::tvec2<T> val) {
+    void bottomRight(const Vector val) {
       br = val;
     }
-    void bottomLeft(const glm::tvec2<T> val) {
+    void bottomLeft(const Vector val) {
       tl.x = val.x;
       br.y = val.y;
     }
     
-    glm::tvec2<T> size() const {
+    Vector size() const {
       return (br - tl) + EPSILON;
     }
     
     bool sizeZero() const {
-      return (br.x - tl.x) + EPSILON == T(0) &&
-             (br.y - tl.y) + EPSILON == T(0);
+      return (br.x - tl.x) + EPSILON == Scalar(0) &&
+             (br.y - tl.y) + EPSILON == Scalar(0);
     }
     
     ///Move top left corner to make size equal to val
-    void sizeTopLeft(const glm::tvec2<T> val) {
+    void sizeTopLeft(const Vector val) {
       tl = (br - val) + EPSILON;
     }
     ///Move top right corner to make size equal to val
-    void sizeTopRight(const glm::tvec2<T> val) {
+    void sizeTopRight(const Vector val) {
       br.x = (tl.x + val.x) - EPSILON;
       tl.y = (br.y - val.y) + EPSILON;
     }
     ///Move bottom right corner to make size equal to val
-    void sizeBottomRight(const glm::tvec2<T> val) {
+    void sizeBottomRight(const Vector val) {
       br = (tl + val) - EPSILON;
     }
     ///Move bottom left corner to make size equal to val
-    void sizeBottomLeft(const glm::tvec2<T> val) {
+    void sizeBottomLeft(const Vector val) {
       tl.x = (br.x - val.x) + EPSILON;
       br.y = (tl.y + val.y) - EPSILON;
     }
     
     ///Move bottom right corner to make size equal to val
-    void size(const glm::tvec2<T> val) {
+    void size(const Vector val) {
       sizeBottomRight(val);
     }
     
@@ -257,7 +260,7 @@ namespace Math {
              br.x >= other.br.x &&
              br.y >= other.br.y;
     }
-    bool encloses(const glm::tvec2<T> other) const {
+    bool encloses(const Vector other) const {
       return tl.x <= other.x &&
              tl.y <= other.y &&
              br.x >= other.x &&
@@ -275,15 +278,15 @@ namespace Math {
     union {
       struct {
         //top left corner
-        glm::tvec2<T> tl;
+        Vector tl;
         //bottom right corner
-        glm::tvec2<T> br;
+        Vector br;
       };
       struct {
-        T left;
-        T top;
-        T right;
-        T bottom;
+        Scalar left;
+        Scalar top;
+        Scalar right;
+        Scalar bottom;
       };
     };
     
@@ -305,10 +308,13 @@ namespace Math {
   template <typename T>
   class RectPS {
   
-    static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
+    static_assert(std::is_arithmetic<Scalar>::value, "Scalar must be an arithmetic type");
   
   public:
-    static constexpr T EPSILON = std::is_integral<T>::value ? T(1) : T(0);
+    using Scalar = T;
+    using Vector = glm::tvec2<Scalar>;
+  
+    static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
     static const RectPS NORM_0_1;
     static const RectPS LARGEST;
   
@@ -320,7 +326,7 @@ namespace Math {
     RectPS &operator=(const RectPS &) = default;
     RectPS &operator=(RectPS &&) = default;
     
-    explicit RectPS(const glm::tvec2<T> size)
+    explicit RectPS(const Vector size)
       : p(T(0), T(0)), s(size) {}
     RectPS(const glm::vec2 pos, const glm::vec2 size)
       : p(pos), s(size) {}
@@ -367,46 +373,46 @@ namespace Math {
     }
     
     //add and substract mean translate
-    RectPS &operator+=(const glm::tvec2<T> other) {
+    RectPS &operator+=(const Vector other) {
       p += other;
       return *this;
     }
-    RectPS &operator-=(const glm::tvec2<T> other) {
+    RectPS &operator-=(const Vector other) {
       p -= other;
     }
     //multiply and divide mean scale
-    RectPS &operator*=(const glm::tvec2<T> other) {
+    RectPS &operator*=(const Vector other) {
       p *= other;
       s *= other;
       return *this;
     }
-    RectPS &operator/=(const glm::tvec2<T> other) {
+    RectPS &operator/=(const Vector other) {
       p /= other;
       s /= other;
       return *this;
     }
     
     //add and substract mean translate
-    RectPS operator+(const glm::tvec2<T> other) const {
+    RectPS operator+(const Vector other) const {
       return {
         p + other,
         s
       };
     }
-    RectPS operator-(const glm::tvec2<T> other) const {
+    RectPS operator-(const Vector other) const {
       return {
         p - other,
         s
       };
     }
     //multiply and divide mean scale
-    RectPS operator*(const glm::tvec2<T> other) const {
+    RectPS operator*(const Vector other) const {
       return {
         p * other,
         s * other
       };
     }
-    RectPS operator/(const glm::tvec2<T> other) const {
+    RectPS operator/(const Vector other) const {
       return {
         p / other,
         s / other
@@ -517,7 +523,7 @@ namespace Math {
              p.x + s.x >= other.p.x + other.s.x &&
              p.y + s.y >= other.p.y + other.s.y;
     }
-    bool encloses(const glm::tvec2<T> other) const {
+    bool encloses(const Vector other) const {
       return p.x                 <= other.x &&
              p.y                 <= other.y &&
              p.x + s.x - EPSILON >= other.x &&
@@ -528,8 +534,8 @@ namespace Math {
       return stream << "RectPP {{" << rect.p.x << ", " << rect.p.y << "}, {" << rect.s.x << ", " << rect.s.y << "}}";
     }
     
-    glm::tvec2<T> p;
-    glm::tvec2<T> s;
+    Vector p;
+    Vector s;
   };
   
   template <typename T>
