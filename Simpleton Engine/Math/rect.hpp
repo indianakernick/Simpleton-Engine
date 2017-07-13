@@ -21,7 +21,7 @@ namespace Math {
   template <typename T>
   class RectPP {
   
-    static_assert(std::is_arithmetic<Scalar>::value, "Scalar must be an arithmetic type");
+    static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
   
   public:
     using Scalar = T;
@@ -308,7 +308,7 @@ namespace Math {
   template <typename T>
   class RectPS {
   
-    static_assert(std::is_arithmetic<Scalar>::value, "Scalar must be an arithmetic type");
+    static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
   
   public:
     using Scalar = T;
@@ -328,8 +328,10 @@ namespace Math {
     
     explicit RectPS(const Vector size)
       : p(T(0), T(0)), s(size) {}
-    RectPS(const glm::vec2 pos, const glm::vec2 size)
+    RectPS(const Vector pos, const Vector size)
       : p(pos), s(size) {}
+    RectPS(const Scalar px, const Scalar py, const Scalar sx, const Scalar sy)
+      : p(px, py), s(sx, sy) {}
     
     template <typename U>
     explicit RectPS(const RectPS<U> other)
