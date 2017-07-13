@@ -43,6 +43,16 @@ namespace Time {
       return duration;
     }
     
+    ///Get the amount of time that has passes since the last operation
+    Duration getTimeSinceLast() const {
+      return getPoint<Duration>() - lastDo;
+    }
+    
+    ///Simulate a fake operation
+    void reset() {
+      lastDo = getPoint<Duration>();
+    }
+    
     ///If this function returns true, it will not return true again until the
     ///duration has passed
     bool canDo() {
@@ -131,9 +141,19 @@ namespace Time {
       return duration;
     }
     
+    ///Get the amount of time that has passes since the last operation
+    Number getTimeSinceLast() const {
+      return timeSinceLast;
+    }
+    
     ///Advance time forward
     void advance(const Number delta) {
       timeSinceLast += delta;
+    }
+    
+    ///Simulate a fake operation
+    void reset() {
+      timeSinceLast = 0;
     }
     
     ///If this function returns true, it will not return true again until the
