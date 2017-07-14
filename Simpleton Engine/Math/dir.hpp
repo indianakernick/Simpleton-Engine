@@ -25,7 +25,11 @@ namespace Math {
     UP,
     RIGHT,
     DOWN,
-    LEFT
+    LEFT,
+    
+    ///Passing NONE to any function other than filterNone or filterNoneCustom
+    ///is undefined behaviour
+    NONE = 0b11111100
   };
   
   enum class Axis : DirType {
@@ -38,6 +42,17 @@ namespace Math {
     HORIZONTAL = HORI,
   };
   
+  ///Ensure that a Dir is not Dir::NONE by returning Dir::UP instead of Dir::NONE
+  constexpr Dir filterNone(const Dir dir) {
+    return static_cast<Dir>(static_cast<DirType>(dir) & DirType(0b11));
+  }
+  
+  ///Ensure that a Dir is not Dir::NONE by returning a custom Dir instead of
+  ///Dir::NONE
+  constexpr Dir filterNoneCustom(const Dir dir, const Dir noneDir) {
+    return dir == Dir::NONE ? noneDir : dir;
+  }
+  
   ///Get the opposite of a direction
   constexpr Dir opposite(const Dir dir) {
     //flip the second least significant bit
@@ -47,7 +62,7 @@ namespace Math {
   ///Get the opposite of an axis
   constexpr Axis opposite(const Axis axis) {
     //flip the least significant bit
-    return static_cast<Axis>(static_cast<DirType>(axis) ^ DirType(0b01));
+    return static_cast<Axis>(static_cast<DirType>(axis) ^ DirType(0b1));
   }
   
   ///Rotate a direction clockwise
@@ -64,11 +79,11 @@ namespace Math {
   constexpr DirType dist(const Dir a, const Dir b) {
     const SignedDirType diff = static_cast<SignedDirType>(a) - static_cast<SignedDirType>(b);
     const DirType sign = diff >> (sizeof(DirType) * 8 - 1);
-    const DirType dist = (diff ^ sign) + (sign & 1);
+    const DirType dist = (diff ^ sign) + (sign & DirType(1));
     
     //@TODO remove branch
-    if (dist == 3) {
-      return 1;
+    if (dist == DirType(3)) {
+      return DirType(1);
     } else {
       return dist;
     }
@@ -79,10 +94,10 @@ namespace Math {
     const SignedDirType diff = static_cast<SignedDirType>(b) - static_cast<SignedDirType>(a);
     
     //@TODO remove branch
-    if (diff == 3) {
-      return -1;
-    } else if (diff == -3) {
-      return 1;
+    if (diff == SignedDirType(3)) {
+      return SignedDirType(-1);
+    } else if (diff == SignedDirType(-3)) {
+      return SignedDirType(1);
     } else {
       return diff;
     }
