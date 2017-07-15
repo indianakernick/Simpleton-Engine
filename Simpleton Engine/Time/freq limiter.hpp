@@ -48,6 +48,16 @@ namespace Time {
       return getPoint<Duration>() - lastDo;
     }
     
+    ///Get the progress of the cycle
+    template <typename Float>
+    std::enable_if_t<
+      std::is_floating_point<Float>::value,
+      Float
+    >
+    getProgress() const {
+      return static_cast<Float>((getPoint<Duration>() - lastDo).count()) / duration.count();
+    }
+    
     ///Simulate a fake operation
     void reset() {
       lastDo = getPoint<Duration>();
@@ -144,6 +154,16 @@ namespace Time {
     ///Get the amount of time that has passes since the last operation
     Number getTimeSinceLast() const {
       return timeSinceLast;
+    }
+    
+    ///Get the progress of the cycle
+    template <typename Float>
+    std::enable_if_t<
+      std::is_floating_point<Float>::value,
+      Float
+    >
+    getProgress() const {
+      return static_cast<Float>(timeSinceLast) / duration;
     }
     
     ///Advance time forward
