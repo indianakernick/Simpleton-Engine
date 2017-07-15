@@ -12,7 +12,6 @@
 #include <queue>
 #include <tuple>
 #include <vector>
-#include <cassert>
 #include <stdexcept>
 #include <functional>
 #include <experimental/tuple>
@@ -30,11 +29,75 @@ struct RetHandler {
 */
 
 namespace Utils {
+  template <typename Listener, typename RetHandler>
+  class SingleDispatcher;
+  
+  template <typename RetHandler, typename ListenerRet, typename ...ListenerArgs>
+  class SingleDispatcher<ListenerRet (ListenerArgs...), RetHandler> {
+  public:
+    using Listener = std::function<ListenerRet (ListenerArgs...)>;
+    
+    class BadListener final : public std::runtime_error {
+    public:
+      BadListener()
+        : std::runtime_error("SingleDispatcher::addListener was called with a null listener") {}
+    };
+    
+    class BadDispatchCall final : public std::logic_error {
+    public:
+      BadDispatchCall()
+        : std::logic_error("SingleDispatcher::dispatch was called from an listener") {}
+    };
+    
+    SingleDispatcher() = default;
+    ~SingleDispatcher() = default;
+    
+    void setListener(const Listener &newListener) {
+      if (listener == nullptr) {
+        throw BadListener();
+      }
+      
+      listener = newListener;
+    }
+    
+    void remListener() {
+      listener = nullptr;
+    }
+    
+    template <typename ...Args>
+    ListenerRet dispatch(Args &&... args) {
+      if (dispatching) {
+        throw BadDispatchCall();
+      }
+      if (listener) {
+        dispatching = true;
+        
+        if constexpr (std::is_void<ListenerRet>::value) {
+          listener(std::forward<Args>(args)...);
+          dispatching = false;
+        } else if (std::is_void<RetHandler>::value) {
+          const ListenerRet ret = listener(std::forward<Args>(args)...);
+          dispatching = false;
+          return ret;
+        } else {
+          RetHandler retHandler;
+          retHandler.handleReturnValue(listener(std::forward<Args>(args)...));
+          dispatching = false;
+          return retHandler.getFinalReturnValue();
+        }
+      }
+    }
+  
+  private:
+    Listener listener;
+    bool dispatching = false;
+  };
+
   template <typename Listener, typename RetHandler, typename ListenerID = uint32_t>
   class Dispatcher;
 
   template <typename ListenerId, typename RetHandler, typename ListenerRet, typename ...ListenerArgs>
-  class Dispatcher<ListenerRet(ListenerArgs...), RetHandler, ListenerId> {
+  class Dispatcher<ListenerRet (ListenerArgs...), RetHandler, ListenerId> {
   public:
     using Listener = std::function<ListenerRet (ListenerArgs...)>;
     using ListenerID = ListenerId;
@@ -143,6 +206,10 @@ namespace Utils {
   ///An action that can be observed
   template <typename ListenerID, typename ...Args>
   using Observable = Dispatcher<void (Args...), void, ListenerID>;
+  
+  ///An action that can be observed
+  template <typename ...Args>
+  using SingleObservable = SingleDispatcher<void (Args...), void>;
 
   class ConfirmableRetHandler {
   public:
@@ -164,6 +231,10 @@ namespace Utils {
   ///An action that can be confirmed to happen
   template <typename ListenerID, typename ...Args>
   using Confirmable = Dispatcher<bool (Args...), ConfirmableRetHandler, ListenerID>;
+  
+  ///An action that can be confirmed to happen
+  template <typename ...Args>
+  using SingleConfirmable = SingleDispatcher<bool (Args...), ConfirmableRetHandler>;
 
   ///Divides listeners into groups. A message can be dispatched to each group individually.
   ///Many Dispatchers will perform better than one GroupDispatcher
