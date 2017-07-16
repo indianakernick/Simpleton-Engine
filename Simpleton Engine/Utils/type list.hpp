@@ -10,6 +10,7 @@
 #define type_list_hpp
 
 #include <cstddef>
+#include <utility>
 
 namespace Utils {
   template <typename ...Types>
@@ -85,6 +86,15 @@ namespace Utils {
   template <typename List, size_t INDEX>
   using typeAtIndex = typename TypeAtIndexHelper<List, INDEX>::type;
   
+  template <typename List, size_t INDEX>
+  using typeAtIndexRev = typename TypeAtIndexHelper<List, listSize<List> - INDEX - 1>::type;
+  
+  template <typename List>
+  using firstType = typeAtIndex<List, 0>;
+  
+  template <typename List>
+  using lastType = typeAtIndexRev<List, 0>;
+  
   template <typename List, typename Type, size_t INDEX = 0>
   struct IndexOfHelper;
   
@@ -127,6 +137,40 @@ namespace Utils {
   
   template <typename LeftList, typename RightList>
   using concatLists = typename ConcatHelper<LeftList, RightList>::type;
+  
+  template <typename Type, size_t SIZE>
+  struct RepeatHelper {
+    using type = concatLists<TypeList<Type>, typename RepeatHelper<Type, SIZE - 1>::type>;
+  };
+  
+  template <typename Type>
+  struct RepeatHelper<Type, 0> {
+    using type = EmptyList;
+  };
+  
+  template <typename Type, size_t SIZE>
+  using repeatType = typename RepeatHelper<Type, SIZE>::type;
+  
+  template <typename List, typename Sequence>
+  struct ReverseHelperHelper;
+  
+  template <typename List, size_t ...INDICIES>
+  struct ReverseHelperHelper<List, std::index_sequence<INDICIES...>> {
+    using type = TypeList<typeAtIndexRev<List, INDICIES>...>;
+  };
+  
+  template <typename List>
+  struct ReverseHelper {
+    using type = typename ReverseHelperHelper<List, std::make_index_sequence<listSize<List>>>::type;
+  };
+  
+  template <>
+  struct ReverseHelper<EmptyList> {
+    using type = EmptyList;
+  };
+  
+  template <typename List>
+  using reverseList = typename ReverseHelper<List>::type;
   
   template <typename A, typename B>
   struct is_same {
@@ -171,6 +215,10 @@ namespace Utils {
   static_assert(is_same<concatLists<TypeList<int, char>, TypeList<long>>, TypeList<int, char, long>>::value);
   static_assert(is_same<concatLists<TypeList<int, char, long>, EmptyList>, TypeList<int, char, long>>::value);
   static_assert(is_same<concatLists<EmptyList, EmptyList>, EmptyList>::value);
+  
+  static_assert(is_same<repeatType<int, 3>, TypeList<int, int, int>>::value);
+  
+  static_assert(is_same<reverseList<TypeList<int, char, long>>, TypeList<long, char, int>>::value);
 }
 
 #endif
