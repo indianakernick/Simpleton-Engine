@@ -54,7 +54,7 @@ namespace Utils {
   #if defined(UINT16_MAX) && UINT16_MAX == 65535 //2^16-1
   SPECIALIZE(2, int16_t);
   #endif
-  #if defined(UINT32_MAX) && UINT32_MAX == 4294967295 //2^32-1
+  #if defined(UINT32_MAX) && UINT32_MAX == 4294967295U //2^32-1
   SPECIALIZE(4, int32_t);
   #endif
   #if defined(UINT64_MAX) && UINT64_MAX == 18446744073709551615ULL //2^64-1
