@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef type_list_hpp
-#define type_list_hpp
+#ifndef engine_utils_type_list_hpp
+#define engine_utils_type_list_hpp
 
 #include <tuple>
 #include <cstddef>
@@ -405,13 +405,13 @@ namespace Utils {
   template <typename ...Types>
   struct ForEachHelper<TypeList<Types...>> {
     template <typename Function>
-    static constexpr void iter(Function &&func) {
+    static void iter(Function &&func) {
       (func(Type<Types>()), ...);
     }
   };
   
   template <typename List, typename Function>
-  constexpr void forEach(Function &&func) {
+  void forEach(Function &&func) {
     ForEachHelper<List>::iter(std::forward<Function>(func));
   }
   
