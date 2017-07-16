@@ -9,6 +9,7 @@
 #ifndef type_list_hpp
 #define type_list_hpp
 
+#include <tuple>
 #include <cstddef>
 #include <utility>
 #include <type_traits>
@@ -17,6 +18,28 @@
 namespace Utils {
   template <typename ...Types>
   struct TypeList {};
+  
+  template <typename Tuple>
+  struct ListFromTupleHelper;
+  
+  template <typename ...Types>
+  struct ListFromTupleHelper<std::tuple<Types...>> {
+    using type = TypeList<Types...>;
+  };
+  
+  template <typename Tuple>
+  using listFromTuple = typename ListFromTupleHelper<Tuple>::type;
+  
+  template <typename List>
+  struct ListToTupleHelper;
+  
+  template <typename ...Types>
+  struct ListToTupleHelper<TypeList<Types...>> {
+    using type = std::tuple<Types...>;
+  };
+  
+  template <typename List>
+  using listToTuple = typename ListToTupleHelper<List>::type;
   
   using EmptyList = TypeList<>;
   
@@ -348,8 +371,49 @@ namespace Utils {
     static constexpr bool value = typeHash<Left>() < typeHash<Right>();
   };
   
+  template <typename List, template <typename> typename Pred>
+  struct FilterHelper;
+  
+  template <template <typename> typename Pred, typename First, typename ...Types>
+  struct FilterHelper<TypeList<First, Types...>, Pred> {
+    using type = std::conditional_t<
+      Pred<First>::value,
+      concatLists<TypeList<First>, typename FilterHelper<TypeList<Types...>, Pred>::type>,
+      typename FilterHelper<TypeList<Types...>, Pred>::type
+    >;
+  };
+  
+  template <template <typename> typename Pred>
+  struct FilterHelper<EmptyList, Pred> {
+    using type = EmptyList;
+  };
+  
+  template <typename List, template <typename> typename Pred>
+  using filterList = typename FilterHelper<List, Pred>::type;
+  
   template <typename First, typename Second>
   constexpr bool isPermutOf = std::is_same<sortList<First, HashLess>, sortList<Second, HashLess>>::value;
+  
+  template <typename T>
+  struct Type {
+    using type = T;
+  };
+  
+  template <typename List>
+  struct ForEachHelper;
+  
+  template <typename ...Types>
+  struct ForEachHelper<TypeList<Types...>> {
+    template <typename Function>
+    static constexpr void iter(Function &&func) {
+      (func(Type<Types>()), ...);
+    }
+  };
+  
+  template <typename List, typename Function>
+  constexpr void forEach(Function &&func) {
+    ForEachHelper<List>::iter(std::forward<Function>(func));
+  }
   
   static_assert(listIsEmpty<TypeList<>>);
   static_assert(!listIsEmpty<TypeList<int>>);
@@ -397,6 +461,8 @@ namespace Utils {
   static_assert(isPermutOf<TypeList<int, char, long>, TypeList<char, int, long>>);
   static_assert(isPermutOf<EmptyList, EmptyList>);
   static_assert(!isPermutOf<TypeList<int, char, long>, TypeList<char, int, int>>);
+  
+  static_assert(std::is_same<filterList<TypeList<int, char, float, long, double>, std::is_integral>, TypeList<int, char, long>>::value);
 }
 
 #endif
