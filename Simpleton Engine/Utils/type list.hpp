@@ -11,6 +11,8 @@
 
 #include <cstddef>
 #include <utility>
+#include <type_traits>
+#include "type name.hpp"
 
 namespace Utils {
   template <typename ...Types>
@@ -127,16 +129,31 @@ namespace Utils {
   template <typename List, template <typename> typename Operation>
   using transformList = typename TransformHelper<List, Operation>::type;
   
-  template <typename LeftList, typename RightList>
+  template <typename ...Lists>
   struct ConcatHelper;
+  
+  template <>
+  struct ConcatHelper<> {
+    using type = EmptyList;
+  };
+  
+  template <typename ...Types>
+  struct ConcatHelper<TypeList<Types...>> {
+    using type = TypeList<Types...>;
+  };
   
   template <typename ...LeftTypes, typename ...RightTypes>
   struct ConcatHelper<TypeList<LeftTypes...>, TypeList<RightTypes...>> {
     using type = TypeList<LeftTypes..., RightTypes...>;
   };
   
-  template <typename LeftList, typename RightList>
-  using concatLists = typename ConcatHelper<LeftList, RightList>::type;
+  template <typename FirstList, typename ...Lists>
+  struct ConcatHelper<FirstList, Lists...> {
+    using type = typename ConcatHelper<FirstList, typename ConcatHelper<Lists...>::type>::type;
+  };
+  
+  template <typename ...Lists>
+  using concatLists = typename ConcatHelper<Lists...>::type;
   
   template <typename Type, size_t SIZE>
   struct RepeatHelper {
@@ -172,20 +189,167 @@ namespace Utils {
   template <typename List>
   using reverseList = typename ReverseHelper<List>::type;
   
-  template <typename A, typename B>
-  struct is_same {
-    static constexpr bool value = false;
+  template <typename LeftList, typename RightList, template <typename, typename> typename Less>
+  struct Merge;
+  
+  template <
+    template <typename, typename> typename Less,
+    typename LeftFirst,
+    typename RightFirst,
+    typename ...LeftTypes,
+    typename ...RightTypes
+  >
+  struct Merge<TypeList<LeftFirst, LeftTypes...>, TypeList<RightFirst, RightTypes...>, Less> {
+    using type = std::conditional_t<
+      Less<LeftFirst, RightFirst>::value,
+      concatLists<TypeList<LeftFirst>, typename Merge<TypeList<LeftTypes...>, TypeList<RightFirst, RightTypes...>, Less>::type>,
+      concatLists<TypeList<RightFirst>, typename Merge<TypeList<LeftFirst, LeftTypes...>, TypeList<RightTypes...>, Less>::type>
+    >;
   };
   
-  template <typename T>
-  struct is_same<T, T> {
-    static constexpr bool value = true;
+  template <typename LeftList, template <typename, typename> typename Less>
+  struct Merge<LeftList, EmptyList, Less> {
+    using type = LeftList;
   };
   
-  template <typename T>
-  struct add_pointer {
-    using type = T *;
+  template <typename RightList, template <typename, typename> typename Less>
+  struct Merge<EmptyList, RightList, Less> {
+    using type = RightList;
   };
+  
+  template <template <typename, typename> typename Less>
+  struct Merge<EmptyList, EmptyList, Less> {
+    using type = EmptyList;
+  };
+  
+  template <typename List>
+  struct PopFrontHelper;
+  
+  template <typename First, typename ...Types>
+  struct PopFrontHelper<TypeList<First, Types...>> {
+    using type = TypeList<Types...>;
+  };
+  
+  template <>
+  struct PopFrontHelper<EmptyList> {
+    using type = EmptyList;
+  };
+  
+  template <typename List>
+  using popFront = typename PopFrontHelper<List>::type;
+  
+  template <typename List, size_t SIZE>
+  struct SpliceHelperHelper {
+    using type = std::conditional_t<
+      SIZE == 0,
+      EmptyList,
+      concatLists<
+        TypeList<firstType<List>>,
+        typename SpliceHelperHelper<popFront<List>, SIZE - 1>::type
+      >
+    >;
+  };
+  
+  template <size_t SIZE>
+  struct SpliceHelperHelper<EmptyList, SIZE> {
+    using type = EmptyList;
+  };
+  
+  template <>
+  struct SpliceHelperHelper<EmptyList, 0> {
+    using type = EmptyList;
+  };
+  
+  static_assert(
+    std::is_same<
+      TypeList<int, char>,
+      typename SpliceHelperHelper<TypeList<int, char, long>, 2>::type
+    >::value
+  );
+  
+  template <typename List, size_t POS, size_t SIZE>
+  struct SpliceHelper;
+  
+  template <size_t POS, size_t SIZE, typename First, typename ...Types>
+  struct SpliceHelper<TypeList<First, Types...>, POS, SIZE> {
+    using type = typename SpliceHelper<TypeList<Types...>, POS - 1, SIZE>::type;
+  };
+  
+  template <size_t SIZE, typename First, typename ...Types>
+  struct SpliceHelper<TypeList<First, Types...>, 0, SIZE> {
+    using type = concatLists<TypeList<First>, typename SpliceHelperHelper<TypeList<Types...>, SIZE - 1>::type>;
+  };
+  
+  template <size_t POS, size_t SIZE>
+  struct SpliceHelper<EmptyList, POS, SIZE> {
+    using type = EmptyList;
+  };
+  
+  template <typename List>
+  struct SpliceHelper<List, 0, 0> {
+    using type = EmptyList;
+  };
+  
+  template <>
+  struct SpliceHelper<EmptyList, 0, 0> {
+    using type = EmptyList;
+  };
+  
+  template <typename List, size_t POS, size_t SIZE>
+  using spliceList = typename SpliceHelper<List, POS, SIZE>::type;
+  
+  template <typename List>
+  using leftHalf = spliceList<List, 0, listSize<List> / 2>;
+  
+  template <typename List>
+  using rightHalf = spliceList<List, listSize<List> / 2, (listSize<List> + 1) / 2>;
+  
+  static_assert(std::is_same<leftHalf<TypeList<int, char, long>>, TypeList<int>>::value);
+  static_assert(std::is_same<rightHalf<TypeList<int, char, long>>, TypeList<char, long>>::value);
+  
+  template <typename List, template <typename, typename> typename Less>
+  struct SortHelper {
+    using type = typename Merge<
+      typename SortHelper<leftHalf<List>, Less>::type,
+      typename SortHelper<rightHalf<List>, Less>::type,
+      Less
+    >::type;
+  };
+  
+  template <typename First, typename Second, template <typename, typename> typename Less>
+  struct SortHelper<TypeList<First, Second>, Less> {
+    using type = std::conditional_t<
+      Less<First, Second>::value,
+      TypeList<First, Second>,
+      TypeList<Second, First>
+    >;
+  };
+  
+  template <typename Type, template <typename, typename> typename Less>
+  struct SortHelper<TypeList<Type>, Less> {
+    using type = TypeList<Type>;
+  };
+  
+  template <template <typename, typename> typename Less>
+  struct SortHelper<EmptyList, Less> {
+    using type = EmptyList;
+  };
+  
+  template <typename List, template <typename, typename> typename Less>
+  using sortList = typename SortHelper<List, Less>::type;
+  
+  template <typename Left, typename Right>
+  struct SizeLess {
+    static constexpr bool value = sizeof(Left) < sizeof(Right);
+  };
+  
+  template <typename Left, typename Right>
+  struct HashLess {
+    static constexpr bool value = typeHash<Left>() < typeHash<Right>();
+  };
+  
+  template <typename First, typename Second>
+  constexpr bool isPermutOf = std::is_same<sortList<First, HashLess>, sortList<Second, HashLess>>::value;
   
   static_assert(listIsEmpty<TypeList<>>);
   static_assert(!listIsEmpty<TypeList<int>>);
@@ -199,26 +363,40 @@ namespace Utils {
   static_assert(listContains<TypeList<int, char, long>, long>);
   static_assert(!listContains<TypeList<int, char, long>, float>);
 
-  static_assert(is_same<typeAtIndex<TypeList<int, char, long>, 0>, int>::value);
-  static_assert(is_same<typeAtIndex<TypeList<int, char, long>, 1>, char>::value);
-  static_assert(is_same<typeAtIndex<TypeList<int, char, long>, 2>, long>::value);
-  static_assert(is_same<typeAtIndex<TypeList<int, char, long>, 3>, NoType>::value);
+  static_assert(std::is_same<typeAtIndex<TypeList<int, char, long>, 0>, int>::value);
+  static_assert(std::is_same<typeAtIndex<TypeList<int, char, long>, 1>, char>::value);
+  static_assert(std::is_same<typeAtIndex<TypeList<int, char, long>, 2>, long>::value);
+  static_assert(std::is_same<typeAtIndex<TypeList<int, char, long>, 3>, NoType>::value);
 
   static_assert(indexOf<TypeList<int, char, long>,  int> == 0);
   static_assert(indexOf<TypeList<int, char, long>,  char> == 1);
   static_assert(indexOf<TypeList<int, char, long>,  long> == 2);
   static_assert(indexOf<TypeList<int, char, long>,  float> == -size_t(1));
   
-  static_assert(is_same<transformList<TypeList<int, char, long>, add_pointer>, TypeList<int *, char *, long *>>::value);
-  static_assert(is_same<transformList<EmptyList, add_pointer>, EmptyList>::value);
+  static_assert(std::is_same<transformList<TypeList<int, char, long>, std::add_pointer>, TypeList<int *, char *, long *>>::value);
+  static_assert(std::is_same<transformList<EmptyList, std::add_pointer>, EmptyList>::value);
   
-  static_assert(is_same<concatLists<TypeList<int, char>, TypeList<long>>, TypeList<int, char, long>>::value);
-  static_assert(is_same<concatLists<TypeList<int, char, long>, EmptyList>, TypeList<int, char, long>>::value);
-  static_assert(is_same<concatLists<EmptyList, EmptyList>, EmptyList>::value);
+  static_assert(std::is_same<concatLists<TypeList<int, char>, TypeList<long>>, TypeList<int, char, long>>::value);
+  static_assert(std::is_same<concatLists<TypeList<int, char, long>, EmptyList>, TypeList<int, char, long>>::value);
+  static_assert(std::is_same<concatLists<EmptyList, EmptyList>, EmptyList>::value);
   
-  static_assert(is_same<repeatType<int, 3>, TypeList<int, int, int>>::value);
+  static_assert(std::is_same<repeatType<int, 3>, TypeList<int, int, int>>::value);
   
-  static_assert(is_same<reverseList<TypeList<int, char, long>>, TypeList<long, char, int>>::value);
+  static_assert(std::is_same<reverseList<TypeList<int, char, long>>, TypeList<long, char, int>>::value);
+  
+  static_assert(std::is_same<rightHalf<TypeList<int, char, long>>, TypeList<char, long>>::value);
+  
+  static_assert(std::is_same<
+    typename Merge<TypeList<char>, TypeList<int, long>, SizeLess>::type,
+    TypeList<char, int, long>
+  >::value);
+  
+  static_assert(std::is_same<sortList<TypeList<int, char, long>, SizeLess>, TypeList<char, int, long>>::value);
+  
+  static_assert(isPermutOf<TypeList<int>, TypeList<int>>);
+  static_assert(isPermutOf<TypeList<int, char, long>, TypeList<char, int, long>>);
+  static_assert(isPermutOf<EmptyList, EmptyList>);
+  static_assert(!isPermutOf<TypeList<int, char, long>, TypeList<char, int, int>>);
 }
 
 #endif

@@ -171,6 +171,7 @@
 		45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C61EF9047000A6A3E2 /* system info.mm */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
+		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -259,6 +260,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */,
 				45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */,
 				45B5E8431EF8AF5000A6A3E2 /* profiler.hpp in CopyFiles */,
 				45B5E8441EF8AF5000A6A3E2 /* benchmark.hpp in CopyFiles */,
