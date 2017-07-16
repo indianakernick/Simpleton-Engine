@@ -405,14 +405,28 @@ namespace Utils {
   template <typename ...Types>
   struct ForEachHelper<TypeList<Types...>> {
     template <typename Function>
-    static void iter(Function &&func) {
-      (func(Type<Types>()), ...);
+    static void iter(Function &&function) {
+      (function(Type<Types>()), ...);
     }
   };
   
   template <typename List, typename Function>
   void forEach(Function &&func) {
     ForEachHelper<List>::iter(std::forward<Function>(func));
+  }
+  
+  template <typename Tuple, typename Function, size_t ...INDICIES>
+  static void forEachTupleHelper(Tuple &&tuple, Function &&function, std::index_sequence<INDICIES...>) {
+    (function(std::get<INDICIES>(tuple)), ...);
+  }
+  
+  template <typename Tuple, typename Function>
+  void forEach(Tuple &&tuple, Function &&function) {
+    forEachTupleHelper(
+      std::forward<Tuple>(tuple),
+      std::forward<Function>(function),
+      std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>()
+    );
   }
   
   static_assert(listIsEmpty<TypeList<>>);
