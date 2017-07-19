@@ -109,6 +109,29 @@ namespace Math {
     return static_cast<Axis>(static_cast<DirType>(dir) & DirType(0b01));
   }
   
+  /*
+  This is how convenient these convenience functions are
+  
+  Math::isVert(dir)
+  Math::getAxis(dir) == Math::Axis::VERT
+  
+  Math::isHori(dir)
+  Math::getAxis(dir) == Math::Axis::HORI
+  
+  Math::sameAxis(dir0, dir1)
+  Math::getAxis(dir0) == Math::getAxis(dir1)
+  */
+  
+  ///Determine whether a direction is on the vertical axis
+  constexpr bool isVert(const Dir dir) {
+    return getAxis(dir) == Axis::VERT;
+  }
+  
+  ///Determine whether a direction is on the horizontal axis
+  constexpr bool isHori(const Dir dir) {
+    return getAxis(dir) == Axis::HORI;
+  }
+  
   ///Are these directions on the same axis?
   constexpr bool sameAxis(const Dir a, const Dir b) {
     return getAxis(a) == getAxis(b);
