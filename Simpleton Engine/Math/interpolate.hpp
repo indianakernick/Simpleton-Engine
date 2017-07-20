@@ -10,8 +10,8 @@
 #define engine_math_interpolate_hpp
 
 #include <cmath>
-#include "constants.hpp"
 #include <type_traits>
+#include "constants.hpp"
 
 namespace Math {
   template<typename T>

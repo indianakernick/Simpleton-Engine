@@ -11,6 +11,7 @@
 
 #include <stdexcept>
 #include <glm/vec2.hpp>
+#include <experimental/string_view>
 
 namespace Math {
   ///The underlying type of Dir and Axis
@@ -53,9 +54,14 @@ namespace Math {
     
     HORI,
     HORIZONTAL = HORI,
+    
+    COUNT,
+    
+    NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
-  ///Ensure that a Dir is not Dir::NONE by returning Dir::UP instead of Dir::NONE
+  ///Ensure that a Dir is not Dir::NONE by returning Dir::UP instead of
+  ///Dir::NONE
   constexpr Dir filterNone(const Dir dir) {
     return static_cast<Dir>(static_cast<DirType>(dir) & DirType(0b11));
   }
@@ -64,6 +70,18 @@ namespace Math {
   ///Dir::NONE
   constexpr Dir filterNoneCustom(const Dir dir, const Dir noneDir) {
     return dir == Dir::NONE ? noneDir : dir;
+  }
+  
+  ///Ensure that an Axis is not Axis::NONE by returning Axis::UP instead of
+  ///Axis::NONE
+  constexpr Axis filterNone(const Axis axis) {
+    return static_cast<Axis>(static_cast<DirType>(axis) & DirType(0b1));
+  }
+  
+  ///Ensure that n Axis is not Axis::NONE by returning a custom Axis instead of
+  ///Axis::NONE
+  constexpr Axis filterNoneCustom(const Axis axis, const Axis noneAxis) {
+    return axis == Axis::NONE ? noneAxis : axis;
   }
   
   ///Get the opposite of a direction
@@ -252,6 +270,44 @@ namespace Math {
     ///Convert a number to a direction
     static Dir conv(const Number num) {
       return static_cast<Dir>(num);
+    }
+  };
+  
+  ///Configuration template for converting a direction to a string
+  template <bool CAPS>
+  struct ToString {
+    static constexpr std::experimental::string_view conv(const Dir dir) {
+      if constexpr (CAPS) {
+        switch (dir) {
+          case Dir::UP:
+            return "UP";
+          case Dir::RIGHT:
+            return "RIGHT";
+          case Dir::DOWN:
+            return "DOWN";
+          case Dir::LEFT:
+            return "LEFT";
+          case Dir::NONE:
+            return "NONE";
+          default:
+            return "";
+        }
+      } else {
+        switch (dir) {
+          case Dir::UP:
+            return "up";
+          case Dir::RIGHT:
+            return "right";
+          case Dir::DOWN:
+            return "down";
+          case Dir::LEFT:
+            return "left";
+          case Dir::NONE:
+            return "none";
+          default:
+            return "";
+        }
+      }
     }
   };
   
