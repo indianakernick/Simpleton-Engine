@@ -18,6 +18,9 @@ namespace Math {
   
   using SignedDirType = std::make_signed_t<DirType>;
   
+  static_assert(std::is_unsigned<DirType>::value);
+  static_assert(std::is_signed<SignedDirType>::value);
+  
   ///A 2D orthogonal direction
   enum class Dir : DirType {
     //don't reoder this
@@ -26,10 +29,20 @@ namespace Math {
     RIGHT,
     DOWN,
     LEFT,
+    COUNT,
+    
+    MIN = UP,
+    MAX = LEFT,
+    
+    BEGIN = MIN,
+    END = COUNT,
+    
+    R_BEGIN = MAX,
+    R_END = std::numeric_limits<DirType>::max(),
     
     ///Passing NONE to any function other than filterNone or filterNoneCustom
     ///is undefined behaviour
-    NONE = 0b11111100
+    NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
   enum class Axis : DirType {
@@ -241,6 +254,24 @@ namespace Math {
       return static_cast<Dir>(num);
     }
   };
+  
+  ///Get the next direction. Used for iterating directions
+  constexpr Dir next(const Dir dir) {
+    return static_cast<Dir>(static_cast<DirType>(dir) + DirType(1));
+  }
+  
+  ///Get the previous direction. Used for iterating directions in reverse
+  constexpr Dir prev(const Dir dir) {
+    return static_cast<Dir>(static_cast<DirType>(dir) - DirType(1));
+  }
+}
+
+constexpr Math::Dir &operator++(Math::Dir &dir) {
+  return dir = Math::next(dir);
+}
+
+constexpr Math::Dir &operator--(Math::Dir &dir) {
+  return dir = Math::prev(dir);
 }
 
 #endif
