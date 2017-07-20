@@ -34,7 +34,9 @@ namespace Time {
       BACKWARD
     };
   
-    DeltaAnim(uint64_t, EdgeMode = EdgeMode::REPEAT);
+    DeltaAnim() = default;
+    explicit DeltaAnim(uint64_t);
+    DeltaAnim(uint64_t, EdgeMode, Dir = Dir::FORWARD);
     
     void advance(uint64_t);
     
@@ -50,33 +52,33 @@ namespace Time {
     
     void setDir(Dir);
     void flipDir();
-    Dir getDir();
+    Dir getDir() const;
     
     void setDuration(uint64_t);
-    uint64_t getDuration();
+    uint64_t getDuration() const;
     
     void setEdgeMode(EdgeMode);
-    EdgeMode getEdgeMode();
+    EdgeMode getEdgeMode() const;
     
-    bool isRunning();
-    bool isStopped();
-    bool isPaused();
+    bool isRunning() const;
+    bool isStopped() const;
+    bool isPaused() const;
     
     void setProgress(double);
-    double getProgress();
+    double getProgress() const;
     
   private:
-    enum State {
+    enum class State {
       RUNNING,
       STOPPED,
       PAUSED
     };
   
-    uint64_t duration;
+    uint64_t duration = 0;
     uint64_t progressTime = 0;
-    EdgeMode edgeMode;
-    Dir dir = FORWARD;
-    State state = STOPPED;
+    EdgeMode edgeMode = EdgeMode::REPEAT;
+    Dir dir = Dir::FORWARD;
+    State state = State::STOPPED;
     
     void handleEdges();
   };
