@@ -29,14 +29,76 @@ struct RetHandler {
 */
 
 namespace Utils {
-  template <typename Listener, typename RetHandler>
+  template <bool ENABLED>
+  class DispatchHelper;
+  
+  template <>
+  class DispatchHelper<true> {
+  public:
+    DispatchHelper() = default;
+    
+    bool isDispatching() const {
+      return dispatching;
+    }
+    
+    void startDispatching() {
+      dispatching = true;
+    }
+    
+    void stopDispatching() {
+      dispatching = false;
+    }
+    
+  private:
+    bool dispatching = false;
+  };
+  
+  template <>
+  class DispatchHelper<false> {
+  public:
+    DispatchHelper() = default;
+
+    bool isDispatching() const {
+      return false;
+    }
+    
+    void startDispatching() {}
+    
+    void stopDispatching() {}
+  };
+
+  template <
+    typename Listener,
+    typename RetHandler,
+    bool USE_FUN_PTR = false,
+    bool CHECK_REC_DISPATCH = true
+  >
   class SingleDispatcher;
   
-  template <typename RetHandler, typename ListenerRet, typename ...ListenerArgs>
-  class SingleDispatcher<ListenerRet (ListenerArgs...), RetHandler> {
-  public:
-    using Listener = std::function<ListenerRet (ListenerArgs...)>;
+  template <
+    bool USE_FUN_PTR,
+    bool CHECK_REC_DISPATCH,
+    typename RetHandler,
+    typename ListenerRet,
+    typename ...ListenerArgs
+  >
+  class SingleDispatcher<ListenerRet (ListenerArgs...), RetHandler, USE_FUN_PTR, CHECK_REC_DISPATCH> : DispatchHelper<CHECK_REC_DISPATCH> {
+  private:
+    using Dispatch = DispatchHelper<CHECK_REC_DISPATCH>;
     
+  public:
+    using Listener = std::conditional_t<
+      USE_FUN_PTR,
+      ListenerRet (*) (ListenerArgs...),
+      std::function<ListenerRet (ListenerArgs...)>
+    >;
+    
+    using SettableListener = std::conditional_t<
+      USE_FUN_PTR,
+      const Listener,
+      const Listener &
+    >;
+  
     class BadListener final : public std::runtime_error {
     public:
       BadListener()
@@ -50,9 +112,15 @@ namespace Utils {
     };
     
     SingleDispatcher() = default;
+    SingleDispatcher(const SingleDispatcher &) = default;
+    SingleDispatcher(SingleDispatcher &&) = default;
     ~SingleDispatcher() = default;
     
-    void setListener(const Listener &newListener) {
+    SingleDispatcher &operator=(const SingleDispatcher &) = default;
+    SingleDispatcher &operator=(SingleDispatcher &&) = default;
+    
+    ///Set the listener
+    void setListener(SettableListener newListener) {
       if (listener == nullptr) {
         throw BadListener();
       }
@@ -60,29 +128,37 @@ namespace Utils {
       listener = newListener;
     }
     
+    ///Set the listener without checking if it is null. Passing null to this
+    ///function is equivalent to calling remListener
+    void setListenerNoCheck(SettableListener newListener) {
+      listener = newListener;
+    }
+    
+    ///Remove the listener
     void remListener() {
       listener = nullptr;
     }
     
+    ///Send a message to the listeners
     template <typename ...Args>
     ListenerRet dispatch(Args &&... args) {
-      if (dispatching) {
+      if (Dispatch::isDispatching()) {
         throw BadDispatchCall();
       }
       if (listener) {
-        dispatching = true;
+        Dispatch::startDispatching();
         
         if constexpr (std::is_void<ListenerRet>::value) {
           listener(std::forward<Args>(args)...);
-          dispatching = false;
+          Dispatch::stopDispatching();
         } else if (std::is_void<RetHandler>::value) {
           const ListenerRet ret = listener(std::forward<Args>(args)...);
-          dispatching = false;
+          Dispatch::stopDispatching();
           return ret;
         } else {
           RetHandler retHandler;
           retHandler.handleReturnValue(listener(std::forward<Args>(args)...));
-          dispatching = false;
+          Dispatch::stopDispatching();
           return retHandler.getFinalReturnValue();
         }
       }
@@ -90,7 +166,6 @@ namespace Utils {
   
   private:
     Listener listener;
-    bool dispatching = false;
   };
 
   template <typename Listener, typename RetHandler, typename ListenerID = uint32_t>
@@ -141,7 +216,7 @@ namespace Utils {
       return id;
     }
     
-    ///Remove a listeners
+    ///Remove a listener
     void remListener(const ListenerID id) {
       if (id >= listeners.size()) {
         throw BadListenerID(id);
