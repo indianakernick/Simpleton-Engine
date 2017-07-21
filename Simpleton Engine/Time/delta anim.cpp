@@ -31,7 +31,7 @@ void Time::DeltaAnim::start() {
 }
 
 void Time::DeltaAnim::stop() {
-  assert(state == State::RUNNING);
+  assert(state == State::RUNNING || state == State::PAUSED);
   state = State::STOPPED;
   progressTime = 0;
   dir = Dir::FORWARD;
