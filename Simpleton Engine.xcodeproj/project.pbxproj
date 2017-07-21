@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -318,6 +319,7 @@
 			dstPath = /usr/local/include/Simpleton/Platform;
 			dstSubfolderSpec = 0;
 			files = (
+				453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */,
 				4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */,
 				4592B9681F0A267900D1640D /* sdl object.hpp in CopyFiles */,
 				45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */,
@@ -340,6 +342,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
 		4592B96B1F0A2BA600D1640D /* font library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "font library.cpp"; sourceTree = "<group>"; };
@@ -623,6 +626,7 @@
 				45B5E8C61EF9047000A6A3E2 /* system info.mm */,
 				45B5E8C51EF9047000A6A3E2 /* system info.hpp */,
 				4592B9651F0A24C800D1640D /* sdl object.hpp */,
+				453479B41F21AC860083743E /* sdl error.hpp */,
 			);
 			path = Platform;
 			sourceTree = "<group>";

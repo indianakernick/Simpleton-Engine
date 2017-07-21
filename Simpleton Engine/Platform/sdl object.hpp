@@ -9,6 +9,8 @@
 #ifndef engine_platform_sdl_object_hpp
 #define engine_platform_sdl_object_hpp
 
+#include <memory>
+
 #define SDL_OBJECT_FREE(TYPE) std::unique_ptr<SDL_##TYPE, decltype(&SDL_Free##TYPE)>
 #define SDL_OBJECT_DESTROY(TYPE) std::unique_ptr<SDL_##TYPE, decltype(&SDL_Destroy##TYPE)>
 
