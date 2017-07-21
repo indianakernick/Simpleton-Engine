@@ -121,7 +121,7 @@ namespace Utils {
     
     ///Set the listener
     void setListener(SettableListener newListener) {
-      if (listener == nullptr) {
+      if (newListener == nullptr) {
         throw BadListener();
       }
       
