@@ -9,41 +9,47 @@
 #include "file io.hpp"
 
 namespace {
-  using FileHandle = std::unique_ptr<std::FILE, int(*)(std::FILE *)>;
+  struct FileCloser {
+    void operator()(std::FILE *const file) {
+      std::fclose(file);
+    }
+  };
+
+  using FileHandle = std::unique_ptr<std::FILE, FileCloser>;
   
-  FileHandle openFileRead(const char *path) {
+  FileHandle openFileRead(const char *const path) {
     assert(path);
-    std::FILE *file = std::fopen(path, "rb");
+    std::FILE *const file = std::fopen(path, "rb");
     if (file == nullptr) {
       throw Memory::FileError("Failed to open file for reading");
     } else {
-      return {file, &std::fclose};
+      return {file, {}};
     }
   }
   
-  FileHandle openFileWrite(const char *path) {
+  FileHandle openFileWrite(const char *const path) {
     assert(path);
-    std::FILE *file = std::fopen(path, "wb");
+    std::FILE *const file = std::fopen(path, "wb");
     if (file == nullptr) {
       throw Memory::FileError("Failed to open file for writing");
     } else {
-      return {file, &std::fclose};
+      return {file, {}};
     }
   }
 }
 
-Memory::FileError::FileError(const char *what)
+Memory::FileError::FileError(const char *const what)
   : std::runtime_error(what) {}
 
 Memory::Buffer Memory::readFile(const std::string &path) {
   return readFile(path.c_str());
 }
 
-Memory::Buffer Memory::readFile(const char *path) {
+Memory::Buffer Memory::readFile(const char *const path) {
   return readFile(openFileRead(path).get());
 }
 
-Memory::Buffer Memory::readFile(std::FILE *file) {
+Memory::Buffer Memory::readFile(std::FILE *const file) {
   std::fseek(file, 0, SEEK_END);
   Memory::Buffer buf(std::ftell(file));
   std::rewind(file);
@@ -70,11 +76,11 @@ void Memory::writeFile(const Memory::Buffer &buf, const std::string &path) {
   writeFile(buf, path.c_str());
 }
 
-void Memory::writeFile(const Memory::Buffer &buf, const char *path) {
+void Memory::writeFile(const Memory::Buffer &buf, const char *const path) {
   writeFile(buf, openFileWrite(path).get());
 }
 
-void Memory::writeFile(const Memory::Buffer &buf, std::FILE *file) {
+void Memory::writeFile(const Memory::Buffer &buf, std::FILE *const file) {
   if (std::fwrite(buf.data(), buf.size(), 1, file) == 0) {
     throw FileError("Failed to write to file");
   }
