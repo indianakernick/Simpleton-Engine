@@ -177,13 +177,10 @@ namespace Math {
       "Number must be a float or a signed int"
     );
   
-  private:
-    static constexpr Number ONE = Number(1);
-    static constexpr Number ZERO = Number(0);
-  
-  public:
     ///Convert a direction to a 2D unit vector
-    static glm::tvec2<Number> conv(const Dir dir, const Number dist = ONE) {
+    static glm::tvec2<Number> conv(const Dir dir, const Number dist = Number(1)) {
+      constexpr Number ZERO(0);
+      
       switch (dir) {
         case PLUS_X:
           return {dist, ZERO};
@@ -201,32 +198,52 @@ namespace Math {
   };
   
   ///Configuration template for converting a 2D unit vector to a direction
-  template <typename Number, Dir PLUS_X, Dir PLUS_Y>
+  template <typename Number, Dir PLUS_X, Dir PLUS_Y, bool EXACT = true>
   struct FromVec {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
     static_assert(
       std::is_floating_point<Number>::value || std::is_signed<Number>::value,
       "Number must be a float or a signed int"
     );
-  
-  private:
-    static constexpr Number ONE = Number(1);
-    static constexpr Number ZERO = Number(0);
-  
-  public:
+    
     ///Convert a 2D unit vector to a direction
-    static Dir conv(const glm::tvec2<Number> vec, const Number dist = ONE) {
-      using Dir = glm::tvec2<Number>;
-      if (vec == Dir(dist, ZERO)) {
-        return PLUS_X;
-      } else if (vec == Dir(-dist, ZERO)) {
-        return opposite(PLUS_X);
-      } else if (vec == Dir(ZERO, dist)) {
-        return PLUS_Y;
-      } else if (vec == Dir(ZERO, -dist)) {
-        return opposite(PLUS_Y);
+    static Dir conv(const glm::tvec2<Number> vec, const Number dist = Number(1)) {
+      using Vec = glm::tvec2<Number>;
+      constexpr Number ZERO(0);
+      
+      if constexpr (EXACT) {
+      
+               if (vec == Vec(dist, ZERO)) {
+          return PLUS_X;
+        } else if (vec == Vec(-dist, ZERO)) {
+          return opposite(PLUS_X);
+        } else if (vec == Vec(ZERO, dist)) {
+          return PLUS_Y;
+        } else if (vec == Vec(ZERO, -dist)) {
+          return opposite(PLUS_Y);
+        } else {
+          throw std::invalid_argument("Vector cannot be converted to direction");
+        }
+        
       } else {
-        throw std::invalid_argument("Vector cannot be converted to direction");
+        
+        if (vec.x == vec.y) {
+          throw std::invalid_argument("Vector cannot be converted to direction");
+        }
+        if (std::abs(vec.x) > std::abs(vec.y)) {
+          if (vec.x > ZERO) {
+            return PLUS_X;
+          } else {
+            return opposite(PLUS_X);
+          }
+        } else {
+          if (vec.y > ZERO) {
+            return PLUS_Y;
+          } else {
+            return opposite(PLUS_Y);
+          }
+        }
+        
       }
     }
   };
