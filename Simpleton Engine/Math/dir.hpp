@@ -108,30 +108,24 @@ namespace Math {
   
   ///Get the distance between directions
   constexpr DirType dist(const Dir a, const Dir b) {
-    const SignedDirType diff = static_cast<SignedDirType>(a) - static_cast<SignedDirType>(b);
-    const DirType sign = diff >> (sizeof(DirType) * 8 - 1);
-    const DirType dist = (diff ^ sign) + (sign & DirType(1));
-    
-    //@TODO remove branch
-    if (dist == DirType(3)) {
-      return DirType(1);
-    } else {
-      return dist;
-    }
+    constexpr DirType distances[16] = {
+      0, 1, 2, 1, 1, 0, 1, 2, 2, 1, 0, 1, 1, 2, 1, 0
+    };
+    return distances[
+      (static_cast<DirType>(a) << 2) |
+      static_cast<DirType>(b)
+    ];
   }
   
   ///Get the difference between directions
   constexpr SignedDirType diff(const Dir a, const Dir b) {
-    const SignedDirType diff = static_cast<SignedDirType>(b) - static_cast<SignedDirType>(a);
-    
-    //@TODO remove branch
-    if (diff == SignedDirType(3)) {
-      return SignedDirType(-1);
-    } else if (diff == SignedDirType(-3)) {
-      return SignedDirType(1);
-    } else {
-      return diff;
-    }
+    constexpr SignedDirType differences[16] = {
+      0, 1, 2, -1, -1, 0, 1, 2, -2, -1, 0, 1, 1, -2, -1, 0
+    };
+    return differences[
+      (static_cast<DirType>(a) << 2) |
+      static_cast<DirType>(b)
+    ];
   }
   
   ///Get the axis that a direction is on
