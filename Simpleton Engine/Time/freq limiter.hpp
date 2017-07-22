@@ -219,7 +219,8 @@ namespace Time {
         if (timeSinceLast == Number(0)) {
           return Number(0);
         } else {
-          return std::numeric_limits<Number>::max();
+          using Limits = std::numeric_limits<Number>;
+          return Limits::has_infinity ? Limits::infinity() : Limits::max();
         }
       }
       Number count(0);
