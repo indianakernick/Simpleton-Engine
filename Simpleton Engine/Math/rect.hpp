@@ -9,9 +9,10 @@
 #ifndef engine_math_rect_hpp
 #define engine_math_rect_hpp
 
-#include <glm/vec2.hpp>
-#include "scale.hpp"
+#include "dir.hpp"
 #include <iostream>
+#include "scale.hpp"
+#include <glm/vec2.hpp>
 
 namespace Math {
   template <typename T>
@@ -185,6 +186,40 @@ namespace Math {
         static_cast<U>(static_cast<Type>(right + EPSILON) / scale.x) - RectPP<U>::EPSILON,
         static_cast<U>(static_cast<Type>(bottom + EPSILON) / scale.y) - RectPP<U>::EPSILON
       };
+    }
+    
+    Scalar side(const Math::Dir dir) const {
+      switch (dir) {
+        case Math::Dir::UP:
+          return top;
+        case Math::Dir::RIGHT:
+          return right;
+        case Math::Dir::DOWN:
+          return bottom;
+        case Math::Dir::LEFT:
+          return left;
+        default:
+          assert(false);
+      }
+    }
+    
+    void side(const Math::Dir dir, const Scalar val) {
+      switch (dir) {
+        case Math::Dir::UP:
+          top = val;
+          break;
+        case Math::Dir::RIGHT:
+          right = val;
+          break;
+        case Math::Dir::DOWN:
+          bottom = val;
+          break;
+        case Math::Dir::LEFT:
+          left = val;
+          break;
+        default:
+          assert(false);
+      }
     }
     
     Vector topLeft() const {
@@ -487,30 +522,64 @@ namespace Math {
       };
     }
     
-    T left() const {
+    Scalar left() const {
       return p.x;
     }
-    T top() const {
+    Scalar top() const {
       return p.y;
     }
-    T right() const {
+    Scalar right() const {
       return p.x + s.x - EPSILON;
     }
-    T bottom() const {
+    Scalar bottom() const {
       return p.y + s.y - EPSILON;
     }
     
-    void left(const T val) {
+    void left(const Scalar val) {
       p.x = val;
     }
-    void top(const T val) {
+    void top(const Scalar val) {
       p.y = val;
     }
-    void right(const T val) {
+    void right(const Scalar val) {
       s.x = val - p.x + EPSILON;
     }
-    void bottom(const T val) {
+    void bottom(const Scalar val) {
       s.y = val - p.y + EPSILON;
+    }
+    
+    Scalar side(const Math::Dir dir) const {
+      switch (dir) {
+        case Math::Dir::UP:
+          return top();
+        case Math::Dir::RIGHT:
+          return right();
+        case Math::Dir::DOWN:
+          return bottom();
+        case Math::Dir::LEFT:
+          return left();
+        default:
+          assert(false);
+      }
+    }
+    
+    void side(const Math::Dir dir, const Scalar val) {
+      switch (dir) {
+        case Math::Dir::UP:
+          top(val);
+          break;
+        case Math::Dir::RIGHT:
+          right(val);
+          break;
+        case Math::Dir::DOWN:
+          bottom(val);
+          break;
+        case Math::Dir::LEFT:
+          left(val);
+          break;
+        default:
+          assert(false);
+      }
     }
     
     bool interceptsWith(const RectPS other) const {
