@@ -159,6 +159,11 @@ namespace Utils {
   ///a symbol
   template <typename T>
   using ForceSymbol = LimitInstances<T, 0>;
+  
+  ///Force a derived class to never be constructed. The resulting class will be
+  ///a static class
+  template <typename T>
+  using ForceStaticClass = LimitInstances<T, 0>;
 }
 
 #endif

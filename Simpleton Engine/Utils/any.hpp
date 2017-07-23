@@ -29,10 +29,10 @@ namespace Utils {
     Any()
       : deleter(nullptr) {}
     template <typename T>
-    explicit Any(const T &val)
+    Any(const T &val)
       : deleter(std::make_unique<DeleterImpl<T>>(val)) {}
     template <typename T>
-    explicit Any(T &&val)
+    Any(T &&val)
       : deleter(std::make_unique<DeleterImpl<T>>(std::move(val))) {}
     
     Any(Any &&) = default;
