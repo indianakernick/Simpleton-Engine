@@ -63,6 +63,11 @@ namespace Time {
       lastDo = getPoint<Duration>();
     }
     
+    ///Ensure that canDo will return true
+    void willDo() {
+      lastDo = getPoint<Duration>() - duration;
+    }
+    
     ///If this function returns true, it will not return true again until the
     ///duration has passed
     bool canDo() {
@@ -174,6 +179,11 @@ namespace Time {
     ///Simulate a fake operation
     void reset() {
       timeSinceLast = 0;
+    }
+    
+    ///Ensure that canDo will return true
+    void willDo() {
+      timeSinceLast = duration;
     }
     
     ///If this function returns true, it will not return true again until the
