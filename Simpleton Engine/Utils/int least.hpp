@@ -37,15 +37,15 @@ namespace Utils {
   template <size_t BYTES>
   using uint_exact_t = std::make_unsigned_t<int_exact_t<BYTES>>;
 
-  #define SPECIALIZE(size, name) \
-  template <>\
-  struct int_least<size> {\
-    using type = name;\
-  };\
-  \
-  template <>\
-  struct int_exact<size> {\
-    using type = name;\
+  #define SPECIALIZE(size, name)                                                \
+  template <>                                                                   \
+  struct int_least<size> {                                                      \
+    using type = name;                                                          \
+  };                                                                            \
+                                                                                \
+  template <>                                                                   \
+  struct int_exact<size> {                                                      \
+    using type = name;                                                          \
   }
 
   #if defined(UINT8_MAX) && UINT8_MAX == 255 //2^8-1
@@ -74,6 +74,44 @@ namespace Utils {
   ///Returns an unsigned integral type large enough to fit the specified types within it
   template <typename ...Types>
   using uint_fit_t = uint_least_t<(sizeof(Types) + ...)>;
+  
+  ///Returns a floating point type of at least the number of bytes specified
+  template <size_t BYTES>
+  struct float_least {
+    using type = typename float_least<Math::ceilToPowerOf2(BYTES)>::type;
+  };
+  
+  template <size_t BYTES>
+  struct float_exact {};
+  
+  ///Returns a floating point type of at least the number of bytes specified
+  template <size_t BYTES>
+  using float_least_t = typename float_least<BYTES>::type;
+  
+  ///Returns a floating point type of exactly the number of bytes specified
+  template <size_t BYTES>
+  using float_exact_t = typename float_exact<BYTES>::type;
+  
+  #define SPECIALIZE(size, name)                                                \
+  template <>                                                                   \
+  struct float_least<size> {                                                    \
+    using type = name;                                                          \
+  };                                                                            \
+                                                                                \
+  template <>                                                                   \
+  struct float_exact<size> {                                                    \
+    using type = name;                                                          \
+  }
+  
+  SPECIALIZE(sizeof(float), float);
+  #if __SIZEOF_FLOAT__ < __SIZEOF_DOUBLE__
+  SPECIALIZE(sizeof(double), double);
+  #endif
+  #if __SIZEOF_DOUBLE__ < __SIZEOF_LONG_DOUBLE__
+  SPECIALIZE(sizeof(long double), long double);
+  #endif
+  
+  #undef SPECIALIZE
 }
 
 #endif
