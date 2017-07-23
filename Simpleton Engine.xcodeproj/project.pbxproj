@@ -86,7 +86,6 @@
 		45B5E7FC1EF8A93900A6A3E2 /* terminal color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7D91EF8A93900A6A3E2 /* terminal color.cpp */; };
 		45B5E7FD1EF8A93900A6A3E2 /* terminal color.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E7FF1EF8A93900A6A3E2 /* string enum.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DC1EF8A93900A6A3E2 /* string enum.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8001EF8A93900A6A3E2 /* null check.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8021EF8A93900A6A3E2 /* construct from tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -137,7 +136,6 @@
 		45B5E8501EF8AF5000A6A3E2 /* type name.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D71EF8A93900A6A3E2 /* type name.hpp */; };
 		45B5E8511EF8AF5000A6A3E2 /* terminal color.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */; };
 		45B5E8521EF8AF5000A6A3E2 /* dispatcher.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */; };
-		45B5E8531EF8AF5000A6A3E2 /* string enum.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DC1EF8A93900A6A3E2 /* string enum.hpp */; };
 		45B5E8541EF8AF5000A6A3E2 /* null check.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */; };
 		45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; };
 		45B5E8561EF8AF5000A6A3E2 /* construct from tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */; };
@@ -279,7 +277,6 @@
 				45B5E8501EF8AF5000A6A3E2 /* type name.hpp in CopyFiles */,
 				45B5E8511EF8AF5000A6A3E2 /* terminal color.hpp in CopyFiles */,
 				45B5E8521EF8AF5000A6A3E2 /* dispatcher.hpp in CopyFiles */,
-				45B5E8531EF8AF5000A6A3E2 /* string enum.hpp in CopyFiles */,
 				45B5E8541EF8AF5000A6A3E2 /* null check.hpp in CopyFiles */,
 				45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */,
 				45B5E8561EF8AF5000A6A3E2 /* construct from tuple.hpp in CopyFiles */,
@@ -411,7 +408,6 @@
 		45B5E7D91EF8A93900A6A3E2 /* terminal color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "terminal color.cpp"; sourceTree = "<group>"; };
 		45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "terminal color.hpp"; sourceTree = "<group>"; };
 		45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dispatcher.hpp; sourceTree = "<group>"; };
-		45B5E7DC1EF8A93900A6A3E2 /* string enum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "string enum.hpp"; sourceTree = "<group>"; };
 		45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "null check.hpp"; sourceTree = "<group>"; };
 		45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "function traits.hpp"; sourceTree = "<group>"; };
 		45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "construct from tuple.hpp"; sourceTree = "<group>"; };
@@ -536,7 +532,6 @@
 				45B5E7D91EF8A93900A6A3E2 /* terminal color.cpp */,
 				45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */,
 				45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */,
-				45B5E7DC1EF8A93900A6A3E2 /* string enum.hpp */,
 				45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */,
 				45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */,
 				45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */,
@@ -682,7 +677,6 @@
 				45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */,
 				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
 				45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */,
-				45B5E7FF1EF8A93900A6A3E2 /* string enum.hpp in Headers */,
 				45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */,
 				45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */,
 				45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */,
