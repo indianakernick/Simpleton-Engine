@@ -10,10 +10,8 @@
 #define engine_utils_dispatcher_hpp
 
 #include <queue>
-#include <tuple>
 #include <vector>
 #include <stdexcept>
-#include <functional>
 #include <experimental/tuple>
 #include "member function.hpp"
 
@@ -151,7 +149,7 @@ namespace Utils {
         if constexpr (std::is_void<ListenerRet>::value) {
           listener(std::forward<Args>(args)...);
           Dispatch::stopDispatching();
-        } else if (std::is_void<RetHandler>::value) {
+        } else if constexpr (std::is_void<RetHandler>::value) {
           const ListenerRet ret = listener(std::forward<Args>(args)...);
           Dispatch::stopDispatching();
           return ret;
@@ -160,6 +158,15 @@ namespace Utils {
           retHandler.handleReturnValue(listener(std::forward<Args>(args)...));
           Dispatch::stopDispatching();
           return retHandler.getFinalReturnValue();
+        }
+      } else {
+        if constexpr (!std::is_void<ListenerRet>::value) {
+          if constexpr (std::is_void<RetHandler>::value) {
+            return {};
+          } else {
+            RetHandler retHandler;
+            return retHandler.getFinalReturnValue();
+          }
         }
       }
     }
@@ -273,7 +280,12 @@ namespace Utils {
     
     static ListenerRet nullListener(ListenerArgs...) {
       if constexpr (!std::is_void<ListenerRet>::value) {
-        return {};
+        if constexpr (std::is_void<RetHandler>::value) {
+          return {};
+        } else {
+          RetHandler retHandler;
+          return retHandler.getFinalReturnValue();
+        }
       }
     }
   };
@@ -498,8 +510,12 @@ namespace Utils {
     
     static ListenerRet nullListener(ListenerArgs...) {
       if constexpr (!std::is_void<ListenerRet>::value) {
-        const RetHandler retHandler;
-        return retHandler.getFinalReturnValue();
+        if constexpr (std::is_void<RetHandler>::value) {
+          return {};
+        } else {
+          RetHandler retHandler;
+          return retHandler.getFinalReturnValue();
+        }
       }
     }
   };
