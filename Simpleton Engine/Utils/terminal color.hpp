@@ -9,11 +9,7 @@
 #ifndef engine_utils_terminal_color_hpp
 #define engine_utils_terminal_color_hpp
 
-#include <cstdio>
 #include <cstdint>
-#include <cassert>
-
-//ANSI escape codes!
 
 namespace Utils::Term {
   void cursorUp(unsigned = 1);
@@ -22,14 +18,15 @@ namespace Utils::Term {
   void cursorBack(unsigned = 1);
   void cursorNextLine(unsigned = 1);
   void cursorPrevLine(unsigned = 1);
-  void cursorHoriPos(unsigned = 1);
-  void cursorPos(unsigned = 1, unsigned = 1);
+  void cursorHoriPos(unsigned);
   
   struct CursorPos {
     unsigned row;
     unsigned col;
   };
   
+  void cursorPos(unsigned, unsigned);
+  void cursorPos(CursorPos);
   CursorPos getCursorPos();
   
   void saveCursor();
@@ -47,8 +44,8 @@ namespace Utils::Term {
     ALL
   };
   
-  void eraseDisplay(Clear = Clear::TO_END);
-  void eraseLine(Clear = Clear::TO_END);
+  void eraseDisplay(Clear);
+  void eraseLine(Clear);
   
   void videoReset();
     
@@ -75,7 +72,7 @@ namespace Utils::Term {
   void primaryFont();
   void alternativeFont(unsigned);
   
-  enum class Color : uint8_t {
+  enum class Color : unsigned {
     BLACK,
     RED,
     GREEN,

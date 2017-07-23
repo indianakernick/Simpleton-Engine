@@ -8,38 +8,45 @@
 
 #include "terminal color.hpp"
 
+#include <cstdio>
+#include <cassert>
+
 #define ESC "\x1B["
 
-void Utils::Term::cursorUp(unsigned n) {
+void Utils::Term::cursorUp(const unsigned n) {
   std::printf(ESC "%uA", n);
 }
 
-void Utils::Term::cursorDown(unsigned n) {
+void Utils::Term::cursorDown(const unsigned n) {
   std::printf(ESC "%uB", n);
 }
 
-void Utils::Term::cursorForward(unsigned n) {
+void Utils::Term::cursorForward(const unsigned n) {
   std::printf(ESC "%uC", n);
 }
 
-void Utils::Term::cursorBack(unsigned n) {
+void Utils::Term::cursorBack(const unsigned n) {
   std::printf(ESC "%uD", n);
 }
 
-void Utils::Term::cursorNextLine(unsigned n) {
+void Utils::Term::cursorNextLine(const unsigned n) {
   std::printf(ESC "%uE", n);
 }
 
-void Utils::Term::cursorPrevLine(unsigned n) {
+void Utils::Term::cursorPrevLine(const unsigned n) {
   std::printf(ESC "%uF", n);
 }
 
-void Utils::Term::cursorHoriPos(unsigned col) {
+void Utils::Term::cursorHoriPos(const unsigned col) {
   std::printf(ESC "%uG", col);
 }
 
-void Utils::Term::cursorPos(unsigned row, unsigned col) {
+void Utils::Term::cursorPos(const unsigned row, const unsigned col) {
   std::printf(ESC "%u;%uG", row, col);
+}
+
+void Utils::Term::cursorPos(const CursorPos pos) {
+  std::printf(ESC "%u;%uG", pos.row, pos.col);
 }
 
 Utils::Term::CursorPos Utils::Term::getCursorPos() {
@@ -65,19 +72,19 @@ void Utils::Term::showCursor() {
   std::printf(ESC "?25h");
 }
 
-void Utils::Term::scrollUp(unsigned n) {
+void Utils::Term::scrollUp(const unsigned n) {
   std::printf(ESC "%uS", n);
 }
 
-void Utils::Term::scrollDown(unsigned n) {
+void Utils::Term::scrollDown(const unsigned n) {
   std::printf(ESC "%uT", n);
 }
 
-void Utils::Term::eraseDisplay(Clear clear) {
+void Utils::Term::eraseDisplay(const Clear clear) {
   std::printf(ESC "%cJ", static_cast<uint8_t>(clear));
 }
 
-void Utils::Term::eraseLine(Clear clear) {
+void Utils::Term::eraseLine(const Clear clear) {
   std::printf(ESC "%cK", static_cast<uint8_t>(clear));
 }
 
@@ -85,7 +92,7 @@ void Utils::Term::videoReset() {
   std::printf(ESC "0m");
 }
 
-void Utils::Term::intensity(Intensity intensity) {
+void Utils::Term::intensity(const Intensity intensity) {
   switch (intensity) {
     case Intensity::NORMAL:
       std::printf(ESC "22m");
@@ -98,7 +105,7 @@ void Utils::Term::intensity(Intensity intensity) {
   }
 }
 
-void Utils::Term::italic(bool on) {
+void Utils::Term::italic(const bool on) {
   if (on) {
     std::printf(ESC "3m");
   } else {
@@ -106,7 +113,7 @@ void Utils::Term::italic(bool on) {
   }
 }
 
-void Utils::Term::underline(bool on) {
+void Utils::Term::underline(const bool on) {
   if (on) {
     std::printf(ESC "4m");
   } else {
@@ -114,7 +121,7 @@ void Utils::Term::underline(bool on) {
   }
 }
 
-void Utils::Term::blink(Blink rate) {
+void Utils::Term::blink(const Blink rate) {
   switch (rate) {
     case Blink::OFF:
       std::printf(ESC "25m");
@@ -127,7 +134,7 @@ void Utils::Term::blink(Blink rate) {
   }
 }
 
-void Utils::Term::videoNegative(bool on) {
+void Utils::Term::videoNegative(const bool on) {
   if (on) {
     std::printf(ESC "7m");
   } else {
@@ -135,7 +142,7 @@ void Utils::Term::videoNegative(bool on) {
   }
 }
 
-void Utils::Term::conceal(bool on) {
+void Utils::Term::conceal(const bool on) {
   if (on) {
     std::printf(ESC "8m");
   } else {
@@ -143,7 +150,7 @@ void Utils::Term::conceal(bool on) {
   }
 }
 
-void Utils::Term::strikethrough(bool on) {
+void Utils::Term::strikethrough(const bool on) {
   if (on) {
     std::printf(ESC "9m");
   } else {
@@ -155,16 +162,16 @@ void Utils::Term::primaryFont() {
   std::printf(ESC "10m");
 }
 
-void Utils::Term::alternativeFont(unsigned n) {
+void Utils::Term::alternativeFont(const unsigned n) {
   assert(n < 9);
-  std::printf(ESC "%um", 11 + n);
+  std::printf(ESC "%um", 11u + n);
 }
 
-void Utils::Term::textColor(Color color) {
+void Utils::Term::textColor(const Color color) {
   std::printf(ESC "%um", 30u + static_cast<unsigned>(color));
 }
 
-void Utils::Term::textColor(uint8_t r, uint8_t g, uint8_t b) {
+void Utils::Term::textColor(const uint8_t r, const uint8_t g, const uint8_t b) {
   std::printf(ESC "38;2;%c;%c;%cm", r, g, b);
 }
 
@@ -172,11 +179,11 @@ void Utils::Term::defaultTextColor() {
   std::printf(ESC "39m");
 }
 
-void Utils::Term::backColor(Color color) {
+void Utils::Term::backColor(const Color color) {
   std::printf(ESC "%um", 40u + static_cast<unsigned>(color));
 }
 
-void Utils::Term::backColor(uint8_t r, uint8_t g, uint8_t b) {
+void Utils::Term::backColor(const uint8_t r, const uint8_t g, const uint8_t b) {
   std::printf(ESC "48;2;%c;%c;%cm", r, g, b);
 }
 
