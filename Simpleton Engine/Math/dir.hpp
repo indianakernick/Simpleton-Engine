@@ -32,6 +32,12 @@ namespace Math {
     LEFT,
     COUNT,
     
+    TOP = UP,
+    FORWARD = UP,
+    
+    BOTTOM = DOWN,
+    BACKWARD = DOWN,
+    
     MIN = UP,
     MAX = LEFT,
     
@@ -50,12 +56,14 @@ namespace Math {
     //don't reoder this
     
     VERT,
-    VERTICAL = VERT,
-    
     HORI,
-    HORIZONTAL = HORI,
-    
     COUNT,
+    
+    VERTICAL = VERT,
+    UP_DOWN = VERT,
+    
+    HORIZONTAL = HORI,
+    LEFT_RIGHT = HORI,
     
     NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };

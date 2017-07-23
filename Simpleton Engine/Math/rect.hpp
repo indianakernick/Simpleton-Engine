@@ -190,11 +190,11 @@ namespace Math {
     
     Scalar side(const Math::Dir dir) const {
       switch (dir) {
-        case Math::Dir::UP:
+        case Math::Dir::TOP:
           return top;
         case Math::Dir::RIGHT:
           return right;
-        case Math::Dir::DOWN:
+        case Math::Dir::BOTTOM:
           return bottom;
         case Math::Dir::LEFT:
           return left;
@@ -205,13 +205,13 @@ namespace Math {
     
     void side(const Math::Dir dir, const Scalar val) {
       switch (dir) {
-        case Math::Dir::UP:
+        case Math::Dir::TOP:
           top = val;
           break;
         case Math::Dir::RIGHT:
           right = val;
           break;
-        case Math::Dir::DOWN:
+        case Math::Dir::BOTTOM:
           bottom = val;
           break;
         case Math::Dir::LEFT:
@@ -550,11 +550,11 @@ namespace Math {
     
     Scalar side(const Math::Dir dir) const {
       switch (dir) {
-        case Math::Dir::UP:
+        case Math::Dir::TOP:
           return top();
         case Math::Dir::RIGHT:
           return right();
-        case Math::Dir::DOWN:
+        case Math::Dir::BOTTOM:
           return bottom();
         case Math::Dir::LEFT:
           return left();
@@ -565,13 +565,13 @@ namespace Math {
     
     void side(const Math::Dir dir, const Scalar val) {
       switch (dir) {
-        case Math::Dir::UP:
+        case Math::Dir::TOP:
           top(val);
           break;
         case Math::Dir::RIGHT:
           right(val);
           break;
-        case Math::Dir::DOWN:
+        case Math::Dir::BOTTOM:
           bottom(val);
           break;
         case Math::Dir::LEFT:
