@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
+		45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F561F2490E8001B24E2 /* buffered container.hpp */; };
 		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
@@ -259,6 +260,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */,
 				45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */,
 				45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */,
 				45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */,
@@ -338,6 +340,7 @@
 
 /* Begin PBXFileReference section */
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
+		45103F561F2490E8001B24E2 /* buffered container.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "buffered container.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
@@ -539,6 +542,7 @@
 				45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */,
 				45F3DB841F1AFEF10058D36B /* type list.hpp */,
 				45F3DB861F1B4F750058D36B /* strong alias.hpp */,
+				45103F561F2490E8001B24E2 /* buffered container.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
