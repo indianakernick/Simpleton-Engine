@@ -27,15 +27,15 @@ namespace Utils {
     template <typename ...Args>
     void add(Args &&... args) {
       if (modifying) {
-        addedElements.emplace(std::forward<Args>(args)...);
+        addedElements.emplace_back(std::forward<Args>(args)...);
       } else {
         container.emplace(std::forward<Args>(args)...);
       }
     }
     
-    void rem(const Container::key_type key) {
+    void rem(const typename Container::key_type key) {
       if (modifying) {
-        removedElements.emplace(container.find(key));
+        removedElements.emplace_back(container.find(key));
       } else {
         container.erase(key);
       }
@@ -50,6 +50,7 @@ namespace Utils {
         throw ModificationError();
       }
       modifying = true;
+      return container;
     }
     
     void stopModifying() {
@@ -71,8 +72,8 @@ namespace Utils {
   
   private:
     Container container;
-    std::vector<Container::iterator> removedElements;
-    std::vector<Container::value_type> addedElements;
+    std::vector<typename Container::iterator> removedElements;
+    std::vector<typename Container::value_type> addedElements;
     bool modifying = false;
   };
 }
