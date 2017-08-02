@@ -87,7 +87,7 @@ namespace Math {
   constexpr bool isPowerOf2(const uint64_t num) {
     assert(num != 0);
     
-    return (__builtin_clzll(num) + __builtin_ctzll(num)) == 63;
+    return (num & (num - 1)) == 0;
   }
   
   ///Is num a power of base?

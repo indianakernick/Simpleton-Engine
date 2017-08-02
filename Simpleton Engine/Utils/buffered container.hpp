@@ -23,7 +23,6 @@ namespace Utils {
   template <typename Container>
   class BufferedMapContainer {
   public:
-    
     template <typename ...Args>
     void add(Args &&... args) {
       if (modifying) {
