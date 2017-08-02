@@ -26,10 +26,10 @@ namespace Utils {
   constexpr size_t function_arity = function_traits<Function>::arity;
 
   template <typename Function>
-  constexpr bool is_member_variable = function_traits<Function>::is_member && function_traits<Function>::mem::is_var;
+  constexpr bool is_mem_var = function_traits<Function>::is_mem_var;
 
   template <typename Function>
-  constexpr bool is_member_function = function_traits<Function>::is_member && function_traits<Function>::mem::is_fun;
+  constexpr bool is_mem_fun = function_traits<Function>::is_mem_fun;
 
   //function
   template <typename Return, typename ...Args>
@@ -43,41 +43,36 @@ namespace Utils {
     template <size_t I>
     using arg = typename std::tuple_element<I, args>::type;
     
-    static constexpr bool is_member = false;
+    static constexpr bool is_mem_fun = false;
+    static constexpr bool is_mem_var = false;
+    
+    using mem_class_type = void;
+    
+    using mem_var_type = void;
+    
+    static constexpr bool is_const_mem_fun = false;
+    static constexpr bool is_lvalue_mem_fun = false;
+    static constexpr bool is_rvalue_mem_fun = false;
   };
 
   template <typename Function, typename Class, bool CONST, bool LVALUE, bool RVALUE>
   struct member_function : function_traits<Function> {
-    static constexpr bool is_member = true;
+    static constexpr bool is_mem_fun = true;
     
-    struct mem {
-      using class_type = Class;
-      
-      static constexpr bool is_var = false;
-      static constexpr bool is_fun = true;
-      
-      struct fun {
-        static constexpr bool is_const = CONST;
-        static constexpr bool is_lvalue = LVALUE;
-        static constexpr bool is_rvalue = RVALUE;
-      };
-    };
+    using mem_class_type = Class;
+    
+    static constexpr bool is_const_mem_fun = CONST;
+    static constexpr bool is_lvalue_mem_fun = LVALUE;
+    static constexpr bool is_rvalue_mem_fun = RVALUE;
   };
 
   template <typename Function, typename Class>
   struct member_variable : function_traits<Function> {
-    static constexpr bool is_member = true;
+    static constexpr bool is_mem_var = true;
     
-    struct mem {
-      using class_type = Class;
-      
-      static constexpr bool is_var = true;
-      static constexpr bool is_fun = false;
-      
-      struct var {
-        using type = typename function_traits<Function>::ret;
-      };
-    };
+    using mem_class_type = Class;
+    
+    using mem_var_type = typename function_traits<Function>::ret;
   };
 
   //pointer to function
@@ -88,12 +83,12 @@ namespace Utils {
   //pointer to member function
   template <typename Class, typename Return, typename ...Args>
   struct function_traits<Return (Class::*) (Args...)> :
-    member_function<Return (Args...), Class, false, false, false> {};
+    member_function<Return (Args...), Class, false, true, true> {};
 
   //pointer to const member function
   template <typename Class, typename Return, typename ...Args>
   struct function_traits<Return (Class::*) (Args...) const> :
-    member_function<Return (Args...), Class, true, false, false> {};
+    member_function<Return (Args...), Class, true, true, true> {};
 
   //pointer to lvalue member function
   template <typename Class, typename Return, typename ...Args>
