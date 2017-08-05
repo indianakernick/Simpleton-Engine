@@ -52,7 +52,19 @@ namespace Utils {
   
   template <typename T0, typename T1>
   constexpr bool typeLess() {
-    return typeHash<T0>() < typeHash<T1>();
+    constexpr std::experimental::string_view name0 = typeName<T0>();
+    constexpr std::experimental::string_view name1 = typeName<T1>();
+    constexpr size_t minSize = name0.size() < name1.size()
+                             ? name0.size()
+                             : name1.size();
+    
+    for (size_t i = 0; i != minSize; ++i) {
+      if (name0[i] != name1[i]) {
+        return name0[i] < name1[i];
+      }
+    }
+    
+    return name0.size() < name1.size();
   }
 }
 
