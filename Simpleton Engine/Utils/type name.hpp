@@ -41,16 +41,18 @@ namespace Utils {
     //djb2
     
     constexpr std::experimental::string_view name = typeName<T>();
-    
-    const char *data = name.data();
-    const size_t size = name.size();
     size_t hash = 5381;
     
-    for (size_t i = 0; i != size; i++) {
-      hash = ((hash << 5) + hash) + data[i];
+    for (auto c = name.begin(); c != name.end(); ++c) {
+      hash = ((hash << 5) + hash) + *c;
     }
 
     return hash;
+  }
+  
+  template <typename T0, typename T1>
+  constexpr bool typeLess() {
+    return typeHash<T0>() < typeHash<T1>();
   }
 }
 

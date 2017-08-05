@@ -9,7 +9,6 @@
 #ifndef engine_utils_instance_limiter_hpp
 #define engine_utils_instance_limiter_hpp
 
-#include <string>
 #include <stdexcept>
 #include <experimental/string_view>
 
@@ -165,5 +164,7 @@ namespace Utils {
   template <typename T>
   using ForceStaticClass = LimitInstances<T, 0>;
 }
+
+#define MAKE_SYMBOL(NAME) struct NAME : Utils::ForceSymbol<NAME> {}
 
 #endif
