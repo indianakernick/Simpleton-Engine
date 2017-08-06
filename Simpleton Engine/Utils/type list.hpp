@@ -347,8 +347,8 @@ namespace Utils {
   };
   
   template <typename Left, typename Right>
-  struct HashLess {
-    static constexpr bool value = typeHash<Left>() < typeHash<Right>();
+  struct NameLess {
+    static constexpr bool value = typeLess<Left, Right>();
   };
   
   static_assert(std::is_same<
@@ -471,7 +471,7 @@ namespace Utils {
   //Is permutation of
   
   template <typename First, typename Second>
-  constexpr bool isPermutOf = std::is_same<SortList<First, HashLess>, SortList<Second, HashLess>>::value;
+  constexpr bool isPermutOf = std::is_same<SortList<First, NameLess>, SortList<Second, NameLess>>::value;
   
   static_assert(isPermutOf<TypeList<int>, TypeList<int>>);
   static_assert(isPermutOf<TypeList<int, char, long>, TypeList<char, int, long>>);

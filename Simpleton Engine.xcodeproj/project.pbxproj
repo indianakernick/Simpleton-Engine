@@ -174,6 +174,7 @@
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
 		45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB861F1B4F750058D36B /* strong alias.hpp */; };
 		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
+		45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99411F3695E500F8C639 /* hash.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -263,6 +264,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */,
 				45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */,
 				45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */,
 				45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */,
@@ -445,6 +447,7 @@
 		45B5E8C61EF9047000A6A3E2 /* system info.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "system info.mm"; sourceTree = "<group>"; };
 		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
+		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -551,6 +554,7 @@
 				45103F561F2490E8001B24E2 /* buffered container.hpp */,
 				4529DEE81F31AABD00071267 /* line col.cpp */,
 				4529DEE91F31AABD00071267 /* line col.hpp */,
+				45FA99411F3695E500F8C639 /* hash.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
