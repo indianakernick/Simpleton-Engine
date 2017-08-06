@@ -448,6 +448,7 @@
 		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
+		45FA99481F36D6D400F8C639 /* simple anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "simple anim.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -614,6 +615,7 @@
 				45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */,
 				4592B49C1F06427200D1640D /* frame.hpp */,
 				4592BB111F11F86F00D1640D /* main loop.hpp */,
+				45FA99481F36D6D400F8C639 /* simple anim.hpp */,
 			);
 			path = Time;
 			sourceTree = "<group>";
