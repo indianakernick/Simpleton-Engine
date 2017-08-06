@@ -14,55 +14,72 @@
 #include "constants.hpp"
 
 namespace Math {
-  template<typename T>
-  inline std::enable_if_t<std::is_arithmetic<T>::value, T>
-  lerp(double t, T from, T to) {
-    return from + (to - from) * t;
+  template <typename Float, typename T>
+  std::enable_if_t<
+    std::is_floating_point<Float>::value &&
+    std::is_arithmetic<T>::value,
+    T
+  >
+  lerp(const Float t, const T from, const T to) {
+    return from + static_cast<Float>(to - from) * t;
   }
   
-  template<typename T>
-  inline std::enable_if_t<std::is_arithmetic<T>::value, double>
-  invLerp(T value, T from, T to) {
-    return (value - from) / (to - from);
+  template <typename Float, typename T>
+  std::enable_if_t<
+    std::is_floating_point<Float>::value &&
+    std::is_arithmetic<T>::value,
+    Float
+  >
+  invLerp(const T value, const T from, const T to) {
+    return static_cast<Float>(value - from) / static_cast<Float>(to - from);
   }
+  
+  template <typename Float>
+  using IsFloat = std::enable_if_t<std::is_floating_point<Float>::value, Float>;
   
   ///Repetitions are normalized
-  inline double norm(double t) {
-    return std::fmod(1.0 - std::fmod(-t, 1.0), 1.0);
+  template <typename Float>
+  IsFloat<Float> norm(const Float t) {
+    return std::fmod(Float(1) - std::fmod(-t, Float(1)), Float(1));
   }
   
   ///Odd repetitions are mirrored
-  inline double normMirror(double t) {
-    //there's only one call to norm so the function is smaller
-    //because norm is inline
-    const double normT = norm(t);
-    return std::fmod(std::floor(t), 2.0) ? 1.0 - normT : normT;
+  template <typename Float>
+  IsFloat<Float> normMirror(const Float t) {
+    const Float normT = norm(t);
+    return std::fmod(std::floor(t), Float(2)) ? Float(1) - normT : normT;
   }
   
   ///Uses the -PId2 to 0 range of the sin function
-  inline double sinIn(double t) {
-    return 1 + std::sin(PId2 * t - PId2);
+  template <typename Float>
+  IsFloat<Float> sinIn(const Float t) {
+    return Float(1) + std::sin(PId2 * t - PId2);
   }
   ///Uses the 0 to PId2 range of the sin function
-  inline double sinOut(double t) {
+  template <typename Float>
+  IsFloat<Float> sinOut(const Float t) {
     return std::sin(PId2 * t);
   }
   ///Uses the -PId2 to PId2 range of the sin function
-  inline double sinInOut(double t) {
-    return (1 + std::sin(PI * t - PId2)) / 2;
+  template <typename Float>
+  IsFloat<Float> sinInOut(const Float t) {
+    return (Float(1) + std::sin(PI * t - PId2)) / Float(2);
   }
   
   ///Uses the -2 to 0 range of the erf function
-  inline double errorIn(double t) {
-    return 1 + std::erf(2 * t - 2);
+  template <typename Float>
+  IsFloat<Float> errorIn(const Float t) {
+    return Float(1) + std::erf(Float(2) * t - Float(2));
   }
   ///Uses the 0 to 2 range of the erf function
-  inline double errorOut(double t) {
-    return std::erf(2 * t);
+  template <typename Float>
+  IsFloat<Float> errorOut(const Float t) {
+    return std::erf(Float(2) * t);
   }
   ///Uses the -2 to 2 range of the erf function
-  inline double errorInOut(double t) {
-    return (1 + std::erf(4 * t - 2)) / 2;
+  template <typename Float>
+  IsFloat<Float> errorInOut(const Float t) {
+    return (Float(1) + std::erf(Float(4) * t - Float(2))) / Float(2);
   }
   
   /*
@@ -71,53 +88,69 @@ namespace Math {
   https://gist.github.com/gre/1650294
   */
   
-  inline double quadIn(double t) {
+  template <typename Float>
+  IsFloat<Float> quadIn(const Float t) {
     return t*t;
   }
-  inline double quadOut(double t) {
-    return t * (2 - t);
+  template <typename Float>
+  IsFloat<Float> quadOut(const Float t) {
+    return t * (Float(2) - t);
   }
-  inline double quadInOut(double t) {
-    return t < 0.5 ? 2 * t*t
-                   : -1 + (4 - 2 * t) * t;
+  template <typename Float>
+  IsFloat<Float> quadInOut(const Float t) {
+    return t < Float(0.5)
+           ? Float(2) * t*t
+           : Float(-1) + (Float(4) - Float(2) * t) * t;
   }
   
-  inline double cubicIn(double t) {
+  template <typename Float>
+  IsFloat<Float> cubicIn(const Float t) {
     return t*t*t;
   }
-  inline double cubicOut(double t) {
-    const double tm1 = t - 1;
-    return tm1*tm1*tm1 + 1;
+  template <typename Float>
+  IsFloat<Float> cubicOut(const Float t) {
+    const Float tm1 = t - Float(1);
+    return tm1*tm1*tm1 + Float(1);
   }
-  inline double cubicInOut(double t) {
-    return t < 0.5 ? 4 * t*t*t
-                   : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  template <typename Float>
+  IsFloat<Float> cubicInOut(const Float t) {
+    return t < Float(0.5)
+           ? Float(4) * t*t*t
+           : (t - Float(1)) * (Float(2) * t - Float(2)) * (Float(2) * t - Float(2)) + Float(1);
   }
   
-  inline double quartIn(double t) {
+  template <typename Float>
+  IsFloat<Float> quartIn(const Float t) {
     return t*t*t*t;
   }
-  inline double quartOut(double t) {
-    const double tm1 = t - 1;
-    return 1 - tm1*tm1*tm1*tm1;
+  template <typename Float>
+  IsFloat<Float> quartOut(const Float t) {
+    const Float tm1 = t - Float(1);
+    return Float(1) - tm1*tm1*tm1*tm1;
   }
-  inline double quartInOut(double t) {
-    const double tm1 = t - 1;
-    return t < 0.5 ? 8 * t*t*t*t
-                   : 1 - 8 * tm1*tm1*tm1*tm1;
+  template <typename Float>
+  IsFloat<Float> quartInOut(const Float t) {
+    const Float tm1 = t - Float(1);
+    return t < Float(0.5)
+           ? Float(8) * t*t*t*t
+           : Float(1) - Float(8) * tm1*tm1*tm1*tm1;
   }
   
-  inline double quintIn(double t) {
+  template <typename Float>
+  IsFloat<Float> quintIn(const Float t) {
     return t*t*t*t*t;
   }
-  inline double quintOut(double t) {
-    const double tm1 = t - 1;
-    return 1 + tm1*tm1*tm1*tm1*tm1;
+  template <typename Float>
+  IsFloat<Float> quintOut(const Float t) {
+    const Float tm1 = t - Float(1);
+    return Float(1) + tm1*tm1*tm1*tm1*tm1;
   }
-  inline double quintInOut(double t) {
-    const double tm1 = t - 1;
-    return t < 0.5 ? 16 * t*t*t*t*t
-                   : 1 + 16 * tm1*tm1*tm1*tm1*tm1;
+  template <typename Float>
+  IsFloat<Float> quintInOut(const Float t) {
+    const Float tm1 = t - Float(1);
+    return t < Float(0.5)
+           ? Float(16) * t*t*t*t*t
+           : Float(1) + Float(16) * tm1*tm1*tm1*tm1*tm1;
   }
 };
 
