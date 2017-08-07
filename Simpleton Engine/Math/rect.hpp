@@ -9,6 +9,7 @@
 #ifndef engine_math_rect_hpp
 #define engine_math_rect_hpp
 
+#include <cmath>
 #include "dir.hpp"
 #include <iostream>
 #include "scale.hpp"
@@ -170,28 +171,19 @@ namespace Math {
              (br.y - tl.y) + EPSILON == Scalar(0);
     }
     
-    ///Move top left corner to make size equal to val
-    void sizeTopLeft(const Vector val) {
-      tl = (br - val) + EPSILON;
-    }
-    ///Move top right corner to make size equal to val
-    void sizeTopRight(const Vector val) {
-      br.x = (tl.x + val.x) - EPSILON;
-      tl.y = (br.y - val.y) + EPSILON;
-    }
-    ///Move bottom right corner to make size equal to val
-    void sizeBottomRight(const Vector val) {
-      br = (tl + val) - EPSILON;
-    }
-    ///Move bottom left corner to make size equal to val
-    void sizeBottomLeft(const Vector val) {
-      tl.x = (br.x - val.x) + EPSILON;
-      br.y = (tl.y + val.y) - EPSILON;
-    }
-    
-    ///Move bottom right corner to make size equal to val
-    void size(const Vector val) {
-      sizeBottomRight(val);
+    ///Enlarge the rectangle to enclose the point
+    void extendToEnclose(const Vector point) {
+      if (point.x < tl.x) {
+        tl.x = point.x;
+      } else if (point.x > br.x) {
+        br.x = point.x;
+      }
+      
+      if (point.y < tl.y) {
+        tl.y = point.y;
+      } else if (point.y > br.y) {
+        br.y = point.y;
+      }
     }
     
     bool interceptsWith(const RectPP other) const {
