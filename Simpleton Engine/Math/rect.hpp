@@ -17,6 +17,9 @@
 namespace Math {
   template <typename T>
   class RectPS;
+  
+  template <typename T, Math::Dir PLUS_X, Math::Dir PLUS_Y>
+  struct RectCS;
 
   ///A rectangle defined by a top-left point and a bottom-right point
   template <typename T>
@@ -29,7 +32,6 @@ namespace Math {
     using Vector = glm::tvec2<Scalar>;
   
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
-    static const RectPP NORM_0_1;
     static const RectPP LARGEST;
     
     RectPP()
@@ -95,97 +97,6 @@ namespace Math {
     }
     bool operator!=(const RectPP other) const {
       return tl != other.tl || br != other.br;
-    }
-    
-    //add and substract mean translate
-    RectPP &operator+=(const Vector other) {
-      tl += other;
-      br += other;
-      return *this;
-    }
-    RectPP &operator-=(const Vector other) {
-      tl -= other;
-      br -= other;
-    }
-    //multiply and divide mean scale
-    RectPP &operator*=(const Vector other) {
-      tl *= other;
-      br *= other;
-      return *this;
-    }
-    RectPP &operator/=(const Vector other) {
-      tl /= other;
-      br /= other;
-      return *this;
-    }
-    
-    //add and substract mean translate
-    RectPP operator+(const Vector other) const {
-      return {
-        tl + other,
-        br + other
-      };
-    }
-    RectPP operator-(const Vector other) const {
-      return {
-        tl - other,
-        br - other
-      };
-    }
-    //multiply and divide mean scale
-    RectPP operator*(const Vector other) const {
-      return {
-        tl * other,
-        br * other
-      };
-    }
-    RectPP operator/(const Vector other) const {
-      return {
-        tl / other,
-        br / other
-      };
-    }
-    
-    RectPP scale(const RectPP from, const RectPP to) const {
-      return {
-        Math::scale(left, from.left, from.right, to.left, to.right),
-        Math::scale(top, from.top, from.bottom, to.top, to.bottom),
-        Math::scale(right, from.left, from.right, to.left, to.right),
-        Math::scale(bottom, from.top, from.bottom, to.top, to.bottom)
-      };
-    }
-    
-    template <typename U>
-    RectPP<U> convert(const RectPP from, const RectPP<U> to) const {
-      using Type = std::common_type_t<T, U>;
-      return {
-        Math::scale<Type>(left, from.left, from.right, to.left, to.right),
-        Math::scale<Type>(top, from.top, from.bottom, to.top, to.bottom),
-        Math::scale<Type>(right + EPSILON, from.left, from.right, to.left, to.right) - RectPP<U>::EPSILON,
-        Math::scale<Type>(bottom + EPSILON, from.top, from.bottom, to.top, from.bottom) - RectPP<U>::EPSILON
-      };
-    }
-    
-    template <typename U, typename V>
-    RectPP<U> convertMul(const glm::tvec2<V> scale) const {
-      using Type = std::common_type_t<T, U, V>;
-      return {
-        static_cast<U>(static_cast<Type>(left) * scale.x),
-        static_cast<U>(static_cast<Type>(top) * scale.y),
-        static_cast<U>(static_cast<Type>(right + EPSILON) * scale.x) - RectPP<U>::EPSILON,
-        static_cast<U>(static_cast<Type>(bottom + EPSILON) * scale.y) - RectPP<U>::EPSILON
-      };
-    }
-    
-    template <typename U, typename V>
-    RectPP<U> convertDiv(const glm::tvec2<V> scale) const {
-      using Type = std::common_type_t<T, U, V>;
-      return {
-        static_cast<U>(static_cast<Type>(left) / scale.x),
-        static_cast<U>(static_cast<Type>(top) / scale.y),
-        static_cast<U>(static_cast<Type>(right + EPSILON) / scale.x) - RectPP<U>::EPSILON,
-        static_cast<U>(static_cast<Type>(bottom + EPSILON) / scale.y) - RectPP<U>::EPSILON
-      };
     }
     
     Scalar side(const Math::Dir dir) const {
@@ -329,9 +240,6 @@ namespace Math {
   };
   
   template <typename T>
-  const RectPP<T> RectPP<T>::NORM_0_1 = {T(0), T(0), T(1) - EPSILON, T(1) - EPSILON};
-  
-  template <typename T>
   const RectPP<T> RectPP<T>::LARGEST = {
     std::numeric_limits<T>::lowest(),
     std::numeric_limits<T>::lowest(),
@@ -350,7 +258,6 @@ namespace Math {
     using Vector = glm::tvec2<Scalar>;
   
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
-    static const RectPS NORM_0_1;
     static const RectPS LARGEST;
   
     RectPS() = default;
@@ -407,119 +314,6 @@ namespace Math {
     }
     bool operator!=(const RectPS other) const {
       return p != other.p || s != other.s;
-    }
-    
-    //add and substract mean translate
-    RectPS &operator+=(const Vector other) {
-      p += other;
-      return *this;
-    }
-    RectPS &operator-=(const Vector other) {
-      p -= other;
-    }
-    //multiply and divide mean scale
-    RectPS &operator*=(const Vector other) {
-      p *= other;
-      s *= other;
-      return *this;
-    }
-    RectPS &operator/=(const Vector other) {
-      p /= other;
-      s /= other;
-      return *this;
-    }
-    
-    //add and substract mean translate
-    RectPS operator+(const Vector other) const {
-      return {
-        p + other,
-        s
-      };
-    }
-    RectPS operator-(const Vector other) const {
-      return {
-        p - other,
-        s
-      };
-    }
-    //multiply and divide mean scale
-    RectPS operator*(const Vector other) const {
-      return {
-        p * other,
-        s * other
-      };
-    }
-    RectPS operator/(const Vector other) const {
-      return {
-        p / other,
-        s / other
-      };
-    }
-    
-    RectPS scale(const RectPS from, const RectPS to) const {
-      return {
-        {
-          Math::scale(p.x, from.p.x, from.p.x + from.s.x, to.p.x, to.p.x + to.s.x),
-          Math::scale(p.y, from.p.y, from.p.y + from.s.y, to.p.y, to.p.y + to.s.y),
-        },
-        {
-          Math::scale(s.x, T(0), from.s.x, T(0), to.s.x),
-          Math::scale(s.y, T(0), from.s.y, T(0), to.s.y)
-        }
-      };
-    }
-    
-    template <typename U>
-    RectPS<U> convert(const RectPS from, const RectPS<U> to) const {
-      using Type = std::common_type_t<T, U>;
-      return {
-        {
-          static_cast<U>(Math::scale<Type>(
-            p.x, from.p.x, from.p.x + from.s.x, to.p.x, to.p.x + to.s.x
-          )),
-          static_cast<U>(Math::scale<Type>(
-            p.y, from.p.y, from.p.y + from.s.y, to.p.y, to.p.y + to.s.y
-          ))
-        },
-        {
-          static_cast<U>(Math::scale<Type>(
-            s.x, T(0), from.s.x, T(0), to.s.x
-          )),
-          static_cast<U>(Math::scale<Type>(
-            s.y, T(0), from.s.y, T(0), to.s.y
-          )),
-        }
-      };
-    }
-    
-    template <typename U, typename V>
-    RectPS<U> convertMul(const glm::tvec2<V> scale) const {
-      using Type = std::common_type_t<T, U, V>;
-      return {
-        {
-          static_cast<U>(static_cast<Type>(p.x) * scale.x),
-          static_cast<U>(static_cast<Type>(p.y) * scale.y)
-        },
-        {
-          static_cast<U>(static_cast<Type>(s.x) * scale.x),
-          static_cast<U>(static_cast<Type>(s.y) * scale.y)
-        }
-      };
-    }
-    
-    template <typename U, typename V>
-    RectPS<U> convertDiv(const glm::tvec2<V> scale) const {
-      using Type = std::common_type_t<T, U, V>;
-      return {
-        {
-          static_cast<U>(static_cast<Type>(p.x) / scale.x),
-          static_cast<U>(static_cast<Type>(p.y) / scale.y)
-        },
-        {
-          static_cast<U>(static_cast<Type>(s.x) / scale.x),
-          static_cast<U>(static_cast<Type>(s.y) / scale.y)
-        }
-      };
     }
     
     Scalar left() const {
@@ -602,15 +396,12 @@ namespace Math {
     }
     
     friend std::ostream &operator<<(std::ostream &stream, const RectPS rect) {
-      return stream << "RectPP {{" << rect.p.x << ", " << rect.p.y << "}, {" << rect.s.x << ", " << rect.s.y << "}}";
+      return stream << "RectPS {{" << rect.p.x << ", " << rect.p.y << "}, {" << rect.s.x << ", " << rect.s.y << "}}";
     }
     
     Vector p;
     Vector s;
   };
-  
-  template <typename T>
-  const RectPS<T> RectPS<T>::NORM_0_1 = {{T(0), T(0)}, {T(1), T(1)}};
   
   template <typename T>
   const RectPS<T> RectPS<T>::LARGEST = {
@@ -624,28 +415,134 @@ namespace Math {
     }
   };
   
-  template <typename T>
-  glm::tvec2<T> scale(const glm::tvec2<T> point, const RectPP<T> from, const RectPP<T> to) {
-    return {
-      Math::scale(point.x, from.left, from.right, to.left, to.right),
-      Math::scale(point.y, from.top, from.bottom, to.top, to.bottom)
+  ///A rectangle defined by a center and a size
+  template <typename T, Math::Dir PLUS_X, Math::Dir PLUS_Y>
+  struct RectCS {
+    static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
+    
+    using Scalar = T;
+    using Vector = glm::tvec2<Scalar>;
+    
+    static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
+    
+    RectCS() = default;
+    RectCS(const RectCS &) = default;
+    RectCS(RectCS &&) = default;
+    ~RectCS() = default;
+    
+    RectCS &operator=(const RectCS &) = default;
+    RectCS &operator=(RectCS &&) = default;
+    
+    explicit RectCS(const Vector size)
+      : c(Scalar(0), Scalar(0)), s(size) {}
+    RectCS(const Vector center, const Vector size)
+      : c(center), s(size) {}
+    RectCS(const Scalar cx, const Scalar cy, const Scalar sx, const Scalar sy)
+      : c(cx, cy), s(sx, sy) {}
+    
+    bool operator==(const RectCS other) const {
+      return c == other.c && s == other.s;
+    }
+    bool operator!=(const RectCS other) const {
+      return c != other.c || s != other.s;
+    }
+    
+    Scalar side(const Math::Dir dir) const {
+      //@TODO There are probably some off-by-one errors in side getter and setter
+    
+      switch (dir) {
+        case PLUS_Y:
+          return c.y + s.y / Scalar(2);
+        case PLUS_X:
+          return c.x + s.x / Scalar(2);
+        case opposite(PLUS_Y):
+          return c.y - s.y / Scalar(2);
+        case opposite(PLUS_X):
+          return c.x - s.x / Scalar(2);
+        default:
+          assert(false);
+      }
+    }
+    
+    void side(const Math::Dir dir, const Scalar val) {
+      switch (dir) {
+        case PLUS_Y: {
+          const float delta = val - (c.y + s.y / Scalar(2));
+          c.y += delta / Scalar(2);
+          s.y += delta;
+          break;
+        }
+        case PLUS_X: {
+          const float delta = val - (c.x + s.x / Scalar(2));
+          c.x += delta / Scalar(2);
+          s.x += delta;
+          break;
+        }
+        case opposite(PLUS_Y): {
+          const float delta = val - (c.y - s.y / Scalar(2));
+          c.y += delta / Scalar(2);
+          s.y += delta;
+          break;
+        }
+        case opposite(PLUS_X): {
+          const float delta = val - (c.x - s.x / Scalar(2));
+          c.x += delta / Scalar(2);
+          s.x += delta;
+          break;
+        }
+        default:
+          assert(false);
+      }
+    }
+    
+    Scalar top() const {
+      return side(Math::Dir::TOP);
+    }
+    Scalar right() const {
+      return side(Math::Dir::RIGHT);
+    }
+    Scalar bottom() const {
+      return side(Math::Dir::BOTTOM);
+    }
+    Scalar left() const {
+      return side(Math::Dir::LEFT);
+    }
+    
+    void top(const Scalar val) {
+      side(Math::Dir::TOP, val);
+    }
+    void right(const Scalar val) {
+      side(Math::Dir::RIGHT, val);
+    }
+    void bottom(const Scalar val) {
+      side(Math::Dir::BOTTOM, val);
+    }
+    void left(const Scalar val) {
+      side(Math::Dir::LEFT, val);
+    }
+    
+    //@TODO check for off-by-one errors
+    bool interceptsWith(const RectCS other) const {
+      return std::abs(c.x - other.c.x) < s.x / Scalar(2) + other.s.x / Scalar(2) &&
+             std::abs(c.y - other.c.y) < s.y / Scalar(2) + other.s.y / Scalar(2);
+    }
+    bool encloses(const RectCS other) const {
+      return std::abs(c.x - other.c.x) < (s.x - other.s.x) / Scalar(2) &&
+             std::abs(c.y - other.c.y) < (s.y - other.s.y) / Scalar(2);
+    }
+    bool encloses(const Vector other) const {
+      return std::abs(c.x - other.x) < s.x / Scalar(2) &&
+             std::abs(c.y - other.y) < s.y / Scalar(2);
+    }
+    
+    union {
+      Vector c;
+      Vector center;
     };
-  }
-  
-  template <typename T>
-  glm::tvec2<T> scale(const glm::tvec2<T> point, const RectPS<T> from, const RectPS<T> to) {
-    return {
-      Math::scale(point.x, from.p.x, from.p.x + from.s.x, to.p.x, to.p.x + to.s.x),
-      Math::scale(point.y, from.p.y, from.p.y + from.s.y, to.p.y, to.p.y + to.s.y)
+    union {
+      Vector s;
+      Vector size;
     };
-  }
-  
-  template <typename T>
-  glm::tvec2<T> scale(const glm::tvec2<T> point, const glm::tvec2<T> from, const glm::tvec2<T> to) {
-    return {
-      Math::scale(point.x, 0, from.x, 0, to.x),
-      Math::scale(point.y, 0, from.y, 0, to.y)
-    };
-  }
+  };
 }
 #endif
