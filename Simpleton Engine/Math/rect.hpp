@@ -17,18 +17,16 @@
 
 namespace Math {
   template <typename T>
-  class RectPS;
+  struct RectPS;
   
   template <typename T, Math::Dir PLUS_X, Math::Dir PLUS_Y>
   struct RectCS;
 
   ///A rectangle defined by a top-left point and a bottom-right point
   template <typename T>
-  class RectPP {
-  
+  struct RectPP {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
-  
-  public:
+    
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
   
@@ -64,34 +62,6 @@ namespace Math {
            static_cast<Scalar>(other.p.y)),
         br(static_cast<Scalar>(other.p.x + other.s.x) - EPSILON,
            static_cast<Scalar>(other.p.y + other.s.y) - EPSILON) {}
-    
-    template <typename U>
-    explicit operator RectPP<U>() const {
-      return {
-        {
-          static_cast<U>(tl.x),
-          static_cast<U>(tl.y)
-        },
-        {
-          static_cast<U>(br.x + EPSILON) - RectPP<U>::EPSILON,
-          static_cast<U>(br.y + EPSILON) - RectPP<U>::EPSILON
-        }
-      };
-    }
-    
-    template <typename U>
-    explicit operator RectPS<U>() const {
-      return {
-        {
-          static_cast<U>(tl.x),
-          static_cast<U>(tl.y)
-        },
-        {
-          static_cast<U>(br.x - tl.x + EPSILON),
-          static_cast<U>(br.y - tl.y + EPSILON)
-        }
-      };
-    }
     
     bool operator==(const RectPP other) const {
       return tl == other.tl && br == other.br;
@@ -241,11 +211,9 @@ namespace Math {
   
   ///A rectangle defined by a top-left point and a size
   template <typename T>
-  class RectPS {
-  
+  struct RectPS {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
   
-  public:
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
   
@@ -278,28 +246,6 @@ namespace Math {
           static_cast<T>(other.tl.y)),
         s(static_cast<T>(other.br.x - other.tl.x + RectPP<U>::EPSILON),
           static_cast<T>(other.br.y - other.tl.y + RectPP<U>::EPSILON)) {}
-    
-    template <typename U>
-    explicit operator RectPS<U>() const {
-      return {
-        {static_cast<U>(p.x), static_cast<U>(p.y)},
-        {static_cast<U>(s.x), static_cast<U>(s.y)}
-      };
-    }
-    
-    template <typename U>
-    explicit operator RectPP<U>() const {
-      return {
-        {
-          static_cast<U>(p.x),
-          static_cast<U>(p.y)
-        },
-        {
-          static_cast<U>(p.x + s.x) - RectPP<U>::EPSILON,
-          static_cast<U>(p.y + s.y) - RectPP<U>::EPSILON,
-        }
-      };
-    }
     
     bool operator==(const RectPS other) const {
       return p == other.p && s == other.s;
