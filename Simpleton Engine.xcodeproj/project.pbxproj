@@ -349,6 +349,7 @@
 		45103F561F2490E8001B24E2 /* buffered container.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "buffered container.hpp"; sourceTree = "<group>"; };
 		4529DEE81F31AABD00071267 /* line col.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "line col.cpp"; sourceTree = "<group>"; };
 		4529DEE91F31AABD00071267 /* line col.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "line col.hpp"; sourceTree = "<group>"; };
+		452B82F41F3EF86900AF9AC6 /* bits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bits.hpp; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
@@ -556,6 +557,7 @@
 				4529DEE81F31AABD00071267 /* line col.cpp */,
 				4529DEE91F31AABD00071267 /* line col.hpp */,
 				45FA99411F3695E500F8C639 /* hash.hpp */,
+				452B82F41F3EF86900AF9AC6 /* bits.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
