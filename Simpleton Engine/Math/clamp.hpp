@@ -14,31 +14,31 @@
 namespace Math {
   template <typename T>
   constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  min(T a, T b) {
+  min(const T a, const T b) {
     return a < b ? a : b;
   }
   
   template <typename T>
   constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  max(T a, T b) {
+  max(const T a, const T b) {
     return a > b ? a : b;
   }
   
   template <typename T>
   constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  clamp(T value, T low, T high) {
+  clamp(const T value, const T low, const T high) {
     return value > low ? (value < high ? value : high) : low;
   }
   
   template <typename T>
   constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  clampMin(T value, T low) {
+  clampMin(const T value, const T low) {
     return value > low ? value : low;
   }
   
   template <typename T>
   constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  clampMax(T value, T high) {
+  clampMax(const T value, const T high) {
     return value < high ? value : high;
   }
 }

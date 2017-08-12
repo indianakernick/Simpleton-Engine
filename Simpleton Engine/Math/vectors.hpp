@@ -13,9 +13,9 @@
 
 namespace Math {
   ///Calculate the aspect ratio of a 2D vector
-  template <typename RET, typename ARG>
-  inline RET aspectRatio(glm::tvec2<ARG> size) {
-    return static_cast<RET>(size.x) / static_cast<RET>(size.y);
+  template <typename Return, typename Argument>
+  Return aspectRatio(const glm::tvec2<Argument> size) {
+    return static_cast<Return>(size.x) / static_cast<Return>(size.y);
   }
 }
 

@@ -9,8 +9,9 @@
 #ifndef engine_math_pow_hpp
 #define engine_math_pow_hpp
 
-#include <type_traits>
 #include <cassert>
+#include <type_traits>
+#include "../Utils/bits.hpp"
 
 namespace Math {
   template <typename Number>
@@ -40,7 +41,7 @@ namespace Math {
     Number
   >
   pow(const Number num, Exponent exp) {
-    Number out = 1;
+    Number out = Number(1);
     while (exp--) {
       out *= num;
     }
@@ -54,10 +55,31 @@ namespace Math {
     Number
   >
   pow(const Number num, const Exponent exp) {
-    if (exp < 0) {
-      return 1 / pow(num, static_cast<std::make_unsigned_t<Exponent>>(-exp));
+    if (exp < Exponent(0)) {
+      return Number(1) / pow(num, static_cast<std::make_unsigned_t<Exponent>>(-exp));
     } else {
       return pow(num, static_cast<std::make_unsigned_t<Exponent>>(exp));
+    }
+  }
+  
+  template <long long EXPONENT, typename Number>
+  constexpr std::enable_if_t<
+    std::is_arithmetic<Number>::value,
+    Number
+  >
+  pow(const Number num) {
+    if constexpr (EXPONENT < 0ll) {
+      assert(num != Number(0));
+      return Number(1) / pow<-EXPONENT>(num);
+    } else if (EXPONENT == 0ll) {
+      return Number(1);
+    } else if (EXPONENT == 1ll) {
+      return num;
+    } else if (EXPONENT == 2ll) {
+      return num * num;
+    } else {
+      const Number half = pow<EXPONENT / 2ll>(num);
+      return half * half * pow<EXPONENT % 2ll>(num);
     }
   }
   
@@ -67,21 +89,21 @@ namespace Math {
   constexpr unsigned long long log2(const unsigned long long num) {
     assert(num != 0);
   
-    return (sizeof(unsigned long long) * 8 - 1) - __builtin_clzll(num);
+    return (Utils::bits<long long> - 1) - __builtin_clzll(num);
   }
   
   ///Compute the floor of the base 2 logarithm of a number
   constexpr unsigned long log2(const unsigned long num) {
     assert(num != 0);
   
-    return (sizeof(unsigned long) * 8 - 1) - __builtin_clzl(num);
+    return (Utils::bits<long> - 1) - __builtin_clzl(num);
   }
   
   ///Compute the floor of the base 2 logarithm of a number
   constexpr unsigned log2(const unsigned num) {
     assert(num != 0);
   
-    return (sizeof(unsigned) * 8 - 1) - __builtin_clz(num);
+    return (Utils::bits<int> - 1) - __builtin_clz(num);
   }
   
   ///Compute the floor of the base 2 logarithm of a number
@@ -101,7 +123,7 @@ namespace Math {
     assert(num != 0);
     
     const unsigned long long leading = __builtin_clzll(num);
-    constexpr unsigned long long bits = sizeof(unsigned long long) * 8;
+    constexpr unsigned long long bits = Utils::bits<long long>;
     return bits - leading - (leading + __builtin_ctzll(num) == bits - 1);
   }
   
@@ -110,7 +132,7 @@ namespace Math {
     assert(num != 0);
     
     const unsigned long leading = __builtin_clzl(num);
-    constexpr unsigned long bits = sizeof(unsigned long) * 8;
+    constexpr unsigned long bits = Utils::bits<long>;
     return bits - leading - (leading + __builtin_ctzl(num) == bits - 1);
   }
   
@@ -119,7 +141,7 @@ namespace Math {
     assert(num != 0);
     
     const unsigned leading = __builtin_clz(num);
-    constexpr unsigned bits = sizeof(unsigned) * 8;
+    constexpr unsigned bits = Utils::bits<int>;
     return bits - leading - (leading + __builtin_ctz(num) == bits - 1);
   }
   

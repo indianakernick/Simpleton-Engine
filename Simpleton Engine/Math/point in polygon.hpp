@@ -13,8 +13,6 @@
 #include <glm/vec2.hpp>
 
 namespace Math {
-  //http://stackoverflow.com/a/2922778
-
   ///Determine whether a point is within a polygon
   template <typename T>
   bool pointInPolygon(const glm::tvec2<T> test, const std::vector<glm::tvec2<T>> &vert) {
@@ -24,6 +22,8 @@ namespace Math {
   ///Determine whether a point is within a polygon
   template <typename T>
   bool pointInPolygon(const glm::tvec2<T> test, const size_t nvert, const glm::tvec2<T> *vert) {
+    //http://stackoverflow.com/a/2922778
+    
     bool c = false;
     for (size_t i = 0, j = nvert - 1; i < nvert; j = i++) {
       if (
