@@ -502,7 +502,7 @@ namespace Utils {
   }
   
   template <typename Tuple, typename Function, size_t ...INDICIES>
-  static void forEachTupleHelper(Tuple &&tuple, Function &&function, std::index_sequence<INDICIES...>) {
+  void forEachTupleHelper(Tuple &&tuple, Function &&function, std::index_sequence<INDICIES...>) {
     (function(std::get<INDICIES>(tuple)), ...);
   }
   
