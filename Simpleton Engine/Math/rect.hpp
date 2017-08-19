@@ -20,15 +20,16 @@ namespace Math {
   template <typename T, Dir PLUS_X, Dir PLUS_Y>
   struct RectCS;
 
-  ///A rectangle defined by a negative point and a positive point
-  template <typename T, Dir PLUS_X, Dir PLUS_Y>
+  ///A rectangle defined by a minimum point and a maximum point
+  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
   struct RectPP {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
-    static_assert(!sameAxis(PLUS_X, PLUS_Y));
+    static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
     
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
-  
+    static constexpr Dir PLUS_X = POSITIVE_X;
+    static constexpr Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
     
     RectPP()
@@ -47,25 +48,18 @@ namespace Math {
     
     template <typename U>
     explicit RectPP(const RectPP<U, PLUS_X, PLUS_Y> other)
-      : min(
-          static_cast<Scalar>(other.min.x),
-          static_cast<Scalar>(other.min.y)
-        ),
-        max(
-          static_cast<Scalar>(other.max.x + RectPP<U, PLUS_X, PLUS_Y>::EPSILON) - EPSILON,
-          static_cast<Scalar>(other.max.y + RectPP<U, PLUS_X, PLUS_Y>::EPSILON) - EPSILON
-        ) {}
+      : min(static_cast<Vector>(other.min)),
+        max(static_cast<Vector>(other.max + RectPP<U, PLUS_X, PLUS_Y>::EPSILON) - EPSILON) {}
     
     template <typename U>
     explicit RectPP(const RectPS<U, PLUS_X, PLUS_Y> other)
-      : min(
-          static_cast<Scalar>(other.p.x),
-          static_cast<Scalar>(other.p.y)
-        ),
-        max(
-          static_cast<Scalar>(other.p.x + other.s.x) - EPSILON,
-          static_cast<Scalar>(other.p.y + other.s.y) - EPSILON
-        ) {}
+      : min(static_cast<Vector>(other.min)),
+        max(static_cast<Vector>(other.p + other.s) - EPSILON) {}
+    
+    template <typename U>
+    explicit RectPP(const RectCS<U, PLUS_X, PLUS_Y> other)
+      : min(static_cast<Vector>(other.c - other.h)),
+        max(static_cast<Vector>(other.c + other.h) - EPSILON) {}
     
     bool operator==(const RectPP other) const {
       return min == other.min && max == other.max;
@@ -106,6 +100,32 @@ namespace Math {
         default:
           assert(false);
       }
+    }
+    
+    Scalar top() const {
+      return side(Dir::TOP);
+    }
+    Scalar right() const {
+      return side(Dir::RIGHT);
+    }
+    Scalar bottom() const {
+      return side(Dir::BOTTOM);
+    }
+    Scalar left() const {
+      return side(Dir::LEFT);
+    }
+    
+    void top(const Scalar val) {
+      side(Dir::TOP, val);
+    }
+    void right(const Scalar val) {
+      side(Dir::RIGHT, val);
+    }
+    void bottom(const Scalar val) {
+      side(Dir::BOTTOM, val);
+    }
+    void left(const Scalar val) {
+      side(Dir::LEFT, val);
     }
     
     Vector topLeft() const {
@@ -186,13 +206,16 @@ namespace Math {
   };
   
   ///A rectangle defined by a negative point and a size
-  template <typename T, Dir PLUS_X, Dir PLUS_Y>
+  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
   struct RectPS {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
+    static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
   
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
   
+    static constexpr Dir PLUS_X = POSITIVE_X;
+    static constexpr Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
   
     RectPS() = default;
@@ -204,7 +227,7 @@ namespace Math {
     RectPS &operator=(RectPS &&) = default;
     
     explicit RectPS(const Vector size)
-      : p(T(0), T(0)), s(size) {}
+      : p(Scalar(0), Scalar(0)), s(size) {}
     RectPS(const Vector pos, const Vector size)
       : p(pos), s(size) {}
     RectPS(const Scalar px, const Scalar py, const Scalar sx, const Scalar sy)
@@ -212,15 +235,18 @@ namespace Math {
     
     template <typename U>
     explicit RectPS(const RectPS<U, PLUS_X, PLUS_Y> other)
-      : p(static_cast<T>(other.p.x), static_cast<T>(other.p.y)),
-        s(static_cast<T>(other.s.x), static_cast<T>(other.s.y)) {}
+      : p(static_cast<Vector>(other.p)),
+        s(static_cast<Vector>(other.s)) {}
     
     template <typename U>
     explicit RectPS(const RectPP<U, PLUS_X, PLUS_Y> other)
-      : p(static_cast<T>(other.min.x),
-          static_cast<T>(other.min.y)),
-        s(static_cast<T>(other.max.x - other.min.x + RectPP<U, PLUS_X, PLUS_Y>::EPSILON),
-          static_cast<T>(other.max.y - other.min.y + RectPP<U, PLUS_X, PLUS_Y>::EPSILON)) {}
+      : p(static_cast<Vector>(other.min)),
+        s(static_cast<Vector>(other.size())) {}
+    
+    template <typename U>
+    explicit RectPS(const RectCS<U, PLUS_X, PLUS_Y> other)
+      : p(static_cast<Vector>(other.c - other.h)),
+        s(static_cast<Vector>(other.h) * Scalar(2)) {}
     
     bool operator==(const RectPS other) const {
       return p == other.p && s == other.s;
@@ -263,6 +289,32 @@ namespace Math {
       }
     }
     
+    Scalar top() const {
+      return side(Dir::TOP);
+    }
+    Scalar right() const {
+      return side(Dir::RIGHT);
+    }
+    Scalar bottom() const {
+      return side(Dir::BOTTOM);
+    }
+    Scalar left() const {
+      return side(Dir::LEFT);
+    }
+    
+    void top(const Scalar val) {
+      side(Dir::TOP, val);
+    }
+    void right(const Scalar val) {
+      side(Dir::RIGHT, val);
+    }
+    void bottom(const Scalar val) {
+      side(Dir::BOTTOM, val);
+    }
+    void left(const Scalar val) {
+      side(Dir::LEFT, val);
+    }
+    
     bool interceptsWith(const RectPS other) const {
       return p.x       < other.p.x + other.s.x &&
              p.y       < other.p.y + other.s.y &&
@@ -287,15 +339,27 @@ namespace Math {
   };
   
   ///A rectangle defined by a center and a half size
-  template <typename T, Dir PLUS_X, Dir PLUS_Y>
+  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
   struct RectCS {
-    static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
-    static_assert(!sameAxis(PLUS_X, PLUS_Y));
+    /*
+    Using integers for this format doesn't really work. The only way to make it
+    work would be to assume that integer units don't have size. In RectPS and
+    RectPP, a glm::tvec2<int> is really a rectangle with a size of one. This
+    means that I have to add and subtract one (EPSILON) around the place to make
+    sure everything is correct. A glm::tvec2<float> is a point with no size.
+    
+    This Rect has a few division by 2s and when you divide int(1) by int(2) you
+    get int(0). There's just too much lossyness.
+    */
+  
+    static_assert(std::is_floating_point<T>::value, "T must be a floating point type");
+    static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
     
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
     
-    static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
+    static constexpr Dir PLUS_X = POSITIVE_X;
+    static constexpr Dir PLUS_Y = POSITIVE_Y;
     
     RectCS() = default;
     RectCS(const RectCS &) = default;
@@ -312,6 +376,23 @@ namespace Math {
     RectCS(const Scalar cx, const Scalar cy, const Scalar sx, const Scalar sy)
       : c(cx, cy), h(sx / Scalar(2), sy / Scalar(2)) {}
     
+    template <typename U>
+    explicit RectCS(const RectCS<U, PLUS_X, PLUS_Y> other)
+      : c(static_cast<Vector>(other.c)),
+        h(static_cast<Vector>(other.h)) {}
+    
+    template <typename U>
+    explicit RectCS(const RectPP<U, PLUS_X, PLUS_Y> other) {
+      h = static_cast<Vector>(other.size()) / Scalar(2);
+      c = static_cast<Vector>(other.min) + h;
+    }
+    
+    template <typename U>
+    explicit RectCS(const RectPS<U, PLUS_X, PLUS_Y> other) {
+      h = static_cast<Vector>(other.s) / Scalar(2);
+      c = static_cast<Vector>(other.p) + h;
+    }
+    
     bool operator==(const RectCS other) const {
       return c == other.c && h == other.s;
     }
@@ -320,8 +401,6 @@ namespace Math {
     }
     
     Scalar side(const Dir dir) const {
-      //@TODO There are probably some off-by-one errors in side getter and setter
-    
       switch (dir) {
         case PLUS_Y:
           return c.y + h.y;
@@ -393,18 +472,17 @@ namespace Math {
       side(Dir::LEFT, val);
     }
     
-    //@TODO check for off-by-one errors
     bool interceptsWith(const RectCS other) const {
       return std::abs(c.x - other.c.x) < h.x + other.h.x &&
              std::abs(c.y - other.c.y) < h.y + other.h.y;
     }
     bool encloses(const RectCS other) const {
-      return std::abs(c.x - other.c.x) < h.x - other.h.x &&
-             std::abs(c.y - other.c.y) < h.y - other.h.y;
+      return std::abs(c.x - other.c.x) <= h.x - other.h.x &&
+             std::abs(c.y - other.c.y) <= h.y - other.h.y;
     }
     bool encloses(const Vector other) const {
-      return std::abs(c.x - other.x) < h.x &&
-             std::abs(c.y - other.y) < h.y;
+      return std::abs(c.x - other.x) <= h.x &&
+             std::abs(c.y - other.y) <= h.y;
     }
     
     union {
