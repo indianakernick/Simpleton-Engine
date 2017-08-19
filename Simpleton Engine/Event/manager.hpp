@@ -27,7 +27,7 @@ namespace Game {
     using Listener = DispatcherImpl::Listener;
     using ListenerID = DispatcherImpl::ListenerID;
 
-    explicit EventManager(uint64_t = std::numeric_limits<uint64_t>::max());
+    explicit EventManager(Time::Rep = std::numeric_limits<Time::Rep>::max());
     ~EventManager() = default;
     
     ///Write the names of all events in the queue to the given stream
@@ -99,7 +99,7 @@ namespace Game {
   
     DispatcherImpl dispatcher;
     std::deque<Event::Ptr> queue[2];
-    uint64_t timeLimit;
+    Time::Rep timeLimit;
     size_t currentQueue = 0;
   };
   

@@ -9,6 +9,7 @@
 #ifndef engine_time_main_loop_hpp
 #define engine_time_main_loop_hpp
 
+#include <cmath>
 #include <thread>
 #include "get.hpp"
 #include "../Utils/function traits.hpp"
@@ -16,9 +17,13 @@
 namespace Time {
   template <typename Duration>
   struct Mainloop {
+  private:
+    using Rep = typename Duration::rep;
+    
+  public:
     ///Call an update method with a time delta
     template <typename Function>
-    static bool update(Function &&func, const uint64_t delta) {
+    static bool update(Function &&func, const Rep delta) {
       if constexpr (std::is_convertible<Utils::function_ret<Function>, bool>::value) {
         if constexpr (Utils::function_arity<Function> == 1) {
           return static_cast<bool>(func(static_cast<Utils::function_arg<Function, 0>>(delta)));
@@ -35,32 +40,32 @@ namespace Time {
       }
     }
     
-    ///Variable time step with no synchonisation
+    ///Variable time step with no synchonization
     template <typename Function>
     static void varNoSync(Function &&func) {
-      uint64_t last = getI<Duration>();
+      Point<Duration> last = getPoint<Duration>();
       bool ok = true;
      
       while (ok) {
-        const uint64_t now = getI<Duration>();
-        const uint64_t delta = now - last;
+        const Point<Duration> now = get<Duration>();
+        const Rep delta = (now - last).count();
         last = now;
         
         ok = update(func, delta);
       }
     }
     
-    ///Fixed time step with synchonisation
+    ///Fixed time step with synchonization
     template <typename Function>
-    static void fixedSync(Function &&func, const uint64_t step) {
+    static void fixedSync(Function &&func, const Rep step) {
       bool ok = true;
       
       while (ok) {
-        const uint64_t start = getI<Duration>();
+        const Point<Duration> start = getPoint<Duration>();
         
         ok = update(func, step);
         
-        const uint64_t elapsed = getI<Duration>() - start;
+        const Duration elapsed = getPoint<Duration>() - start;
         if (elapsed < step) {
           std::this_thread::sleep_for(Duration(step));
         }
@@ -73,21 +78,27 @@ namespace Time {
       PreFunc &&preFunc,
       UpdateFunc &&updateFunc,
       PostFunc &&postFunc,
-      const uint64_t step,
+      const Rep step,
       const uint32_t maxSteps
     ) {
-      uint64_t lag = 0;
-      uint64_t last = getI<Duration>();
-      const uint64_t maxStep = step * maxSteps;
+      Rep lag = 0;
+      Point<Duration> last = getPoint<Duration>();
+      const Rep maxStep = step * maxSteps;
       bool ok = true;
       
       while (ok) {
-        const uint64_t now = getI<Duration>();
-        const uint64_t elapsed = now - last;
+        const Point<Duration> now = getPoint<Duration>();
+        const Duration elapsed = now - last;
         last = now;
-        lag += elapsed;
+        lag += elapsed.count();
         
-        const uint64_t actualStep = std::min(lag - lag % step, maxStep);
+        const Rep actualStep = [lag, step, maxStep]() {
+          if constexpr (std::is_floating_point<Rep>::value) {
+            return std::min(lag - std::fmod(lag, step), maxStep);
+          } else {
+            return std::min(lag - lag % step, maxStep);
+          }
+        }();
         ok = update(preFunc, actualStep);
         
         uint32_t steps = maxSteps;

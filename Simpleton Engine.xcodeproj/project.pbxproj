@@ -60,10 +60,7 @@
 		45B5E7A61EF8A90D00A6A3E2 /* file io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7971EF8A90D00A6A3E2 /* file io.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7B31EF8A92500A6A3E2 /* get.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7B41EF8A92500A6A3E2 /* freq limiter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E7B51EF8A92500A6A3E2 /* frame anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7A91EF8A92500A6A3E2 /* frame anim.cpp */; };
-		45B5E7B61EF8A92500A6A3E2 /* frame anim.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AA1EF8A92500A6A3E2 /* frame anim.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E7B81EF8A92500A6A3E2 /* interval.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AC1EF8A92500A6A3E2 /* interval.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7BA1EF8A92500A6A3E2 /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */; };
@@ -101,9 +98,7 @@
 		45B5E80A1EF8ADCB00A6A3E2 /* siconstants.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8071EF8ADCB00A6A3E2 /* siconstants.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; };
 		45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */; };
-		45B5E80E1EF8AE8700A6A3E2 /* frame anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AA1EF8A92500A6A3E2 /* frame anim.hpp */; };
 		45B5E80F1EF8AE8700A6A3E2 /* delta.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */; };
-		45B5E8101EF8AE8700A6A3E2 /* interval.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AC1EF8A92500A6A3E2 /* interval.hpp */; };
 		45B5E8111EF8AE8700A6A3E2 /* stopwatch.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */; };
 		45B5E8121EF8AE8700A6A3E2 /* timer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */; };
 		45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7B01EF8A92500A6A3E2 /* fps.hpp */; };
@@ -213,9 +208,7 @@
 				4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */,
 				45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */,
 				45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */,
-				45B5E80E1EF8AE8700A6A3E2 /* frame anim.hpp in CopyFiles */,
 				45B5E80F1EF8AE8700A6A3E2 /* delta.hpp in CopyFiles */,
-				45B5E8101EF8AE8700A6A3E2 /* interval.hpp in CopyFiles */,
 				45B5E8111EF8AE8700A6A3E2 /* stopwatch.hpp in CopyFiles */,
 				45B5E8121EF8AE8700A6A3E2 /* timer.hpp in CopyFiles */,
 				45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */,
@@ -394,10 +387,7 @@
 		45B5E7971EF8A90D00A6A3E2 /* file io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "file io.hpp"; sourceTree = "<group>"; };
 		45B5E7A71EF8A92500A6A3E2 /* get.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = get.hpp; sourceTree = "<group>"; };
 		45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "freq limiter.hpp"; sourceTree = "<group>"; };
-		45B5E7A91EF8A92500A6A3E2 /* frame anim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "frame anim.cpp"; sourceTree = "<group>"; };
-		45B5E7AA1EF8A92500A6A3E2 /* frame anim.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "frame anim.hpp"; sourceTree = "<group>"; };
 		45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = delta.hpp; sourceTree = "<group>"; };
-		45B5E7AC1EF8A92500A6A3E2 /* interval.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interval.hpp; sourceTree = "<group>"; };
 		45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stopwatch.hpp; sourceTree = "<group>"; };
 		45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
 		45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fps.cpp; sourceTree = "<group>"; };
@@ -611,10 +601,7 @@
 			children = (
 				45B5E7A71EF8A92500A6A3E2 /* get.hpp */,
 				45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */,
-				45B5E7A91EF8A92500A6A3E2 /* frame anim.cpp */,
-				45B5E7AA1EF8A92500A6A3E2 /* frame anim.hpp */,
 				45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */,
-				45B5E7AC1EF8A92500A6A3E2 /* interval.hpp */,
 				45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */,
 				45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */,
 				45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */,
@@ -688,7 +675,6 @@
 				45B5E7F51EF8A93900A6A3E2 /* variadic type traits.hpp in Headers */,
 				45B5E7BE1EF8A92500A6A3E2 /* delta anim.hpp in Headers */,
 				45B5E7831EF8A8A700A6A3E2 /* round.hpp in Headers */,
-				45B5E7B81EF8A92500A6A3E2 /* interval.hpp in Headers */,
 				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
 				45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */,
 				45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */,
@@ -708,7 +694,6 @@
 				45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */,
 				45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */,
 				45B5E8041EF8A93900A6A3E2 /* multi dim container.hpp in Headers */,
-				45B5E7B61EF8A92500A6A3E2 /* frame anim.hpp in Headers */,
 				45B5E7B31EF8A92500A6A3E2 /* get.hpp in Headers */,
 				45B5E7E31EF8A93900A6A3E2 /* instance limiter.hpp in Headers */,
 				45B5E7BA1EF8A92500A6A3E2 /* timer.hpp in Headers */,
@@ -845,7 +830,6 @@
 				45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */,
 				4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */,
 				4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */,
-				45B5E7B51EF8A92500A6A3E2 /* frame anim.cpp in Sources */,
 				45B5E7EB1EF8A93900A6A3E2 /* move test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

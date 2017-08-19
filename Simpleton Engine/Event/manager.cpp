@@ -15,7 +15,7 @@ using namespace Game;
 const Event::Type EventManager::ANY_TYPE = GetEventType<EventManager>::get();
 std::unique_ptr<EventManager> Game::evtMan = nullptr;
 
-EventManager::EventManager(const uint64_t timeLimit)
+EventManager::EventManager(const Time::Rep timeLimit)
   : timeLimit(timeLimit) {
   dispatcher.createGroup(ANY_TYPE);
 }

@@ -14,7 +14,8 @@
 #include "../Platform/font library.hpp"
 
 namespace Game {
-  class SDLApp : public App {
+  template <typename Duration>
+  class SDLApp : public App<Duration> {
   public:
     SDLApp() = default;
     virtual ~SDLApp() = default;
@@ -25,8 +26,18 @@ namespace Game {
     Platform::Renderer renderer;
 
   protected:
-    void initWindow(const Platform::Window::Desc &, bool);
-    void quitWindow();
+    void initWindow(const Platform::Window::Desc &winDesc, const bool vsync) {
+      winLib = std::make_unique<Platform::WindowLibrary>();
+      fontLib = std::make_unique<Platform::FontLibrary>();
+      window = Platform::makeWindow(winDesc);
+      renderer = Platform::makeRenderer(window, vsync);
+    }
+    void quitWindow() {
+      renderer.reset();
+      window.reset();
+      fontLib.reset();
+      winLib.reset();
+    }
   };
 }
 

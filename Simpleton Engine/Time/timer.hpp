@@ -14,88 +14,91 @@
 
 namespace Time {
   ///A timer to count down for duration
-  template <typename DURATION_TYPE>
+  template <typename Duration>
   class Timer {
   private:
-    enum State : char {
+    enum class State : char {
       INITIAL,
       RUNNING,
       PAUSED,
       DONE
     };
+    using Rep = typename Duration::rep;
+    
   public:
     Timer() = default;
     
     ///Sets the duration to be counted down from when the timer starts
-    void setDuration(uint64_t newDuration) {
-      assert(state == INITIAL || state == DONE);
+    void setDuration(const Rep newDuration) {
+      assert(state == State::INITIAL || state == State::DONE);
       duration = newDuration;
     }
     ///Starts the timer with the set duration
     void start() {
-      assert(state == INITIAL || state == DONE);
-      state = RUNNING;
-      startPoint = getI<DURATION_TYPE>();
+      assert(state == State::INITIAL || state == State::DONE);
+      state = State::RUNNING;
+      startPoint = getPoint<Duration>();
     }
     ///Starts the timer with the duration given
-    void start(uint64_t newDuration) {
-      assert(state == INITIAL || state == DONE);
-      state = RUNNING;
+    void start(const Rep newDuration) {
+      assert(state == State::INITIAL || state == State::DONE);
+      state = State::RUNNING;
       duration = newDuration;
-      startPoint = getI<DURATION_TYPE>();
+      startPoint = getPoint<Duration>();
     }
     ///Pause the timer and returns the time left
-    uint64_t pause() {
-      assert(state == RUNNING);
-      state = PAUSED;
-      uint64_t now = getI<DURATION_TYPE>();
+    Rep pause() {
+      assert(state == State::RUNNING);
+      state = State::PAUSED;
+      const Point<Duration> now = getPoint<Duration>();
       pausePoint = now;
-      return duration - (now - startPoint);
+      return (duration - (now - startPoint)).count();
     }
     ///Resume the timer and returns the time left
-    uint64_t resume() {
-      assert(state == PAUSED);
-      state = RUNNING;
-      uint64_t now = getI<DURATION_TYPE>();
+    Rep resume() {
+      assert(state == State::PAUSED);
+      state = State::RUNNING;
+      const Rep now = getPoint<Duration>();
       //move the startPoint forward so that timeLeft is the same as it was
       //when it was paused
       startPoint += now - pausePoint;
-      return duration - (now - startPoint);
+      return (duration - (now - startPoint)).count();
     }
     ///Get the amount of time left before the timer is done
-    uint64_t get() {
-      assert(state != INITIAL);
+    Rep get() {
+      assert(state != State::INITIAL);
       
-      if (state == INITIAL || state == DONE) {
+      if (state == State::INITIAL || state == State::DONE) {
         return 0;
       }
       
-      uint64_t now = getI<DURATION_TYPE>();
+      const Point<Duration> now = getPoint<Duration>();
       
-      if (state == PAUSED) {
+      if (state == State::PAUSED) {
         startPoint += now - pausePoint;
         pausePoint = now;
       }
       
-      uint64_t timeLeft = duration - (now - startPoint);
+      const Duration timeLeft = duration - (now - startPoint);
       //if timeLeft overflows then we've passed the duration
       if (timeLeft > duration) {
-        state = DONE;
+        state = State::DONE;
         return 0;
       } else {
-        return timeLeft;
+        return timeLeft.count();
       }
     }
     ///Checks whether the timer is done
     bool done() {
       get();
-      return state == DONE;
+      return state == State::DONE;
     }
+    
   private:
-    uint64_t duration = 0;
-    uint64_t startPoint = 0;
-    uint64_t pausePoint = 0;
-    State state = INITIAL;
+    Duration duration = 0;
+    Point<Duration> startPoint = 0;
+    Point<Duration> pausePoint = 0;
+    State state = State::INITIAL;
   };
 }
 

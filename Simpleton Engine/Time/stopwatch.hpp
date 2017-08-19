@@ -14,66 +14,70 @@
 
 namespace Time {
   ///A stopwatch to record durations
-  template <typename DURATION_TYPE>
+  template <typename Duration>
   class StopWatch {
   private:
-    enum State : char {
+    enum class State : char {
       INITIAL,
       RUNNING,
       STOPPED
     };
+    using Rep = typename Duration::rep;
+    
   public:
     StopWatch() = default;
     explicit StopWatch(bool)
-      : startPoint(getI<DURATION_TYPE>()), endPoint(0), state(RUNNING) {}
+      : startPoint(getPoint<Duration>()), endPoint(), state(State::RUNNING) {}
     
     ///Starts the stopwatch
     void start() {
-      assert(state != RUNNING);
-      state = RUNNING;
-      startPoint = getI<DURATION_TYPE>();
+      assert(state != State::RUNNING);
+      state = State::RUNNING;
+      startPoint = getPoint<Duration>();
     }
     ///Stops the stopwatch and returns the duration
-    uint64_t stop() {
-      assert(state == RUNNING);
-      state = STOPPED;
-      endPoint = getI<DURATION_TYPE>();
-      return endPoint - startPoint;
+    Rep stop() {
+      assert(state == State::RUNNING);
+      state = State::STOPPED;
+      endPoint = getPoint<Duration>();
+      return (endPoint - startPoint).count();
     }
     ///Resume the stopwatch after it has been stopped, returning the duration
-    uint64_t resume() {
-      assert(state == STOPPED);
-      state = RUNNING;
-      startPoint += getI<DURATION_TYPE>() - endPoint;
-      return endPoint - startPoint;
+    Rep resume() {
+      assert(state == State::STOPPED);
+      state = State::RUNNING;
+      startPoint += getPoint<Duration>() - endPoint;
+      return (endPoint - startPoint).count();
     }
+    
     ///Gets the duration. Can be called while the stopwatch is running
-    uint64_t get() {
+    Rep get() const {
       switch (state) {
-        case INITIAL:
+        case State::INITIAL:
           return 0;
-        case RUNNING:
-          return getI<DURATION_TYPE>() - startPoint;
-        case STOPPED:
-          return endPoint - startPoint;
+        case State::RUNNING:
+          return (getPoint<Duration>() - startPoint).count();
+        case State::STOPPED:
+          return (endPoint - startPoint).count();
       }
     }
     ///Returns the duration and resets the stopwatch
-    uint64_t lap() {
-      assert(state == RUNNING);
-      uint64_t now = getI<DURATION_TYPE>();
-      uint64_t duration = now - startPoint;
+    Rep lap() {
+      assert(state == State::RUNNING);
+      const Point<Duration> now = getPoint<Duration>();
+      const Duration duration = now - startPoint;
       startPoint = now;
-      return duration;
+      return duration.count();
     }
     ///Returns whether the stopwatch is running (start has just been called).
-    bool running() {
-      return state == RUNNING;
+    bool running() const {
+      return state == State::RUNNING;
     }
+    
   private:
-    uint64_t startPoint = 0;
-    uint64_t endPoint = 0;
-    State state = INITIAL;
+    Point<Duration> startPoint;
+    Point<Duration> endPoint;
+    State state = State::INITIAL;
   };
 }
 

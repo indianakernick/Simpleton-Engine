@@ -13,21 +13,24 @@
 #include "../Time/main loop.hpp"
 
 namespace Game {
+  template <typename Duration>
   class App {
+  private:
+    using Rep = typename Duration::rep;
+    
   public:
     App() = default;
     virtual ~App() = default;
     
-    template <typename Duration>
-    void mainLoop(const uint64_t step, const uint32_t maxSteps) {
+    void mainLoop(const Rep step, const uint32_t maxSteps) {
       if (!init()) {
         return;
       }
       
       Time::Mainloop<Duration>::fixedWithVarPrePost(
-        Utils::memFunWrap(this, &App::input),
-        Utils::memFunWrap(this, &App::update),
-        Utils::memFunWrap(this, &App::render),
+        Utils::memFun(this, &App::input),
+        Utils::memFun(this, &App::update),
+        Utils::memFun(this, &App::render),
         step,
         maxSteps
       );
@@ -38,9 +41,9 @@ namespace Game {
   private:
     virtual bool init() = 0;
     virtual void quit() = 0;
-    virtual bool input(uint64_t) = 0;
-    virtual bool update(uint64_t) = 0;
-    virtual void render(uint64_t) = 0;
+    virtual bool input(Rep) = 0;
+    virtual bool update(Rep) = 0;
+    virtual void render(Rep) = 0;
   };
 }
 

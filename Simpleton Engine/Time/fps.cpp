@@ -8,39 +8,27 @@
 
 #include "fps.hpp"
 
-Time::FPS::FPS(uint8_t avgSeconds)
-  : totalFrames(60 * avgSeconds) {
-  assert(avgSeconds);
-  while (avgSeconds--) {
-    frames.push(60);
-  }
-  frames.push(0);
-}
-
 void Time::FPS::init() {
-  uint8_t avgSeconds = static_cast<uint8_t>(frames.size() - 1);
-  totalFrames = 60 * avgSeconds;
-  while (avgSeconds--) {
-    frames.pop();
-    frames.push(60);
-  }
-  frames.pop();
-  frames.push(0);
-  startTime = getI<std::chrono::nanoseconds>();
+  endLastSecond = getPoint<Duration>();
+  framesLastSecond = 0;
+  framesThisSecond = 0;
 }
 
 void Time::FPS::frame() {
-  uint64_t now = getI<std::chrono::nanoseconds>();
-  while (now - startTime >= MATH_SI(ONE, NANO)) {
-    startTime += MATH_SI(ONE, NANO);
-    totalFrames -= frames.front();
-    frames.pop();
-    totalFrames += frames.back();
-    frames.push(0);
+  const Point<Duration> now = getPoint<Duration>();
+  if (now - endLastSecond >= std::chrono::seconds(1)) {
+    framesLastSecond = framesThisSecond;
+    framesThisSecond = 1;
+    
+    const Point<Duration> secBeforeNow = now - std::chrono::seconds(1);
+    do {
+      endLastSecond += std::chrono::seconds(1);
+    } while (endLastSecond < secBeforeNow);
+  } else {
+    framesThisSecond++;
   }
-  frames.back()++;
 }
 
-double Time::FPS::get() {
-  return static_cast<double>(totalFrames) / (frames.size() - 1);
+uint32_t Time::FPS::get() const {
+  return framesLastSecond;
 }
