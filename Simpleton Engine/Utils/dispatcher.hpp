@@ -23,6 +23,7 @@ struct RetHandler {
   
   void handleReturnValue(ListenerRet);
   ListenerRet getFinalReturnValue();
+  bool shouldStop();
 }
 */
 
@@ -256,6 +257,7 @@ namespace Utils {
         const auto end = listeners.cend();
         for (auto l = listeners.cbegin(); l != end; ++l) {
           retHandler.handleReturnValue((*l)(args...));
+          if (retHandler.shouldStop()) break;
         }
         dispatching = false;
         remOldListeners();
@@ -290,6 +292,54 @@ namespace Utils {
     }
   };
 
+  ///Returns true if all listeners return true
+  struct AllRetHandler {
+    void handleReturnValue(const bool thisRetVal) {
+      retVal = retVal && thisRetVal;
+    }
+    bool getFinalReturnValue() const {
+      return retVal;
+    }
+    bool shouldStop() const {
+      return !retVal;
+    }
+
+  private:
+    bool retVal = true;
+  };
+  
+  ///Returns true if any listener returns true
+  struct AnyRetHandler {
+    void handleReturnValue(const bool thisRetVal) {
+      retVal = retVal || thisRetVal;
+    }
+    bool getFinalReturnValue() const {
+      return retVal;
+    }
+    bool shouldStop() const {
+      return retVal;
+    }
+  
+  private:
+    bool retVal = false;
+  };
+  
+  ///Returns true if all listeners return false
+  struct NoneRetHandler {
+    void handleReturnValue(const bool thisRetVal) {
+      retVal = retVal && !thisRetVal;
+    }
+    bool getFinalReturnValue() const {
+      return retVal;
+    }
+    bool shouldStop() const {
+      return !retVal;
+    }
+  
+  private:
+    bool retVal = true;
+  };
+
   ///An action that can be observed
   template <typename ListenerID, typename ...Args>
   using Observable = Dispatcher<void (Args...), void, ListenerID>;
@@ -298,30 +348,21 @@ namespace Utils {
   template <typename ...Args>
   using SingleObservable = SingleDispatcher<void (Args...), void>;
 
-  class ConfirmableRetHandler {
-  public:
-    ConfirmableRetHandler() = default;
-    ~ConfirmableRetHandler() = default;
-    
-    void handleReturnValue(const bool val) {
-      out = out && val;
-    }
-    
-    bool getFinalReturnValue() const {
-      return out;
-    }
-
-  private:
-    bool out = true;
-  };
-
   ///An action that can be confirmed to happen
   template <typename ListenerID, typename ...Args>
-  using Confirmable = Dispatcher<bool (Args...), ConfirmableRetHandler, ListenerID>;
+  using Confirmable = Dispatcher<bool (Args...), AllRetHandler, ListenerID>;
   
   ///An action that can be confirmed to happen
   template <typename ...Args>
-  using SingleConfirmable = SingleDispatcher<bool (Args...), ConfirmableRetHandler>;
+  using SingleConfirmable = SingleDispatcher<bool (Args...), AllRetHandler>;
+  
+  ///A task that can be handled
+  template <typename ListenerID, typename ...Args>
+  using Handlable = Dispatcher<bool (Args...), AnyRetHandler, ListenerID>;
+  
+  ///A task that can be handled
+  template <typename ListenerID, typename ...Args>
+  using SingleHandlable = Dispatcher<bool (Args...), AnyRetHandler, ListenerID>;
 
   ///Divides listeners into groups. A message can be dispatched to each group individually.
   ///Many Dispatchers will perform better than one GroupDispatcher
@@ -466,6 +507,7 @@ namespace Utils {
         const auto end = listeners.cend();
         for (auto l = listeners.cbegin(); l != end; ++l) {
           retHandler.handleReturnValue((*l)(args...));
+          if (retHandler.shouldStop()) break;
         }
         dispatching = false;
         remOldListeners();
