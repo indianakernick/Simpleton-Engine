@@ -64,7 +64,7 @@ namespace Time {
   ///Get the formatted date as Www Mmm dd hh:mm:ss yyyy
   inline std::string getDateStr() {
     std::time_t now = std::time(nullptr);
-    return ctime(&now);
+    return std::ctime(&now);
   }
   
   ///Get the formatted time as hh:mm:ss

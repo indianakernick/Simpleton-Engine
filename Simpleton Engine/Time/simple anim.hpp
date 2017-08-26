@@ -9,8 +9,7 @@
 #ifndef engine_time_simple_anim_hpp
 #define engine_time_simple_anim_hpp
 
-#include <limits>
-#include <type_traits>
+#include "../Math/int float.hpp"
 
 namespace Time {
   template <typename Duration>
@@ -35,14 +34,10 @@ namespace Time {
       }
     }
     void repeat() {
-      assert(duration != Duration(0));
-      
-      if constexpr (std::is_floating_point<Duration>::value) {
-        Duration quot = progress / duration;
-        quot -= static_cast<int>(quot);
-        return quot * duration;
+      if (duration == Duration(0)) {
+        progress = Duration(0);
       } else {
-        progress %= duration;
+        progress = Math::mod(progress, duration);
       }
     }
     
@@ -61,14 +56,14 @@ namespace Time {
     >
     getProgress() const {
       if (duration == Duration(0)) {
-        using Limits = std::numeric_limits<Float>;
-        if constexpr (Limits::has_infinity()) {
-          return Limits::infinity();
+        if (progress == Duration(0)) {
+          return Float(0);
         } else {
-          return Limits::max();
+          return Math::infinity<Float>();
         }
+      } else {
+        return static_cast<Float>(progress) / static_cast<Float>(duration);
       }
-      return static_cast<Float>(progress) / static_cast<Float>(duration);
     }
   
   private:

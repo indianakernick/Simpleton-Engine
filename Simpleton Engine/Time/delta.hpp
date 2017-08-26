@@ -14,12 +14,15 @@
 namespace Time {
   template <typename Duration>
   class Delta {
+  private:
+    using Rep = typename Duration::rep;
+  
   public:
     Delta()
       : lastTime(getPoint<Duration>()) {}
     
     ///Get the duration that has passed since the last call of this function
-    uint64_t get() {
+    Rep get() {
       const Point<Duration> now = getPoint<Duration>();
       const Duration delta = now - lastTime;
       lastTime = now;

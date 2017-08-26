@@ -10,6 +10,7 @@
 #define engine_math_int_float_hpp
 
 #include <cmath>
+#include <limits>
 #include <type_traits>
 
 namespace Math {
@@ -21,6 +22,26 @@ namespace Math {
       return std::fmod(left, right);
     } else {
       return left % right;
+    }
+  }
+  
+  template <typename Number>
+  constexpr Number infinity() {
+    using Limits = std::numeric_limits<Number>;
+    if constexpr (Limits::has_infinity()) {
+      return Limits::infinity();
+    } else {
+      return Limits::max();
+    }
+  }
+  
+  template <typename Number>
+  constexpr Number negInfinity() {
+    using Limits = std::numeric_limits<Number>;
+    if constexpr (Limits::has_infinity()) {
+      return -Limits::infinity();
+    } else {
+      return Limits::lowest();
     }
   }
 }
