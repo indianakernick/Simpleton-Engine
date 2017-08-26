@@ -12,6 +12,7 @@
 #include <cmath>
 #include <thread>
 #include "get.hpp"
+#include "../Math/int float.hpp"
 #include "../Utils/function traits.hpp"
 
 namespace Time {
@@ -92,13 +93,7 @@ namespace Time {
         last = now;
         lag += elapsed.count();
         
-        const Rep actualStep = [lag, step, maxStep]() {
-          if constexpr (std::is_floating_point<Rep>::value) {
-            return std::min(lag - std::fmod(lag, step), maxStep);
-          } else {
-            return std::min(lag - lag % step, maxStep);
-          }
-        }();
+        const Rep actualStep = std::min(lag - Math::mod(lag, step), maxStep);
         ok = update(preFunc, actualStep);
         
         uint32_t steps = maxSteps;
