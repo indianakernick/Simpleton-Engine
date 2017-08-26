@@ -10,7 +10,7 @@
 #define engine_math_interpolate_hpp
 
 #include <cmath>
-#include <type_traits>
+#include "pow.hpp"
 #include "constants.hpp"
 
 namespace Math {
@@ -46,8 +46,7 @@ namespace Math {
   ///Odd repetitions are mirrored
   template <typename Float>
   IsFloat<Float> normMirror(const Float t) {
-    const Float normT = norm(t);
-    return std::fmod(std::floor(t), Float(2)) ? Float(1) - normT : normT;
+    return std::fmod(std::floor(t), Float(2)) ? Float(1) - norm(t) : norm(t);
   }
   
   ///Uses the -PId2 to 0 range of the sin function
@@ -90,7 +89,7 @@ namespace Math {
   
   template <typename Float>
   IsFloat<Float> quadIn(const Float t) {
-    return t*t;
+    return pow<2>(t);
   }
   template <typename Float>
   IsFloat<Float> quadOut(const Float t) {
@@ -99,24 +98,23 @@ namespace Math {
   template <typename Float>
   IsFloat<Float> quadInOut(const Float t) {
     return t < Float(0.5)
-           ? Float(2) * t*t
+           ? Float(2) * pow<2>(t)
            : Float(-1) + (Float(4) - Float(2) * t) * t;
   }
   
   template <typename Float>
   IsFloat<Float> cubicIn(const Float t) {
-    return t*t*t;
+    return pow<3>(t);
   }
   template <typename Float>
   IsFloat<Float> cubicOut(const Float t) {
-    const Float tm1 = t - Float(1);
-    return tm1*tm1*tm1 + Float(1);
+    return pow<3>(t - Float(1)) + Float(1);
   }
   template <typename Float>
   IsFloat<Float> cubicInOut(const Float t) {
     return t < Float(0.5)
-           ? Float(4) * t*t*t
-           : (t - Float(1)) * (Float(2) * t - Float(2)) * (Float(2) * t - Float(2)) + Float(1);
+           ? Float(4) * pow<3>(t)
+           : (t - Float(1)) * pow<2>(Float(2) * t - Float(2)) + Float(1);
   }
   
   template <typename Float>
@@ -125,32 +123,28 @@ namespace Math {
   }
   template <typename Float>
   IsFloat<Float> quartOut(const Float t) {
-    const Float tm1 = t - Float(1);
-    return Float(1) - tm1*tm1*tm1*tm1;
+    return Float(1) - pow<4>(t - Float(1));
   }
   template <typename Float>
   IsFloat<Float> quartInOut(const Float t) {
-    const Float tm1 = t - Float(1);
     return t < Float(0.5)
-           ? Float(8) * t*t*t*t
-           : Float(1) - Float(8) * tm1*tm1*tm1*tm1;
+           ? Float(8) * pow<4>(t)
+           : Float(1) - Float(8) * pow<4>(t - Float(1));
   }
   
   template <typename Float>
   IsFloat<Float> quintIn(const Float t) {
-    return t*t*t*t*t;
+    return pow<5>(t);
   }
   template <typename Float>
   IsFloat<Float> quintOut(const Float t) {
-    const Float tm1 = t - Float(1);
-    return Float(1) + tm1*tm1*tm1*tm1*tm1;
+    return Float(1) + pow<5>(t - Float(1));
   }
   template <typename Float>
   IsFloat<Float> quintInOut(const Float t) {
-    const Float tm1 = t - Float(1);
     return t < Float(0.5)
-           ? Float(16) * t*t*t*t*t
-           : Float(1) + Float(16) * tm1*tm1*tm1*tm1*tm1;
+           ? Float(16) * pow<5>(t)
+           : Float(1) + Float(16) * pow<5>(t - Float(1));
   }
 };
 
