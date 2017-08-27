@@ -17,6 +17,19 @@ namespace Math {
   Return aspectRatio(const glm::tvec2<Argument> size) {
     return static_cast<Return>(size.x) / static_cast<Return>(size.y);
   }
+  
+  ///Calculate the squared distance between 2D int vectors
+  template <typename Int>
+  Int distance2(const glm::tvec2<Int> a, const glm::tvec2<Int> b) {
+    static_assert(
+      std::is_integral<Int>::value,
+      "glm/gtx/norm.hpp provides distance2 for float vectors"
+    );
+    
+    const Int x = a.x - b.x;
+    const Int y = a.y - b.y;
+    return x*x + y*y;
+  }
 }
 
 #endif
