@@ -14,7 +14,7 @@
 namespace Time {
   class FPS {
   private:
-    using Duration = std::chrono::milliseconds;
+    using Duration = std::chrono::nanoseconds;
   
   public:
     FPS() = default;
