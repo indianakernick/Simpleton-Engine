@@ -218,7 +218,8 @@ namespace Math {
     static constexpr Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
   
-    RectPS() = default;
+    RectPS()
+      : p(Scalar(0), Scalar(0)), s(Scalar(0), Scalar(0)) {}
     RectPS(const RectPS &) = default;
     RectPS(RectPS &&) = default;
     ~RectPS() = default;
@@ -361,7 +362,8 @@ namespace Math {
     static constexpr Dir PLUS_X = POSITIVE_X;
     static constexpr Dir PLUS_Y = POSITIVE_Y;
     
-    RectCS() = default;
+    RectCS()
+      : c(Scalar(0), Scalar(0)), h(Scalar(0), Scalar(0)) {}
     RectCS(const RectCS &) = default;
     RectCS(RectCS &&) = default;
     ~RectCS() = default;
