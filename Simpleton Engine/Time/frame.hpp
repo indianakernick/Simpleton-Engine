@@ -32,7 +32,7 @@ namespace Time {
       prog = prog * static_cast<Progress>(numFrames);
       if constexpr (ROUND == Round::ROUND) {
         prog = std::round(prog);
-      } else if (ROUND == Round::CEIL) {
+      } else if constexpr (ROUND == Round::CEIL) {
         prog = std::ceil(prog);
       }
       Frame frame = static_cast<Frame>(prog);

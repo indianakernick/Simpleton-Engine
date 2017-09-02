@@ -71,11 +71,11 @@ namespace Math {
     if constexpr (EXPONENT < 0ll) {
       assert(num != Number(0));
       return Number(1) / pow<-EXPONENT>(num);
-    } else if (EXPONENT == 0ll) {
+    } else if constexpr (EXPONENT == 0ll) {
       return Number(1);
-    } else if (EXPONENT == 1ll) {
+    } else if constexpr (EXPONENT == 1ll) {
       return num;
-    } else if (EXPONENT == 2ll) {
+    } else if constexpr (EXPONENT == 2ll) {
       return num * num;
     } else {
       const Number half = pow<EXPONENT / 2ll>(num);
