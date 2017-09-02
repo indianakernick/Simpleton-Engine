@@ -14,10 +14,19 @@
 #include "constants.hpp"
 
 namespace Math {
+  template <typename T>
+  constexpr T middle(const T min, const T max) {
+    return min + (max - min) / T(2);
+  }
+  
+  template <typename Ratio, typename T>
+  constexpr T lerp(const T min, const T max) {
+    return min + ((max - min) * T(Ratio::num)) / T(Ratio::den);
+  }
+
   template <typename Float, typename T>
   std::enable_if_t<
-    std::is_floating_point<Float>::value &&
-    std::is_arithmetic<T>::value,
+    std::is_floating_point<Float>::value,
     T
   >
   lerp(const Float t, const T from, const T to) {
@@ -26,8 +35,7 @@ namespace Math {
   
   template <typename Float, typename T>
   std::enable_if_t<
-    std::is_floating_point<Float>::value &&
-    std::is_arithmetic<T>::value,
+    std::is_floating_point<Float>::value,
     Float
   >
   invLerp(const T value, const T from, const T to) {
