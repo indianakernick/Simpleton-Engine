@@ -67,8 +67,6 @@
 		45B5E7BA1EF8A92500A6A3E2 /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */; };
 		45B5E7BC1EF8A92500A6A3E2 /* fps.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7B01EF8A92500A6A3E2 /* fps.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E7BD1EF8A92500A6A3E2 /* delta anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7B11EF8A92500A6A3E2 /* delta anim.cpp */; };
-		45B5E7BE1EF8A92500A6A3E2 /* delta anim.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7E21EF8A93900A6A3E2 /* instance limiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7BF1EF8A93900A6A3E2 /* instance limiter.cpp */; };
 		45B5E7E31EF8A93900A6A3E2 /* instance limiter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7C01EF8A93900A6A3E2 /* instance limiter.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E7E41EF8A93900A6A3E2 /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7C11EF8A93900A6A3E2 /* profiler.cpp */; };
@@ -104,7 +102,6 @@
 		45B5E8111EF8AE8700A6A3E2 /* stopwatch.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */; };
 		45B5E8121EF8AE8700A6A3E2 /* timer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */; };
 		45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7B01EF8A92500A6A3E2 /* fps.hpp */; };
-		45B5E8141EF8AE8700A6A3E2 /* delta anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */; };
 		45B5E8161EF8AEAE00A6A3E2 /* exceptions.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78A1EF8A90D00A6A3E2 /* exceptions.hpp */; };
 		45B5E8171EF8AEAE00A6A3E2 /* byteptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */; };
 		45B5E8181EF8AEAE00A6A3E2 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78E1EF8A90D00A6A3E2 /* bits.hpp */; };
@@ -215,7 +212,6 @@
 				45B5E8111EF8AE8700A6A3E2 /* stopwatch.hpp in CopyFiles */,
 				45B5E8121EF8AE8700A6A3E2 /* timer.hpp in CopyFiles */,
 				45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */,
-				45B5E8141EF8AE8700A6A3E2 /* delta anim.hpp in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +342,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
 		45103F561F2490E8001B24E2 /* buffered container.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "buffered container.hpp"; sourceTree = "<group>"; };
 		4529DEE81F31AABD00071267 /* line col.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "line col.cpp"; sourceTree = "<group>"; };
@@ -397,8 +394,6 @@
 		45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
 		45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fps.cpp; sourceTree = "<group>"; };
 		45B5E7B01EF8A92500A6A3E2 /* fps.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fps.hpp; sourceTree = "<group>"; };
-		45B5E7B11EF8A92500A6A3E2 /* delta anim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "delta anim.cpp"; sourceTree = "<group>"; };
-		45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "delta anim.hpp"; sourceTree = "<group>"; };
 		45B5E7BF1EF8A93900A6A3E2 /* instance limiter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "instance limiter.cpp"; sourceTree = "<group>"; };
 		45B5E7C01EF8A93900A6A3E2 /* instance limiter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "instance limiter.hpp"; sourceTree = "<group>"; };
 		45B5E7C11EF8A93900A6A3E2 /* profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = profiler.cpp; sourceTree = "<group>"; };
@@ -612,11 +607,10 @@
 				45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */,
 				45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */,
 				45B5E7B01EF8A92500A6A3E2 /* fps.hpp */,
-				45B5E7B11EF8A92500A6A3E2 /* delta anim.cpp */,
-				45B5E7B21EF8A92500A6A3E2 /* delta anim.hpp */,
 				4592B49C1F06427200D1640D /* frame.hpp */,
 				4592BB111F11F86F00D1640D /* main loop.hpp */,
 				45FA99481F36D6D400F8C639 /* simple anim.hpp */,
+				4509F8E31F5BB83B00927A19 /* anim.hpp */,
 			);
 			path = Time;
 			sourceTree = "<group>";
@@ -679,7 +673,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45B5E7F51EF8A93900A6A3E2 /* variadic type traits.hpp in Headers */,
-				45B5E7BE1EF8A92500A6A3E2 /* delta anim.hpp in Headers */,
 				45B5E7831EF8A8A700A6A3E2 /* round.hpp in Headers */,
 				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
 				45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */,
@@ -820,7 +813,6 @@
 				4592BB091F11EBF700D1640D /* component.cpp in Sources */,
 				45B5E8921EF8DCC400A6A3E2 /* manager.cpp in Sources */,
 				45B5E8AD1EF8E3ED00A6A3E2 /* renderer.cpp in Sources */,
-				45B5E7BD1EF8A92500A6A3E2 /* delta anim.cpp in Sources */,
 				45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */,
 				45B5E8A41EF8E14300A6A3E2 /* window library.cpp in Sources */,
 				4592BB0B1F11EBF700D1640D /* actor.cpp in Sources */,

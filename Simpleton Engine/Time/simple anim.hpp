@@ -21,34 +21,73 @@ namespace Time {
     explicit SimpleAnim(const Duration duration)
       : duration(duration) {}
   
+    ///Progress the animation forward
     void advance(const Duration delta) {
       progress += delta;
     }
+    ///Progress the animation backward
+    void advanceRev(const Duration delta) {
+      progress -= delta;
+    }
     
+    ///Has the playhead passed the end?
     bool overflow() const {
       return progress > duration;
     }
-    void stopOnEdge() {
+    ///Has the playhead passed the beginning?
+    bool underflow() const {
+      return progress < Duration(0);
+    }
+    
+    ///Stop playing when progess passes the end
+    void stopOnEnd() {
       if (progress > duration) {
         progress = duration;
       }
     }
-    void repeat() {
+    ///Stop playing when progress passes the beginning
+    void stopOnBegin() {
+      if (progress < Duration(0)) {
+        progress = Duration(0);
+      }
+    }
+    
+    ///Move the playhead to the beginning when the playhead passes the end
+    void repeatOnOverflow() {
       if (duration == Duration(0)) {
         progress = Duration(0);
       } else {
         progress = Math::mod(progress, duration);
       }
     }
+    ///Move the playhead to the end when the playhead passes the beginning
+    void repeatOnUnderflow() {
+      if (duration == Duration(0)) {
+        progress = Duration(0);
+      } else {
+        progress = duration - Math::mod(duration - progress, duration);
+      }
+    }
     
-    void reset() {
+    ///Move the playhead to the beginning
+    void toBegin() {
       progress = Duration(0);
     }
-    void reset(const Duration newDuration) {
-      progress = Duration(0);
+    ///Move the playhead to the end
+    void toEnd() {
+      progress = duration;
+    }
+    
+    ///Change the duration
+    void setDuration(const Duration newDuration) {
       duration = newDuration;
     }
+    ///Get the duration
+    Duration getDuration() const {
+      return duration;
+    }
     
+    ///Get the progress of the animation as a float in range 0.0-1.0
     template <typename Float>
     std::enable_if_t<
       std::is_floating_point<Float>::value,
@@ -64,6 +103,16 @@ namespace Time {
       } else {
         return static_cast<Float>(progress) / static_cast<Float>(duration);
       }
+    }
+    
+    ///Set the progress of the animation as a float in range 0.0-1.0
+    template <typename Float>
+    std::enable_if_t<
+      std::is_floating_point<Float>::value,
+      Float
+    >
+    setProgress(const Float prog) {
+      progress = static_cast<Duration>(prog * static_cast<Float>(duration));
     }
   
   private:
