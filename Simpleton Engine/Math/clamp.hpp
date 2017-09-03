@@ -36,12 +36,12 @@ namespace Math {
   }
   
   template <typename T>
-  constexpr bool rangeInc(const T value, const T low, const T high) {
+  constexpr bool withinRangeInc(const T value, const T low, const T high) {
     return low <= value && value <= high;
   }
   
   template <typename T>
-  constexpr bool rangeExc(const T value, const T low, const T high) {
+  constexpr bool withinRangeExc(const T value, const T low, const T high) {
     return low < value && value < high;
   }
 }

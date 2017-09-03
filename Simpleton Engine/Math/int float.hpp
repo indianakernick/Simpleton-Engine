@@ -44,6 +44,20 @@ namespace Math {
       return Limits::lowest();
     }
   }
+  
+  template <typename Number>
+  constexpr bool even(const Number num) {
+    return !odd(num);
+  }
+  
+  template <typename Number>
+  constexpr bool odd(const Number num) {
+    if constexpr (std::is_floating_point<Number>::value) {
+      return static_cast<long long>(num) % 2ll;
+    } else {
+      return num % Number(2);
+    }
+  }
 }
 
 #endif
