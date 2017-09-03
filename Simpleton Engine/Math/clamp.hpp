@@ -9,37 +9,40 @@
 #ifndef engine_math_clamp_hpp
 #define engine_math_clamp_hpp
 
-#include <type_traits>
-
 namespace Math {
   template <typename T>
-  constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  min(const T a, const T b) {
+  constexpr T min(const T a, const T b) {
     return a < b ? a : b;
   }
   
   template <typename T>
-  constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  max(const T a, const T b) {
-    return a > b ? a : b;
+  constexpr T max(const T a, const T b) {
+    return a < b ? b : a;
   }
   
   template <typename T>
-  constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  clamp(const T value, const T low, const T high) {
-    return value > low ? (value < high ? value : high) : low;
+  constexpr T clamp(const T value, const T low, const T high) {
+    return value < low ? low : (value < high ? value : high);
   }
   
   template <typename T>
-  constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  clampMin(const T value, const T low) {
-    return value > low ? value : low;
+  constexpr T clampMin(const T value, const T low) {
+    return value < low ? low : value;
   }
   
   template <typename T>
-  constexpr std::enable_if_t<std::is_arithmetic<T>::value, T>
-  clampMax(const T value, const T high) {
+  constexpr T clampMax(const T value, const T high) {
     return value < high ? value : high;
+  }
+  
+  template <typename T>
+  constexpr bool rangeInc(const T value, const T low, const T high) {
+    return low <= value && value <= high;
+  }
+  
+  template <typename T>
+  constexpr bool rangeExc(const T value, const T low, const T high) {
+    return low < value && value < high;
   }
 }
 

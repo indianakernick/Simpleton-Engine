@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
 		45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F561F2490E8001B24E2 /* buffered container.hpp */; };
 		4529DEEA1F31AABD00071267 /* line col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4529DEE81F31AABD00071267 /* line col.cpp */; };
@@ -205,6 +206,7 @@
 			dstPath = /usr/local/include/Simpleton/Time;
 			dstSubfolderSpec = 0;
 			files = (
+				4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */,
 				4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */,
 				4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */,
 				45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */,

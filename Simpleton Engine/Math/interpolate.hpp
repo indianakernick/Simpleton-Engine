@@ -29,8 +29,8 @@ namespace Math {
     std::is_floating_point<Float>::value,
     T
   >
-  lerp(const Float t, const T from, const T to) {
-    return from + static_cast<Float>(to - from) * t;
+  lerp(const Float t, const T min, const T max) {
+    return min + static_cast<T>((max - min) * t);
   }
   
   template <typename Float, typename T>
@@ -38,8 +38,8 @@ namespace Math {
     std::is_floating_point<Float>::value,
     Float
   >
-  invLerp(const T value, const T from, const T to) {
-    return static_cast<Float>(value - from) / static_cast<Float>(to - from);
+  invLerp(const T value, const T min, const T max) {
+    return static_cast<Float>(value - min) / static_cast<Float>(max - min);
   }
   
   template <typename Float>
