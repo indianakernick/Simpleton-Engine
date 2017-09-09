@@ -50,26 +50,26 @@ void Utils::Term::cursorPos(const CursorPos pos) {
 }
 
 Utils::Term::CursorPos Utils::Term::getCursorPos() {
-  std::printf(ESC "6n");
+  std::fputs(ESC "6n", stdout);
   CursorPos pos;
   std::scanf(ESC "%u;%uR", &pos.row, &pos.col);
   return pos;
 }
 
 void Utils::Term::saveCursor() {
-  std::printf(ESC "s");
+  std::fputs(ESC "s", stdout);
 }
 
 void Utils::Term::restoreCursor() {
-  std::printf(ESC "u");
+  std::fputs(ESC "u", stdout);
 }
 
 void Utils::Term::hideCursor() {
-  std::printf(ESC "?25l");
+  std::fputs(ESC "?25l", stdout);
 }
 
 void Utils::Term::showCursor() {
-  std::printf(ESC "?25h");
+  std::fputs(ESC "?25h", stdout);
 }
 
 void Utils::Term::scrollUp(const unsigned n) {
@@ -89,77 +89,77 @@ void Utils::Term::eraseLine(const Clear clear) {
 }
 
 void Utils::Term::videoReset() {
-  std::printf(ESC "0m");
+  std::fputs(ESC "0m", stdout);
 }
 
 void Utils::Term::intensity(const Intensity intensity) {
   switch (intensity) {
     case Intensity::NORMAL:
-      std::printf(ESC "22m");
+      std::fputs(ESC "22m", stdout);
       break;
     case Intensity::BOLD:
-      std::printf(ESC "1m");
+      std::fputs(ESC "1m", stdout);
       break;
     case Intensity::FAINT:
-      std::printf(ESC "2m");
+      std::fputs(ESC "2m", stdout);
   }
 }
 
 void Utils::Term::italic(const bool on) {
   if (on) {
-    std::printf(ESC "3m");
+    std::fputs(ESC "3m", stdout);
   } else {
-    std::printf(ESC "23m");
+    std::fputs(ESC "23m", stdout);
   }
 }
 
 void Utils::Term::underline(const bool on) {
   if (on) {
-    std::printf(ESC "4m");
+    std::fputs(ESC "4m", stdout);
   } else {
-    std::printf(ESC "24m");
+    std::fputs(ESC "24m", stdout);
   }
 }
 
 void Utils::Term::blink(const Blink rate) {
   switch (rate) {
     case Blink::OFF:
-      std::printf(ESC "25m");
+      std::fputs(ESC "25m", stdout);
       break;
     case Blink::SLOW:
-      std::printf(ESC "5m");
+      std::fputs(ESC "5m", stdout);
       break;
     case Blink::FAST:
-      std::printf(ESC "6m");
+      std::fputs(ESC "6m", stdout);
   }
 }
 
 void Utils::Term::videoNegative(const bool on) {
   if (on) {
-    std::printf(ESC "7m");
+    std::fputs(ESC "7m", stdout);
   } else {
-    std::printf(ESC "27m");
+    std::fputs(ESC "27m", stdout);
   }
 }
 
 void Utils::Term::conceal(const bool on) {
   if (on) {
-    std::printf(ESC "8m");
+    std::fputs(ESC "8m", stdout);
   } else {
-    std::printf(ESC "28m");
+    std::fputs(ESC "28m", stdout);
   }
 }
 
 void Utils::Term::strikethrough(const bool on) {
   if (on) {
-    std::printf(ESC "9m");
+    std::fputs(ESC "9m", stdout);
   } else {
-    std::printf(ESC "29m");
+    std::fputs(ESC "29m", stdout);
   }
 }
 
 void Utils::Term::primaryFont() {
-  std::printf(ESC "10m");
+  std::fputs(ESC "10m", stdout);
 }
 
 void Utils::Term::alternativeFont(const unsigned n) {
@@ -176,7 +176,7 @@ void Utils::Term::textColor(const uint8_t r, const uint8_t g, const uint8_t b) {
 }
 
 void Utils::Term::defaultTextColor() {
-  std::printf(ESC "39m");
+  std::fputs(ESC "39m", stdout);
 }
 
 void Utils::Term::backColor(const Color color) {
@@ -188,7 +188,7 @@ void Utils::Term::backColor(const uint8_t r, const uint8_t g, const uint8_t b) {
 }
 
 void Utils::Term::defaultBackColor() {
-  std::printf(ESC "49m");
+  std::fputs(ESC "49m", stdout);
 }
 
 #undef ESC
