@@ -28,9 +28,9 @@ namespace Game {
       }
       
       Time::Mainloop<Duration>::fixedWithVarPrePost(
-        Utils::memFun(this, &App::input),
-        Utils::memFun(this, &App::update),
-        Utils::memFun(this, &App::render),
+        Utils::memFunWrap(this, &App::input),
+        Utils::memFunWrap(this, &App::update),
+        Utils::memFunWrap(this, &App::render),
         step,
         maxSteps
       );
