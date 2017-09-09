@@ -8,16 +8,9 @@
 
 #include "font library.hpp"
 
-Platform::FontLibInitError::FontLibInitError(const char *what)
-  : std::runtime_error(what) {}
-
-Platform::FontOpenError::FontOpenError(const char *what)
-  : std::runtime_error(what) {}
-
 Platform::FontLibrary::FontLibrary() {
-  if (TTF_Init() != 0) {
-    throw FontLibInitError(TTF_GetError());
-  }
+  //SDL_TTF uses SDL's error system
+  CHECK_SDL_ERROR(TTF_Init());
 }
 
 Platform::FontLibrary::~FontLibrary() {
@@ -25,9 +18,5 @@ Platform::FontLibrary::~FontLibrary() {
 }
 
 Platform::Font Platform::openFont(const std::string &path, const int size) {
-  TTF_Font *font = TTF_OpenFont(path.c_str(), size);
-  if (font == nullptr) {
-    throw FontOpenError(TTF_GetError());
-  }
-  return {font, &TTF_CloseFont};
+  return {CHECK_SDL_NULL(TTF_OpenFont(path.c_str(), size)), &TTF_CloseFont};
 }

@@ -9,8 +9,8 @@
 #ifndef engine_application_app_hpp
 #define engine_application_app_hpp
 
-#include "../Utils/member function.hpp"
 #include "../Time/main loop.hpp"
+#include "../Utils/member function.hpp"
 
 namespace Game {
   template <typename Duration>

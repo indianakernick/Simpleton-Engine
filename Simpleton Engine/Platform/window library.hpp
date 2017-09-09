@@ -12,27 +12,14 @@
 #include <SDL2/SDL.h>
 #include "window.hpp"
 #include "renderer.hpp"
+#include "sdl error.hpp"
 #include "../Utils/instance limiter.hpp"
 
 namespace Platform {
-  class WindowLibInitError : public std::runtime_error {
-  public:
-    explicit WindowLibInitError(const char *);
-  };
-  
-  class WindowOpenError : public std::runtime_error {
-  public:
-    explicit WindowOpenError(const char *);
-  };
-  
-  class RendererCreateError : public std::runtime_error {
-  public:
-    explicit RendererCreateError(const char *);
-  };
-
   class WindowLibrary final : public Utils::ForceSingleton<WindowLibrary> {
   public:
     WindowLibrary();
+    explicit WindowLibrary(Uint32);
     ~WindowLibrary();
   };
   
