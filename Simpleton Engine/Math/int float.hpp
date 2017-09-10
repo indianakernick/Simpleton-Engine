@@ -28,7 +28,7 @@ namespace Math {
   template <typename Number>
   constexpr Number infinity() {
     using Limits = std::numeric_limits<Number>;
-    if constexpr (Limits::has_infinity()) {
+    if constexpr (Limits::has_infinity) {
       return Limits::infinity();
     } else {
       return Limits::max();
@@ -38,7 +38,7 @@ namespace Math {
   template <typename Number>
   constexpr Number negInfinity() {
     using Limits = std::numeric_limits<Number>;
-    if constexpr (Limits::has_infinity()) {
+    if constexpr (Limits::has_infinity) {
       return -Limits::infinity();
     } else {
       return Limits::lowest();
