@@ -36,6 +36,11 @@ namespace Math {
   }
   
   template <typename T>
+  constexpr T clampMag(const T value, const T magnitude) {
+    return clamp(value, -magnitude, magnitude);
+  }
+  
+  template <typename T>
   constexpr bool withinRangeInc(const T value, const T low, const T high) {
     return low <= value && value <= high;
   }
