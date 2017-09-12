@@ -38,6 +38,22 @@ namespace Time {
     bool underflow() const {
       return progress < Duration(0);
     }
+    ///How far past the end is the playhead
+    Duration overflowTime() const {
+      return progress - duration;
+    }
+    ///How far past the beginning is the playhead
+    Duration underflowTime() const {
+      return -progress;
+    }
+    ///Is the playhead at the beginning?
+    bool atBegin() const {
+      return progress == Duration(0);
+    }
+    ///Is the playhead at the end?
+    bool atEnd() const {
+      return progress == duration;
+    }
     
     ///Stop playing when progess passes the end
     void stopOnEnd() {
@@ -112,7 +128,17 @@ namespace Time {
       Float
     >
     setProgress(const Float prog) {
-      progress = static_cast<Duration>(prog * static_cast<Float>(duration));
+      progress = prog * duration;
+    }
+    
+    ///Get the progress of the animation as a duration from the beginning
+    Duration getProgressTime() const {
+      return progress;
+    }
+    
+    ///Set the progress of the animation as a duration from the beginning
+    void setProgressTime(const Duration newProgress) {
+      progress = newProgress;
     }
   
   private:
