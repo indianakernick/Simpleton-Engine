@@ -9,8 +9,8 @@
 #ifndef engine_memory_exceptions_hpp
 #define engine_memory_exceptions_hpp
 
-#include <stdexcept>
 #include <string>
+#include <stdexcept>
 
 namespace Memory {
   class OutOfMemory final : public std::runtime_error {

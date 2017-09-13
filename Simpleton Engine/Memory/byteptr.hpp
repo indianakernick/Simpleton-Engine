@@ -9,9 +9,9 @@
 #ifndef engine_memory_byteptr_hpp
 #define engine_memory_byteptr_hpp
 
+#include <new>
 #include <cstdint>
 #include <cstddef>
-#include <new>
 #include <type_traits>
 
 using Byte = uint8_t;
