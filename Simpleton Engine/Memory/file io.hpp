@@ -9,10 +9,8 @@
 #ifndef engine_memory_file_io_hpp
 #define engine_memory_file_io_hpp
 
-//I'll never need this but it was fun to write!
-
 #include <cstdio>
-#include <iostream>
+#include <fstream>
 #include "buffer.hpp"
 
 namespace Memory {
@@ -20,16 +18,32 @@ namespace Memory {
   public:
     explicit FileError(const char *);
   };
+  
+  struct FileCloser {
+    void operator()(std::FILE *const file) {
+      std::fclose(file);
+    }
+  };
+
+  using FileHandle = std::unique_ptr<std::FILE, FileCloser>;
+
+  FileHandle openFileRead(const char *);
+  FileHandle openFileWrite(const char *);
+
+  size_t sizeOfFile(std::FILE *);
+  
+  void readFile(void *, size_t, std::FILE *);
+  void writeFile(void *, size_t, std::FILE *);
 
   Buffer readFile(const std::string &);
   Buffer readFile(const char *);
   Buffer readFile(std::FILE *);
-  Buffer readFile(std::istream &);
+  Buffer readFile(std::ifstream &);
   
   void writeFile(const Buffer &, const std::string &);
   void writeFile(const Buffer &, const char *);
   void writeFile(const Buffer &, std::FILE *);
-  void writeFile(const Buffer &, std::ostream &);
+  void writeFile(const Buffer &, std::ofstream &);
 }
 
 #endif
