@@ -50,8 +50,14 @@ Memory::Buffer Memory::readFile(const char *const path) {
 }
 
 Memory::Buffer Memory::readFile(std::FILE *const file) {
-  std::fseek(file, 0, SEEK_END);
-  Memory::Buffer buf(std::ftell(file));
+  if (std::fseek(file, 0, SEEK_END) != 0) {
+    throw FileError("Failed to seek to end of file");
+  }
+  const long fileSize = std::ftell(file);
+  if (fileSize == long(-1)) {
+    throw FileError("Failed to get size of file");
+  }
+  Memory::Buffer buf(fileSize);
   std::rewind(file);
   if (std::fread(buf.data(), buf.size(), 1, file)) {
     return buf;
@@ -84,7 +90,9 @@ void Memory::writeFile(const Memory::Buffer &buf, std::FILE *const file) {
   if (std::fwrite(buf.data(), buf.size(), 1, file) == 0) {
     throw FileError("Failed to write to file");
   }
-  std::fflush(file);
+  if (std::fflush(file) != 0) {
+    throw FileError("Failed to flush file after writing");
+  }
 }
 
 void Memory::writeFile(const Memory::Buffer &buf, std::ostream &stream) {

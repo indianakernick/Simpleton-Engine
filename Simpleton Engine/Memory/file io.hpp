@@ -11,9 +11,9 @@
 
 //I'll never need this but it was fun to write!
 
-#include "buffer.hpp"
 #include <cstdio>
 #include <iostream>
+#include "buffer.hpp"
 
 namespace Memory {
   class FileError final : public std::runtime_error {
@@ -21,15 +21,15 @@ namespace Memory {
     explicit FileError(const char *);
   };
 
-  Memory::Buffer readFile(const std::string &);
-  Memory::Buffer readFile(const char *);
-  Memory::Buffer readFile(std::FILE *);
-  Memory::Buffer readFile(std::istream &);
+  Buffer readFile(const std::string &);
+  Buffer readFile(const char *);
+  Buffer readFile(std::FILE *);
+  Buffer readFile(std::istream &);
   
-  void writeFile(const Memory::Buffer &, const std::string &);
-  void writeFile(const Memory::Buffer &, const char *);
-  void writeFile(const Memory::Buffer &, std::FILE *);
-  void writeFile(const Memory::Buffer &, std::ostream &);
+  void writeFile(const Buffer &, const std::string &);
+  void writeFile(const Buffer &, const char *);
+  void writeFile(const Buffer &, std::FILE *);
+  void writeFile(const Buffer &, std::ostream &);
 }
 
 #endif

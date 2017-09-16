@@ -521,7 +521,7 @@ namespace Utils {
   template <typename List, typename Function>
   bool getByName(const std::experimental::string_view name, Function &&function) {
     bool gotType = false;
-    forEach<List>([&gotType, name] (auto t) {
+    forEach<List>([&gotType, name, function] (auto t) {
       if (typeName<typename decltype(t)::type>() == name) {
         function(t);
         gotType = true;
@@ -540,7 +540,7 @@ namespace Utils {
   ValueType getValueByName(const std::experimental::string_view name, Function &&function) {
     std::experimental::optional<ValueType> value;
     
-    forEach<List>([&value, name] (auto t) {
+    forEach<List>([&value, name, function] (auto t) {
       if (typeName<typename decltype(t)::type>() == name) {
         value.emplace(function(t));
       }
