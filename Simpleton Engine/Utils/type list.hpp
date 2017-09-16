@@ -514,6 +514,20 @@ namespace Utils {
       std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>()
     );
   }
+  
+  //Get by name
+  
+  template <typename List, typename Function>
+  bool getByName(const std::experimental::string_view name, Function &&function) {
+    bool gotType = false;
+    forEach<List>([&gotType, name] (auto t) {
+      if (typeName<typename decltype(t)::type>() == name) {
+        function(t);
+        gotType = true;
+      }
+    });
+    return gotType;
+  }
 }
 
 #endif
