@@ -14,6 +14,7 @@
 #include <utility>
 #include <type_traits>
 #include "type name.hpp"
+#include <experimental/optional>
 
 namespace Utils {
   template <typename ...Types>
@@ -527,6 +528,29 @@ namespace Utils {
       }
     });
     return gotType;
+  }
+  
+  class TypeNotFound final : public std::runtime_error {
+  public:
+    inline explicit TypeNotFound(const std::experimental::string_view name)
+      : std::runtime_error("Type with name \"" + name.to_string() + "\" not found") {}
+  };
+  
+  template <typename ValueType, typename List, typename Function>
+  ValueType getValueByName(const std::experimental::string_view name, Function &&function) {
+    std::experimental::optional<ValueType> value;
+    
+    forEach<List>([&value, name] (auto t) {
+      if (typeName<typename decltype(t)::type>() == name) {
+        value.emplace(function(t));
+      }
+    });
+    
+    if (value) {
+      return *value;
+    } else {
+      throw TypeNotFound(name);
+    }
   }
 }
 
