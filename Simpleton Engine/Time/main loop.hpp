@@ -12,6 +12,7 @@
 #include <cmath>
 #include <thread>
 #include "get.hpp"
+#include "stopwatch.hpp"
 #include "../Math/int float.hpp"
 #include "../Utils/function traits.hpp"
 
@@ -39,6 +40,17 @@ namespace Time {
         }
         return true;
       }
+    }
+    
+    template <typename Function>
+    static bool updateLag(Function &&func, Rep &lag, const Rep step) {
+      StopWatch<Duration> stopwatch(true);
+      const bool ok = update(func, step);
+      stopwatch.stop();
+      if (stopwatch.get() > step) {
+        lag -= stopwatch.get() - step;
+      }
+      return ok;
     }
     
     ///Variable time step with no synchonization
@@ -84,7 +96,6 @@ namespace Time {
     ) {
       Rep lag = 0;
       Point<Duration> last = getPoint<Duration>();
-      const Rep maxStep = step * maxSteps;
       bool ok = true;
       
       while (ok) {
@@ -93,18 +104,26 @@ namespace Time {
         last = now;
         lag += elapsed.count();
         
-        const Rep actualStep = std::min(lag - Math::mod(lag, step), maxStep);
-        ok = update(preFunc, actualStep);
+        uint32_t numSteps = lag < 0 ? 0 : std::min(static_cast<uint32_t>(lag / step), maxSteps);
+        const Rep stepSize = step * numSteps;
+        lag -= stepSize;
         
-        uint32_t steps = maxSteps;
+        StopWatch<Duration> stopwatch(true);
         
-        while (lag >= step && steps) {
+        ok = update(preFunc, stepSize);
+        
+        while (numSteps) {
           ok = ok && update(updateFunc, step);
-          lag -= step;
-          steps--;
+          numSteps--;
         }
         
-        ok = ok && update(postFunc, actualStep);
+        ok = ok && update(postFunc, stepSize);
+        
+        stopwatch.stop();
+        const Rep time = stopwatch.get();
+        if (time > maxSteps * step) {
+          lag -= stopwatch.get() - stepSize;
+        }
       }
     }
   };
