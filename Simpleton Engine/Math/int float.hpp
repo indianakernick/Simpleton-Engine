@@ -58,6 +58,33 @@ namespace Math {
       return num % Number(2);
     }
   }
+  
+  template <typename Number>
+  constexpr Number floor(const Number num) {
+    if constexpr (std::is_integral<Number>::value) {
+      return num;
+    } else {
+      return std::floor(num);
+    }
+  }
+  
+  template <typename Number>
+  constexpr Number round(const Number num) {
+    if constexpr (std::is_integral<Number>::value) {
+      return num;
+    } else {
+      return std::round(num);
+    }
+  }
+  
+  template <typename Number>
+  constexpr Number ceil(const Number num) {
+    if constexpr (std::is_integral<Number>::value) {
+      return num;
+    } else {
+      return std::ceil(num);
+    }
+  }
 }
 
 #endif
