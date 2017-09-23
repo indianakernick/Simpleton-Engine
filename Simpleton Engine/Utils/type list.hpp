@@ -486,6 +486,8 @@ namespace Utils {
     using type = T;
   };
   
+  #define UTILS_TYPE(OBJ) typename decltype(OBJ)::type
+  
   template <typename List>
   struct ForEachHelper;
   
@@ -522,7 +524,7 @@ namespace Utils {
   bool getByName(const std::experimental::string_view name, Function &&function) {
     bool gotType = false;
     forEach<List>([&gotType, name, function] (auto t) {
-      if (typeName<typename decltype(t)::type>() == name) {
+      if (typeName<UTILS_TYPE(t)>() == name) {
         function(t);
         gotType = true;
       }
@@ -541,7 +543,7 @@ namespace Utils {
     std::experimental::optional<ValueType> value;
     
     forEach<List>([&value, name, function] (auto t) {
-      if (typeName<typename decltype(t)::type>() == name) {
+      if (typeName<UTILS_TYPE(t)>() == name) {
         value.emplace(function(t));
       }
     });
