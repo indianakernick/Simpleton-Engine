@@ -40,8 +40,8 @@ namespace Utils {
         throw LineColRangeError();
       }
     }
-    /*
-    @TODO uncomment
+    
+    /*@TODO uncomment
     
     template <typename LineT, typename ColT>
     LineCol(const LineT line, const ColT col) -> LineCol<LineT, ColT>
@@ -108,7 +108,15 @@ namespace Utils {
     const char *asStr() const {
       //The largest 64 bit unsigned integer value is 18446744073709551615 which is
       //20 characters. 20 + ':' + 20 + '\0' = 42 = the answer to the ultimate question
-      static char str[42] = "LineCol::asStr is not implemented yet";
+      static char str[42];
+      
+      std::string numString = std::to_string(line);
+      std::copy(numString.cbegin(), numString.cend(), str);
+      size_t lineStrSize = numString.size();
+      str[lineStrSize] = ':';
+      numString = std::to_string(col);
+      std::copy(numString.cbegin(), numString.cend(), str + lineStrSize + 1);
+      str[lineStrSize + 1 + numString.size()] = 0;
       
       /*
       @TODO uncomment
