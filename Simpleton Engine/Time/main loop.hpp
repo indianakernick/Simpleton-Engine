@@ -60,7 +60,7 @@ namespace Time {
       bool ok = true;
      
       while (ok) {
-        const Point<Duration> now = get<Duration>();
+        const Point<Duration> now = getPoint<Duration>();
         const Rep delta = (now - last).count();
         last = now;
         
@@ -79,7 +79,7 @@ namespace Time {
         ok = update(func, step);
         
         const Duration elapsed = getPoint<Duration>() - start;
-        if (elapsed < step) {
+        if (elapsed.count() < step) {
           std::this_thread::sleep_for(Duration(step));
         }
       }
@@ -108,8 +108,6 @@ namespace Time {
         const Rep stepSize = step * numSteps;
         lag -= stepSize;
         
-        StopWatch<Duration> stopwatch(true);
-        
         ok = update(preFunc, stepSize);
         
         while (numSteps) {
@@ -118,12 +116,6 @@ namespace Time {
         }
         
         ok = ok && update(postFunc, stepSize);
-        
-        stopwatch.stop();
-        const Rep time = stopwatch.get();
-        if (time > maxSteps * step) {
-          lag -= stopwatch.get() - stepSize;
-        }
       }
     }
   };
