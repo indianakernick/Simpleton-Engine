@@ -10,7 +10,7 @@
 #define engine_utils_line_col_hpp
 
 #include <cctype>
-#include <iostream>
+#include <string>
 #include <stdexcept>
 
 namespace Utils {
@@ -31,6 +31,10 @@ namespace Utils {
     static constexpr ColType  SIZE_OF_TAB = 8;
     static constexpr LineType FIRST_LINE  = 1;
     static constexpr ColType  FIRST_COL   = 1;
+    
+    // 3.9 lines and 18.4 columns doesn't make any sense!
+    static_assert(std::is_integral<LineType>::value, "Type of line must be an integer");
+    static_assert(std::is_integral<ColType>::value, "Type of column must be an integer");
   
     LineCol()
       : line(FIRST_LINE), col(FIRST_COL) {}
@@ -51,11 +55,11 @@ namespace Utils {
       }
     }*/
     
-    ///Move line and col according to the char.
-    ///Call this at the end of the loop with the char you just processed
+    ///Move line and col according to the char
     void putChar(const char c) {
       switch (c) {
         case '\t':
+          //assumes that ColType is an integer
           col = (col + SIZE_OF_TAB - 1) / SIZE_OF_TAB * SIZE_OF_TAB;
           break;
         case '\n':
@@ -81,21 +85,37 @@ namespace Utils {
           }
       }
     }
-    ///This calls putChar(char) for the first n chars in the string
+    ///Call putChar(char) for the first n chars in the string
     void putString(const char *str, size_t size) {
       if (str == nullptr) {
         throw std::runtime_error("Null pointer string");
       }
       while (size) {
         putChar(*str);
-        str++;
-        size--;
+        ++str;
+        --size;
       }
     }
     ///Sets line to FIRST_LINE and col to FIRST_COL
     void reset() {
       line = FIRST_LINE;
       col = FIRST_COL;
+    }
+    
+    ///Sets line and col
+    void moveTo(const LineType newLine, const ColType newCol) {
+      line = newLine;
+      col = newCol;
+    }
+    ///Adds line and col
+    void moveBy(const LineType deltaLine, const ColType deltaCol) {
+      line += deltaLine;
+      col += deltaCol;
+    }
+    ///Adds line and col
+    void moveBy(const LineCol deltaLineCol) {
+      line += deltaLineCol.line;
+      col += deltaLineCol.col;
     }
     
     LineType getLine() const {
@@ -132,10 +152,6 @@ namespace Utils {
       }*/
       
       return str;
-    }
-    
-    friend std::ostream &operator<<(std::ostream &stream, const LineCol &lineCol) {
-      return stream << lineCol.line << ':' << lineCol.col;
     }
     
   private:
