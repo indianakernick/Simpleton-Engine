@@ -941,8 +941,6 @@
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
-					/usr/local/Cellar/sdl2/2.0.5/lib,
-					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -978,8 +976,6 @@
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
-					/usr/local/Cellar/sdl2/2.0.5/lib,
-					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
