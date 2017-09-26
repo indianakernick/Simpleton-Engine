@@ -9,12 +9,9 @@
 #ifndef engine_utils_profiler_hpp
 #define engine_utils_profiler_hpp
 
-#ifdef ENABLE_PROFILER
-
-#include <vector>
 #include <chrono>
+#include <cstdio>
 #include <unordered_map>
-#include "terminal color.hpp"
 
 namespace Utils {
   class Profiler {
@@ -24,6 +21,7 @@ namespace Utils {
     
     static void formatInfo(std::FILE *);
     static void resetInfo();
+    
   private:
     struct TreeNode {
       uint64_t calls = 0;
@@ -37,7 +35,7 @@ namespace Utils {
     static TreeNode *current;
     static TreeNode tree;
     
-    static void recFormatInfo(std::FILE *, TreeNode *, int depth);
+    static void recFormatInfo(std::FILE *, TreeNode *, int);
     
     static const int NAME_INDENT = 2;
     static const int MAX_DEPTH = 16;
@@ -50,6 +48,8 @@ namespace Utils {
     static bool oddLine;
   };
 }
+
+#ifdef ENABLE_PROFILER
 
 //macros are weird!
 #define CONCAT_IMPL(a, b) a##b

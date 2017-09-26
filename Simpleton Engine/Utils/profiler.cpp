@@ -8,7 +8,7 @@
 
 #include "profiler.hpp"
 
-#ifdef ENABLE_PROFILER
+#include <vector>
 
 Utils::Profiler::TreeNode *Utils::Profiler::current = &tree;
 Utils::Profiler::TreeNode Utils::Profiler::tree;
@@ -132,5 +132,3 @@ void Utils::Profiler::recFormatInfo(std::FILE *stream, TreeNode *node, int depth
     recFormatInfo(stream, *i, newDepth);
   }
 }
-
-#endif
