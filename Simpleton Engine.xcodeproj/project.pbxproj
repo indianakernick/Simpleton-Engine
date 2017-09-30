@@ -959,6 +959,7 @@
 					"-Weffc++",
 					"-Wpedantic",
 					"-Wextra-semi",
+					"-Wno-documentation",
 					"-std=c++1z",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -994,6 +995,7 @@
 					"-Weffc++",
 					"-Wpedantic",
 					"-Wextra-semi",
+					"-Wno-documentation",
 					"-std=c++1z",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
