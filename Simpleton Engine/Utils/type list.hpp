@@ -487,6 +487,7 @@ namespace Utils {
   };
   
   #define UTILS_TYPE(OBJ) typename decltype(OBJ)::type
+  #define UTILS_VALUE(OBJ) decltype(OBJ)::value
   
   template <typename List>
   struct ForEachHelper;
@@ -494,27 +495,40 @@ namespace Utils {
   template <typename ...Types>
   struct ForEachHelper<TypeList<Types...>> {
     template <typename Function>
-    static void iter(Function &&function) {
+    static constexpr void iter(Function &&function) {
       (function(Type<Types>()), ...);
     }
   };
   
   template <typename List, typename Function>
-  void forEach(Function &&func) {
+  constexpr void forEach(Function &&func) {
     ForEachHelper<List>::iter(std::forward<Function>(func));
   }
   
   template <typename Tuple, typename Function, size_t ...INDICIES>
-  void forEachTupleHelper(Tuple &&tuple, Function &&function, std::index_sequence<INDICIES...>) {
+  constexpr void forEachTupleHelper(Tuple &&tuple, Function &&function, std::index_sequence<INDICIES...>) {
     (function(std::get<INDICIES>(tuple)), ...);
   }
   
   template <typename Tuple, typename Function>
-  void forEach(Tuple &&tuple, Function &&function) {
+  constexpr void forEach(Tuple &&tuple, Function &&function) {
     forEachTupleHelper(
       std::forward<Tuple>(tuple),
       std::forward<Function>(function),
       std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>()
+    );
+  }
+  
+  template <typename Function, size_t ...INDICIES>
+  constexpr void forEachIndexHelper(Function &&function, std::index_sequence<INDICIES...>) {
+    (function(std::integral_constant<size_t, INDICIES>()), ...);
+  }
+  
+  template <size_t SIZE, typename Function>
+  constexpr void forEachIndex(Function &&function) {
+    forEachIndexHelper(
+      std::forward<Function>(function),
+      std::make_index_sequence<SIZE>()
     );
   }
   
