@@ -7,6 +7,3 @@
 //
 
 #include "line col.hpp"
-
-Utils::LineColRangeError::LineColRangeError()
-  : std::range_error("Line or column out of range") {}

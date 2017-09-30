@@ -11,15 +11,9 @@
 
 #include <cctype>
 #include <string>
-#include <stdexcept>
+#include "null check.hpp"
 
 namespace Utils {
-  ///A line or column is out of range
-  class LineColRangeError final : public std::range_error {
-  public:
-    LineColRangeError();
-  };
-
   ///Keeps track of lines and columns in text.
   ///Great for writing error messages in parsers
   template <typename Line, typename Col>
@@ -41,7 +35,7 @@ namespace Utils {
     LineCol(const LineType line, const ColType col)
       : line(line), col(col) {
       if (line < FIRST_LINE || col < FIRST_COL) {
-        throw LineColRangeError();
+        throw std::out_of_range("Line or column too small");
       }
     }
     
@@ -87,9 +81,7 @@ namespace Utils {
     }
     ///Call putChar(char) for the first n chars in the string
     void putString(const char *str, size_t size) {
-      if (str == nullptr) {
-        throw std::runtime_error("Null pointer string");
-      }
+      throwIfNull(str);
       while (size) {
         putChar(*str);
         ++str;

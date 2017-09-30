@@ -166,6 +166,9 @@
 		45B5E8C91EF9047000A6A3E2 /* system info.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C61EF9047000A6A3E2 /* system info.mm */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
+		45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
+		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
+		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
 		45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB861F1B4F750058D36B /* strong alias.hpp */; };
 		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
@@ -260,6 +263,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */,
 				452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */,
 				45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */,
 				45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */,
@@ -440,6 +444,8 @@
 		45B5E8C41EF9047000A6A3E2 /* system info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "system info.cpp"; sourceTree = "<group>"; };
 		45B5E8C51EF9047000A6A3E2 /* system info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "system info.hpp"; sourceTree = "<group>"; };
 		45B5E8C61EF9047000A6A3E2 /* system info.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "system info.mm"; sourceTree = "<group>"; };
+		45DEA0321F7F757200B1DA72 /* parse string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "parse string.cpp"; sourceTree = "<group>"; };
+		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
@@ -552,6 +558,8 @@
 				4529DEE91F31AABD00071267 /* line col.hpp */,
 				45FA99411F3695E500F8C639 /* hash.hpp */,
 				452B82F41F3EF86900AF9AC6 /* bits.hpp */,
+				45DEA0321F7F757200B1DA72 /* parse string.cpp */,
+				45DEA0331F7F757200B1DA72 /* parse string.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -718,6 +726,7 @@
 				45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */,
 				45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */,
 				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
+				45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */,
 				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
 				45B5E8021EF8A93900A6A3E2 /* construct from tuple.hpp in Headers */,
 				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
@@ -813,6 +822,7 @@
 				45B5E8AD1EF8E3ED00A6A3E2 /* renderer.cpp in Sources */,
 				45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */,
 				45B5E8A41EF8E14300A6A3E2 /* window library.cpp in Sources */,
+				45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */,
 				4592BB0B1F11EBF700D1640D /* actor.cpp in Sources */,
 				4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */,
 				45B5E7ED1EF8A93900A6A3E2 /* any.cpp in Sources */,
