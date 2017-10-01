@@ -505,20 +505,6 @@ namespace Utils {
     ForEachHelper<List>::iter(std::forward<Function>(func));
   }
   
-  template <typename Tuple, typename Function, size_t ...INDICIES>
-  constexpr void forEachTupleHelper(Tuple &&tuple, Function &&function, std::index_sequence<INDICIES...>) {
-    (function(std::get<INDICIES>(tuple)), ...);
-  }
-  
-  template <typename Tuple, typename Function>
-  constexpr void forEach(Tuple &&tuple, Function &&function) {
-    forEachTupleHelper(
-      std::forward<Tuple>(tuple),
-      std::forward<Function>(function),
-      std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>()
-    );
-  }
-  
   template <typename Function, size_t ...INDICIES>
   constexpr void forEachIndexHelper(Function &&function, std::index_sequence<INDICIES...>) {
     (function(std::integral_constant<size_t, INDICIES>()), ...);

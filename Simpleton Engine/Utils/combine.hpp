@@ -9,10 +9,10 @@
 #ifndef engine_utils_combine_hpp
 #define engine_utils_combine_hpp
 
+#include "tuple.hpp"
 #include <functional>
 #include "int least.hpp"
 #include "variadic type traits.hpp"
-#include "construct from tuple.hpp"
 
 namespace Utils {
   template <typename First>

@@ -89,7 +89,6 @@
 		45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8001EF8A93900A6A3E2 /* null check.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		45B5E8021EF8A93900A6A3E2 /* construct from tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8031EF8A93900A6A3E2 /* multi dim array.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8041EF8A93900A6A3E2 /* multi dim container.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8051EF8ADCB00A6A3E2 /* constants.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -136,7 +135,6 @@
 		45B5E8521EF8AF5000A6A3E2 /* dispatcher.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */; };
 		45B5E8541EF8AF5000A6A3E2 /* null check.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */; };
 		45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; };
-		45B5E8561EF8AF5000A6A3E2 /* construct from tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */; };
 		45B5E8571EF8AF5000A6A3E2 /* multi dim array.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */; };
 		45B5E8581EF8AF5000A6A3E2 /* multi dim container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */; };
 		45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88C1EF8DCC400A6A3E2 /* event.cpp */; };
@@ -169,6 +167,7 @@
 		45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
 		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
+		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
 		45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB861F1B4F750058D36B /* strong alias.hpp */; };
 		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
@@ -263,6 +262,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */,
 				45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */,
 				452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */,
 				45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */,
@@ -288,7 +288,6 @@
 				45B5E8521EF8AF5000A6A3E2 /* dispatcher.hpp in CopyFiles */,
 				45B5E8541EF8AF5000A6A3E2 /* null check.hpp in CopyFiles */,
 				45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */,
-				45B5E8561EF8AF5000A6A3E2 /* construct from tuple.hpp in CopyFiles */,
 				45B5E8571EF8AF5000A6A3E2 /* multi dim array.hpp in CopyFiles */,
 				45B5E8581EF8AF5000A6A3E2 /* multi dim container.hpp in CopyFiles */,
 			);
@@ -420,7 +419,6 @@
 		45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dispatcher.hpp; sourceTree = "<group>"; };
 		45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "null check.hpp"; sourceTree = "<group>"; };
 		45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "function traits.hpp"; sourceTree = "<group>"; };
-		45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "construct from tuple.hpp"; sourceTree = "<group>"; };
 		45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "multi dim array.hpp"; sourceTree = "<group>"; };
 		45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "multi dim container.hpp"; sourceTree = "<group>"; };
 		45B5E8051EF8ADCB00A6A3E2 /* constants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = constants.hpp; sourceTree = "<group>"; };
@@ -446,6 +444,7 @@
 		45B5E8C61EF9047000A6A3E2 /* system info.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "system info.mm"; sourceTree = "<group>"; };
 		45DEA0321F7F757200B1DA72 /* parse string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "parse string.cpp"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
+		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
 		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
@@ -548,7 +547,6 @@
 				45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */,
 				45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */,
 				45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */,
-				45B5E7DF1EF8A93900A6A3E2 /* construct from tuple.hpp */,
 				45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */,
 				45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */,
 				45F3DB841F1AFEF10058D36B /* type list.hpp */,
@@ -560,6 +558,7 @@
 				452B82F41F3EF86900AF9AC6 /* bits.hpp */,
 				45DEA0321F7F757200B1DA72 /* parse string.cpp */,
 				45DEA0331F7F757200B1DA72 /* parse string.hpp */,
+				45DEA0371F80B36900B1DA72 /* tuple.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -728,7 +727,6 @@
 				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
 				45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */,
 				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
-				45B5E8021EF8A93900A6A3E2 /* construct from tuple.hpp in Headers */,
 				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
 				4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */,
 				4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */,
