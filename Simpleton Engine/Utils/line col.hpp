@@ -104,10 +104,28 @@ namespace Utils {
       line += deltaLine;
       col += deltaCol;
     }
-    ///Adds line and col
-    void moveBy(const LineCol deltaLineCol) {
-      line += deltaLineCol.line;
-      col += deltaLineCol.col;
+    
+    LineCol &operator+=(const LineCol other) {
+      line += other.line;
+      col += other.col;
+      return *this;
+    }
+    LineCol &operator-=(const LineCol other) {
+      line -= other.line;
+      col -= other.col;
+      return *this;
+    }
+    LineCol operator+(const LineCol other) const {
+      return {
+        line + other.line,
+        col + other.col
+      };
+    }
+    LineCol operator-(const LineCol other) const {
+      return {
+        line - other.line,
+        col - other.col
+      };
     }
     
     LineType getLine() const {
@@ -133,14 +151,14 @@ namespace Utils {
       /*
       @TODO uncomment
       
-      std::to_chars_result end = std::to_chars(str, str + 42, line);
-      if (end.ec) {
-        throw std::runtime_error(end.ec.message());
+      const auto [end, error] = std::to_chars(str, str + 42, line);
+      if (error) {
+        throw std::runtime_error(error.message());
       }
-      *end.ptr = ':';
-      end = std::to_chars(end.ptr + 1, str + 42, col);
-      if (end.ec) {
-        throw std::runtime_error(end.ec.message());
+      *end = ':';
+      const auto [end1, error1] = std::to_chars(end + 1, str + 42, col);
+      if (error1) {
+        throw std::runtime_error(error1.message());
       }*/
       
       return str;
