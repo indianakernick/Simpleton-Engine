@@ -23,6 +23,12 @@ namespace Utils {
   private:
     char expected;
   };
+  
+  ///Unable to parse number
+  class ParseStringNumberError final : public std::runtime_error {
+  public:
+    explicit ParseStringNumberError(const std::string &);
+  };
 
   ///A view onto a string being parsed
   class ParseString {
@@ -102,6 +108,66 @@ namespace Utils {
     ///Advances and returns true if the front part of the string is equal to the
     ///supplied string. Does nothing and returns false otherwise
     bool check(std::experimental::string_view);
+    
+    template <typename Number>
+    void parseNumber(Number &number) {
+      if constexpr (std::is_integral<Number>::value) {
+        if constexpr (std::is_signed<Number>::value) {
+          char *end;
+          const unsigned long long num = std::strtoull(mData, &end, 0);
+          if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
+            throw ParseStringNumberError("Number out of range");
+          }
+          if (num == 0 && end == mData) {
+            throw ParseStringNumberError("Invalid number");
+          }
+          advance(end - mData);
+          number = static_cast<Number>(num);
+        } else if constexpr (std::is_unsigned<Number>::value) {
+          char *end;
+          const long long num = std::strtoll(mData, &end, 0);
+          if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
+            throw ParseStringNumberError("Number out of range");
+          }
+          if (num == 0 && end == mData) {
+            throw ParseStringNumberError("Invalid number");
+          }
+          advance(end - mData);
+          number = static_cast<Number>(num);
+        }
+      } else if constexpr (std::is_floating_point<Number>::value) {
+        char *end;
+        const float num = std::strtold(mData, &end);
+        if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
+          throw ParseStringNumberError("Number out of range");
+        }
+        if (num == 0 && end == mData) {
+          throw ParseStringNumberError("Invalid number");
+        }
+        advance(end - mData);
+        number = static_cast<Number>(num);
+      }
+      
+      /*
+      @TODO
+      
+      const auto [end, error] = std::from_chars(mData, mData + mSize, number);
+      if (error) {
+        throw ParseStringNumberError(error.message());
+      }
+      const size_t numRead = end - mData;
+      lineCol.putString(mData, numRead);
+      mSize -= numRead;
+      mData = end;
+      */
+    }
+    
+    template <typename Number>
+    Number parseNumber() {
+      Number number;
+      parseNumber(number);
+      return number;
+    }
     
   private:
     const char *mData;

@@ -14,6 +14,9 @@ Utils::ParseStringExpectError::ParseStringExpectError(const char c)
   : std::runtime_error(std::string("Expected character '") + c + '\''),
     expected(c) {}
 
+Utils::ParseStringNumberError::ParseStringNumberError(const std::string &error)
+  : std::runtime_error("Error while parsing number: " + error) {}
+
 char Utils::ParseStringExpectError::expectedChar() const {
   return expected;
 }
