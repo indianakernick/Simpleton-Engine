@@ -12,50 +12,28 @@
 #include "buffer.hpp"
 
 namespace Memory {
-  template <typename T>
-  std::enable_if_t<std::is_pod<T>::value, void>
-  free(T *data) {
-    operator delete(data);
-  }
-  
-  template <typename T>
-  std::enable_if_t<std::is_pod<T>::value, void>
-  nofree(T *) {}
-
   ///A Primitive type memory view. For types that don't need their
   ///constructors and destructors called
   template <typename T>
   class View {
   
-  static_assert(std::is_pod<T>::value, "Memory::View can only handle POD types. Use std::vector<> for non-POD types");
+    static_assert(std::is_pod<T>::value, "Memory::View can only handle POD types. Use std::vector<> for non-POD types");
   
   public:
-    explicit View(const Buffer &buf)
-      : buf(buf) {
-      assert(buf.size() % sizeof(T) == 0);
+    explicit View(const size_t numObjects)
+      : buf(numObjects * sizeof(T)) {}
+    View(const size_t numObjects, const T obj)
+      : buf(numObjects * sizeof(T)) {
+      std::uninitialized_fill_n(data(), size(), obj);
     }
-    explicit View(Buffer &&buf)
-      : buf(buf) {
-      assert(buf.size() % sizeof(T) == 0);
-    }
-    explicit View(size_t size)
-      : buf(size * sizeof(T)) {}
-    View(size_t size, Zero zero)
-      : buf(size * sizeof(T), zero) {}
-    View(size_t size, One one)
-      : buf(size * sizeof(T), one) {}
-    View(T *data, size_t size, const std::function<void (T *)> &deleter = &free<T>)
-      : buf(data, size * sizeof(T), [deleter] (Byte *data) {
-          deleter(reinterpret_cast<T *>(data));
-        }) {
-      assert(deleter);
-    }
+    View(T *data, const size_t numObjects)
+      : buf(data, numObjects * sizeof(T)) {}
+    View(T *data, const size_t numObjects, NoDelete)
+      : buf(data, numObjects * sizeof(T), NO_DELETE) {}
     
-    View(const View<T> &) = default;
     View(View<T> &&) = default;
     ~View() = default;
     
-    View<T> &operator=(const View<T> &) = default;
     View<T> &operator=(View<T> &&) = default;
     
     bool operator==(const View<T> &other) const {
@@ -68,64 +46,53 @@ namespace Memory {
       return buf < other.buf;
     }
     
-    template <typename U>
-    bool sameMemory(const View<U> &other) {
-      return buf.sameMemory(other.buf);
-    }
-    
-    template <typename U>
-    void swap(View<U> &other) {
-      assert(other.buf.size() % sizeof(T) == 0);
-      assert(buf.size() % sizeof(U) == 0);
+    void swap(View<T> &other) {
       buf.swap(other.buf);
     }
-    
-    inline T &operator[](size_t i) {
-      return *(begin() + i);
-    }
-    inline const T &operator[](size_t i) const {
-      return *(begin() + i);
+    void copyFrom(View<T> &other) {
+      buf.copyFrom(other.buf);
     }
     
-    inline T *data() {
+    T &operator[](const size_t i) {
+      return *(begin() + i);
+    }
+    const T &operator[](const size_t i) const {
+      return *(begin() + i);
+    }
+    
+    T *data() {
       return buf.data<T>();
     }
-    inline const T *data() const {
+    const T *data() const {
+      return buf.data<T>();
+    }
+    const T *cdata() const {
       return buf.data<T>();
     }
     
     template <typename U = size_t>
-    inline U size() const {
+    U size() const {
       return buf.size<U>() / sizeof(T);
     }
     
-    inline T *operator+(size_t i) {
-      assert(i < buf.size() / sizeof(T));
-      return buf.begin<T>() + i;
-    }
-    inline const T *operator+(size_t i) const {
-      assert(i < buf.size() / sizeof(T));
-      return buf.begin<T>() + i;
-    }
-    
-    inline T *begin() {
+    T *begin() {
       return buf.begin<T>();
     }
-    inline T *end() {
+    T *end() {
       return buf.end<T>();
     }
     
-    inline const T *begin() const {
+    const T *begin() const {
       return buf.begin<T>();
     }
-    inline const T *end() const {
+    const T *end() const {
       return buf.end<T>();
     }
     
-    inline const T *cbegin() const {
+    const T *cbegin() const {
       return buf.cbegin<T>();
     }
-    inline const T *cend() const {
+    const T *cend() const {
       return buf.cend<T>();
     }
     
