@@ -56,15 +56,21 @@ namespace Time {
     }
     
     ///Stop playing when progess passes the end
-    void stopOnEnd() {
+    bool stopOnEnd() {
       if (progress > duration) {
         progress = duration;
+        return true;
+      } else {
+        return false;
       }
     }
     ///Stop playing when progress passes the beginning
-    void stopOnBegin() {
+    bool stopOnBegin() {
       if (progress < Duration(0)) {
         progress = Duration(0);
+        return true;
+      } else {
+        return false;
       }
     }
     

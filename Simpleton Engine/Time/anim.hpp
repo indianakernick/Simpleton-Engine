@@ -46,11 +46,10 @@ namespace Time {
     void pauseOnEdge() {
       if (playing) {
         if (dir == Dir::FORWARD) {
-          anim.stopOnEnd();
+          playing = !anim.stopOnEnd();
         } else {
-          anim.stopOnBegin();
+          playing = !anim.stopOnBegin();
         }
-        playing = false;
       }
     }
     
