@@ -168,6 +168,7 @@
 		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
+		45DEA0481F83367500B1DA72 /* object pool.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0441F83237600B1DA72 /* object pool.hpp */; };
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
 		45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB861F1B4F750058D36B /* strong alias.hpp */; };
 		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
@@ -222,6 +223,7 @@
 			dstPath = /usr/local/include/Simpleton/Memory;
 			dstSubfolderSpec = 0;
 			files = (
+				45DEA0481F83367500B1DA72 /* object pool.hpp in CopyFiles */,
 				45B5E8161EF8AEAE00A6A3E2 /* exceptions.hpp in CopyFiles */,
 				45B5E8171EF8AEAE00A6A3E2 /* byteptr.hpp in CopyFiles */,
 				45B5E8181EF8AEAE00A6A3E2 /* bits.hpp in CopyFiles */,
