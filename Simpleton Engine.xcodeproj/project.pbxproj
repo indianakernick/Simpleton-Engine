@@ -445,6 +445,7 @@
 		45DEA0321F7F757200B1DA72 /* parse string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "parse string.cpp"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
+		45DEA0441F83237600B1DA72 /* object pool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "object pool.hpp"; sourceTree = "<group>"; };
 		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
@@ -598,6 +599,7 @@
 				45B5E7911EF8A90D00A6A3E2 /* view.hpp */,
 				45B5E7961EF8A90D00A6A3E2 /* file io.cpp */,
 				45B5E7971EF8A90D00A6A3E2 /* file io.hpp */,
+				45DEA0441F83237600B1DA72 /* object pool.hpp */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
