@@ -13,9 +13,9 @@
 #include <cstddef>
 
 namespace Utils {
-  ///Size of a type in bits
-  template <typename T>
-  constexpr size_t bits = sizeof(T) * CHAR_BIT;
+  ///Size of a type (or types) in bits
+  template <typename ...Ts>
+  constexpr size_t bits = ((sizeof(Ts) * CHAR_BIT) + ...);
 }
 
 #endif
