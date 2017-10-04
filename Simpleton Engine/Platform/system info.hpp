@@ -17,7 +17,7 @@ namespace Platform {
     explicit ResPathError(const char *);
   };
 
-  std::string getSaveDir(const std::string &, const std::string &);
+  std::string getSaveDir(const std::string &companyName, const std::string &appName);
   std::string getResDir();
 }
 

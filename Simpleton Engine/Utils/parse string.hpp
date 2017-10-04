@@ -61,6 +61,8 @@ namespace Utils {
     ///and column numbers accordingly
     void advance();
     
+    ///Move the front forward while the front is equal to the supplied character
+    void skip(char);
     ///Move the front forward while the supplied predicate returns true
     template <typename Pred>
     void skip(Pred &&pred) {
@@ -73,6 +75,8 @@ namespace Utils {
     ///Move the front forward while the front is whitespace
     void skipWhitespace();
     
+    ///Move the front forward until the front is equal to the supplied character
+    void skipUntil(char);
     ///Move the front forward until the supplied predicate returns true
     template <typename Pred>
     void skipUntil(Pred &&pred) {
@@ -82,8 +86,8 @@ namespace Utils {
         return !pred(c);
       });
     }
-    ///Move the front forward until the front is equal to the supplied character
-    void skipUntil(char);
+    ///Move the front forward until the front is whitespace
+    void skipUntilWhitespace();
     
     ///Throw a ParseStringExpectError exception if the front character is not
     ///equal to the supplied character
@@ -109,6 +113,8 @@ namespace Utils {
     ///supplied string. Does nothing and returns false otherwise
     bool check(std::experimental::string_view);
     
+    ///Interprets the front part of the string as a number. Throws a
+    ///ParseStringNumberError exception on failure
     template <typename Number>
     void parseNumber(Number &number) {
       if constexpr (std::is_integral<Number>::value) {
@@ -162,12 +168,50 @@ namespace Utils {
       */
     }
     
+    ///Interprets the front part of the string as a number. Throws a
+    ///ParseStringNumberError exception on failure
     template <typename Number>
     Number parseNumber() {
       Number number;
       parseNumber(number);
       return number;
     }
+    
+    ///Copies characters from the front part of the string
+    size_t copy(char *, size_t);
+    
+    ///Copies characters from the front part of the string while the supplied
+    ///predicate returns true. Advances the number of characters that
+    ///were copied.
+    template <typename Pred>
+    size_t copyWhile(char *const dst, const size_t dstSize, Pred &&pred) {
+      throwIfNull(dst);
+      size_t numChars = 0;
+      while (numChars < mSize && numChars < dstSize && pred(mData[numChars])) {
+        ++numChars;
+      }
+      std::memcpy(dst, mData, numChars);
+      advance(numChars);
+      return numChars;
+    }
+    
+    ///Copies characters from the front part of the string until the front is
+    ///equal to the supplied character
+    size_t copyUntil(char *, size_t, char);
+    ///Copies characters from the front part of the string until the supplied
+    ///predicate returns true. Advances the number of characters that
+    ///were copied.
+    template <typename Pred>
+    size_t copyUntil(char *const dst, const size_t dstSize, Pred &&pred) {
+      //@TODO
+      //return copyWhile(dst, dstSize, std::not_fn(pred));
+      return copyWhile(dst, dstSize, [pred = std::forward<Pred>(pred)](char c) {
+        return !pred(c);
+      });
+    }
+    ///Copies characters from the front part of the string until the front is
+    ///whitespace. Advances the number of characters that were copied.
+    size_t copyUntilWhitespace(char *, size_t);
     
   private:
     const char *mData;

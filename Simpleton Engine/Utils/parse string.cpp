@@ -8,8 +8,6 @@
 
 #include "parse string.hpp"
 
-#include "null check.hpp"
-
 Utils::ParseStringExpectError::ParseStringExpectError(const char c)
   : std::runtime_error(std::string("Expected character '") + c + '\''),
     expected(c) {}
@@ -67,6 +65,12 @@ void Utils::ParseString::advance() {
   --mSize;
 }
 
+void Utils::ParseString::skip(const char ch) {
+  skip([ch] (const char c) {
+    return c == ch;
+  });
+}
+
 void Utils::ParseString::skipWhitespace() {
   skip(isspace);
 }
@@ -77,12 +81,18 @@ void Utils::ParseString::skipUntil(const char ch) {
   });
 }
 
+void Utils::ParseString::skipUntilWhitespace() {
+  skipUntil(isspace);
+}
+
 void Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
     throw ParseStringExpectError(c);
   }
   advance();
 }
+
+
 
 void Utils::ParseString::expectAfterWhitespace(const char c) {
   skipWhitespace();
@@ -115,4 +125,22 @@ bool Utils::ParseString::check(const char *data, const size_t size) {
 
 bool Utils::ParseString::check(const std::experimental::string_view view) {
   return check(view.data(), view.size());
+}
+
+size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
+  throwIfNull(dst);
+  const size_t numChars = mSize < dstSize ? mSize : dstSize;
+  std::memcpy(dst, mData, numChars);
+  advance(numChars);
+  return numChars;
+}
+
+size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, const char ch) {
+  return copyUntil(dst, dstSize, [ch] (const char c) {
+    return ch == c;
+  });
+}
+
+size_t Utils::ParseString::copyUntilWhitespace(char *const dst, const size_t dstSize) {
+  return copyUntil(dst, dstSize, isspace);
 }
