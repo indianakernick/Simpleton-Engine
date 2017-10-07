@@ -30,6 +30,21 @@ namespace Math {
     const Int y = a.y - b.y;
     return x*x + y*y;
   }
+  
+  ///Get a vector from an angle and a magnitude
+  template <typename Return, typename Angle, typename Mag>
+  glm::tvec2<Return> angleMag(const Angle angle, const Mag mag) {
+    return {
+      static_cast<Return>(std::cos(angle) * mag),
+      static_cast<Return>(std::sin(angle) * mag)
+    };
+  }
+  
+  ///Get a vector from an angle and a magnitude
+  template <typename Angle, typename Mag>
+  glm::tvec2<Mag> angleMag(const Angle angle, const Mag mag) {
+    return angleMag<Mag>(angle, mag);
+  }
 }
 
 #endif
