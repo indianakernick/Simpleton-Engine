@@ -91,6 +91,25 @@ namespace Time {
       }
     }
     
+    ///Returns true if the animation should be played in reverse
+    bool reverseOnOverflow() {
+      if (progress > duration) {
+        progress = duration + duration - progress;
+        return true;
+      } else {
+        return false;
+      }
+    }
+    ///Returns true if the animation should be played forward
+    bool forwardOnUnderflow() {
+      if (progress < duration) {
+        progress = -progress;
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
     ///Move the playhead to the beginning
     void toBegin() {
       progress = Duration(0);
