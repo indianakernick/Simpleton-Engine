@@ -102,7 +102,7 @@ namespace Time {
     }
     ///Returns true if the animation should be played forward
     bool forwardOnUnderflow() {
-      if (progress < duration) {
+      if (progress < Duration(0)) {
         progress = -progress;
         return true;
       } else {
