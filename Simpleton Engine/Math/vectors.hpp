@@ -9,6 +9,7 @@
 #ifndef engine_math_vectors_hpp
 #define engine_math_vectors_hpp
 
+#include <cmath>
 #include <glm/vec2.hpp>
 
 namespace Math {
@@ -43,7 +44,7 @@ namespace Math {
   ///Get a vector from an angle and a magnitude
   template <typename Angle, typename Mag>
   glm::tvec2<Mag> angleMag(const Angle angle, const Mag mag) {
-    return angleMag<Mag>(angle, mag);
+    return angleMag<Mag, Angle, Mag>(angle, mag);
   }
 }
 
