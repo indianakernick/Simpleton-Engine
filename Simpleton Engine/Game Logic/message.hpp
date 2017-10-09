@@ -11,18 +11,18 @@
 
 #include <queue>
 #include "../ID/type.hpp"
-#include "../Utils/any.hpp"
+#include <experimental/any>
 
 namespace Game {
   class Message {
   public:
     using ID = uint32_t;
     
-    Message(ID, const Utils::Any &);
-    explicit Message(ID, Utils::Any && = {});
+    Message(ID, const std::experimental::any &);
+    explicit Message(ID, std::experimental::any && = {});
     ~Message() = default;
     
-    Utils::Any data;
+    std::experimental::any data;
     ID id;
   };
   

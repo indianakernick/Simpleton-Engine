@@ -8,10 +8,10 @@
 
 #include "message.hpp"
 
-Game::Message::Message(const ID id, const Utils::Any &data)
+Game::Message::Message(const ID id, const std::experimental::any &data)
   : data(data), id(id) {}
 
-Game::Message::Message(const ID id, Utils::Any &&data)
+Game::Message::Message(const ID id, std::experimental::any &&data)
   : data(std::move(data)), id(id) {}
 
 Game::NullManager::NullManager()

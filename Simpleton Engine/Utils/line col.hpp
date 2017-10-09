@@ -45,7 +45,7 @@ namespace Utils {
     LineCol(const LineT line, const ColT col) -> LineCol<LineT, ColT>
       : line(line), col(col) {
       if (line < FIRST_LINE || col < FIRST_COL) {
-        throw LineColRangeError();
+        throw std::out_of_range("Line or column too small");
       }
     }*/
     
