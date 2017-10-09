@@ -39,10 +39,30 @@ namespace Utils {
     );
   }
   
+  #define UTILS_VALUE(OBJ) decltype(OBJ)::value
+  
+  template <typename Function, size_t ...INDICIES>
+  constexpr void forEachIndexHelper(Function &&function, std::index_sequence<INDICIES...>) {
+    (function(std::integral_constant<size_t, INDICIES>()), ...);
+  }
+  
+  template <size_t SIZE, typename Function>
+  constexpr void forEachIndex(Function &&function) {
+    forEachIndexHelper(
+      std::forward<Function>(function),
+      std::make_index_sequence<SIZE>()
+    );
+  }
+  
   template <typename Tuple>
   struct IsTuple : std::false_type {};
   template <typename ...Types>
   struct IsTuple<std::tuple<Types...>> : std::true_type {};
+  
+  template <typename T, typename U = void>
+  struct IsTupleLike : std::false_type {};
+  template <typename T>
+  struct IsTupleLike<T, decltype((void)std::tuple_size<T>::value)> : std::true_type {};
 
   template <typename T>
   auto getElement(T &&element) {

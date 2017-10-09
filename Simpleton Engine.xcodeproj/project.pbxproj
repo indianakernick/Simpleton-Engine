@@ -11,11 +11,12 @@
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
 		45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F561F2490E8001B24E2 /* buffered container.hpp */; };
 		4529DEEA1F31AABD00071267 /* line col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4529DEE81F31AABD00071267 /* line col.cpp */; };
-		4529DEEB1F31AABD00071267 /* line col.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
+		4529DEEB1F31AABD00071267 /* line col.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F41F3EF86900AF9AC6 /* bits.hpp */; };
 		452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F61F41924500AF9AC6 /* rand.hpp */; };
 		452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452FF9F11F68CCB3003A98B1 /* live stats.hpp */; };
 		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
+		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
@@ -165,7 +166,7 @@
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 		45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
-		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
+		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
 		45DEA0481F83367500B1DA72 /* object pool.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0441F83237600B1DA72 /* object pool.hpp */; };
@@ -176,6 +177,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		453A0AB81F8B5D980042B23B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/local/include/Simpleton/Graphics;
+			dstSubfolderSpec = 0;
+			files = (
+				453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4592BAF01F11C90E00D1640D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,6 +367,7 @@
 		452B82F61F41924500AF9AC6 /* rand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rand.hpp; sourceTree = "<group>"; };
 		452FF9F11F68CCB3003A98B1 /* live stats.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "live stats.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
+		453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "keyframe animation.hpp"; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
@@ -467,6 +479,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		453A0AB61F8B5BEB0042B23B /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
 		4592BAE71F11C3A400D1640D /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +531,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				453A0AB61F8B5BEB0042B23B /* Graphics */,
 				4592BAE71F11C3A400D1640D /* Application */,
 				45B5E88B1EF8DCA000A6A3E2 /* ID */,
 				45B5E8821EF8DC5C00A6A3E2 /* Event */,
@@ -697,7 +718,6 @@
 				45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */,
 				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
 				45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */,
-				4529DEEB1F31AABD00071267 /* line col.hpp in Headers */,
 				45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */,
 				45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */,
 				45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */,
@@ -729,7 +749,6 @@
 				45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */,
 				45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */,
 				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
-				45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */,
 				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
 				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
 				4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */,
@@ -741,6 +760,8 @@
 				4592BB081F11EBF700D1640D /* message.hpp in Headers */,
 				4592BB0A1F11EBF700D1640D /* component.hpp in Headers */,
 				4592BB0C1F11EBF700D1640D /* actor.hpp in Headers */,
+				4529DEEB1F31AABD00071267 /* line col.hpp in Headers */,
+				45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */,
 				45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */,
 				45B5E7F41EF8A93900A6A3E2 /* member function.hpp in Headers */,
 			);
@@ -756,6 +777,7 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				45B5E69D1EF7C25200A6A3E2 /* Headers */,
+				453A0AB81F8B5D980042B23B /* CopyFiles */,
 				4592BAF01F11C90E00D1640D /* CopyFiles */,
 				45B5E8B31EF902F100A6A3E2 /* CopyFiles */,
 				45B5E8B71EF9032E00A6A3E2 /* CopyFiles */,

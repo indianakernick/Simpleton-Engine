@@ -487,7 +487,6 @@ namespace Utils {
   };
   
   #define UTILS_TYPE(OBJ) typename decltype(OBJ)::type
-  #define UTILS_VALUE(OBJ) decltype(OBJ)::value
   
   template <typename List>
   struct ForEachHelper;
@@ -503,19 +502,6 @@ namespace Utils {
   template <typename List, typename Function>
   constexpr void forEach(Function &&func) {
     ForEachHelper<List>::iter(std::forward<Function>(func));
-  }
-  
-  template <typename Function, size_t ...INDICIES>
-  constexpr void forEachIndexHelper(Function &&function, std::index_sequence<INDICIES...>) {
-    (function(std::integral_constant<size_t, INDICIES>()), ...);
-  }
-  
-  template <size_t SIZE, typename Function>
-  constexpr void forEachIndex(Function &&function) {
-    forEachIndexHelper(
-      std::forward<Function>(function),
-      std::make_index_sequence<SIZE>()
-    );
   }
   
   //Get by name
