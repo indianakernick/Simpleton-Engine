@@ -15,20 +15,21 @@
 namespace Math {
   ///Calculate the aspect ratio of a 2D vector
   template <typename Return, typename Argument>
-  Return aspectRatio(const glm::tvec2<Argument> size) {
+  Return aspectRatio(const Argument size) {
     return static_cast<Return>(size.x) / static_cast<Return>(size.y);
   }
   
   ///Calculate the squared distance between 2D int vectors
-  template <typename Int>
-  Int distance2(const glm::tvec2<Int> a, const glm::tvec2<Int> b) {
+  template <typename Vec>
+  auto distance2(const Vec a, const Vec b) -> decltype(a.x) {
+    using Scalar = decltype(a.x);
     static_assert(
-      std::is_integral<Int>::value,
+      std::is_integral<Scalar>::value,
       "glm/gtx/norm.hpp provides distance2 for float vectors"
     );
     
-    const Int x = a.x - b.x;
-    const Int y = a.y - b.y;
+    const Scalar x = a.x - b.x;
+    const Scalar y = a.y - b.y;
     return x*x + y*y;
   }
   
@@ -45,6 +46,16 @@ namespace Math {
   template <typename Angle, typename Mag>
   glm::tvec2<Mag> angleMag(const Angle angle, const Mag mag) {
     return angleMag<Mag, Angle, Mag>(angle, mag);
+  }
+  
+  template <typename Angle, typename Vec>
+  Angle angle(const Vec vec) {
+    return std::atan2(vec.y, vec.x);
+  }
+  
+  template <typename Vec>
+  auto angle(const Vec vec) -> decltype(vec.x) {
+    return angle<decltype(vec.x), Vec>(vec);
   }
 }
 
