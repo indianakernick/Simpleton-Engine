@@ -21,7 +21,7 @@ namespace Math {
   struct RectCS;
 
   ///A rectangle defined by a minimum point and a maximum point
-  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
+  template <typename T, Dir POSITIVE_X = Math::Dir::RIGHT, Dir POSITIVE_Y = Math::Dir::UP>
   struct RectPP {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
     static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
@@ -31,6 +31,9 @@ namespace Math {
     static constexpr Dir PLUS_X = POSITIVE_X;
     static constexpr Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
+    
+    static const RectPP NEG_INF;
+    static const RectPP INF;
     
     RectPP()
       : min(Scalar(0), Scalar(0)), max(-EPSILON, -EPSILON) {}
@@ -45,6 +48,8 @@ namespace Math {
       : min(Scalar(0), Scalar(0)), max(size - EPSILON) {}
     RectPP(const Vector min, const Vector max)
       : min(min), max(max) {}
+    RectPP(const Scalar minx, const Scalar miny, const Scalar maxx, const Scalar maxy)
+      : min(minx, miny), max(maxx, maxy) {}
     
     template <typename U>
     explicit RectPP(const RectPP<U, PLUS_X, PLUS_Y> other)
@@ -66,6 +71,11 @@ namespace Math {
     }
     bool operator!=(const RectPP other) const {
       return min != other.min || max != other.max;
+    }
+    
+    void setPoint(const Vector point) {
+      min = point;
+      max = point;
     }
     
     Scalar side(const Dir dir) const {
@@ -205,8 +215,20 @@ namespace Math {
     Vector max;
   };
   
+  template <typename T, Dir P_X, Dir P_Y>
+  const RectPP<T, P_X, P_Y> RectPP<T, P_X, P_Y>::NEG_INF = {
+    RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
+    RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
+  };
+  
+  template <typename T, Dir P_X, Dir P_Y>
+  const RectPP<T, P_X, P_Y> RectPP<T, P_X, P_Y>::INF = {
+    RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
+    RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
+  };
+  
   ///A rectangle defined by a negative point and a size
-  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
+  template <typename T, Dir POSITIVE_X = Math::Dir::RIGHT, Dir POSITIVE_Y = Math::Dir::UP>
   struct RectPS {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
     static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
@@ -217,6 +239,9 @@ namespace Math {
     static constexpr Dir PLUS_X = POSITIVE_X;
     static constexpr Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
+    
+    static const RectPS NEG_INF;
+    static const RectPS INF;
   
     RectPS()
       : p(Scalar(0), Scalar(0)), s(Scalar(0), Scalar(0)) {}
@@ -254,6 +279,11 @@ namespace Math {
     }
     bool operator!=(const RectPS other) const {
       return p != other.p || s != other.s;
+    }
+    
+    void setPoint(const Vector point) {
+      p = point;
+      s = Vector(EPSILON);
     }
     
     Scalar side(const Dir dir) const {
@@ -335,12 +365,30 @@ namespace Math {
              p.y + s.y - EPSILON >= other.y;
     }
     
-    Vector p;
-    Vector s;
+    union {
+      Vector p;
+      Vector pos;
+    };
+    union {
+      Vector s;
+      Vector size;
+    };
+  };
+  
+  template <typename T, Dir P_X, Dir P_Y>
+  const RectPS<T, P_X, P_Y> RectPS<T, P_X, P_Y>::NEG_INF = {
+    RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
+    RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
+  };
+  
+  template <typename T, Dir P_X, Dir P_Y>
+  const RectPS<T, P_X, P_Y> RectPS<T, P_X, P_Y>::INF = {
+    RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
+    RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
   };
   
   ///A rectangle defined by a center and a half size
-  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
+  template <typename T, Dir POSITIVE_X = Math::Dir::RIGHT, Dir POSITIVE_Y = Math::Dir::UP>
   struct RectCS {
     /*
     Using integers for this format doesn't really work. The only way to make it
@@ -361,6 +409,9 @@ namespace Math {
     
     static constexpr Dir PLUS_X = POSITIVE_X;
     static constexpr Dir PLUS_Y = POSITIVE_Y;
+    
+    static const RectCS NEG_INF;
+    static const RectCS INF;
     
     RectCS()
       : c(Scalar(0), Scalar(0)), h(Scalar(0), Scalar(0)) {}
@@ -400,6 +451,11 @@ namespace Math {
     }
     bool operator!=(const RectCS other) const {
       return c != other.c || h != other.s;
+    }
+    
+    void setPoint(const Vector point) {
+      center = point;
+      halfSize = Vector(Scalar(0));
     }
     
     Scalar side(const Dir dir) const {
@@ -495,6 +551,18 @@ namespace Math {
       Vector h;
       Vector halfSize;
     };
+  };
+  
+  template <typename T, Dir P_X, Dir P_Y>
+  const RectCS<T, P_X, P_Y> RectCS<T, P_X, P_Y>::NEG_INF = {
+    RectCS<T, P_X, P_Y>::Vector(T(0)),
+    RectCS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
+  };
+  
+  template <typename T, Dir P_X, Dir P_Y>
+  const RectCS<T, P_X, P_Y> RectCS<T, P_X, P_Y>::INF = {
+    RectCS<T, P_X, P_Y>::Vector(T(0)),
+    RectCS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
   };
 }
 
