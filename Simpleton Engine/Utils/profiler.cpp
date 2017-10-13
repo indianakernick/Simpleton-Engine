@@ -49,7 +49,7 @@ void Utils::Profiler::formatInfo(std::FILE *stream) {
 }
 
 void Utils::Profiler::resetInfo() {
-  current = nullptr;
+  current = &tree;
   tree.calls = 0;
   tree.time = 0;
   tree.children.clear();

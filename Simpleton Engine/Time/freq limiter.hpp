@@ -122,7 +122,7 @@ namespace Time {
       uint64_t count = 0;
       while (now - lastDo >= duration) {
         lastDo += duration;
-        count++;
+        ++count;
       }
       if constexpr (!OVERLAP) {
         lastDo = now;
@@ -235,8 +235,8 @@ namespace Time {
       }
       Number count(0);
       while (timeSinceLast >= duration) {
-        count++;
         timeSinceLast -= duration;
+        ++count;
       }
       if constexpr (!OVERLAP) {
         timeSinceLast = Number(0);

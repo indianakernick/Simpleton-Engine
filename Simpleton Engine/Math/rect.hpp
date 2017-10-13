@@ -14,10 +14,10 @@
 #include <glm/vec2.hpp>
 
 namespace Math {
-  template <typename T, Dir PLUS_X, Dir PLUS_Y>
+  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
   struct RectPS;
   
-  template <typename T, Dir PLUS_X, Dir PLUS_Y>
+  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
   struct RectCS;
 
   ///A rectangle defined by a minimum point and a maximum point
