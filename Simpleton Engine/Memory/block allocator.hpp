@@ -75,19 +75,35 @@ namespace Memory {
   public:
     ///Allocate a block. Throws std::bad_alloc if there are no free blocks
     template <typename ...Args>
-    Object *alloc(const Args &... args) {
+    std::enable_if_t< // Have to make the condition dependant on this template
+      BLOCK_SIZE != 1 && (!std::is_void<Args>::value && ...),
+      Object *
+    >
+    alloc(const Args &... args) {
       if (head == nullptr) {
         throw std::bad_alloc();
       }
       allocated = true;
       Block *const newBlock = head;
       head = head->nextFree;
-      if constexpr (sizeof...(Args) == 0) {
-        defaultConstruct(newBlock);
-      } else {
-        construct<SmartRef<Args>...>(newBlock, args...);
+      copyConstruct<SmartRef<Args>...>(newBlock, args...);
+      return newBlock->objects;
+    }
+    ///Allocate a block. Throws std::bad_alloc if there are no free blocks
+    template <typename ...Args>
+    std::enable_if_t<  // Have to make the condition dependant on this template
+      BLOCK_SIZE == 1 && (!std::is_void<Args>::value && ...),
+      Object *
+    >
+    alloc(Args &&... args) {
+      if (head == nullptr) {
+        throw std::bad_alloc();
       }
-      return newBlock;
+      allocated = true;
+      Block *const newBlock = head;
+      head = head->nextFree;
+      moveConstruct(newBlock, std::forward<Args>(args)...);
+      return newBlock->objects;
     }
     
     ///Deallocate a block
@@ -96,8 +112,8 @@ namespace Memory {
         return;
       }
       rangeCheck(object);
-      destroy(object);
       Block *const block = reinterpret_cast<Block *>(object);
+      destroy(block);
       block->nextFree = head;
       head = block;
     }
@@ -109,22 +125,23 @@ namespace Memory {
     //at least one block is allocated
     bool allocated = false;
     
-    void defaultConstruct(Block *const block) {
-      if constexpr (std::is_trivially_default_constructible<Object>::value) {
+    template <typename ...Args>
+    void copyConstruct(Block *const block, Args... args) {
+      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible<Object>::value) {
         return;
       }
       Object *const endObject = block->objects + BLOCK_SIZE;
       for (Object *o = block->objects; o != endObject; ++o) {
-        new (o) Object();
-      }
-    }
-    
-    template <typename ...Args>
-    void construct(Block *const block, Args... args) {
-      Object *const endObject = block->objects + BLOCK_SIZE;
-      for (Object *o = block->objects; o != endObject; ++o) {
         new (o) Object(args...);
       }
+    }
+    template <typename ...Args>
+    void moveConstruct(Block *const block, Args &&... args) {
+      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible<Object>::value) {
+        return;
+      }
+      static_assert(BLOCK_SIZE == 1);
+      new (block->objects) Object(std::forward<Args>(args)...);
     }
     
     void destroy(Block *const block) {
