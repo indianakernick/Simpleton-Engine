@@ -207,13 +207,15 @@ namespace Time {
       }
     }
     
+    using CountType = std::conditional_t<std::is_integral<Number>::value, Number, uint32_t>;
+    
     ///Returns the number of times the operation can be performed
-    Number canDoMultiple() {
+    CountType canDoMultiple() {
       return canDoMultipleImpl<false>();
     }
     
     ///Similar to canDoMultiple but...
-    Number canDoMultipleOverlap() {
+    CountType canDoMultipleOverlap() {
       return canDoMultipleImpl<true>();
     }
     
@@ -224,7 +226,7 @@ namespace Time {
     Number timeSinceLast = Number(0);
     
     template <bool OVERLAP>
-    Number canDoMultipleImpl() {
+    CountType canDoMultipleImpl() {
       if (duration == Number(0)) {
         if (timeSinceLast == Number(0)) {
           return Number(0);
@@ -233,7 +235,7 @@ namespace Time {
           return Limits::has_infinity ? Limits::infinity() : Limits::max();
         }
       }
-      Number count(0);
+      CountType count = 0;
       while (timeSinceLast >= duration) {
         timeSinceLast -= duration;
         ++count;
