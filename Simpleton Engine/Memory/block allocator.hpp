@@ -21,8 +21,8 @@ namespace Memory {
     using Object = Object_;
     static constexpr size_t BLOCK_SIZE = BLOCK_SIZE_;
     
-    static_assert(std::is_default_constructible<Object_>::value, "Object must be default constructible");
-    static_assert(std::is_destructible<Object_>::value, "Object must be default constructible");
+    static_assert(std::is_default_constructible<Object>::value, "Object must be default constructible");
+    static_assert(std::is_destructible<Object>::value, "Object must be destructible");
     static_assert(BLOCK_SIZE != 0, "Block size must be greater than 0");
   
   private:
@@ -47,8 +47,13 @@ namespace Memory {
       }
     }
     ~BlockAllocator() {
-      if (allocated) {
-        std::cout << "At least one block was not freed before the allocator was destroyed\n";
+      if (allocations != 0) {
+        if (allocations == 1) {
+          std::cout << "1 block was ";
+        } else {
+          std::cout << allocations << " blocks were ";
+        }
+        std::cout << "not freed before the allocator was destroyed\n";
       }
     }
     
@@ -83,7 +88,7 @@ namespace Memory {
       if (head == nullptr) {
         throw std::bad_alloc();
       }
-      allocated = true;
+      ++allocations;
       Block *const newBlock = head;
       head = head->nextFree;
       copyConstruct<SmartRef<Args>...>(newBlock, args...);
@@ -99,7 +104,7 @@ namespace Memory {
       if (head == nullptr) {
         throw std::bad_alloc();
       }
-      allocated = true;
+      ++allocations;
       Block *const newBlock = head;
       head = head->nextFree;
       moveConstruct(newBlock, std::forward<Args>(args)...);
@@ -116,14 +121,14 @@ namespace Memory {
       destroy(block);
       block->nextFree = head;
       head = block;
+      --allocations;
     }
   
   private:
     std::unique_ptr<Block []> blocks;
     size_t numBlocks;
     Block *head;
-    //at least one block is allocated
-    bool allocated = false;
+    size_t allocations = 0;
     
     template <typename ...Args>
     void copyConstruct(Block *const block, Args... args) {
