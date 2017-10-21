@@ -17,12 +17,12 @@ namespace Math {
   
   template <typename T>
   constexpr T max(const T a, const T b) {
-    return a < b ? b : a;
+    return a > b ? a : b;
   }
   
   template <typename T>
   constexpr T clamp(const T value, const T low, const T high) {
-    return value < low ? low : (value < high ? value : high);
+    return value < low ? low : (value > high ? high : value);
   }
   
   template <typename T>
@@ -32,7 +32,7 @@ namespace Math {
   
   template <typename T>
   constexpr T clampMax(const T value, const T high) {
-    return value < high ? value : high;
+    return value > high ? high : value;
   }
   
   template <typename T>
