@@ -10,6 +10,7 @@
 #define engine_math_vectors_hpp
 
 #include <cmath>
+#include <algorithm>
 #include <glm/vec2.hpp>
 
 namespace Math {
@@ -56,6 +57,12 @@ namespace Math {
   template <typename Vec>
   auto angle(const Vec vec) -> decltype(vec.x) {
     return angle<decltype(vec.x), Vec>(vec);
+  }
+  
+  template <typename Vec>
+  Vec clampLength(const Vec vec, const decltype(vec.x) maxLength) {
+    const auto length = std::sqrt(vec.x*vec.x + vec.y*vec.y);
+    return vec / length * std::min(length, maxLength);
   }
 }
 
