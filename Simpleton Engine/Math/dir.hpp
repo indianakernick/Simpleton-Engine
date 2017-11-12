@@ -19,8 +19,8 @@ namespace Math {
   
   using SignedDirType = std::make_signed_t<DirType>;
   
-  static_assert(std::is_unsigned<DirType>::value);
-  static_assert(std::is_signed<SignedDirType>::value);
+  static_assert(std::is_unsigned_v<DirType>);
+  static_assert(std::is_signed_v<SignedDirType>);
   
   ///A 2D orthogonal direction
   enum class Dir : DirType {
@@ -33,9 +33,9 @@ namespace Math {
     COUNT,
     
     TOP = UP,
-    FORWARD = UP,
-    
     BOTTOM = DOWN,
+    
+    FORWARD = UP,
     BACKWARD = DOWN,
     
     MIN = UP,
@@ -60,11 +60,13 @@ namespace Math {
     COUNT,
     
     VERTICAL = VERT,
-    UP_DOWN = VERT,
-    
     HORIZONTAL = HORI,
+    
+    UP_DOWN = VERT,
     LEFT_RIGHT = HORI,
     
+    ///Passing NONE to any function other than filterNone or filterNoneCustom
+    ///is undefined behaviour
     NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
@@ -175,7 +177,7 @@ namespace Math {
   struct ToVec {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
     static_assert(
-      std::is_floating_point<Number>::value || std::is_signed<Number>::value,
+      std::is_floating_point_v<Number> || std::is_signed_v<Number>,
       "Number must be a float or a signed int"
     );
   
@@ -204,7 +206,7 @@ namespace Math {
   struct FromVec {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
     static_assert(
-      std::is_floating_point<Number>::value || std::is_signed<Number>::value,
+      std::is_floating_point_v<Number> || std::is_signed_v<Number>,
       "Number must be a float or a signed int"
     );
     
@@ -253,7 +255,7 @@ namespace Math {
   ///Configuration template for converting a direction to a number
   template <typename Number>
   struct ToNum {
-    static_assert(std::is_arithmetic<Number>::value, "Number must be an arithmetic type");
+    static_assert(std::is_arithmetic_v<Number>, "Number must be an arithmetic type");
     
     ///Convert a direction to a number
     static Number conv(const Dir dir, const Number stride, const Number offset) {
@@ -274,7 +276,7 @@ namespace Math {
   ///Configuration template for converting a number to a direction
   template <typename Number>
   struct FromNum {
-    static_assert(std::is_arithmetic<Number>::value, "Number must be an arithmetic type");
+    static_assert(std::is_arithmetic_v<Number>, "Number must be an arithmetic type");
     
     ///Convert a number to a direction
     static Dir conv(const Number num, const Number stride, const Number offset) {
@@ -292,43 +294,68 @@ namespace Math {
     }
   };
   
-  ///Configuration template for converting a direction to a string
-  template <bool CAPS>
-  struct ToString {
-    static constexpr std::experimental::string_view conv(const Dir dir) {
-      if constexpr (CAPS) {
-        switch (dir) {
-          case Dir::UP:
-            return "UP";
-          case Dir::RIGHT:
-            return "RIGHT";
-          case Dir::DOWN:
-            return "DOWN";
-          case Dir::LEFT:
-            return "LEFT";
-          case Dir::NONE:
-            return "NONE";
-          default:
-            return "";
-        }
-      } else {
-        switch (dir) {
-          case Dir::UP:
-            return "up";
-          case Dir::RIGHT:
-            return "right";
-          case Dir::DOWN:
-            return "down";
-          case Dir::LEFT:
-            return "left";
-          case Dir::NONE:
-            return "none";
-          default:
-            return "";
+  constexpr std::experimental::string_view toUpperCaseString(const Dir dir) {
+    switch (dir) {
+      case Dir::UP:
+        return "UP";
+      case Dir::RIGHT:
+        return "RIGHT";
+      case Dir::DOWN:
+        return "DOWN";
+      case Dir::LEFT:
+        return "LEFT";
+      case Dir::NONE:
+        return "NONE";
+      default:
+        return "";
+    }
+  }
+  
+  constexpr std::experimental::string_view toLowerCaseString(const Dir dir) {
+    switch (dir) {
+      case Dir::UP:
+        return "up";
+      case Dir::RIGHT:
+        return "right";
+      case Dir::DOWN:
+        return "down";
+      case Dir::LEFT:
+        return "left";
+      case Dir::NONE:
+        return "none";
+      default:
+        return "";
+    }
+  }
+  
+  constexpr Dir toDir(const std::experimental::string_view str) {
+    //Case insensitive comparison. Assumes other is lower case
+    const auto equalTo = [str] (const std::experimental::string_view other) {
+      if (str.size() != other.size()) {
+        return false;
+      }
+      for (size_t i = 0; i != str.size(); ++i) {
+        if (std::tolower(str[i]) != other[i]) {
+          return false;
         }
       }
+      return true;
+    };
+    
+    if (str.size() == 0) {
+      return Dir::NONE;
+    } else if (equalTo("up")) {
+      return Dir::UP;
+    } else if (equalTo("right")) {
+      return Dir::RIGHT;
+    } else if (equalTo("down")) {
+      return Dir::DOWN;
+    } else if (equalTo("left")) {
+      return Dir::LEFT;
+    } else {
+      return Dir::NONE;
     }
-  };
+  }
   
   ///Get the next direction. Used for iterating directions
   constexpr Dir next(const Dir dir) {
