@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
+		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
+		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
 		45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F561F2490E8001B24E2 /* buffered container.hpp */; };
 		451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -214,6 +216,8 @@
 			dstPath = /usr/local/include/Simpleton/Time;
 			dstSubfolderSpec = 0;
 			files = (
+				450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */,
+				450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */,
 				4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */,
 				4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */,
 				4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */,
@@ -356,6 +360,7 @@
 
 /* Begin PBXFileReference section */
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
+		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
 		45103F561F2490E8001B24E2 /* buffered container.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "buffered container.hpp"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
@@ -634,6 +639,7 @@
 				4592BB111F11F86F00D1640D /* main loop.hpp */,
 				45FA99481F36D6D400F8C639 /* simple anim.hpp */,
 				4509F8E31F5BB83B00927A19 /* anim.hpp */,
+				450ED62E1FB93B43008F2902 /* progress speed anim.hpp */,
 			);
 			path = Time;
 			sourceTree = "<group>";
