@@ -119,7 +119,7 @@ namespace Time {
       return speed < Float(0);
     }
     
-//------------------------------ HANDLING EDGES ------------------------------//
+//------------------------ HANDLING INDEPENDENT EDGES ------------------------//
     
     ///Stop playing when progress passes the end
     Float stopOnEnd() {
@@ -139,7 +139,7 @@ namespace Time {
         return speed;
       }
     }
-    ///Move the playhead to the beginning when the playheadd passes the end
+    ///Move the playhead to the beginning when the playhead passes the end
     void repeatPastEnd() {
       progress = std::fmod(progress, Float(1));
     }
@@ -159,6 +159,35 @@ namespace Time {
       if (pastBegin()) {
         reverse();
         progress = -progress;
+      }
+    }
+    
+//--------------------------- HANDLING BOTH EDGES ----------------------------//
+
+    ///Stop playing when progress passes the edge
+    Float stopOnEdge() {
+      if (forward()) {
+        return stopOnEnd();
+      } else if (backward()) {
+        return stopOnBegin();
+      } else {
+        return speed;
+      }
+    }
+    ///Move the playhead to the beginning when the playhead passes the edge
+    void repeatPastEdge() {
+      if (forward()) {
+        repeatPastEnd();
+      } else if (backward()) {
+        repeatPastBegin();
+      }
+    }
+    ///Reverse the direction of the animation when the playhead passes the edge
+    void reversePastEdge() {
+      if (forward()) {
+        backwardPastEnd();
+      } else if (backward()) {
+        forwardPastBegin();
       }
     }
   };
