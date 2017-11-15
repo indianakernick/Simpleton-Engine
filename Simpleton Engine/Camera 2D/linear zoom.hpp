@@ -20,7 +20,7 @@ namespace Cam2D {
   
   private:
     float speed = 1.0f;
-  }
+  };
 }
 
 #endif
