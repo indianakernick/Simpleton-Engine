@@ -16,12 +16,12 @@ void Camera::update(const glm::ivec2 windowSize, const float delta) {
   const glm::vec2 posTarget = targetPos ? targetPos->calcTarget(props)
                                         : props.center;
   const glm::vec2 center = move ? move->calcCenter(props, posTarget, delta)
-                                : props.center;
+                                : posTarget;
   
   const float scaleTarget = targetScale ? targetScale->calcTarget(props)
                                         : props.ppm;
   const float ppm = zoom ? zoom->calcPPM(props, scaleTarget, delta)
-                         : props.ppm;
+                         : scaleTarget;
   
   props.center = center;
   props.ppm = ppm;
