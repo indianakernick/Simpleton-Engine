@@ -48,7 +48,8 @@
 		452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F61F41924500AF9AC6 /* rand.hpp */; };
 		452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452FF9F11F68CCB3003A98B1 /* live stats.hpp */; };
 		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
-		4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
+		4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
 		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
 		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
@@ -213,6 +214,7 @@
 			dstPath = "/usr/local/include/Simpleton/Camera 2D";
 			dstSubfolderSpec = 0;
 			files = (
+				4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */,
 				450ED6731FBBBADF008F2902 /* linear move.hpp in CopyFiles */,
 				450ED6741FBBBADF008F2902 /* linear zoom.hpp in CopyFiles */,
 				450ED6621FBBB774008F2902 /* camera.hpp in CopyFiles */,
@@ -824,7 +826,6 @@
 				45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */,
 				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
 				45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */,
-				4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */,
 				45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */,
 				45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */,
 				45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */,
@@ -879,6 +880,7 @@
 				450ED6721FBBB9AA008F2902 /* linear zoom.hpp in Headers */,
 				450ED66E1FBBB7A0008F2902 /* linear move.hpp in Headers */,
 				451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */,
+				4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */,
 				45B5E7F41EF8A93900A6A3E2 /* member function.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
