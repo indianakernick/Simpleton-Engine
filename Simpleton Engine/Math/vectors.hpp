@@ -14,10 +14,16 @@
 #include <glm/vec2.hpp>
 
 namespace Math {
-  ///Calculate the aspect ratio of a 2D vector
+  ///Calculate the aspect ratio of a 2D size
   template <typename Return, typename Argument>
   Return aspectRatio(const Argument size) {
     return static_cast<Return>(size.x) / static_cast<Return>(size.y);
+  }
+  
+  ///Calulate the aspect ratio of a 2D size
+  template <typename Argument>
+  auto aspectRatio(const Argument size) {
+    return aspectRatio<decltype(size.x)>(size);
   }
   
   ///Calculate the squared distance between 2D int vectors
@@ -63,6 +69,30 @@ namespace Math {
   Vec clampLength(const Vec vec, const decltype(vec.x) maxLength) {
     const auto length = std::sqrt(vec.x*vec.x + vec.y*vec.y);
     return vec / length * std::min(length, maxLength);
+  }
+  
+  template <typename Vec>
+  int quadrant(const Vec v) {
+    /*
+          +y
+          │
+      1   3   3
+          │
+    ──1───3───3──  +x
+          │
+      0   2   2
+          │
+    
+    */
+    using Scalar = decltype(v.x);
+    const int xPlus = v.x >= Scalar(0);
+    const int yPlus = v.y >= Scalar(0);
+    return (xPlus << 1) | yPlus;
+  }
+  
+  template <typename VecA, typename VecB>
+  bool sameQuadrant(const VecA a, const VecB b) {
+    return quadrant(a) == quadrant(b);
   }
 }
 
