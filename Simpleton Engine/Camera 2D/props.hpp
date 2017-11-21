@@ -13,10 +13,12 @@
 
 namespace Cam2D {
   struct Props {
-    glm::vec2 center = {0.0f, 0.0f};
+    ///Size of the window
     glm::ivec2 windowSize;
+    ///Position in meters of the center of the camera
+    glm::vec2 center;
     ///Pixels per meter
-    float ppm = 128.0f;
+    float ppm;
   };
 }
 

@@ -20,16 +20,20 @@
 namespace Cam2D {
   class Camera {
   public:
-    Camera() = default;
+    explicit Camera(float = 1.0f);
+    Camera(glm::vec2, float);
     
+    void setPos(glm::vec2);
+    void setScale(float);
+    
+    void update(glm::ivec2 windowSize, float delta);
+
     Transform transform;
     std::unique_ptr<Move> move;
     std::unique_ptr<Zoom> zoom;
     std::unique_ptr<TargetPos> targetPos;
     std::unique_ptr<TargetScale> targetScale;
-    
-    void update(glm::ivec2 windowSize, float delta);
-    
+
   private:
     Props props;
   };

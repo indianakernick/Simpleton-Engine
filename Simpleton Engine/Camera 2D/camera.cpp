@@ -10,6 +10,24 @@
 
 using namespace Cam2D;
 
+Camera::Camera(const float ppm) {
+  props.center = {0.0f, 0.0f};
+  props.ppm = ppm;
+}
+
+Camera::Camera(const glm::vec2 center, const float ppm) {
+  props.center = center;
+  props.ppm = ppm;
+}
+
+void Camera::setPos(const glm::vec2 center) {
+  props.center = center;
+}
+
+void Camera::setScale(const float ppm) {
+  props.ppm = ppm;
+}
+
 void Camera::update(const glm::ivec2 windowSize, const float delta) {
   props.windowSize = windowSize;
   
