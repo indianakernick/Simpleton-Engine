@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include "props.hpp"
+#include "../Math/scale.hpp"
 
 using namespace Cam2D;
 
@@ -27,6 +28,6 @@ float LinearZoom::calcPPM(
   if (targetDist <= zoomDist) {
     return target;
   } else {
-    return props.ppm + toTarget * zoomDist;
+    return props.ppm + Math::sign(toTarget) * zoomDist;
   }
 }
