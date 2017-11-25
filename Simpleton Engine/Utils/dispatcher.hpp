@@ -237,6 +237,16 @@ namespace Utils {
       }
     }
     
+    ///Remove all listeners
+    void clearListeners() {
+      if (dispatching) {
+        shouldClear = true;
+      } else {
+        oldListeners.clear();
+        listeners.clear();
+      }
+    }
+    
     ///Send a message to the listeners
     ListenerRet dispatch(const ListenerArgs... args) {
       if (dispatching) {
@@ -272,10 +282,17 @@ namespace Utils {
     std::vector<ListenerID> oldListeners;
     //dispatch is currently running
     bool dispatching = false;
+    //all listeners should be cleared
+    bool shouldClear = false;
     
     void remOldListeners() {
-      for (auto l = oldListeners.cbegin(); l != oldListeners.cend(); ++l) {
-        listeners[*l] = nullListener;
+      if (shouldClear) {
+        listeners.clear();
+        shouldClear = false;
+      } else {
+        for (auto l = oldListeners.cbegin(); l != oldListeners.cend(); ++l) {
+          listeners[*l] = nullListener;
+        }
       }
       oldListeners.clear();
     }
