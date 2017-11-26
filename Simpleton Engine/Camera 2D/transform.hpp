@@ -24,10 +24,6 @@ namespace Cam2D {
     CENTER
   };
   
-  inline glm::vec2 mulPos(const glm::mat3 &mat, const glm::vec2 pos) {
-    return mat * glm::vec3(pos.x, pos.y, 1.0f);
-  }
-  
   class Transform {
   public:
     Transform() = default;
@@ -38,6 +34,8 @@ namespace Cam2D {
     
     glm::mat3 toPixels() const;
     glm::mat3 toMeters() const;
+    glm::vec2 toPixels(glm::vec2) const;
+    glm::vec2 toMeters(glm::vec2) const;
     bool visibleMeters(AABB) const;
     
     void calculate(Props);
