@@ -16,9 +16,21 @@
 namespace Cam2D {
   struct Props;
   
+  enum class Origin {
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_RIGHT,
+    BOTTOM_LEFT,
+    CENTER
+  };
+  
   class Transform {
   public:
     Transform() = default;
+    
+    void setOrigin(Origin);
+    void setInvertX(bool);
+    void setInvertY(bool);
     
     glm::mat3 toPixels() const;
     glm::mat3 toMeters() const;
@@ -30,6 +42,9 @@ namespace Cam2D {
     glm::mat3 toPixelsMat;
     glm::mat3 toMetersMat;
     AABB windowBounds;
+    Origin origin = Origin::TOP_LEFT;
+    bool invertX = false;
+    bool invertY = false;
   };
 }
 
