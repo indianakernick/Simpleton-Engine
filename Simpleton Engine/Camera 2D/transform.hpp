@@ -24,6 +24,10 @@ namespace Cam2D {
     CENTER
   };
   
+  inline glm::vec2 mulPos(const glm::mat3 &mat, const glm::vec2 pos) {
+    return mat * glm::vec3(pos.x, pos.y, 1.0f);
+  }
+  
   class Transform {
   public:
     Transform() = default;

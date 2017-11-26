@@ -38,10 +38,6 @@ bool Transform::visibleMeters(const AABB aabbMeters) const {
 }
 
 namespace {
-  glm::vec2 mulPos(const glm::mat3 &mat, const glm::vec2 pos) {
-    return mat * glm::vec3(pos.x, pos.y, 1.0f);
-  }
-  
   glm::vec2 getOriginPos(const Origin origin) {
     switch (origin) {
       case Origin::TOP_LEFT:
