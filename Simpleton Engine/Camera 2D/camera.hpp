@@ -10,9 +10,8 @@
 #define engine_camera_2d_camera_hpp
 
 #include <memory>
-#include "move.hpp"
-#include "zoom.hpp"
 #include "props.hpp"
+#include "animate.hpp"
 #include "transform.hpp"
 #include "target pos.hpp"
 #include "target scale.hpp"
@@ -29,8 +28,8 @@ namespace Cam2D {
     void update(glm::ivec2 windowSize, float delta);
 
     Transform transform;
-    std::unique_ptr<Move> move;
-    std::unique_ptr<Zoom> zoom;
+    std::unique_ptr<Animate<PropID::POS>> animatePos;
+    std::unique_ptr<Animate<PropID::ZOOM>> animateZoom;
     std::unique_ptr<TargetPos> targetPos;
     std::unique_ptr<TargetScale> targetScale;
 

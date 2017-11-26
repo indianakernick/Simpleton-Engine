@@ -16,10 +16,6 @@
 		450ED6461FBBAE9A008F2902 /* props.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6441FBBAE9A008F2902 /* props.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
 		450ED64B1FBBAF60008F2902 /* transform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6491FBBAF60008F2902 /* transform.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		450ED64E1FBBB0F6008F2902 /* move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED64C1FBBB0F6008F2902 /* move.cpp */; };
-		450ED64F1FBBB0F6008F2902 /* move.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED64D1FBBB0F6008F2902 /* move.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		450ED6521FBBB17F008F2902 /* zoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6501FBBB17F008F2902 /* zoom.cpp */; };
-		450ED6531FBBB17F008F2902 /* zoom.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6511FBBB17F008F2902 /* zoom.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		450ED6561FBBB240008F2902 /* target pos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6541FBBB240008F2902 /* target pos.cpp */; };
 		450ED6571FBBB240008F2902 /* target pos.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6551FBBB240008F2902 /* target pos.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		450ED65A1FBBB2C6008F2902 /* target scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6581FBBB2C6008F2902 /* target scale.cpp */; };
@@ -28,16 +24,8 @@
 		450ED6631FBBB774008F2902 /* aabb.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6471FBBAF1D008F2902 /* aabb.hpp */; };
 		450ED6641FBBB774008F2902 /* props.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6441FBBAE9A008F2902 /* props.hpp */; };
 		450ED6651FBBB774008F2902 /* transform.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6491FBBAF60008F2902 /* transform.hpp */; };
-		450ED6661FBBB774008F2902 /* move.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED64D1FBBB0F6008F2902 /* move.hpp */; };
-		450ED6671FBBB774008F2902 /* zoom.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6511FBBB17F008F2902 /* zoom.hpp */; };
 		450ED6681FBBB774008F2902 /* target pos.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6551FBBB240008F2902 /* target pos.hpp */; };
 		450ED6691FBBB774008F2902 /* target scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6591FBBB2C6008F2902 /* target scale.hpp */; };
-		450ED66D1FBBB7A0008F2902 /* linear move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED66B1FBBB7A0008F2902 /* linear move.cpp */; };
-		450ED66E1FBBB7A0008F2902 /* linear move.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED66C1FBBB7A0008F2902 /* linear move.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		450ED6711FBBB9AA008F2902 /* linear zoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED66F1FBBB9AA008F2902 /* linear zoom.cpp */; };
-		450ED6721FBBB9AA008F2902 /* linear zoom.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6701FBBB9AA008F2902 /* linear zoom.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		450ED6731FBBBADF008F2902 /* linear move.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED66C1FBBB7A0008F2902 /* linear move.hpp */; };
-		450ED6741FBBBADF008F2902 /* linear zoom.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6701FBBB9AA008F2902 /* linear zoom.hpp */; };
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
 		45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F561F2490E8001B24E2 /* buffered container.hpp */; };
 		451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +35,12 @@
 		452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F41F3EF86900AF9AC6 /* bits.hpp */; };
 		452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F61F41924500AF9AC6 /* rand.hpp */; };
 		452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452FF9F11F68CCB3003A98B1 /* live stats.hpp */; };
+		4533A8D61FCA34410027B0FB /* animate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D41FCA34410027B0FB /* animate.cpp */; };
+		4533A8D71FCA34410027B0FB /* animate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533A8D51FCA34410027B0FB /* animate.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
+		4533A8DB1FCA34E50027B0FB /* constant speed.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533A8D91FCA34E50027B0FB /* constant speed.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		4533A8DC1FCA3AF30027B0FB /* animate.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8D51FCA34410027B0FB /* animate.hpp */; };
+		4533A8DD1FCA3AF30027B0FB /* constant speed.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8D91FCA34E50027B0FB /* constant speed.hpp */; };
 		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
 		4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
@@ -214,15 +208,13 @@
 			dstPath = "/usr/local/include/Simpleton/Camera 2D";
 			dstSubfolderSpec = 0;
 			files = (
+				4533A8DC1FCA3AF30027B0FB /* animate.hpp in CopyFiles */,
+				4533A8DD1FCA3AF30027B0FB /* constant speed.hpp in CopyFiles */,
 				4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */,
-				450ED6731FBBBADF008F2902 /* linear move.hpp in CopyFiles */,
-				450ED6741FBBBADF008F2902 /* linear zoom.hpp in CopyFiles */,
 				450ED6621FBBB774008F2902 /* camera.hpp in CopyFiles */,
 				450ED6631FBBB774008F2902 /* aabb.hpp in CopyFiles */,
 				450ED6641FBBB774008F2902 /* props.hpp in CopyFiles */,
 				450ED6651FBBB774008F2902 /* transform.hpp in CopyFiles */,
-				450ED6661FBBB774008F2902 /* move.hpp in CopyFiles */,
-				450ED6671FBBB774008F2902 /* zoom.hpp in CopyFiles */,
 				450ED6681FBBB774008F2902 /* target pos.hpp in CopyFiles */,
 				450ED6691FBBB774008F2902 /* target scale.hpp in CopyFiles */,
 			);
@@ -419,18 +411,10 @@
 		450ED6471FBBAF1D008F2902 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
 		450ED6481FBBAF60008F2902 /* transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
 		450ED6491FBBAF60008F2902 /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
-		450ED64C1FBBB0F6008F2902 /* move.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = move.cpp; sourceTree = "<group>"; };
-		450ED64D1FBBB0F6008F2902 /* move.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = move.hpp; sourceTree = "<group>"; };
-		450ED6501FBBB17F008F2902 /* zoom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = zoom.cpp; sourceTree = "<group>"; };
-		450ED6511FBBB17F008F2902 /* zoom.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zoom.hpp; sourceTree = "<group>"; };
 		450ED6541FBBB240008F2902 /* target pos.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "target pos.cpp"; sourceTree = "<group>"; };
 		450ED6551FBBB240008F2902 /* target pos.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "target pos.hpp"; sourceTree = "<group>"; };
 		450ED6581FBBB2C6008F2902 /* target scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "target scale.cpp"; sourceTree = "<group>"; };
 		450ED6591FBBB2C6008F2902 /* target scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "target scale.hpp"; sourceTree = "<group>"; };
-		450ED66B1FBBB7A0008F2902 /* linear move.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "linear move.cpp"; sourceTree = "<group>"; };
-		450ED66C1FBBB7A0008F2902 /* linear move.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "linear move.hpp"; sourceTree = "<group>"; };
-		450ED66F1FBBB9AA008F2902 /* linear zoom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "linear zoom.cpp"; sourceTree = "<group>"; };
-		450ED6701FBBB9AA008F2902 /* linear zoom.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "linear zoom.hpp"; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
 		45103F561F2490E8001B24E2 /* buffered container.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "buffered container.hpp"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
@@ -439,6 +423,10 @@
 		452B82F41F3EF86900AF9AC6 /* bits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bits.hpp; sourceTree = "<group>"; };
 		452B82F61F41924500AF9AC6 /* rand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rand.hpp; sourceTree = "<group>"; };
 		452FF9F11F68CCB3003A98B1 /* live stats.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "live stats.hpp"; sourceTree = "<group>"; };
+		4533A8D41FCA34410027B0FB /* animate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = animate.cpp; sourceTree = "<group>"; };
+		4533A8D51FCA34410027B0FB /* animate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = animate.hpp; sourceTree = "<group>"; };
+		4533A8D81FCA34E50027B0FB /* constant speed.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant speed.cpp"; sourceTree = "<group>"; };
+		4533A8D91FCA34E50027B0FB /* constant speed.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant speed.hpp"; sourceTree = "<group>"; };
 		4533DCC51FBBDF350058390C /* zoom to fit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "zoom to fit.cpp"; sourceTree = "<group>"; };
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
@@ -561,10 +549,8 @@
 				450ED6441FBBAE9A008F2902 /* props.hpp */,
 				450ED6481FBBAF60008F2902 /* transform.cpp */,
 				450ED6491FBBAF60008F2902 /* transform.hpp */,
-				450ED64C1FBBB0F6008F2902 /* move.cpp */,
-				450ED64D1FBBB0F6008F2902 /* move.hpp */,
-				450ED6501FBBB17F008F2902 /* zoom.cpp */,
-				450ED6511FBBB17F008F2902 /* zoom.hpp */,
+				4533A8D41FCA34410027B0FB /* animate.cpp */,
+				4533A8D51FCA34410027B0FB /* animate.hpp */,
 				450ED6541FBBB240008F2902 /* target pos.cpp */,
 				450ED6551FBBB240008F2902 /* target pos.hpp */,
 				450ED6581FBBB2C6008F2902 /* target scale.cpp */,
@@ -577,12 +563,10 @@
 		450ED66A1FBBB787008F2902 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
-				450ED66B1FBBB7A0008F2902 /* linear move.cpp */,
-				450ED66C1FBBB7A0008F2902 /* linear move.hpp */,
-				450ED66F1FBBB9AA008F2902 /* linear zoom.cpp */,
-				450ED6701FBBB9AA008F2902 /* linear zoom.hpp */,
 				4533DCC51FBBDF350058390C /* zoom to fit.cpp */,
 				4533DCC61FBBDF350058390C /* zoom to fit.hpp */,
+				4533A8D81FCA34E50027B0FB /* constant speed.cpp */,
+				4533A8D91FCA34E50027B0FB /* constant speed.hpp */,
 			);
 			name = Impl;
 			sourceTree = "<group>";
@@ -867,19 +851,17 @@
 				4592BB081F11EBF700D1640D /* message.hpp in Headers */,
 				450ED65B1FBBB2C6008F2902 /* target scale.hpp in Headers */,
 				450ED6571FBBB240008F2902 /* target pos.hpp in Headers */,
-				450ED64F1FBBB0F6008F2902 /* move.hpp in Headers */,
 				450ED64B1FBBAF60008F2902 /* transform.hpp in Headers */,
 				450ED6421FBBAE40008F2902 /* camera.hpp in Headers */,
-				450ED6531FBBB17F008F2902 /* zoom.hpp in Headers */,
 				450ED6461FBBAE9A008F2902 /* props.hpp in Headers */,
 				4592BB0A1F11EBF700D1640D /* component.hpp in Headers */,
 				4592BB0C1F11EBF700D1640D /* actor.hpp in Headers */,
 				4529DEEB1F31AABD00071267 /* line col.hpp in Headers */,
 				45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */,
 				45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */,
-				450ED6721FBBB9AA008F2902 /* linear zoom.hpp in Headers */,
-				450ED66E1FBBB7A0008F2902 /* linear move.hpp in Headers */,
 				451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */,
+				4533A8DB1FCA34E50027B0FB /* constant speed.hpp in Headers */,
+				4533A8D71FCA34410027B0FB /* animate.hpp in Headers */,
 				4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */,
 				45B5E7F41EF8A93900A6A3E2 /* member function.hpp in Headers */,
 			);
@@ -954,11 +936,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				450ED6711FBBB9AA008F2902 /* linear zoom.cpp in Sources */,
+				4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */,
 				45B5E7FC1EF8A93900A6A3E2 /* terminal color.cpp in Sources */,
-				450ED66D1FBBB7A0008F2902 /* linear move.cpp in Sources */,
 				4592BB071F11EBF700D1640D /* message.cpp in Sources */,
-				450ED64E1FBBB0F6008F2902 /* move.cpp in Sources */,
 				45B5E8C71EF9047000A6A3E2 /* system info.cpp in Sources */,
 				4529DEEA1F31AABD00071267 /* line col.cpp in Sources */,
 				450ED6411FBBAE40008F2902 /* camera.cpp in Sources */,
@@ -969,6 +949,7 @@
 				45B5E8AD1EF8E3ED00A6A3E2 /* renderer.cpp in Sources */,
 				45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */,
 				45B5E8A41EF8E14300A6A3E2 /* window library.cpp in Sources */,
+				4533A8D61FCA34410027B0FB /* animate.cpp in Sources */,
 				450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */,
 				450ED65A1FBBB2C6008F2902 /* target scale.cpp in Sources */,
 				45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */,
@@ -985,7 +966,6 @@
 				450ED6561FBBB240008F2902 /* target pos.cpp in Sources */,
 				4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */,
 				4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */,
-				450ED6521FBBB17F008F2902 /* zoom.cpp in Sources */,
 				45B5E7EB1EF8A93900A6A3E2 /* move test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
