@@ -24,7 +24,7 @@ void Camera::setPos(const glm::vec2 center) {
   props.center = center;
 }
 
-void Camera::setScale(const float ppm) {
+void Camera::setZoom(const float ppm) {
   props.ppm = ppm;
 }
 

@@ -21,7 +21,7 @@ namespace Cam2D {
     Camera(glm::vec2, float);
     
     void setPos(glm::vec2);
-    void setScale(float);
+    void setZoom(float);
     
     void update(glm::ivec2 windowSize, float delta);
 
