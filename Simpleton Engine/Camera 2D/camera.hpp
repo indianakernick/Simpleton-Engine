@@ -29,7 +29,7 @@ namespace Cam2D {
     std::unique_ptr<Animate<PropID::POS>> animatePos;
     std::unique_ptr<Animate<PropID::ZOOM>> animateZoom;
     std::unique_ptr<Target<PropID::POS>> targetPos;
-    std::unique_ptr<Target<PropID::ZOOM>> targetScale;
+    std::unique_ptr<Target<PropID::ZOOM>> targetZoom;
 
   private:
     Props props;

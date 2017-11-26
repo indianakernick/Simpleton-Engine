@@ -28,18 +28,24 @@ void Camera::setZoom(const float ppm) {
   props.ppm = ppm;
 }
 
+namespace {
+  template <PropID PROP>
+  auto animate(
+    std::unique_ptr<Target<PROP>> &target,
+    std::unique_ptr<Animate<PROP>> &animate,
+    const Props &props,
+    const float delta
+  ) {
+    const auto targetProp = target ? target->calcTarget(props) : getProp<PROP>(props);
+    return animate ? animate->calculate(props, targetProp, delta) : targetProp;
+  }
+}
+
 void Camera::update(const glm::ivec2 windowSize, const float delta) {
   props.windowSize = windowSize;
   
-  const glm::vec2 posTarget = targetPos ? targetPos->calcTarget(props)
-                                        : props.center;
-  const glm::vec2 center = animatePos ? animatePos->calculate(props, posTarget, delta)
-                                      : posTarget;
-  
-  const float scaleTarget = targetScale ? targetScale->calcTarget(props)
-                                        : props.ppm;
-  const float ppm = animateZoom ? animateZoom->calculate(props, scaleTarget, delta)
-                                : scaleTarget;
+  const glm::vec2 center = animate(targetPos, animatePos, props, delta);
+  const float ppm = animate(targetZoom, animateZoom, props, delta);
   
   props.center = center;
   props.ppm = ppm;
