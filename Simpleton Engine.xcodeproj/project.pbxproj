@@ -41,6 +41,7 @@
 		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
 		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
+		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -313,6 +314,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */,
 				45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */,
 				45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */,
 				452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */,
@@ -420,6 +422,7 @@
 		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
 		453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "keyframe animation.hpp"; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
+		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
 		4592B96B1F0A2BA600D1640D /* font library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "font library.cpp"; sourceTree = "<group>"; };
@@ -657,6 +660,7 @@
 				45DEA0321F7F757200B1DA72 /* parse string.cpp */,
 				45DEA0331F7F757200B1DA72 /* parse string.hpp */,
 				45DEA0371F80B36900B1DA72 /* tuple.hpp */,
+				4584F40B1FCCF0C80062B93E /* combine hashes.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
