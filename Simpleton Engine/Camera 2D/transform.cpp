@@ -9,6 +9,7 @@
 #include "transform.hpp"
 
 #include "props.hpp"
+#include "matrix mul.hpp"
 #include <glm/gtx/matrix_transform_2d.hpp>
 
 using namespace Cam2D;
