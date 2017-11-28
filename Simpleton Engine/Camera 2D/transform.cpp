@@ -33,12 +33,6 @@ glm::mat3 Transform::toMeters() const {
   return toMetersMat;
 }
 
-namespace {
-  glm::vec2 mulPos(const glm::mat3 &mat, const glm::vec2 pos) {
-    return mat * glm::vec3(pos.x, pos.y, 1.0f);
-  }
-}
-
 glm::vec2 Transform::toPixels(const glm::vec2 pos) const {
   return mulPos(toPixelsMat, pos);
 }
