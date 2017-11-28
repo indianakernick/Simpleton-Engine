@@ -79,7 +79,7 @@ namespace Game {
       dispatcher.dispatch(ANY_TYPE, event);
     }
     
-    ///Add a event listener
+    ///Add an event listener
     template <typename Function>
     ListenerID addListener(Function &&listener) {
       PROFILE(Game::EventManager::addListener);
