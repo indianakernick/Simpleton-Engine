@@ -10,6 +10,8 @@
 #define engine_id_type_hpp
 
 #include <type_traits>
+#include "../Utils/type name.hpp"
+#include "../Utils/combine hashes.hpp"
 
 namespace ID {
   template <typename Int, typename Group>
@@ -51,34 +53,19 @@ namespace ID {
   template <typename Int, typename T, typename Group>
   const Int TypeCounter<Int, T, Group>::ID = Counter<Int, Group>::counter++;
   
-  template <typename T, typename Group>
-  class Hasher {
-  public:
-    Hasher() = delete;
-    ~Hasher() = delete;
-    
-  protected:
-    static void dummy() {}
-    static constexpr void (*HASH)() = &Hasher::dummy;
-  };
-  
   ///Creates an ID unique to the type within the Group. IDs are hashes and
   ///available at compile time
   template <typename Int, typename T, typename Group = void>
-  class TypeHasher : private Hasher<T, Group> {
-  
-    static_assert(std::is_integral<Int>::value, "Int must be an integral type");
-  
+  class TypeHasher {
   public:
     TypeHasher() = delete;
     ~TypeHasher() = delete;
     
     static constexpr Int get() {
-      return ID;
+      return static_cast<Int>(
+        Utils::combineHashes(Utils::typeHash<Group>(), Utils::typeHash<T>())
+      );
     }
-    
-  private:
-    static constexpr Int ID = reinterpret_cast<Int>(Hasher<T, Group>::HASH);
   };
 }
 
