@@ -43,6 +43,7 @@
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
 		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
+		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -291,6 +292,7 @@
 			dstPath = /usr/local/include/Simpleton/Math;
 			dstSubfolderSpec = 0;
 			files = (
+				4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */,
 				452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */,
 				4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */,
 				452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */,
@@ -426,6 +428,7 @@
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
+		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
 		4592B96B1F0A2BA600D1640D /* font library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "font library.cpp"; sourceTree = "<group>"; };
@@ -688,6 +691,7 @@
 				452B82F61F41924500AF9AC6 /* rand.hpp */,
 				4541160D1F51479800C2865B /* int float.hpp */,
 				452FF9F11F68CCB3003A98B1 /* live stats.hpp */,
+				4584F4151FCE7D5B0062B93E /* digit stack.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";
