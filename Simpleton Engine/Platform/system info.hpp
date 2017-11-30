@@ -12,11 +12,6 @@
 #include <string>
 
 namespace Platform {
-  class ResPathError final : std::logic_error {
-  public:
-    explicit ResPathError(const char *);
-  };
-
   std::string getSaveDir(const std::string &companyName, const std::string &appName);
   std::string getResDir();
 }

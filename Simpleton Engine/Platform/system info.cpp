@@ -10,14 +10,18 @@
 
 #include <SDL2/SDL.h>
 
-Platform::ResPathError::ResPathError(const char *what)
-  : std::logic_error(what) {}
-
 std::string Platform::getSaveDir(
   const std::string &companyName,
   const std::string &appName
 ) {
   char *cstr = SDL_GetPrefPath(companyName.c_str(), appName.c_str());
+  std::string str(cstr);
+  SDL_free(cstr);
+  return str;
+}
+
+std::string Platform::getResDir() {
+  char *cstr = SDL_GetBasePath();
   std::string str(cstr);
   SDL_free(cstr);
   return str;
