@@ -23,6 +23,10 @@ namespace Cam2D {
     explicit ConstantSpeed(const float speed)
       : speed(speed) {}
     
+    void setSpeed(const float newSpeed) {
+      speed = newSpeed;
+    }
+    
     Type calculate(const Props props, const Type target, const float delta) override {
       const Type toTarget = target - getProp<PROP>(props);
       const float targetDist = glm::length(toTarget);

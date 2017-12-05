@@ -15,6 +15,10 @@ using namespace Cam2D;
 ZoomToFit::ZoomToFit(const glm::vec2 box)
   : box(box) {}
 
+void ZoomToFit::setSize(const glm::vec2 newBox) {
+  box = newBox;
+}
+
 float ZoomToFit::calcTarget(const Props props) {
   const float windowAspect = props.windowSize.x / props.windowSize.y;
   const float boxAspect = box.x / box.y;

@@ -17,6 +17,8 @@ namespace Cam2D {
   public:
     explicit ZoomToFit(glm::vec2);
     
+    void setSize(glm::vec2);
+    
     float calcTarget(Props) override;
     
   private:
