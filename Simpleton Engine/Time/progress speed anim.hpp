@@ -174,7 +174,7 @@ namespace Time {
         return speed;
       }
     }
-    ///Move the playhead to the beginning when the playhead passes the edge
+    ///Move the playhead to the opposite edge when the playhead passes the edge
     void repeatPastEdge() {
       if (forward()) {
         repeatPastEnd();
