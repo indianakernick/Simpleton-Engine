@@ -10,6 +10,7 @@
 #define engine_camera_2d_animate_hpp
 
 #include "props.hpp"
+#include <glm/gtx/norm.hpp>
 
 namespace Cam2D {
   template <PropID PROP>
@@ -18,10 +19,28 @@ namespace Cam2D {
     using Type = PropType<PROP>;
   
     Animate() = default;
-    virtual ~Animate() = default;
+    virtual ~Animate() = 0;
     
-    virtual Type calculate(Props, Type target, float delta) = 0;
+    virtual Type calculate(const Props props, const Type target, const float delta) {
+      const Type current = getProp<PROP>(props);
+      const Type toTarget = target - current;
+      const float targetDist = glm::length(toTarget);
+      const float moveDist = getMoveDistance(props, target, delta);
+      if (targetDist <= moveDist) {
+        return target;
+      } else {
+        return current + moveDist * toTarget / targetDist;
+      }
+    }
+  
+  private:
+    virtual float getMoveDistance(Props, Type, float) {
+      return 1.0f;
+    }
   };
+  
+  template <PropID PROP>
+  inline Animate<PROP>::~Animate() {}
 }
 
 #endif

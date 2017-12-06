@@ -10,7 +10,6 @@
 #define engine_camera_2d_constant_speed_hpp
 
 #include "animate.hpp"
-#include <glm/gtx/norm.hpp>
 
 namespace Cam2D {
   template <PropID PROP>
@@ -26,20 +25,13 @@ namespace Cam2D {
     void setSpeed(const float newSpeed) {
       speed = newSpeed;
     }
-    
-    Type calculate(const Props props, const Type target, const float delta) override {
-      const Type toTarget = target - getProp<PROP>(props);
-      const float targetDist = glm::length(toTarget);
-      const float deltaDist = speed * delta;
-      if (targetDist <= deltaDist) {
-        return target;
-      } else {
-        return getProp<PROP>(props) + deltaDist * toTarget / targetDist;
-      }
-    }
   
   private:
     float speed;
+    
+    Type getMoveDistance(Props, Type, const float delta) override {
+      return speed * delta;
+    }
   };
   
   using PosConstantSpeed = ConstantSpeed<PropID::POS>;

@@ -41,6 +41,9 @@
 		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
 		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
+		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
+		4541A4B61FD7734400AD20C1 /* constant scale.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; };
 		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
 		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
@@ -204,6 +207,7 @@
 			dstPath = "/usr/local/include/Simpleton/Camera 2D";
 			dstSubfolderSpec = 0;
 			files = (
+				4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */,
 				4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */,
 				4533A8E21FCA3FDA0027B0FB /* target.hpp in CopyFiles */,
 				4533A8DC1FCA3AF30027B0FB /* animate.hpp in CopyFiles */,
@@ -425,6 +429,8 @@
 		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
 		453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "keyframe animation.hpp"; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
+		4541A4B31FD7734400AD20C1 /* constant scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant scale.cpp"; sourceTree = "<group>"; };
+		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -558,6 +564,8 @@
 				4533DCC61FBBDF350058390C /* zoom to fit.hpp */,
 				4533A8D81FCA34E50027B0FB /* constant speed.cpp */,
 				4533A8D91FCA34E50027B0FB /* constant speed.hpp */,
+				4541A4B31FD7734400AD20C1 /* constant scale.cpp */,
+				4541A4B41FD7734400AD20C1 /* constant scale.hpp */,
 			);
 			name = Impl;
 			sourceTree = "<group>";
@@ -854,6 +862,7 @@
 				4533A8D71FCA34410027B0FB /* animate.hpp in Headers */,
 				4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */,
 				4533A8E11FCA3E4B0027B0FB /* target.hpp in Headers */,
+				4541A4B61FD7734400AD20C1 /* constant scale.hpp in Headers */,
 				45B5E7F41EF8A93900A6A3E2 /* member function.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,6 +936,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */,
 				4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */,
 				45B5E7FC1EF8A93900A6A3E2 /* terminal color.cpp in Sources */,
 				4592BB071F11EBF700D1640D /* message.cpp in Sources */,
