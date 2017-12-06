@@ -15,7 +15,20 @@
 using namespace Cam2D;
 
 void Transform::setOrigin(const Origin newOrigin) {
-  origin = newOrigin;
+  posOrigin = newOrigin;
+  zoomOrigin = newOrigin;
+}
+
+void Transform::setPosOrigin(const Origin newOrigin) {
+  posOrigin = newOrigin;
+}
+
+void Transform::setPosOriginSize(const glm::vec2 newOriginSize) {
+  posOriginSize = newOriginSize;
+}
+
+void Transform::setZoomOrigin(const Origin newOrigin) {
+  zoomOrigin = newOrigin;
 }
 
 void Transform::setInvertX(const bool newInvertX) {
@@ -75,13 +88,15 @@ namespace {
 }
 
 void Transform::calculate(const Props props) {
-  toPixelsMat = glm::translate(
-    glm::scale(
-      getOriginTransform(props.windowSize, origin),
-      getInvertedScale(invertX, invertY) * props.ppm
-    ),
-    -props.center
-  );
+  const glm::vec2 posOriginPos = getOriginPos(posOrigin) - getOriginPos(zoomOrigin);
+  const glm::mat3 posOriginMat = glm::translate({}, posOriginSize * posOriginPos);
+  const glm::mat3 zoomOriginMat = getOriginTransform(props.windowSize, zoomOrigin);
+  const glm::mat3 zoomMat = glm::scale({}, glm::vec2(props.ppm));
+  const glm::mat3 posMat = glm::translate({}, -props.center);
+  const glm::mat3 invertMat = glm::scale({}, getInvertedScale(invertX, invertY));
+
+  toPixelsMat = zoomOriginMat * zoomMat * posOriginMat * invertMat * posMat;
+ 
   toMetersMat = glm::inverse(toPixelsMat);
   windowBounds.setPoint(mulPos(toMetersMat, {0.0f, 0.0f}));
   windowBounds.extendToEnclose(mulPos(toMetersMat, props.windowSize));

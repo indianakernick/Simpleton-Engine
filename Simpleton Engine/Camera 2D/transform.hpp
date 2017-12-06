@@ -29,6 +29,9 @@ namespace Cam2D {
     Transform() = default;
     
     void setOrigin(Origin);
+    void setPosOrigin(Origin);
+    void setPosOriginSize(glm::vec2);
+    void setZoomOrigin(Origin);
     void setInvertX(bool);
     void setInvertY(bool);
     
@@ -44,7 +47,9 @@ namespace Cam2D {
     glm::mat3 toPixelsMat;
     glm::mat3 toMetersMat;
     AABB windowBounds;
-    Origin origin = Origin::TOP_LEFT;
+    glm::vec2 posOriginSize = {0.0f, 0.0f};
+    Origin posOrigin = Origin::TOP_LEFT;
+    Origin zoomOrigin = Origin::TOP_LEFT;
     bool invertX = false;
     bool invertY = false;
   };
