@@ -92,7 +92,7 @@ void Transform::calculate(const Props props) {
   const glm::mat3 posOriginMat = glm::translate({}, posOriginSize * posOriginPos);
   const glm::mat3 zoomOriginMat = getOriginTransform(props.windowSize, zoomOrigin);
   const glm::mat3 zoomMat = glm::scale({}, glm::vec2(props.ppm));
-  const glm::mat3 posMat = glm::translate({}, -props.center);
+  const glm::mat3 posMat = glm::translate({}, -props.pos);
   const glm::mat3 invertMat = glm::scale({}, getInvertedScale(invertX, invertY));
 
   toPixelsMat = zoomOriginMat * zoomMat * posOriginMat * invertMat * posMat;

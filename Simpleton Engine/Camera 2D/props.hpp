@@ -15,8 +15,8 @@ namespace Cam2D {
   struct Props {
     ///Size of the window
     glm::ivec2 windowSize;
-    ///Position in meters of the center of the camera
-    glm::vec2 center;
+    ///Position in meters of the camera
+    glm::vec2 pos;
     ///Pixels per meter
     float ppm;
   };
@@ -32,7 +32,7 @@ namespace Cam2D {
   template <>
   struct PropTraits<PropID::POS> {
     using type = glm::vec2;
-    static constexpr auto PTR = &Props::center;
+    static constexpr auto PTR = &Props::pos;
   };
   
   template <>

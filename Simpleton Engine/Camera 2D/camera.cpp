@@ -11,17 +11,17 @@
 using namespace Cam2D;
 
 Camera::Camera(const float ppm) {
-  props.center = {0.0f, 0.0f};
+  props.pos = {0.0f, 0.0f};
   props.ppm = ppm;
 }
 
-Camera::Camera(const glm::vec2 center, const float ppm) {
-  props.center = center;
+Camera::Camera(const glm::vec2 pos, const float ppm) {
+  props.pos = pos;
   props.ppm = ppm;
 }
 
-void Camera::setPos(const glm::vec2 center) {
-  props.center = center;
+void Camera::setPos(const glm::vec2 pos) {
+  props.pos = pos;
 }
 
 void Camera::setZoom(const float ppm) {
@@ -44,10 +44,10 @@ namespace {
 void Camera::update(const glm::ivec2 windowSize, const float delta) {
   props.windowSize = windowSize;
   
-  const glm::vec2 center = animate(targetPos, animatePos, props, delta);
+  const glm::vec2 pos = animate(targetPos, animatePos, props, delta);
   const float ppm = animate(targetZoom, animateZoom, props, delta);
   
-  props.center = center;
+  props.pos = pos;
   props.ppm = ppm;
   
   transform.calculate(props);
