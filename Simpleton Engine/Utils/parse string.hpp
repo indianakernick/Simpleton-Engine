@@ -118,7 +118,7 @@ namespace Utils {
     template <typename Number>
     void parseNumber(Number &number) {
       if constexpr (std::is_integral<Number>::value) {
-        if constexpr (std::is_signed<Number>::value) {
+        if constexpr (std::is_unsigned<Number>::value) {
           char *end;
           const unsigned long long num = std::strtoull(mData, &end, 0);
           if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
@@ -129,7 +129,7 @@ namespace Utils {
           }
           advance(end - mData);
           number = static_cast<Number>(num);
-        } else if constexpr (std::is_unsigned<Number>::value) {
+        } else if constexpr (std::is_signed<Number>::value) {
           char *end;
           const long long num = std::strtoll(mData, &end, 0);
           if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
