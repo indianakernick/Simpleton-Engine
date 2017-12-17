@@ -44,6 +44,36 @@
 		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
 		4541A4B61FD7734400AD20C1 /* constant scale.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; };
+		454D04831FE63D9900D3E560 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
+		454D04841FE63D9900D3E560 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
+		454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
+		454D04861FE63D9900D3E560 /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
+		454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
+		454D04881FE63D9900D3E560 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
+		454D04891FE63D9900D3E560 /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
+		454D048A1FE63D9900D3E560 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88C1EF8DCC400A6A3E2 /* event.cpp */; };
+		454D048B1FE63D9900D3E560 /* manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88E1EF8DCC400A6A3E2 /* manager.cpp */; };
+		454D048C1FE63D9900D3E560 /* window library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E89C1EF8E14300A6A3E2 /* window library.cpp */; };
+		454D048D1FE63D9900D3E560 /* font library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.cpp */; };
+		454D048E1FE63D9900D3E560 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8A01EF8E14300A6A3E2 /* window.cpp */; };
+		454D048F1FE63D9900D3E560 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */; };
+		454D04901FE63D9900D3E560 /* system info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C41EF9047000A6A3E2 /* system info.cpp */; };
+		454D04911FE63D9900D3E560 /* fps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */; };
+		454D04921FE63D9900D3E560 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
+		454D04931FE63D9900D3E560 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
+		454D04941FE63D9900D3E560 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
+		454D04951FE63D9900D3E560 /* instance limiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7BF1EF8A93900A6A3E2 /* instance limiter.cpp */; };
+		454D04961FE63D9900D3E560 /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7C11EF8A93900A6A3E2 /* profiler.cpp */; };
+		454D04971FE63D9900D3E560 /* move test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7C81EF8A93900A6A3E2 /* move test.cpp */; };
+		454D04981FE63D9900D3E560 /* terminal color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7D91EF8A93900A6A3E2 /* terminal color.cpp */; };
+		454D04991FE63D9900D3E560 /* line col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4529DEE81F31AABD00071267 /* line col.cpp */; };
+		454D049A1FE63D9900D3E560 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
+		454D049B1FE63D9900D3E560 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BB011F11EBF700D1640D /* message.cpp */; };
+		454D049C1FE63D9900D3E560 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BB031F11EBF700D1640D /* component.cpp */; };
+		454D049D1FE63D9900D3E560 /* actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BB051F11EBF700D1640D /* actor.cpp */; };
+		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
+		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
+		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
 		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
 		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
@@ -54,7 +84,6 @@
 		4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.cpp */; };
 		4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
-		4592B9701F0A2E5E00D1640D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */; };
 		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
 		4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
 		4592BAEB1F11C3CB00D1640D /* app.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BAE91F11C3CB00D1640D /* app.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -199,6 +228,16 @@
 		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
 		45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99411F3695E500F8C639 /* hash.hpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		454D03EE1FE63C3800D3E560 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45B5E6971EF7C25200A6A3E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45B5E69E1EF7C25200A6A3E2;
+			remoteInfo = "Simpleton Engine";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		450ED6611FBBB700008F2902 /* CopyFiles */ = {
@@ -431,6 +470,11 @@
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B31FD7734400AD20C1 /* constant scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant scale.cpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
+		454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libStatic Simpleton Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
+		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
+		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -515,7 +559,6 @@
 		45B5E8A11EF8E14300A6A3E2 /* window.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = window.hpp; sourceTree = "<group>"; };
 		45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
-		45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2/2.0.5/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		45B5E8C41EF9047000A6A3E2 /* system info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "system info.cpp"; sourceTree = "<group>"; };
 		45B5E8C51EF9047000A6A3E2 /* system info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "system info.hpp"; sourceTree = "<group>"; };
 		45DEA0321F7F757200B1DA72 /* parse string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "parse string.cpp"; sourceTree = "<group>"; };
@@ -528,12 +571,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		454D03E71FE63C2300D3E560 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45771B851FE7238200F533DA /* SDL2.framework in Frameworks */,
+				454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45B5E69C1EF7C25200A6A3E2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */,
 				4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */,
-				4592B9701F0A2E5E00D1640D /* libSDL2-2.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */,
+				454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -781,8 +834,11 @@
 		45B5E8AF1EF9028600A6A3E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */,
+				45771B841FE7238200F533DA /* SDL2.framework */,
+				454D04A01FE63DFB00D3E560 /* libSDL2.a */,
+				454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */,
 				4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */,
-				45B5E8B01EF9028700A6A3E2 /* libSDL2-2.0.0.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -790,6 +846,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		454D03E81FE63C2300D3E560 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45B5E69D1EF7C25200A6A3E2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -870,6 +933,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		454D03E91FE63C2300D3E560 /* Static Simpleton Engine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 454D03ED1FE63C2300D3E560 /* Build configuration list for PBXNativeTarget "Static Simpleton Engine" */;
+			buildPhases = (
+				454D03E61FE63C2300D3E560 /* Sources */,
+				454D03E71FE63C2300D3E560 /* Frameworks */,
+				454D03E81FE63C2300D3E560 /* Headers */,
+				454D040C1FE63C9F00D3E560 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				454D03EF1FE63C3800D3E560 /* PBXTargetDependency */,
+			);
+			name = "Static Simpleton Engine";
+			productName = "Static Simpleton Engine";
+			productReference = 454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45B5E6AA1EF7C25200A6A3E2 /* Build configuration list for PBXNativeTarget "Simpleton Engine" */;
@@ -908,6 +990,11 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Indi Kernick";
 				TargetAttributes = {
+					454D03E91FE63C2300D3E560 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = QY44MADGVC;
+						ProvisioningStyle = Automatic;
+					};
 					45B5E69E1EF7C25200A6A3E2 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
@@ -927,11 +1014,62 @@
 			projectRoot = "";
 			targets = (
 				45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */,
+				454D03E91FE63C2300D3E560 /* Static Simpleton Engine */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		454D040C1FE63C9F00D3E560 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\ncp $BUILT_PRODUCTS_DIR/libStatic\\ Simpleton\\ Engine.a /usr/local/lib/libSimpleton\\ Engine.a";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		454D03E61FE63C2300D3E560 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				454D04831FE63D9900D3E560 /* camera.cpp in Sources */,
+				454D04841FE63D9900D3E560 /* transform.cpp in Sources */,
+				454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */,
+				454D04861FE63D9900D3E560 /* constant speed.cpp in Sources */,
+				454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */,
+				454D04881FE63D9900D3E560 /* app.cpp in Sources */,
+				454D04891FE63D9900D3E560 /* sdl app.cpp in Sources */,
+				454D048A1FE63D9900D3E560 /* event.cpp in Sources */,
+				454D048B1FE63D9900D3E560 /* manager.cpp in Sources */,
+				454D048C1FE63D9900D3E560 /* window library.cpp in Sources */,
+				454D048D1FE63D9900D3E560 /* font library.cpp in Sources */,
+				454D048E1FE63D9900D3E560 /* window.cpp in Sources */,
+				454D048F1FE63D9900D3E560 /* renderer.cpp in Sources */,
+				454D04901FE63D9900D3E560 /* system info.cpp in Sources */,
+				454D04911FE63D9900D3E560 /* fps.cpp in Sources */,
+				454D04921FE63D9900D3E560 /* exceptions.cpp in Sources */,
+				454D04931FE63D9900D3E560 /* buffer.cpp in Sources */,
+				454D04941FE63D9900D3E560 /* file io.cpp in Sources */,
+				454D04951FE63D9900D3E560 /* instance limiter.cpp in Sources */,
+				454D04961FE63D9900D3E560 /* profiler.cpp in Sources */,
+				454D04971FE63D9900D3E560 /* move test.cpp in Sources */,
+				454D04981FE63D9900D3E560 /* terminal color.cpp in Sources */,
+				454D04991FE63D9900D3E560 /* line col.cpp in Sources */,
+				454D049A1FE63D9900D3E560 /* parse string.cpp in Sources */,
+				454D049B1FE63D9900D3E560 /* message.cpp in Sources */,
+				454D049C1FE63D9900D3E560 /* component.cpp in Sources */,
+				454D049D1FE63D9900D3E560 /* actor.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45B5E69B1EF7C25200A6A3E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -968,7 +1106,93 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		454D03EF1FE63C3800D3E560 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */;
+			targetProxy = 454D03EE1FE63C3800D3E560 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		454D03EB1FE63C2300D3E560 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QY44MADGVC;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/Cellar/glm/**",
+					"/usr/local/Cellar/sdl2/**",
+					"/usr/local/Cellar/sdl2_ttf/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
+					/usr/local/Cellar/sdl2/2.0.7/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wall",
+					"-Wextra",
+					"-Weffc++",
+					"-Wpedantic",
+					"-Wextra-semi",
+					"-Wno-documentation",
+					"-std=c++1z",
+				);
+				OTHER_LDFLAGS = "-Wl,-search_paths_first";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		454D03EC1FE63C2300D3E560 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QY44MADGVC;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/Cellar/glm/**",
+					"/usr/local/Cellar/sdl2/**",
+					"/usr/local/Cellar/sdl2_ttf/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
+					/usr/local/Cellar/sdl2/2.0.7/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wall",
+					"-Wextra",
+					"-Weffc++",
+					"-Wpedantic",
+					"-Wextra-semi",
+					"-Wno-documentation",
+					"-std=c++1z",
+				);
+				OTHER_LDFLAGS = "-Wl,-search_paths_first";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		45B5E6A81EF7C25200A6A3E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1091,6 +1315,7 @@
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
+					/usr/local/Cellar/sdl2/2.0.7/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -1127,6 +1352,7 @@
 					"$(inherited)",
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
+					/usr/local/Cellar/sdl2/2.0.7/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -1145,6 +1371,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		454D03ED1FE63C2300D3E560 /* Build configuration list for PBXNativeTarget "Static Simpleton Engine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				454D03EB1FE63C2300D3E560 /* Debug */,
+				454D03EC1FE63C2300D3E560 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45B5E69A1EF7C25200A6A3E2 /* Build configuration list for PBXProject "Simpleton Engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
