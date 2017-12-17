@@ -10,12 +10,12 @@
 #define engine_utils_instance_limiter_hpp
 
 #include <stdexcept>
-#include <experimental/string_view>
+#include <string_view>
 
 namespace Utils {
   class TooManyInstances final : std::logic_error {
   public:
-    TooManyInstances(std::experimental::string_view, size_t);
+    TooManyInstances(std::string_view, size_t);
   };
 }
 

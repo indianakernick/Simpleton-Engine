@@ -8,6 +8,8 @@
 
 #include "font library.hpp"
 
+#include <string>
+
 Platform::FontLibrary::FontLibrary() {
   //SDL_TTF uses SDL's error system
   CHECK_SDL_ERROR(TTF_Init());

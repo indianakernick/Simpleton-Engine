@@ -9,9 +9,10 @@
 #ifndef engine_math_dir_hpp
 #define engine_math_dir_hpp
 
+#include <cctype>
 #include <stdexcept>
+#include <string_view>
 #include <glm/vec2.hpp>
-#include <experimental/string_view>
 
 namespace Math {
   ///The underlying type of Dir and Axis
@@ -294,7 +295,7 @@ namespace Math {
     }
   };
   
-  constexpr std::experimental::string_view toUpperCaseString(const Dir dir) {
+  constexpr std::string_view toUpperCaseString(const Dir dir) {
     switch (dir) {
       case Dir::UP:
         return "UP";
@@ -311,7 +312,7 @@ namespace Math {
     }
   }
   
-  constexpr std::experimental::string_view toLowerCaseString(const Dir dir) {
+  constexpr std::string_view toLowerCaseString(const Dir dir) {
     switch (dir) {
       case Dir::UP:
         return "up";
@@ -328,9 +329,9 @@ namespace Math {
     }
   }
   
-  constexpr Dir toDir(const std::experimental::string_view str) {
+  constexpr Dir toDir(const std::string_view str) {
     //Case insensitive comparison. Assumes other is lower case
-    const auto equalTo = [str] (const std::experimental::string_view other) {
+    const auto equalTo = [str] (const std::string_view other) {
       if (str.size() != other.size()) {
         return false;
       }

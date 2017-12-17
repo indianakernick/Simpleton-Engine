@@ -22,7 +22,7 @@ char Utils::ParseStringExpectError::expectedChar() const {
 Utils::ParseString::ParseString(const std::string &string)
   : mData(string.data()), mSize(string.size()) {}
 
-Utils::ParseString::ParseString(const std::experimental::string_view view)
+Utils::ParseString::ParseString(const std::string_view view)
   : mData(view.data()), mSize(view.size()) {
   throwIfNull(view.data());
 }
@@ -36,11 +36,11 @@ Utils::ParseString::LineCol Utils::ParseString::lineCol() const {
   return mLineCol;
 }
 
-std::experimental::string_view Utils::ParseString::view() const {
+std::string_view Utils::ParseString::view() const {
   return {mData, mSize};
 }
 
-std::experimental::string_view Utils::ParseString::view(const size_t numChars) const {
+std::string_view Utils::ParseString::view(const size_t numChars) const {
   if (numChars > mSize) {
     throw std::out_of_range("View size larger than string");
   }
@@ -123,7 +123,7 @@ bool Utils::ParseString::check(const char *data, const size_t size) {
   }
 }
 
-bool Utils::ParseString::check(const std::experimental::string_view view) {
+bool Utils::ParseString::check(const std::string_view view) {
   return check(view.data(), view.size());
 }
 

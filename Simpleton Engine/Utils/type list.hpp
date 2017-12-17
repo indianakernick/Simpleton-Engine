@@ -507,7 +507,7 @@ namespace Utils {
   //Get by name
   
   template <typename List, typename Function>
-  bool getByName(const std::experimental::string_view name, Function &&function) {
+  bool getByName(const std::string_view name, Function &&function) {
     bool gotType = false;
     forEach<List>([&gotType, name, function] (auto t) {
       if (typeName<UTILS_TYPE(t)>() == name) {
@@ -520,12 +520,12 @@ namespace Utils {
   
   class TypeNotFound final : public std::runtime_error {
   public:
-    inline explicit TypeNotFound(const std::experimental::string_view name)
+    inline explicit TypeNotFound(const std::string_view name)
       : std::runtime_error("Type with name \"" + name.to_string() + "\" not found") {}
   };
   
   template <typename ValueType, typename List, typename Function>
-  ValueType getValueByName(const std::experimental::string_view name, Function &&function) {
+  ValueType getValueByName(const std::string_view name, Function &&function) {
     std::experimental::optional<ValueType> value;
     
     forEach<List>([&value, name, function] (auto t) {

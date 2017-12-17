@@ -9,8 +9,9 @@
 #ifndef engine_utils_parse_string_hpp
 #define engine_utils_parse_string_hpp
 
+#include <cerrno>
+#include <string_view>
 #include "line col.hpp"
-#include <experimental/string_view>
 
 namespace Utils {
   ///A character was expected but not present
@@ -36,14 +37,14 @@ namespace Utils {
     using LineCol = Utils::LineCol<unsigned, unsigned>;
   
     explicit ParseString(const std::string &);
-    explicit ParseString(std::experimental::string_view);
+    explicit ParseString(std::string_view);
     ParseString(const char *, size_t);
     
     const char *data() const;
     size_t size() const;
     LineCol lineCol() const;
-    std::experimental::string_view view() const;
-    std::experimental::string_view view(size_t) const;
+    std::string_view view() const;
+    std::string_view view(size_t) const;
     
     ///Returns true if the string is empty
     bool empty() const;
@@ -111,7 +112,7 @@ namespace Utils {
     bool check(const char *, size_t);
     ///Advances and returns true if the front part of the string is equal to the
     ///supplied string. Does nothing and returns false otherwise
-    bool check(std::experimental::string_view);
+    bool check(std::string_view);
     
     ///Interprets the front part of the string as a number. Throws a
     ///ParseStringNumberError exception on failure

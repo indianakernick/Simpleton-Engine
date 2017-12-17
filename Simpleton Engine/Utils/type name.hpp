@@ -9,14 +9,14 @@
 #ifndef engine_utils_type_name_hpp
 #define engine_utils_type_name_hpp
 
-#include <experimental/string_view>
+#include <string_view>
 
 namespace Utils {
   template <typename T>
-  constexpr std::experimental::string_view typeName() {
+  constexpr std::string_view typeName() {
     //pretty function outputs
-    //std::experimental::string_view typeName() [T = int]
-    std::experimental::string_view name = __PRETTY_FUNCTION__;
+    //std::string_view typeName() [T = int]
+    std::string_view name = __PRETTY_FUNCTION__;
     name.remove_prefix(name.find('['));
     //trimming "[T = "
     name.remove_prefix(5);
@@ -28,7 +28,7 @@ namespace Utils {
   template <typename T>
   constexpr size_t typeHash() {
     //djb2
-    constexpr std::experimental::string_view name = typeName<T>();
+    constexpr std::string_view name = typeName<T>();
     size_t hash = 5381;
     
     for (auto c = name.begin(); c != name.end(); ++c) {
