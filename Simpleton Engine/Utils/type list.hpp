@@ -10,6 +10,7 @@
 #define engine_utils_type_list_hpp
 
 #include <tuple>
+#include <string>
 #include <cstddef>
 #include <utility>
 #include <type_traits>
@@ -521,7 +522,7 @@ namespace Utils {
   class TypeNotFound final : public std::runtime_error {
   public:
     inline explicit TypeNotFound(const std::string_view name)
-      : std::runtime_error("Type with name \"" + name.to_string() + "\" not found") {}
+      : std::runtime_error("Type with name \"" + std::string(name) + "\" not found") {}
   };
   
   template <typename ValueType, typename List, typename Function>
