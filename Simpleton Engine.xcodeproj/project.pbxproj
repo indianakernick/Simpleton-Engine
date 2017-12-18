@@ -20,7 +20,6 @@
 		450ED6641FBBB774008F2902 /* props.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6441FBBAE9A008F2902 /* props.hpp */; };
 		450ED6651FBBB774008F2902 /* transform.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6491FBBAF60008F2902 /* transform.hpp */; };
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
-		45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F561F2490E8001B24E2 /* buffered container.hpp */; };
 		451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		451CC0E21F932BEB0000E424 /* block allocator.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; };
 		4529DEEA1F31AABD00071267 /* line col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4529DEE81F31AABD00071267 /* line col.cpp */; };
@@ -366,7 +365,6 @@
 				452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */,
 				45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */,
 				45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */,
-				45103F571F24950C001B24E2 /* buffered container.hpp in CopyFiles */,
 				45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */,
 				45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */,
 				45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */,
@@ -452,7 +450,6 @@
 		450ED6481FBBAF60008F2902 /* transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
 		450ED6491FBBAF60008F2902 /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
-		45103F561F2490E8001B24E2 /* buffered container.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "buffered container.hpp"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
 		4529DEE81F31AABD00071267 /* line col.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "line col.cpp"; sourceTree = "<group>"; };
 		4529DEE91F31AABD00071267 /* line col.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "line col.hpp"; sourceTree = "<group>"; };
@@ -718,7 +715,6 @@
 				45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */,
 				45F3DB841F1AFEF10058D36B /* type list.hpp */,
 				45F3DB861F1B4F750058D36B /* strong alias.hpp */,
-				45103F561F2490E8001B24E2 /* buffered container.hpp */,
 				4529DEE81F31AABD00071267 /* line col.cpp */,
 				4529DEE91F31AABD00071267 /* line col.hpp */,
 				45FA99411F3695E500F8C639 /* hash.hpp */,
