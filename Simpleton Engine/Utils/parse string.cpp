@@ -51,18 +51,14 @@ void Utils::ParseString::advance(const size_t numChars) {
   if (numChars > mSize) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
-  mLineCol.putString(mData, numChars);
-  mData += numChars;
-  mSize -= numChars;
+  advanceNoCheck(numChars);
 }
 
 void Utils::ParseString::advance() {
   if (mSize == 0) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
-  mLineCol.putChar(*mData);
-  ++mData;
-  --mSize;
+  advanceNoCheck();
 }
 
 void Utils::ParseString::skip(const char ch) {
@@ -89,10 +85,8 @@ void Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
     throw ParseStringExpectError(c);
   }
-  advance();
+  advanceNoCheck();
 }
-
-
 
 void Utils::ParseString::expectAfterWhitespace(const char c) {
   skipWhitespace();
@@ -103,7 +97,7 @@ bool Utils::ParseString::check(const char c) {
   if (mSize == 0 || *mData != c) {
     return false;
   } else {
-    advance();
+    advanceNoCheck();
     return true;
   }
 }
@@ -116,7 +110,7 @@ bool Utils::ParseString::check(const char *data, const size_t size) {
     return true;
   }
   if (std::memcmp(mData, data, size) == 0) {
-    advance(size);
+    advanceNoCheck(size);
     return true;
   } else {
     return false;
@@ -131,7 +125,7 @@ size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
   throwIfNull(dst);
   const size_t numChars = mSize < dstSize ? mSize : dstSize;
   std::memcpy(dst, mData, numChars);
-  advance(numChars);
+  advanceNoCheck(numChars);
   return numChars;
 }
 
@@ -143,4 +137,16 @@ size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, cons
 
 size_t Utils::ParseString::copyUntilWhitespace(char *const dst, const size_t dstSize) {
   return copyUntil(dst, dstSize, isspace);
+}
+
+void Utils::ParseString::advanceNoCheck(const size_t numChars) {
+  mLineCol.putString(mData, numChars);
+  mData += numChars;
+  mSize -= numChars;
+}
+
+void Utils::ParseString::advanceNoCheck() {
+  mLineCol.putChar(*mData);
+  ++mData;
+  --mSize;
 }

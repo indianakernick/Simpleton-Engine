@@ -10,6 +10,7 @@
 #define engine_utils_parse_string_hpp
 
 #include <cerrno>
+#include <functional>
 #include <string_view>
 #include "line col.hpp"
 
@@ -71,7 +72,7 @@ namespace Utils {
       while (numChars < mSize && pred(mData[numChars])) {
         ++numChars;
       }
-      advance(numChars);
+      advanceNoCheck(numChars);
     }
     ///Move the front forward while the front is whitespace
     void skipWhitespace();
@@ -81,11 +82,7 @@ namespace Utils {
     ///Move the front forward until the supplied predicate returns true
     template <typename Pred>
     void skipUntil(Pred &&pred) {
-      //@TODO
-      //skip(std::not_fn(pred));
-      skip([pred = std::forward<Pred>(pred)](const char c) {
-        return !pred(c);
-      });
+      skip(std::not_fn(pred));
     }
     ///Move the front forward until the front is whitespace
     void skipUntilWhitespace();
@@ -113,6 +110,17 @@ namespace Utils {
     ///Advances and returns true if the front part of the string is equal to the
     ///supplied string. Does nothing and returns false otherwise
     bool check(std::string_view);
+    ///Advances and returns true if the supplied predicate returns true for the
+    ///first character. Does nothing and returns false otherwise
+    template <typename Pred>
+    bool check(Pred &&pred) {
+      if (mSize == 0 || !pred(*mData)) {
+        return false;
+      } else {
+        advanceNoCheck();
+        return true;
+      }
+    }
     
     ///Interprets the front part of the string as a number. Throws a
     ///ParseStringNumberError exception on failure
@@ -128,7 +136,7 @@ namespace Utils {
           if (num == 0 && end == mData) {
             throw ParseStringNumberError("Invalid number");
           }
-          advance(end - mData);
+          advanceNoCheck(end - mData);
           number = static_cast<Number>(num);
         } else if constexpr (std::is_signed<Number>::value) {
           char *end;
@@ -139,7 +147,7 @@ namespace Utils {
           if (num == 0 && end == mData) {
             throw ParseStringNumberError("Invalid number");
           }
-          advance(end - mData);
+          advanceNoCheck(end - mData);
           number = static_cast<Number>(num);
         }
       } else if constexpr (std::is_floating_point<Number>::value) {
@@ -151,7 +159,7 @@ namespace Utils {
         if (num == 0 && end == mData) {
           throw ParseStringNumberError("Invalid number");
         }
-        advance(end - mData);
+        advanceNoCheck(end - mData);
         number = static_cast<Number>(num);
       }
       
@@ -188,11 +196,12 @@ namespace Utils {
     size_t copyWhile(char *const dst, const size_t dstSize, Pred &&pred) {
       throwIfNull(dst);
       size_t numChars = 0;
-      while (numChars < mSize && numChars < dstSize && pred(mData[numChars])) {
+      const size_t maxChars = mSize < dstSize ? mSize : dstSize;
+      while (numChars < maxChars && pred(mData[numChars])) {
         ++numChars;
       }
       std::memcpy(dst, mData, numChars);
-      advance(numChars);
+      advanceNoCheck(numChars);
       return numChars;
     }
     
@@ -204,11 +213,7 @@ namespace Utils {
     ///were copied.
     template <typename Pred>
     size_t copyUntil(char *const dst, const size_t dstSize, Pred &&pred) {
-      //@TODO
-      //return copyWhile(dst, dstSize, std::not_fn(pred));
-      return copyWhile(dst, dstSize, [pred = std::forward<Pred>(pred)](char c) {
-        return !pred(c);
-      });
+      return copyWhile(dst, dstSize, std::not_fn(pred));
     }
     ///Copies characters from the front part of the string until the front is
     ///whitespace. Advances the number of characters that were copied.
@@ -218,6 +223,10 @@ namespace Utils {
     const char *mData;
     size_t mSize;
     LineCol mLineCol;
+    
+    //Advance without range checks
+    void advanceNoCheck(size_t);
+    void advanceNoCheck();
   };
   
   // "hot" functions
