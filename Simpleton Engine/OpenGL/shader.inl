@@ -6,6 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
+#include "static char buffer.hpp"
+
 inline void GL::Shader::uploadSource(const GLchar *source, const size_t size) const {
   const GLint length = static_cast<GLint>(size);
   glShaderSource(id, 1, &source, &length);
@@ -13,37 +15,34 @@ inline void GL::Shader::uploadSource(const GLchar *source, const size_t size) co
   CHECK_OPENGL_ERROR();
 }
 
-inline void GL::Shader::uploadSource(std::istream &stream) const {
-  stream.seekg(0, std::ios::seekdir::end);
-  const size_t size = stream.tellg();
-  const auto source = std::make_unique<GLchar[]>(stream.tellg());
-  stream.seekg(0, std::ios::seekdir::beg);
-  stream.read(source.get(), size);
-  uploadSource(source.get(), size);
-}
-
-inline void GL::Shader::compile() const {
+inline bool GL::Shader::compile() const {
   glCompileShader(id);
-
   GLint status;
   glGetShaderiv(id, GL_COMPILE_STATUS, &status);
-  if (status == 0) {
-    std::cerr << "Failed to compile shader\n";
-  }
-
   CHECK_OPENGL_ERROR();
+  return status == GL_TRUE;
 }
 
-inline void GL::Shader::printInfoLog() const {
+inline std::ostream &GL::operator<<(std::ostream &stream, const Shader &shader) {
   GLint logLength;
-  glGetShaderiv(id, GL_INFO_LOG_LENGTH, &logLength);
+  glGetShaderiv(shader.id, GL_INFO_LOG_LENGTH, &logLength);
   if (logLength) {
-    const auto log = std::make_unique<char[]>(logLength);
-    glGetShaderInfoLog(id, logLength, nullptr, log.get());
-    std::cerr << "Shader info log:\n" << log.get() << '\n';
+    GLchar *const buf = detail::getCharBuf(logLength);
+    glGetShaderInfoLog(shader.id, logLength, nullptr, buf);
+    //avoiding a call to strlen
+    stream << std::string_view(buf, logLength);
   }
+  return stream;
+}
 
-  CHECK_OPENGL_ERROR();
+inline std::istream &GL::operator>>(std::istream &stream, const Shader &shader) {
+  stream.seekg(0, std::ios::seekdir::end);
+  const size_t size = stream.tellg();
+  GLchar *const source = detail::getCharBuf(size);
+  stream.seekg(0, std::ios::seekdir::beg);
+  stream.read(source, size);
+  shader.uploadSource(source, size);
+  return stream;
 }
 
 inline GL::Shader GL::makeShader(const GLenum type) {
@@ -59,15 +58,19 @@ inline GL::Shader GL::makeShader(
 ) {
   Shader shader = makeShader(type);
   shader.uploadSource(source, size);
-  shader.compile();
-  shader.printInfoLog();
+  if (!shader.compile()) {
+    std::cerr << "Failed to compile shader\n";
+  }
+  std::cerr << "Shader info log:\n" << shader << '\n';
   return shader;
 }
 
 inline GL::Shader GL::makeShader(const GLenum type, std::istream &stream) {
   Shader shader = makeShader(type);
-  shader.uploadSource(stream);
-  shader.compile();
-  shader.printInfoLog();
+  stream >> shader;
+  if (!shader.compile()) {
+    std::cerr << "Failed to compile shader\n";
+  }
+  std::cerr << "Shader info log:\n" << shader << '\n';
   return shader;
 }

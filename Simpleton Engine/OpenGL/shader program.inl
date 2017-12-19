@@ -6,28 +6,22 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-inline void GL::ShaderProgram::link() const {
+#include "static char buffer.hpp"
+
+inline bool GL::ShaderProgram::link() const {
   glLinkProgram(id);
-  
   GLint status;
   glGetProgramiv(id, GL_LINK_STATUS, &status);
-  if (status == 0) {
-    std::cerr << "Failed to link program\n";
-  }
-
   CHECK_OPENGL_ERROR();
+  return status == GL_TRUE;
 }
 
-inline void GL::ShaderProgram::printInfoLog() const {
-  GLint logLength;
-  glGetShaderiv(id, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength) {
-    const auto log = std::make_unique<char[]>(logLength);
-    glGetShaderInfoLog(id, logLength, nullptr, log.get());
-    std::cerr << "Shader program info log:\n" << log.get() << '\n';
-  }
-
+inline bool GL::ShaderProgram::validate() const {
+  glValidateProgram(id);
+  GLint status;
+  glGetProgramiv(id, GL_VALIDATE_STATUS, &status);
   CHECK_OPENGL_ERROR();
+  return status == GL_TRUE;
 }
 
 inline void GL::ShaderProgram::use() const {
@@ -54,6 +48,21 @@ inline void GL::ShaderProgram::detach(const GLuint shaderID) const {
   glDetachShader(id, shaderID);
   
   CHECK_OPENGL_ERROR();
+}
+
+inline std::ostream &GL::operator<<(std::ostream &stream, const GL::ShaderProgram &program) {
+  GLint logLength;
+  glGetProgramiv(program.id, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength) {
+    GLchar *const buf = detail::getCharBuf(logLength);
+    glGetProgramInfoLog(program.id, logLength, nullptr, buf);
+    //avoiding a call to strlen
+    stream << std::string_view(buf, logLength);
+  }
+
+  CHECK_OPENGL_ERROR();
+  
+  return stream;
 }
 
 inline GL::ShaderProgram GL::makeShaderProgram() {

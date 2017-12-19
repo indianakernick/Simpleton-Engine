@@ -24,17 +24,21 @@ namespace GL {
   public:
     RAII_CLASS_MEMBERS(ShaderProgram, GLuint, id, detail::deleteProgram)
     
-    void link() const;
-    void printInfoLog() const;
+    bool link() const;
+    bool validate() const;
     void use() const;
     void attach(const Shader &) const;
     void attach(GLuint) const;
     void detach(const Shader &) const;
     void detach(GLuint) const;
     
+    friend std::ostream &operator<<(std::ostream &, const ShaderProgram &);
+    
   private:
     GLuint id;
   };
+  
+  std::ostream &operator<<(std::ostream &, const ShaderProgram &);
   
   ShaderProgram makeShaderProgram();
   
@@ -48,10 +52,12 @@ namespace GL {
     ShaderProgram program = makeShaderProgram();
     [[maybe_unused]]
     const int dummy0[] = {(program.attach(shaders), 0)...};
-    program.link();
+    if (!program.link()) {
+      std::cerr << "Failed to link shader program\n";
+    }
     [[maybe_unused]]
     const int dummy1[] = {(program.detach(shaders), 0)...};
-    program.printInfoLog();
+    std::cerr << "Shader program info log:\n" << program << '\n';
     return program;
   }
 

@@ -22,6 +22,7 @@
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
 		451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; };
 		451CC0E21F932BEB0000E424 /* block allocator.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; };
+		4520AD6D1FE9DC6300ECE3C1 /* static char buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */; };
 		4529DEEA1F31AABD00071267 /* line col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4529DEE81F31AABD00071267 /* line col.cpp */; };
 		4529DEEB1F31AABD00071267 /* line col.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
 		452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F41F3EF86900AF9AC6 /* bits.hpp */; };
@@ -292,6 +293,7 @@
 			dstPath = /usr/local/include/Simpleton/OpenGL;
 			dstSubfolderSpec = 0;
 			files = (
+				4520AD6D1FE9DC6300ECE3C1 /* static char buffer.hpp in CopyFiles */,
 				45771C301FE9141F00F533DA /* vertex array.inl in CopyFiles */,
 				45771C311FE9141F00F533DA /* vertex array.hpp in CopyFiles */,
 				45771C2C1FE9110E00F533DA /* buffer.inl in CopyFiles */,
@@ -496,6 +498,7 @@
 		450ED6491FBBAF60008F2902 /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
+		4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "static char buffer.hpp"; sourceTree = "<group>"; };
 		4529DEE81F31AABD00071267 /* line col.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "line col.cpp"; sourceTree = "<group>"; };
 		4529DEE91F31AABD00071267 /* line col.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "line col.hpp"; sourceTree = "<group>"; };
 		452B82F41F3EF86900AF9AC6 /* bits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bits.hpp; sourceTree = "<group>"; };
@@ -702,6 +705,7 @@
 				45771C191FE8B1B000F533DA /* context.hpp */,
 				45771C1C1FE8C4BB00F533DA /* texture.inl */,
 				45771C1D1FE8C4BB00F533DA /* texture.hpp */,
+				4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */,
 				45771C221FE8F8A100F533DA /* shader.inl */,
 				45771C231FE8F8A100F533DA /* shader.hpp */,
 				45771C261FE8FF1100F533DA /* shader program.inl */,

@@ -26,13 +26,16 @@ namespace GL {
     RAII_CLASS_MEMBERS(Shader, GLuint, id, detail::deleteShader)
   
     void uploadSource(const GLchar *, size_t) const;
-    void uploadSource(std::istream &) const;
-    void compile() const;
-    void printInfoLog() const;
+    bool compile() const;
   
+    friend std::ostream &operator<<(std::ostream &, const Shader &);
+    
   private:
     GLuint id;
   };
+  
+  std::ostream &operator<<(std::ostream &, const Shader &);
+  std::istream &operator>>(std::istream &, const Shader &);
   
   Shader makeShader(GLenum);
   Shader makeShader(GLenum, const GLchar *, size_t);
