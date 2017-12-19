@@ -10,35 +10,35 @@
 
 #include <utility>
 
-GL::Context::Context()
+inline GL::Context::Context()
   : context(nullptr) {}
 
-GL::Context::Context(SDL_GLContext context)
+inline GL::Context::Context(SDL_GLContext context)
   : context(context) {}
 
-GL::Context::Context(Context &&other)
+inline GL::Context::Context(Context &&other)
   : context(std::exchange(other.context, nullptr)) {}
 
-GL::Context &GL::Context::operator=(Context &&other) {
+inline GL::Context &GL::Context::operator=(Context &&other) {
   context = std::exchange(other.context, nullptr);
   return *this;
 }
 
-GL::Context &GL::Context::operator=(std::nullptr_t) {
+inline GL::Context &GL::Context::operator=(std::nullptr_t) {
   SDL_GL_DeleteContext(context);
   context = nullptr;
   return *this;
 }
 
-GL::Context::~Context() {
+inline GL::Context::~Context() {
   SDL_GL_DeleteContext(context);
 }
 
-void GL::Context::makeCurrent(SDL_Window *const window) const {
+inline void GL::Context::makeCurrent(SDL_Window *const window) const {
   CHECK_SDL_ERROR(SDL_GL_MakeCurrent(window, context));
 }
 
-GL::Context GL::makeContext(SDL_Window *const window, const ContextParams &params) {
+inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams &params) {
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, params.majorVersion);
@@ -62,7 +62,7 @@ GL::Context GL::makeContext(SDL_Window *const window, const ContextParams &param
   return context;
 }
 
-void GL::clearFrame() {
+inline void GL::clearFrame() {
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   glClearDepth(0.0f);
   glClearStencil(0);

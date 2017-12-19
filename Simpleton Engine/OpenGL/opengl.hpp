@@ -15,10 +15,18 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
+#ifdef DISABLE_OPENGL_ERROR_CHECKING
+
+#define CHECK_OPENGL_ERROR()
+
+#else
+
 #define CHECK_OPENGL_ERROR()                                                    \
   for (GLenum error; (error = glGetError()) != GL_NO_ERROR;) {                  \
     std::printf("OpenGL error: %s\n", gluErrorString(error));                   \
     assert(false);                                                              \
   }
+
+#endif // DISABLE_OPENGL_ERROR_CHECKING
 
 #endif
