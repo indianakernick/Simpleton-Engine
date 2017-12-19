@@ -9,8 +9,6 @@
 #ifndef engine_opengl_opengl_hpp
 #define engine_opengl_opengl_hpp
 
-#include <cstdio>
-#include <cassert>
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
@@ -21,9 +19,21 @@
 
 #else
 
+#include <cassert>
+#include <iostream>
+
+namespace GL::detail {
+  inline const char *glErrorString(const GLenum error) {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    return reinterpret_cast<const char *>(gluErrorString(error));
+    #pragma clang diagnostic pop
+  }
+}
+
 #define CHECK_OPENGL_ERROR()                                                    \
   for (GLenum error; (error = glGetError()) != GL_NO_ERROR;) {                  \
-    std::printf("OpenGL error: %s\n", gluErrorString(error));                   \
+    std::cerr << "OpenGL error: " << GL::detail::glErrorString(error) << '\n';  \
     assert(false);                                                              \
   }
 
