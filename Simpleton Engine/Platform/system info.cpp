@@ -1,6 +1,6 @@
 //
 //  system info.cpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 5/4/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.

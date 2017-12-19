@@ -1,6 +1,6 @@
 //
 //  profiler.cpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 12/10/2016.
 //  Copyright © 2016 Indi Kernick. All rights reserved.

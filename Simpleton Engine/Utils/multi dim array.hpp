@@ -1,6 +1,6 @@
 //
 //  multi dim array.hpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 12/6/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.

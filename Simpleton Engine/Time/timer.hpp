@@ -1,6 +1,6 @@
 //
 //  timer.hpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 29/11/16.
 //  Copyright © 2016 Indi Kernick. All rights reserved.

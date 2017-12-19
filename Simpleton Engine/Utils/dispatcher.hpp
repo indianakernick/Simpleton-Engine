@@ -1,6 +1,6 @@
 //
 //  dispatcher.hpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 16/5/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.

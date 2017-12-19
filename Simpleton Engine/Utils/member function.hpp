@@ -1,6 +1,6 @@
 //
 //  member function.hpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 18/3/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.

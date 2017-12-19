@@ -1,6 +1,6 @@
 //
 //  actor.hpp
-//  Game Engine
+//  Simpleton Engine
 //
 //  Created by Indi Kernick on 20/11/16.
 //  Copyright © 2016 Indi Kernick. All rights reserved.
