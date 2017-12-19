@@ -16,9 +16,9 @@
 #include <SDL2/SDL_opengl.h>
 
 #define CHECK_OPENGL_ERROR()                                                    \
-for (GLenum error; (error = glGetError()) != GL_NO_ERROR;) {                    \
-  std::printf("OpenGL error: %s\n", gluErrorString(error));                     \
-  assert(false);                                                                \
-}
+  for (GLenum error; (error = glGetError()) != GL_NO_ERROR;) {                  \
+    std::printf("OpenGL error: %s\n", gluErrorString(error));                   \
+    assert(false);                                                              \
+  }
 
 #endif

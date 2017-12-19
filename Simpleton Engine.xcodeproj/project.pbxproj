@@ -78,6 +78,8 @@
 		45771C121FE87FB500F533DA /* type enum.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C111FE87DCF00F533DA /* type enum.hpp */; };
 		45771C141FE886E600F533DA /* attrib pointer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C131FE8817100F533DA /* attrib pointer.hpp */; };
 		45771C161FE8982600F533DA /* meta glm.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C151FE8952D00F533DA /* meta glm.hpp */; };
+		45771C1A1FE8B4E700F533DA /* context.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C181FE8B1B000F533DA /* context.inl */; };
+		45771C1B1FE8B4E700F533DA /* context.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C191FE8B1B000F533DA /* context.hpp */; };
 		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
 		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
@@ -279,6 +281,8 @@
 			dstPath = /usr/local/include/Simpleton/OpenGL;
 			dstSubfolderSpec = 0;
 			files = (
+				45771C1A1FE8B4E700F533DA /* context.inl in CopyFiles */,
+				45771C1B1FE8B4E700F533DA /* context.hpp in CopyFiles */,
 				45771C141FE886E600F533DA /* attrib pointer.hpp in CopyFiles */,
 				45771C121FE87FB500F533DA /* type enum.hpp in CopyFiles */,
 				45771C0F1FE87C7700F533DA /* opengl.hpp in CopyFiles */,
@@ -496,6 +500,8 @@
 		45771C111FE87DCF00F533DA /* type enum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type enum.hpp"; sourceTree = "<group>"; };
 		45771C131FE8817100F533DA /* attrib pointer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "attrib pointer.hpp"; sourceTree = "<group>"; };
 		45771C151FE8952D00F533DA /* meta glm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "meta glm.hpp"; sourceTree = "<group>"; };
+		45771C181FE8B1B000F533DA /* context.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = context.inl; sourceTree = "<group>"; };
+		45771C191FE8B1B000F533DA /* context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = context.hpp; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -658,6 +664,8 @@
 				45771C0D1FE8781D00F533DA /* uniforms.hpp */,
 				45771C111FE87DCF00F533DA /* type enum.hpp */,
 				45771C131FE8817100F533DA /* attrib pointer.hpp */,
+				45771C181FE8B1B000F533DA /* context.inl */,
+				45771C191FE8B1B000F533DA /* context.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
