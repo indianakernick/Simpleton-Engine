@@ -18,6 +18,7 @@ namespace GL {
     RAII_CLASS_MEMBERS(Shader, GLuint, id, glDeleteShader)
   
     void uploadSource(const GLchar *, size_t) const;
+    void uploadSource(std::istream &) const;
     void compile() const;
     void printInfoLog() const;
   
@@ -27,6 +28,7 @@ namespace GL {
   
   Shader makeShader(GLenum);
   Shader makeShader(GLenum, const GLchar *, size_t);
+  Shader makeShader(GLenum, std::istream &);
 }
 
 #endif

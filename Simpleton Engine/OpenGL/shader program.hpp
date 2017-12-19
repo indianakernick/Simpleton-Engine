@@ -29,8 +29,33 @@ namespace GL {
   };
   
   ShaderProgram makeShaderProgram();
+  
   template <typename ...Shaders>
-  ShaderProgram makeShaderProgram(const Shaders &...);
+  std::enable_if_t<
+    sizeof...(Shaders) != 0
+      && (std::is_same_v<Shaders, Shader> && ...),
+    ShaderProgram
+  >
+  makeShaderProgram(const Shaders &... shaders) {
+    ShaderProgram program = makeShaderProgram();
+    [[maybe_unused]]
+    const int dummy0[] = {(program.attach(shaders), 0)...};
+    program.link();
+    [[maybe_unused]]
+    const int dummy1[] = {(program.detach(shaders), 0)...};
+    program.printInfoLog();
+    return program;
+  }
+
+  template <typename ...Shaders>
+  std::enable_if_t<
+    sizeof...(Shaders) != 0
+      && (std::is_base_of_v<std::istream, Shaders> && ...),
+    ShaderProgram
+  >
+  makeShaderProgram(const Shaders &... streams) {
+    return makeShaderProgram(makeShader(streams)...);
+  }
 }
 
 #include "shader program.inl"

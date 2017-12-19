@@ -61,16 +61,3 @@ inline GL::ShaderProgram GL::makeShaderProgram() {
   CHECK_OPENGL_ERROR();
   return program;
 }
-
-template <typename ...Shaders>
-inline GL::ShaderProgram GL::makeShaderProgram(const Shaders &... shaders) {
-  static_assert((std::is_same_v<Shaders, Shader> && ...));
-  ShaderProgram program = makeShaderProgram();
-  [[maybe_unused]]
-  const int dummy0[] = {(program.attach(shaders), 0)...};
-  program.link();
-  [[maybe_unused]]
-  const int dummy1[] = {(program.detach(shaders), 0)...};
-  program.printInfoLog();
-  return program;
-}

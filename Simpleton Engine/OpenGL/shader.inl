@@ -13,6 +13,15 @@ inline void GL::Shader::uploadSource(const GLchar *source, const size_t size) co
   CHECK_OPENGL_ERROR();
 }
 
+inline void GL::Shader::uploadSource(std::istream &stream) const {
+  stream.seekg(0, std::ios::seekdir::end);
+  const size_t size = stream.tellg();
+  const auto source = std::make_unique<GLchar[]>(stream.tellg());
+  stream.seekg(0, std::ios::seekdir::beg);
+  stream.read(source.get(), size);
+  uploadSource(source.get(), size);
+}
+
 inline void GL::Shader::compile() const {
   glCompileShader(id);
 
@@ -50,6 +59,14 @@ inline GL::Shader GL::makeShader(
 ) {
   Shader shader = makeShader(type);
   shader.uploadSource(source, size);
+  shader.compile();
+  shader.printInfoLog();
+  return shader;
+}
+
+inline GL::Shader GL::makeShader(const GLenum type, std::istream &stream) {
+  Shader shader = makeShader(type);
+  shader.uploadSource(stream);
   shader.compile();
   shader.printInfoLog();
   return shader;
