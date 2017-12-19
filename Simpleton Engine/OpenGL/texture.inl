@@ -20,10 +20,16 @@ inline void GL::TexParams2D::setFilter(const GLint filter) {
   magFilter = filter;
 }
 
-inline GL::Texture GL::makeTexture2D(const Image2D &image, const TexParams2D &params) {
+inline GL::Texture GL::makeTexture() {
   GLuint id;
   glGenTextures(1, &id);
-  glBindTexture(GL_TEXTURE_2D, id);
+  CHECK_OPENGL_ERROR();
+  return Texture(id);
+}
+
+inline GL::Texture GL::makeTexture2D(const Image2D &image, const TexParams2D &params) {
+  Texture texture = makeTexture();
+  texture.bind(GL_TEXTURE_2D);
   
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, params.wrapS);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, params.wrapT);
@@ -48,5 +54,5 @@ inline GL::Texture GL::makeTexture2D(const Image2D &image, const TexParams2D &pa
   
   CHECK_OPENGL_ERROR();
   
-  return Texture(id);
+  return texture;
 }

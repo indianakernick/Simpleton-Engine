@@ -24,7 +24,7 @@ namespace GL {
   public:
     RAII_CLASS_MEMBERS(Texture, GLuint, id, detail::deleteTexture)
   
-    void bind(GLenum) const;
+    void bind(GLenum = GL_TEXTURE_2D) const;
   
   private:
     GLuint id;
@@ -48,6 +48,7 @@ namespace GL {
     bool alpha = true;
   };
   
+  Texture makeTexture();
   Texture makeTexture2D(const Image2D &, const TexParams2D &);
 }
 
