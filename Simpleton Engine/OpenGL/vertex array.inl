@@ -6,8 +6,6 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "vertex array.hpp"
-
 void GL::VertexArray::bind() const {
   glBindVertexArray(id);
   
