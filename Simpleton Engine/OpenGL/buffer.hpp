@@ -19,19 +19,32 @@ namespace GL {
     }
   }
 
+  template <GLenum TARGET_>
   class Buffer {
   public:
     RAII_CLASS_MEMBERS(Buffer, GLuint, id, detail::deleteBuffer)
     
-    void bind(GLenum = GL_ARRAY_BUFFER) const;
+    static constexpr GLenum TARGET = TARGET_;
+    
+    void bind() const {
+      glBindBuffer(TARGET, id);
+      
+      CHECK_OPENGL_ERROR();
+    }
   
   private:
     GLuint id;
   };
   
-  Buffer makeBuffer();
-  Buffer makeBuffer(GLenum, size_t, GLenum = GL_STATIC_DRAW);
-  Buffer makeBuffer(GLenum, const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
+  using ArrayBuffer = Buffer<GL_ARRAY_BUFFER>;
+  using ElementBuffer = Buffer<GL_ELEMENT_ARRAY_BUFFER>;
+  
+  template <GLenum TARGET>
+  Buffer<TARGET> makeBuffer();
+  template <GLenum TARGET>
+  Buffer<TARGET> makeBuffer(size_t, GLenum = GL_STATIC_DRAW);
+  template <GLenum TARGET>
+  Buffer<TARGET> makeBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
 }
 
 #include "buffer.inl"

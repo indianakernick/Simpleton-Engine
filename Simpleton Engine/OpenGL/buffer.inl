@@ -6,37 +6,29 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-inline void GL::Buffer::bind(const GLenum target) const {
-  glBindBuffer(target, id);
-  
-  CHECK_OPENGL_ERROR();
-}
-
-inline GL::Buffer GL::makeBuffer() {
+template <GLenum TARGET>
+GL::Buffer<TARGET> GL::makeBuffer() {
   GLuint id;
   glGenBuffers(1, &id);
-  Buffer buffer(id);
+  Buffer<TARGET> buffer(id);
   CHECK_OPENGL_ERROR();
   return buffer;
 }
 
-inline GL::Buffer GL::makeBuffer(
-  const GLenum target,
-  const size_t size,
-  const GLenum usage
-) {
-  return makeBuffer(target, nullptr, size, usage);
+template <GLenum TARGET>
+GL::Buffer<TARGET> GL::makeBuffer(const size_t size, const GLenum usage) {
+  return makeBuffer<TARGET>(nullptr, size, usage);
 }
 
-inline GL::Buffer GL::makeBuffer(
-  const GLenum target,
+template <GLenum TARGET>
+GL::Buffer<TARGET> GL::makeBuffer(
   const GLvoid *data,
   const size_t size,
   const GLenum usage
 ) {
-  Buffer buffer = makeBuffer();
-  buffer.bind(target);
-  glBufferData(target, static_cast<GLsizeiptr>(size), data, usage);
+  Buffer<TARGET> buffer = makeBuffer<TARGET>();
+  buffer.bind();
+  glBufferData(TARGET, static_cast<GLsizeiptr>(size), data, usage);
   CHECK_OPENGL_ERROR();
   return buffer;
 }
