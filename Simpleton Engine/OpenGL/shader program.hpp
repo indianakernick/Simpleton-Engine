@@ -12,9 +12,17 @@
 #include "shader.hpp"
 
 namespace GL {
+  namespace detail {
+    inline void deleteProgram(const GLuint id) {
+      glDeleteProgram(id);
+      
+      CHECK_OPENGL_ERROR();
+    }
+  }
+
   class ShaderProgram {
   public:
-    RAII_CLASS_MEMBERS(ShaderProgram, GLuint, id, glDeleteProgram)
+    RAII_CLASS_MEMBERS(ShaderProgram, GLuint, id, detail::deleteProgram)
     
     void link() const;
     void printInfoLog() const;

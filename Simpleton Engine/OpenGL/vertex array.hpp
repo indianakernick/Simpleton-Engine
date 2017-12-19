@@ -16,6 +16,8 @@ namespace GL {
   namespace detail {
     inline void deleteVertexArray(const GLuint &id) {
       glDeleteVertexArrays(1, &id);
+      
+      CHECK_OPENGL_ERROR();
     }
   }
   

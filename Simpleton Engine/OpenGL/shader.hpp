@@ -13,9 +13,17 @@
 #include "generic raii.hpp"
 
 namespace GL {
+  namespace detail {
+    inline void deleteShader(const GLuint id) {
+      glDeleteShader(id);
+      
+      CHECK_OPENGL_ERROR();
+    }
+  }
+
   class Shader {
   public:
-    RAII_CLASS_MEMBERS(Shader, GLuint, id, glDeleteShader)
+    RAII_CLASS_MEMBERS(Shader, GLuint, id, detail::deleteShader)
   
     void uploadSource(const GLchar *, size_t) const;
     void uploadSource(std::istream &) const;

@@ -17,6 +17,8 @@ namespace GL {
   namespace detail {
     inline void deleteTexture(const GLuint &id) {
       glDeleteTextures(1, &id);
+      
+      CHECK_OPENGL_ERROR();
     }
   }
 

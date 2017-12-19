@@ -16,6 +16,8 @@ namespace GL {
   namespace detail {
     inline void deleteBuffer(const GLuint &id) {
       glDeleteBuffers(1, &id);
+      
+      CHECK_OPENGL_ERROR();
     }
   }
 
