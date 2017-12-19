@@ -14,10 +14,14 @@
 namespace GL {
   class Context {
   public:
+    Context();
     explicit Context(SDL_GLContext);
     Context(Context &&);
     Context &operator=(Context &&);
+    Context &operator=(std::nullptr_t);
     ~Context();
+  
+    void makeCurrent(SDL_Window *) const;
   
   private:
     SDL_GLContext context;
@@ -33,6 +37,7 @@ namespace GL {
   };
   
   Context makeContext(SDL_Window *, const ContextParams &);
+  void clearFrame();
 }
 
 #include "context.inl"

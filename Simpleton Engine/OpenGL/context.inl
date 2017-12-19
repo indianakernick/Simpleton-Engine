@@ -10,6 +10,9 @@
 
 #include <utility>
 
+GL::Context::Context()
+  : context(nullptr) {}
+
 GL::Context::Context(SDL_GLContext context)
   : context(context) {}
 
@@ -21,8 +24,18 @@ GL::Context &GL::Context::operator=(Context &&other) {
   return *this;
 }
 
+GL::Context &GL::Context::operator=(std::nullptr_t) {
+  SDL_GL_DeleteContext(context);
+  context = nullptr;
+  return *this;
+}
+
 GL::Context::~Context() {
   SDL_GL_DeleteContext(context);
+}
+
+void GL::Context::makeCurrent(SDL_Window *const window) const {
+  CHECK_SDL_ERROR(SDL_GL_MakeCurrent(window, context));
 }
 
 GL::Context GL::makeContext(SDL_Window *const window, const ContextParams &params) {
@@ -47,4 +60,11 @@ GL::Context GL::makeContext(SDL_Window *const window, const ContextParams &param
   CHECK_OPENGL_ERROR();
   
   return context;
+}
+
+void GL::clearFrame() {
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  glClearDepth(0.0f);
+  glClearStencil(0);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
