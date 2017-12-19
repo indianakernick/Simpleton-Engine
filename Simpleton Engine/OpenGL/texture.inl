@@ -6,10 +6,6 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-inline void GL::Texture::bind(const GLenum target) const {
-  glBindTexture(id, target);
-}
-
 inline void GL::TexParams2D::setWrap(const GLint wrap) {
   wrapS = wrap;
   wrapT = wrap;
@@ -20,16 +16,21 @@ inline void GL::TexParams2D::setFilter(const GLint filter) {
   magFilter = filter;
 }
 
-inline GL::Texture GL::makeTexture() {
+template <GLenum TARGET>
+GL::Texture<TARGET> GL::makeTexture() {
   GLuint id;
   glGenTextures(1, &id);
   CHECK_OPENGL_ERROR();
-  return Texture(id);
+  return Texture<TARGET>(id);
 }
 
-inline GL::Texture GL::makeTexture2D(const Image2D &image, const TexParams2D &params) {
-  Texture texture = makeTexture();
-  texture.bind(GL_TEXTURE_2D);
+inline GL::Texture2D GL::makeTexture2D() {
+  return makeTexture<GL_TEXTURE_2D>();
+}
+
+inline GL::Texture2D GL::makeTexture2D(const Image2D &image, const TexParams2D &params) {
+  Texture2D texture = makeTexture2D();
+  texture.bind();
   
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, params.wrapS);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, params.wrapT);

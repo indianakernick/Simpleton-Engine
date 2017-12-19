@@ -20,15 +20,24 @@ namespace GL {
     }
   }
 
+  template <GLenum TARGET_>
   class Texture {
   public:
     RAII_CLASS_MEMBERS(Texture, GLuint, id, detail::deleteTexture)
   
-    void bind(GLenum = GL_TEXTURE_2D) const;
+    static constexpr GLenum TARGET = TARGET_;
+  
+    void bind() const {
+      glBindTexture(TARGET, id);
+      
+      CHECK_OPENGL_ERROR();
+    }
   
   private:
     GLuint id;
   };
+  
+  using Texture2D = Texture<GL_TEXTURE_2D>;
   
   struct TexParams2D {
     GLint wrapS = GL_REPEAT;
@@ -48,8 +57,10 @@ namespace GL {
     bool alpha = true;
   };
   
-  Texture makeTexture();
-  Texture makeTexture2D(const Image2D &, const TexParams2D &);
+  template <GLenum TARGET>
+  Texture<TARGET> makeTexture();
+  Texture2D makeTexture2D();
+  Texture2D makeTexture2D(const Image2D &, const TexParams2D &);
 }
 
 #include "texture.inl"
