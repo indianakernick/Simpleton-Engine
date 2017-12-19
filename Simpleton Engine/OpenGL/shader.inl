@@ -9,6 +9,7 @@
 inline void GL::Shader::uploadSource(const GLchar *source, const size_t size) const {
   const GLint length = static_cast<GLint>(size);
   glShaderSource(id, 1, &source, &length);
+  
   CHECK_OPENGL_ERROR();
 }
 
