@@ -6,32 +6,6 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include <utility>
-
-inline GL::Texture::Texture()
-  : id(0) {}
-
-inline GL::Texture::Texture(GLuint id)
-  : id(id) {}
-
-inline GL::Texture::Texture(Texture &&other)
-  : id(std::exchange(other.id, 0)) {}
-
-inline GL::Texture &GL::Texture::operator=(Texture &&other) {
-  id = std::exchange(other.id, 0);
-  return *this;
-}
-
-inline GL::Texture &GL::Texture::operator=(std::nullptr_t) {
-  glDeleteTextures(1, &id);
-  id = 0;
-  return *this;
-}
-
-inline GL::Texture::~Texture() {
-  glDeleteTextures(1, &id);
-}
-
 inline void GL::Texture::bind(const GLenum target) const {
   glBindTexture(id, target);
 }

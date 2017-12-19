@@ -8,32 +8,6 @@
 
 #include <Simpleton/Platform/sdl error.hpp>
 
-#include <utility>
-
-inline GL::Context::Context()
-  : context(nullptr) {}
-
-inline GL::Context::Context(SDL_GLContext context)
-  : context(context) {}
-
-inline GL::Context::Context(Context &&other)
-  : context(std::exchange(other.context, nullptr)) {}
-
-inline GL::Context &GL::Context::operator=(Context &&other) {
-  context = std::exchange(other.context, nullptr);
-  return *this;
-}
-
-inline GL::Context &GL::Context::operator=(std::nullptr_t) {
-  SDL_GL_DeleteContext(context);
-  context = nullptr;
-  return *this;
-}
-
-inline GL::Context::~Context() {
-  SDL_GL_DeleteContext(context);
-}
-
 inline void GL::Context::makeCurrent(SDL_Window *const window) const {
   CHECK_SDL_ERROR(SDL_GL_MakeCurrent(window, context));
 }

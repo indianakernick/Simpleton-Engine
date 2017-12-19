@@ -11,16 +11,18 @@
 
 #include "opengl.hpp"
 #include <glm/vec2.hpp>
+#include "generic raii.hpp"
 
 namespace GL {
+  namespace detail {
+    inline void deleteTexture(const GLuint &id) {
+      glDeleteTextures(1, &id);
+    }
+  }
+
   class Texture {
   public:
-    Texture();
-    explicit Texture(GLuint);
-    Texture(Texture &&);
-    Texture &operator=(Texture &&);
-    Texture &operator=(std::nullptr_t);
-    ~Texture();
+    RAII_CLASS_MEMBERS(Texture, GLuint, id, detail::deleteTexture)
   
     void bind(GLenum) const;
   
