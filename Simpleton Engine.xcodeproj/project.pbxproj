@@ -89,6 +89,8 @@
 		45771C291FE903BB00F533DA /* shader program.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C271FE8FF1100F533DA /* shader program.hpp */; };
 		45771C2C1FE9110E00F533DA /* buffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2A1FE90D1500F533DA /* buffer.inl */; };
 		45771C2D1FE9110E00F533DA /* buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2B1FE90D1500F533DA /* buffer.hpp */; };
+		45771C301FE9141F00F533DA /* vertex array.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2E1FE9129D00F533DA /* vertex array.inl */; };
+		45771C311FE9141F00F533DA /* vertex array.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2F1FE9129D00F533DA /* vertex array.hpp */; };
 		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
 		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
@@ -290,6 +292,8 @@
 			dstPath = /usr/local/include/Simpleton/OpenGL;
 			dstSubfolderSpec = 0;
 			files = (
+				45771C301FE9141F00F533DA /* vertex array.inl in CopyFiles */,
+				45771C311FE9141F00F533DA /* vertex array.hpp in CopyFiles */,
 				45771C2C1FE9110E00F533DA /* buffer.inl in CopyFiles */,
 				45771C2D1FE9110E00F533DA /* buffer.hpp in CopyFiles */,
 				45771C281FE903BB00F533DA /* shader program.inl in CopyFiles */,
@@ -529,6 +533,8 @@
 		45771C271FE8FF1100F533DA /* shader program.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "shader program.hpp"; sourceTree = "<group>"; };
 		45771C2A1FE90D1500F533DA /* buffer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = buffer.inl; sourceTree = "<group>"; };
 		45771C2B1FE90D1500F533DA /* buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = buffer.hpp; sourceTree = "<group>"; };
+		45771C2E1FE9129D00F533DA /* vertex array.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "vertex array.inl"; sourceTree = "<group>"; };
+		45771C2F1FE9129D00F533DA /* vertex array.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "vertex array.hpp"; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -691,17 +697,19 @@
 				45771C0D1FE8781D00F533DA /* uniforms.hpp */,
 				45771C111FE87DCF00F533DA /* type enum.hpp */,
 				45771C131FE8817100F533DA /* attrib pointer.hpp */,
+				45771C201FE8EEC100F533DA /* generic raii.hpp */,
 				45771C181FE8B1B000F533DA /* context.inl */,
 				45771C191FE8B1B000F533DA /* context.hpp */,
 				45771C1C1FE8C4BB00F533DA /* texture.inl */,
 				45771C1D1FE8C4BB00F533DA /* texture.hpp */,
-				45771C201FE8EEC100F533DA /* generic raii.hpp */,
 				45771C221FE8F8A100F533DA /* shader.inl */,
 				45771C231FE8F8A100F533DA /* shader.hpp */,
 				45771C261FE8FF1100F533DA /* shader program.inl */,
 				45771C271FE8FF1100F533DA /* shader program.hpp */,
 				45771C2A1FE90D1500F533DA /* buffer.inl */,
 				45771C2B1FE90D1500F533DA /* buffer.hpp */,
+				45771C2E1FE9129D00F533DA /* vertex array.inl */,
+				45771C2F1FE9129D00F533DA /* vertex array.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
