@@ -13,11 +13,7 @@
 
 namespace GL {
   namespace detail {
-    inline void deleteProgram(const GLuint id) {
-      glDeleteProgram(id);
-      
-      CHECK_OPENGL_ERROR();
-    }
+    void deleteProgram(GLuint);
   }
 
   class ShaderProgram {

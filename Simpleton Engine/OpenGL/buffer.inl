@@ -6,6 +6,27 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
+inline void GL::detail::deleteBuffer(const GLuint &id) {
+  glDeleteBuffers(1, &id);
+  
+  CHECK_OPENGL_ERROR();
+}
+
+template <GLenum TARGET>
+void GL::unbindBuffer() {
+  glBindBuffer(TARGET, 0);
+  
+  CHECK_OPENGL_ERROR();
+}
+
+inline void GL::unbindArrayBuffer() {
+  unbindBuffer<GL_ARRAY_BUFFER>();
+}
+
+inline void GL::unbindElementBuffer() {
+  unbindBuffer<GL_ELEMENT_ARRAY_BUFFER>();
+}
+
 template <GLenum TARGET>
 GL::Buffer<TARGET> GL::makeBuffer() {
   GLuint id;

@@ -14,11 +14,7 @@
 
 namespace GL {
   namespace detail {
-    inline void deleteVertexArray(const GLuint &id) {
-      glDeleteVertexArrays(1, &id);
-      
-      CHECK_OPENGL_ERROR();
-    }
+    void deleteVertexArray(const GLuint &);
   }
   
   class VertexArray {
@@ -30,6 +26,8 @@ namespace GL {
   private:
     GLuint id;
   };
+  
+  void unbindVertexArray();
   
   VertexArray makeVertexArray();
 }

@@ -6,6 +6,23 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
+inline void GL::detail::deleteTexture(const GLuint &id) {
+  glDeleteTextures(1, &id);
+  
+  CHECK_OPENGL_ERROR();
+}
+
+template <GLenum TARGET>
+void GL::unbindTexture() {
+  glBindTexture(TARGET, 0);
+  
+  CHECK_OPENGL_ERROR();
+}
+
+inline void GL::unbindTexture2D() {
+  unbindTexture<GL_TEXTURE_2D>();
+}
+
 inline void GL::TexParams2D::setWrap(const GLint wrap) {
   wrapS = wrap;
   wrapT = wrap;

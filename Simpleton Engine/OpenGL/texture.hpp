@@ -15,11 +15,7 @@
 
 namespace GL {
   namespace detail {
-    inline void deleteTexture(const GLuint &id) {
-      glDeleteTextures(1, &id);
-      
-      CHECK_OPENGL_ERROR();
-    }
+    void deleteTexture(const GLuint &);
   }
 
   template <GLenum TARGET_>
@@ -40,6 +36,11 @@ namespace GL {
   };
   
   using Texture2D = Texture<GL_TEXTURE_2D>;
+  
+  template <GLenum TARGET>
+  void unbindTexture();
+  
+  void unbindTexture2D();
   
   struct TexParams2D {
     GLint wrapS = GL_REPEAT;

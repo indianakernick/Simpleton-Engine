@@ -8,6 +8,12 @@
 
 #include "static char buffer.hpp"
 
+inline void GL::detail::deleteShader(const GLuint id) {
+  glDeleteShader(id);
+  
+  CHECK_OPENGL_ERROR();
+}
+
 inline void GL::Shader::uploadSource(const GLchar *source, const size_t size) const {
   const GLint length = static_cast<GLint>(size);
   glShaderSource(id, 1, &source, &length);

@@ -8,6 +8,12 @@
 
 #include "static char buffer.hpp"
 
+inline void GL::detail::deleteProgram(const GLuint id) {
+  glDeleteProgram(id);
+  
+  CHECK_OPENGL_ERROR();
+}
+
 inline bool GL::ShaderProgram::link() const {
   glLinkProgram(id);
   GLint status;

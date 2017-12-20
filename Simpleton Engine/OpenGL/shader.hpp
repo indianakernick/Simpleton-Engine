@@ -15,11 +15,7 @@
 
 namespace GL {
   namespace detail {
-    inline void deleteShader(const GLuint id) {
-      glDeleteShader(id);
-      
-      CHECK_OPENGL_ERROR();
-    }
+    void deleteShader(GLuint);
   }
 
   class Shader {

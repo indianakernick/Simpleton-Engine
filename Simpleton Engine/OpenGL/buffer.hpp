@@ -14,11 +14,7 @@
 
 namespace GL {
   namespace detail {
-    inline void deleteBuffer(const GLuint &id) {
-      glDeleteBuffers(1, &id);
-      
-      CHECK_OPENGL_ERROR();
-    }
+    void deleteBuffer(const GLuint &);
   }
 
   template <GLenum TARGET_>
@@ -42,6 +38,12 @@ namespace GL {
   using ElementBuffer = Buffer<GL_ELEMENT_ARRAY_BUFFER>;
   
   template <GLenum TARGET>
+  void unbindBuffer();
+  
+  void unbindArrayBuffer();
+  void unbindElementBuffer();
+  
+  template <GLenum TARGET>
   Buffer<TARGET> makeBuffer();
   template <GLenum TARGET>
   Buffer<TARGET> makeBuffer(size_t, GLenum = GL_STATIC_DRAW);
@@ -54,7 +56,7 @@ namespace GL {
   
   ElementBuffer makeElementBuffer();
   ElementBuffer makeElementBuffer(size_t, GLenum = GL_STATIC_DRAW);
-  ElementBuffer makeElementBuffer(const GLvoid *, size_t GLenum = GL_STATIC_DRAW);
+  ElementBuffer makeElementBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
 }
 
 #include "buffer.inl"
