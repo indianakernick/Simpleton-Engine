@@ -39,4 +39,6 @@ namespace GL {
   Shader makeShader(GLenum, std::istream &);
 }
 
+#include "shader.inl"
+
 #endif

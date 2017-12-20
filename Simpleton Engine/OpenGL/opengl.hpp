@@ -52,7 +52,7 @@ namespace GL::detail {
 #define CHECK_OPENGL_ERROR()                                                    \
   do {                                                                          \
     int errorCount = 0;                                                         \
-    for (GLenum error; (error = glGetError()) != GL_NO_ERROR;) {                \
+    for (GLenum error; (error = glGetError()) != GL_NO_ERROR; ++errorCount) {   \
       std::cerr << "OpenGL error: " << GL::detail::glErrorString(error) << '\n';\
     }                                                                           \
     assert(errorCount == 0);                                                    \
