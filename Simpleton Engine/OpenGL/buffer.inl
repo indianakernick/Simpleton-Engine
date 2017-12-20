@@ -32,3 +32,35 @@ GL::Buffer<TARGET> GL::makeBuffer(
   CHECK_OPENGL_ERROR();
   return buffer;
 }
+
+inline GL::ArrayBuffer GL::makeArrayBuffer() {
+  return makeBuffer<GL_ARRAY_BUFFER>();
+}
+
+inline GL::ArrayBuffer GL::makeArrayBuffer(const size_t size, const GLenum usage) {
+  return makeBuffer<GL_ARRAY_BUFFER>(size, usage);
+}
+
+inline GL::ArrayBuffer GL::makeArrayBuffer(
+  const GLvoid *data,
+  const size_t size,
+  const GLenum usage
+) {
+  return makeBuffer<GL_ARRAY_BUFFER>(data, size, usage);
+}
+
+inline GL::ElementBuffer GL::makeElementBuffer() {
+  return makeBuffer<GL_ELEMENT_ARRAY_BUFFER>();
+}
+
+inline GL::ElementBuffer GL::makeElementBuffer(const size_t size, const GLenum usage) {
+  return makeBuffer<GL_ELEMENT_ARRAY_BUFFER>(size, usage);
+}
+
+inline GL::ElementBuffer GL::makeElementBuffer(
+  const GLvoid *data,
+  const size_t size,
+  const GLenum usage
+) {
+  return makeBuffer<GL_ELEMENT_ARRAY_BUFFER>(data, size, usage);
+}

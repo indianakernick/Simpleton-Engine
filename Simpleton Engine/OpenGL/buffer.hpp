@@ -47,6 +47,14 @@ namespace GL {
   Buffer<TARGET> makeBuffer(size_t, GLenum = GL_STATIC_DRAW);
   template <GLenum TARGET>
   Buffer<TARGET> makeBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
+  
+  ArrayBuffer makeArrayBuffer();
+  ArrayBuffer makeArrayBuffer(size_t, GLenum = GL_STATIC_DRAW);
+  ArrayBuffer makeArrayBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
+  
+  ElementBuffer makeElementBuffer();
+  ElementBuffer makeElementBuffer(size_t, GLenum = GL_STATIC_DRAW);
+  ElementBuffer makeElementBuffer(const GLvoid *, size_t GLenum = GL_STATIC_DRAW);
 }
 
 #include "buffer.inl"
