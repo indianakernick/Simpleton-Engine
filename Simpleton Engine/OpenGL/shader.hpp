@@ -9,6 +9,7 @@
 #ifndef engine_opengl_shader_hpp
 #define engine_opengl_shader_hpp
 
+#include <iostream>
 #include "opengl.hpp"
 #include "generic raii.hpp"
 
