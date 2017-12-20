@@ -44,7 +44,7 @@ inline std::ostream &GL::operator<<(std::ostream &stream, const Shader &shader) 
 inline std::istream &GL::operator>>(std::istream &stream, const Shader &shader) {
   stream.seekg(0, std::ios::seekdir::end);
   const size_t size = stream.tellg();
-  GLchar *const source = detail::getCharBuf(size);
+  GLchar *const source = detail::getCharBuf(static_cast<GLint>(size));
   stream.seekg(0, std::ios::seekdir::beg);
   stream.read(source, size);
   shader.uploadSource(source, size);
