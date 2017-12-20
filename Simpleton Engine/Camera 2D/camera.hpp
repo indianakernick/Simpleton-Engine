@@ -23,7 +23,7 @@ namespace Cam2D {
     void setPos(glm::vec2);
     void setZoom(float);
     
-    void update(glm::ivec2 windowSize, float delta);
+    void update(float windowAspectRatio, float deltaTime);
 
     Transform transform;
     std::unique_ptr<Animate<PropID::POS>> animatePos;

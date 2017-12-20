@@ -13,12 +13,12 @@
 
 namespace Cam2D {
   struct Props {
-    ///Size of the window
-    glm::ivec2 windowSize;
     ///Position in meters of the camera
     glm::vec2 pos;
-    ///Pixels per meter
-    float ppm;
+    ///Scale factor (zoom)
+    float scale;
+    ///Aspect ratio of the window
+    float aspect;
   };
   
   enum class PropID {
@@ -38,7 +38,7 @@ namespace Cam2D {
   template <>
   struct PropTraits<PropID::ZOOM> {
     using type = float;
-    static constexpr auto PTR = &Props::ppm;
+    static constexpr auto PTR = &Props::scale;
   };
   
   template <PropID PROP>

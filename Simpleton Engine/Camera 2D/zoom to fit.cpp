@@ -20,12 +20,11 @@ void ZoomToFit::setSize(const glm::vec2 newBox) {
 }
 
 float ZoomToFit::calcTarget(const Props props) {
-  const float windowAspect = props.windowSize.x / props.windowSize.y;
   const float boxAspect = box.x / box.y;
   
-  if (windowAspect < boxAspect) {
-    return props.windowSize.x / box.x;
+  if (props.aspect < boxAspect) {
+    return 2.0f / box.x;
   } else {
-    return props.windowSize.y / box.y;
+    return 2.0f / box.y / props.aspect;
   }
 }
