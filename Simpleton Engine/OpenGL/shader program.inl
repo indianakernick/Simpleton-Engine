@@ -56,6 +56,13 @@ inline void GL::ShaderProgram::detach(const GLuint shaderID) const {
   CHECK_OPENGL_ERROR();
 }
 
+inline GLint GL::ShaderProgram::getUniformLoc(const GLchar *name) const {
+  const GLint location = glGetUniformLocation(id, name);
+  assert(location != -1);
+  CHECK_OPENGL_ERROR();
+  return location;
+}
+
 inline std::ostream &GL::operator<<(std::ostream &stream, const GL::ShaderProgram &program) {
   GLint logLength;
   glGetProgramiv(program.id, GL_INFO_LOG_LENGTH, &logLength);
@@ -69,6 +76,11 @@ inline std::ostream &GL::operator<<(std::ostream &stream, const GL::ShaderProgra
   CHECK_OPENGL_ERROR();
   
   return stream;
+}
+
+inline void GL::unuseProgram() {
+  glUseProgram(0);
+  CHECK_OPENGL_ERROR();
 }
 
 inline GL::ShaderProgram GL::makeShaderProgram() {

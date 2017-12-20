@@ -28,6 +28,8 @@ namespace GL {
     void detach(const Shader &) const;
     void detach(GLuint) const;
     
+    GLint getUniformLoc(const GLchar *) const;
+    
     friend std::ostream &operator<<(std::ostream &, const ShaderProgram &);
     
   private:
@@ -35,6 +37,8 @@ namespace GL {
   };
   
   std::ostream &operator<<(std::ostream &, const ShaderProgram &);
+  
+  void unuseProgram();
   
   ShaderProgram makeShaderProgram();
   
