@@ -33,6 +33,12 @@ inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams
   
   CHECK_OPENGL_ERROR();
   
+  std::cerr << "OpenGL Version:  " << glGetString(GL_VERSION) << '\n';
+  std::cerr << "OpenGL Renderer: " << glGetString(GL_RENDERER) << '\n';
+  std::cerr << "OpenGL Vendor:   " << glGetString(GL_VENDOR) << '\n';
+  
+  CHECK_OPENGL_ERROR();
+  
   return context;
 }
 
