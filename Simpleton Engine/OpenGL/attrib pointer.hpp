@@ -24,6 +24,7 @@ namespace GL {
           static_cast<GLsizei>(stride),
           reinterpret_cast<const GLvoid *>(offset)
         );
+        CHECK_OPENGL_ERROR();
       } else {
         glVertexAttribPointer(
           attr,
@@ -33,6 +34,7 @@ namespace GL {
           static_cast<GLsizei>(stride),
           reinterpret_cast<const GLvoid *>(offset)
         );
+        CHECK_OPENGL_ERROR();
       }
     }
     
@@ -103,6 +105,7 @@ namespace GL {
     constexpr GLint SIZE = detail::numAttrLocations<T>();
     for (GLint a = ATTR; a != ATTR + SIZE; ++a) {
       glEnableVertexAttribArray(a);
+      CHECK_OPENGL_ERROR();
     }
   }
   
@@ -111,6 +114,7 @@ namespace GL {
     constexpr GLint SIZE = detail::numAttrLocations<T>();
     for (GLint a = ATTR; a != ATTR + SIZE; ++a) {
       glDisableVertexAttribArray(a);
+      CHECK_OPENGL_ERROR();
     }
   }
   
