@@ -19,8 +19,9 @@ namespace GL {
   //vectors
 
   #define VEC(NUM, TYPE, TYPE_CHAR, ...)                                        \
-    inline void setUniform(GLint location, const TYPE &value) {                 \
+    inline void setUniform(const GLint location, const TYPE &value) {           \
       glUniform##NUM##TYPE_CHAR(location, __VA_ARGS__);                         \
+      CHECK_OPENGL_ERROR();                                                     \
     }
   
   #define VEC1(TYPE, TYPE_CHAR)                                                 \
@@ -55,21 +56,23 @@ namespace GL {
   
   #define MAT(ROWS, COLUMNS, TYPE, TYPE_CHAR)                                   \
     inline void setUniform(                                                     \
-      GLint location,                                                           \
+      const GLint location,                                                     \
       const glm::tmat##ROWS##x##COLUMNS<TYPE> &value                            \
     ) {                                                                         \
       glUniformMatrix##ROWS##x##COLUMNS##TYPE_CHAR##v(                          \
         location, 1, GL_FALSE, glm::value_ptr(value)                            \
       );                                                                        \
+      CHECK_OPENGL_ERROR();                                                     \
     }
   #define SQUARE_MAT(ROWS, TYPE, TYPE_CHAR)                                     \
     inline void setUniform(                                                     \
-      GLint location,                                                           \
+      const GLint location,                                                     \
       const glm::tmat##ROWS##x##ROWS<TYPE> &value                               \
     ) {                                                                         \
       glUniformMatrix##ROWS##TYPE_CHAR##v(                                      \
         location, 1, GL_FALSE, glm::value_ptr(value)                            \
       );                                                                        \
+      CHECK_OPENGL_ERROR();                                                     \
     }
   
   #define MAT_ALL(TYPE, TYPE_CHAR)                                              \
@@ -93,25 +96,30 @@ namespace GL {
   //arrays of vectors
   
   template <typename T>
-  inline void setUniform(GLint location, const std::vector<T> &values) {
+  inline void setUniform(const GLint location, const std::vector<T> &values) {
     setUniform(location, values.size(), values.data());
   }
   
   template <typename T, size_t SIZE>
-  inline void setUniform(GLint location, const std::array<T, SIZE> &values) {
+  inline void setUniform(const GLint location, const std::array<T, SIZE> &values) {
     setUniform(location, SIZE, values.data());
   }
   
   template <typename T, size_t SIZE>
-  inline void setUniform(GLint location, const T (&values)[SIZE]) {
+  inline void setUniform(const GLint location, const T (&values)[SIZE]) {
     setUniform(location, SIZE, values);
   }
   
   #define VEC_ARRAY(NUM, TYPE, TYPE_CHAR, ARG)                                  \
-    inline void setUniform(GLint location, size_t count, const TYPE *values) {  \
+    inline void setUniform(                                                     \
+      const GLint location,                                                     \
+      const size_t count,                                                       \
+      const TYPE *const values                                                  \
+    ) {                                                                         \
       assert(count > 0);                                                        \
       assert(values != nullptr);                                                \
       glUniform##NUM##TYPE_CHAR##v(location, static_cast<GLsizei>(count), ARG); \
+      CHECK_OPENGL_ERROR();                                                     \
     }
   
   #define VEC1_ARRAY(TYPE, TYPE_CHAR)                                           \
@@ -145,25 +153,29 @@ namespace GL {
   
   #define MAT_ARRAY(ROWS, COLUMNS, TYPE, TYPE_CHAR)                             \
     inline void setUniform(                                                     \
-      GLint location, size_t count,                                             \
-      const glm::tmat##ROWS##x##COLUMNS<TYPE> *values                           \
+      const GLint location,                                                     \
+      const size_t count,                                                       \
+      const glm::tmat##ROWS##x##COLUMNS<TYPE> *const values                     \
     ) {                                                                         \
       assert(count > 0);                                                        \
       assert(values != nullptr);                                                \
       glUniformMatrix##ROWS##x##COLUMNS##TYPE_CHAR##v(                          \
         location, static_cast<GLsizei>(count), GL_FALSE, glm::value_ptr(values[0])\
       );                                                                        \
+      CHECK_OPENGL_ERROR();                                                     \
     }
   #define SQUARE_MAT_ARRAY(ROWS, TYPE, TYPE_CHAR)                               \
     inline void setUniform(                                                     \
-      GLint location, size_t count,                                             \
-      const glm::tmat##ROWS##x##ROWS<TYPE> *values                              \
+      const GLint location,                                                     \
+      const size_t count,                                                       \
+      const glm::tmat##ROWS##x##ROWS<TYPE> *const values                        \
     ) {                                                                         \
       assert(count > 0);                                                        \
       assert(values != nullptr);                                                \
       glUniformMatrix##ROWS##TYPE_CHAR##v(                                      \
         location, static_cast<GLsizei>(count), GL_FALSE, glm::value_ptr(values[0])\
       );                                                                        \
+      CHECK_OPENGL_ERROR();                                                     \
     }
   
   #define MAT_ARRAY_ALL(TYPE, TYPE_CHAR)                                        \
