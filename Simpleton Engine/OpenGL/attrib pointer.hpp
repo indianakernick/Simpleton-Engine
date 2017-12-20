@@ -38,21 +38,29 @@ namespace GL {
       }
     }
     
-    enum class AttribMode {
+    enum class AttribMode : unsigned {
       // glVertexAttribPointer for floats and glVertexAttribIPointer for ints
       NO_CHANGE,
       // glVertexAttribPointer with no normalization
       TO_FLOAT,
       // glVertexAttribPointer with normalization
-      FIXED_POINT
+      FIXED_POINT,
+      
+      COUNT
     };
     
     template <typename T, AttribMode MODE>
     void attribPointerVec(const GLint attr, const size_t stride, const size_t offset) {
+      static_assert(
+        std::is_arithmetic_v<T> || Utils::is_vec<T>,
+        "Incompatable type passed to GL::attribPointer"
+      );
+      static_assert(static_cast<unsigned>(MODE) < static_cast<unsigned>(AttribMode::COUNT));
+      
       if constexpr (MODE == AttribMode::NO_CHANGE) {
-        if constexpr (std::is_floating_point_v<T>) {
+        if constexpr (std::is_floating_point_v<T> || std::is_floating_point_v<Utils::vec_value_type<T>>) {
           attribPointerVecImpl<T, false, false>(attr, stride, offset);
-        } else if constexpr (std::is_integral_v<T>) {
+        } else if constexpr (std::is_integral_v<T> || std::is_integral_v<Utils::vec_value_type<T>>) {
           attribPointerVecImpl<T, true, false>(attr, stride, offset);
         }
       } else if constexpr (MODE == AttribMode::TO_FLOAT) {
@@ -96,6 +104,10 @@ namespace GL {
         attribPointerArray<T, T::col_type, MODE>(attr, stride, offset);
       } else if constexpr (std::is_array_v<T>) {
         attribPointerArray<T, std::remove_extent<T>, MODE>(attr, stride, offset);
+      } else {
+        // void is an invalid type so the static_assert in attribPointerVec will
+        // be triggered
+        attribPointerVec<void, MODE>(0, 0, 0);
       }
     }
   }
