@@ -31,9 +31,8 @@ template <GLenum TARGET>
 GL::Buffer<TARGET> GL::makeBuffer() {
   GLuint id;
   glGenBuffers(1, &id);
-  Buffer<TARGET> buffer(id);
   CHECK_OPENGL_ERROR();
-  return buffer;
+  return Buffer<TARGET>(id);
 }
 
 template <GLenum TARGET>

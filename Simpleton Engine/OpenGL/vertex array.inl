@@ -27,7 +27,6 @@ inline void GL::unbindVertexArray() {
 inline GL::VertexArray GL::makeVertexArray() {
   GLuint id;
   glGenVertexArrays(1, &id);
-  VertexArray vertexArray(id);
   CHECK_OPENGL_ERROR();
-  return vertexArray;
+  return VertexArray(id);
 }
