@@ -2,18 +2,18 @@
 //  generic raii.hpp
 //  Simpleton Engine
 //
-//  Created by Indi Kernick on 19/12/17.
+//  Created by Indi Kernick on 23/12/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_opengl_generic_raii_hpp
-#define engine_opengl_generic_raii_hpp
+#ifndef engine_utils_generic_raii_hpp
+#define engine_utils_generic_raii_hpp
 
 #include <utility>
 
 // Same interface as std::unique_ptr (the best class in the entire STL)
 
-#define RAII_CLASS_MEMBERS(CLASS, TYPE, MEMBER, DELETE)                         \
+#define UTILS_RAII_CLASS(CLASS, TYPE, MEMBER, DELETE)                           \
   CLASS() noexcept                                                              \
     : MEMBER() {}                                                               \
   CLASS(std::nullptr_t) noexcept                                                \

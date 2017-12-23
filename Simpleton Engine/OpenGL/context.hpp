@@ -10,12 +10,12 @@
 #define engine_opengl_context_hpp
 
 #include "opengl.hpp"
-#include "generic raii.hpp"
+#include "../Utils/generic raii.hpp"
 
 namespace GL {
   class Context {
   public:
-    RAII_CLASS_MEMBERS(Context, SDL_GLContext, context, SDL_GL_DeleteContext)
+    UTILS_RAII_CLASS(Context, SDL_GLContext, context, SDL_GL_DeleteContext)
   
     void makeCurrent(SDL_Window *) const;
   

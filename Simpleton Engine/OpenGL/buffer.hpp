@@ -10,7 +10,7 @@
 #define engine_opengl_buffer_hpp
 
 #include "opengl.hpp"
-#include "generic raii.hpp"
+#include "../Utils/generic raii.hpp"
 
 namespace GL {
   namespace detail {
@@ -20,7 +20,7 @@ namespace GL {
   template <GLenum TARGET_>
   class Buffer {
   public:
-    RAII_CLASS_MEMBERS(Buffer, GLuint, id, detail::deleteBuffer)
+    UTILS_RAII_CLASS(Buffer, GLuint, id, detail::deleteBuffer)
     
     static constexpr GLenum TARGET = TARGET_;
     

@@ -10,7 +10,7 @@
 #define engine_opengl_vertex_array_hpp
 
 #include "opengl.hpp"
-#include "generic raii.hpp"
+#include "../Utils/generic raii.hpp"
 
 namespace GL {
   namespace detail {
@@ -19,7 +19,7 @@ namespace GL {
   
   class VertexArray {
   public:
-    RAII_CLASS_MEMBERS(VertexArray, GLuint, id, detail::deleteVertexArray)
+    UTILS_RAII_CLASS(VertexArray, GLuint, id, detail::deleteVertexArray)
     
     void bind() const;
   

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "opengl.hpp"
-#include "generic raii.hpp"
+#include "../Utils/generic raii.hpp"
 
 namespace GL {
   namespace detail {
@@ -21,7 +21,7 @@ namespace GL {
   template <GLenum TYPE_>
   class Shader {
   public:
-    RAII_CLASS_MEMBERS(Shader, GLuint, id, detail::deleteShader)
+    UTILS_RAII_CLASS(Shader, GLuint, id, detail::deleteShader)
   
     static constexpr GLenum TYPE = TYPE_;
   

@@ -83,7 +83,6 @@
 		45771C1B1FE8B4E700F533DA /* context.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C191FE8B1B000F533DA /* context.hpp */; };
 		45771C1E1FE8E23600F533DA /* texture.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C1C1FE8C4BB00F533DA /* texture.inl */; };
 		45771C1F1FE8E23600F533DA /* texture.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C1D1FE8C4BB00F533DA /* texture.hpp */; };
-		45771C211FE8F2E400F533DA /* generic raii.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C201FE8EEC100F533DA /* generic raii.hpp */; };
 		45771C241FE8FE5100F533DA /* shader.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C221FE8F8A100F533DA /* shader.inl */; };
 		45771C251FE8FE5100F533DA /* shader.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C231FE8F8A100F533DA /* shader.hpp */; };
 		45771C281FE903BB00F533DA /* shader program.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C261FE8FF1100F533DA /* shader program.inl */; };
@@ -237,6 +236,7 @@
 		45B5E8C81EF9047000A6A3E2 /* system info.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
+		45C525A21FEDFE0300A738E0 /* generic raii.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A11FEDFC0800A738E0 /* generic raii.hpp */; };
 		45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
 		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
@@ -302,7 +302,6 @@
 				45771C291FE903BB00F533DA /* shader program.hpp in CopyFiles */,
 				45771C241FE8FE5100F533DA /* shader.inl in CopyFiles */,
 				45771C251FE8FE5100F533DA /* shader.hpp in CopyFiles */,
-				45771C211FE8F2E400F533DA /* generic raii.hpp in CopyFiles */,
 				45771C1E1FE8E23600F533DA /* texture.inl in CopyFiles */,
 				45771C1F1FE8E23600F533DA /* texture.hpp in CopyFiles */,
 				45771C1A1FE8B4E700F533DA /* context.inl in CopyFiles */,
@@ -405,6 +404,7 @@
 			dstPath = /usr/local/include/Simpleton/Utils;
 			dstSubfolderSpec = 0;
 			files = (
+				45C525A21FEDFE0300A738E0 /* generic raii.hpp in CopyFiles */,
 				45771C161FE8982600F533DA /* meta glm.hpp in CopyFiles */,
 				4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */,
 				45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */,
@@ -529,7 +529,6 @@
 		45771C191FE8B1B000F533DA /* context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = context.hpp; sourceTree = "<group>"; };
 		45771C1C1FE8C4BB00F533DA /* texture.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = texture.inl; sourceTree = "<group>"; };
 		45771C1D1FE8C4BB00F533DA /* texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
-		45771C201FE8EEC100F533DA /* generic raii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "generic raii.hpp"; sourceTree = "<group>"; };
 		45771C221FE8F8A100F533DA /* shader.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = shader.inl; sourceTree = "<group>"; };
 		45771C231FE8F8A100F533DA /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		45771C261FE8FF1100F533DA /* shader program.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "shader program.inl"; sourceTree = "<group>"; };
@@ -624,6 +623,7 @@
 		45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		45B5E8C41EF9047000A6A3E2 /* system info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "system info.cpp"; sourceTree = "<group>"; };
 		45B5E8C51EF9047000A6A3E2 /* system info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "system info.hpp"; sourceTree = "<group>"; };
+		45C525A11FEDFC0800A738E0 /* generic raii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "generic raii.hpp"; sourceTree = "<group>"; };
 		45DEA0321F7F757200B1DA72 /* parse string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "parse string.cpp"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
@@ -700,7 +700,6 @@
 				45771C0D1FE8781D00F533DA /* uniforms.hpp */,
 				45771C111FE87DCF00F533DA /* type enum.hpp */,
 				45771C131FE8817100F533DA /* attrib pointer.hpp */,
-				45771C201FE8EEC100F533DA /* generic raii.hpp */,
 				45771C181FE8B1B000F533DA /* context.inl */,
 				45771C191FE8B1B000F533DA /* context.hpp */,
 				45771C1C1FE8C4BB00F533DA /* texture.inl */,
@@ -816,6 +815,7 @@
 				45DEA0371F80B36900B1DA72 /* tuple.hpp */,
 				4584F40B1FCCF0C80062B93E /* combine hashes.hpp */,
 				45771C151FE8952D00F533DA /* meta glm.hpp */,
+				45C525A11FEDFC0800A738E0 /* generic raii.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

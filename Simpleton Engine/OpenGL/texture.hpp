@@ -11,7 +11,7 @@
 
 #include "opengl.hpp"
 #include <glm/vec2.hpp>
-#include "generic raii.hpp"
+#include "../Utils/generic raii.hpp"
 
 namespace GL {
   namespace detail {
@@ -21,7 +21,7 @@ namespace GL {
   template <GLenum TARGET_>
   class Texture {
   public:
-    RAII_CLASS_MEMBERS(Texture, GLuint, id, detail::deleteTexture)
+    UTILS_RAII_CLASS(Texture, GLuint, id, detail::deleteTexture)
   
     static constexpr GLenum TARGET = TARGET_;
   
