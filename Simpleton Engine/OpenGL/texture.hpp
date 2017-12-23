@@ -60,6 +60,9 @@ namespace GL {
     bool alpha = true;
   };
   
+  void setTexParams(const TexParams2D &);
+  void setTexImage(const Image2D &);
+  
   template <GLenum TARGET>
   Texture<TARGET> makeTexture();
   Texture2D makeTexture2D();

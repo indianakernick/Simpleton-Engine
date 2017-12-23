@@ -237,6 +237,8 @@
 		45B5E8CA1EF9065F00A6A3E2 /* system info.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* system info.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 		45C525A21FEDFE0300A738E0 /* generic raii.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A11FEDFC0800A738E0 /* generic raii.hpp */; };
+		45C525A81FEE036A00A738E0 /* framebuffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A61FEE034D00A738E0 /* framebuffer.inl */; };
+		45C525A91FEE036A00A738E0 /* framebuffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A71FEE034D00A738E0 /* framebuffer.hpp */; };
 		45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
 		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
@@ -293,6 +295,8 @@
 			dstPath = /usr/local/include/Simpleton/OpenGL;
 			dstSubfolderSpec = 0;
 			files = (
+				45C525A81FEE036A00A738E0 /* framebuffer.inl in CopyFiles */,
+				45C525A91FEE036A00A738E0 /* framebuffer.hpp in CopyFiles */,
 				4520AD6D1FE9DC6300ECE3C1 /* static char buffer.hpp in CopyFiles */,
 				45771C301FE9141F00F533DA /* vertex array.inl in CopyFiles */,
 				45771C311FE9141F00F533DA /* vertex array.hpp in CopyFiles */,
@@ -624,6 +628,8 @@
 		45B5E8C41EF9047000A6A3E2 /* system info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "system info.cpp"; sourceTree = "<group>"; };
 		45B5E8C51EF9047000A6A3E2 /* system info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "system info.hpp"; sourceTree = "<group>"; };
 		45C525A11FEDFC0800A738E0 /* generic raii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "generic raii.hpp"; sourceTree = "<group>"; };
+		45C525A61FEE034D00A738E0 /* framebuffer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = framebuffer.inl; sourceTree = "<group>"; };
+		45C525A71FEE034D00A738E0 /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
 		45DEA0321F7F757200B1DA72 /* parse string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "parse string.cpp"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
@@ -713,6 +719,8 @@
 				45771C2B1FE90D1500F533DA /* buffer.hpp */,
 				45771C2E1FE9129D00F533DA /* vertex array.inl */,
 				45771C2F1FE9129D00F533DA /* vertex array.hpp */,
+				45C525A61FEE034D00A738E0 /* framebuffer.inl */,
+				45C525A71FEE034D00A738E0 /* framebuffer.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";

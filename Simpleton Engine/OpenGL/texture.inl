@@ -45,47 +45,45 @@ inline GL::Texture2D GL::makeTexture2D() {
   return makeTexture<GL_TEXTURE_2D>();
 }
 
-namespace GL::detail {
-  inline void setTexParams(const TexParams2D &params) {
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, params.wrapS);
-    CHECK_OPENGL_ERROR();
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, params.wrapT);
-    CHECK_OPENGL_ERROR();
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, params.minFilter);
-    CHECK_OPENGL_ERROR();
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, params.magFilter);
-    CHECK_OPENGL_ERROR();
-  }
+inline void GL::setTexParams(const TexParams2D &params) {
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, params.wrapS);
+  CHECK_OPENGL_ERROR();
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, params.wrapT);
+  CHECK_OPENGL_ERROR();
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, params.minFilter);
+  CHECK_OPENGL_ERROR();
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, params.magFilter);
+  CHECK_OPENGL_ERROR();
+}
+
+inline void GL::setTexImage(const Image2D &image) {
+  glPixelStorei(GL_UNPACK_ROW_LENGTH, image.pitch);
+
+  CHECK_OPENGL_ERROR();
   
-  inline void setTexImage(const Image2D &image) {
-    glPixelStorei(GL_UNPACK_ROW_LENGTH, image.pitch);
+  glTexImage2D(
+    GL_TEXTURE_2D,                         // target
+    0,                                     // LOD
+    image.alpha ? GL_SRGB_ALPHA : GL_SRGB, // internal format
+    image.width,                           // width
+    image.height,                          // height
+    0,                                     // border
+    image.alpha ? GL_RGBA : GL_RGB,        // format
+    GL_UNSIGNED_BYTE,                      // type
+    image.data                             // pixels
+  );
   
-    CHECK_OPENGL_ERROR();
-    
-    glTexImage2D(
-      GL_TEXTURE_2D,                         // target
-      0,                                     // LOD
-      image.alpha ? GL_SRGB_ALPHA : GL_SRGB, // internal format
-      image.width,                           // width
-      image.height,                          // height
-      0,                                     // border
-      image.alpha ? GL_RGBA : GL_RGB,        // format
-      GL_UNSIGNED_BYTE,                      // type
-      image.data                             // pixels
-    );
-    
-    CHECK_OPENGL_ERROR();
-    
-    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-    
-    CHECK_OPENGL_ERROR();
-  }
+  CHECK_OPENGL_ERROR();
+  
+  glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+  
+  CHECK_OPENGL_ERROR();
 }
 
 inline GL::Texture2D GL::makeTexture2D(const Image2D &image, const TexParams2D &params) {
   Texture2D texture = makeTexture2D();
   texture.bind();
-  detail::setTexParams(params);
-  detail::setTexImage(image);
+  setTexParams(params);
+  setTexImage(image);
   return texture;
 }
