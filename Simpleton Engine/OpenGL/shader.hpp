@@ -18,25 +18,58 @@ namespace GL {
     void deleteShader(GLuint);
   }
 
+  template <GLenum TYPE_>
   class Shader {
   public:
     RAII_CLASS_MEMBERS(Shader, GLuint, id, detail::deleteShader)
   
+    static constexpr GLenum TYPE = TYPE_;
+  
     void uploadSource(const GLchar *, size_t) const;
     bool compile() const;
   
-    friend std::ostream &operator<<(std::ostream &, const Shader &);
+    template <GLenum TYPE>
+    friend std::ostream &operator<<(std::ostream &, const Shader<TYPE> &);
     
   private:
     GLuint id;
   };
   
-  std::ostream &operator<<(std::ostream &, const Shader &);
-  std::istream &operator>>(std::istream &, const Shader &);
+  using VertShader = Shader<GL_VERTEX_SHADER>;
+  using FragShader = Shader<GL_FRAGMENT_SHADER>;
   
-  Shader makeShader(GLenum);
-  Shader makeShader(GLenum, const GLchar *, size_t);
-  Shader makeShader(GLenum, std::istream &);
+  template <GLenum TYPE>
+  struct ShaderName {};
+  
+  template <>
+  struct ShaderName<GL_VERTEX_SHADER> {
+    constexpr static const char *const value = "vertex";
+  };
+  
+  template <>
+  struct ShaderName<GL_FRAGMENT_SHADER> {
+    constexpr static const char *const value = "fragment";
+  };
+  
+  template <GLenum TYPE>
+  std::ostream &operator<<(std::ostream &, const Shader<TYPE> &);
+  template <GLenum TYPE>
+  std::istream &operator>>(std::istream &, const Shader<TYPE> &);
+  
+  template <GLenum TYPE>
+  Shader<TYPE> makeShader();
+  template <GLenum TYPE>
+  Shader<TYPE> makeShader(const GLchar *, size_t);
+  template <GLenum TYPE>
+  Shader<TYPE> makeShader(std::istream &);
+  
+  VertShader makeVertShader();
+  VertShader makeVertShader(const GLchar *, size_t);
+  VertShader makeVertShader(std::istream &);
+  
+  FragShader makeFragShader();
+  FragShader makeFragShader(const GLchar *, size_t);
+  FragShader makeFragShader(std::istream &);
 }
 
 #include "shader.inl"

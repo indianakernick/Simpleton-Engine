@@ -14,14 +14,16 @@ inline void GL::detail::deleteShader(const GLuint id) {
   CHECK_OPENGL_ERROR();
 }
 
-inline void GL::Shader::uploadSource(const GLchar *source, const size_t size) const {
+template <GLenum TYPE>
+void GL::Shader<TYPE>::uploadSource(const GLchar *source, const size_t size) const {
   const GLint length = static_cast<GLint>(size);
   glShaderSource(id, 1, &source, &length);
   
   CHECK_OPENGL_ERROR();
 }
 
-inline bool GL::Shader::compile() const {
+template <GLenum TYPE>
+bool GL::Shader<TYPE>::compile() const {
   glCompileShader(id);
   GLint status;
   glGetShaderiv(id, GL_COMPILE_STATUS, &status);
@@ -29,19 +31,20 @@ inline bool GL::Shader::compile() const {
   return status == GL_TRUE;
 }
 
-inline std::ostream &GL::operator<<(std::ostream &stream, const Shader &shader) {
+template <GLenum TYPE>
+std::ostream &GL::operator<<(std::ostream &stream, const Shader<TYPE> &shader) {
   GLint logLength;
   glGetShaderiv(shader.id, GL_INFO_LOG_LENGTH, &logLength);
   if (logLength) {
     GLchar *const buf = detail::getCharBuf(logLength);
     glGetShaderInfoLog(shader.id, logLength, nullptr, buf);
-    //avoiding a call to strlen
     stream << std::string_view(buf, logLength);
   }
   return stream;
 }
 
-inline std::istream &GL::operator>>(std::istream &stream, const Shader &shader) {
+template <GLenum TYPE>
+std::istream &GL::operator>>(std::istream &stream, const Shader<TYPE> &shader) {
   stream.seekg(0, std::ios::seekdir::end);
   const size_t size = stream.tellg();
   GLchar *const source = detail::getCharBuf(static_cast<GLint>(size));
@@ -51,32 +54,55 @@ inline std::istream &GL::operator>>(std::istream &stream, const Shader &shader) 
   return stream;
 }
 
-inline GL::Shader GL::makeShader(const GLenum type) {
-  Shader shader(glCreateShader(type));
+template <GLenum TYPE>
+GL::Shader<TYPE> GL::makeShader() {
+  Shader<TYPE> shader(glCreateShader(TYPE));
   CHECK_OPENGL_ERROR();
   return shader;
 }
 
-inline GL::Shader GL::makeShader(
-  const GLenum type,
-  const GLchar *source,
-  const size_t size
-) {
-  Shader shader = makeShader(type);
+template <GLenum TYPE>
+GL::Shader<TYPE> GL::makeShader(const GLchar *source, const size_t size) {
+  Shader<TYPE> shader = makeShader<TYPE>();
   shader.uploadSource(source, size);
   if (!shader.compile()) {
-    std::cerr << "Failed to compile shader\n";
+    std::cerr << "Failed to compile " << ShaderName<TYPE>::value << " shader\n";
   }
-  std::cerr << "Shader info log:\n" << shader << '\n';
+  std::cerr << ShaderName<TYPE>::value << " shader info log:\n" << shader << '\n';
   return shader;
 }
 
-inline GL::Shader GL::makeShader(const GLenum type, std::istream &stream) {
-  Shader shader = makeShader(type);
+template <GLenum TYPE>
+GL::Shader<TYPE> GL::makeShader(std::istream &stream) {
+  Shader<TYPE> shader = makeShader<TYPE>();
   stream >> shader;
   if (!shader.compile()) {
-    std::cerr << "Failed to compile shader\n";
+    std::cerr << "Failed to compile " << ShaderName<TYPE>::value << " shader\n";
   }
-  std::cerr << "Shader info log:\n" << shader << '\n';
+  std::cerr << ShaderName<TYPE>::value << " shader info log:\n" << shader << '\n';
   return shader;
+}
+
+inline GL::VertShader GL::makeVertShader() {
+  return makeShader<GL_VERTEX_SHADER>();
+}
+
+inline GL::VertShader GL::makeVertShader(const GLchar *source, const size_t size) {
+  return makeShader<GL_VERTEX_SHADER>(source, size);
+}
+
+inline GL::VertShader GL::makeVertShader(std::istream &stream) {
+  return makeShader<GL_VERTEX_SHADER>(stream);
+}
+
+inline GL::FragShader GL::makeFragShader() {
+  return makeShader<GL_FRAGMENT_SHADER>();
+}
+
+inline GL::FragShader GL::makeFragShader(const GLchar *source, const size_t size) {
+  return makeShader<GL_FRAGMENT_SHADER>(source, size);
+}
+
+inline GL::FragShader GL::makeFragShader(std::istream &stream) {
+  return makeShader<GL_FRAGMENT_SHADER>(stream);
 }

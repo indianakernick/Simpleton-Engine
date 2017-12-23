@@ -36,7 +36,8 @@ inline void GL::ShaderProgram::use() const {
   CHECK_OPENGL_ERROR();
 }
 
-inline void GL::ShaderProgram::attach(const Shader &shader) const {
+template <GLenum TYPE>
+void GL::ShaderProgram::attach(const Shader<TYPE> &shader) const {
   attach(shader.get());
 }
 
@@ -46,7 +47,8 @@ inline void GL::ShaderProgram::attach(const GLuint shaderID) const {
   CHECK_OPENGL_ERROR();
 }
 
-inline void GL::ShaderProgram::detach(const Shader &shader) const {
+template <GLenum TYPE>
+void GL::ShaderProgram::detach(const Shader<TYPE> &shader) const {
   detach(shader.get());
 }
 
@@ -69,7 +71,6 @@ inline std::ostream &GL::operator<<(std::ostream &stream, const GL::ShaderProgra
   if (logLength) {
     GLchar *const buf = detail::getCharBuf(logLength);
     glGetProgramInfoLog(program.id, logLength, nullptr, buf);
-    //avoiding a call to strlen
     stream << std::string_view(buf, logLength);
   }
 

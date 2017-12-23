@@ -23,9 +23,11 @@ namespace GL {
     bool link() const;
     bool validate() const;
     void use() const;
-    void attach(const Shader &) const;
+    template <GLenum TYPE>
+    void attach(const Shader<TYPE> &) const;
     void attach(GLuint) const;
-    void detach(const Shader &) const;
+    template <GLenum TYPE>
+    void detach(const Shader<TYPE> &) const;
     void detach(GLuint) const;
     
     GLint getUniformLoc(const GLchar *) const;
@@ -42,13 +44,8 @@ namespace GL {
   
   ShaderProgram makeShaderProgram();
   
-  template <typename ...Shaders>
-  std::enable_if_t<
-    sizeof...(Shaders) != 0
-      && (std::is_same_v<Shaders, Shader> && ...),
-    ShaderProgram
-  >
-  makeShaderProgram(const Shaders &... shaders) {
+  template <GLenum ...TYPES>
+  ShaderProgram makeShaderProgram(const Shader<TYPES> &... shaders) {
     ShaderProgram program = makeShaderProgram();
     [[maybe_unused]]
     const int dummy0[] = {(program.attach(shaders), 0)...};
