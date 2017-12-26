@@ -37,6 +37,8 @@ inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams
   std::cerr << "OpenGL Renderer: " << glGetString(GL_RENDERER) << '\n';
   std::cerr << "OpenGL Vendor:   " << glGetString(GL_VENDOR) << '\n';
   
+  glEnable(GL_FRAMEBUFFER_SRGB);
+  
   CHECK_OPENGL_ERROR();
   
   return context;
