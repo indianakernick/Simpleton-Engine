@@ -8,16 +8,11 @@
 
 #include "window library.hpp"
 
-Platform::WindowLibrary::WindowLibrary() {
-  CHECK_SDL_ERROR(SDL_Init(SDL_INIT_EVERYTHING));
-}
+#include "../Utils/bool enable.hpp"
 
-Platform::WindowLibrary::WindowLibrary(const Uint32 flags) {
+Platform::WindowLibrary Platform::makeWindowLibrary(const Uint32 flags) {
   CHECK_SDL_ERROR(SDL_Init(flags));
-}
-
-Platform::WindowLibrary::~WindowLibrary() {
-  SDL_Quit();
+  return Platform::WindowLibrary(true);
 }
 
 Platform::Window Platform::makeWindow(const Window::Desc &desc) {

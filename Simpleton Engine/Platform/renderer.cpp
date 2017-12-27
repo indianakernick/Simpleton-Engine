@@ -8,39 +8,27 @@
 
 #include "renderer.hpp"
 
+#include <cassert>
+#include "sdl error.hpp"
+#include <SDL2/SDL_render.h>
+
 using namespace Platform;
 
-Renderer::Renderer()
-  : renderer(nullptr, &SDL_DestroyRenderer) {}
-
-Renderer::Renderer(SDL_Renderer *renderer)
-  : renderer(renderer, &SDL_DestroyRenderer) {
-  assert(renderer);
-}
-
 void Renderer::setColor(const glm::tvec4<uint8_t> color) {
-  SDL_SetRenderDrawColor(renderer.get(), color.r, color.g, color.b, color.a);
+  CHECK_SDL_ERROR(SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a));
 }
 
 glm::tvec4<uint8_t> Renderer::getColor() const {
   glm::tvec4<uint8_t> color;
-  SDL_GetRenderDrawColor(renderer.get(), &color.r, &color.g, &color.b, &color.a);
+  CHECK_SDL_ERROR(SDL_GetRenderDrawColor(renderer, &color.r, &color.g, &color.b, &color.a));
   return color;
 }
 
 void Renderer::present() {
-  SDL_RenderPresent(renderer.get());
+  SDL_RenderPresent(renderer);
 }
 
 void Renderer::clear(const glm::tvec4<uint8_t> color) {
-  SDL_SetRenderDrawColor(renderer.get(), color.r, color.g, color.b, color.a);
-  SDL_RenderClear(renderer.get());
-}
-
-SDL_Renderer *Renderer::get() const {
-  return renderer.get();
-}
-
-void Renderer::reset(SDL_Renderer *newRenderer) {
-  renderer.reset(newRenderer);
+  CHECK_SDL_ERROR(SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a));
+  CHECK_SDL_ERROR(SDL_RenderClear(renderer));
 }

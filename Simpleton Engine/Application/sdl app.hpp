@@ -20,15 +20,15 @@ namespace Game {
     SDLApp() = default;
     virtual ~SDLApp() = default;
 
-    std::unique_ptr<Platform::WindowLibrary> winLib;
-    std::unique_ptr<Platform::FontLibrary> fontLib;
+    Platform::WindowLibrary winLib;
+    Platform::FontLibrary fontLib;
     Platform::Window window;
     Platform::Renderer renderer;
 
   protected:
     void initWindow(const Platform::Window::Desc &winDesc, const bool vsync) {
-      winLib = std::make_unique<Platform::WindowLibrary>();
-      fontLib = std::make_unique<Platform::FontLibrary>();
+      winLib = Platform::makeWindowLibrary();
+      fontLib = Platform::makeFontLibrary();
       window = Platform::makeWindow(winDesc);
       renderer = Platform::makeRenderer(window, vsync);
     }

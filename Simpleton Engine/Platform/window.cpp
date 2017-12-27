@@ -8,82 +8,60 @@
 
 #include "window.hpp"
 
+#include "sdl error.hpp"
+#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_mouse.h>
+
 using namespace Platform;
 
-Window::Window()
-  : window(nullptr, &SDL_DestroyWindow) {}
-
-Window::Window(SDL_Window *window)
-  : window(window, &SDL_DestroyWindow) {
-  assert(window);
-}
-
 Window::ID Window::getID() const {
-  return SDL_GetWindowID(window.get());
+  return SDL_GetWindowID(window);
 }
 
 void Window::title(const std::string &newTitle) {
-  SDL_SetWindowTitle(window.get(), newTitle.c_str());
+  SDL_SetWindowTitle(window, newTitle.c_str());
 }
 
 std::string Window::title() const {
-  return SDL_GetWindowTitle(window.get());
+  return SDL_GetWindowTitle(window);
+}
+
+void Window::center() {
+  SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 }
 
 void Window::pos(const glm::ivec2 newPos) {
-  SDL_SetWindowPosition(window.get(), newPos.x, newPos.y);
+  SDL_SetWindowPosition(window, newPos.x, newPos.y);
 }
 
 glm::ivec2 Window::pos() const {
   glm::ivec2 pos;
-  SDL_GetWindowPosition(window.get(), &pos.x, &pos.y);
+  SDL_GetWindowPosition(window, &pos.x, &pos.y);
   return pos;
 }
 
-void Window::center() {
-  SDL_SetWindowPosition(window.get(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-}
-
-void Window::center(const bool x, const bool y) {
-  SDL_SetWindowPosition(
-    window.get(),
-    Utils::boolEnable(x, SDL_WINDOWPOS_CENTERED),
-    Utils::boolEnable(y, SDL_WINDOWPOS_CENTERED)
-  );
-}
-
 void Window::size(glm::ivec2 newSize) {
-  SDL_SetWindowSize(window.get(), newSize.x, newSize.y);
+  SDL_SetWindowSize(window, newSize.x, newSize.y);
 }
 
 glm::ivec2 Window::size() const {
   glm::ivec2 size;
-  SDL_GetWindowSize(window.get(), &size.x, &size.y);
+  SDL_GetWindowSize(window, &size.x, &size.y);
   return size;
 }
 
-void Window::opacity(const float newOpacity) {
-  SDL_SetWindowOpacity(window.get(), newOpacity);
-}
-
-float Window::opacity() const {
-  float opacity;
-  SDL_GetWindowOpacity(window.get(), &opacity);
-  return opacity;
-}
-
 void Window::relMouse(const bool status) {
-  assert(SDL_GetMouseFocus() == window.get());
-  SDL_SetRelativeMouseMode(static_cast<SDL_bool>(status));
+  assert(SDL_GetMouseFocus() == window);
+  CHECK_SDL_ERROR(SDL_SetRelativeMouseMode(static_cast<SDL_bool>(status)));
 }
 
 bool Window::relMouse() const {
-  return SDL_GetRelativeMouseMode() && SDL_GetMouseFocus() == window.get();
+  return SDL_GetRelativeMouseMode() && SDL_GetMouseFocus() == window;
 }
 
 void Window::captureMouse(const bool status) {
-  assert(SDL_GetMouseFocus() == window.get());
-  SDL_CaptureMouse(static_cast<SDL_bool>(status));
+  assert(SDL_GetMouseFocus() == window);
+  CHECK_SDL_ERROR(SDL_CaptureMouse(static_cast<SDL_bool>(status)));
   mouseCaptured = status;
 }
 
@@ -92,13 +70,5 @@ bool Window::captureMouse() const {
 }
 
 void Window::raise() {
-  SDL_RaiseWindow(window.get());
-}
-
-SDL_Window *Window::get() const {
-  return window.get();
-}
-
-void Window::reset(SDL_Window *newWindow) {
-  window.reset(newWindow);
+  SDL_RaiseWindow(window);
 }

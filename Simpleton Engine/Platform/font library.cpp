@@ -10,13 +10,10 @@
 
 #include <string>
 
-Platform::FontLibrary::FontLibrary() {
+Platform::FontLibrary Platform::makeFontLibrary() {
   //SDL_TTF uses SDL's error system
   CHECK_SDL_ERROR(TTF_Init());
-}
-
-Platform::FontLibrary::~FontLibrary() {
-  TTF_Quit();
+  return Platform::FontLibrary(true);
 }
 
 Platform::Font Platform::openFont(const std::string &path, const int size) {

@@ -11,14 +11,15 @@
 
 #include <string>
 #include <glm/vec2.hpp>
-#include <SDL2/SDL_video.h>
-#include <SDL2/SDL_mouse.h>
-#include "../Utils/bool enable.hpp"
+#include "../Utils/generic raii.hpp"
+
+extern "C" struct SDL_Window;
+extern "C" void SDL_DestroyWindow(SDL_Window *);
 
 namespace Platform {
   class Window {
   public:
-    using ID = Uint32;
+    using ID = uint32_t;
   
     struct Desc {
       std::string title;
@@ -27,29 +28,19 @@ namespace Platform {
       bool openGL = false;
     };
   
-    Window();
-    explicit Window(SDL_Window *);
-    Window(Window &&) = default;
-    ~Window() = default;
-    
-    Window &operator=(Window &&) = default;
+    UTILS_RAII_CLASS(Window, SDL_Window *, window, SDL_DestroyWindow)
     
     ID getID() const;
     
     void title(const std::string &);
     std::string title() const;
     
+    void center();
     void pos(glm::ivec2);
     glm::ivec2 pos() const;
     
-    void center();
-    void center(bool, bool);
-    
     void size(glm::ivec2);
     glm::ivec2 size() const;
-    
-    void opacity(float);
-    float opacity() const;
     
     void relMouse(bool);
     bool relMouse() const;
@@ -59,11 +50,8 @@ namespace Platform {
     
     void raise();
     
-    SDL_Window *get() const;
-    void reset(SDL_Window * = nullptr);
-    
   private:
-    std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
+    SDL_Window *window;
     bool mouseCaptured = false;
   };
 }

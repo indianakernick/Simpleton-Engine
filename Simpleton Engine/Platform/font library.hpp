@@ -11,14 +11,27 @@
 
 #include "sdl error.hpp"
 #include <SDL2/SDL_ttf.h>
+#include "../Utils/generic raii.hpp"
 #include "../Utils/instance limiter.hpp"
 
 namespace Platform {
+  namespace detail {
+    inline void deleteFontLibrary(const bool initialized) {
+      if (initialized) {
+        TTF_Quit();
+      }
+    }
+  }
+
   class FontLibrary : public Utils::ForceSingleton<FontLibrary> {
   public:
-    FontLibrary();
-    ~FontLibrary();
+    UTILS_RAII_CLASS(FontLibrary, bool, initialized, detail::deleteFontLibrary)
+    
+  private:
+    bool initialized;
   };
+  
+  FontLibrary makeFontLibrary();
   
   using Font = std::unique_ptr<TTF_Font, decltype(&TTF_CloseFont)>;
   
