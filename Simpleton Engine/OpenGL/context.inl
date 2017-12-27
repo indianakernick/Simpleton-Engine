@@ -37,6 +37,8 @@ inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams
   std::cerr << "OpenGL Renderer: " << glGetString(GL_RENDERER) << '\n';
   std::cerr << "OpenGL Vendor:   " << glGetString(GL_VENDOR) << '\n';
   
+  CHECK_OPENGL_ERROR();
+  
   glEnable(GL_FRAMEBUFFER_SRGB);
   
   CHECK_OPENGL_ERROR();
@@ -46,7 +48,14 @@ inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams
 
 inline void GL::clearFrame() {
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  CHECK_OPENGL_ERROR();
+  
   glClearDepth(1.0f);
+  CHECK_OPENGL_ERROR();
+  
   glClearStencil(0);
+  CHECK_OPENGL_ERROR();
+  
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+  CHECK_OPENGL_ERROR();
 }
