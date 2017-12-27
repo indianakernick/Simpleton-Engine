@@ -12,7 +12,7 @@
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_mouse.h>
 
-using namespace Platform;
+using namespace SDL;
 
 Window::ID Window::getID() const {
   return SDL_GetWindowID(window);

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_platform_sdl_object_hpp
-#define engine_platform_sdl_object_hpp
+#ifndef engine_sdl_sdl_object_hpp
+#define engine_sdl_sdl_object_hpp
 
 #include <memory>
 

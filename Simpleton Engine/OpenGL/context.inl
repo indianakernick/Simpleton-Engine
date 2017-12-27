@@ -6,7 +6,7 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include <Simpleton/Platform/sdl error.hpp>
+#include <Simpleton/SDL/sdl error.hpp>
 
 inline void GL::Context::makeCurrent(SDL_Window *const window) const {
   CHECK_SDL_ERROR(SDL_GL_MakeCurrent(window, context));

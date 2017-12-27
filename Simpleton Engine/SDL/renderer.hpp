@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_platform_renderer_hpp
-#define engine_platform_renderer_hpp
+#ifndef engine_sdl_renderer_hpp
+#define engine_sdl_renderer_hpp
 
 #include <glm/vec4.hpp>
 #include "../Utils/generic raii.hpp"
@@ -15,7 +15,7 @@
 extern "C" struct SDL_Renderer;
 extern "C" void SDL_DestroyRenderer(SDL_Renderer *);
 
-namespace Platform {
+namespace SDL {
   class Renderer {
   public:
     UTILS_RAII_CLASS(Renderer, SDL_Renderer *, renderer, SDL_DestroyRenderer)

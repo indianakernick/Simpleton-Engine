@@ -1,13 +1,13 @@
 //
-//  window library.hpp
+//  library.hpp
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 3/4/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_platform_window_library_hpp
-#define engine_platform_window_library_hpp
+#ifndef engine_sdl_library_hpp
+#define engine_sdl_library_hpp
 
 #include <SDL2/SDL.h>
 #include "window.hpp"
@@ -16,24 +16,24 @@
 #include "../Utils/generic raii.hpp"
 #include "../Utils/instance limiter.hpp"
 
-namespace Platform {
+namespace SDL {
   namespace detail {
-    inline void deleteWindowLibrary(const bool initialized) {
+    inline void deleteLibrary(const bool initialized) {
       if (initialized) {
         SDL_Quit();
       }
     }
   }
 
-  class WindowLibrary final : public Utils::ForceSingleton<WindowLibrary> {
+  class Library final : public Utils::ForceSingleton<Library> {
   public:
-    UTILS_RAII_CLASS(WindowLibrary, bool, initialized, detail::deleteWindowLibrary)
+    UTILS_RAII_CLASS(Library, bool, initialized, detail::deleteLibrary)
     
   private:
     bool initialized;
   };
   
-  WindowLibrary makeWindowLibrary(Uint32 = SDL_INIT_EVERYTHING);
+  Library makeLibrary(Uint32 = SDL_INIT_EVERYTHING);
   
   Window makeWindow(const Window::Desc &);
   Renderer makeRenderer(Window &, bool);

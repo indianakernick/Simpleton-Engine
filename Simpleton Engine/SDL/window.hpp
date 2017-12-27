@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_platform_sdl_opengl_window_hpp
-#define engine_platform_sdl_opengl_window_hpp
+#ifndef engine_sdl_window_hpp
+#define engine_sdl_window_hpp
 
 #include <string>
 #include <glm/vec2.hpp>
@@ -16,7 +16,7 @@
 extern "C" struct SDL_Window;
 extern "C" void SDL_DestroyWindow(SDL_Window *);
 
-namespace Platform {
+namespace SDL {
   class Window {
   public:
     using ID = uint32_t;

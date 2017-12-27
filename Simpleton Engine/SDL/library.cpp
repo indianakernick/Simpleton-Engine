@@ -1,21 +1,21 @@
 //
-//  window library.cpp
+//  library.cpp
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 3/4/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "window library.hpp"
+#include "library.hpp"
 
 #include "../Utils/bool enable.hpp"
 
-Platform::WindowLibrary Platform::makeWindowLibrary(const Uint32 flags) {
+SDL::Library SDL::makeLibrary(const Uint32 flags) {
   CHECK_SDL_ERROR(SDL_Init(flags));
-  return Platform::WindowLibrary(true);
+  return SDL::Library(true);
 }
 
-Platform::Window Platform::makeWindow(const Window::Desc &desc) {
+SDL::Window SDL::makeWindow(const Window::Desc &desc) {
   return Window(CHECK_SDL_NULL(SDL_CreateWindow(
     desc.title.c_str(),
     SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -26,7 +26,7 @@ Platform::Window Platform::makeWindow(const Window::Desc &desc) {
   )));
 }
 
-Platform::Renderer Platform::makeRenderer(Window &window, const bool vsync) {
+SDL::Renderer SDL::makeRenderer(Window &window, const bool vsync) {
   return Renderer(CHECK_SDL_NULL(SDL_CreateRenderer(
     window.get(),
     -1,

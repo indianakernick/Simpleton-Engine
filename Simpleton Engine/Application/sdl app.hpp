@@ -10,8 +10,8 @@
 #define engine_application_sdl_app_hpp
 
 #include "app.hpp"
-#include "../Platform/window library.hpp"
-#include "../Platform/font library.hpp"
+#include "../SDL/library.hpp"
+#include "../SDL/font library.hpp"
 
 namespace Game {
   template <typename Duration>
@@ -20,17 +20,17 @@ namespace Game {
     SDLApp() = default;
     virtual ~SDLApp() = default;
 
-    Platform::WindowLibrary winLib;
-    Platform::FontLibrary fontLib;
-    Platform::Window window;
-    Platform::Renderer renderer;
+    SDL::Library winLib;
+    SDL::FontLibrary fontLib;
+    SDL::Window window;
+    SDL::Renderer renderer;
 
   protected:
-    void initWindow(const Platform::Window::Desc &winDesc, const bool vsync) {
-      winLib = Platform::makeWindowLibrary();
-      fontLib = Platform::makeFontLibrary();
-      window = Platform::makeWindow(winDesc);
-      renderer = Platform::makeRenderer(window, vsync);
+    void initWindow(const SDL::Window::Desc &winDesc, const bool vsync) {
+      winLib = SDL::makeLibrary();
+      fontLib = SDL::makeFontLibrary();
+      window = SDL::makeWindow(winDesc);
+      renderer = SDL::makeRenderer(window, vsync);
     }
     void quitWindow() {
       renderer.reset();

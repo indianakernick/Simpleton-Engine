@@ -12,7 +12,7 @@
 #include "sdl error.hpp"
 #include <SDL2/SDL_render.h>
 
-using namespace Platform;
+using namespace SDL;
 
 void Renderer::setColor(const glm::tvec4<uint8_t> color) {
   CHECK_SDL_ERROR(SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a));
