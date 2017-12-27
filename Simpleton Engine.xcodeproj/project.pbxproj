@@ -131,7 +131,6 @@
 		45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
 		45B5E7991EF8A90D00A6A3E2 /* exceptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E78A1EF8A90D00A6A3E2 /* exceptions.hpp */; };
 		45B5E79B1EF8A90D00A6A3E2 /* byteptr.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */; };
-		45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E78E1EF8A90D00A6A3E2 /* bits.hpp */; };
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
 		45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */; };
 		45B5E7A01EF8A90D00A6A3E2 /* view.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7911EF8A90D00A6A3E2 /* view.hpp */; };
@@ -178,7 +177,6 @@
 		45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7B01EF8A92500A6A3E2 /* fps.hpp */; };
 		45B5E8161EF8AEAE00A6A3E2 /* exceptions.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78A1EF8A90D00A6A3E2 /* exceptions.hpp */; };
 		45B5E8171EF8AEAE00A6A3E2 /* byteptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */; };
-		45B5E8181EF8AEAE00A6A3E2 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78E1EF8A90D00A6A3E2 /* bits.hpp */; };
 		45B5E8191EF8AEAE00A6A3E2 /* buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */; };
 		45B5E81A1EF8AEAE00A6A3E2 /* view.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7911EF8A90D00A6A3E2 /* view.hpp */; };
 		45B5E81D1EF8AEAE00A6A3E2 /* file io.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7971EF8A90D00A6A3E2 /* file io.hpp */; };
@@ -371,7 +369,6 @@
 				451CC0E21F932BEB0000E424 /* block allocator.hpp in CopyFiles */,
 				45B5E8161EF8AEAE00A6A3E2 /* exceptions.hpp in CopyFiles */,
 				45B5E8171EF8AEAE00A6A3E2 /* byteptr.hpp in CopyFiles */,
-				45B5E8181EF8AEAE00A6A3E2 /* bits.hpp in CopyFiles */,
 				45B5E8191EF8AEAE00A6A3E2 /* buffer.hpp in CopyFiles */,
 				45B5E81A1EF8AEAE00A6A3E2 /* view.hpp in CopyFiles */,
 				45B5E81D1EF8AEAE00A6A3E2 /* file io.hpp in CopyFiles */,
@@ -576,7 +573,6 @@
 		45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exceptions.cpp; sourceTree = "<group>"; };
 		45B5E78A1EF8A90D00A6A3E2 /* exceptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exceptions.hpp; sourceTree = "<group>"; };
 		45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = byteptr.hpp; sourceTree = "<group>"; };
-		45B5E78E1EF8A90D00A6A3E2 /* bits.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bits.hpp; sourceTree = "<group>"; };
 		45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
 		45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffer.hpp; sourceTree = "<group>"; };
 		45B5E7911EF8A90D00A6A3E2 /* view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = view.hpp; sourceTree = "<group>"; };
@@ -862,7 +858,6 @@
 				45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */,
 				45B5E78A1EF8A90D00A6A3E2 /* exceptions.hpp */,
 				45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */,
-				45B5E78E1EF8A90D00A6A3E2 /* bits.hpp */,
 				45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */,
 				45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */,
 				45B5E7911EF8A90D00A6A3E2 /* view.hpp */,
@@ -962,7 +957,6 @@
 				45B5E7F51EF8A93900A6A3E2 /* variadic type traits.hpp in Headers */,
 				45B5E7831EF8A8A700A6A3E2 /* round.hpp in Headers */,
 				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
-				45B5E79D1EF8A90D00A6A3E2 /* bits.hpp in Headers */,
 				45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */,
 				45B5E7F61EF8A93900A6A3E2 /* bool enable.hpp in Headers */,
 				45B5E7991EF8A90D00A6A3E2 /* exceptions.hpp in Headers */,
@@ -1148,8 +1142,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\ncp $BUILT_PRODUCTS_DIR/libStatic\\ Simpleton\\ Engine.a /usr/local/lib/libSimpleton\\ Engine.a";
+			shellPath = /bin/bash;
+			shellScript = "cp $BUILT_PRODUCTS_DIR/libStatic\\ Simpleton\\ Engine.a /usr/local/lib/libSimpleton\\ Engine.a";
 		};
 /* End PBXShellScriptBuildPhase section */
 
