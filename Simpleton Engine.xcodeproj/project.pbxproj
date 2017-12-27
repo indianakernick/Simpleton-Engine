@@ -11,38 +11,28 @@
 		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
 		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
 		450ED6411FBBAE40008F2902 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
-		450ED6421FBBAE40008F2902 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6401FBBAE40008F2902 /* camera.hpp */; };
-		450ED6461FBBAE9A008F2902 /* props.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6441FBBAE9A008F2902 /* props.hpp */; };
 		450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
-		450ED64B1FBBAF60008F2902 /* transform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 450ED6491FBBAF60008F2902 /* transform.hpp */; };
 		450ED6621FBBB774008F2902 /* camera.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6401FBBAE40008F2902 /* camera.hpp */; };
 		450ED6631FBBB774008F2902 /* aabb.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6471FBBAF1D008F2902 /* aabb.hpp */; };
 		450ED6641FBBB774008F2902 /* props.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6441FBBAE9A008F2902 /* props.hpp */; };
 		450ED6651FBBB774008F2902 /* transform.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6491FBBAF60008F2902 /* transform.hpp */; };
 		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
-		451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; };
 		451CC0E21F932BEB0000E424 /* block allocator.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; };
 		4520AD6D1FE9DC6300ECE3C1 /* static char buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */; };
 		4529DEEA1F31AABD00071267 /* line col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4529DEE81F31AABD00071267 /* line col.cpp */; };
-		4529DEEB1F31AABD00071267 /* line col.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
 		452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F41F3EF86900AF9AC6 /* bits.hpp */; };
 		452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F61F41924500AF9AC6 /* rand.hpp */; };
 		452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452FF9F11F68CCB3003A98B1 /* live stats.hpp */; };
-		4533A8D71FCA34410027B0FB /* animate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533A8D51FCA34410027B0FB /* animate.hpp */; };
 		4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
-		4533A8DB1FCA34E50027B0FB /* constant speed.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533A8D91FCA34E50027B0FB /* constant speed.hpp */; };
 		4533A8DC1FCA3AF30027B0FB /* animate.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8D51FCA34410027B0FB /* animate.hpp */; };
 		4533A8DD1FCA3AF30027B0FB /* constant speed.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8D91FCA34E50027B0FB /* constant speed.hpp */; };
-		4533A8E11FCA3E4B0027B0FB /* target.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533A8DF1FCA3E4B0027B0FB /* target.hpp */; };
 		4533A8E21FCA3FDA0027B0FB /* target.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8DF1FCA3E4B0027B0FB /* target.hpp */; };
 		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
-		4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
 		4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
 		453479B51F21ADFB0083743E /* error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* error.hpp */; };
 		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
 		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
-		4541A4B61FD7734400AD20C1 /* constant scale.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; };
 		4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; };
 		454D04831FE63D9900D3E560 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
 		454D04841FE63D9900D3E560 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
@@ -94,81 +84,31 @@
 		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
 		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
 		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
-		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
-		4592B9671F0A24C900D1640D /* texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* texture.hpp */; };
 		4592B9681F0A267900D1640D /* texture.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* texture.hpp */; };
 		4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.cpp */; };
-		4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
 		4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
 		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
 		4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
-		4592BAEB1F11C3CB00D1640D /* app.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BAE91F11C3CB00D1640D /* app.hpp */; };
 		4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
-		4592BAEF1F11C50F00D1640D /* sdl app.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BAED1F11C50F00D1640D /* sdl app.hpp */; };
 		4592BAF11F11C94500D1640D /* app.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BAE91F11C3CB00D1640D /* app.hpp */; };
 		4592BAF21F11C94500D1640D /* sdl app.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BAED1F11C50F00D1640D /* sdl app.hpp */; };
 		4592BB071F11EBF700D1640D /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BB011F11EBF700D1640D /* message.cpp */; };
-		4592BB081F11EBF700D1640D /* message.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BB021F11EBF700D1640D /* message.hpp */; };
 		4592BB091F11EBF700D1640D /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BB031F11EBF700D1640D /* component.cpp */; };
-		4592BB0A1F11EBF700D1640D /* component.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BB041F11EBF700D1640D /* component.hpp */; };
 		4592BB0B1F11EBF700D1640D /* actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BB051F11EBF700D1640D /* actor.cpp */; };
-		4592BB0C1F11EBF700D1640D /* actor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592BB061F11EBF700D1640D /* actor.hpp */; };
 		4592BB0E1F11EFD500D1640D /* message.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB021F11EBF700D1640D /* message.hpp */; };
 		4592BB0F1F11EFD500D1640D /* component.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB041F11EBF700D1640D /* component.hpp */; };
 		4592BB101F11EFD500D1640D /* actor.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB061F11EBF700D1640D /* actor.hpp */; };
 		4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB111F11F86F00D1640D /* main loop.hpp */; };
-		45B32E4E1FF34F66007BA7F4 /* surface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B32E4D1FF34F66007BA7F4 /* surface.hpp */; };
 		45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32E4D1FF34F66007BA7F4 /* surface.hpp */; };
-		45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */; };
-		45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */; };
-		45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7691EF8A8A700A6A3E2 /* pow.hpp */; };
-		45B5E7801EF8A8A700A6A3E2 /* scale.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E76A1EF8A8A700A6A3E2 /* scale.hpp */; };
-		45B5E7831EF8A8A700A6A3E2 /* round.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E76D1EF8A8A700A6A3E2 /* round.hpp */; };
-		45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7701EF8A8A700A6A3E2 /* vectors.hpp */; };
-		45B5E7871EF8A8A700A6A3E2 /* rect.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7711EF8A8A700A6A3E2 /* rect.hpp */; };
-		45B5E7881EF8A8A700A6A3E2 /* dir.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7721EF8A8A700A6A3E2 /* dir.hpp */; };
 		45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
-		45B5E7991EF8A90D00A6A3E2 /* exceptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E78A1EF8A90D00A6A3E2 /* exceptions.hpp */; };
-		45B5E79B1EF8A90D00A6A3E2 /* byteptr.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */; };
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
-		45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */; };
-		45B5E7A01EF8A90D00A6A3E2 /* view.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7911EF8A90D00A6A3E2 /* view.hpp */; };
 		45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
-		45B5E7A61EF8A90D00A6A3E2 /* file io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7971EF8A90D00A6A3E2 /* file io.hpp */; };
-		45B5E7B31EF8A92500A6A3E2 /* get.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; };
-		45B5E7B41EF8A92500A6A3E2 /* freq limiter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */; };
-		45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */; };
-		45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */; };
-		45B5E7BA1EF8A92500A6A3E2 /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */; };
 		45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */; };
-		45B5E7BC1EF8A92500A6A3E2 /* fps.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7B01EF8A92500A6A3E2 /* fps.hpp */; };
 		45B5E7E21EF8A93900A6A3E2 /* instance limiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7BF1EF8A93900A6A3E2 /* instance limiter.cpp */; };
-		45B5E7E31EF8A93900A6A3E2 /* instance limiter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7C01EF8A93900A6A3E2 /* instance limiter.hpp */; };
 		45B5E7E41EF8A93900A6A3E2 /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7C11EF8A93900A6A3E2 /* profiler.cpp */; };
-		45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7C21EF8A93900A6A3E2 /* profiler.hpp */; };
-		45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7C31EF8A93900A6A3E2 /* benchmark.hpp */; };
-		45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7C41EF8A93900A6A3E2 /* singleton.hpp */; };
 		45B5E7EB1EF8A93900A6A3E2 /* move test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7C81EF8A93900A6A3E2 /* move test.cpp */; };
-		45B5E7EC1EF8A93900A6A3E2 /* move test.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7C91EF8A93900A6A3E2 /* move test.hpp */; };
-		45B5E7EF1EF8A93900A6A3E2 /* combine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7CC1EF8A93900A6A3E2 /* combine.hpp */; };
-		45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7CF1EF8A93900A6A3E2 /* op stack.hpp */; };
-		45B5E7F31EF8A93900A6A3E2 /* int least.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7D01EF8A93900A6A3E2 /* int least.hpp */; };
-		45B5E7F41EF8A93900A6A3E2 /* member function.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7D11EF8A93900A6A3E2 /* member function.hpp */; };
-		45B5E7F51EF8A93900A6A3E2 /* variadic type traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7D21EF8A93900A6A3E2 /* variadic type traits.hpp */; };
-		45B5E7F61EF8A93900A6A3E2 /* bool enable.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7D31EF8A93900A6A3E2 /* bool enable.hpp */; };
-		45B5E7F81EF8A93900A6A3E2 /* safe down cast.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7D51EF8A93900A6A3E2 /* safe down cast.hpp */; };
-		45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7D71EF8A93900A6A3E2 /* type name.hpp */; };
 		45B5E7FC1EF8A93900A6A3E2 /* terminal color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7D91EF8A93900A6A3E2 /* terminal color.cpp */; };
-		45B5E7FD1EF8A93900A6A3E2 /* terminal color.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */; };
-		45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */; };
-		45B5E8001EF8A93900A6A3E2 /* null check.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */; };
-		45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; };
-		45B5E8031EF8A93900A6A3E2 /* multi dim array.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */; };
-		45B5E8041EF8A93900A6A3E2 /* multi dim container.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */; };
-		45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8051EF8ADCB00A6A3E2 /* constants.hpp */; };
-		45B5E8091EF8ADCB00A6A3E2 /* byteconstants.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8061EF8ADCB00A6A3E2 /* byteconstants.hpp */; };
-		45B5E80A1EF8ADCB00A6A3E2 /* siconstants.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8071EF8ADCB00A6A3E2 /* siconstants.hpp */; };
 		45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; };
 		45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */; };
 		45B5E80F1EF8AE8700A6A3E2 /* delta.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */; };
@@ -211,18 +151,10 @@
 		45B5E8571EF8AF5000A6A3E2 /* multi dim array.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */; };
 		45B5E8581EF8AF5000A6A3E2 /* multi dim container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */; };
 		45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88C1EF8DCC400A6A3E2 /* event.cpp */; };
-		45B5E8911EF8DCC400A6A3E2 /* event.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E88D1EF8DCC400A6A3E2 /* event.hpp */; };
 		45B5E8921EF8DCC400A6A3E2 /* manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88E1EF8DCC400A6A3E2 /* manager.cpp */; };
-		45B5E8931EF8DCC400A6A3E2 /* manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E88F1EF8DCC400A6A3E2 /* manager.hpp */; };
-		45B5E8971EF8DCCF00A6A3E2 /* local.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8941EF8DCCF00A6A3E2 /* local.hpp */; };
-		45B5E8981EF8DCCF00A6A3E2 /* global.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8951EF8DCCF00A6A3E2 /* global.hpp */; };
-		45B5E8991EF8DCCF00A6A3E2 /* type.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8961EF8DCCF00A6A3E2 /* type.hpp */; };
 		45B5E8A41EF8E14300A6A3E2 /* library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E89C1EF8E14300A6A3E2 /* library.cpp */; };
-		45B5E8A51EF8E14300A6A3E2 /* library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E89D1EF8E14300A6A3E2 /* library.hpp */; };
 		45B5E8A81EF8E14300A6A3E2 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8A01EF8E14300A6A3E2 /* window.cpp */; };
-		45B5E8A91EF8E14300A6A3E2 /* window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8A11EF8E14300A6A3E2 /* window.hpp */; };
 		45B5E8AD1EF8E3ED00A6A3E2 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */; };
-		45B5E8AE1EF8E3ED00A6A3E2 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */; };
 		45B5E8B21EF902D800A6A3E2 /* dir pair.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */; };
 		45B5E8B41EF9032200A6A3E2 /* local.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8941EF8DCCF00A6A3E2 /* local.hpp */; };
 		45B5E8B51EF9032200A6A3E2 /* global.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8951EF8DCCF00A6A3E2 /* global.hpp */; };
@@ -233,14 +165,12 @@
 		45B5E8C01EF903D900A6A3E2 /* window.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8A11EF8E14300A6A3E2 /* window.hpp */; };
 		45B5E8C11EF903D900A6A3E2 /* renderer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */; };
 		45B5E8C71EF9047000A6A3E2 /* paths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C41EF9047000A6A3E2 /* paths.cpp */; };
-		45B5E8C81EF9047000A6A3E2 /* paths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* paths.hpp */; };
 		45B5E8CA1EF9065F00A6A3E2 /* paths.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* paths.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 		45C525A21FEDFE0300A738E0 /* generic raii.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A11FEDFC0800A738E0 /* generic raii.hpp */; };
 		45C525A81FEE036A00A738E0 /* framebuffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A61FEE034D00A738E0 /* framebuffer.inl */; };
 		45C525A91FEE036A00A738E0 /* framebuffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A71FEE034D00A738E0 /* framebuffer.hpp */; };
 		45DEA0341F7F757200B1DA72 /* parse string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.cpp */; };
-		45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
@@ -942,93 +872,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		454D03E81FE63C2300D3E560 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E69D1EF7C25200A6A3E2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45B5E7F51EF8A93900A6A3E2 /* variadic type traits.hpp in Headers */,
-				45B5E7831EF8A8A700A6A3E2 /* round.hpp in Headers */,
-				45B5E7B71EF8A92500A6A3E2 /* delta.hpp in Headers */,
-				45B5E7E61EF8A93900A6A3E2 /* benchmark.hpp in Headers */,
-				45B5E7F61EF8A93900A6A3E2 /* bool enable.hpp in Headers */,
-				45B5E7991EF8A90D00A6A3E2 /* exceptions.hpp in Headers */,
-				45B5E7BC1EF8A92500A6A3E2 /* fps.hpp in Headers */,
-				45B5E7F81EF8A93900A6A3E2 /* safe down cast.hpp in Headers */,
-				45B5E8001EF8A93900A6A3E2 /* null check.hpp in Headers */,
-				45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */,
-				45B5E8091EF8ADCB00A6A3E2 /* byteconstants.hpp in Headers */,
-				45B5E7801EF8A8A700A6A3E2 /* scale.hpp in Headers */,
-				45B5E7E51EF8A93900A6A3E2 /* profiler.hpp in Headers */,
-				45B5E7861EF8A8A700A6A3E2 /* vectors.hpp in Headers */,
-				45B5E7FE1EF8A93900A6A3E2 /* dispatcher.hpp in Headers */,
-				45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */,
-				45B5E7F21EF8A93900A6A3E2 /* op stack.hpp in Headers */,
-				45B5E7E71EF8A93900A6A3E2 /* singleton.hpp in Headers */,
-				45B5E8041EF8A93900A6A3E2 /* multi dim container.hpp in Headers */,
-				45B5E7B31EF8A92500A6A3E2 /* get.hpp in Headers */,
-				45B5E7E31EF8A93900A6A3E2 /* instance limiter.hpp in Headers */,
-				45B5E7BA1EF8A92500A6A3E2 /* timer.hpp in Headers */,
-				45B5E7B41EF8A92500A6A3E2 /* freq limiter.hpp in Headers */,
-				45B5E80A1EF8ADCB00A6A3E2 /* siconstants.hpp in Headers */,
-				45B5E7A61EF8A90D00A6A3E2 /* file io.hpp in Headers */,
-				45B5E7F31EF8A93900A6A3E2 /* int least.hpp in Headers */,
-				45B5E7881EF8A8A700A6A3E2 /* dir.hpp in Headers */,
-				45B5E79B1EF8A90D00A6A3E2 /* byteptr.hpp in Headers */,
-				45B5E7A01EF8A90D00A6A3E2 /* view.hpp in Headers */,
-				45B5E7FD1EF8A93900A6A3E2 /* terminal color.hpp in Headers */,
-				45B5E7EC1EF8A93900A6A3E2 /* move test.hpp in Headers */,
-				45B5E8031EF8A93900A6A3E2 /* multi dim array.hpp in Headers */,
-				45B5E8991EF8DCCF00A6A3E2 /* type.hpp in Headers */,
-				45B5E8A91EF8E14300A6A3E2 /* window.hpp in Headers */,
-				45B5E8A51EF8E14300A6A3E2 /* library.hpp in Headers */,
-				45B5E8931EF8DCC400A6A3E2 /* manager.hpp in Headers */,
-				45B5E8911EF8DCC400A6A3E2 /* event.hpp in Headers */,
-				45B5E8AE1EF8E3ED00A6A3E2 /* renderer.hpp in Headers */,
-				45B5E8C81EF9047000A6A3E2 /* paths.hpp in Headers */,
-				45B5E8981EF8DCCF00A6A3E2 /* global.hpp in Headers */,
-				45B5E8971EF8DCCF00A6A3E2 /* local.hpp in Headers */,
-				45B5E7871EF8A8A700A6A3E2 /* rect.hpp in Headers */,
-				45B5E8081EF8ADCB00A6A3E2 /* constants.hpp in Headers */,
-				45B5E79F1EF8A90D00A6A3E2 /* buffer.hpp in Headers */,
-				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
-				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
-				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
-				4592B9671F0A24C900D1640D /* texture.hpp in Headers */,
-				4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */,
-				4592BAEB1F11C3CB00D1640D /* app.hpp in Headers */,
-				4592B49E1F06427200D1640D /* frame.hpp in Headers */,
-				4592BAEF1F11C50F00D1640D /* sdl app.hpp in Headers */,
-				45B5E7EF1EF8A93900A6A3E2 /* combine.hpp in Headers */,
-				4592BB081F11EBF700D1640D /* message.hpp in Headers */,
-				45B32E4E1FF34F66007BA7F4 /* surface.hpp in Headers */,
-				450ED64B1FBBAF60008F2902 /* transform.hpp in Headers */,
-				450ED6421FBBAE40008F2902 /* camera.hpp in Headers */,
-				450ED6461FBBAE9A008F2902 /* props.hpp in Headers */,
-				4592BB0A1F11EBF700D1640D /* component.hpp in Headers */,
-				4592BB0C1F11EBF700D1640D /* actor.hpp in Headers */,
-				4529DEEB1F31AABD00071267 /* line col.hpp in Headers */,
-				45DEA0351F7F757200B1DA72 /* parse string.hpp in Headers */,
-				45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */,
-				451CC0E11F9312C70000E424 /* block allocator.hpp in Headers */,
-				4533A8DB1FCA34E50027B0FB /* constant speed.hpp in Headers */,
-				4533A8D71FCA34410027B0FB /* animate.hpp in Headers */,
-				4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */,
-				4533A8E11FCA3E4B0027B0FB /* target.hpp in Headers */,
-				4541A4B61FD7734400AD20C1 /* constant scale.hpp in Headers */,
-				45B5E7F41EF8A93900A6A3E2 /* member function.hpp in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		454D03E91FE63C2300D3E560 /* Static Simpleton Engine */ = {
 			isa = PBXNativeTarget;
@@ -1036,7 +879,6 @@
 			buildPhases = (
 				454D03E61FE63C2300D3E560 /* Sources */,
 				454D03E71FE63C2300D3E560 /* Frameworks */,
-				454D03E81FE63C2300D3E560 /* Headers */,
 				454D040C1FE63C9F00D3E560 /* ShellScript */,
 			);
 			buildRules = (
@@ -1056,7 +898,6 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				451452B71FF340FD007C57AF /* ShellScript */,
-				45B5E69D1EF7C25200A6A3E2 /* Headers */,
 				45771C0E1FE87C4E00F533DA /* CopyFiles */,
 				450ED6611FBBB700008F2902 /* CopyFiles */,
 				453A0AB81F8B5D980042B23B /* CopyFiles */,
