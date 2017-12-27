@@ -14,11 +14,13 @@
 // Same interface as std::unique_ptr (the best class in the entire STL)
 
 #define UTILS_RAII_CLASS(CLASS, TYPE, MEMBER, DELETE)                           \
+  using value_type = TYPE;                                                      \
+                                                                                \
   CLASS() noexcept                                                              \
     : MEMBER() {}                                                               \
   CLASS(std::nullptr_t) noexcept                                                \
     : MEMBER() {}                                                               \
-  explicit CLASS(const TYPE MEMBER) noexcept                                    \
+  explicit CLASS(const value_type MEMBER) noexcept                              \
     : MEMBER(MEMBER) {}                                                         \
   CLASS(CLASS &&other) noexcept                                                 \
     : MEMBER(other.release()) {}                                                \
@@ -34,10 +36,10 @@
     DELETE(MEMBER);                                                             \
   }                                                                             \
                                                                                 \
-  TYPE release() noexcept {                                                     \
-    return std::exchange(MEMBER, TYPE());                                       \
+  value_type release() noexcept {                                               \
+    return std::exchange(MEMBER, value_type());                                 \
   }                                                                             \
-  void reset(const TYPE new##MEMBER = TYPE()) noexcept {                        \
+  void reset(const value_type new##MEMBER = {}) noexcept {                      \
     DELETE(MEMBER);                                                             \
     MEMBER = new##MEMBER;                                                       \
   }                                                                             \
@@ -45,11 +47,11 @@
     std::swap(MEMBER, other.MEMBER);                                            \
   }                                                                             \
                                                                                 \
-  TYPE get() const noexcept {                                                   \
+  value_type get() const noexcept {                                             \
     return MEMBER;                                                              \
   }                                                                             \
   explicit operator bool() const noexcept {                                     \
-    return MEMBER != TYPE();                                                    \
+    return MEMBER != value_type();                                              \
   }                                                                             \
                                                                                 \
   bool operator==(const CLASS &other) const noexcept {                          \
@@ -72,22 +74,22 @@
   }                                                                             \
                                                                                 \
   bool operator==(std::nullptr_t) const noexcept {                              \
-    return MEMBER == TYPE();                                                    \
+    return MEMBER == value_type();                                              \
   }                                                                             \
   bool operator!=(std::nullptr_t) const noexcept {                              \
-    return MEMBER != TYPE();                                                    \
+    return MEMBER != value_type();                                              \
   }                                                                             \
   bool operator<(std::nullptr_t) const noexcept {                               \
-    return MEMBER < TYPE();                                                     \
+    return MEMBER < value_type();                                               \
   }                                                                             \
   bool operator<=(std::nullptr_t) const noexcept {                              \
-    return MEMBER <= TYPE();                                                    \
+    return MEMBER <= value_type();                                              \
   }                                                                             \
   bool operator>(std::nullptr_t) const noexcept {                               \
-    return MEMBER > TYPE();                                                     \
+    return MEMBER > value_type();                                               \
   }                                                                             \
   bool operator>=(std::nullptr_t) const noexcept {                              \
-    return MEMBER >= TYPE();                                                    \
+    return MEMBER >= value_type();                                              \
   }
 
 #endif
