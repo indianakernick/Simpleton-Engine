@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_sdl_sdl_error_hpp
-#define engine_sdl_sdl_error_hpp
+#ifndef engine_sdl_error_hpp
+#define engine_sdl_error_hpp
 
 #include <stdexcept>
 
@@ -16,7 +16,7 @@ extern "C" const char *SDL_GetError();
 namespace SDL {
   class Error final : public std::runtime_error {
   public:
-    inline Error()
+    Error()
       : std::runtime_error(SDL_GetError()) {}
   };
   

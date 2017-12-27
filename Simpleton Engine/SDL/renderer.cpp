@@ -9,7 +9,7 @@
 #include "renderer.hpp"
 
 #include <cassert>
-#include "sdl error.hpp"
+#include "error.hpp"
 #include <SDL2/SDL_render.h>
 
 using namespace SDL;

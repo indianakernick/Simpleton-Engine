@@ -38,7 +38,7 @@
 		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
 		4533DCC81FBBDF350058390C /* zoom to fit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
 		4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
-		453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* sdl error.hpp */; };
+		453479B51F21ADFB0083743E /* error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* error.hpp */; };
 		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
 		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
@@ -96,8 +96,8 @@
 		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
 		4592B49E1F06427200D1640D /* frame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
 		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
-		4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; };
-		4592B9681F0A267900D1640D /* sdl object.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* sdl object.hpp */; };
+		4592B9671F0A24C900D1640D /* texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* texture.hpp */; };
+		4592B9681F0A267900D1640D /* texture.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* texture.hpp */; };
 		4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.cpp */; };
 		4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
 		4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
@@ -118,6 +118,8 @@
 		4592BB0F1F11EFD500D1640D /* component.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB041F11EBF700D1640D /* component.hpp */; };
 		4592BB101F11EFD500D1640D /* actor.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB061F11EBF700D1640D /* actor.hpp */; };
 		4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB111F11F86F00D1640D /* main loop.hpp */; };
+		45B32E4E1FF34F66007BA7F4 /* surface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B32E4D1FF34F66007BA7F4 /* surface.hpp */; };
+		45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32E4D1FF34F66007BA7F4 /* surface.hpp */; };
 		45B5E7781EF8A8A700A6A3E2 /* clamp.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */; };
 		45B5E77E1EF8A8A700A6A3E2 /* interpolate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */; };
 		45B5E77F1EF8A8A700A6A3E2 /* pow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 45B5E7691EF8A8A700A6A3E2 /* pow.hpp */; };
@@ -469,9 +471,10 @@
 			dstPath = /usr/local/include/Simpleton/SDL;
 			dstSubfolderSpec = 0;
 			files = (
-				453479B51F21ADFB0083743E /* sdl error.hpp in CopyFiles */,
+				45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */,
+				453479B51F21ADFB0083743E /* error.hpp in CopyFiles */,
 				4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */,
-				4592B9681F0A267900D1640D /* sdl object.hpp in CopyFiles */,
+				4592B9681F0A267900D1640D /* texture.hpp in CopyFiles */,
 				45B5E8CA1EF9065F00A6A3E2 /* paths.hpp in CopyFiles */,
 				45B5E8BF1EF903D900A6A3E2 /* library.hpp in CopyFiles */,
 				45B5E8C01EF903D900A6A3E2 /* window.hpp in CopyFiles */,
@@ -514,7 +517,7 @@
 		4533A8DF1FCA3E4B0027B0FB /* target.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = target.hpp; sourceTree = "<group>"; };
 		4533DCC51FBBDF350058390C /* zoom to fit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "zoom to fit.cpp"; sourceTree = "<group>"; };
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
-		453479B41F21AC860083743E /* sdl error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sdl error.hpp"; sourceTree = "<group>"; };
+		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
 		453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "keyframe animation.hpp"; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B31FD7734400AD20C1 /* constant scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant scale.cpp"; sourceTree = "<group>"; };
@@ -545,7 +548,7 @@
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
-		4592B9651F0A24C800D1640D /* sdl object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl object.hpp"; sourceTree = "<group>"; };
+		4592B9651F0A24C800D1640D /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		4592B96B1F0A2BA600D1640D /* font library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "font library.cpp"; sourceTree = "<group>"; };
 		4592B96C1F0A2BA600D1640D /* font library.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "font library.hpp"; sourceTree = "<group>"; };
 		4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -560,6 +563,7 @@
 		4592BB051F11EBF700D1640D /* actor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = actor.cpp; sourceTree = "<group>"; };
 		4592BB061F11EBF700D1640D /* actor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = actor.hpp; sourceTree = "<group>"; };
 		4592BB111F11F86F00D1640D /* main loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "main loop.hpp"; sourceTree = "<group>"; };
+		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -891,6 +895,7 @@
 		45B5E85A1EF8D8B900A6A3E2 /* SDL */ = {
 			isa = PBXGroup;
 			children = (
+				453479B41F21AC860083743E /* error.hpp */,
 				45B5E89C1EF8E14300A6A3E2 /* library.cpp */,
 				45B5E89D1EF8E14300A6A3E2 /* library.hpp */,
 				4592B96B1F0A2BA600D1640D /* font library.cpp */,
@@ -901,8 +906,8 @@
 				45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */,
 				45B5E8C41EF9047000A6A3E2 /* paths.cpp */,
 				45B5E8C51EF9047000A6A3E2 /* paths.hpp */,
-				4592B9651F0A24C800D1640D /* sdl object.hpp */,
-				453479B41F21AC860083743E /* sdl error.hpp */,
+				4592B9651F0A24C800D1640D /* texture.hpp */,
+				45B32E4D1FF34F66007BA7F4 /* surface.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";
@@ -1002,13 +1007,14 @@
 				45B5E7B91EF8A92500A6A3E2 /* stopwatch.hpp in Headers */,
 				45B5E8011EF8A93900A6A3E2 /* function traits.hpp in Headers */,
 				45B5E7FA1EF8A93900A6A3E2 /* type name.hpp in Headers */,
-				4592B9671F0A24C900D1640D /* sdl object.hpp in Headers */,
+				4592B9671F0A24C900D1640D /* texture.hpp in Headers */,
 				4592B96E1F0A2BA600D1640D /* font library.hpp in Headers */,
 				4592BAEB1F11C3CB00D1640D /* app.hpp in Headers */,
 				4592B49E1F06427200D1640D /* frame.hpp in Headers */,
 				4592BAEF1F11C50F00D1640D /* sdl app.hpp in Headers */,
 				45B5E7EF1EF8A93900A6A3E2 /* combine.hpp in Headers */,
 				4592BB081F11EBF700D1640D /* message.hpp in Headers */,
+				45B32E4E1FF34F66007BA7F4 /* surface.hpp in Headers */,
 				450ED64B1FBBAF60008F2902 /* transform.hpp in Headers */,
 				450ED6421FBBAE40008F2902 /* camera.hpp in Headers */,
 				450ED6461FBBAE9A008F2902 /* props.hpp in Headers */,

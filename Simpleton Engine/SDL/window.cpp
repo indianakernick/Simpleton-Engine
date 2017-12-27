@@ -8,7 +8,7 @@
 
 #include "window.hpp"
 
-#include "sdl error.hpp"
+#include "error.hpp"
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_mouse.h>
 
