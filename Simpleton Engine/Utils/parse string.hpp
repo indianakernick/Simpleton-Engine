@@ -193,15 +193,16 @@ namespace Utils {
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
-    size_t copyWhile(char *const dst, const size_t dstSize, Pred &&pred) {
+    size_t copyWhile(char *dst, const size_t dstSize, Pred &&pred) {
       throwIfNull(dst);
       size_t numChars = 0;
       const size_t maxChars = mSize < dstSize ? mSize : dstSize;
-      while (numChars < maxChars && pred(mData[numChars])) {
+      while (numChars < maxChars && pred(*mData)) {
+        *dst = *mData;
+        ++dst;
+        advanceNoCheck(); // increments mData
         ++numChars;
       }
-      std::memcpy(dst, mData, numChars);
-      advanceNoCheck(numChars);
       return numChars;
     }
     
