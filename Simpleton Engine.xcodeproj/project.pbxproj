@@ -101,6 +101,9 @@
 		4592BB101F11EFD500D1640D /* actor.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB061F11EBF700D1640D /* actor.hpp */; };
 		4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB111F11F86F00D1640D /* main loop.hpp */; };
 		45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32E4D1FF34F66007BA7F4 /* surface.hpp */; };
+		45B32EB01FF47C59007BA7F4 /* debug input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B32EAE1FF47C59007BA7F4 /* debug input.cpp */; };
+		45B32EB11FF47C59007BA7F4 /* debug input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B32EAE1FF47C59007BA7F4 /* debug input.cpp */; };
+		45B32EB21FF47D15007BA7F4 /* debug input.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EAF1FF47C59007BA7F4 /* debug input.hpp */; };
 		45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
 		45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
@@ -398,6 +401,7 @@
 			dstPath = /usr/local/include/Simpleton/SDL;
 			dstSubfolderSpec = 0;
 			files = (
+				45B32EB21FF47D15007BA7F4 /* debug input.hpp in CopyFiles */,
 				45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */,
 				453479B51F21ADFB0083743E /* error.hpp in CopyFiles */,
 				4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */,
@@ -491,6 +495,8 @@
 		4592BB061F11EBF700D1640D /* actor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = actor.hpp; sourceTree = "<group>"; };
 		4592BB111F11F86F00D1640D /* main loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "main loop.hpp"; sourceTree = "<group>"; };
 		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
+		45B32EAE1FF47C59007BA7F4 /* debug input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "debug input.cpp"; sourceTree = "<group>"; };
+		45B32EAF1FF47C59007BA7F4 /* debug input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "debug input.hpp"; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -833,6 +839,8 @@
 				45B5E8C51EF9047000A6A3E2 /* paths.hpp */,
 				4592B9651F0A24C800D1640D /* texture.hpp */,
 				45B32E4D1FF34F66007BA7F4 /* surface.hpp */,
+				45B32EAE1FF47C59007BA7F4 /* debug input.cpp */,
+				45B32EAF1FF47C59007BA7F4 /* debug input.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";
@@ -1016,6 +1024,7 @@
 				454D04971FE63D9900D3E560 /* move test.cpp in Sources */,
 				454D04981FE63D9900D3E560 /* terminal color.cpp in Sources */,
 				454D04991FE63D9900D3E560 /* line col.cpp in Sources */,
+				45B32EB11FF47C59007BA7F4 /* debug input.cpp in Sources */,
 				454D049A1FE63D9900D3E560 /* parse string.cpp in Sources */,
 				454D049B1FE63D9900D3E560 /* message.cpp in Sources */,
 				454D049C1FE63D9900D3E560 /* component.cpp in Sources */,
@@ -1050,6 +1059,7 @@
 				45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */,
 				45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */,
 				4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */,
+				45B32EB01FF47C59007BA7F4 /* debug input.cpp in Sources */,
 				45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */,
 				4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */,
 				4592B96D1F0A2BA600D1640D /* font library.cpp in Sources */,
