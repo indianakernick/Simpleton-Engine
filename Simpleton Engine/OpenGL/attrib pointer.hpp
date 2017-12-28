@@ -10,9 +10,21 @@
 #define engine_opengl_attrib_pointer_hpp
 
 #include "type enum.hpp"
+#include "../Utils/tuple.hpp"
 #include "../Utils/meta glm.hpp"
 
 namespace GL {
+  enum class AttribMode : unsigned {
+    /// glVertexAttribPointer for floats and glVertexAttribIPointer for ints
+    NO_CHANGE,
+    /// glVertexAttribPointer with no normalization
+    TO_FLOAT,
+    /// glVertexAttribPointer with normalization
+    FIXED_POINT,
+  
+    COUNT
+  };
+
   namespace detail {
     template <typename T, bool INT, bool NORM>
     void attribPointerVecImpl(const GLint attr, const size_t stride, const size_t offset) {
@@ -37,17 +49,6 @@ namespace GL {
         CHECK_OPENGL_ERROR();
       }
     }
-    
-    enum class AttribMode : unsigned {
-      // glVertexAttribPointer for floats and glVertexAttribIPointer for ints
-      NO_CHANGE,
-      // glVertexAttribPointer with no normalization
-      TO_FLOAT,
-      // glVertexAttribPointer with normalization
-      FIXED_POINT,
-      
-      COUNT
-    };
     
     template <typename T, AttribMode MODE>
     void attribPointerVec(const GLint attr, const size_t stride, const size_t offset) {
@@ -110,6 +111,16 @@ namespace GL {
         attribPointerVec<void, MODE>(0, 0, 0);
       }
     }
+    
+    template <typename Attrib>
+    constexpr auto getMode() -> decltype(Attrib::mode) {
+      return Attrib::mode;
+    }
+    
+    template <typename>
+    constexpr AttribMode getMode() {
+      return AttribMode::NO_CHANGE;
+    }
   }
   
   template <GLint ATTR, typename T>
@@ -133,19 +144,71 @@ namespace GL {
   /// Passes ints as ints and floats as floats
   template <GLint ATTR, typename T>
   void attribPointer(const size_t stride, const size_t offset) {
-    detail::attribPointer<T, detail::AttribMode::NO_CHANGE>(ATTR, stride, offset);
+    detail::attribPointer<T, AttribMode::NO_CHANGE>(ATTR, stride, offset);
   }
   
   /// Passes ints as floats and floats as floats
   template <GLint ATTR, typename T>
   void attribPointerFloat(const size_t stride, const size_t offset) {
-    detail::attribPointer<T, detail::AttribMode::TO_FLOAT>(ATTR, stride, offset);
+    detail::attribPointer<T, AttribMode::TO_FLOAT>(ATTR, stride, offset);
   }
   
   /// Passes ints as normalized floats and floats as floats
   template <GLint ATTR, typename T>
   void attribPointerFixedPoint(const size_t stride, const size_t offset) {
-    detail::attribPointer<T, detail::AttribMode::FIXED_POINT>(ATTR, stride, offset);
+    detail::attribPointer<T, AttribMode::FIXED_POINT>(ATTR, stride, offset);
+  }
+  
+  /// Calls glVertexAttribPointer and glEnableVertexAttribArray for all of the
+  /// attributes in the tuple. Stride and offset is set such that all of the
+  /// attributes are in the same buffer
+  template <typename Attribs>
+  void attribs() {
+    size_t currentOffset = 0;
+    GLint currentID = 0;
+    Utils::forEachIndex<std::tuple_size_v<Attribs>>([&currentOffset, &currentID] (const auto i) {
+      constexpr size_t stride = sizeof(Attribs);
+      using AttribType = std::tuple_element_t<UTILS_VALUE(i), Attribs>;
+      
+      detail::attribPointer<AttribType, AttribMode::NO_CHANGE>(currentID, stride, currentOffset);
+      
+      const GLint endID = currentID + detail::numAttrLocations<AttribType>();
+      for (; currentID != endID; ++currentID) {
+        glEnableVertexAttribArray(currentID);
+        CHECK_OPENGL_ERROR();
+      }
+      
+      currentOffset += sizeof(AttribType);
+    });
+  }
+  
+  /// Calls glVertexAttribPointer and glEnableVertexAttribArray for all of the
+  /// attributes in the tuple. Stride and offset is set such that all of the
+  /// attributes are in the same buffer
+  template <typename Attribs>
+  void attribsMode() {
+    size_t stride = 0;
+    Utils::forEachIndex<std::tuple_size_v<Attribs>>([&stride] (const auto i) {
+      stride += sizeof(typename std::tuple_element_t<UTILS_VALUE(i), Attribs>::type);
+    });
+  
+    size_t currentOffset = 0;
+    GLint currentID = 0;
+    Utils::forEachIndex<std::tuple_size_v<Attribs>>([&currentOffset, &currentID, stride] (const auto i) {
+      using Attrib = std::tuple_element_t<UTILS_VALUE(i), Attribs>;
+      using AttribType = typename Attrib::type;
+      constexpr AttribMode MODE = detail::getMode<Attrib>();
+      
+      detail::attribPointer<AttribType, MODE>(currentID, stride, currentOffset);
+      
+      const GLint endID = currentID + detail::numAttrLocations<AttribType>();
+      for (; currentID != endID; ++currentID) {
+        glEnableVertexAttribArray(currentID);
+        CHECK_OPENGL_ERROR();
+      }
+      
+      currentOffset += sizeof(AttribType);
+    });
   }
 }
 
