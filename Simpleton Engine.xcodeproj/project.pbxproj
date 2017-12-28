@@ -110,6 +110,7 @@
 		45B32EBE1FF4859E007BA7F4 /* registry.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EBD1FF4852D007BA7F4 /* registry.hpp */; };
 		45B32EC01FF493B5007BA7F4 /* entity id.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EBF1FF49318007BA7F4 /* entity id.hpp */; };
 		45B32EC21FF496BE007BA7F4 /* object types.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EC11FF495DC007BA7F4 /* object types.hpp */; };
+		45B32EC41FF4A34F007BA7F4 /* limit velocity.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */; };
 		45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
 		45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
@@ -285,6 +286,7 @@
 			dstPath = /usr/local/include/Simpleton/Box2D;
 			dstSubfolderSpec = 0;
 			files = (
+				45B32EC41FF4A34F007BA7F4 /* limit velocity.hpp in CopyFiles */,
 				45B32EC21FF496BE007BA7F4 /* object types.hpp in CopyFiles */,
 				45B32EC01FF493B5007BA7F4 /* entity id.hpp in CopyFiles */,
 				45B32EB61FF47F36007BA7F4 /* glm.hpp in CopyFiles */,
@@ -521,6 +523,7 @@
 		45B32EBD1FF4852D007BA7F4 /* registry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = registry.hpp; sourceTree = "<group>"; };
 		45B32EBF1FF49318007BA7F4 /* entity id.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "entity id.hpp"; sourceTree = "<group>"; };
 		45B32EC11FF495DC007BA7F4 /* object types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "object types.hpp"; sourceTree = "<group>"; };
+		45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "limit velocity.hpp"; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -707,6 +710,7 @@
 				45B32EB41FF47E60007BA7F4 /* glm.hpp */,
 				45B32EBF1FF49318007BA7F4 /* entity id.hpp */,
 				45B32EC11FF495DC007BA7F4 /* object types.hpp */,
+				45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */,
 			);
 			path = Box2D;
 			sourceTree = "<group>";
