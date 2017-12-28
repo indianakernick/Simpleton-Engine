@@ -8,16 +8,38 @@
 
 #include "parse string.hpp"
 
-Utils::ParseStringExpectError::ParseStringExpectError(const char c)
-  : std::runtime_error(std::string("Expected character '") + c + '\''),
-    expected(c) {}
+Utils::ParseStringExpectError::ParseStringExpectError(
+  const char c,
+  const unsigned line,
+  const unsigned col)
+  : mLine(line),
+    mCol(col),
+    mExpected(c) {}
+
+char Utils::ParseStringExpectError::expectedChar() const {
+  return mExpected;
+}
+
+unsigned Utils::ParseStringExpectError::line() const {
+  return mLine;
+}
+
+unsigned Utils::ParseStringExpectError::column() const {
+  return mCol;
+}
+
+const char *Utils::ParseStringExpectError::what() const noexcept {
+  //@TODO use static memory when std::to_chars arrives
+  return (std::string("Expected character '")
+         + mExpected
+         + "' at "
+         + std::to_string(mLine)
+         + ':'
+         + std::to_string(mCol)).c_str();
+}
 
 Utils::ParseStringNumberError::ParseStringNumberError(const std::string &error)
   : std::runtime_error("Error while parsing number: " + error) {}
-
-char Utils::ParseStringExpectError::expectedChar() const {
-  return expected;
-}
 
 Utils::ParseString::ParseString(const std::string &string)
   : mData(string.data()), mSize(string.size()) {}
@@ -83,7 +105,7 @@ void Utils::ParseString::skipUntilWhitespace() {
 
 void Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
-    throw ParseStringExpectError(c);
+    throw ParseStringExpectError(c, mLineCol.getLine(), mLineCol.getCol());
   }
   advanceNoCheck();
 }

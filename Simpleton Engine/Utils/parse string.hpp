@@ -16,14 +16,20 @@
 
 namespace Utils {
   ///A character was expected but not present
-  class ParseStringExpectError final : public std::runtime_error {
+  class ParseStringExpectError final : public std::exception {
   public:
-    explicit ParseStringExpectError(char);
+    ParseStringExpectError(char, unsigned, unsigned);
   
     char expectedChar() const;
+    unsigned line() const;
+    unsigned column() const;
+    
+    const char* what() const noexcept override;
     
   private:
-    char expected;
+    unsigned mLine;
+    unsigned mCol;
+    char mExpected;
   };
   
   ///Unable to parse number
@@ -35,7 +41,7 @@ namespace Utils {
   ///A view onto a string being parsed
   class ParseString {
   public:
-    using LineCol = Utils::LineCol<unsigned, unsigned>;
+    using LineCol = LineCol<unsigned, unsigned>;
   
     explicit ParseString(const std::string &);
     explicit ParseString(std::string_view);
