@@ -104,6 +104,7 @@
 		45B32EB01FF47C59007BA7F4 /* debug input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B32EAE1FF47C59007BA7F4 /* debug input.cpp */; };
 		45B32EB11FF47C59007BA7F4 /* debug input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B32EAE1FF47C59007BA7F4 /* debug input.cpp */; };
 		45B32EB21FF47D15007BA7F4 /* debug input.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EAF1FF47C59007BA7F4 /* debug input.hpp */; };
+		45B32EB61FF47F36007BA7F4 /* glm.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EB41FF47E60007BA7F4 /* glm.hpp */; };
 		45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
 		45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
@@ -270,6 +271,16 @@
 				4592BB0E1F11EFD500D1640D /* message.hpp in CopyFiles */,
 				4592BB0F1F11EFD500D1640D /* component.hpp in CopyFiles */,
 				4592BB101F11EFD500D1640D /* actor.hpp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45B32EB51FF47F13007BA7F4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/local/include/Simpleton/Box2D;
+			dstSubfolderSpec = 0;
+			files = (
+				45B32EB61FF47F36007BA7F4 /* glm.hpp in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +508,7 @@
 		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
 		45B32EAE1FF47C59007BA7F4 /* debug input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "debug input.cpp"; sourceTree = "<group>"; };
 		45B32EAF1FF47C59007BA7F4 /* debug input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "debug input.hpp"; sourceTree = "<group>"; };
+		45B32EB41FF47E60007BA7F4 /* glm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glm.hpp; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -685,6 +697,14 @@
 			path = "Game Logic";
 			sourceTree = "<group>";
 		};
+		45B32EB31FF47E37007BA7F4 /* Box2D */ = {
+			isa = PBXGroup;
+			children = (
+				45B32EB41FF47E60007BA7F4 /* glm.hpp */,
+			);
+			path = Box2D;
+			sourceTree = "<group>";
+		};
 		45B5E6961EF7C25200A6A3E2 = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +726,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				45B32EB31FF47E37007BA7F4 /* Box2D */,
 				45771C0B1FE876A400F533DA /* OpenGL */,
 				450ED63E1FBBAE30008F2902 /* Camera 2D */,
 				453A0AB61F8B5BEB0042B23B /* Graphics */,
@@ -906,6 +927,7 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				451452B71FF340FD007C57AF /* ShellScript */,
+				45B32EB51FF47F13007BA7F4 /* CopyFiles */,
 				45771C0E1FE87C4E00F533DA /* CopyFiles */,
 				450ED6611FBBB700008F2902 /* CopyFiles */,
 				453A0AB81F8B5D980042B23B /* CopyFiles */,
