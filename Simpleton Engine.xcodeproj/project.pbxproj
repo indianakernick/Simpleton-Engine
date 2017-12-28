@@ -30,7 +30,6 @@
 		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
 		4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
 		453479B51F21ADFB0083743E /* error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* error.hpp */; };
-		453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */; };
 		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
 		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
 		4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; };
@@ -108,6 +107,7 @@
 		45B32EB91FF481FD007BA7F4 /* events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B32EB71FF481FD007BA7F4 /* events.cpp */; };
 		45B32EBA1FF481FD007BA7F4 /* events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B32EB71FF481FD007BA7F4 /* events.cpp */; };
 		45B32EBB1FF482B7007BA7F4 /* events.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EB81FF481FD007BA7F4 /* events.hpp */; };
+		45B32EBE1FF4859E007BA7F4 /* registry.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EBD1FF4852D007BA7F4 /* registry.hpp */; };
 		45B5E7981EF8A90D00A6A3E2 /* exceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7891EF8A90D00A6A3E2 /* exceptions.cpp */; };
 		45B5E79E1EF8A90D00A6A3E2 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.cpp */; };
 		45B5E7A51EF8A90D00A6A3E2 /* file io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.cpp */; };
@@ -219,10 +219,10 @@
 		453A0AB81F8B5D980042B23B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Graphics;
+			dstPath = /usr/local/include/Simpleton/ECS;
 			dstSubfolderSpec = 0;
 			files = (
-				453A0AB91F8B5DB30042B23B /* keyframe animation.hpp in CopyFiles */,
+				45B32EBE1FF4859E007BA7F4 /* registry.hpp in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +464,6 @@
 		4533DCC51FBBDF350058390C /* zoom to fit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "zoom to fit.cpp"; sourceTree = "<group>"; };
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
-		453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "keyframe animation.hpp"; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B31FD7734400AD20C1 /* constant scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant scale.cpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
@@ -515,6 +514,7 @@
 		45B32EB41FF47E60007BA7F4 /* glm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glm.hpp; sourceTree = "<group>"; };
 		45B32EB71FF481FD007BA7F4 /* events.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = events.cpp; sourceTree = "<group>"; };
 		45B32EB81FF481FD007BA7F4 /* events.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = events.hpp; sourceTree = "<group>"; };
+		45B32EBD1FF4852D007BA7F4 /* registry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = registry.hpp; sourceTree = "<group>"; };
 		45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libSimpleton Engine.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clamp.hpp; sourceTree = "<group>"; };
 		45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interpolate.hpp; sourceTree = "<group>"; };
@@ -645,14 +645,6 @@
 			name = Impl;
 			sourceTree = "<group>";
 		};
-		453A0AB61F8B5BEB0042B23B /* Graphics */ = {
-			isa = PBXGroup;
-			children = (
-				453A0AB71F8B5C1F0042B23B /* keyframe animation.hpp */,
-			);
-			path = Graphics;
-			sourceTree = "<group>";
-		};
 		45771C0B1FE876A400F533DA /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +703,14 @@
 			path = Box2D;
 			sourceTree = "<group>";
 		};
+		45B32EBC1FF484F2007BA7F4 /* ECS */ = {
+			isa = PBXGroup;
+			children = (
+				45B32EBD1FF4852D007BA7F4 /* registry.hpp */,
+			);
+			path = ECS;
+			sourceTree = "<group>";
+		};
 		45B5E6961EF7C25200A6A3E2 = {
 			isa = PBXGroup;
 			children = (
@@ -732,10 +732,10 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				45B32EBC1FF484F2007BA7F4 /* ECS */,
 				45B32EB31FF47E37007BA7F4 /* Box2D */,
 				45771C0B1FE876A400F533DA /* OpenGL */,
 				450ED63E1FBBAE30008F2902 /* Camera 2D */,
-				453A0AB61F8B5BEB0042B23B /* Graphics */,
 				4592BAE71F11C3A400D1640D /* Application */,
 				45B5E88B1EF8DCA000A6A3E2 /* ID */,
 				45B5E8821EF8DC5C00A6A3E2 /* Event */,
@@ -935,10 +935,10 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				451452B71FF340FD007C57AF /* ShellScript */,
+				453A0AB81F8B5D980042B23B /* CopyFiles */,
 				45B32EB51FF47F13007BA7F4 /* CopyFiles */,
 				45771C0E1FE87C4E00F533DA /* CopyFiles */,
 				450ED6611FBBB700008F2902 /* CopyFiles */,
-				453A0AB81F8B5D980042B23B /* CopyFiles */,
 				4592BAF01F11C90E00D1640D /* CopyFiles */,
 				45B5E8B31EF902F100A6A3E2 /* CopyFiles */,
 				45B5E8B71EF9032E00A6A3E2 /* CopyFiles */,
