@@ -20,9 +20,8 @@ An example of a possible definition of OBJECT_TYPES is this
   OBJECT_TYPE(Sensor)                                                           \
   LAST_OBJECT_TYPE(Button)
 */
-
 #error "Must #define OBJECT_TYPES before #including this header"
-#endif
+#else
 
 #include <string>
 #include <cstdint>
@@ -78,5 +77,7 @@ namespace B2 {
     }
   }
 }
+
+#endif // OBJECT_TYPES
 
 #endif
