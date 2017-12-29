@@ -24,6 +24,10 @@ namespace Data {
   }
 }
 
+#define JSON_OPTIONAL(CHILD_ITER, PARENT_NODE, CHILD_NAME)                      \
+  const auto CHILD_ITER = PARENT_NODE.find(CHILD_NAME);                         \
+  CHILD_ITER != PARENT_NODE.cend()
+
 namespace glm {
   inline void from_json(const json &j, glm::vec2 &vec) {
     vec.x = j.at(0).get<float>();
