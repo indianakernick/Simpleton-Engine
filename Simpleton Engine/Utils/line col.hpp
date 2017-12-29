@@ -16,24 +16,24 @@
 namespace Utils {
   ///Keeps track of lines and columns in text.
   ///Great for writing error messages in parsers
-  template <typename Line, typename Col>
+  template <typename Line_, typename Col_, Col_ SIZE_OF_TAB_ = 8, Line_ FIRST_LINE_ = 1, Col_ FIRST_COL_ = 1>
   class LineCol {
   public:
-    using LineType = Line;
-    using ColType = Col;
+    using Line = Line_;
+    using Col = Col_;
     
-    static constexpr ColType  SIZE_OF_TAB = 8;
-    static constexpr LineType FIRST_LINE  = 1;
-    static constexpr ColType  FIRST_COL   = 1;
+    static constexpr Col  SIZE_OF_TAB = SIZE_OF_TAB_;
+    static constexpr Line FIRST_LINE  = FIRST_LINE_;
+    static constexpr Col  FIRST_COL   = FIRST_COL_;
     
     // 3.9 lines and 18.4 columns doesn't make any sense!
-    static_assert(std::is_integral<LineType>::value, "Type of line must be an integer");
-    static_assert(std::is_integral<ColType>::value, "Type of column must be an integer");
+    static_assert(std::is_integral<Line>::value, "Type of line must be an integer");
+    static_assert(std::is_integral<Col>::value, "Type of column must be an integer");
   
     LineCol()
-      : line(FIRST_LINE), col(FIRST_COL) {}
-    LineCol(const LineType line, const ColType col)
-      : line(line), col(col) {
+      : mLine(FIRST_LINE), mCol(FIRST_COL) {}
+    LineCol(const Line line, const Col col)
+      : mLine(line), mCol(col) {
       if (line < FIRST_LINE || col < FIRST_COL) {
         throw std::out_of_range("Line or column too small");
       }
@@ -53,29 +53,29 @@ namespace Utils {
     void putChar(const char c) {
       switch (c) {
         case '\t':
-          //assumes that ColType is an integer
-          col = (col + SIZE_OF_TAB - 1) / SIZE_OF_TAB * SIZE_OF_TAB;
+          //assumes that Col is an integer
+          mCol = (mCol + SIZE_OF_TAB - 1) / SIZE_OF_TAB * SIZE_OF_TAB;
           break;
         case '\n':
-          line++;
-          col = FIRST_COL;
+          ++mLine;
+          mCol = FIRST_COL;
           break;
         case '\v':
         case '\f':
-          line++;
+          ++mLine;
           break;
         case '\r':
-          col = FIRST_COL;
+          mCol = FIRST_COL;
           break;
         case '\b':
-          if (col != FIRST_COL) {
-            col--;
+          if (mCol != FIRST_COL) {
+            --mCol;
           }
           break;
         
         default:
           if (std::isprint(c)) {
-            col++;
+            ++mCol;
           }
       }
     }
@@ -90,49 +90,49 @@ namespace Utils {
     }
     ///Sets line to FIRST_LINE and col to FIRST_COL
     void reset() {
-      line = FIRST_LINE;
-      col = FIRST_COL;
+      mLine = FIRST_LINE;
+      mCol = FIRST_COL;
     }
     
     ///Sets line and col
-    void moveTo(const LineType newLine, const ColType newCol) {
-      line = newLine;
-      col = newCol;
+    void moveTo(const Line newLine, const Col newCol) {
+      mLine = newLine;
+      mCol = newCol;
     }
     ///Adds line and col
-    void moveBy(const LineType deltaLine, const ColType deltaCol) {
-      line += deltaLine;
-      col += deltaCol;
+    void moveBy(const Line deltaLine, const Col deltaCol) {
+      mLine += deltaLine;
+      mCol += deltaCol;
     }
     
     LineCol &operator+=(const LineCol other) {
-      line += other.line;
-      col += other.col;
+      mLine += other.mLine;
+      mCol += other.mCol;
       return *this;
     }
     LineCol &operator-=(const LineCol other) {
-      line -= other.line;
-      col -= other.col;
+      mLine -= other.mLine;
+      mCol -= other.mCol;
       return *this;
     }
     LineCol operator+(const LineCol other) const {
       return {
-        line + other.line,
-        col + other.col
+        mLine + other.mLine,
+        mCol + other.mCol
       };
     }
     LineCol operator-(const LineCol other) const {
       return {
-        line - other.line,
-        col - other.col
+        mLine - other.mLine,
+        mCol - other.mCol
       };
     }
     
-    LineType getLine() const {
-      return line;
+    Line line() const {
+      return mLine;
     }
-    ColType getCol() const {
-      return col;
+    Col col() const {
+      return mCol;
     }
     
     const char *asStr() const {
@@ -140,11 +140,11 @@ namespace Utils {
       //20 characters. 20 + ':' + 20 + '\0' = 42 = the answer to the ultimate question
       static char str[42];
       
-      std::string numString = std::to_string(line);
+      std::string numString = std::to_string(mLine);
       std::copy(numString.cbegin(), numString.cend(), str);
       size_t lineStrSize = numString.size();
       str[lineStrSize] = ':';
-      numString = std::to_string(col);
+      numString = std::to_string(mCol);
       std::copy(numString.cbegin(), numString.cend(), str + lineStrSize + 1);
       str[lineStrSize + 1 + numString.size()] = 0;
       
@@ -165,8 +165,8 @@ namespace Utils {
     }
     
   private:
-    LineType line;
-    ColType col;
+    Line mLine;
+    Col mCol;
   };
 }
 

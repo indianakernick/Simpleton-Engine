@@ -105,14 +105,13 @@ void Utils::ParseString::skipUntilWhitespace() {
 
 void Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
-    throw ParseStringExpectError(c, mLineCol.getLine(), mLineCol.getCol());
+    throw ParseStringExpectError(c, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck();
 }
 
 void Utils::ParseString::expectAfterWhitespace(const char c) {
-  skipWhitespace();
-  expect(c);
+  expectAfter(isspace, c);
 }
 
 bool Utils::ParseString::check(const char c) {
