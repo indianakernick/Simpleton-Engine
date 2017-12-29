@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4507594E1FF5B8310009B360 /* collision pairs.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507594C1FF5B6B30009B360 /* collision pairs.inl */; };
 		4507594F1FF5B8310009B360 /* collision pairs.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507594D1FF5B6B30009B360 /* collision pairs.hpp */; };
+		450759521FF5CC550009B360 /* contact listener.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759501FF5CA910009B360 /* contact listener.inl */; };
+		450759531FF5CC550009B360 /* contact listener.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759511FF5CA910009B360 /* contact listener.hpp */; };
 		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
 		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
 		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
@@ -288,6 +290,8 @@
 			dstPath = /usr/local/include/Simpleton/Box2D;
 			dstSubfolderSpec = 0;
 			files = (
+				450759521FF5CC550009B360 /* contact listener.inl in CopyFiles */,
+				450759531FF5CC550009B360 /* contact listener.hpp in CopyFiles */,
 				4507594E1FF5B8310009B360 /* collision pairs.inl in CopyFiles */,
 				4507594F1FF5B8310009B360 /* collision pairs.hpp in CopyFiles */,
 				45B32EC41FF4A34F007BA7F4 /* limit velocity.hpp in CopyFiles */,
@@ -453,6 +457,8 @@
 /* Begin PBXFileReference section */
 		4507594C1FF5B6B30009B360 /* collision pairs.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "collision pairs.inl"; sourceTree = "<group>"; };
 		4507594D1FF5B6B30009B360 /* collision pairs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "collision pairs.hpp"; sourceTree = "<group>"; };
+		450759501FF5CA910009B360 /* contact listener.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "contact listener.inl"; sourceTree = "<group>"; };
+		450759511FF5CA910009B360 /* contact listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "contact listener.hpp"; sourceTree = "<group>"; };
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
 		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
 		450ED63F1FBBAE40008F2902 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
@@ -719,6 +725,8 @@
 				45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */,
 				4507594C1FF5B6B30009B360 /* collision pairs.inl */,
 				4507594D1FF5B6B30009B360 /* collision pairs.hpp */,
+				450759501FF5CA910009B360 /* contact listener.inl */,
+				450759511FF5CA910009B360 /* contact listener.hpp */,
 			);
 			path = Box2D;
 			sourceTree = "<group>";
