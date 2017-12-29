@@ -14,6 +14,8 @@
 		450759551FF5CEAA0009B360 /* collision categories.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759541FF5CEA30009B360 /* collision categories.hpp */; };
 		450759581FF5D99F0009B360 /* nanovg debug draw.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759561FF5D3620009B360 /* nanovg debug draw.inl */; };
 		450759591FF5D99F0009B360 /* nanovg debug draw.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759571FF5D3620009B360 /* nanovg debug draw.hpp */; };
+		4507595E1FF5E95D0009B360 /* json.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507595C1FF5E87A0009B360 /* json.hpp */; };
+		450759611FF5EBD00009B360 /* json.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759601FF5EB6F0009B360 /* json.hpp */; };
 		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
 		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
 		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
@@ -207,6 +209,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4507595D1FF5E9370009B360 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/local/include/Simpleton/Data;
+			dstSubfolderSpec = 0;
+			files = (
+				4507595E1FF5E95D0009B360 /* json.hpp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		450ED6611FBBB700008F2902 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +305,7 @@
 			dstPath = /usr/local/include/Simpleton/Box2D;
 			dstSubfolderSpec = 0;
 			files = (
+				450759611FF5EBD00009B360 /* json.hpp in CopyFiles */,
 				450759581FF5D99F0009B360 /* nanovg debug draw.inl in CopyFiles */,
 				450759591FF5D99F0009B360 /* nanovg debug draw.hpp in CopyFiles */,
 				450759551FF5CEAA0009B360 /* collision categories.hpp in CopyFiles */,
@@ -468,6 +481,8 @@
 		450759541FF5CEA30009B360 /* collision categories.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "collision categories.hpp"; sourceTree = "<group>"; };
 		450759561FF5D3620009B360 /* nanovg debug draw.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "nanovg debug draw.inl"; sourceTree = "<group>"; };
 		450759571FF5D3620009B360 /* nanovg debug draw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "nanovg debug draw.hpp"; sourceTree = "<group>"; };
+		4507595C1FF5E87A0009B360 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
+		450759601FF5EB6F0009B360 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
 		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
 		450ED63F1FBBAE40008F2902 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
@@ -645,6 +660,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4507595A1FF5E8280009B360 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4507595C1FF5E87A0009B360 /* json.hpp */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		450ED63E1FBBAE30008F2902 /* Camera 2D */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,6 +752,7 @@
 			isa = PBXGroup;
 			children = (
 				45B32EB41FF47E60007BA7F4 /* glm.hpp */,
+				450759601FF5EB6F0009B360 /* json.hpp */,
 				45B32EBF1FF49318007BA7F4 /* entity id.hpp */,
 				45B32EC11FF495DC007BA7F4 /* object types.hpp */,
 				450759541FF5CEA30009B360 /* collision categories.hpp */,
@@ -772,6 +796,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				4507595A1FF5E8280009B360 /* Data */,
 				45B32EBC1FF484F2007BA7F4 /* ECS */,
 				45B32EB31FF47E37007BA7F4 /* Box2D */,
 				45771C0B1FE876A400F533DA /* OpenGL */,
@@ -975,6 +1000,7 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				451452B71FF340FD007C57AF /* ShellScript */,
+				4507595D1FF5E9370009B360 /* CopyFiles */,
 				453A0AB81F8B5D980042B23B /* CopyFiles */,
 				45B32EB51FF47F13007BA7F4 /* CopyFiles */,
 				45771C0E1FE87C4E00F533DA /* CopyFiles */,

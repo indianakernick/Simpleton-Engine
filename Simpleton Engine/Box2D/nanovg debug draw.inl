@@ -25,7 +25,7 @@ namespace B2::detail {
   }
 }
 
-inline DebugDrawNanoVG::DebugDrawNanoVG(const float strokeWidth)
+inline B2::DebugDrawNanoVG::DebugDrawNanoVG(const float strokeWidth)
   : strokeWidth(strokeWidth) {}
 
 void B2::DebugDrawNanoVG::DrawPolygon(
