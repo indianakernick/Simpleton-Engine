@@ -62,7 +62,7 @@ namespace B2::detail {
   }
   
   #define OPTIONAL_VEC(OBJ, NODE, MEMBER, HAS_MEMBER, NAME)                     \
-    if (const auto vert = NODE.find(NAME); vert != NODE.cend()) {               \
+    if (JSON_OPTIONAL(vert, NODE, NAME)) {                                      \
       OBJ.m_##MEMBER = mul(vert->get<b2Vec2>(), scale);                         \
       OBJ.m_##HAS_MEMBER = true;                                                \
     } do{}while(0)
