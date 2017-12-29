@@ -158,7 +158,7 @@ namespace Utils {
         }
       } else if constexpr (std::is_floating_point<Number>::value) {
         char *end;
-        const float num = std::strtold(mData, &end);
+        const long double num = std::strtold(mData, &end);
         if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
           throw ParseStringNumberError("Number out of range");
         }
@@ -176,10 +176,7 @@ namespace Utils {
       if (error) {
         throw ParseStringNumberError(error.message());
       }
-      const size_t numRead = end - mData;
-      lineCol.putString(mData, numRead);
-      mSize -= numRead;
-      mData = end;
+      advanceNoCheck(end - mData);
       */
     }
     
