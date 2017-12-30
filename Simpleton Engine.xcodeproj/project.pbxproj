@@ -23,6 +23,7 @@
 		4507596C1FF612300009B360 /* entity id map.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759661FF60E290009B360 /* entity id map.inl */; };
 		4507596D1FF612300009B360 /* entity id map.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759671FF60E290009B360 /* entity id map.hpp */; };
 		4507596F1FF74D670009B360 /* comp init.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507596E1FF74CB90009B360 /* comp init.hpp */; };
+		450759711FF761E70009B360 /* comp inits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759701FF760C70009B360 /* comp inits.hpp */; };
 		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
 		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
 		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
@@ -251,6 +252,7 @@
 			dstPath = /usr/local/include/Simpleton/ECS;
 			dstSubfolderSpec = 0;
 			files = (
+				450759711FF761E70009B360 /* comp inits.hpp in CopyFiles */,
 				4507596F1FF74D670009B360 /* comp init.hpp in CopyFiles */,
 				4507596A1FF612300009B360 /* json.inl in CopyFiles */,
 				4507596B1FF612300009B360 /* json.hpp in CopyFiles */,
@@ -504,6 +506,7 @@
 		450759681FF610EC0009B360 /* json.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = json.inl; sourceTree = "<group>"; };
 		450759691FF610EC0009B360 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		4507596E1FF74CB90009B360 /* comp init.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "comp init.hpp"; sourceTree = "<group>"; };
+		450759701FF760C70009B360 /* comp inits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "comp inits.hpp"; sourceTree = "<group>"; };
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
 		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
 		450ED63F1FBBAE40008F2902 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
@@ -799,6 +802,7 @@
 				450759661FF60E290009B360 /* entity id map.inl */,
 				450759671FF60E290009B360 /* entity id map.hpp */,
 				4507596E1FF74CB90009B360 /* comp init.hpp */,
+				450759701FF760C70009B360 /* comp inits.hpp */,
 			);
 			path = ECS;
 			sourceTree = "<group>";
