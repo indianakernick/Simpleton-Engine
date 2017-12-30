@@ -1237,6 +1237,7 @@
 					"-Wextra-semi",
 					"-Wno-documentation",
 					"-std=c++1z",
+					"-fvisibility=default",
 				);
 				OTHER_LDFLAGS = "-Wl,-search_paths_first";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1276,6 +1277,7 @@
 					"-Wextra-semi",
 					"-Wno-documentation",
 					"-std=c++1z",
+					"-fvisibility=default",
 				);
 				OTHER_LDFLAGS = "-Wl,-search_paths_first";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1415,6 +1417,7 @@
 					"-Wextra-semi",
 					"-Wno-documentation",
 					"-std=c++1z",
+					"-fvisibility=default",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1452,6 +1455,7 @@
 					"-Wextra-semi",
 					"-Wno-documentation",
 					"-std=c++1z",
+					"-fvisibility=default",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

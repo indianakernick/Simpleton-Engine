@@ -16,7 +16,7 @@ extern "C" const char *SDL_GetError();
 namespace SDL {
   class Error final : public std::runtime_error {
   public:
-    Error()
+    inline Error()
       : std::runtime_error(SDL_GetError()) {}
   };
   
