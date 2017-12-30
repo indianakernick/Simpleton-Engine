@@ -11,6 +11,18 @@
 
 #include <utility>
 
+namespace Utils {
+  template <typename T, typename U>
+  struct is_same {
+    static constexpr bool value = false;
+  };
+  
+  template <typename T>
+  struct is_same<T, T> {
+    static constexpr bool value = true;
+  };
+}
+
 // Same interface as std::unique_ptr (the best class in the entire STL)
 
 #define UTILS_RAII_CLASS(CLASS, TYPE, MEMBER, DELETE)                           \
@@ -79,8 +91,13 @@
   bool operator!=(std::nullptr_t) const noexcept {                              \
     return MEMBER != value_type();                                              \
   }                                                                             \
+  /* suppressing warnings */                                                    \
   bool operator<(std::nullptr_t) const noexcept {                               \
-    return MEMBER < value_type();                                               \
+    if constexpr (Utils::is_same<value_type, bool>::value) {                    \
+      return false;                                                             \
+    } else {                                                                    \
+      return MEMBER < value_type();                                             \
+    }                                                                           \
   }                                                                             \
   bool operator<=(std::nullptr_t) const noexcept {                              \
     return MEMBER <= value_type();                                              \
@@ -88,8 +105,13 @@
   bool operator>(std::nullptr_t) const noexcept {                               \
     return MEMBER > value_type();                                               \
   }                                                                             \
+  /* suppressing warnings */                                                    \
   bool operator>=(std::nullptr_t) const noexcept {                              \
-    return MEMBER >= value_type();                                              \
+    if constexpr (Utils::is_same<value_type, bool>::value) {                    \
+      return true;                                                              \
+    } else {                                                                    \
+      return MEMBER >= value_type();                                            \
+    }                                                                           \
   }
 
 #endif
