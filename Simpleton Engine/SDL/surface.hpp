@@ -18,7 +18,7 @@ extern "C" void SDL_FreeSurface(SDL_Surface *);
 namespace SDL {
   class Surface {
   public:
-    UTILS_RAII_CLASS(Surface, SDL_Surface *, surface, SDL_FreeSurface)
+    UTILS_RAII_CLASS_FULL(Surface, SDL_Surface *, surface, SDL_FreeSurface)
     
   private:
     SDL_Surface *surface;

@@ -20,7 +20,7 @@ namespace GL {
   template <GLenum TARGET_>
   class Buffer {
   public:
-    UTILS_RAII_CLASS(Buffer, GLuint, id, detail::deleteBuffer)
+    UTILS_RAII_CLASS_FULL(Buffer, GLuint, id, detail::deleteBuffer)
     
     static constexpr GLenum TARGET = TARGET_;
     

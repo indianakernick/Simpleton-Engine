@@ -18,7 +18,7 @@ namespace GL {
 
   class ShaderProgram {
   public:
-    UTILS_RAII_CLASS(ShaderProgram, GLuint, id, detail::deleteProgram)
+    UTILS_RAII_CLASS_FULL(ShaderProgram, GLuint, id, detail::deleteProgram)
     
     bool link() const;
     bool validate() const;

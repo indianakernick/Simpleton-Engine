@@ -25,7 +25,7 @@ namespace SDL {
 
   class FontLibrary : public Utils::ForceSingleton<FontLibrary> {
   public:
-    UTILS_RAII_CLASS(FontLibrary, bool, initialized, detail::deleteFontLibrary)
+    UTILS_RAII_CLASS_FULL(FontLibrary, bool, initialized, detail::deleteFontLibrary)
     
   private:
     bool initialized;

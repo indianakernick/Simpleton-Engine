@@ -15,7 +15,7 @@
 namespace GL {
   class Context {
   public:
-    UTILS_RAII_CLASS(Context, SDL_GLContext, context, SDL_GL_DeleteContext)
+    UTILS_RAII_CLASS_FULL(Context, SDL_GLContext, context, SDL_GL_DeleteContext)
   
     void makeCurrent(SDL_Window *) const;
   

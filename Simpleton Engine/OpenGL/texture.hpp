@@ -21,7 +21,7 @@ namespace GL {
   template <GLenum TARGET_>
   class Texture {
   public:
-    UTILS_RAII_CLASS(Texture, GLuint, id, detail::deleteTexture)
+    UTILS_RAII_CLASS_FULL(Texture, GLuint, id, detail::deleteTexture)
   
     static constexpr GLenum TARGET = TARGET_;
   

@@ -18,7 +18,7 @@ namespace GL {
 
   class Framebuffer {
   public:
-    UTILS_RAII_CLASS(Framebuffer, GLuint, id, detail::deleteFramebuffer)
+    UTILS_RAII_CLASS_FULL(Framebuffer, GLuint, id, detail::deleteFramebuffer)
     
     void bind() const;
     bool checkStatus() const;

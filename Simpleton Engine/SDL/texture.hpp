@@ -19,7 +19,7 @@ extern "C" void SDL_DestroyTexture(SDL_Texture *);
 namespace SDL {
   class Texture {
   public:
-    UTILS_RAII_CLASS(Texture, SDL_Texture *, texture, SDL_DestroyTexture)
+    UTILS_RAII_CLASS_FULL(Texture, SDL_Texture *, texture, SDL_DestroyTexture)
     
   private:
     SDL_Texture *texture;

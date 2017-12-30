@@ -21,7 +21,7 @@ namespace GL {
   template <GLenum TYPE_>
   class Shader {
   public:
-    UTILS_RAII_CLASS(Shader, GLuint, id, detail::deleteShader)
+    UTILS_RAII_CLASS_FULL(Shader, GLuint, id, detail::deleteShader)
   
     static constexpr GLenum TYPE = TYPE_;
   

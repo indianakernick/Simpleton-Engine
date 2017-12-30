@@ -18,7 +18,7 @@ extern "C" void SDL_DestroyRenderer(SDL_Renderer *);
 namespace SDL {
   class Renderer {
   public:
-    UTILS_RAII_CLASS(Renderer, SDL_Renderer *, renderer, SDL_DestroyRenderer)
+    UTILS_RAII_CLASS_FULL(Renderer, SDL_Renderer *, renderer, SDL_DestroyRenderer)
     
     void setColor(glm::tvec4<uint8_t>);
     glm::tvec4<uint8_t> getColor() const;

@@ -28,7 +28,7 @@ namespace SDL {
       bool openGL = false;
     };
   
-    UTILS_RAII_CLASS(Window, SDL_Window *, window, SDL_DestroyWindow)
+    UTILS_RAII_CLASS_FULL(Window, SDL_Window *, window, SDL_DestroyWindow)
     
     ID getID() const;
     

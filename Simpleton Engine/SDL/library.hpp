@@ -27,7 +27,7 @@ namespace SDL {
 
   class Library final : public Utils::ForceSingleton<Library> {
   public:
-    UTILS_RAII_CLASS(Library, bool, initialized, detail::deleteLibrary)
+    UTILS_RAII_CLASS_FULL(Library, bool, initialized, detail::deleteLibrary)
     
   private:
     bool initialized;

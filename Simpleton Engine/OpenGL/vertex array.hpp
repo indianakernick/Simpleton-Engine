@@ -19,7 +19,7 @@ namespace GL {
   
   class VertexArray {
   public:
-    UTILS_RAII_CLASS(VertexArray, GLuint, id, detail::deleteVertexArray)
+    UTILS_RAII_CLASS_FULL(VertexArray, GLuint, id, detail::deleteVertexArray)
     
     void bind() const;
   
