@@ -40,7 +40,7 @@ namespace ECS {
     }
     
     ///Creates default initializers for components that don't have initializers
-    void setDefaults() {
+    void constructDefaults() {
       Utils::forEach(inits, [] (auto &init) {
         if (!init) {
           using UniquePtr = std::remove_reference_t<decltype(init)>;
