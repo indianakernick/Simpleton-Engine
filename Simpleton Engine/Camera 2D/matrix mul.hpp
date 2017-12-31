@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef matrix_mul_hpp
-#define matrix_mul_hpp
+#ifndef engine_camera_2d_matrix_mul_hpp
+#define engine_camera_2d_matrix_mul_hpp
 
 #include <glm/vec2.hpp>
 #include <glm/mat3x3.hpp>

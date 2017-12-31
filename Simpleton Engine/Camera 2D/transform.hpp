@@ -47,6 +47,9 @@ namespace Cam2D {
     Origin origin = Origin::CENTER;
     bool invertX = false;
     bool invertY = false;
+    
+    glm::vec2 calcOriginPos() const;
+    glm::vec2 calcInvertedScale() const;
   };
 }
 
