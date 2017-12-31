@@ -9,6 +9,8 @@
 #ifndef engine_opengl_opengl_hpp
 #define engine_opengl_opengl_hpp
 
+#include <cassert>
+#include <iostream>
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
@@ -18,9 +20,6 @@
 #define CHECK_OPENGL_ERROR()
 
 #else
-
-#include <cassert>
-#include <iostream>
 
 namespace GL::detail {
   inline const char *glErrorString(const GLenum error) {
