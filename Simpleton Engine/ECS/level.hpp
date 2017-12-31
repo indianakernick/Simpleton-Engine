@@ -9,8 +9,13 @@
 #ifndef engine_ecs_level_hpp
 #define engine_ecs_level_hpp
 
+#include <limits>
+
 namespace ECS {
   using Level = unsigned;
+  
+  constexpr Level NULL_LEVEL = std::numeric_limits<Level>::max();
+  constexpr Level FINAL_LEVEL = NULL_LEVEL - 1;
 }
 
 #endif
