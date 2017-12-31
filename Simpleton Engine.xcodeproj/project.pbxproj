@@ -164,9 +164,7 @@
 		45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C01EF8A93900A6A3E2 /* instance limiter.hpp */; };
 		45B5E8431EF8AF5000A6A3E2 /* profiler.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C21EF8A93900A6A3E2 /* profiler.hpp */; };
 		45B5E8441EF8AF5000A6A3E2 /* benchmark.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C31EF8A93900A6A3E2 /* benchmark.hpp */; };
-		45B5E8451EF8AF5000A6A3E2 /* singleton.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C41EF8A93900A6A3E2 /* singleton.hpp */; };
 		45B5E8461EF8AF5000A6A3E2 /* move test.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C91EF8A93900A6A3E2 /* move test.hpp */; };
-		45B5E8481EF8AF5000A6A3E2 /* combine.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7CC1EF8A93900A6A3E2 /* combine.hpp */; };
 		45B5E84A1EF8AF5000A6A3E2 /* op stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7CF1EF8A93900A6A3E2 /* op stack.hpp */; };
 		45B5E84B1EF8AF5000A6A3E2 /* int least.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D01EF8A93900A6A3E2 /* int least.hpp */; };
 		45B5E84C1EF8AF5000A6A3E2 /* member function.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D11EF8A93900A6A3E2 /* member function.hpp */; };
@@ -422,9 +420,7 @@
 				45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */,
 				45B5E8431EF8AF5000A6A3E2 /* profiler.hpp in CopyFiles */,
 				45B5E8441EF8AF5000A6A3E2 /* benchmark.hpp in CopyFiles */,
-				45B5E8451EF8AF5000A6A3E2 /* singleton.hpp in CopyFiles */,
 				45B5E8461EF8AF5000A6A3E2 /* move test.hpp in CopyFiles */,
-				45B5E8481EF8AF5000A6A3E2 /* combine.hpp in CopyFiles */,
 				45B5E84A1EF8AF5000A6A3E2 /* op stack.hpp in CopyFiles */,
 				45B5E84B1EF8AF5000A6A3E2 /* int least.hpp in CopyFiles */,
 				45B5E84C1EF8AF5000A6A3E2 /* member function.hpp in CopyFiles */,
@@ -622,10 +618,8 @@
 		45B5E7C11EF8A93900A6A3E2 /* profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = profiler.cpp; sourceTree = "<group>"; };
 		45B5E7C21EF8A93900A6A3E2 /* profiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = profiler.hpp; sourceTree = "<group>"; };
 		45B5E7C31EF8A93900A6A3E2 /* benchmark.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = benchmark.hpp; sourceTree = "<group>"; };
-		45B5E7C41EF8A93900A6A3E2 /* singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = singleton.hpp; sourceTree = "<group>"; };
 		45B5E7C81EF8A93900A6A3E2 /* move test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "move test.cpp"; sourceTree = "<group>"; };
 		45B5E7C91EF8A93900A6A3E2 /* move test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "move test.hpp"; sourceTree = "<group>"; };
-		45B5E7CC1EF8A93900A6A3E2 /* combine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = combine.hpp; sourceTree = "<group>"; };
 		45B5E7CF1EF8A93900A6A3E2 /* op stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "op stack.hpp"; sourceTree = "<group>"; };
 		45B5E7D01EF8A93900A6A3E2 /* int least.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "int least.hpp"; sourceTree = "<group>"; };
 		45B5E7D11EF8A93900A6A3E2 /* member function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "member function.hpp"; sourceTree = "<group>"; };
@@ -866,10 +860,8 @@
 				45B5E7C11EF8A93900A6A3E2 /* profiler.cpp */,
 				45B5E7C21EF8A93900A6A3E2 /* profiler.hpp */,
 				45B5E7C31EF8A93900A6A3E2 /* benchmark.hpp */,
-				45B5E7C41EF8A93900A6A3E2 /* singleton.hpp */,
 				45B5E7C81EF8A93900A6A3E2 /* move test.cpp */,
 				45B5E7C91EF8A93900A6A3E2 /* move test.hpp */,
-				45B5E7CC1EF8A93900A6A3E2 /* combine.hpp */,
 				45B5E7CF1EF8A93900A6A3E2 /* op stack.hpp */,
 				45B5E7D01EF8A93900A6A3E2 /* int least.hpp */,
 				45B5E7D11EF8A93900A6A3E2 /* member function.hpp */,
