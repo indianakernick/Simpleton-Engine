@@ -33,6 +33,11 @@ namespace Math {
     LEFT,
     COUNT,
     
+    NORTH = UP,
+    EAST = RIGHT,
+    SOUTH = DOWN,
+    WEST = LEFT,
+    
     TOP = UP,
     BOTTOM = DOWN,
     
@@ -367,14 +372,16 @@ namespace Math {
   constexpr Dir prev(const Dir dir) {
     return static_cast<Dir>(static_cast<DirType>(dir) - DirType(1));
   }
-}
+  
+  ///Get the next direction. Used for iterating directions
+  constexpr Math::Dir &operator++(Math::Dir &dir) {
+    return dir = Math::next(dir);
+  }
 
-constexpr Math::Dir &operator++(Math::Dir &dir) {
-  return dir = Math::next(dir);
-}
-
-constexpr Math::Dir &operator--(Math::Dir &dir) {
-  return dir = Math::prev(dir);
+  ///Get the previous direction. Used for iterating directions in reverse
+  constexpr Math::Dir &operator--(Math::Dir &dir) {
+    return dir = Math::prev(dir);
+  }
 }
 
 #endif

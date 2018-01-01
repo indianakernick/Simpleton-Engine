@@ -29,6 +29,7 @@
 		4507597B1FF776430009B360 /* level.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759721FF769DE0009B360 /* level.hpp */; };
 		4507597E1FF86F2C0009B360 /* level manager.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507597D1FF86B290009B360 /* level manager.inl */; };
 		4507597F1FF86F2C0009B360 /* level manager.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507597C1FF86B290009B360 /* level manager.hpp */; };
+		450759821FF9F3A80009B360 /* dir bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759811FF9F2EF0009B360 /* dir bits.hpp */; };
 		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
 		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
 		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
@@ -385,6 +386,7 @@
 			dstPath = /usr/local/include/Simpleton/Math;
 			dstSubfolderSpec = 0;
 			files = (
+				450759821FF9F3A80009B360 /* dir bits.hpp in CopyFiles */,
 				4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */,
 				452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */,
 				4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */,
@@ -518,6 +520,7 @@
 		450759781FF76FCD0009B360 /* progress manager.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "progress manager.inl"; sourceTree = "<group>"; };
 		4507597C1FF86B290009B360 /* level manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "level manager.hpp"; sourceTree = "<group>"; };
 		4507597D1FF86B290009B360 /* level manager.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "level manager.inl"; sourceTree = "<group>"; };
+		450759811FF9F2EF0009B360 /* dir bits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "dir bits.hpp"; sourceTree = "<group>"; };
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
 		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
 		450ED63F1FBBAE40008F2902 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
@@ -914,6 +917,7 @@
 				45B5E7701EF8A8A700A6A3E2 /* vectors.hpp */,
 				45B5E7711EF8A8A700A6A3E2 /* rect.hpp */,
 				45B5E7721EF8A8A700A6A3E2 /* dir.hpp */,
+				450759811FF9F2EF0009B360 /* dir bits.hpp */,
 				45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */,
 				45103F381F2324A6001B24E2 /* point in polygon.hpp */,
 				452B82F61F41924500AF9AC6 /* rand.hpp */,
