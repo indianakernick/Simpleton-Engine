@@ -112,6 +112,12 @@ namespace Math {
     return static_cast<Axis>(static_cast<DirType>(axis) ^ DirType(0b1));
   }
   
+  ///Rotate a direction. Clockwise if count is positive and counter-clockwise
+  ///(anti-clockwise) if count is negative
+  constexpr Dir rotate(const Dir dir, const SignedDirType count) {
+    return rotateCW(dir, static_cast<DirType>(count));
+  }
+  
   ///Rotate a direction clockwise
   constexpr Dir rotateCW(const Dir dir, const DirType count = 1) {
     return static_cast<Dir>((static_cast<DirType>(dir) + count) & DirType(0b11));

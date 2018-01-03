@@ -63,6 +63,12 @@ namespace Math {
     return static_cast<DirBits>(static_cast<DirType>(bits) ^ DirType(0b1111));
   }
   
+  ///Rotate a set of directions. Clockwise if count is positive and
+  ///counter-clockwise (anti-clockwise) if count is negative
+  constexpr DirBits rotate(const DirBits bits, const SignedDirType count) {
+    return rotateCW(bits, static_cast<DirType>(count));
+  }
+  
   ///Rotate a set of directions clockwise
   constexpr DirBits rotateCW(const DirBits bits, DirType count = 1) {
     //rotate the 4 least significant bits to the left
