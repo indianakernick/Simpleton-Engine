@@ -112,12 +112,6 @@ namespace Math {
     return static_cast<Axis>(static_cast<DirType>(axis) ^ DirType(0b1));
   }
   
-  ///Rotate a direction. Clockwise if count is positive and counter-clockwise
-  ///(anti-clockwise) if count is negative
-  constexpr Dir rotate(const Dir dir, const SignedDirType count) {
-    return rotateCW(dir, static_cast<DirType>(count));
-  }
-  
   ///Rotate a direction clockwise
   constexpr Dir rotateCW(const Dir dir, const DirType count = 1) {
     return static_cast<Dir>((static_cast<DirType>(dir) + count) & DirType(0b11));
@@ -126,6 +120,12 @@ namespace Math {
   ///Rotate a direction counter-clockwise (anti-clockwise)
   constexpr Dir rotateCCW(const Dir dir, const DirType count = 1) {
     return static_cast<Dir>((static_cast<DirType>(dir) - count) & DirType(0b11));
+  }
+  
+  ///Rotate a direction. Clockwise if count is positive and counter-clockwise
+  ///(anti-clockwise) if count is negative
+  constexpr Dir rotate(const Dir dir, const SignedDirType count) {
+    return rotateCW(dir, static_cast<DirType>(count));
   }
   
   ///Get the distance between directions
@@ -188,10 +188,6 @@ namespace Math {
   template <typename Number, Dir PLUS_X, Dir PLUS_Y>
   struct ToVec {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
-    static_assert(
-      std::is_floating_point_v<Number> || std::is_signed_v<Number>,
-      "Number must be a float or a signed int"
-    );
   
     ///Convert a direction to a 2D unit vector
     static glm::tvec2<Number> conv(const Dir dir, const Number dist = Number(1)) {
@@ -217,10 +213,6 @@ namespace Math {
   template <typename Number, Dir PLUS_X, Dir PLUS_Y, bool EXACT = true>
   struct FromVec {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
-    static_assert(
-      std::is_floating_point_v<Number> || std::is_signed_v<Number>,
-      "Number must be a float or a signed int"
-    );
     
     ///Convert a 2D unit vector to a direction
     static Dir conv(const glm::tvec2<Number> vec, const Number dist = Number(1)) {
@@ -267,8 +259,6 @@ namespace Math {
   ///Configuration template for converting a direction to a number
   template <typename Number>
   struct ToNum {
-    static_assert(std::is_arithmetic_v<Number>, "Number must be an arithmetic type");
-    
     ///Convert a direction to a number
     static Number conv(const Dir dir, const Number stride, const Number offset) {
       return static_cast<Number>(dir) * stride + offset;
@@ -288,8 +278,6 @@ namespace Math {
   ///Configuration template for converting a number to a direction
   template <typename Number>
   struct FromNum {
-    static_assert(std::is_arithmetic_v<Number>, "Number must be an arithmetic type");
-    
     ///Convert a number to a direction
     static Dir conv(const Number num, const Number stride, const Number offset) {
       return static_cast<Dir>((num - offset) / stride);
