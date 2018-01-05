@@ -10,7 +10,6 @@
 #define engine_math_dir_bits_hpp
 
 #include "dir.hpp"
-#include "bits.hpp"
 
 namespace Math {
   ///A bitset where each bit corresponds to a 2D orthogonal direction
@@ -63,12 +62,6 @@ namespace Math {
     return static_cast<DirBits>(static_cast<DirType>(bits) ^ DirType(0b1111));
   }
   
-  ///Rotate a set of directions. Clockwise if count is positive and
-  ///counter-clockwise (anti-clockwise) if count is negative
-  constexpr DirBits rotate(const DirBits bits, const SignedDirType count) {
-    return rotateCW(bits, static_cast<DirType>(count));
-  }
-  
   ///Rotate a set of directions clockwise
   constexpr DirBits rotateCW(const DirBits bits, DirType count = 1) {
     //rotate the 4 least significant bits to the left
@@ -83,6 +76,12 @@ namespace Math {
   ///Rotate a set of directions counter-clockwise (anti-clockwise)
   constexpr DirBits rotateCCW(const DirBits bits, const DirType count = 1) {
     return rotateCW(bits, -count);
+  }
+  
+  ///Rotate a set of directions. Clockwise if count is positive and
+  ///counter-clockwise (anti-clockwise) if count is negative
+  constexpr DirBits rotate(const DirBits bits, const SignedDirType count) {
+    return rotateCW(bits, static_cast<DirType>(count));
   }
   
   ///Does the set have any horizontal directions?
