@@ -185,8 +185,12 @@ namespace Math {
   }
   
   ///Configuration template for converting a direction to a 2D unit vector
-  template <typename Number, Dir PLUS_X, Dir PLUS_Y>
+  template <typename Number_, Dir PLUS_X_, Dir PLUS_Y_>
   struct ToVec {
+    using Number = Number_;
+    static constexpr Dir PLUS_X = PLUS_X_;
+    static constexpr Dir PLUS_Y = PLUS_Y_;
+  
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
   
     ///Convert a direction to a 2D unit vector
@@ -210,8 +214,13 @@ namespace Math {
   };
   
   ///Configuration template for converting a 2D unit vector to a direction
-  template <typename Number, Dir PLUS_X, Dir PLUS_Y, bool EXACT = true>
+  template <typename Number_, Dir PLUS_X_, Dir PLUS_Y_, bool EXACT_ = true>
   struct FromVec {
+    using Number = Number_;
+    static constexpr Dir PLUS_X = PLUS_X_;
+    static constexpr Dir PLUS_Y = PLUS_Y_;
+    static constexpr bool EXACT = EXACT_;
+  
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
     
     ///Convert a 2D unit vector to a direction
@@ -257,8 +266,10 @@ namespace Math {
   };
   
   ///Configuration template for converting a direction to a number
-  template <typename Number>
+  template <typename Number_>
   struct ToNum {
+    using Number = Number_;
+  
     ///Convert a direction to a number
     static Number conv(const Dir dir, const Number stride, const Number offset) {
       return static_cast<Number>(dir) * stride + offset;
@@ -276,8 +287,10 @@ namespace Math {
   };
   
   ///Configuration template for converting a number to a direction
-  template <typename Number>
+  template <typename Number_>
   struct FromNum {
+    using Number = Number_;
+  
     ///Convert a number to a direction
     static Dir conv(const Number num, const Number stride, const Number offset) {
       return static_cast<Dir>((num - offset) / stride);
