@@ -58,6 +58,17 @@ namespace Math {
     NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
+  struct DirRange {
+    static constexpr Dir begin() {
+      return Dir::BEGIN;
+    }
+    static constexpr Dir end() {
+      return Dir::END;
+    }
+  };
+  
+  constexpr DirRange DIR_RANGE = {};
+  
   enum class Axis : DirType {
     //don't reoder this
     
@@ -388,6 +399,11 @@ namespace Math {
   ///Get the previous direction. Used for iterating directions in reverse
   constexpr Math::Dir &operator--(Math::Dir &dir) {
     return dir = Math::prev(dir);
+  }
+  
+  ///Dereference a direction. Used for iterating directions
+  constexpr Math::Dir operator*(const Math::Dir dir) {
+    return dir;
   }
 }
 
