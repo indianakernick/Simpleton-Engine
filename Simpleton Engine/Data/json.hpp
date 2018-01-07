@@ -16,11 +16,16 @@ using nlohmann::json;
 
 namespace Data {
   template <typename T>
-  void getOptional(T &dst, const json &node, const char *name) {
+  void getOptional(T &dst, const json &node, const char *const name) {
     const auto iter = node.find(name);
     if (iter != node.cend()) {
       dst = iter->get<T>();
     }
+  }
+  
+  template <typename T>
+  void get(T &dst, const json &node, const char *const name) {
+    dst = node.at(name).get<T>();
   }
 }
 
