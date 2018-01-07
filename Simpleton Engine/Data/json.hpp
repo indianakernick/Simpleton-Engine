@@ -29,9 +29,10 @@ namespace Data {
   CHILD_ITER != PARENT_NODE.end()
 
 namespace glm {
-  inline void from_json(const json &j, glm::vec2 &vec) {
-    vec.x = j.at(0).get<float>();
-    vec.y = j.at(1).get<float>();
+  template <typename T>
+  void from_json(const json &j, glm::tvec2<T> &vec) {
+    vec.x = j.at(0).get<T>();
+    vec.y = j.at(1).get<T>();
   }
 }
 
