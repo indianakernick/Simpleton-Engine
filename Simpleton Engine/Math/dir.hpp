@@ -217,6 +217,8 @@ namespace Math {
           return {ZERO, dist};
         case opposite(PLUS_Y):
           return {ZERO, -dist};
+        case Dir::NONE:
+          return {ZERO, ZERO};
         
         default:
           throw std::invalid_argument("Invalid direction");
