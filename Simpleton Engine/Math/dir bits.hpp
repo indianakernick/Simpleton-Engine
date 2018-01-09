@@ -117,7 +117,17 @@ namespace Math {
   
   ///Test if a direction is true
   constexpr bool test(const DirBits bits, const Dir dir) {
-    return static_cast<DirType>(bits) & (DirType(1) << static_cast<DirType>(dir));
+    return (static_cast<DirType>(bits) >> static_cast<DirType>(dir)) & DirType(1);
+  }
+  
+  ///Change the value of a direction
+  constexpr DirBits change(const DirBits bits, const Dir dir, const bool value) {
+    return static_cast<DirBits>(
+      static_cast<DirType>(bits) ^ (
+        (-static_cast<DirType>(value) ^ static_cast<DirType>(bits))
+        & (DirType(1) << static_cast<DirType>(dir))
+      )
+    );
   }
   
   ///Check if all of the directions are true
@@ -137,15 +147,11 @@ namespace Math {
   
   ///Count the number of directions that are set
   constexpr DirType count(const DirBits bits) {
-    DirType bitsInt = static_cast<DirType>(bits);
-    DirType sum = bitsInt & DirType(1);
-    bitsInt >>= 1;
-    sum += bitsInt & DirType(1);
-    bitsInt >>= 1;
-    sum += bitsInt & DirType(1);
-    bitsInt >>= 1;
-    sum += bitsInt & DirType(1);
-    return sum;
+    constexpr DirType COUNT[16] = {
+      0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4
+    };
+  
+    return COUNT[static_cast<DirType>(bits) & DirType(0b1111)];
   }
 }
 
