@@ -147,11 +147,33 @@ namespace Math {
   
   ///Count the number of directions that are set
   constexpr DirType count(const DirBits bits) {
-    constexpr DirType COUNT[16] = {
+    constexpr DirType TABLE[16] = {
       0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4
     };
   
-    return COUNT[static_cast<DirType>(bits) & DirType(0b1111)];
+    return TABLE[static_cast<DirType>(bits) & DirType(0b1111)];
+  }
+  
+  ///Get the first set direction or Dir::NONE if bits is DirBits::NONE.
+  ///Moves clockwise until a set direction is found
+  constexpr Dir firstSetCW(const DirBits bits) {
+    // count trailing zeros
+    constexpr DirType TABLE[16] = {
+      static_cast<DirType>(Dir::NONE), 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0
+    };
+    
+    return static_cast<Dir>(TABLE[static_cast<DirType>(bits) & DirType(0b1111)]);
+  }
+  
+  ///Get the first set direction or Dir::NONE if bits is DirBits::NONE.
+  ///Moves counter-clockwise (anti-clockwise) until a set direction is found
+  constexpr Dir firstSetCCW(const DirBits bits) {
+    // count leading zeros minus 4
+    constexpr DirType TABLE[16] = {
+      static_cast<DirType>(Dir::NONE), 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+    };
+    
+    return static_cast<Dir>(TABLE[static_cast<DirType>(bits) & DirType(0b1111)]);
   }
 }
 
