@@ -57,11 +57,6 @@ namespace Math {
     return left = (left ^ right);
   }
   
-  ///Get the opposite set of directions
-  constexpr DirBits opposite(const DirBits bits) {
-    return static_cast<DirBits>(static_cast<DirType>(bits) ^ DirType(0b1111));
-  }
-  
   ///Rotate a set of directions clockwise
   constexpr DirBits rotateCW(const DirBits bits, DirType count = 1) {
     //rotate the 4 least significant bits to the left
@@ -84,6 +79,16 @@ namespace Math {
     return rotateCW(bits, static_cast<DirType>(count));
   }
   
+  ///Invert the value of all directions
+  constexpr DirBits invert(const DirBits bits) {
+    return static_cast<DirBits>(static_cast<DirType>(bits) ^ DirType(0b1111));
+  }
+  
+  ///Swap up with down and swap right with left
+  constexpr DirBits opposite(const DirBits bits) {
+    return rotateCW(bits, 2);
+  }
+  
   ///Does the set have any horizontal directions?
   constexpr bool hasHori(const DirBits bits) {
     return (static_cast<DirType>(bits) & DirType(0b1010)) != DirType(0);
@@ -94,30 +99,29 @@ namespace Math {
     return (static_cast<DirType>(bits) & DirType(0b0101)) != DirType(0);
   }
   
+  ///Get the bit of a direction
+  constexpr DirBits bit(const Dir dir) {
+    return static_cast<DirBits>(DirType(1) << static_cast<DirType>(dir));
+  }
+  
   ///Set a direction in the set to true
   constexpr DirBits set(const DirBits bits, const Dir dir) {
-    return static_cast<DirBits>(
-      static_cast<DirType>(bits) | (DirType(1) << static_cast<DirType>(dir))
-    );
+    return bits | bit(dir);
   }
   
   ///Set a direction in the set to false
   constexpr DirBits reset(const DirBits bits, const Dir dir) {
-    return static_cast<DirBits>(
-      static_cast<DirType>(bits) & ~(DirType(1) << static_cast<DirType>(dir))
-    );
+    return bits & ~bit(dir);
   }
   
   ///Invert a direction in the set (false -> true, true -> false)
   constexpr DirBits flip(const DirBits bits, const Dir dir) {
-    return static_cast<DirBits>(
-      static_cast<DirType>(bits) ^ (DirType(1) << static_cast<DirType>(dir))
-    );
+    return bits ^ bit(dir);
   }
   
   ///Test if a direction is true
   constexpr bool test(const DirBits bits, const Dir dir) {
-    return (static_cast<DirType>(bits) >> static_cast<DirType>(dir)) & DirType(1);
+    return (bits & bit(dir)) != DirBits::NONE;
   }
   
   ///Change the value of a direction
