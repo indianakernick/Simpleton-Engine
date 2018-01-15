@@ -6,8 +6,8 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#ifndef audio_library_hpp
-#define audio_library_hpp
+#ifndef engine_sdl_audio_library_hpp
+#define engine_sdl_audio_library_hpp
 
 #include "error.hpp"
 #include <SDL2/SDL_mixer.h>
