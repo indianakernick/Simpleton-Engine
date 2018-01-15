@@ -206,6 +206,8 @@
 		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
 		45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB861F1B4F750058D36B /* strong alias.hpp */; };
+		45F623F6200C988F00AEB428 /* audio library.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F623F5200C96A500AEB428 /* audio library.inl */; };
+		45F623F7200C988F00AEB428 /* audio library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F623F4200C96A500AEB428 /* audio library.hpp */; };
 		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
 		45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99411F3695E500F8C639 /* hash.hpp */; };
 /* End PBXBuildFile section */
@@ -472,6 +474,8 @@
 			dstPath = /usr/local/include/Simpleton/SDL;
 			dstSubfolderSpec = 0;
 			files = (
+				45F623F6200C988F00AEB428 /* audio library.inl in CopyFiles */,
+				45F623F7200C988F00AEB428 /* audio library.hpp in CopyFiles */,
 				45B32EBB1FF482B7007BA7F4 /* events.hpp in CopyFiles */,
 				45B32EB21FF47D15007BA7F4 /* debug input.hpp in CopyFiles */,
 				45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */,
@@ -670,6 +674,8 @@
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
 		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
+		45F623F4200C96A500AEB428 /* audio library.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio library.hpp"; sourceTree = "<group>"; };
+		45F623F5200C96A500AEB428 /* audio library.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "audio library.inl"; sourceTree = "<group>"; };
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
 		45FA99481F36D6D400F8C639 /* simple anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "simple anim.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -971,6 +977,8 @@
 				45B5E89D1EF8E14300A6A3E2 /* library.hpp */,
 				4592B96B1F0A2BA600D1640D /* font library.cpp */,
 				4592B96C1F0A2BA600D1640D /* font library.hpp */,
+				45F623F5200C96A500AEB428 /* audio library.inl */,
+				45F623F4200C96A500AEB428 /* audio library.hpp */,
 				45B5E8A01EF8E14300A6A3E2 /* window.cpp */,
 				45B5E8A11EF8E14300A6A3E2 /* window.hpp */,
 				45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */,
