@@ -25,9 +25,10 @@ namespace GL {
   
     static constexpr GLenum TARGET = TARGET_;
   
-    void bind() const {
+    void bind(const int unit) const {
+      glActiveTexture(GL_TEXTURE0 + unit);
+      CHECK_OPENGL_ERROR();
       glBindTexture(TARGET, id);
-      
       CHECK_OPENGL_ERROR();
     }
   
@@ -38,9 +39,9 @@ namespace GL {
   using Texture2D = Texture<GL_TEXTURE_2D>;
   
   template <GLenum TARGET>
-  void unbindTexture();
+  void unbindTexture(int);
   
-  void unbindTexture2D();
+  void unbindTexture2D(int);
   
   struct TexParams2D {
     GLint wrapS = GL_REPEAT;
@@ -66,7 +67,7 @@ namespace GL {
   template <GLenum TARGET>
   Texture<TARGET> makeTexture();
   Texture2D makeTexture2D();
-  Texture2D makeTexture2D(const Image2D &, const TexParams2D &);
+  Texture2D makeTexture2D(const Image2D &, const TexParams2D &, int);
 }
 
 #include "texture.inl"
