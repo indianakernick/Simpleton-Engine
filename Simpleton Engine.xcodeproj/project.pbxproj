@@ -1424,7 +1424,7 @@
 		45B5E6AB1EF7C25200A6A3E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_IDENTITY = "-";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1452,7 +1452,6 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
-					"-std=c++1z",
 					"-fvisibility=default",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1462,7 +1461,7 @@
 		45B5E6AC1EF7C25200A6A3E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_IDENTITY = "-";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1490,7 +1489,6 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
-					"-std=c++1z",
 					"-fvisibility=default",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

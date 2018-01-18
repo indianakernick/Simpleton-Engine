@@ -9,12 +9,12 @@
 #include "framebuffer.hpp"
 
 inline void GL::detail::deleteFramebuffer(const GLuint &id) {
-  glDeleteFramebuffer(1, &id);
+  glDeleteFramebuffers(1, &id);
   
   CHECK_OPENGL_ERROR();
 }
 
-inline void GL::Framebuffer::bind() {
+inline void GL::Framebuffer::bind() const {
   glBindFramebuffer(GL_FRAMEBUFFER, id);
   
   CHECK_OPENGL_ERROR();
@@ -28,8 +28,6 @@ inline bool GL::Framebuffer::checkStatus() const {
     return true;
   } else if (status == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT) {
     std::cerr << "Framebuffer has an incomplete attachment\n";
-  } else if (status == GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS) {
-    std::cerr << "Framebuffer has incomplete dimensions\n";
   } else if (status == GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT) {
     std::cerr << "Framebuffer is missing attachments\n";
   } else if (status == GL_FRAMEBUFFER_UNSUPPORTED) {
@@ -56,9 +54,19 @@ inline void GL::Framebuffer::attachColor(
   CHECK_OPENGL_ERROR();
 }
 
-inline void GL::makeFramebuffer() {
+inline GL::Framebuffer GL::makeFramebuffer() {
   GLuint id;
   glGenFramebuffers(1, &id);
   CHECK_OPENGL_ERROR();
   return Framebuffer(id);
+}
+
+inline GL::Framebuffer GL::makeDefaultFramebuffer() {
+  return Framebuffer(GLuint(0));
+}
+
+inline void GL::bindDefaultFramebuffer() {
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  
+  CHECK_OPENGL_ERROR();
 }

@@ -28,7 +28,12 @@ namespace GL {
     GLuint id;
   };
   
-  void makeFramebuffer();
+  GL::Framebuffer makeFramebuffer();
+  GL::Framebuffer makeDefaultFramebuffer();
+  
+  void bindDefaultFramebuffer();
 }
+
+#include "framebuffer.inl"
 
 #endif
