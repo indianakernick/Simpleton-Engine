@@ -18,12 +18,21 @@ namespace Utils {
     //gcc     std::string_view Utils::typeName() [with T = int]
     std::string_view name = __PRETTY_FUNCTION__;
     name.remove_prefix(name.find('='));
-    //trimming " "
-    name.remove_prefix(1);
+    //trimming "= "
+    name.remove_prefix(2);
     //trimming "]"
     name.remove_suffix(1);
     return name;
   }
+  
+  static_assert(Utils::typeName<int>() == "int");
+  static_assert(Utils::typeName<unsigned>() == "unsigned int");
+  
+  namespace detail {
+    class Dummy {};
+  }
+  
+  static_assert(Utils::typeName<detail::Dummy>() == "Utils::detail::Dummy");
   
   template <typename T>
   constexpr size_t typeHash() {
