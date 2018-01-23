@@ -73,9 +73,9 @@ Memory::Buffer Memory::readFile(std::FILE *const file) {
 }
 
 Memory::Buffer Memory::readFile(std::ifstream &stream) {
-  stream.seekg(0, std::ios_base::seekdir::end);
+  stream.seekg(0, std::ios::end);
   Memory::Buffer buf(stream.tellg());
-  stream.seekg(0, std::ios_base::seekdir::beg);
+  stream.seekg(0, std::ios::beg);
   stream.read(buf.data<std::ifstream::char_type>(), buf.size());
   if (stream.good()) {
     return buf;

@@ -45,10 +45,10 @@ std::ostream &GL::operator<<(std::ostream &stream, const Shader<TYPE> &shader) {
 
 template <GLenum TYPE>
 std::istream &GL::operator>>(std::istream &stream, const Shader<TYPE> &shader) {
-  stream.seekg(0, std::ios::seekdir::end);
+  stream.seekg(0, std::ios::end);
   const size_t size = stream.tellg();
   GLchar *const source = detail::getCharBuf(static_cast<GLint>(size));
-  stream.seekg(0, std::ios::seekdir::beg);
+  stream.seekg(0, std::ios::beg);
   stream.read(source, size);
   shader.uploadSource(source, size);
   return stream;

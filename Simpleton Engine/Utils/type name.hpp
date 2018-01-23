@@ -14,12 +14,12 @@
 namespace Utils {
   template <typename T>
   constexpr std::string_view typeName() {
-    //pretty function outputs
-    //std::string_view typeName() [T = int]
+    //clang   std::string_view Utils::typeName() [T = int]
+    //gcc     std::string_view Utils::typeName() [with T = int]
     std::string_view name = __PRETTY_FUNCTION__;
-    name.remove_prefix(name.find('['));
-    //trimming "[T = "
-    name.remove_prefix(5);
+    name.remove_prefix(name.find('='));
+    //trimming " "
+    name.remove_prefix(1);
     //trimming "]"
     name.remove_suffix(1);
     return name;
