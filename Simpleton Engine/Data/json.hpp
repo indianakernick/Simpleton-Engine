@@ -9,8 +9,8 @@
 #ifndef engine_data_json_hpp
 #define engine_data_json_hpp
 
-#include <json.hpp>
 #include <glm/vec2.hpp>
+#include <nlohmann/json.hpp>
 
 using nlohmann::json;
 
