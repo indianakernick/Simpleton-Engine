@@ -1,5 +1,5 @@
 //
-//  parse string.cpp
+//  parse string.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 30/9/17.

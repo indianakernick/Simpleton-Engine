@@ -3,7 +3,6 @@
 #include "./Memory/view.hpp"
 #include "./Memory/buffer.hpp"
 #include "./Memory/byteptr.hpp"
-#include "./Memory/exceptions.hpp"
 #include "./Utils/hash.hpp"
 #include "./Utils/bits.hpp"
 #include "./Utils/generic raii.hpp"

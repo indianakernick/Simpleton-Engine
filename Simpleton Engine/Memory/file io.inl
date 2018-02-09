@@ -1,17 +1,15 @@
 //
-//  file io.cpp
+//  file io.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 20/4/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "file io.hpp"
-
-Memory::FileError::FileError(const char *const what)
+inline Memory::FileError::FileError(const char *const what)
   : std::runtime_error(what) {}
 
-Memory::FileHandle Memory::openFileRead(const char *const path) {
+inline Memory::FileHandle Memory::openFileRead(const char *const path) {
   assert(path);
   std::FILE *const file = std::fopen(path, "rb");
   if (file == nullptr) {
@@ -21,7 +19,7 @@ Memory::FileHandle Memory::openFileRead(const char *const path) {
   }
 }
 
-Memory::FileHandle Memory::openFileWrite(const char *const path) {
+inline Memory::FileHandle Memory::openFileWrite(const char *const path) {
   assert(path);
   std::FILE *const file = std::fopen(path, "wb");
   if (file == nullptr) {
@@ -31,7 +29,7 @@ Memory::FileHandle Memory::openFileWrite(const char *const path) {
   }
 }
 
-size_t Memory::sizeOfFile(std::FILE *const file) {
+inline size_t Memory::sizeOfFile(std::FILE *const file) {
   if (std::fseek(file, 0, SEEK_END) != 0) {
     throw FileError("Failed to seek to end of file");
   }
@@ -43,13 +41,13 @@ size_t Memory::sizeOfFile(std::FILE *const file) {
   return fileSize;
 }
 
-void Memory::readFile(void *const data, const size_t size, std::FILE *const file) {
+inline void Memory::readFile(void *const data, const size_t size, std::FILE *const file) {
   if (std::fread(data, size, 1, file) == 0) {
     throw FileError("Failed to read from file");
   }
 }
 
-void Memory::writeFile(void *const data, const size_t size, std::FILE *const file) {
+inline void Memory::writeFile(void *const data, const size_t size, std::FILE *const file) {
   if (std::fwrite(data, size, 1, file) == 0) {
     throw FileError("Failed to write to file");
   }
@@ -58,21 +56,21 @@ void Memory::writeFile(void *const data, const size_t size, std::FILE *const fil
   }
 }
 
-Memory::Buffer Memory::readFile(const std::string &path) {
+inline Memory::Buffer Memory::readFile(const std::string &path) {
   return readFile(path.c_str());
 }
 
-Memory::Buffer Memory::readFile(const char *const path) {
+inline Memory::Buffer Memory::readFile(const char *const path) {
   return readFile(openFileRead(path).get());
 }
 
-Memory::Buffer Memory::readFile(std::FILE *const file) {
+inline Memory::Buffer Memory::readFile(std::FILE *const file) {
   Memory::Buffer buf(sizeOfFile(file));
   readFile(buf.data(), buf.size(), file);
   return buf;
 }
 
-Memory::Buffer Memory::readFile(std::ifstream &stream) {
+inline Memory::Buffer Memory::readFile(std::ifstream &stream) {
   stream.seekg(0, std::ios::end);
   Memory::Buffer buf(stream.tellg());
   stream.seekg(0, std::ios::beg);
@@ -84,15 +82,15 @@ Memory::Buffer Memory::readFile(std::ifstream &stream) {
   }
 }
 
-void Memory::writeFile(const Memory::Buffer &buf, const std::string &path) {
+inline void Memory::writeFile(const Memory::Buffer &buf, const std::string &path) {
   writeFile(buf, path.c_str());
 }
 
-void Memory::writeFile(const Memory::Buffer &buf, const char *const path) {
+inline void Memory::writeFile(const Memory::Buffer &buf, const char *const path) {
   writeFile(buf, openFileWrite(path).get());
 }
 
-void Memory::writeFile(const Memory::Buffer &buf, std::FILE *const file) {
+inline void Memory::writeFile(const Memory::Buffer &buf, std::FILE *const file) {
   if (std::fwrite(buf.data(), buf.size(), 1, file) == 0) {
     throw FileError("Failed to write to file");
   }
@@ -101,7 +99,7 @@ void Memory::writeFile(const Memory::Buffer &buf, std::FILE *const file) {
   }
 }
 
-void Memory::writeFile(const Memory::Buffer &buf, std::ofstream &stream) {
+inline void Memory::writeFile(const Memory::Buffer &buf, std::ofstream &stream) {
   stream.write(buf.data<std::ofstream::char_type>(), buf.size<std::streamsize>());
   stream.flush();
   if (!stream.good()) {

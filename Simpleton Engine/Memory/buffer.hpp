@@ -6,8 +6,8 @@
 //  Copyright © 2016 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_memory_raw_hpp
-#define engine_memory_raw_hpp
+#ifndef engine_memory_buffer_hpp
+#define engine_memory_buffer_hpp
 
 #include <memory>
 #include <cassert>
@@ -93,5 +93,7 @@ namespace Memory {
     size_t mSize;
   };
 }
+
+#include "buffer.inl"
 
 #endif

@@ -46,4 +46,6 @@ namespace Memory {
   void writeFile(const Buffer &, std::ofstream &);
 }
 
+#include "file io.inl"
+
 #endif
