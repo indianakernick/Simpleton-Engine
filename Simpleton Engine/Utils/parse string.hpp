@@ -73,13 +73,7 @@ namespace Utils {
     void skip(char);
     ///Move the front forward while the supplied predicate returns true
     template <typename Pred>
-    void skip(Pred &&pred) {
-      size_t numChars = 0;
-      while (numChars < mSize && pred(mData[numChars])) {
-        ++numChars;
-      }
-      advanceNoCheck(numChars);
-    }
+    void skip(Pred &&);
     ///Move the front forward while the front is whitespace
     void skipWhitespace();
     
@@ -87,9 +81,7 @@ namespace Utils {
     void skipUntil(char);
     ///Move the front forward until the supplied predicate returns true
     template <typename Pred>
-    void skipUntil(Pred &&pred) {
-      skip(std::not_fn(pred));
-    }
+    void skipUntil(Pred &&);
     ///Move the front forward until the front is whitespace
     void skipUntilWhitespace();
     
@@ -99,10 +91,7 @@ namespace Utils {
     ///Skip characters then throw a ParseStringExpectError exception if the
     ///front character is not equal to the supplied character
     template <typename Pred>
-    void expectAfter(Pred &&pred, const char c) {
-      skip(pred);
-      expect(c);
-    }
+    void expectAfter(Pred &&, char);
     ///Skip whitespace then throw a ParseStringExpectError exception if the
     ///front character is not equal to the supplied character
     void expectAfterWhitespace(char);
@@ -119,75 +108,16 @@ namespace Utils {
     ///Advances and returns true if the supplied predicate returns true for the
     ///first character. Does nothing and returns false otherwise
     template <typename Pred>
-    bool check(Pred &&pred) {
-      if (mSize == 0 || !pred(*mData)) {
-        return false;
-      } else {
-        advanceNoCheck();
-        return true;
-      }
-    }
+    bool check(Pred &&);
     
     ///Interprets the front part of the string as a number. Throws a
     ///ParseStringNumberError exception on failure
     template <typename Number>
-    void parseNumber(Number &number) {
-      if constexpr (std::is_integral<Number>::value) {
-        if constexpr (std::is_unsigned<Number>::value) {
-          char *end;
-          const unsigned long long num = std::strtoull(mData, &end, 0);
-          if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
-            throw ParseStringNumberError("Number out of range");
-          }
-          if (num == 0 && end == mData) {
-            throw ParseStringNumberError("Invalid number");
-          }
-          advanceNoCheck(end - mData);
-          number = static_cast<Number>(num);
-        } else if constexpr (std::is_signed<Number>::value) {
-          char *end;
-          const long long num = std::strtoll(mData, &end, 0);
-          if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
-            throw ParseStringNumberError("Number out of range");
-          }
-          if (num == 0 && end == mData) {
-            throw ParseStringNumberError("Invalid number");
-          }
-          advanceNoCheck(end - mData);
-          number = static_cast<Number>(num);
-        }
-      } else if constexpr (std::is_floating_point<Number>::value) {
-        char *end;
-        const long double num = std::strtold(mData, &end);
-        if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
-          throw ParseStringNumberError("Number out of range");
-        }
-        if (num == 0 && end == mData) {
-          throw ParseStringNumberError("Invalid number");
-        }
-        advanceNoCheck(end - mData);
-        number = static_cast<Number>(num);
-      }
-      
-      /*
-      @TODO
-      
-      const auto [end, error] = std::from_chars(mData, mData + mSize, number);
-      if (error) {
-        throw ParseStringNumberError(error.message());
-      }
-      advanceNoCheck(end - mData);
-      */
-    }
-    
+    void parseNumber(Number &);
     ///Interprets the front part of the string as a number. Throws a
     ///ParseStringNumberError exception on failure
     template <typename Number>
-    Number parseNumber() {
-      Number number;
-      parseNumber(number);
-      return number;
-    }
+    Number parseNumber();
     
     ///Copies characters from the front part of the string
     size_t copy(char *, size_t);
@@ -196,18 +126,7 @@ namespace Utils {
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
-    size_t copyWhile(char *dst, const size_t dstSize, Pred &&pred) {
-      throwIfNull(dst);
-      size_t numChars = 0;
-      const size_t maxChars = mSize < dstSize ? mSize : dstSize;
-      while (numChars < maxChars && pred(*mData)) {
-        *dst = *mData;
-        ++dst;
-        advanceNoCheck(); // increments mData
-        ++numChars;
-      }
-      return numChars;
-    }
+    size_t copyWhile(char *, size_t, Pred &&);
     
     ///Copies characters from the front part of the string until the front is
     ///equal to the supplied character
@@ -216,9 +135,7 @@ namespace Utils {
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
-    size_t copyUntil(char *const dst, const size_t dstSize, Pred &&pred) {
-      return copyWhile(dst, dstSize, std::not_fn(pred));
-    }
+    size_t copyUntil(char *, size_t, Pred &&);
     ///Copies characters from the front part of the string until the front is
     ///whitespace. Advances the number of characters that were copied.
     size_t copyUntilWhitespace(char *, size_t);
@@ -232,35 +149,8 @@ namespace Utils {
     void advanceNoCheck(size_t);
     void advanceNoCheck();
   };
-  
-  // "hot" functions
-  
-  inline const char *ParseString::data() const {
-    return mData;
-  }
-  
-  inline size_t ParseString::size() const {
-    return mSize;
-  }
-  
-  inline bool ParseString::empty() const {
-    return mSize == 0;
-  }
-  
-  inline char ParseString::operator[](const size_t i) const {
-    return mData[i];
-  }
-  
-  inline char ParseString::at(const size_t i) const {
-    if (i >= mSize) {
-      throw std::out_of_range("Index on parse string out of range");
-    }
-    return mData[i];
-  }
-
-  inline char ParseString::front() const {
-    return *mData;
-  }
 }
+
+#include "parse string.inl"
 
 #endif

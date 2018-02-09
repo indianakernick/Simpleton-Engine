@@ -9,13 +9,22 @@
 #ifndef engine_utils_instance_limiter_hpp
 #define engine_utils_instance_limiter_hpp
 
+#include <string>
 #include <stdexcept>
 #include <string_view>
 
 namespace Utils {
   class TooManyInstances final : std::logic_error {
   public:
-    TooManyInstances(std::string_view, size_t);
+    TooManyInstances(
+      const std::string_view type,
+      const size_t maxCount
+    ) : std::logic_error(
+          "Too many instances of type \"" +
+          std::string(type) +
+          "\"\nMaximum is " +
+          std::to_string(maxCount)
+        ) {}
   };
 }
 

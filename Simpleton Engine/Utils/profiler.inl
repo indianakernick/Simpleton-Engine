@@ -1,22 +1,20 @@
 //
-//  profiler.cpp
+//  profiler.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 12/10/2016.
 //  Copyright © 2016 Indi Kernick. All rights reserved.
 //
 
-#include "profiler.hpp"
-
 #include <vector>
 
-Utils::Profiler::TreeNode *Utils::Profiler::current = &tree;
-Utils::Profiler::TreeNode Utils::Profiler::tree;
-char Utils::Profiler::spaces[Utils::Profiler::MAX_DEPTH * Utils::Profiler::NAME_INDENT];
-bool Utils::Profiler::initSpaces = false;
-bool Utils::Profiler::oddLine = false;
+inline Utils::Profiler::TreeNode *Utils::Profiler::current = &tree;
+inline Utils::Profiler::TreeNode Utils::Profiler::tree;
+inline char Utils::Profiler::spaces[Utils::Profiler::MAX_DEPTH * Utils::Profiler::NAME_INDENT];
+inline bool Utils::Profiler::initSpaces = false;
+inline bool Utils::Profiler::oddLine = false;
 
-Utils::Profiler::Profiler(const char *name) {
+inline Utils::Profiler::Profiler(const char *name) {
   TreeNode *prevCurrent = current;
   current = &current->children[name];
   current->parent = prevCurrent;
@@ -24,13 +22,13 @@ Utils::Profiler::Profiler(const char *name) {
   start = std::chrono::high_resolution_clock::now();
 }
 
-Utils::Profiler::~Profiler() {
+inline Utils::Profiler::~Profiler() {
   current->time += (std::chrono::high_resolution_clock::now() - start).count();
   ++current->calls;
   current = current->parent;
 }
 
-void Utils::Profiler::formatInfo(std::FILE *stream) {
+inline void Utils::Profiler::formatInfo(std::FILE *stream) {
   std::fprintf(stream, "%-*s", NAME_WIDTH, "Name");
   std::fprintf(stream, "%-*s", REST_WIDTH, "Total Count");
   std::fprintf(stream, "%-*s", REST_WIDTH, "Avg Count per parent");
@@ -48,7 +46,7 @@ void Utils::Profiler::formatInfo(std::FILE *stream) {
   }*/
 }
 
-void Utils::Profiler::resetInfo() {
+inline void Utils::Profiler::resetInfo() {
   current = &tree;
   tree.calls = 0;
   tree.time = 0;
@@ -56,7 +54,7 @@ void Utils::Profiler::resetInfo() {
   tree.parent = nullptr;
 }
 
-void Utils::Profiler::recFormatInfo(std::FILE *stream, TreeNode *node, int depth) {
+inline void Utils::Profiler::recFormatInfo(std::FILE *stream, TreeNode *node, int depth) {
   int newDepth;
   if (node->parent) {
     newDepth = depth + 1;

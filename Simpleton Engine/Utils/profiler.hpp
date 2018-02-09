@@ -9,6 +9,8 @@
 #ifndef engine_utils_profiler_hpp
 #define engine_utils_profiler_hpp
 
+#ifdef ENABLE_PROFILER
+
 #include <chrono>
 #include <cstdio>
 #include <unordered_map>
@@ -49,13 +51,13 @@ namespace Utils {
   };
 }
 
-#ifdef ENABLE_PROFILER
-
 //macros are weird!
 #define CONCAT_IMPL(a, b) a##b
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
 #define PROFILE(name) Utils::Profiler CONCAT(profiler_, __COUNTER__) {#name}
 #define PROFILER_INFO(stream) Utils::Profiler::formatInfo(stream)
+
+#include "profiler.inl"
 
 #else
 

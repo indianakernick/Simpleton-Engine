@@ -91,4 +91,6 @@ namespace Utils::Term {
   void defaultBackColor();
 }
 
+#include "terminal color.inl"
+
 #endif
