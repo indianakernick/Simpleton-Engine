@@ -12,7 +12,8 @@
 #include "entity id map.hpp"
 
 namespace ECS::detail {
-  inline void loadComps(
+  template <typename CompList>
+  void loadComps(
     const ECS::EntityID id,
     const json &comps,
     const ECS::EntityIDmap &idMap,
@@ -37,7 +38,8 @@ namespace ECS::detail {
     }
   }
 
-  inline bool loadLevel(
+  template <typename CompList>
+  bool loadLevel(
     const std::string &fileName,
     const ECS::CompInits<CompList> &compInits,
     ECS::Registry &registry
