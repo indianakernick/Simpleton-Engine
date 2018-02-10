@@ -17,14 +17,10 @@
 		454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
 		454D04861FE63D9900D3E560 /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
 		454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
-		454D04881FE63D9900D3E560 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
-		454D04891FE63D9900D3E560 /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
 		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
 		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
 		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
 		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
-		4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
-		4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 		45C918DF202E541F00AC4608 /* impl0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918D6202E53B800AC4608 /* impl0.cpp */; };
 		45C918E1202E628800AC4608 /* impl1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918E0202E628800AC4608 /* impl1.cpp */; };
@@ -139,9 +135,7 @@
 		4592B96B1F0A2BA600D1640D /* font library.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "font library.inl"; sourceTree = "<group>"; };
 		4592B96C1F0A2BA600D1640D /* font library.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "font library.hpp"; sourceTree = "<group>"; };
 		4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
-		4592BAE81F11C3CB00D1640D /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
 		4592BAE91F11C3CB00D1640D /* app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
-		4592BAEC1F11C50F00D1640D /* sdl app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "sdl app.cpp"; sourceTree = "<group>"; };
 		4592BAED1F11C50F00D1640D /* sdl app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl app.hpp"; sourceTree = "<group>"; };
 		4592BB111F11F86F00D1640D /* main loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "main loop.hpp"; sourceTree = "<group>"; };
 		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
@@ -328,9 +322,7 @@
 		4592BAE71F11C3A400D1640D /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				4592BAE81F11C3CB00D1640D /* app.cpp */,
 				4592BAE91F11C3CB00D1640D /* app.hpp */,
-				4592BAEC1F11C50F00D1640D /* sdl app.cpp */,
 				4592BAED1F11C50F00D1640D /* sdl app.hpp */,
 			);
 			path = Application;
@@ -732,8 +724,6 @@
 				454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */,
 				454D04861FE63D9900D3E560 /* constant speed.cpp in Sources */,
 				454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */,
-				454D04881FE63D9900D3E560 /* app.cpp in Sources */,
-				454D04891FE63D9900D3E560 /* sdl app.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,9 +735,7 @@
 				4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */,
 				450ED6411FBBAE40008F2902 /* camera.cpp in Sources */,
 				450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */,
-				4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */,
 				4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */,
-				4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
