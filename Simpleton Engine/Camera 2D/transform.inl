@@ -1,39 +1,35 @@
 //
-//  transform.cpp
+//  transform.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 15/11/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "transform.hpp"
-
 #include "props.hpp"
 #include <glm/gtx/matrix_transform_2d.hpp>
 
-using namespace Cam2D;
-
-void Transform::setOrigin(const Origin newOrigin) {
+inline void Cam2D::Transform::setOrigin(const Origin newOrigin) {
   origin = newOrigin;
 }
 
-void Transform::setInvertX(const bool newInvertX) {
+inline void Cam2D::Transform::setInvertX(const bool newInvertX) {
   invertX = newInvertX;
 }
 
-void Transform::setInvertY(const bool newInvertY) {
+inline void Cam2D::Transform::setInvertY(const bool newInvertY) {
   invertY = newInvertY;
 }
 
-glm::mat3 Transform::toPixels() const {
+inline glm::mat3 Cam2D::Transform::toPixels() const {
   return toPixelsMat;
 }
 
-glm::mat3 Transform::toMeters() const {
+inline glm::mat3 Cam2D::Transform::toMeters() const {
   return toMetersMat;
 }
 
-void Transform::calculate(const Props props) {
+inline void Cam2D::Transform::calculate(const Props props) {
   const glm::mat3 originMat = glm::translate({}, calcOriginPos());
   const glm::mat3 zoomMat = glm::scale({}, glm::vec2(props.scale));
   const glm::mat3 invertMat = glm::scale({}, calcInvertedScale());
@@ -44,7 +40,7 @@ void Transform::calculate(const Props props) {
   toMetersMat = glm::inverse(toPixelsMat);
 }
 
-glm::vec2 Transform::calcOriginPos() const {
+inline glm::vec2 Cam2D::Transform::calcOriginPos() const {
   switch (origin) {
     case Origin::TOP_LEFT:
       return {-1.0f, 1.0f};
@@ -67,7 +63,7 @@ glm::vec2 Transform::calcOriginPos() const {
   }
 }
 
-glm::vec2 Transform::calcInvertedScale() const {
+inline glm::vec2 Cam2D::Transform::calcInvertedScale() const {
   return {
     invertX ? -1.0f : 1.0f,
     invertY ? -1.0f : 1.0f

@@ -26,4 +26,6 @@ namespace Cam2D {
   };
 }
 
+#include "zoom to fit.inl"
+
 #endif

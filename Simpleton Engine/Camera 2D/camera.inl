@@ -1,34 +1,30 @@
 //
-//  camera.cpp
+//  camera.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 15/11/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "camera.hpp"
-
-using namespace Cam2D;
-
-Camera::Camera(const float scale) {
+inline Cam2D::Camera::Camera(const float scale) {
   props.pos = {0.0f, 0.0f};
   props.scale = scale;
 }
 
-Camera::Camera(const glm::vec2 pos, const float scale) {
+inline Cam2D::Camera::Camera(const glm::vec2 pos, const float scale) {
   props.pos = pos;
   props.scale = scale;
 }
 
-void Camera::setPos(const glm::vec2 pos) {
+inline void Cam2D::Camera::setPos(const glm::vec2 pos) {
   props.pos = pos;
 }
 
-void Camera::setZoom(const float scale) {
+inline void Cam2D::Camera::setZoom(const float scale) {
   props.scale = scale;
 }
 
-namespace {
+namespace Cam2D::detail {
   template <PropID PROP>
   auto animate(
     std::unique_ptr<Target<PROP>> &target,
@@ -41,11 +37,11 @@ namespace {
   }
 }
 
-void Camera::update(const float aspect, const float delta) {
+inline void Cam2D::Camera::update(const float aspect, const float delta) {
   props.aspect = aspect;
   
-  const glm::vec2 pos = animate(targetPos, animatePos, props, delta);
-  const float scale = animate(targetZoom, animateZoom, props, delta);
+  const glm::vec2 pos = detail::animate(targetPos, animatePos, props, delta);
+  const float scale = detail::animate(targetZoom, animateZoom, props, delta);
   
   props.pos = pos;
   props.scale = scale;

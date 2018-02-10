@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		450ED6411FBBAE40008F2902 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
-		450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
-		4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
-		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
-		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
-		454D04831FE63D9900D3E560 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
-		454D04841FE63D9900D3E560 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
-		454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
-		454D04861FE63D9900D3E560 /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
-		454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
 		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
 		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
 		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
@@ -82,11 +72,11 @@
 		450759811FF9F2EF0009B360 /* dir bits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "dir bits.hpp"; sourceTree = "<group>"; };
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
 		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
-		450ED63F1FBBAE40008F2902 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		450ED63F1FBBAE40008F2902 /* camera.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = camera.inl; sourceTree = "<group>"; };
 		450ED6401FBBAE40008F2902 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		450ED6441FBBAE9A008F2902 /* props.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = props.hpp; sourceTree = "<group>"; };
 		450ED6471FBBAF1D008F2902 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
-		450ED6481FBBAF60008F2902 /* transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
+		450ED6481FBBAF60008F2902 /* transform.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = transform.inl; sourceTree = "<group>"; };
 		450ED6491FBBAF60008F2902 /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
@@ -96,14 +86,12 @@
 		452B82F61F41924500AF9AC6 /* rand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rand.hpp; sourceTree = "<group>"; };
 		452FF9F11F68CCB3003A98B1 /* live stats.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "live stats.hpp"; sourceTree = "<group>"; };
 		4533A8D51FCA34410027B0FB /* animate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = animate.hpp; sourceTree = "<group>"; };
-		4533A8D81FCA34E50027B0FB /* constant speed.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant speed.cpp"; sourceTree = "<group>"; };
 		4533A8D91FCA34E50027B0FB /* constant speed.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant speed.hpp"; sourceTree = "<group>"; };
 		4533A8DF1FCA3E4B0027B0FB /* target.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = target.hpp; sourceTree = "<group>"; };
-		4533DCC51FBBDF350058390C /* zoom to fit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "zoom to fit.cpp"; sourceTree = "<group>"; };
+		4533DCC51FBBDF350058390C /* zoom to fit.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "zoom to fit.inl"; sourceTree = "<group>"; };
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
-		4541A4B31FD7734400AD20C1 /* constant scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "constant scale.cpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libStatic Simpleton Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
@@ -266,12 +254,12 @@
 		450ED63E1FBBAE30008F2902 /* Camera 2D */ = {
 			isa = PBXGroup;
 			children = (
-				450ED63F1FBBAE40008F2902 /* camera.cpp */,
+				450ED63F1FBBAE40008F2902 /* camera.inl */,
 				450ED6401FBBAE40008F2902 /* camera.hpp */,
 				450ED6471FBBAF1D008F2902 /* aabb.hpp */,
 				450ED6441FBBAE9A008F2902 /* props.hpp */,
 				4584F4101FCCF72E0062B93E /* matrix mul.hpp */,
-				450ED6481FBBAF60008F2902 /* transform.cpp */,
+				450ED6481FBBAF60008F2902 /* transform.inl */,
 				450ED6491FBBAF60008F2902 /* transform.hpp */,
 				4533A8D51FCA34410027B0FB /* animate.hpp */,
 				4533A8DF1FCA3E4B0027B0FB /* target.hpp */,
@@ -283,11 +271,9 @@
 		450ED66A1FBBB787008F2902 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
-				4533DCC51FBBDF350058390C /* zoom to fit.cpp */,
+				4533DCC51FBBDF350058390C /* zoom to fit.inl */,
 				4533DCC61FBBDF350058390C /* zoom to fit.hpp */,
-				4533A8D81FCA34E50027B0FB /* constant speed.cpp */,
 				4533A8D91FCA34E50027B0FB /* constant speed.hpp */,
-				4541A4B31FD7734400AD20C1 /* constant scale.cpp */,
 				4541A4B41FD7734400AD20C1 /* constant scale.hpp */,
 			);
 			name = Impl;
@@ -719,11 +705,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				454D04831FE63D9900D3E560 /* camera.cpp in Sources */,
-				454D04841FE63D9900D3E560 /* transform.cpp in Sources */,
-				454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */,
-				454D04861FE63D9900D3E560 /* constant speed.cpp in Sources */,
-				454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,11 +712,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */,
-				4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */,
-				450ED6411FBBAE40008F2902 /* camera.cpp in Sources */,
-				450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */,
-				4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

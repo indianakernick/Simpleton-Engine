@@ -36,4 +36,6 @@ namespace Cam2D {
   };
 }
 
+#include "camera.inl"
+
 #endif

@@ -53,4 +53,6 @@ namespace Cam2D {
   };
 }
 
+#include "transform.inl"
+
 #endif
