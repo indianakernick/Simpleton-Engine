@@ -354,8 +354,8 @@ namespace Utils {
   };
   
   static_assert(std::is_same<
-    typename Merge<TypeList<char>, TypeList<int, long>, SizeLess>::type,
-    TypeList<char, int, long>
+    typename Merge<TypeList<char>, TypeList<int, long long>, SizeLess>::type,
+    TypeList<char, int, long long>
   >::value);
   
   //Take Front
@@ -443,7 +443,7 @@ namespace Utils {
   template <typename List, template <typename, typename> typename Less>
   using SortList = typename SortHelper<List, Less>::type;
   
-  static_assert(std::is_same<SortList<TypeList<int, char, long>, SizeLess>, TypeList<char, int, long>>::value);
+  static_assert(std::is_same<SortList<TypeList<int, char, long long>, SizeLess>, TypeList<char, int, long long>>::value);
   static_assert(std::is_same<SortList<EmptyList, SizeLess>, EmptyList>::value);
   
   //Filter
