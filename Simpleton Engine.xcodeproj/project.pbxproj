@@ -7,23 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
-		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
-		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
-		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
-		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
 		45C918DF202E541F00AC4608 /* impl0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918D6202E53B800AC4608 /* impl0.cpp */; };
 		45C918E1202E628800AC4608 /* impl1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918E0202E628800AC4608 /* impl1.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		454D03EE1FE63C3800D3E560 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45B5E6971EF7C25200A6A3E2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 45B5E69E1EF7C25200A6A3E2;
-			remoteInfo = "Simpleton Engine";
-		};
 		45C918E3202E69FF00AC4608 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45B5E6971EF7C25200A6A3E2 /* Project object */;
@@ -32,19 +20,6 @@
 			remoteInfo = Test;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		45B5E8D81EFA19BA00A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/lib;
-			dstSubfolderSpec = 0;
-			files = (
-				45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4507594C1FF5B6B30009B360 /* collision pairs.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "collision pairs.inl"; sourceTree = "<group>"; };
@@ -93,7 +68,6 @@
 		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
-		454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libStatic Simpleton Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -213,34 +187,6 @@
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
 		45FA99481F36D6D400F8C639 /* simple anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "simple anim.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		454D03E71FE63C2300D3E560 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45771B851FE7238200F533DA /* SDL2.framework in Frameworks */,
-				454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E69C1EF7C25200A6A3E2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */,
-				4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45C918D8202E541700AC4608 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		4507595A1FF5E8280009B360 /* Data */ = {
@@ -368,7 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */,
-				454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */,
 				45C918DB202E541700AC4608 /* libTest.dylib */,
 			);
 			name = Products;
@@ -561,32 +506,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		454D03E91FE63C2300D3E560 /* Static Simpleton Engine */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 454D03ED1FE63C2300D3E560 /* Build configuration list for PBXNativeTarget "Static Simpleton Engine" */;
-			buildPhases = (
-				454D03E61FE63C2300D3E560 /* Sources */,
-				454D03E71FE63C2300D3E560 /* Frameworks */,
-				454D040C1FE63C9F00D3E560 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				454D03EF1FE63C3800D3E560 /* PBXTargetDependency */,
-			);
-			name = "Static Simpleton Engine";
-			productName = "Static Simpleton Engine";
-			productReference = 454D03EA1FE63C2300D3E560 /* libStatic Simpleton Engine.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45B5E6AA1EF7C25200A6A3E2 /* Build configuration list for PBXNativeTarget "Simpleton Engine" */;
 			buildPhases = (
-				45B5E69B1EF7C25200A6A3E2 /* Sources */,
-				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				451452B71FF340FD007C57AF /* ShellScript */,
-				45B5E8D81EFA19BA00A6A3E2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -604,7 +528,6 @@
 			buildPhases = (
 				45C918E2202E62BC00AC4608 /* ShellScript */,
 				45C918D7202E541700AC4608 /* Sources */,
-				45C918D8202E541700AC4608 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -624,11 +547,6 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Indi Kernick";
 				TargetAttributes = {
-					454D03E91FE63C2300D3E560 = {
-						CreatedOnToolsVersion = 9.0;
-						DevelopmentTeam = QY44MADGVC;
-						ProvisioningStyle = Automatic;
-					};
 					45B5E69E1EF7C25200A6A3E2 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
@@ -652,7 +570,6 @@
 			projectRoot = "";
 			targets = (
 				45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */,
-				454D03E91FE63C2300D3E560 /* Static Simpleton Engine */,
 				45C918DA202E541700AC4608 /* Test */,
 			);
 		};
@@ -672,19 +589,6 @@
 			shellPath = /bin/bash;
 			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -R \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
 		};
-		454D040C1FE63C9F00D3E560 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "cp $BUILT_PRODUCTS_DIR/libStatic\\ Simpleton\\ Engine.a /usr/local/lib/libSimpleton\\ Engine.a";
-		};
 		45C918E2202E62BC00AC4608 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,20 +605,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		454D03E61FE63C2300D3E560 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E69B1EF7C25200A6A3E2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		45C918D7202E541700AC4608 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -727,11 +617,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		454D03EF1FE63C3800D3E560 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 45B5E69E1EF7C25200A6A3E2 /* Simpleton Engine */;
-			targetProxy = 454D03EE1FE63C3800D3E560 /* PBXContainerItemProxy */;
-		};
 		45C918E4202E69FF00AC4608 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 45C918DA202E541700AC4608 /* Test */;
@@ -740,86 +625,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		454D03EB1FE63C2300D3E560 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QY44MADGVC;
-				EXECUTABLE_PREFIX = lib;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = (
-					"/usr/local/Cellar/glm/**",
-					"/usr/local/Cellar/sdl2/**",
-					"/usr/local/Cellar/sdl2_ttf/**",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
-					/usr/local/Cellar/sdl2/2.0.7/lib,
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-Wall",
-					"-Wextra",
-					"-Weffc++",
-					"-Wpedantic",
-					"-Wextra-semi",
-					"-Wno-documentation",
-					"-std=c++1z",
-					"-fvisibility=default",
-				);
-				OTHER_LDFLAGS = "-Wl,-search_paths_first";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		454D03EC1FE63C2300D3E560 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QY44MADGVC;
-				EXECUTABLE_PREFIX = lib;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = (
-					"/usr/local/Cellar/glm/**",
-					"/usr/local/Cellar/sdl2/**",
-					"/usr/local/Cellar/sdl2_ttf/**",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2_ttf/2.0.14/lib,
-					/usr/local/Cellar/sdl2/2.0.7/lib,
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-Wall",
-					"-Wextra",
-					"-Weffc++",
-					"-Wpedantic",
-					"-Wextra-semi",
-					"-Wno-documentation",
-					"-std=c++1z",
-					"-fvisibility=default",
-				);
-				OTHER_LDFLAGS = "-Wl,-search_paths_first";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		45B5E6A81EF7C25200A6A3E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -933,27 +738,9 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = (
-					"/usr/local/Cellar/glm/**",
-					"/usr/local/Cellar/sdl2/**",
-					"/usr/local/Cellar/sdl2_ttf/**",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/usr/local/Cellar/sdl2/**",
-					"/usr/local/Cellar/sdl2_ttf/**",
-					/usr/local/Cellar/sdl2/2.0.7/lib,
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-Wall",
-					"-Wextra",
-					"-Weffc++",
-					"-Wpedantic",
-					"-Wextra-semi",
-					"-Wno-documentation",
-					"-fvisibility=default",
-				);
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -970,27 +757,9 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = (
-					"/usr/local/Cellar/glm/**",
-					"/usr/local/Cellar/sdl2/**",
-					"/usr/local/Cellar/sdl2_ttf/**",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/usr/local/Cellar/sdl2/**",
-					"/usr/local/Cellar/sdl2_ttf/**",
-					/usr/local/Cellar/sdl2/2.0.7/lib,
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-Wall",
-					"-Wextra",
-					"-Weffc++",
-					"-Wpedantic",
-					"-Wextra-semi",
-					"-Wno-documentation",
-					"-fvisibility=default",
-				);
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1022,7 +791,6 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
-					"-fvisibility=default",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1055,7 +823,6 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
-					"-fvisibility=default",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1064,15 +831,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		454D03ED1FE63C2300D3E560 /* Build configuration list for PBXNativeTarget "Static Simpleton Engine" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				454D03EB1FE63C2300D3E560 /* Debug */,
-				454D03EC1FE63C2300D3E560 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		45B5E69A1EF7C25200A6A3E2 /* Build configuration list for PBXProject "Simpleton Engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
