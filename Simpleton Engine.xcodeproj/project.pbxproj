@@ -69,7 +69,6 @@
 		454D048E1FE63D9900D3E560 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8A01EF8E14300A6A3E2 /* window.cpp */; };
 		454D048F1FE63D9900D3E560 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8AB1EF8E3ED00A6A3E2 /* renderer.cpp */; };
 		454D04901FE63D9900D3E560 /* paths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E8C41EF9047000A6A3E2 /* paths.cpp */; };
-		454D04911FE63D9900D3E560 /* fps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */; };
 		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
 		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
 		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
@@ -115,7 +114,6 @@
 		45B32EC01FF493B5007BA7F4 /* entity id.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EBF1FF49318007BA7F4 /* entity id.hpp */; };
 		45B32EC21FF496BE007BA7F4 /* object types.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EC11FF495DC007BA7F4 /* object types.hpp */; };
 		45B32EC41FF4A34F007BA7F4 /* limit velocity.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */; };
-		45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */; };
 		45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; };
 		45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */; };
 		45B5E80F1EF8AE8700A6A3E2 /* delta.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */; };
@@ -181,6 +179,7 @@
 		45C918E1202E628800AC4608 /* impl1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918E0202E628800AC4608 /* impl1.cpp */; };
 		45C918E5202E6CFF00AC4608 /* buffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.inl */; };
 		45C918E6202E6CFF00AC4608 /* file io.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.inl */; };
+		45C918E7202E6DDB00AC4608 /* fps.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.inl */; };
 		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
 		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
 		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
@@ -338,6 +337,7 @@
 			dstPath = /usr/local/include/Simpleton/Time;
 			dstSubfolderSpec = 0;
 			files = (
+				45C918E7202E6DDB00AC4608 /* fps.inl in CopyFiles */,
 				450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */,
 				450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */,
 				4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */,
@@ -606,7 +606,7 @@
 		45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = delta.hpp; sourceTree = "<group>"; };
 		45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stopwatch.hpp; sourceTree = "<group>"; };
 		45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
-		45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fps.cpp; sourceTree = "<group>"; };
+		45B5E7AF1EF8A92500A6A3E2 /* fps.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fps.inl; sourceTree = "<group>"; };
 		45B5E7B01EF8A92500A6A3E2 /* fps.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fps.hpp; sourceTree = "<group>"; };
 		45B5E7C01EF8A93900A6A3E2 /* instance limiter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "instance limiter.hpp"; sourceTree = "<group>"; };
 		45B5E7C11EF8A93900A6A3E2 /* profiler.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = profiler.inl; sourceTree = "<group>"; };
@@ -934,7 +934,7 @@
 				45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */,
 				45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */,
 				45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */,
-				45B5E7AF1EF8A92500A6A3E2 /* fps.cpp */,
+				45B5E7AF1EF8A92500A6A3E2 /* fps.inl */,
 				45B5E7B01EF8A92500A6A3E2 /* fps.hpp */,
 				4592B49C1F06427200D1640D /* frame.hpp */,
 				4592BB111F11F86F00D1640D /* main loop.hpp */,
@@ -1182,7 +1182,6 @@
 				454D048E1FE63D9900D3E560 /* window.cpp in Sources */,
 				454D048F1FE63D9900D3E560 /* renderer.cpp in Sources */,
 				454D04901FE63D9900D3E560 /* paths.cpp in Sources */,
-				454D04911FE63D9900D3E560 /* fps.cpp in Sources */,
 				45B32EBA1FF481FD007BA7F4 /* events.cpp in Sources */,
 				45B32EB11FF47C59007BA7F4 /* debug input.cpp in Sources */,
 			);
@@ -1203,7 +1202,6 @@
 				450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */,
 				4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */,
 				45B5E8A81EF8E14300A6A3E2 /* window.cpp in Sources */,
-				45B5E7BB1EF8A92500A6A3E2 /* fps.cpp in Sources */,
 				45B32EB91FF481FD007BA7F4 /* events.cpp in Sources */,
 				4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */,
 				45B32EB01FF47C59007BA7F4 /* debug input.cpp in Sources */,

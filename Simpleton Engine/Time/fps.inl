@@ -1,20 +1,18 @@
 //
-//  fps.cpp
+//  fps.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 16/12/16.
 //  Copyright © 2016 Indi Kernick. All rights reserved.
 //
 
-#include "fps.hpp"
-
-void Time::FPS::init() {
+inline void Time::FPS::init() {
   endLastSecond = getPoint<Duration>();
   framesLastSecond = 0;
   framesThisSecond = 0;
 }
 
-void Time::FPS::frame() {
+inline void Time::FPS::frame() {
   const Point<Duration> now = getPoint<Duration>();
   if (now - endLastSecond >= std::chrono::seconds(1)) {
     framesLastSecond = framesThisSecond;
@@ -29,6 +27,6 @@ void Time::FPS::frame() {
   }
 }
 
-uint32_t Time::FPS::get() const {
+inline uint32_t Time::FPS::get() const {
   return framesLastSecond;
 }

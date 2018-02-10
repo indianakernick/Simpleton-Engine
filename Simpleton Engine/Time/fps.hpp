@@ -33,4 +33,6 @@ namespace Time {
   };
 };
 
+#include "fps.inl"
+
 #endif
