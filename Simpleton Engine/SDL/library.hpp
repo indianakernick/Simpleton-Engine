@@ -18,11 +18,7 @@
 
 namespace SDL {
   namespace detail {
-    inline void deleteLibrary(const bool initialized) {
-      if (initialized) {
-        SDL_Quit();
-      }
-    }
+    void deleteLibrary(bool);
   }
 
   class Library final : public Utils::ForceSingleton<Library> {
@@ -38,5 +34,7 @@ namespace SDL {
   Window makeWindow(const Window::Desc &);
   Renderer makeRenderer(Window &, bool);
 }
+
+#include "library.inl"
 
 #endif

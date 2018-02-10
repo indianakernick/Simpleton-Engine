@@ -17,4 +17,6 @@ namespace SDL {
   std::string getResDir();
 }
 
+#include "paths.inl"
+
 #endif

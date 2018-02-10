@@ -11,10 +11,9 @@
 
 #include <string>
 #include <glm/vec2.hpp>
+#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_mouse.h>
 #include "../Utils/generic raii.hpp"
-
-extern "C" struct SDL_Window;
-extern "C" void SDL_DestroyWindow(SDL_Window *);
 
 namespace SDL {
   class Window {
@@ -55,5 +54,7 @@ namespace SDL {
     bool mouseCaptured = false;
   };
 }
+
+#include "window.inl"
 
 #endif

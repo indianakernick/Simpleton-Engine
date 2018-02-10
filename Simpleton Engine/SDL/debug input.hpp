@@ -10,14 +10,14 @@
 #define engine_sdl_debug_input_hpp
 
 #include <cstdint>
-
-extern "C" struct SDL_WindowEvent;
-extern "C" union SDL_Event;
+#include <SDL2/SDL_events.h>
 
 namespace SDL {
   void printWindowEvent(SDL_WindowEvent);
   void printEvent(SDL_Event);
   void printWindowFlags(uint32_t);
 }
+
+#include "debug input.inl"
 
 #endif

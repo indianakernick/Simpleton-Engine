@@ -9,10 +9,8 @@
 #ifndef engine_sdl_events_hpp
 #define engine_sdl_events_hpp
 
+#include <SDL2/SDL_events.h>
 #include <SDL2/SDL_scancode.h>
-
-extern "C" union SDL_Event;
-extern "C" struct SDL_KeyboardEvent;
 
 namespace SDL {
   bool keyDown(const SDL_Event &, SDL_Scancode);
@@ -21,5 +19,7 @@ namespace SDL {
   bool keyUp(const SDL_Event &);
   SDL_Scancode keyCode(const SDL_KeyboardEvent &);
 }
+
+#include "events.inl"
 
 #endif

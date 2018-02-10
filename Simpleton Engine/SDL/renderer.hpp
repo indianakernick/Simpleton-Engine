@@ -10,10 +10,8 @@
 #define engine_sdl_renderer_hpp
 
 #include <glm/vec4.hpp>
+#include <SDL2/SDL_render.h>
 #include "../Utils/generic raii.hpp"
-
-extern "C" struct SDL_Renderer;
-extern "C" void SDL_DestroyRenderer(SDL_Renderer *);
 
 namespace SDL {
   class Renderer {
@@ -30,5 +28,7 @@ namespace SDL {
     SDL_Renderer *renderer;
   };
 }
+
+#include "renderer.inl"
 
 #endif

@@ -13,9 +13,6 @@
 #include <glm/vec2.hpp>
 #include "renderer.hpp"
 
-extern "C" struct SDL_Texture;
-extern "C" void SDL_DestroyTexture(SDL_Texture *);
-
 namespace SDL {
   class Texture {
   public:

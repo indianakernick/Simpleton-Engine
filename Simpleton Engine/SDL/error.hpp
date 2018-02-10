@@ -29,7 +29,16 @@ namespace SDL {
   }
 }
 
+#ifdef DISABLE_SDL_ERROR_CHECK
+
+#define CHECK_SDL_ERROR(SDL_FUN_CALL) (SDL_FUN_CALL)
+#define CHECK_SDL_NULL(SDL_FUN_CALL) (SDL_FUN_CALL)
+
+#else
+
 #define CHECK_SDL_ERROR(SDL_FUN_CALL) ((SDL_FUN_CALL) != 0 ? throw SDL::Error() : void())
 #define CHECK_SDL_NULL(SDL_FUN_CALL) SDL::detail::checkSDLNull(SDL_FUN_CALL)
+
+#endif
 
 #endif

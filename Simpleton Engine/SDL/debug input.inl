@@ -1,18 +1,15 @@
 //
-//  debug input.cpp
+//  debug input.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 28/12/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "debug input.hpp"
-
 #include <cassert>
 #include <iostream>
-#include <SDL2/SDL_events.h>
 
-void SDL::printWindowEvent(const SDL_WindowEvent event) {
+inline void SDL::printWindowEvent(const SDL_WindowEvent event) {
   std::cout << "Window " << event.windowID << "  ";
   
   switch (event.event) {
@@ -72,7 +69,7 @@ void SDL::printWindowEvent(const SDL_WindowEvent event) {
   }
 }
 
-void SDL::printEvent(const SDL_Event event) {
+inline void SDL::printEvent(const SDL_Event event) {
   switch (event.type) {
     case SDL_WINDOWEVENT:
       printWindowEvent(event.window);
@@ -80,7 +77,7 @@ void SDL::printEvent(const SDL_Event event) {
   }
 }
 
-void SDL::printWindowFlags(const uint32_t flags) {
+inline void SDL::printWindowFlags(const uint32_t flags) {
   #define CHECK(flag, name) \
   if (flags & SDL_WINDOW_##flag) { \
     std::cout << #name ", "; \

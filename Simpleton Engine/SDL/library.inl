@@ -1,21 +1,25 @@
 //
-//  library.cpp
+//  library.inl
 //  Simpleton Engine
 //
 //  Created by Indi Kernick on 3/4/17.
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#include "library.hpp"
-
 #include "../Utils/bool enable.hpp"
 
-SDL::Library SDL::makeLibrary(const Uint32 flags) {
+inline void SDL::detail::deleteLibrary(const bool initialized) {
+  if (initialized) {
+    SDL_Quit();
+  }
+}
+
+inline SDL::Library SDL::makeLibrary(const Uint32 flags) {
   CHECK_SDL_ERROR(SDL_Init(flags));
   return SDL::Library(true);
 }
 
-SDL::Window SDL::makeWindow(const Window::Desc &desc) {
+inline SDL::Window SDL::makeWindow(const Window::Desc &desc) {
   return Window(CHECK_SDL_NULL(SDL_CreateWindow(
     desc.title.c_str(),
     SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -26,7 +30,7 @@ SDL::Window SDL::makeWindow(const Window::Desc &desc) {
   )));
 }
 
-SDL::Renderer SDL::makeRenderer(Window &window, const bool vsync) {
+inline SDL::Renderer SDL::makeRenderer(Window &window, const bool vsync) {
   return Renderer(CHECK_SDL_NULL(SDL_CreateRenderer(
     window.get(),
     -1,

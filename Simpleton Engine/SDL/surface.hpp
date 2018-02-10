@@ -10,10 +10,8 @@
 #define engine_sdl_surface_hpp
 
 #include "error.hpp"
+#include <SDL2/SDL_surface.h>
 #include "../Utils/generic raii.hpp"
-
-extern "C" struct SDL_Surface;
-extern "C" void SDL_FreeSurface(SDL_Surface *);
 
 namespace SDL {
   class Surface {

@@ -16,11 +16,7 @@
 
 namespace SDL {
   namespace detail {
-    inline void deleteFontLibrary(const bool initialized) {
-      if (initialized) {
-        TTF_Quit();
-      }
-    }
+    void deleteFontLibrary(bool);
   }
 
   class FontLibrary : public Utils::ForceSingleton<FontLibrary> {
@@ -37,5 +33,7 @@ namespace SDL {
   
   Font openFont(const std::string &, int);
 }
+
+#include "font library.inl"
 
 #endif
