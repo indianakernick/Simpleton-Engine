@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -812,6 +812,7 @@
 		45B5E6961EF7C25200A6A3E2 = {
 			isa = PBXGroup;
 			children = (
+				45C918EF202E73CA00AC4608 /* Test */,
 				45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */,
 				45B5E6A01EF7C25200A6A3E2 /* Products */,
 				45B5E8AF1EF9028600A6A3E2 /* Frameworks */,
@@ -844,8 +845,6 @@
 				45B5E6B31EF7C60800A6A3E2 /* Memory */,
 				45B5E6B21EF7C3C700A6A3E2 /* Math */,
 				45B5E6B01EF7C3BB00A6A3E2 /* Utils */,
-				45C918D6202E53B800AC4608 /* impl0.cpp */,
-				45C918E0202E628800AC4608 /* impl1.cpp */,
 			);
 			path = "Simpleton Engine";
 			sourceTree = "<group>";
@@ -1006,6 +1005,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		45C918EF202E73CA00AC4608 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				45C918D6202E53B800AC4608 /* impl0.cpp */,
+				45C918E0202E628800AC4608 /* impl1.cpp */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1097,13 +1105,12 @@
 					};
 					45C918DA202E541700AC4608 = {
 						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = QY44MADGVC;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 45B5E69A1EF7C25200A6A3E2 /* Build configuration list for PBXProject "Simpleton Engine" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1159,7 +1166,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd \"$PROJECT\"\n\nfind . -name \"*.hpp\" -not -path \"*Box2D*\" | xargs -I {} echo '#include \"'{}'\"' | tee impl0.cpp impl1.cpp";
+			shellScript = "find \"$PROJECT\" -name \"*.hpp\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp";
 		};
 /* End PBXShellScriptBuildPhase section */
 
