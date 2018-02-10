@@ -7,54 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4507594E1FF5B8310009B360 /* collision pairs.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507594C1FF5B6B30009B360 /* collision pairs.inl */; };
-		4507594F1FF5B8310009B360 /* collision pairs.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507594D1FF5B6B30009B360 /* collision pairs.hpp */; };
-		450759521FF5CC550009B360 /* contact listener.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759501FF5CA910009B360 /* contact listener.inl */; };
-		450759531FF5CC550009B360 /* contact listener.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759511FF5CA910009B360 /* contact listener.hpp */; };
-		450759551FF5CEAA0009B360 /* collision categories.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759541FF5CEA30009B360 /* collision categories.hpp */; };
-		450759581FF5D99F0009B360 /* nanovg debug draw.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759561FF5D3620009B360 /* nanovg debug draw.inl */; };
-		450759591FF5D99F0009B360 /* nanovg debug draw.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759571FF5D3620009B360 /* nanovg debug draw.hpp */; };
-		4507595E1FF5E95D0009B360 /* json.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507595C1FF5E87A0009B360 /* json.hpp */; };
-		450759611FF5EBD00009B360 /* json.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759601FF5EB6F0009B360 /* json.hpp */; };
-		450759641FF5FB830009B360 /* parse json.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759631FF5F12B0009B360 /* parse json.inl */; };
-		450759651FF5FB830009B360 /* parse json.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759621FF5EE420009B360 /* parse json.hpp */; };
-		4507596A1FF612300009B360 /* json.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759681FF610EC0009B360 /* json.inl */; };
-		4507596B1FF612300009B360 /* json.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759691FF610EC0009B360 /* json.hpp */; };
-		4507596C1FF612300009B360 /* entity id map.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759661FF60E290009B360 /* entity id map.inl */; };
-		4507596D1FF612300009B360 /* entity id map.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759671FF60E290009B360 /* entity id map.hpp */; };
-		4507596F1FF74D670009B360 /* comp init.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507596E1FF74CB90009B360 /* comp init.hpp */; };
-		450759711FF761E70009B360 /* comp inits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759701FF760C70009B360 /* comp inits.hpp */; };
-		450759791FF775120009B360 /* progress manager.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759781FF76FCD0009B360 /* progress manager.inl */; };
-		4507597A1FF775120009B360 /* progress manager.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759771FF76FCD0009B360 /* progress manager.hpp */; };
-		4507597B1FF776430009B360 /* level.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759721FF769DE0009B360 /* level.hpp */; };
-		4507597E1FF86F2C0009B360 /* level manager.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507597D1FF86B290009B360 /* level manager.inl */; };
-		4507597F1FF86F2C0009B360 /* level manager.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4507597C1FF86B290009B360 /* level manager.hpp */; };
-		450759821FF9F3A80009B360 /* dir bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450759811FF9F2EF0009B360 /* dir bits.hpp */; };
-		4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99481F36D6D400F8C639 /* simple anim.hpp */; };
-		450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4509F8E31F5BB83B00927A19 /* anim.hpp */; };
-		450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED62E1FB93B43008F2902 /* progress speed anim.hpp */; };
 		450ED6411FBBAE40008F2902 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
 		450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
-		450ED6621FBBB774008F2902 /* camera.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6401FBBAE40008F2902 /* camera.hpp */; };
-		450ED6631FBBB774008F2902 /* aabb.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6471FBBAF1D008F2902 /* aabb.hpp */; };
-		450ED6641FBBB774008F2902 /* props.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6441FBBAE9A008F2902 /* props.hpp */; };
-		450ED6651FBBB774008F2902 /* transform.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ED6491FBBAF60008F2902 /* transform.hpp */; };
-		45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45103F381F2324A6001B24E2 /* point in polygon.hpp */; };
-		451CC0E21F932BEB0000E424 /* block allocator.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451CC0DF1F9312C70000E424 /* block allocator.hpp */; };
-		4520AD6D1FE9DC6300ECE3C1 /* static char buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */; };
-		452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F41F3EF86900AF9AC6 /* bits.hpp */; };
-		452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452B82F61F41924500AF9AC6 /* rand.hpp */; };
-		452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 452FF9F11F68CCB3003A98B1 /* live stats.hpp */; };
 		4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533A8D81FCA34E50027B0FB /* constant speed.cpp */; };
-		4533A8DC1FCA3AF30027B0FB /* animate.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8D51FCA34410027B0FB /* animate.hpp */; };
-		4533A8DD1FCA3AF30027B0FB /* constant speed.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8D91FCA34E50027B0FB /* constant speed.hpp */; };
-		4533A8E21FCA3FDA0027B0FB /* target.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533A8DF1FCA3E4B0027B0FB /* target.hpp */; };
 		4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
-		4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4533DCC61FBBDF350058390C /* zoom to fit.hpp */; };
-		453479B51F21ADFB0083743E /* error.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 453479B41F21AC860083743E /* error.hpp */; };
-		4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541160D1F51479800C2865B /* int float.hpp */; };
 		4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
-		4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4541A4B41FD7734400AD20C1 /* constant scale.hpp */; };
 		454D04831FE63D9900D3E560 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED63F1FBBAE40008F2902 /* camera.cpp */; };
 		454D04841FE63D9900D3E560 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 450ED6481FBBAF60008F2902 /* transform.cpp */; };
 		454D04851FE63D9900D3E560 /* zoom to fit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4533DCC51FBBDF350058390C /* zoom to fit.cpp */; };
@@ -65,120 +22,12 @@
 		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
 		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
 		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
-		45771C0F1FE87C7700F533DA /* opengl.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C0C1FE8770800F533DA /* opengl.hpp */; };
-		45771C101FE87C7700F533DA /* uniforms.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C0D1FE8781D00F533DA /* uniforms.hpp */; };
-		45771C121FE87FB500F533DA /* type enum.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C111FE87DCF00F533DA /* type enum.hpp */; };
-		45771C141FE886E600F533DA /* attrib pointer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C131FE8817100F533DA /* attrib pointer.hpp */; };
-		45771C161FE8982600F533DA /* meta glm.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C151FE8952D00F533DA /* meta glm.hpp */; };
-		45771C1A1FE8B4E700F533DA /* context.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C181FE8B1B000F533DA /* context.inl */; };
-		45771C1B1FE8B4E700F533DA /* context.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C191FE8B1B000F533DA /* context.hpp */; };
-		45771C1E1FE8E23600F533DA /* texture.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C1C1FE8C4BB00F533DA /* texture.inl */; };
-		45771C1F1FE8E23600F533DA /* texture.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C1D1FE8C4BB00F533DA /* texture.hpp */; };
-		45771C241FE8FE5100F533DA /* shader.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C221FE8F8A100F533DA /* shader.inl */; };
-		45771C251FE8FE5100F533DA /* shader.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C231FE8F8A100F533DA /* shader.hpp */; };
-		45771C281FE903BB00F533DA /* shader program.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C261FE8FF1100F533DA /* shader program.inl */; };
-		45771C291FE903BB00F533DA /* shader program.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C271FE8FF1100F533DA /* shader program.hpp */; };
-		45771C2C1FE9110E00F533DA /* buffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2A1FE90D1500F533DA /* buffer.inl */; };
-		45771C2D1FE9110E00F533DA /* buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2B1FE90D1500F533DA /* buffer.hpp */; };
-		45771C301FE9141F00F533DA /* vertex array.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2E1FE9129D00F533DA /* vertex array.inl */; };
-		45771C311FE9141F00F533DA /* vertex array.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45771C2F1FE9129D00F533DA /* vertex array.hpp */; };
-		4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F40B1FCCF0C80062B93E /* combine hashes.hpp */; };
-		4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4101FCCF72E0062B93E /* matrix mul.hpp */; };
-		4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4584F4151FCE7D5B0062B93E /* digit stack.hpp */; };
-		4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B49C1F06427200D1640D /* frame.hpp */; };
-		4592B9681F0A267900D1640D /* texture.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B9651F0A24C800D1640D /* texture.hpp */; };
-		4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96C1F0A2BA600D1640D /* font library.hpp */; };
 		4592B9721F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */; };
 		4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
 		4592BAEE1F11C50F00D1640D /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
-		4592BAF11F11C94500D1640D /* app.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BAE91F11C3CB00D1640D /* app.hpp */; };
-		4592BAF21F11C94500D1640D /* sdl app.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BAED1F11C50F00D1640D /* sdl app.hpp */; };
-		4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592BB111F11F86F00D1640D /* main loop.hpp */; };
-		45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32E4D1FF34F66007BA7F4 /* surface.hpp */; };
-		45B32EB21FF47D15007BA7F4 /* debug input.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EAF1FF47C59007BA7F4 /* debug input.hpp */; };
-		45B32EB61FF47F36007BA7F4 /* glm.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EB41FF47E60007BA7F4 /* glm.hpp */; };
-		45B32EBB1FF482B7007BA7F4 /* events.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EB81FF481FD007BA7F4 /* events.hpp */; };
-		45B32EBE1FF4859E007BA7F4 /* registry.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EBD1FF4852D007BA7F4 /* registry.hpp */; };
-		45B32EC01FF493B5007BA7F4 /* entity id.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EBF1FF49318007BA7F4 /* entity id.hpp */; };
-		45B32EC21FF496BE007BA7F4 /* object types.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EC11FF495DC007BA7F4 /* object types.hpp */; };
-		45B32EC41FF4A34F007BA7F4 /* limit velocity.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */; };
-		45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A71EF8A92500A6A3E2 /* get.hpp */; };
-		45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7A81EF8A92500A6A3E2 /* freq limiter.hpp */; };
-		45B5E80F1EF8AE8700A6A3E2 /* delta.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AB1EF8A92500A6A3E2 /* delta.hpp */; };
-		45B5E8111EF8AE8700A6A3E2 /* stopwatch.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AD1EF8A92500A6A3E2 /* stopwatch.hpp */; };
-		45B5E8121EF8AE8700A6A3E2 /* timer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AE1EF8A92500A6A3E2 /* timer.hpp */; };
-		45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7B01EF8A92500A6A3E2 /* fps.hpp */; };
-		45B5E8171EF8AEAE00A6A3E2 /* byteptr.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78C1EF8A90D00A6A3E2 /* byteptr.hpp */; };
-		45B5E8191EF8AEAE00A6A3E2 /* buffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7901EF8A90D00A6A3E2 /* buffer.hpp */; };
-		45B5E81A1EF8AEAE00A6A3E2 /* view.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7911EF8A90D00A6A3E2 /* view.hpp */; };
-		45B5E81D1EF8AEAE00A6A3E2 /* file io.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7971EF8A90D00A6A3E2 /* file io.hpp */; };
-		45B5E81F1EF8AECF00A6A3E2 /* constants.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8051EF8ADCB00A6A3E2 /* constants.hpp */; };
-		45B5E8201EF8AECF00A6A3E2 /* byteconstants.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8061EF8ADCB00A6A3E2 /* byteconstants.hpp */; };
-		45B5E8211EF8AECF00A6A3E2 /* siconstants.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8071EF8ADCB00A6A3E2 /* siconstants.hpp */; };
-		45B5E8221EF8AECF00A6A3E2 /* clamp.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7621EF8A8A700A6A3E2 /* clamp.hpp */; };
-		45B5E8231EF8AECF00A6A3E2 /* interpolate.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7681EF8A8A700A6A3E2 /* interpolate.hpp */; };
-		45B5E8241EF8AECF00A6A3E2 /* pow.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7691EF8A8A700A6A3E2 /* pow.hpp */; };
-		45B5E8251EF8AECF00A6A3E2 /* scale.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E76A1EF8A8A700A6A3E2 /* scale.hpp */; };
-		45B5E8261EF8AECF00A6A3E2 /* round.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E76D1EF8A8A700A6A3E2 /* round.hpp */; };
-		45B5E8271EF8AECF00A6A3E2 /* vectors.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7701EF8A8A700A6A3E2 /* vectors.hpp */; };
-		45B5E8281EF8AECF00A6A3E2 /* rect.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7711EF8A8A700A6A3E2 /* rect.hpp */; };
-		45B5E8291EF8AECF00A6A3E2 /* dir.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7721EF8A8A700A6A3E2 /* dir.hpp */; };
-		45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C01EF8A93900A6A3E2 /* instance limiter.hpp */; };
-		45B5E8431EF8AF5000A6A3E2 /* profiler.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C21EF8A93900A6A3E2 /* profiler.hpp */; };
-		45B5E8441EF8AF5000A6A3E2 /* benchmark.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C31EF8A93900A6A3E2 /* benchmark.hpp */; };
-		45B5E8461EF8AF5000A6A3E2 /* move test.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C91EF8A93900A6A3E2 /* move test.hpp */; };
-		45B5E84A1EF8AF5000A6A3E2 /* op stack.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7CF1EF8A93900A6A3E2 /* op stack.hpp */; };
-		45B5E84B1EF8AF5000A6A3E2 /* int least.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D01EF8A93900A6A3E2 /* int least.hpp */; };
-		45B5E84C1EF8AF5000A6A3E2 /* member function.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D11EF8A93900A6A3E2 /* member function.hpp */; };
-		45B5E84D1EF8AF5000A6A3E2 /* variadic type traits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D21EF8A93900A6A3E2 /* variadic type traits.hpp */; };
-		45B5E84E1EF8AF5000A6A3E2 /* bool enable.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D31EF8A93900A6A3E2 /* bool enable.hpp */; };
-		45B5E84F1EF8AF5000A6A3E2 /* safe down cast.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D51EF8A93900A6A3E2 /* safe down cast.hpp */; };
-		45B5E8501EF8AF5000A6A3E2 /* type name.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D71EF8A93900A6A3E2 /* type name.hpp */; };
-		45B5E8511EF8AF5000A6A3E2 /* terminal color.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */; };
-		45B5E8521EF8AF5000A6A3E2 /* dispatcher.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */; };
-		45B5E8541EF8AF5000A6A3E2 /* null check.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */; };
-		45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; };
-		45B5E8571EF8AF5000A6A3E2 /* multi dim array.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */; };
-		45B5E8581EF8AF5000A6A3E2 /* multi dim container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */; };
-		45B5E8B21EF902D800A6A3E2 /* dir pair.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */; };
-		45B5E8B41EF9032200A6A3E2 /* local.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8941EF8DCCF00A6A3E2 /* local.hpp */; };
-		45B5E8B51EF9032200A6A3E2 /* global.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8951EF8DCCF00A6A3E2 /* global.hpp */; };
-		45B5E8B61EF9032200A6A3E2 /* type.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8961EF8DCCF00A6A3E2 /* type.hpp */; };
-		45B5E8B81EF9035800A6A3E2 /* event.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E88D1EF8DCC400A6A3E2 /* event.hpp */; };
-		45B5E8B91EF9035800A6A3E2 /* manager.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E88F1EF8DCC400A6A3E2 /* manager.hpp */; };
-		45B5E8BF1EF903D900A6A3E2 /* library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E89D1EF8E14300A6A3E2 /* library.hpp */; };
-		45B5E8C01EF903D900A6A3E2 /* window.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8A11EF8E14300A6A3E2 /* window.hpp */; };
-		45B5E8C11EF903D900A6A3E2 /* renderer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */; };
-		45B5E8CA1EF9065F00A6A3E2 /* paths.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C51EF9047000A6A3E2 /* paths.hpp */; };
 		45B5E8D91EFA19CC00A6A3E2 /* libSimpleton Engine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E69F1EF7C25200A6A3E2 /* libSimpleton Engine.dylib */; };
-		45C525A21FEDFE0300A738E0 /* generic raii.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A11FEDFC0800A738E0 /* generic raii.hpp */; };
-		45C525A81FEE036A00A738E0 /* framebuffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A61FEE034D00A738E0 /* framebuffer.inl */; };
-		45C525A91FEE036A00A738E0 /* framebuffer.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45C525A71FEE034D00A738E0 /* framebuffer.hpp */; };
-		45C918D3202DA1A800AC4608 /* profiler.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7C11EF8A93900A6A3E2 /* profiler.inl */; };
-		45C918D4202DA6D800AC4608 /* parse string.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0321F7F757200B1DA72 /* parse string.inl */; };
-		45C918D5202DA7C500AC4608 /* terminal color.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7D91EF8A93900A6A3E2 /* terminal color.inl */; };
 		45C918DF202E541F00AC4608 /* impl0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918D6202E53B800AC4608 /* impl0.cpp */; };
 		45C918E1202E628800AC4608 /* impl1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918E0202E628800AC4608 /* impl1.cpp */; };
-		45C918E5202E6CFF00AC4608 /* buffer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E78F1EF8A90D00A6A3E2 /* buffer.inl */; };
-		45C918E6202E6CFF00AC4608 /* file io.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7961EF8A90D00A6A3E2 /* file io.inl */; };
-		45C918E7202E6DDB00AC4608 /* fps.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7AF1EF8A92500A6A3E2 /* fps.inl */; };
-		45C918E8202E721A00AC4608 /* library.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E89C1EF8E14300A6A3E2 /* library.inl */; };
-		45C918E9202E721A00AC4608 /* font library.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4592B96B1F0A2BA600D1640D /* font library.inl */; };
-		45C918EA202E721A00AC4608 /* window.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8A01EF8E14300A6A3E2 /* window.inl */; };
-		45C918EB202E721A00AC4608 /* renderer.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8AB1EF8E3ED00A6A3E2 /* renderer.inl */; };
-		45C918EC202E721A00AC4608 /* paths.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8C41EF9047000A6A3E2 /* paths.inl */; };
-		45C918ED202E721A00AC4608 /* debug input.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EAE1FF47C59007BA7F4 /* debug input.inl */; };
-		45C918EE202E721A00AC4608 /* events.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B32EB71FF481FD007BA7F4 /* events.inl */; };
-		45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0331F7F757200B1DA72 /* parse string.hpp */; };
-		45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45DEA0371F80B36900B1DA72 /* tuple.hpp */; };
-		45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB841F1AFEF10058D36B /* type list.hpp */; };
-		45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F3DB861F1B4F750058D36B /* strong alias.hpp */; };
-		45F623F6200C988F00AEB428 /* audio library.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F623F5200C96A500AEB428 /* audio library.inl */; };
-		45F623F7200C988F00AEB428 /* audio library.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F623F4200C96A500AEB428 /* audio library.hpp */; };
-		45F62430200CB87900AEB428 /* music.inl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F6242F200CB59900AEB428 /* music.inl */; };
-		45F62431200CB87900AEB428 /* music.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45F6242E200CB59900AEB428 /* music.hpp */; };
-		45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4529DEE91F31AABD00071267 /* line col.hpp */; };
-		45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45FA99411F3695E500F8C639 /* hash.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,283 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4507595D1FF5E9370009B360 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Data;
-			dstSubfolderSpec = 0;
-			files = (
-				4507595E1FF5E95D0009B360 /* json.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		450ED6611FBBB700008F2902 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "/usr/local/include/Simpleton/Camera 2D";
-			dstSubfolderSpec = 0;
-			files = (
-				4541A4B71FD77AE200AD20C1 /* constant scale.hpp in CopyFiles */,
-				4584F4111FCCF7800062B93E /* matrix mul.hpp in CopyFiles */,
-				4533A8E21FCA3FDA0027B0FB /* target.hpp in CopyFiles */,
-				4533A8DC1FCA3AF30027B0FB /* animate.hpp in CopyFiles */,
-				4533A8DD1FCA3AF30027B0FB /* constant speed.hpp in CopyFiles */,
-				4533DCC91FBC10FE0058390C /* zoom to fit.hpp in CopyFiles */,
-				450ED6621FBBB774008F2902 /* camera.hpp in CopyFiles */,
-				450ED6631FBBB774008F2902 /* aabb.hpp in CopyFiles */,
-				450ED6641FBBB774008F2902 /* props.hpp in CopyFiles */,
-				450ED6651FBBB774008F2902 /* transform.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		453A0AB81F8B5D980042B23B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/ECS;
-			dstSubfolderSpec = 0;
-			files = (
-				4507597E1FF86F2C0009B360 /* level manager.inl in CopyFiles */,
-				4507597F1FF86F2C0009B360 /* level manager.hpp in CopyFiles */,
-				4507597B1FF776430009B360 /* level.hpp in CopyFiles */,
-				450759791FF775120009B360 /* progress manager.inl in CopyFiles */,
-				4507597A1FF775120009B360 /* progress manager.hpp in CopyFiles */,
-				450759711FF761E70009B360 /* comp inits.hpp in CopyFiles */,
-				4507596F1FF74D670009B360 /* comp init.hpp in CopyFiles */,
-				4507596A1FF612300009B360 /* json.inl in CopyFiles */,
-				4507596B1FF612300009B360 /* json.hpp in CopyFiles */,
-				4507596C1FF612300009B360 /* entity id map.inl in CopyFiles */,
-				4507596D1FF612300009B360 /* entity id map.hpp in CopyFiles */,
-				45B32EBE1FF4859E007BA7F4 /* registry.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45771C0E1FE87C4E00F533DA /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/OpenGL;
-			dstSubfolderSpec = 0;
-			files = (
-				45C525A81FEE036A00A738E0 /* framebuffer.inl in CopyFiles */,
-				45C525A91FEE036A00A738E0 /* framebuffer.hpp in CopyFiles */,
-				4520AD6D1FE9DC6300ECE3C1 /* static char buffer.hpp in CopyFiles */,
-				45771C301FE9141F00F533DA /* vertex array.inl in CopyFiles */,
-				45771C311FE9141F00F533DA /* vertex array.hpp in CopyFiles */,
-				45771C2C1FE9110E00F533DA /* buffer.inl in CopyFiles */,
-				45771C2D1FE9110E00F533DA /* buffer.hpp in CopyFiles */,
-				45771C281FE903BB00F533DA /* shader program.inl in CopyFiles */,
-				45771C291FE903BB00F533DA /* shader program.hpp in CopyFiles */,
-				45771C241FE8FE5100F533DA /* shader.inl in CopyFiles */,
-				45771C251FE8FE5100F533DA /* shader.hpp in CopyFiles */,
-				45771C1E1FE8E23600F533DA /* texture.inl in CopyFiles */,
-				45771C1F1FE8E23600F533DA /* texture.hpp in CopyFiles */,
-				45771C1A1FE8B4E700F533DA /* context.inl in CopyFiles */,
-				45771C1B1FE8B4E700F533DA /* context.hpp in CopyFiles */,
-				45771C141FE886E600F533DA /* attrib pointer.hpp in CopyFiles */,
-				45771C121FE87FB500F533DA /* type enum.hpp in CopyFiles */,
-				45771C0F1FE87C7700F533DA /* opengl.hpp in CopyFiles */,
-				45771C101FE87C7700F533DA /* uniforms.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4592BAF01F11C90E00D1640D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Application;
-			dstSubfolderSpec = 0;
-			files = (
-				4592BAF11F11C94500D1640D /* app.hpp in CopyFiles */,
-				4592BAF21F11C94500D1640D /* sdl app.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4592BB0D1F11EF8C00D1640D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "/usr/local/include/Simpleton/Game Logic";
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B32EB51FF47F13007BA7F4 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Box2D;
-			dstSubfolderSpec = 0;
-			files = (
-				450759641FF5FB830009B360 /* parse json.inl in CopyFiles */,
-				450759651FF5FB830009B360 /* parse json.hpp in CopyFiles */,
-				450759611FF5EBD00009B360 /* json.hpp in CopyFiles */,
-				450759581FF5D99F0009B360 /* nanovg debug draw.inl in CopyFiles */,
-				450759591FF5D99F0009B360 /* nanovg debug draw.hpp in CopyFiles */,
-				450759551FF5CEAA0009B360 /* collision categories.hpp in CopyFiles */,
-				450759521FF5CC550009B360 /* contact listener.inl in CopyFiles */,
-				450759531FF5CC550009B360 /* contact listener.hpp in CopyFiles */,
-				4507594E1FF5B8310009B360 /* collision pairs.inl in CopyFiles */,
-				4507594F1FF5B8310009B360 /* collision pairs.hpp in CopyFiles */,
-				45B32EC41FF4A34F007BA7F4 /* limit velocity.hpp in CopyFiles */,
-				45B32EC21FF496BE007BA7F4 /* object types.hpp in CopyFiles */,
-				45B32EC01FF493B5007BA7F4 /* entity id.hpp in CopyFiles */,
-				45B32EB61FF47F36007BA7F4 /* glm.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E80B1EF8AE5800A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Time;
-			dstSubfolderSpec = 0;
-			files = (
-				45C918E7202E6DDB00AC4608 /* fps.inl in CopyFiles */,
-				450ED62F1FB93B6C008F2902 /* anim.hpp in CopyFiles */,
-				450ED6301FB93B6C008F2902 /* progress speed anim.hpp in CopyFiles */,
-				4509F8D81F5AD30300927A19 /* simple anim.hpp in CopyFiles */,
-				4592BB121F1206A000D1640D /* main loop.hpp in CopyFiles */,
-				4592B49F1F0645E700D1640D /* frame.hpp in CopyFiles */,
-				45B5E80C1EF8AE8700A6A3E2 /* get.hpp in CopyFiles */,
-				45B5E80D1EF8AE8700A6A3E2 /* freq limiter.hpp in CopyFiles */,
-				45B5E80F1EF8AE8700A6A3E2 /* delta.hpp in CopyFiles */,
-				45B5E8111EF8AE8700A6A3E2 /* stopwatch.hpp in CopyFiles */,
-				45B5E8121EF8AE8700A6A3E2 /* timer.hpp in CopyFiles */,
-				45B5E8131EF8AE8700A6A3E2 /* fps.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E8151EF8AE9500A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Memory;
-			dstSubfolderSpec = 0;
-			files = (
-				45C918E5202E6CFF00AC4608 /* buffer.inl in CopyFiles */,
-				45C918E6202E6CFF00AC4608 /* file io.inl in CopyFiles */,
-				451CC0E21F932BEB0000E424 /* block allocator.hpp in CopyFiles */,
-				45B5E8171EF8AEAE00A6A3E2 /* byteptr.hpp in CopyFiles */,
-				45B5E8191EF8AEAE00A6A3E2 /* buffer.hpp in CopyFiles */,
-				45B5E81A1EF8AEAE00A6A3E2 /* view.hpp in CopyFiles */,
-				45B5E81D1EF8AEAE00A6A3E2 /* file io.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E81E1EF8AEB800A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Math;
-			dstSubfolderSpec = 0;
-			files = (
-				450759821FF9F3A80009B360 /* dir bits.hpp in CopyFiles */,
-				4584F4161FCE84D70062B93E /* digit stack.hpp in CopyFiles */,
-				452FF9F21F68D044003A98B1 /* live stats.hpp in CopyFiles */,
-				4541160E1F514B1A00C2865B /* int float.hpp in CopyFiles */,
-				452B82F71F41925900AF9AC6 /* rand.hpp in CopyFiles */,
-				45103F391F232BF8001B24E2 /* point in polygon.hpp in CopyFiles */,
-				45B5E8B21EF902D800A6A3E2 /* dir pair.hpp in CopyFiles */,
-				45B5E81F1EF8AECF00A6A3E2 /* constants.hpp in CopyFiles */,
-				45B5E8201EF8AECF00A6A3E2 /* byteconstants.hpp in CopyFiles */,
-				45B5E8211EF8AECF00A6A3E2 /* siconstants.hpp in CopyFiles */,
-				45B5E8221EF8AECF00A6A3E2 /* clamp.hpp in CopyFiles */,
-				45B5E8231EF8AECF00A6A3E2 /* interpolate.hpp in CopyFiles */,
-				45B5E8241EF8AECF00A6A3E2 /* pow.hpp in CopyFiles */,
-				45B5E8251EF8AECF00A6A3E2 /* scale.hpp in CopyFiles */,
-				45B5E8261EF8AECF00A6A3E2 /* round.hpp in CopyFiles */,
-				45B5E8271EF8AECF00A6A3E2 /* vectors.hpp in CopyFiles */,
-				45B5E8281EF8AECF00A6A3E2 /* rect.hpp in CopyFiles */,
-				45B5E8291EF8AECF00A6A3E2 /* dir.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E82A1EF8AED500A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Utils;
-			dstSubfolderSpec = 0;
-			files = (
-				45C918D5202DA7C500AC4608 /* terminal color.inl in CopyFiles */,
-				45C918D4202DA6D800AC4608 /* parse string.inl in CopyFiles */,
-				45C918D3202DA1A800AC4608 /* profiler.inl in CopyFiles */,
-				45C525A21FEDFE0300A738E0 /* generic raii.hpp in CopyFiles */,
-				45771C161FE8982600F533DA /* meta glm.hpp in CopyFiles */,
-				4584F40C1FCCF2500062B93E /* combine hashes.hpp in CopyFiles */,
-				45DEA0381F80B40A00B1DA72 /* tuple.hpp in CopyFiles */,
-				45DEA0361F7F7F7800B1DA72 /* parse string.hpp in CopyFiles */,
-				452B82F51F414F9800AF9AC6 /* bits.hpp in CopyFiles */,
-				45FA99421F36986200F8C639 /* hash.hpp in CopyFiles */,
-				45FA99111F31BB4900F8C639 /* line col.hpp in CopyFiles */,
-				45F3DB871F1B5DEF0058D36B /* strong alias.hpp in CopyFiles */,
-				45F3DB851F1B2F210058D36B /* type list.hpp in CopyFiles */,
-				45B5E8421EF8AF5000A6A3E2 /* instance limiter.hpp in CopyFiles */,
-				45B5E8431EF8AF5000A6A3E2 /* profiler.hpp in CopyFiles */,
-				45B5E8441EF8AF5000A6A3E2 /* benchmark.hpp in CopyFiles */,
-				45B5E8461EF8AF5000A6A3E2 /* move test.hpp in CopyFiles */,
-				45B5E84A1EF8AF5000A6A3E2 /* op stack.hpp in CopyFiles */,
-				45B5E84B1EF8AF5000A6A3E2 /* int least.hpp in CopyFiles */,
-				45B5E84C1EF8AF5000A6A3E2 /* member function.hpp in CopyFiles */,
-				45B5E84D1EF8AF5000A6A3E2 /* variadic type traits.hpp in CopyFiles */,
-				45B5E84E1EF8AF5000A6A3E2 /* bool enable.hpp in CopyFiles */,
-				45B5E84F1EF8AF5000A6A3E2 /* safe down cast.hpp in CopyFiles */,
-				45B5E8501EF8AF5000A6A3E2 /* type name.hpp in CopyFiles */,
-				45B5E8511EF8AF5000A6A3E2 /* terminal color.hpp in CopyFiles */,
-				45B5E8521EF8AF5000A6A3E2 /* dispatcher.hpp in CopyFiles */,
-				45B5E8541EF8AF5000A6A3E2 /* null check.hpp in CopyFiles */,
-				45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */,
-				45B5E8571EF8AF5000A6A3E2 /* multi dim array.hpp in CopyFiles */,
-				45B5E8581EF8AF5000A6A3E2 /* multi dim container.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E8B31EF902F100A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/ID;
-			dstSubfolderSpec = 0;
-			files = (
-				45B5E8B41EF9032200A6A3E2 /* local.hpp in CopyFiles */,
-				45B5E8B51EF9032200A6A3E2 /* global.hpp in CopyFiles */,
-				45B5E8B61EF9032200A6A3E2 /* type.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E8B71EF9032E00A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/Event;
-			dstSubfolderSpec = 0;
-			files = (
-				45B5E8B81EF9035800A6A3E2 /* event.hpp in CopyFiles */,
-				45B5E8B91EF9035800A6A3E2 /* manager.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		45B5E8BE1EF903C500A6A3E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/local/include/Simpleton/SDL;
-			dstSubfolderSpec = 0;
-			files = (
-				45C918E8202E721A00AC4608 /* library.inl in CopyFiles */,
-				45C918E9202E721A00AC4608 /* font library.inl in CopyFiles */,
-				45C918EA202E721A00AC4608 /* window.inl in CopyFiles */,
-				45C918EB202E721A00AC4608 /* renderer.inl in CopyFiles */,
-				45C918EC202E721A00AC4608 /* paths.inl in CopyFiles */,
-				45C918ED202E721A00AC4608 /* debug input.inl in CopyFiles */,
-				45C918EE202E721A00AC4608 /* events.inl in CopyFiles */,
-				45F62430200CB87900AEB428 /* music.inl in CopyFiles */,
-				45F62431200CB87900AEB428 /* music.hpp in CopyFiles */,
-				45F623F6200C988F00AEB428 /* audio library.inl in CopyFiles */,
-				45F623F7200C988F00AEB428 /* audio library.hpp in CopyFiles */,
-				45B32EBB1FF482B7007BA7F4 /* events.hpp in CopyFiles */,
-				45B32EB21FF47D15007BA7F4 /* debug input.hpp in CopyFiles */,
-				45B32E4F1FF35048007BA7F4 /* surface.hpp in CopyFiles */,
-				453479B51F21ADFB0083743E /* error.hpp in CopyFiles */,
-				4592B96F1F0A2E3900D1640D /* font library.hpp in CopyFiles */,
-				4592B9681F0A267900D1640D /* texture.hpp in CopyFiles */,
-				45B5E8CA1EF9065F00A6A3E2 /* paths.hpp in CopyFiles */,
-				45B5E8BF1EF903D900A6A3E2 /* library.hpp in CopyFiles */,
-				45B5E8C01EF903D900A6A3E2 /* window.hpp in CopyFiles */,
-				45B5E8C11EF903D900A6A3E2 /* renderer.hpp in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		45B5E8D81EFA19BA00A6A3E2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1036,20 +608,6 @@
 				45B5E69B1EF7C25200A6A3E2 /* Sources */,
 				45B5E69C1EF7C25200A6A3E2 /* Frameworks */,
 				451452B71FF340FD007C57AF /* ShellScript */,
-				4507595D1FF5E9370009B360 /* CopyFiles */,
-				453A0AB81F8B5D980042B23B /* CopyFiles */,
-				45B32EB51FF47F13007BA7F4 /* CopyFiles */,
-				45771C0E1FE87C4E00F533DA /* CopyFiles */,
-				450ED6611FBBB700008F2902 /* CopyFiles */,
-				4592BAF01F11C90E00D1640D /* CopyFiles */,
-				45B5E8B31EF902F100A6A3E2 /* CopyFiles */,
-				45B5E8B71EF9032E00A6A3E2 /* CopyFiles */,
-				45B5E8BE1EF903C500A6A3E2 /* CopyFiles */,
-				45B5E80B1EF8AE5800A6A3E2 /* CopyFiles */,
-				45B5E8151EF8AE9500A6A3E2 /* CopyFiles */,
-				45B5E81E1EF8AEB800A6A3E2 /* CopyFiles */,
-				45B5E82A1EF8AED500A6A3E2 /* CopyFiles */,
-				4592BB0D1F11EF8C00D1640D /* CopyFiles */,
 				45B5E8D81EFA19BA00A6A3E2 /* CopyFiles */,
 			);
 			buildRules = (
@@ -1134,7 +692,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "rm -dfR /usr/local/include/Simpleton";
+			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -R \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
 		};
 		454D040C1FE63C9F00D3E560 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1160,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "find \"$PROJECT\" -name \"*.hpp\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp";
+			shellScript = "find \"$PROJECT\" -name \"*.hpp\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null";
 		};
 /* End PBXShellScriptBuildPhase section */
 
