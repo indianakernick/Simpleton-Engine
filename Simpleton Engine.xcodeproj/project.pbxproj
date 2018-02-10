@@ -62,8 +62,6 @@
 		454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4541A4B31FD7734400AD20C1 /* constant scale.cpp */; };
 		454D04881FE63D9900D3E560 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAE81F11C3CB00D1640D /* app.cpp */; };
 		454D04891FE63D9900D3E560 /* sdl app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4592BAEC1F11C50F00D1640D /* sdl app.cpp */; };
-		454D048A1FE63D9900D3E560 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88C1EF8DCC400A6A3E2 /* event.cpp */; };
-		454D048B1FE63D9900D3E560 /* manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88E1EF8DCC400A6A3E2 /* manager.cpp */; };
 		454D04A51FE6428800D3E560 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */; };
 		45771B851FE7238200F533DA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B841FE7238200F533DA /* SDL2.framework */; };
 		45771B871FE723B600F533DA /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */; };
@@ -142,8 +140,6 @@
 		45B5E8551EF8AF5000A6A3E2 /* function traits.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */; };
 		45B5E8571EF8AF5000A6A3E2 /* multi dim array.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */; };
 		45B5E8581EF8AF5000A6A3E2 /* multi dim container.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */; };
-		45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88C1EF8DCC400A6A3E2 /* event.cpp */; };
-		45B5E8921EF8DCC400A6A3E2 /* manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45B5E88E1EF8DCC400A6A3E2 /* manager.cpp */; };
 		45B5E8B21EF902D800A6A3E2 /* dir pair.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */; };
 		45B5E8B41EF9032200A6A3E2 /* local.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8941EF8DCCF00A6A3E2 /* local.hpp */; };
 		45B5E8B51EF9032200A6A3E2 /* global.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B5E8951EF8DCCF00A6A3E2 /* global.hpp */; };
@@ -631,9 +627,8 @@
 		45B5E8061EF8ADCB00A6A3E2 /* byteconstants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = byteconstants.hpp; sourceTree = "<group>"; };
 		45B5E8071EF8ADCB00A6A3E2 /* siconstants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = siconstants.hpp; sourceTree = "<group>"; };
 		45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "dir pair.hpp"; sourceTree = "<group>"; };
-		45B5E88C1EF8DCC400A6A3E2 /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
 		45B5E88D1EF8DCC400A6A3E2 /* event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = event.hpp; sourceTree = "<group>"; };
-		45B5E88E1EF8DCC400A6A3E2 /* manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = manager.cpp; sourceTree = "<group>"; };
+		45B5E88E1EF8DCC400A6A3E2 /* manager.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manager.inl; sourceTree = "<group>"; };
 		45B5E88F1EF8DCC400A6A3E2 /* manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = manager.hpp; sourceTree = "<group>"; };
 		45B5E8941EF8DCCF00A6A3E2 /* local.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local.hpp; sourceTree = "<group>"; };
 		45B5E8951EF8DCCF00A6A3E2 /* global.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = global.hpp; sourceTree = "<group>"; };
@@ -975,9 +970,8 @@
 		45B5E8821EF8DC5C00A6A3E2 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				45B5E88C1EF8DCC400A6A3E2 /* event.cpp */,
 				45B5E88D1EF8DCC400A6A3E2 /* event.hpp */,
-				45B5E88E1EF8DCC400A6A3E2 /* manager.cpp */,
+				45B5E88E1EF8DCC400A6A3E2 /* manager.inl */,
 				45B5E88F1EF8DCC400A6A3E2 /* manager.hpp */,
 			);
 			path = Event;
@@ -1182,8 +1176,6 @@
 				454D04871FE63D9900D3E560 /* constant scale.cpp in Sources */,
 				454D04881FE63D9900D3E560 /* app.cpp in Sources */,
 				454D04891FE63D9900D3E560 /* sdl app.cpp in Sources */,
-				454D048A1FE63D9900D3E560 /* event.cpp in Sources */,
-				454D048B1FE63D9900D3E560 /* manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,8 +1186,6 @@
 				4541A4B51FD7734400AD20C1 /* constant scale.cpp in Sources */,
 				4533A8DA1FCA34E50027B0FB /* constant speed.cpp in Sources */,
 				450ED6411FBBAE40008F2902 /* camera.cpp in Sources */,
-				45B5E8921EF8DCC400A6A3E2 /* manager.cpp in Sources */,
-				45B5E8901EF8DCC400A6A3E2 /* event.cpp in Sources */,
 				450ED64A1FBBAF60008F2902 /* transform.cpp in Sources */,
 				4592BAEA1F11C3CB00D1640D /* app.cpp in Sources */,
 				4533DCC71FBBDF350058390C /* zoom to fit.cpp in Sources */,

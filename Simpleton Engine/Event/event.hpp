@@ -9,8 +9,8 @@
 #ifndef engine_event_event_hpp
 #define engine_event_event_hpp
 
-#include <cstdint>
 #include <memory>
+#include <cstdint>
 #include <cassert>
 #include "../ID/type.hpp"
 #include "../Utils/type name.hpp"

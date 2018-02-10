@@ -10,13 +10,13 @@
 #define engine_event_manager_hpp
 
 #include <deque>
-#include <iosfwd>
+#include <iostream>
 #include "event.hpp"
 #include "../Utils/profiler.hpp"
+#include "../Time/stopwatch.hpp"
 #include "../Utils/dispatcher.hpp"
 #include "../Utils/safe down cast.hpp"
 #include "../Utils/function traits.hpp"
-#include "../Time/stopwatch.hpp"
 
 namespace Game {
   class EventManager {
@@ -52,46 +52,19 @@ namespace Game {
     
     ///Emit an event
     template <typename EventClass, typename ...Args>
-    void emit(Args &&... args) {
-      PROFILE(Game::EventManager::emit);
-    
-      emit(std::make_shared<EventClass>(std::forward<Args>(args)...));
-    }
+    void emit(Args &&...);
     
     ///Emit an event immediately
     template <typename EventClass, typename ...Args>
-    void emitNow(Args &&... args) {
-      PROFILE(Game::EventManager::emitNow);
-      
-      const std::shared_ptr<EventClass> event = std::make_shared<EventClass>(std::forward<Args>(args)...);
-      
-      dispatcher.dispatch(GetEventType<EventClass>::get(), event);
-      dispatcher.dispatch(ANY_TYPE, event);
-    }
+    void emitNow(Args &&...);
     
     ///Emit an event immediately
     template <typename EventClass>
-    void emitNow(const std::shared_ptr<EventClass> event) {
-      assert(event);
-      PROFILE(Game::EventManager::emitNow);
-      
-      dispatcher.dispatch(GetEventType<EventClass>::get(), event);
-      dispatcher.dispatch(ANY_TYPE, event);
-    }
+    void emitNow(std::shared_ptr<EventClass>);
     
     ///Add an event listener
     template <typename Function>
-    ListenerID addListener(Function &&listener) {
-      PROFILE(Game::EventManager::addListener);
-    
-      using EventClass = typename Utils::function_arg<Function, 0>::element_type;
-      return addListener(
-        GetEventType<EventClass>::get(),
-        [listener = std::forward<Function>(listener)] (const Event::Ptr event) {
-          listener(Utils::safeDownCast<EventClass>(event));
-        }
-      );
-    }
+    ListenerID addListener(Function &&);
     
   private:
     //the type of an event listener listening to any event
@@ -103,7 +76,9 @@ namespace Game {
     size_t currentQueue = 0;
   };
   
-  extern std::unique_ptr<Game::EventManager> evtMan;
+  inline std::unique_ptr<Game::EventManager> evtMan = nullptr;
 }
+
+#include "manager.inl"
 
 #endif
