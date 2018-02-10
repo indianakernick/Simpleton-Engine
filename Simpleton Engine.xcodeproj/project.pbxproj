@@ -582,8 +582,10 @@
 			files = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)/$(PROJECT)/",
 			);
 			outputPaths = (
+				/usr/local/include/Simpleton/,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
@@ -595,8 +597,11 @@
 			files = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)/$(PROJECT)/",
 			);
 			outputPaths = (
+				"$(PROJECT_DIR)/Test/impl0.cpp",
+				"$(PROJECT_DIR)/Test/impl1.cpp",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
