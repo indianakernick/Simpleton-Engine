@@ -10,7 +10,7 @@
 #define engine_graphics_2d_shaders_hpp
 
 namespace G2D {
-  const char DESKTOP_SHADER_VERSION[] = "#version 330 core\n";
+  const char CORE_SHADER_VERSION[] = "#version 330 core\n";
   const char ES_SHADER_VERSION[] = "#version 300 es\nprecision mediump float;\n";
   
   const char VERT_SHADER[] = R"delimiter(
