@@ -25,8 +25,22 @@ namespace GL {
   
     static constexpr GLenum TYPE = TYPE_;
   
+    template <size_t SIZE>
+    void uploadSource(const GLchar (&source)[SIZE]) const {
+      uploadSource(source, SIZE - 1);
+    }
+    
+    template <size_t ...SIZES>
+    void uploadSource(const GLchar (& ...sources)[SIZES]) const {
+      const GLchar *ptrs[] = {sources...};
+      const GLint sizes[] = {static_cast<GLint>(SIZES - 1)...};
+      glShaderSource(id, sizeof...(SIZES), ptrs, sizes);
+      CHECK_OPENGL_ERROR();
+    }
+  
     void uploadSource(const GLchar *, size_t) const;
     bool compile() const;
+    void compileAndLog() const;
   
     template <GLenum TYPE>
     friend std::ostream &operator<<(std::ostream &, const Shader<TYPE> &);

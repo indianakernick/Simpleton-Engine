@@ -32,6 +32,14 @@ bool GL::Shader<TYPE>::compile() const {
 }
 
 template <GLenum TYPE>
+void GL::Shader<TYPE>::compileAndLog() const {
+  if (!compile()) {
+    std::cerr << "Failed to compile " << ShaderName<TYPE>::value << " shader\n";
+  }
+  std::cerr << ShaderName<TYPE>::value << " shader info log:\n" << (*this) << '\n';
+}
+
+template <GLenum TYPE>
 std::ostream &GL::operator<<(std::ostream &stream, const Shader<TYPE> &shader) {
   GLint logLength;
   glGetShaderiv(shader.id, GL_INFO_LOG_LENGTH, &logLength);
@@ -65,10 +73,7 @@ template <GLenum TYPE>
 GL::Shader<TYPE> GL::makeShader(const GLchar *source, const size_t size) {
   Shader<TYPE> shader = makeShader<TYPE>();
   shader.uploadSource(source, size);
-  if (!shader.compile()) {
-    std::cerr << "Failed to compile " << ShaderName<TYPE>::value << " shader\n";
-  }
-  std::cerr << ShaderName<TYPE>::value << " shader info log:\n" << shader << '\n';
+  shader.compileAndLog();
   return shader;
 }
 
@@ -76,10 +81,7 @@ template <GLenum TYPE>
 GL::Shader<TYPE> GL::makeShader(std::istream &stream) {
   Shader<TYPE> shader = makeShader<TYPE>();
   stream >> shader;
-  if (!shader.compile()) {
-    std::cerr << "Failed to compile " << ShaderName<TYPE>::value << " shader\n";
-  }
-  std::cerr << ShaderName<TYPE>::value << " shader info log:\n" << shader << '\n';
+  shader.compileAndLog();
   return shader;
 }
 
