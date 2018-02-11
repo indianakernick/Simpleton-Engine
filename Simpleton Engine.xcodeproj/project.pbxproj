@@ -607,7 +607,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -R \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
+			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -RpX \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
 		};
 		45C918E2202E62BC00AC4608 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
