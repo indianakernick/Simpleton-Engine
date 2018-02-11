@@ -27,7 +27,6 @@ namespace G2D {
   
   using Quad = std::array<Vertex, 4>;
   using Quads = std::vector<Quad>;
-  using QuadIter = typename Quads::iterator;
   using Elems = std::vector<ElemType>;
   
   using TextureID = size_t;

@@ -30,6 +30,13 @@ inline bool GL::ShaderProgram::validate() const {
   return status == GL_TRUE;
 }
 
+inline void GL::ShaderProgram::validateAndLog() const {
+  if (!validate()) {
+    std::cerr << "Failed to validate program\n";
+    std::cerr << "Shader program info log:\n" << (*this) << '\n';
+  }
+}
+
 inline void GL::ShaderProgram::use() const {
   glUseProgram(id);
   

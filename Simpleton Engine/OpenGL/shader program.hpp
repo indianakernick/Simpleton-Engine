@@ -22,6 +22,7 @@ namespace GL {
     
     bool link() const;
     bool validate() const;
+    void validateAndLog() const;
     void use() const;
     template <GLenum TYPE>
     void attach(const Shader<TYPE> &) const;

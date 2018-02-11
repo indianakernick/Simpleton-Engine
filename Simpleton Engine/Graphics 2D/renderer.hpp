@@ -28,7 +28,7 @@ namespace G2D {
     
     TextureID addTexture(GL::Texture2D &&);
     
-    QuadIter getQuadBuf();
+    Quad *getQuadBuf();
     size_t getQuadBufSize() const;
     
     void setQuadBufSize(size_t);
@@ -36,23 +36,21 @@ namespace G2D {
   
   private:
     std::vector<GL::Texture2D> textures;
+    Quads quads;
+    Elems indicies;
     GL::ArrayBuffer arrayBuf;
     GL::ElementBuffer elemBuf;
     GL::VertexArray vertArray;
-    Quads quads;
-    Elems indicies;
-    
-    static GL::ShaderProgram program;
-    static GLint viewProjLoc;
-    static GLint texLoc;
-    static GLint colorLoc;
+    GL::ShaderProgram program;
+    GLint viewProjLoc;
+    GLint texLoc;
+    GLint colorLoc;
     
     void initState();
     void initUniforms();
     void initVertexArray();
     void fillIndicies(size_t);
-    void writeElements();
-    void writeVertices();
+    void writeVerticies();
   };
 }
 
