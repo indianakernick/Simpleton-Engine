@@ -10,6 +10,7 @@
 #define engine_graphics_2d_types_hpp
 
 #include <array>
+#include <tuple>
 #include <vector>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
@@ -30,6 +31,13 @@ namespace G2D {
   using Elems = std::vector<ElemType>;
   
   using TextureID = size_t;
+  
+  constexpr size_t QUAD_INDICIES = 6;
+  constexpr size_t QUAD_VERTS = 4;
+  constexpr size_t QUAD_ATTR_SIZE = sizeof(Vertex);
+  constexpr size_t QUAD_ELEM_SIZE = sizeof(ElemType) * QUAD_INDICIES;
+  
+  using Attribs = std::tuple<PosType, TexCoordType>;
 }
 
 #endif
