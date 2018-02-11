@@ -17,13 +17,16 @@ namespace Cam2D {
     glm::vec2 pos;
     ///Scale factor (zoom)
     float scale;
+    ///Angle in radians
+    float angle;
     ///Aspect ratio of the window
     float aspect;
   };
   
   enum class PropID {
     POS,
-    ZOOM
+    ZOOM,
+    ANGLE
   };
   
   template <PropID>
@@ -39,6 +42,12 @@ namespace Cam2D {
   struct PropTraits<PropID::ZOOM> {
     using type = float;
     static constexpr auto PTR = &Props::scale;
+  };
+  
+  template <>
+  struct PropTraits<PropID::ANGLE> {
+    using type = float;
+    static constexpr auto PTR = &Props::angle;
   };
   
   template <PropID PROP>

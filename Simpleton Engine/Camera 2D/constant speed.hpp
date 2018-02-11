@@ -36,6 +36,7 @@ namespace Cam2D {
   
   using PosConstantSpeed = ConstantSpeed<PropID::POS>;
   using ZoomConstantSpeed = ConstantSpeed<PropID::ZOOM>;
+  using AngleConstantSpeed = ConstantSpeed<PropID::ANGLE>;
 }
 
 #endif

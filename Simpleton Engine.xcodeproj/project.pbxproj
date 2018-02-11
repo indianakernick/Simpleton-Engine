@@ -175,6 +175,8 @@
 		45C918D6202E53B800AC4608 /* impl0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = impl0.cpp; sourceTree = "<group>"; };
 		45C918DB202E541700AC4608 /* libTest.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libTest.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		45C918E0202E628800AC4608 /* impl1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = impl1.cpp; sourceTree = "<group>"; };
+		45C9190B202FCF0800AC4608 /* rotate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rotate.hpp; sourceTree = "<group>"; };
+		45C9190C202FCF0800AC4608 /* rotate.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = rotate.inl; sourceTree = "<group>"; };
 		45DEA0321F7F757200B1DA72 /* parse string.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "parse string.inl"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
@@ -221,6 +223,8 @@
 				4533DCC61FBBDF350058390C /* zoom to fit.hpp */,
 				4533A8D91FCA34E50027B0FB /* constant speed.hpp */,
 				4541A4B41FD7734400AD20C1 /* constant scale.hpp */,
+				45C9190C202FCF0800AC4608 /* rotate.inl */,
+				45C9190B202FCF0800AC4608 /* rotate.hpp */,
 			);
 			name = Impl;
 			sourceTree = "<group>";
@@ -587,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -R \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
+			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -Rp \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
 		};
 		45C918E2202E62BC00AC4608 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -595,15 +599,12 @@
 			files = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/$(PROJECT)/",
 			);
 			outputPaths = (
-				"$(PROJECT_DIR)/Test/impl0.cpp",
-				"$(PROJECT_DIR)/Test/impl1.cpp",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "find \"$PROJECT\" -name \"*.hpp\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null";
+			shellScript = "# \"*\" for all modules \"*Utils*\" for just Utils module\nMODULE=\"*\"\n\nfind \"$PROJECT\" -name \"*.hpp\" -path \"$MODULE\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null";
 		};
 /* End PBXShellScriptBuildPhase section */
 

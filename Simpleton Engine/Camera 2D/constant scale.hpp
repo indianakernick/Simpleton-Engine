@@ -41,6 +41,7 @@ namespace Cam2D {
   
   using PosConstantScale = ConstantScale<PropID::POS>;
   using ZoomConstantScale = ConstantScale<PropID::ZOOM>;
+  using AngleConstantScale = ConstantScale<PropID::ANGLE>;
 }
 
 #endif

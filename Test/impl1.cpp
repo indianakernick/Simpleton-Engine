@@ -40,6 +40,7 @@
 #include "../Simpleton Engine/ECS/comp init.hpp"
 #include "../Simpleton Engine/Camera 2D/animate.hpp"
 #include "../Simpleton Engine/Camera 2D/matrix mul.hpp"
+#include "../Simpleton Engine/Camera 2D/rotate.hpp"
 #include "../Simpleton Engine/Camera 2D/transform.hpp"
 #include "../Simpleton Engine/Camera 2D/target.hpp"
 #include "../Simpleton Engine/Camera 2D/zoom to fit.hpp"

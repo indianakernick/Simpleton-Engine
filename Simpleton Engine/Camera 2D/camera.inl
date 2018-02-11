@@ -24,6 +24,10 @@ inline void Cam2D::Camera::setZoom(const float scale) {
   props.scale = scale;
 }
 
+inline void Cam2D::Camera::setAngle(const float angle) {
+  props.angle = angle;
+}
+
 namespace Cam2D::detail {
   template <PropID PROP>
   auto animate(
@@ -42,9 +46,11 @@ inline void Cam2D::Camera::update(const float aspect, const float delta) {
   
   const glm::vec2 pos = detail::animate(targetPos, animatePos, props, delta);
   const float scale = detail::animate(targetZoom, animateZoom, props, delta);
+  const float angle = detail::animate(targetAngle, animateAngle, props, delta);
   
   props.pos = pos;
   props.scale = scale;
+  props.angle = angle;
   
   transform.calculate(props);
 }
