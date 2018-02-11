@@ -37,7 +37,10 @@ namespace GL {
   TYPE_ENUM(GLint, GL_INT)
   TYPE_ENUM(GLuint, GL_UNSIGNED_INT)
   TYPE_ENUM(GLfloat, GL_FLOAT)
+  
+  #ifdef GL_DOUBLE
   TYPE_ENUM(GLdouble, GL_DOUBLE)
+  #endif
   
   #undef TYPE_ENUM
 }

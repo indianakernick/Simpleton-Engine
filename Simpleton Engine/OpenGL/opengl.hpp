@@ -11,11 +11,16 @@
 
 #include <cassert>
 #include <iostream>
+
+#ifndef NO_INCLUDE_SDL_OPENGL
+
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-#ifdef DISABLE_OPENGL_ERROR_CHECKING
+#endif // NO_INCLUDE_SDL_OPENGL
+
+#if defined(DISABLE_OPENGL_ERROR_CHECKING) || !defined(GL_NO_ERROR)
 
 #define CHECK_OPENGL_ERROR()
 
@@ -24,24 +29,49 @@
 namespace GL::detail {
   inline const char *glErrorString(const GLenum error) {
     switch (error) {
+      case GL_NO_ERROR:
+        return "No error";
+      
+      #ifdef GL_INVALID_ENUM
       case GL_INVALID_ENUM:
         return "Invalid enum";
+      #endif
+      
+      #ifdef GL_INVALID_VALUE
       case GL_INVALID_VALUE:
         return "Invalid value";
+      #endif
+      
+      #ifdef GL_INVALID_OPERATION
       case GL_INVALID_OPERATION:
         return "Invalid operation";
+      #endif
+      
+      #ifdef GL_STACK_OVERFLOW
       case GL_STACK_OVERFLOW:
         return "Stack overflow";
+      #endif
+      
+      #ifdef GL_STACK_UNDERFLOW
       case GL_STACK_UNDERFLOW:
         return "Stack underflow";
+      #endif
+      
+      #ifdef GL_OUT_OF_MEMORY
       case GL_OUT_OF_MEMORY:
         return "Out of memory";
+      #endif
+      
+      #ifdef GL_INVALID_FRAMEBUFFER_OPERATION
       case GL_INVALID_FRAMEBUFFER_OPERATION:
         return "Invalid framebuffer operation";
+      #endif
+      
+      #ifdef GL_CONTEXT_LOST
       case GL_CONTEXT_LOST:
         return "Context lost";
-      case GL_TABLE_TOO_LARGE:
-        return "Table too large";
+      #endif
+      
       default:
         assert(false);
     }

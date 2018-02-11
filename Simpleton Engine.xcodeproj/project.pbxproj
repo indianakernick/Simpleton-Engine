@@ -582,10 +582,8 @@
 			files = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/$(PROJECT)/",
 			);
 			outputPaths = (
-				/usr/local/include/Simpleton/,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
