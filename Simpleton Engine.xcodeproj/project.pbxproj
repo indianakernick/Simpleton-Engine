@@ -92,6 +92,7 @@
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
+		4589059320301B0B0050F1C4 /* types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		4592B96B1F0A2BA600D1640D /* font library.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "font library.inl"; sourceTree = "<group>"; };
@@ -255,6 +256,14 @@
 			path = OpenGL;
 			sourceTree = "<group>";
 		};
+		4589059220301AF10050F1C4 /* Graphics 2D */ = {
+			isa = PBXGroup;
+			children = (
+				4589059320301B0B0050F1C4 /* types.hpp */,
+			);
+			path = "Graphics 2D";
+			sourceTree = "<group>";
+		};
 		4592BAE71F11C3A400D1640D /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +339,7 @@
 				45B32EBC1FF484F2007BA7F4 /* ECS */,
 				45B32EB31FF47E37007BA7F4 /* Box2D */,
 				45771C0B1FE876A400F533DA /* OpenGL */,
+				4589059220301AF10050F1C4 /* Graphics 2D */,
 				450ED63E1FBBAE30008F2902 /* Camera 2D */,
 				4592BAE71F11C3A400D1640D /* Application */,
 				45B5E88B1EF8DCA000A6A3E2 /* ID */,
