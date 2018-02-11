@@ -63,15 +63,15 @@ inline void GL::setTexImage(const Image2D &image) {
   CHECK_OPENGL_ERROR();
   
   glTexImage2D(
-    GL_TEXTURE_2D,                         // target
-    0,                                     // LOD
-    image.alpha ? GL_SRGB_ALPHA : GL_SRGB, // internal format
-    image.width,                           // width
-    image.height,                          // height
-    0,                                     // border
-    image.alpha ? GL_RGBA : GL_RGB,        // format
-    GL_UNSIGNED_BYTE,                      // type
-    image.data                             // pixels
+    GL_TEXTURE_2D,                            // target
+    0,                                        // LOD
+    image.alpha ? GL_SRGB8_ALPHA8 : GL_SRGB8, // internal format
+    image.width,                              // width
+    image.height,                             // height
+    0,                                        // border
+    image.alpha ? GL_RGBA : GL_RGB,           // format
+    GL_UNSIGNED_BYTE,                         // type
+    image.data                                // pixels
   );
   
   CHECK_OPENGL_ERROR();
