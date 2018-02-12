@@ -28,28 +28,23 @@ inline void Cam2D::Camera::setAngle(const float angle) {
   props.angle = angle;
 }
 
-template <Cam2D::PropID ...TARGET_PROPS, Cam2D::PropID ...ANIM_PROPS>
-void Cam2D::Camera::update(
+template <Cam2D::PropID... PROPS>
+Cam2D::Props Cam2D::Camera::calcTargetProps(
   const Params params,
-  Target<TARGET_PROPS> &... targets,
-  Animate<ANIM_PROPS> &... anims
+  Cam2D::Target<PROPS> &... targets
 ) {
-  //Is this code too flexible?
-
   Props targetProps = props;
-  ((getProp<TARGET_PROPS>(targetProps) = targets.calcTarget(props, params)), ...);
-  ((getProp<ANIM_PROPS>(targetProps) = anims.calculate(props, params, getProp<ANIM_PROPS>(targetProps))), ...);
-  props = targetProps;
-  transform.calculate(props, params);
+  ((getProp<PROPS>(targetProps) = targets.calcTarget(props, params)), ...);
+  return targetProps;
 }
 
-template <Cam2D::PropID ...TARGET_PROPS>
-void Cam2D::Camera::update(
-  const Params params,
-  Target<TARGET_PROPS> &... targets
+template <Cam2D::PropID... PROPS>
+void Cam2D::Camera::animateProps(
+  Cam2D::Props targetProps,
+  const Cam2D::Params params,
+  Cam2D::Animate<PROPS> &... anims
 ) {
-  Props targetProps = props;
-  ((getProp<TARGET_PROPS>(targetProps) = targets.calcTarget(props, params)), ...);
+  ((getProp<PROPS>(targetProps) = anims.calculate(props, params, getProp<PROPS>(targetProps))), ...);
   props = targetProps;
   transform.calculate(props, params);
 }

@@ -9,6 +9,7 @@
 #ifndef engine_camera_2d_camera_hpp
 #define engine_camera_2d_camera_hpp
 
+#include <tuple>
 #include <memory>
 #include "target.hpp"
 #include "animate.hpp"
@@ -24,10 +25,10 @@ namespace Cam2D {
     void setZoom(float);
     void setAngle(float);
     
-    template <PropID ...TARGET_PROPS, PropID ...ANIM_PROPS>
-    void update(Params, Target<TARGET_PROPS> &..., Animate<ANIM_PROPS> &...);
-    template <PropID ...TARGET_PROPS>
-    void update(Params, Target<TARGET_PROPS> &...);
+    template <PropID... PROPS>
+    Props calcTargetProps(Params, Target<PROPS> &...);
+    template <PropID... PROPS>
+    void animateProps(Props, Params, Animate<PROPS> &...);
 
     Transform transform;
     
