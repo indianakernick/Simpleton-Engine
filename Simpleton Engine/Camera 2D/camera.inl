@@ -6,16 +6,6 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-inline Cam2D::Camera::Camera(const float scale) {
-  props.pos = {0.0f, 0.0f};
-  props.scale = scale;
-}
-
-inline Cam2D::Camera::Camera(const glm::vec2 pos, const float scale) {
-  props.pos = pos;
-  props.scale = scale;
-}
-
 inline void Cam2D::Camera::setPos(const glm::vec2 pos) {
   props.pos = pos;
 }
@@ -28,23 +18,100 @@ inline void Cam2D::Camera::setAngle(const float angle) {
   props.angle = angle;
 }
 
-template <Cam2D::PropID... PROPS>
-Cam2D::Props Cam2D::Camera::calcTargetProps(
-  const Params params,
-  Cam2D::Target<PROPS> &... targets
-) {
-  Props targetProps = props;
-  ((getProp<PROPS>(targetProps) = targets.calcTarget(props, params)), ...);
-  return targetProps;
+namespace Cam2D::detail {
+  // http://stackoverflow.com/a/48741208
+
+  template <PropID PROP>
+  constexpr std::true_type isTarget(const Target<PROP> &) {
+    return {};
+  }
+  
+  template <PropID PROP>
+  constexpr std::false_type isTarget(const Animate<PROP> &) {
+    return {};
+  }
+  
+  template <typename T>
+  constexpr bool is_target_v = decltype(isTarget(std::declval<T>()))::value;
+  
+  template <typename, typename, typename, size_t I = 0>
+  struct Split;
+  
+  template <
+    size_t... TARGET_IDX,
+    size_t... ANIM_IDX,
+    size_t N
+  >
+  struct Split<
+    std::index_sequence<TARGET_IDX...>,
+    std::index_sequence<ANIM_IDX...>,
+    std::tuple<>,
+    N
+  > {
+    using Targets = std::index_sequence<TARGET_IDX...>;
+    using Anims = std::index_sequence<ANIM_IDX...>;
+  };
+  
+  template <
+    size_t... TARGET_IDX,
+    size_t... ANIM_IDX,
+    size_t I,
+    typename T,
+    typename... Tail
+  >
+  struct Split<
+    std::index_sequence<TARGET_IDX...>,
+    std::index_sequence<ANIM_IDX...>,
+    std::tuple<T, Tail...>,
+    I
+  > : std::conditional_t<
+    is_target_v<T>,
+    Split<
+      std::index_sequence<TARGET_IDX..., I>,
+      std::index_sequence<ANIM_IDX...>,
+      std::tuple<Tail...>,
+      I + 1
+    >,
+    Split<
+      std::index_sequence<TARGET_IDX...>,
+      std::index_sequence<ANIM_IDX..., I>,
+      std::tuple<Tail...>,
+      I + 1
+    >
+  > {};
 }
 
-template <Cam2D::PropID... PROPS>
-void Cam2D::Camera::animateProps(
-  Cam2D::Props targetProps,
-  const Cam2D::Params params,
-  Cam2D::Animate<PROPS> &... anims
+template <typename... Args>
+void Cam2D::Camera::update(const Params params, Args &&... args) {
+  using Split = detail::Split<
+    std::index_sequence<>,
+    std::index_sequence<>,
+    std::tuple<std::decay_t<Args>...>
+  >;
+  updateImpl(
+    params,
+    typename Split::Targets{},
+    typename Split::Anims{},
+    std::forward_as_tuple(args...)
+  );
+}
+
+template <size_t... TARGET_IDX, size_t... ANIM_IDX, typename Tuple>
+void Cam2D::Camera::updateImpl(
+  const Params params,
+  std::index_sequence<TARGET_IDX...>,
+  std::index_sequence<ANIM_IDX...>,
+  const Tuple &tuple
 ) {
-  ((getProp<PROPS>(targetProps) = anims.calculate(props, params, getProp<PROPS>(targetProps))), ...);
+  Props targetProps = props;
+  ((
+    getProp<std::decay_t<std::tuple_element_t<TARGET_IDX, Tuple>>::PROP>(targetProps)
+    = std::get<TARGET_IDX>(tuple).calcTarget(props, params)
+  ), ...);
+  ((
+    getProp<std::decay_t<std::tuple_element_t<ANIM_IDX, Tuple>>::PROP>(targetProps)
+    = std::get<ANIM_IDX>(tuple).calculate(props, params, getProp<std::decay_t<std::tuple_element_t<ANIM_IDX, Tuple>>::PROP>(targetProps))
+  ), ...);
   props = targetProps;
   transform.calculate(props, params);
 }

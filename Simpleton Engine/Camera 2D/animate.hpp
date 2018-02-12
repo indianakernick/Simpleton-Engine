@@ -13,9 +13,10 @@
 #include <glm/gtx/norm.hpp>
 
 namespace Cam2D {
-  template <PropID PROP>
+  template <PropID PROP_>
   class Animate {
   public:
+    static constexpr PropID PROP = PROP_;
     using Type = PropType<PROP>;
   
     Animate() = default;

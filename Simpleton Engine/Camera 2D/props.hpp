@@ -15,11 +15,11 @@ namespace Cam2D {
   /// Properties that define the camera's current state
   struct Props {
     ///Position in meters of the camera
-    glm::vec2 pos;
+    glm::vec2 pos = {0.0f, 0.0f};
     ///Scale factor (zoom)
-    float scale;
+    float scale = 1.0f;
     ///Angle in radians
-    float angle;
+    float angle = 0.0f;
   };
   
   /// Parameters that influence the change of the camera's current state

@@ -11,6 +11,7 @@
 
 #include <tuple>
 #include <memory>
+#include <utility>
 #include "target.hpp"
 #include "animate.hpp"
 #include "transform.hpp"
@@ -18,22 +19,27 @@
 namespace Cam2D {
   class Camera {
   public:
-    explicit Camera(float = 1.0f);
-    Camera(glm::vec2, float);
+    Camera() = default;
     
     void setPos(glm::vec2);
     void setZoom(float);
     void setAngle(float);
     
-    template <PropID... PROPS>
-    Props calcTargetProps(Params, Target<PROPS> &...);
-    template <PropID... PROPS>
-    void animateProps(Props, Params, Animate<PROPS> &...);
+    template <typename... Args>
+    void update(Params, Args &&...);
 
     Transform transform;
     
   private:
     Props props;
+    
+    template <size_t... TARGET_IDX, size_t... ANIM_IDX, typename Tuple>
+    void updateImpl(
+      Params,
+      std::index_sequence<TARGET_IDX...>,
+      std::index_sequence<ANIM_IDX...>,
+      const Tuple &
+    );
   };
 }
 
