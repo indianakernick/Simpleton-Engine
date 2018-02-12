@@ -33,7 +33,7 @@ namespace G2D {
   
   constexpr size_t QUAD_INDICIES = 6;
   constexpr size_t QUAD_VERTS = 4;
-  constexpr size_t QUAD_ATTR_SIZE = sizeof(Vertex);
+  constexpr size_t QUAD_ATTR_SIZE = sizeof(Quad);
   constexpr size_t QUAD_ELEM_SIZE = sizeof(ElemType) * QUAD_INDICIES;
   
   using Attribs = std::tuple<PosType, TexCoordType>;
