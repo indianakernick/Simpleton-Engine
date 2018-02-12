@@ -39,7 +39,7 @@ namespace Cam2D {
     glm::mat3 toPixels() const;
     glm::mat3 toMeters() const;
     
-    void calculate(Props);
+    void calculate(Props, Params);
     
   private:
     glm::mat3 toPixelsMat;

@@ -29,12 +29,12 @@ inline glm::mat3 Cam2D::Transform::toMeters() const {
   return toMetersMat;
 }
 
-inline void Cam2D::Transform::calculate(const Props props) {
+inline void Cam2D::Transform::calculate(const Props props, const Params params) {
   const glm::mat3 originMat = glm::translate({}, calcOriginPos());
   const glm::mat3 zoomMat = glm::scale({}, glm::vec2(props.scale));
   const glm::mat3 angleMat = glm::rotate(glm::mat3(), props.angle);
   const glm::mat3 invertMat = glm::scale({}, calcInvertedScale());
-  const glm::mat3 aspectMat = glm::scale({}, glm::vec2(1.0f, props.aspect));
+  const glm::mat3 aspectMat = glm::scale({}, glm::vec2(1.0f, params.aspect));
   const glm::mat3 posMat = glm::translate({}, -props.pos);
 
   toPixelsMat = originMat * zoomMat * invertMat * aspectMat * angleMat * posMat;

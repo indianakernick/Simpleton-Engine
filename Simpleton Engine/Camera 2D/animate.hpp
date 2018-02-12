@@ -21,11 +21,11 @@ namespace Cam2D {
     Animate() = default;
     virtual ~Animate() = 0;
     
-    virtual Type calculate(const Props props, const Type target, const float delta) {
+    virtual Type calculate(const Props props, const Params params, const Type target) {
       const Type current = getProp<PROP>(props);
       const Type toTarget = target - current;
       const float targetDist = glm::length(toTarget);
-      const float moveDist = getMoveDistance(props, target, delta);
+      const float moveDist = getMoveDistance(props, params, target);
       if (targetDist <= moveDist) {
         return target;
       } else {
@@ -34,7 +34,7 @@ namespace Cam2D {
     }
   
   private:
-    virtual float getMoveDistance(Props, Type, float) {
+    virtual float getMoveDistance(Props, Params, Type) {
       return 1.0f;
     }
   };

@@ -28,29 +28,28 @@ inline void Cam2D::Camera::setAngle(const float angle) {
   props.angle = angle;
 }
 
-namespace Cam2D::detail {
-  template <PropID PROP>
-  auto animate(
-    std::unique_ptr<Target<PROP>> &target,
-    std::unique_ptr<Animate<PROP>> &animate,
-    const Props &props,
-    const float delta
-  ) {
-    const auto targetProp = target ? target->calcTarget(props) : getProp<PROP>(props);
-    return animate ? animate->calculate(props, targetProp, delta) : targetProp;
-  }
+template <Cam2D::PropID ...TARGET_PROPS, Cam2D::PropID ...ANIM_PROPS>
+void Cam2D::Camera::update(
+  const Params params,
+  Target<TARGET_PROPS> &... targets,
+  Animate<ANIM_PROPS> &... anims
+) {
+  //Is this code too flexible?
+
+  Props targetProps = props;
+  ((getProp<TARGET_PROPS>(targetProps) = targets.calcTarget(props, params)), ...);
+  ((getProp<ANIM_PROPS>(targetProps) = anims.calculate(props, params, getProp<ANIM_PROPS>(targetProps))), ...);
+  props = targetProps;
+  transform.calculate(props, params);
 }
 
-inline void Cam2D::Camera::update(const float aspect, const float delta) {
-  props.aspect = aspect;
-  
-  const glm::vec2 pos = detail::animate(targetPos, animatePos, props, delta);
-  const float scale = detail::animate(targetZoom, animateZoom, props, delta);
-  const float angle = detail::animate(targetAngle, animateAngle, props, delta);
-  
-  props.pos = pos;
-  props.scale = scale;
-  props.angle = angle;
-  
-  transform.calculate(props);
+template <Cam2D::PropID ...TARGET_PROPS>
+void Cam2D::Camera::update(
+  const Params params,
+  Target<TARGET_PROPS> &... targets
+) {
+  Props targetProps = props;
+  ((getProp<TARGET_PROPS>(targetProps) = targets.calcTarget(props, params)), ...);
+  props = targetProps;
+  transform.calculate(props, params);
 }

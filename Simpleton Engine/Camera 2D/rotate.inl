@@ -17,7 +17,7 @@ inline void Cam2D::Rotate::setEnabled(const bool newEnabled) {
   enabled = newEnabled;
 }
 
-inline float Cam2D::Rotate::calcTarget(const Props props) {
+inline float Cam2D::Rotate::calcTarget(const Props props, Params) {
   if (enabled) {
     constexpr float offset = glm::pi<float>() - 0.000001f;
     if (dir == Dir::CCW) {

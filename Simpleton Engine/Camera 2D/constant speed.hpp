@@ -17,8 +17,7 @@ namespace Cam2D {
   public:
     using Type = PropType<PROP>;
     
-    ConstantSpeed()
-      : speed(1.0f) {}
+    ConstantSpeed() = default;
     explicit ConstantSpeed(const float speed)
       : speed(speed) {}
     
@@ -27,10 +26,10 @@ namespace Cam2D {
     }
   
   private:
-    float speed;
+    float speed = 1.0f;
     
-    Type getMoveDistance(Props, Type, const float delta) override {
-      return speed * delta;
+    Type getMoveDistance(Props, const Params params, Type) override {
+      return speed * params.delta;
     }
   };
   

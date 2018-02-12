@@ -28,7 +28,7 @@ namespace Cam2D {
     void setDir(Dir);
     void setEnabled(bool);
     
-    float calcTarget(Props) override;
+    float calcTarget(Props, Params) override;
   
   private:
     float lastAngle = 0.0f;

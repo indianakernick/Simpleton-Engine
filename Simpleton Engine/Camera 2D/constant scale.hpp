@@ -19,8 +19,7 @@ namespace Cam2D {
   public:
     using Type = PropType<PROP>;
     
-    ConstantScale()
-      : scale(1.0f) {}
+    ConstantScale() = default;
     explicit ConstantScale(const float newScale) {
       setScale(newScale);
     }
@@ -32,10 +31,10 @@ namespace Cam2D {
     }
     
   private:
-    float scale;
+    float scale = 1.0f;
     
-    float getMoveDistance(const Props props, const Type target, const float delta) override {
-      return delta * scale * glm::length(target - getProp<PROP>(props));
+    float getMoveDistance(const Props props, const Params params, const Type target) override {
+      return params.delta * scale * glm::length(target - getProp<PROP>(props));
     }
   };
   

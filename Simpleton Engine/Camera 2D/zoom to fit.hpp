@@ -15,14 +15,15 @@
 namespace Cam2D {
   class ZoomToFit final : public Target<PropID::ZOOM> {
   public:
+    ZoomToFit() = default;
     explicit ZoomToFit(glm::vec2);
     
     void setSize(glm::vec2);
     
-    float calcTarget(Props) override;
+    float calcTarget(Props, Params) override;
     
   private:
-    glm::vec2 box;
+    glm::vec2 box = {1.0f, 1.0f};
   };
 }
 

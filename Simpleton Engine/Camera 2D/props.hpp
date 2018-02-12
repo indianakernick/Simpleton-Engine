@@ -12,6 +12,7 @@
 #include <glm/vec2.hpp>
 
 namespace Cam2D {
+  /// Properties that define the camera's current state
   struct Props {
     ///Position in meters of the camera
     glm::vec2 pos;
@@ -19,8 +20,14 @@ namespace Cam2D {
     float scale;
     ///Angle in radians
     float angle;
+  };
+  
+  /// Parameters that influence the change of the camera's current state
+  struct Params {
     ///Aspect ratio of the window
     float aspect;
+    ///Time in seconds since the last update
+    float delta;
   };
   
   enum class PropID {

@@ -24,18 +24,13 @@ namespace Cam2D {
     void setZoom(float);
     void setAngle(float);
     
-    void update(float windowAspectRatio, float deltaTime);
+    template <PropID ...TARGET_PROPS, PropID ...ANIM_PROPS>
+    void update(Params, Target<TARGET_PROPS> &..., Animate<ANIM_PROPS> &...);
+    template <PropID ...TARGET_PROPS>
+    void update(Params, Target<TARGET_PROPS> &...);
 
     Transform transform;
     
-    std::unique_ptr<Animate<PropID::POS>> animatePos;
-    std::unique_ptr<Animate<PropID::ZOOM>> animateZoom;
-    std::unique_ptr<Animate<PropID::ANGLE>> animateAngle;
-    
-    std::unique_ptr<Target<PropID::POS>> targetPos;
-    std::unique_ptr<Target<PropID::ZOOM>> targetZoom;
-    std::unique_ptr<Target<PropID::ANGLE>> targetAngle;
-
   private:
     Props props;
   };

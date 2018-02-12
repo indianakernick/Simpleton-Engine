@@ -20,7 +20,7 @@ namespace Cam2D {
     Target() = default;
     virtual ~Target() = default;
     
-    virtual Type calcTarget(Props) = 0;
+    virtual Type calcTarget(Props, Params) = 0;
   };
 }
 

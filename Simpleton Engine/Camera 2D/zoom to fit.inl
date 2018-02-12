@@ -15,11 +15,11 @@ inline void Cam2D::ZoomToFit::setSize(const glm::vec2 newBox) {
   box = newBox;
 }
 
-inline float Cam2D::ZoomToFit::calcTarget(const Props props) {
+inline float Cam2D::ZoomToFit::calcTarget(Props, const Params params) {
   const float boxAspect = box.x / box.y;
-  if (props.aspect < boxAspect) {
+  if (params.aspect < boxAspect) {
     return 2.0f / box.x;
   } else {
-    return 2.0f / box.y / props.aspect;
+    return 2.0f / box.y / params.aspect;
   }
 }
