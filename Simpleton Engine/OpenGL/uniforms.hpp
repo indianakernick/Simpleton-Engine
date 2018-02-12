@@ -43,7 +43,9 @@ namespace GL {
   VEC_ALL(GLfloat, f)
   VEC_ALL(GLint, i)
   VEC_ALL(GLuint, ui)
+  #ifdef GL_DOUBLE
   VEC_ALL(GLdouble, d)
+  #endif
   
   #undef VEC
   #undef VEC1
@@ -87,7 +89,9 @@ namespace GL {
     SQUARE_MAT(4, TYPE, TYPE_CHAR)
   
   MAT_ALL(GLfloat, f)
+  #ifdef GL_DOUBLE
   MAT_ALL(GLdouble, d)
+  #endif
   
   #undef MAT
   #undef SQUARE_MAT
@@ -140,7 +144,9 @@ namespace GL {
   VEC_ARRAY_ALL(GLfloat, f)
   VEC_ARRAY_ALL(GLint, i)
   VEC_ARRAY_ALL(GLuint, ui)
+  #ifdef GL_DOUBLE
   VEC_ARRAY_ALL(GLdouble, d)
+  #endif
   
   #undef VEC_ARRAY
   #undef VEC1_ARRAY
@@ -190,7 +196,9 @@ namespace GL {
     SQUARE_MAT_ARRAY(4, TYPE, TYPE_CHAR)
   
   MAT_ARRAY_ALL(GLfloat, f)
+  #ifdef GL_DOUBLE
   MAT_ARRAY_ALL(GLdouble, d)
+  #endif
   
   #undef MAT_ARRAY
   #undef SQUARE_MAT_ARRAY
