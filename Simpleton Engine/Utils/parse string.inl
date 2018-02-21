@@ -277,6 +277,12 @@ inline size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
   return numChars;
 }
 
+inline void Utils::ParseString::copy(std::string &dst, const size_t copySize) {
+  const size_t numChars = mSize < copySize ? mSize : copySize;
+  dst.append(mData, numChars);
+  advanceNoCheck(numChars);
+}
+
 template <typename Pred>
 size_t Utils::ParseString::copyWhile(char *dst, const size_t dstSize, Pred &&pred) {
   throwIfNull(dst);
@@ -291,8 +297,20 @@ size_t Utils::ParseString::copyWhile(char *dst, const size_t dstSize, Pred &&pre
   return numChars;
 }
 
+template <typename Pred>
+void Utils::ParseString::copyWhile(std::string &dst, Pred &&pred) {
+  while (mSize && pred(*mData)) {
+    dst.push_back(*mData);
+    advanceNoCheck();
+  }
+}
+
 inline size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, const char c) {
   return copyUntil(dst, dstSize, charEqualTo(c));
+}
+
+inline void Utils::ParseString::copyUntil(std::string &dst, const char c) {
+  return copyUntil(dst, charEqualTo(c));
 }
 
 template <typename Pred>
@@ -300,8 +318,17 @@ size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, Pred
   return copyWhile(dst, dstSize, std::not_fn(pred));
 }
 
+template <typename Pred>
+void Utils::ParseString::copyUntil(std::string &dst, Pred &&pred) {
+  copyWhile(dst, std::not_fn(pred));
+}
+
 inline size_t Utils::ParseString::copyUntilWhitespace(char *const dst, const size_t dstSize) {
   return copyUntil(dst, dstSize, isspace);
+}
+
+inline void Utils::ParseString::copyUntilWhitespace(std::string &dst) {
+  copyUntil(dst, isspace);
 }
 
 inline void Utils::ParseString::advanceNoCheck(const size_t numChars) {

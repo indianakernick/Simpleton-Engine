@@ -9,6 +9,7 @@
 #ifndef engine_utils_parse_string_hpp
 #define engine_utils_parse_string_hpp
 
+#include <string>
 #include <string_view>
 #include "line col.hpp"
 
@@ -134,25 +135,47 @@ namespace Utils {
     ///Copies characters from the front part of the string. Advances the number
     ///of characters that were copied.
     size_t copy(char *, size_t);
+    ///Copies characters from the front part of the string. Advances the number
+    ///of characters that were copied.
+    void copy(std::string &, size_t);
     
     ///Copies characters from the front part of the string while the supplied
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
     size_t copyWhile(char *, size_t, Pred &&);
+    ///Copies characters from the front part of the string while the supplied
+    ///predicate returns true. Advances the number of characters that
+    ///were copied.
+    template <typename Pred>
+    void copyWhile(std::string &, Pred &&);
     
     ///Copies characters from the front part of the string until the front is
     ///equal to the supplied character. Advances the number of characters that
     ///were copied.
     size_t copyUntil(char *, size_t, char);
+    ///Copies characters from the front part of the string until the front is
+    ///equal to the supplied character. Advances the number of characters that
+    ///were copied.
+    void copyUntil(std::string &, char);
+    
     ///Copies characters from the front part of the string until the supplied
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
     size_t copyUntil(char *, size_t, Pred &&);
+    ///Copies characters from the front part of the string until the supplied
+    ///predicate returns true. Advances the number of characters that
+    ///were copied.
+    template <typename Pred>
+    void copyUntil(std::string &, Pred &&);
+    
     ///Copies characters from the front part of the string until the front is
     ///whitespace. Advances the number of characters that were copied.
     size_t copyUntilWhitespace(char *, size_t);
+    ///Copies characters from the front part of the string until the front is
+    ///whitespace. Advances the number of characters that were copied.
+    void copyUntilWhitespace(std::string &);
     
   private:
     const char *mData;
