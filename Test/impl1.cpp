@@ -98,6 +98,7 @@
 #include "../Simpleton Engine/Data/json.hpp"
 #include "../Simpleton Engine/Event/event.hpp"
 #include "../Simpleton Engine/Event/manager.hpp"
+#include "../Simpleton Engine/Graphics 2D/tile.hpp"
 #include "../Simpleton Engine/Graphics 2D/renderer.hpp"
 #include "../Simpleton Engine/Graphics 2D/shaders.hpp"
 #include "../Simpleton Engine/Graphics 2D/zsort.hpp"

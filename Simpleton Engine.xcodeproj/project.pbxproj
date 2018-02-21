@@ -70,6 +70,8 @@
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
 		454B2AF5203D6F5E00D94D6A /* zsort.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = zsort.inl; sourceTree = "<group>"; };
+		454B2AF6203D740800D94D6A /* tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tile.hpp; sourceTree = "<group>"; };
+		454B2AF7203D740800D94D6A /* tile.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = tile.inl; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -270,6 +272,8 @@
 				4589059420301F8A0050F1C4 /* renderer.hpp */,
 				454B2AF5203D6F5E00D94D6A /* zsort.inl */,
 				454B2AF4203D6F5E00D94D6A /* zsort.hpp */,
+				454B2AF7203D740800D94D6A /* tile.inl */,
+				454B2AF6203D740800D94D6A /* tile.hpp */,
 			);
 			path = "Graphics 2D";
 			sourceTree = "<group>";
