@@ -9,8 +9,6 @@
 #ifndef engine_utils_parse_string_hpp
 #define engine_utils_parse_string_hpp
 
-#include <cerrno>
-#include <functional>
 #include <string_view>
 #include "line col.hpp"
 
@@ -47,10 +45,20 @@ namespace Utils {
     explicit ParseString(std::string_view);
     ParseString(const char *, size_t);
     
+    ///Get a pointer to the string being parsed. This pointer is incremented
+    ///as the string is parsed.
     const char *data() const;
+    ///Get the size of the string that has not been parsed yet. This number
+    ///is decremented as the string is parsed.
     size_t size() const;
+    ///Get the line and column position of the string yet to be parsed
+    ///relative to the beginning.
     LineCol lineCol() const;
+    ///Get a std::string_view of the unparsed string
     std::string_view view() const;
+    ///Get a std::string_view of the unparsed string no larger than the size
+    ///provided. Returned size may be less than requested size to avoid
+    ///running of the end of the string.
     std::string_view view(size_t) const;
     
     ///Returns true if the string is empty
@@ -119,7 +127,12 @@ namespace Utils {
     template <typename Number>
     Number parseNumber();
     
-    ///Copies characters from the front part of the string
+    ///Interprets the front part of the string as an enum. Returns the index of
+    ///a name that matches or returns the number of names if no name matches.
+    size_t parseEnum(const std::string_view *, size_t);
+    
+    ///Copies characters from the front part of the string. Advances the number
+    ///of characters that were copied.
     size_t copy(char *, size_t);
     
     ///Copies characters from the front part of the string while the supplied
@@ -129,7 +142,8 @@ namespace Utils {
     size_t copyWhile(char *, size_t, Pred &&);
     
     ///Copies characters from the front part of the string until the front is
-    ///equal to the supplied character
+    ///equal to the supplied character. Advances the number of characters that
+    ///were copied.
     size_t copyUntil(char *, size_t, char);
     ///Copies characters from the front part of the string until the supplied
     ///predicate returns true. Advances the number of characters that

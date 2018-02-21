@@ -6,6 +6,17 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
+#include <cerrno>
+#include <functional>
+
+namespace Utils {
+  inline auto charEqualTo(const char ch) {
+    return [ch] (const char c) -> bool {
+      return c == ch;
+    };
+  }
+}
+
 inline Utils::ParseStringExpectError::ParseStringExpectError(
   const char c,
   const unsigned line,
@@ -69,10 +80,7 @@ inline std::string_view Utils::ParseString::view() const {
 }
 
 inline std::string_view Utils::ParseString::view(const size_t numChars) const {
-  if (numChars > mSize) {
-    throw std::out_of_range("View size larger than string");
-  }
-  return {mData, numChars};
+  return {mData, mSize < numChars ? mSize : numChars};
 }
 
 inline bool Utils::ParseString::empty() const {
@@ -108,10 +116,8 @@ inline void Utils::ParseString::advance() {
   advanceNoCheck();
 }
 
-inline void Utils::ParseString::skip(const char ch) {
-  skip([ch] (const char c) {
-    return c == ch;
-  });
+inline void Utils::ParseString::skip(const char c) {
+  skip(charEqualTo(c));
 }
 
 template <typename Pred>
@@ -127,10 +133,8 @@ inline void Utils::ParseString::skipWhitespace() {
   skip(isspace);
 }
 
-inline void Utils::ParseString::skipUntil(const char ch) {
-  skipUntil([ch] (const char c) {
-    return c == ch;
-  });
+inline void Utils::ParseString::skipUntil(const char c) {
+  skipUntil(charEqualTo(c));
 }
 
 template <typename Pred>
@@ -247,6 +251,17 @@ void Utils::ParseString::parseNumber(Number &number) {
   */
 }
 
+inline size_t Utils::ParseString::parseEnum(const std::string_view *const names, const size_t numNames) {
+  throwIfNull(names);
+  const std::string_view *const end = names + numNames;
+  for (const std::string_view *n = names; n != end; ++n) {
+    if (check(*n)) {
+      return n - names;
+    }
+  }
+  return numNames;
+}
+
 template <typename Number>
 Number Utils::ParseString::parseNumber() {
   Number number;
@@ -276,10 +291,8 @@ size_t Utils::ParseString::copyWhile(char *dst, const size_t dstSize, Pred &&pre
   return numChars;
 }
 
-inline size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, const char ch) {
-  return copyUntil(dst, dstSize, [ch] (const char c) {
-    return ch == c;
-  });
+inline size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, const char c) {
+  return copyUntil(dst, dstSize, charEqualTo(c));
 }
 
 template <typename Pred>
