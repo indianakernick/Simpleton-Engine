@@ -129,7 +129,7 @@ inline void G2D::Renderer::fillIndicies(const size_t minQuads) {
   if (indicies.size() < minQuads * QUAD_INDICIES) {
     ElemType index = indicies.size() / QUAD_INDICIES * QUAD_VERTS;
     const ElemType lastIndex = minQuads * QUAD_VERTS;
-    for (; index != lastIndex; index += 4) {
+    for (; index != lastIndex; index += QUAD_VERTS) {
       indicies.push_back(index + 0);
       indicies.push_back(index + 1);
       indicies.push_back(index + 2);
