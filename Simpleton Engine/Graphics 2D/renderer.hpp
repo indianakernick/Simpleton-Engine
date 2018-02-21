@@ -32,7 +32,7 @@ namespace G2D {
     size_t getQuadBufSize() const;
     
     void setQuadBufSize(size_t);
-    void render(const glm::mat3 &, TextureID, glm::vec4 = {1.0f, 1.0f, 1.0f, 1.0f});
+    void render(const glm::mat3 &, TextureID, glm::vec4 = glm::vec4(1.0f));
   
   private:
     std::vector<GL::Texture2D> textures;
