@@ -100,6 +100,7 @@
 #include "../Simpleton Engine/Event/manager.hpp"
 #include "../Simpleton Engine/Graphics 2D/renderer.hpp"
 #include "../Simpleton Engine/Graphics 2D/shaders.hpp"
+#include "../Simpleton Engine/Graphics 2D/zsort.hpp"
 #include "../Simpleton Engine/Graphics 2D/types.hpp"
 #include "../Simpleton Engine/OpenGL/attrib pointer.hpp"
 #include "../Simpleton Engine/OpenGL/opengl.hpp"
