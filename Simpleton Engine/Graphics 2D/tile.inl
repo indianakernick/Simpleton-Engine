@@ -20,11 +20,11 @@ inline void G2D::tilePos(
 
 inline void G2D::tileTex(
   Quad &quad,
-  const TexCoordType pos,
-  const TexCoordType size
+  const TexCoordType min,
+  const TexCoordType max
 ) {
-  quad[0].texCoord = pos;
-  quad[1].texCoord = {pos.x + size.x, pos.y};
-  quad[2].texCoord = {pos.x + size.x, pos.y + size.y};
-  quad[3].texCoord = {pos.x, pos.y + size.y};
+  quad[0].texCoord = min;
+  quad[1].texCoord = {max.x, min.y};
+  quad[2].texCoord = max;
+  quad[3].texCoord = {min.x, max.y};
 }

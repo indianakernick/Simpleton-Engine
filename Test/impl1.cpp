@@ -90,6 +90,7 @@
 #include "../Simpleton Engine/SDL/window.hpp"
 #include "../Simpleton Engine/SDL/texture.hpp"
 #include "../Simpleton Engine/SDL/font library.hpp"
+#include "../Simpleton Engine/Unpack/sheet.hpp"
 #include "../Simpleton Engine/ID/global.hpp"
 #include "../Simpleton Engine/ID/type.hpp"
 #include "../Simpleton Engine/ID/local.hpp"

@@ -17,7 +17,7 @@ namespace G2D {
   void tilePos(Quad &, float depth, glm::vec2 pos, glm::vec2 size = {1.0f, 1.0f});
   /// Write texture coordinates of vertices on a quad assuming that the texture
   /// is sampled as an axis-aligned rectangle
-  void tileTex(Quad &, TexCoordType pos, TexCoordType size = {1.0f, 1.0f});
+  void tileTex(Quad &, TexCoordType min, TexCoordType max);
 }
 
 #include "tile.inl"
