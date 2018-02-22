@@ -55,10 +55,12 @@ inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasP
   }
   
   if (const auto whitepixelIter = doc.find("whitepixel"); whitepixelIter != doc.end()) {
-    sheet.whitepixel = whitepixelIter->get<glm::ivec2>();
+    sheet.whitepixel = whitepixelIter->get<glm::vec2>();
     if (sheet.whitepixel.x < 0 || sheet.whitepixel.y < 0) {
       throw AtlasReadError("Whitepixel is out of range");
     }
+    sheet.whitepixel.y = sheet.size.y - sheet.whitepixel.y;
+    sheet.whitepixel += glm::vec2(0.5f);
     sheet.whitepixel /= sheet.size;
   } else {
     sheet.whitepixel = NO_WHITEPIXEL;
