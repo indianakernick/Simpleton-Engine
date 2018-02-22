@@ -16,6 +16,10 @@ namespace G2D {
   void sort(Quad *, Quad *);
   /// Sort by the average depth of the verticies
   void sortCenter(Quad *, Quad *);
+  /// Sort by the depth of the deepest vertex
+  void sortDeep(Quad *, Quad *);
+  /// Sort by the depth of the shallowest vertex
+  void sortShallow(Quad *, Quad *);
 }
 
 #include "zsort.inl"
