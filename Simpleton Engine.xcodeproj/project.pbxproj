@@ -72,6 +72,17 @@
 		454B2AF5203D6F5E00D94D6A /* zsort.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = zsort.inl; sourceTree = "<group>"; };
 		454B2AF6203D740800D94D6A /* tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tile.hpp; sourceTree = "<group>"; };
 		454B2AF7203D740800D94D6A /* tile.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = tile.inl; sourceTree = "<group>"; };
+		454B2AFA203E930700D94D6A /* load surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "load surface.hpp"; sourceTree = "<group>"; };
+		454B2AFB203E930700D94D6A /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
+		454B2AFC203E930800D94D6A /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		454B2AFD203E930800D94D6A /* write surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "write surface.inl"; sourceTree = "<group>"; };
+		454B2AFE203E930800D94D6A /* load surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "load surface.inl"; sourceTree = "<group>"; };
+		454B2AFF203E930800D94D6A /* blit surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "blit surface.hpp"; sourceTree = "<group>"; };
+		454B2B00203E930900D94D6A /* surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = surface.inl; sourceTree = "<group>"; };
+		454B2B01203E930900D94D6A /* write surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "write surface.hpp"; sourceTree = "<group>"; };
+		454B2B02203E930900D94D6A /* realloc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = realloc.hpp; sourceTree = "<group>"; };
+		454B2B03203E930900D94D6A /* blit surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "blit surface.inl"; sourceTree = "<group>"; };
+		454B2B04203E930900D94D6A /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -237,6 +248,24 @@
 			name = Impl;
 			sourceTree = "<group>";
 		};
+		454B2AF9203E92D800D94D6A /* Surface */ = {
+			isa = PBXGroup;
+			children = (
+				454B2B02203E930900D94D6A /* realloc.hpp */,
+				454B2AFC203E930800D94D6A /* stb_image.h */,
+				454B2B04203E930900D94D6A /* stb_image_write.h */,
+				454B2B00203E930900D94D6A /* surface.inl */,
+				454B2AFB203E930700D94D6A /* surface.hpp */,
+				454B2AFE203E930800D94D6A /* load surface.inl */,
+				454B2AFA203E930700D94D6A /* load surface.hpp */,
+				454B2AFD203E930800D94D6A /* write surface.inl */,
+				454B2B01203E930900D94D6A /* write surface.hpp */,
+				454B2B03203E930900D94D6A /* blit surface.inl */,
+				454B2AFF203E930800D94D6A /* blit surface.hpp */,
+			);
+			name = Surface;
+			sourceTree = "<group>";
+		};
 		45771C0B1FE876A400F533DA /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +295,7 @@
 		4589059220301AF10050F1C4 /* Graphics 2D */ = {
 			isa = PBXGroup;
 			children = (
+				454B2AF9203E92D800D94D6A /* Surface */,
 				4589059320301B0B0050F1C4 /* types.hpp */,
 				45890596203027770050F1C4 /* shaders.hpp */,
 				4589059520301F8A0050F1C4 /* renderer.inl */,
