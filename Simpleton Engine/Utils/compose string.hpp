@@ -29,6 +29,7 @@ namespace Utils {
     std::string_view view() const;
     bool empty() const;
     
+    void write(char);
     void write(const char *, size_t);
     void write(std::string_view);
     
@@ -47,6 +48,8 @@ namespace Utils {
     size_t size;
     size_t capacity;
     std::stack<std::string> closingStrings;
+    
+    void setCapacity(size_t);
   };
 }
 
