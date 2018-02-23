@@ -7,6 +7,7 @@
 //
 
 #include <cerrno>
+#include "endian.hpp"
 #include <functional>
 
 namespace Utils {
@@ -251,6 +252,49 @@ void Utils::ParseString::parseNumber(Number &number) {
   */
 }
 
+template <typename Number>
+Number Utils::ParseString::parseNumber() {
+  Number number;
+  parseNumber(number);
+  return number;
+}
+
+template <typename Number>
+void Utils::ParseString::readNumberLil(Number &n) {
+  if (mSize < sizeof(Number)) {
+    throw ParseStringNumberError("String is insufficient size to read number");
+  }
+  copyFromLilEndian(&n, mData, 1);
+  advanceBin(sizeof(Number));
+}
+
+template <typename Number>
+void Utils::ParseString::readNumberBig(Number &n) {
+  if (mSize < sizeof(Number)) {
+    throw ParseStringNumberError("String is insufficient size to read number");
+  }
+  copyFromBigEndian(&n, mData, 1);
+  advanceBin(sizeof(Number));
+}
+
+template <typename Number>
+void Utils::ParseString::readNumbersLil(Number *n, const size_t size) {
+  if (mSize < sizeof(Number) * size) {
+    throw ParseStringNumberError("String is insufficient size to read number");
+  }
+  copyFromLilEndian(n, mData, size);
+  advanceBin(sizeof(Number) * size);
+}
+
+template <typename Number>
+void Utils::ParseString::readNumbersBig(Number *n, const size_t size) {
+  if (mSize < sizeof(Number) * size) {
+    throw ParseStringNumberError("String is insufficient size to read number");
+  }
+  copyFromBigEndian(n, mData, size);
+  advanceBin(sizeof(Number) * size);
+}
+
 inline size_t Utils::ParseString::parseEnum(const std::string_view *const names, const size_t numNames) {
   throwIfNull(names);
   const std::string_view *const end = names + numNames;
@@ -260,13 +304,6 @@ inline size_t Utils::ParseString::parseEnum(const std::string_view *const names,
     }
   }
   return numNames;
-}
-
-template <typename Number>
-Number Utils::ParseString::parseNumber() {
-  Number number;
-  parseNumber(number);
-  return number;
 }
 
 inline size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
@@ -341,4 +378,9 @@ inline void Utils::ParseString::advanceNoCheck() {
   mLineCol.putChar(*mData);
   ++mData;
   --mSize;
+}
+
+inline void Utils::ParseString::advanceBin(const size_t numChars) {
+  mData += numChars;
+  mSize -= numChars;
 }
