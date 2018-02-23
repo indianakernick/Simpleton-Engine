@@ -18,10 +18,17 @@ namespace Utils {
   public:
     explicit ComposeString(size_t = 4096);
     
+    char *begin();
+    char *curr();
+    char *end();
+    size_t freeSpace() const;
+    
+    void reserve(size_t);
+    void reserveToFit(size_t);
+    void addSize(size_t);
     std::string_view view() const;
     bool empty() const;
     
-    void write(const char *);
     void write(const char *, size_t);
     void write(std::string_view);
     
@@ -36,7 +43,9 @@ namespace Utils {
     void closeAll();
     
   private:
-    std::string string;
+    std::unique_ptr<char []> string;
+    size_t size;
+    size_t capacity;
     std::stack<std::string> closingStrings;
   };
 }

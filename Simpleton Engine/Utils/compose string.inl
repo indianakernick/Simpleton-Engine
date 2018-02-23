@@ -6,33 +6,73 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-inline Utils::ComposeString::ComposeString(const size_t size) {
-  string.reserve(size);
-}
+inline Utils::ComposeString::ComposeString(const size_t capacity)
+  : string(std::make_unique<char []>(capacity)), size(0), capacity(capacity) {}
 
 inline std::string_view Utils::ComposeString::view() const {
-  return string;
+  return {string.get(), size};
+}
+
+inline char *Utils::ComposeString::begin() {
+  return string.get();
+}
+
+inline char *Utils::ComposeString::curr() {
+  return string.get() + size;
+}
+
+inline char *Utils::ComposeString::end() {
+  return string.get() + capacity;
+}
+
+inline size_t Utils::ComposeString::freeSpace() const {
+  return capacity - size;
+}
+
+inline void Utils::ComposeString::reserve(const size_t newCap) {
+  if (newCap > capacity) {
+    auto newStr = std::make_unique<char []>(newCap);
+    std::memcpy(newStr.get(), string.get(), size);
+    string = std::move(newStr);
+    capacity = newCap;
+  }
+}
+
+inline void Utils::ComposeString::reserveToFit(const size_t extra) {
+  if (size + extra > capacity) {
+    reserve((capacity + extra) * 2);
+  }
+}
+
+inline void Utils::ComposeString::addSize(const size_t extra) {
+  size += extra;
 }
 
 inline bool Utils::ComposeString::empty() const {
-  return string.empty();
+  return size == 0;
 }
 
-inline void Utils::ComposeString::write(const char *const str) {
-  string.append(str);
-}
-
-inline void Utils::ComposeString::write(const char *const str, const size_t size) {
-  string.append(str, size);
+inline void Utils::ComposeString::write(const char *const d, const size_t s) {
+  reserveToFit(s);
+  std::memcpy(curr(), d, s);
 }
 
 inline void Utils::ComposeString::write(const std::string_view view) {
-  string.append(view.data(), view.size());
+  write(view.data(), view.size());
 }
 
 template <typename Number>
-void Utils::ComposeString::writeNumber(const Number number) {
-  string += std::to_string(number);
+void Utils::ComposeString::writeNumber(const Number num) {
+  write(std::to_string(num));
+  /*
+  @TODO
+  
+  reserveToFit(64);
+  const auto [ptr, ec] = std::to_chars(curr(), end(), num);
+  if (!ec) {
+    size = ptr - string.get();
+  }
+  */
 }
 
 template <typename Enum>
