@@ -21,12 +21,12 @@ namespace Utils {
     char *begin();
     char *curr();
     char *end();
+    std::string_view view() const;
     size_t freeSpace() const;
     
     void reserve(size_t);
     void reserveToFit(size_t);
     void addSize(size_t);
-    std::string_view view() const;
     bool empty() const;
     
     void write(char);
@@ -35,6 +35,15 @@ namespace Utils {
     
     template <typename Number>
     void writeNumber(Number);
+    template <typename Number>
+    void writeNumberLil(Number);
+    template <typename Number>
+    void writeNumberBig(Number);
+    
+    template <typename Number>
+    void writeNumbersLil(const Number *, size_t);
+    template <typename Number>
+    void writeNumbersBig(const Number *, size_t);
     
     template <typename Enum>
     void writeEnum(Enum, const std::string_view *);

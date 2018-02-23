@@ -87,6 +87,7 @@
 		454B2B08203E994D00D94D6A /* sheet.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = sheet.inl; sourceTree = "<group>"; };
 		454B2B09203ED5E100D94D6A /* compose string.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "compose string.hpp"; sourceTree = "<group>"; };
 		454B2B0A203ED5E100D94D6A /* compose string.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "compose string.inl"; sourceTree = "<group>"; };
+		454B2B0B2040C8C800D94D6A /* endian.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = endian.hpp; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -446,6 +447,7 @@
 				4584F40B1FCCF0C80062B93E /* combine hashes.hpp */,
 				45771C151FE8952D00F533DA /* meta glm.hpp */,
 				45C525A11FEDFC0800A738E0 /* generic raii.hpp */,
+				454B2B0B2040C8C800D94D6A /* endian.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
