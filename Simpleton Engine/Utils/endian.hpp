@@ -29,7 +29,7 @@ namespace Utils {
         T t;
         uint32_t i;
       };
-      t; = n;
+      t = n;
       return SDL_Swap32(i);
     } else if constexpr (sizeof(T) == 8) {
       union {
@@ -38,6 +38,16 @@ namespace Utils {
       };
       t = n;
       return SDL_Swap64(i);
+    }
+  }
+  
+  template <typename T>
+  void endianSwapCopy(void *d, const T *src, const size_t size) {
+    uint8_t *dst = static_cast<uint8_t *>(d);
+    const T *const end = src + size;
+    for (; src != end; ++src, dst += sizeof(T)) {
+      const auto swapped = endianSwap(*src);
+      std::memcpy(dst, &swapped, sizeof(T));
     }
   }
   
@@ -71,6 +81,28 @@ namespace Utils {
   template <typename T>
   uint_exact_t<sizeof(T)> fromBigEndian(const T n) {
     return toBigEndian(n);
+  }
+  
+  template <typename T>
+  void copyToLilEndian(void *const dst, const T *const src, const size_t size) {
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    std::memcpy(dst, src, size * sizeof(T));
+#elif SDL_BYTEORDER == SDL_BIG_ENDIAN
+    return endianSwapCopy(dst, src, size);
+#else
+#error Unknown endianess
+#endif
+  }
+  
+  template <typename T>
+  void copyToBigEndian(void *const dst, const T *const src, const size_t size) {
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    return endianSwapCopy(dst, src, size);
+#elif SDL_BYTEORDER == SDL_BIG_ENDIAN
+    std::memcpy(dst, src, size * sizeof(T));
+#else
+#error Unknown endianess
+#endif
   }
 }
 

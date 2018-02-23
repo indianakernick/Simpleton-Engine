@@ -98,45 +98,17 @@ void Utils::ComposeString::writeNumberBig(const Number num) {
 template <typename Number>
 void Utils::ComposeString::writeNumbersLil(const Number *n, const size_t s) {
   reserveToFit(sizeof(size_t) + sizeof(Number) * s);
-#if SDL_BYTEORDER == SDL_LIL_ENDIAN
-  std::memcpy(curr(), &s, sizeof(size_t));
-  std::memcpy(curr() + sizeof(size_t), n, sizeof(Number) * s);
+  copyToLilEndian(curr(), &s, 1);
+  copyToLilEndian(curr() + sizeof(size_t), n, s);
   addSize(sizeof(size_t) + sizeof(Number) * s);
-#elif SDL_BYTEORDER == SDL_BIG_ENDIAN
-  const auto swappedSize = endianSwap(s);
-  std::memcpy(curr(), &swappedSize, sizeof(size_t));
-  size += sizeof(size_t);
-  const Number *const end = n + s;
-  for (; n != end; ++n) {
-    const auto swapped = endianSwap(*n);
-    std::memcpy(curr(), &swapped, sizeof(Number));
-    size += sizeof(Number);
-  }
-#else
-#error Unknown endianess
-#endif
 }
 
 template <typename Number>
 void Utils::ComposeString::writeNumbersBig(const Number *n, const size_t s) {
   reserveToFit(sizeof(size_t) + sizeof(Number) * s);
-#if SDL_BYTEORDER == SDL_LIL_ENDIAN
-  const auto swappedSize = endianSwap(s);
-  std::memcpy(curr(), &swappedSize, sizeof(size_t));
-  size += sizeof(size_t);
-  const Number *const end = n + s;
-  for (; n != end; ++n) {
-    const auto swapped = endianSwap(*n);
-    std::memcpy(curr(), &swapped, sizeof(Number));
-    size += sizeof(Number);
-  }
-#elif SDL_BYTEORDER == SDL_BIG_ENDIAN
-  std::memcpy(curr(), &s, sizeof(size_t));
-  std::memcpy(curr() + sizeof(size_t), n, sizeof(Number) * s);
+  copyToBigEndian(curr(), &s, 1);
+  copyToBigEndian(curr() + sizeof(size_t), n, s);
   addSize(sizeof(size_t) + sizeof(Number) * s);
-#else
-#error Unknown endianess
-#endif
 }
         
 template <typename Enum>

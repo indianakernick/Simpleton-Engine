@@ -18,6 +18,7 @@
 #include "../Simpleton Engine/Utils/safe down cast.hpp"
 #include "../Simpleton Engine/Utils/multi dim container.hpp"
 #include "../Simpleton Engine/Utils/member function.hpp"
+#include "../Simpleton Engine/Utils/endian.hpp"
 #include "../Simpleton Engine/Utils/benchmark.hpp"
 #include "../Simpleton Engine/Utils/parse string.hpp"
 #include "../Simpleton Engine/Utils/meta glm.hpp"
