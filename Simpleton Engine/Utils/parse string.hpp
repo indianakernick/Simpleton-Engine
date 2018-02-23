@@ -62,7 +62,7 @@ namespace Utils {
     ///running of the end of the string.
     std::string_view view(size_t) const;
     
-    ///Returns true if the string is empty
+    ///Return true if the string is empty
     bool empty() const;
     ///Get a character on the string. Does not do range checking
     char operator[](size_t) const;

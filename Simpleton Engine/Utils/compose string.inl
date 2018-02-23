@@ -122,13 +122,16 @@ inline void Utils::ComposeString::open(const std::string &opening, const std::st
 }
 
 inline void Utils::ComposeString::close() {
-  write(closingStrings.top());
-  closingStrings.pop();
+  if (!closingStrings.empty()) {
+    write(closingStrings.top());
+    closingStrings.pop();
+  }
 }
 
 inline void Utils::ComposeString::closeAll() {
   while (!closingStrings.empty()) {
-    close();
+    write(closingStrings.top());
+    closingStrings.pop();
   }
 }
 
