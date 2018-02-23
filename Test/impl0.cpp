@@ -23,6 +23,7 @@
 #include "../Simpleton Engine/Utils/meta glm.hpp"
 #include "../Simpleton Engine/Utils/line col.hpp"
 #include "../Simpleton Engine/Utils/function traits.hpp"
+#include "../Simpleton Engine/Utils/compose string.hpp"
 #include "../Simpleton Engine/Utils/bool enable.hpp"
 #include "../Simpleton Engine/Utils/type list.hpp"
 #include "../Simpleton Engine/Utils/null check.hpp"
