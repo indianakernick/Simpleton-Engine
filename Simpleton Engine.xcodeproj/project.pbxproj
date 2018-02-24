@@ -16,6 +16,7 @@
 		454B2B2C2040E69900D94D6A /* pack rects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454B2B2A2040E69900D94D6A /* pack rects.cpp */; };
 		454B2B2F2040E9F900D94D6A /* blit images.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454B2B2E2040E9F900D94D6A /* blit images.cpp */; };
 		454B2B322040ECDC00D94D6A /* write atlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454B2B302040ECDC00D94D6A /* write atlas.cpp */; };
+		454B2B3520410A3E00D94D6A /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454B2B3320410A3E00D94D6A /* app.cpp */; };
 		45C918DF202E541F00AC4608 /* impl0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918D6202E53B800AC4608 /* impl0.cpp */; };
 		45C918E1202E628800AC4608 /* impl1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C918E0202E628800AC4608 /* impl1.cpp */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,8 @@
 		454B2B2E2040E9F900D94D6A /* blit images.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "blit images.cpp"; sourceTree = "<group>"; };
 		454B2B302040ECDC00D94D6A /* write atlas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "write atlas.cpp"; sourceTree = "<group>"; };
 		454B2B312040ECDC00D94D6A /* write atlas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "write atlas.hpp"; sourceTree = "<group>"; };
+		454B2B3320410A3E00D94D6A /* app.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
+		454B2B3420410A3E00D94D6A /* app.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 				454B2B2D2040E9F900D94D6A /* blit images.hpp */,
 				454B2B302040ECDC00D94D6A /* write atlas.cpp */,
 				454B2B312040ECDC00D94D6A /* write atlas.hpp */,
+				454B2B3320410A3E00D94D6A /* app.cpp */,
+				454B2B3420410A3E00D94D6A /* app.hpp */,
 				454B2B132040E0C300D94D6A /* main.cpp */,
 			);
 			path = Pack;
@@ -792,6 +797,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				454B2B262040E43900D94D6A /* stb_rect_pack.c in Sources */,
+				454B2B3520410A3E00D94D6A /* app.cpp in Sources */,
 				454B2B2F2040E9F900D94D6A /* blit images.cpp in Sources */,
 				454B2B232040E3A300D94D6A /* sort by frame.cpp in Sources */,
 				454B2B1D2040E1C000D94D6A /* search dir.cpp in Sources */,

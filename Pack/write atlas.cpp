@@ -11,6 +11,11 @@
 #include <Simpleton/Memory/file io.hpp>
 #include <Simpleton/Utils/compose string.hpp>
 
+std::string_view getImageName(const std::string &path) {
+  const size_t lastSlash = path.find_last_of('/');
+  return {path.c_str() + lastSlash + 1, path.find_last_of('.') - lastSlash - 1};
+}
+
 void writeAtlas(
   const std::string_view path,
   const std::vector<std::string> &names,
@@ -29,7 +34,7 @@ void writeAtlas(
   Utils::ComposeString string(names.size() * 32 + rects.size() * 32);
   string.writeNumberLil(static_cast<uint32_t>(names.size()));
   for (auto n = names.cbegin(); n != names.cend(); ++n) {
-    string.write(*n);
+    string.write(getImageName(*n));
     string.write('\n');
   }
   for (auto r = rects.cbegin(); r != rects.cend(); ++r) {

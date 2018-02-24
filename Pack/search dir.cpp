@@ -39,36 +39,7 @@ std::string_view getExt(const std::string_view path) {
   }
 }
 
-std::vector<std::string> findFiles(
-  const std::string_view path,
-  const SearchPred pred
-) {
-  std::cout << "Searching directory \"" << path << "\"\n";
-  
-  std::vector<std::string> files;
-  
-  std::unique_ptr<DIR, int(*)(DIR *)> dir(opendir(path.data()), closedir);
-  if (dir) {
-    while (const dirent *entry = readdir(dir.get())) {
-      if (entry->d_type == DT_REG) {
-        const std::string_view ext = getExt(entry->d_name);
-        if (ext.size() && pred(ext)) {
-          files.emplace_back(std::string(path) + '/' + entry->d_name);
-        }
-      }
-    }
-  } else {
-    throw DirSearchError();
-  }
-  
-  if (files.size() == 0) {
-    throw NoSupportedFilesError();
-  }
-  
-  return files;
-}
-
-void findFilesRecHelper(
+void findFilesHelper(
   const std::string_view path,
   const SearchPred pred,
   const size_t maxDepth,
@@ -84,7 +55,7 @@ void findFilesRecHelper(
   if (dir) {
     while (const dirent *entry = readdir(dir.get())) {
       if (entry->d_type == DT_DIR) {
-        findFilesRecHelper(path, pred, maxDepth - 1, files);
+        findFilesHelper(path, pred, maxDepth - 1, files);
       } else if (entry->d_type == DT_REG) {
         const std::string_view ext = getExt(entry->d_name);
         if (ext.size() && pred(ext)) {
@@ -97,7 +68,7 @@ void findFilesRecHelper(
   }
 }
 
-std::vector<std::string> findFilesRec(
+std::vector<std::string> findFiles(
   const std::string_view path,
   const SearchPred pred,
   const size_t maxDepth
@@ -106,7 +77,7 @@ std::vector<std::string> findFilesRec(
   
   std::vector<std::string> files;
   
-  findFilesRecHelper(path, pred, maxDepth, files);
+  findFilesHelper(path, pred, maxDepth, files);
   
   if (files.size() == 0) {
     throw NoSupportedFilesError();

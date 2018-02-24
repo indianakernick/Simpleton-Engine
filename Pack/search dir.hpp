@@ -26,7 +26,6 @@ public:
 using SearchPred = bool(*)(std::string_view);
 
 bool extIsImage(std::string_view);
-std::vector<std::string> findFiles(std::string_view, SearchPred);
-std::vector<std::string> findFilesRec(std::string_view, SearchPred, size_t);
+std::vector<std::string> findFiles(std::string_view, SearchPred, size_t);
 
 #endif
