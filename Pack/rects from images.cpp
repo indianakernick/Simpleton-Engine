@@ -8,10 +8,14 @@
 
 #include "rects from images.hpp"
 
+#include <Simpleton/Utils/profiler.hpp>
+
 std::vector<stbrp_rect> rectsFromImages(
   const std::vector<G2D::Surface> &images,
   const stbrp_coord sep
 ) {
+  PROFILE(rectsFromImages);
+  
   std::vector<stbrp_rect> rects;
   rects.reserve(images.size());
   for (auto i = images.cbegin(); i != images.cend(); ++i) {

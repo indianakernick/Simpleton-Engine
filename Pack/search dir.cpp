@@ -10,6 +10,7 @@
 
 #include <dirent.h>
 #include <iostream>
+#include <Simpleton/Utils/profiler.hpp>
 
 DirSearchError::DirSearchError()
   : std::runtime_error("Failed to search for files in this directory") {}
@@ -73,6 +74,8 @@ std::vector<std::string> findFiles(
   const SearchPred pred,
   const size_t maxDepth
 ) {
+  PROFILE(findFiles);
+  
   std::vector<std::string> files;
   
   findFilesHelper(path, pred, maxDepth, files);

@@ -856,6 +856,7 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
+					"-msse2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -871,7 +872,10 @@
 				DEVELOPMENT_TEAM = QY44MADGVC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					RELEASE,
+					ENABLE_PROFILER,
+				);
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -881,6 +885,7 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
+					"-msse2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

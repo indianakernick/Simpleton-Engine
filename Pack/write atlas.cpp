@@ -9,6 +9,7 @@
 #include "write atlas.hpp"
 
 #include <fstream>
+#include <Simpleton/Utils/profiler.hpp>
 
 std::string_view getImageName(const std::string &path) {
   const size_t lastSlash = path.find_last_of('/');
@@ -38,6 +39,8 @@ void writeAtlas(
   const stbrp_coord length,
   const stbrp_coord sep
 ) {
+  PROFILE(writeAtlas);
+  
   if (length > 16777216) {
     // 2^24 = 16777216
     // a single precision float has 24 mantissa bits

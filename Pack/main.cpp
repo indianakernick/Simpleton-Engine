@@ -8,6 +8,7 @@
 
 #include "app.hpp"
 #include <iostream>
+#include <Simpleton/Utils/profiler.hpp>
 
 int main(int argc, const char **argv) {
 #ifdef RELEASE
@@ -23,6 +24,8 @@ int main(int argc, const char **argv) {
 #else
   runApp(argc - 1, argv + 1);
 #endif
+  
+  PROFILER_INFO(stderr);
   
   return 0;
 }

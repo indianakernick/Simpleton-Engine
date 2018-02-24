@@ -9,6 +9,7 @@
 #include "sort by frame.hpp"
 
 #include <cerrno>
+#include <Simpleton/Utils/profiler.hpp>
 
 namespace {
   int parseInt(const char *begin, const char *) {
@@ -87,5 +88,6 @@ namespace {
 }
 
 void sortByFrame(std::vector<std::string> &paths) {
+  PROFILE(sortByFrame);
   std::sort(paths.begin(), paths.end(), less);
 }

@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <Simpleton/Utils/profiler.hpp>
 
 RectPackError::RectPackError()
   : std::runtime_error("Failed to pack rectangles") {}
@@ -60,6 +61,8 @@ void packRects(std::vector<stbrp_rect> &rects, stbrp_coord length) {
 }
 
 stbrp_coord packRects(std::vector<stbrp_rect> &rects) {
+  PROFILE(packRects);
+  
   std::cout << "Packing rectangles\n";
   
   if (rects.size() == 0) {

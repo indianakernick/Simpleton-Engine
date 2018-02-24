@@ -10,6 +10,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <Simpleton/Utils/profiler.hpp>
 #include <Simpleton/Graphics 2D/blit surface.hpp>
 
 G2D::Surface blitImages(
@@ -18,6 +19,7 @@ G2D::Surface blitImages(
   const stbrp_coord length
 ) {
   assert(images.size() == rects.size());
+  PROFILE(blitImages);
   
   std::cout << "Copying smaller images onto larger image\n";
   

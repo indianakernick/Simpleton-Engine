@@ -17,6 +17,7 @@
 #include "blit images.hpp"
 #include "write atlas.hpp"
 #include <Simpleton/Graphics 2D/write surface.hpp>
+#include <Simpleton/Utils/profiler.hpp>
 
 void printUsage() {
   std::cout <<
@@ -43,6 +44,8 @@ unsigned long parseInt(const char *str) {
 }
 
 void runApp(int argc, const char **argv) {
+  PROFILE(runApp);
+  
   std::string in = ".";
   std::string out = "sprites";
   stbrp_coord sep = 1;
