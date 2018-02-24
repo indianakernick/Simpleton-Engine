@@ -14,12 +14,12 @@
 #include <cstddef>
 #include <type_traits>
 
-using Byte = uint8_t;
-using Word = uint16_t;
-using Long = uint32_t;
-using Quad = uint64_t;
-
 namespace Memory {
+  using Byte = uint8_t;
+  using Word = uint16_t;
+  using Long = uint32_t;
+  using Quad = uint64_t;
+  
   ///Casts the pointer to an integer which can hold the value of the pointer
   ///safely (uintptr_t)
   inline uintptr_t toNum(void *bytePtr) {

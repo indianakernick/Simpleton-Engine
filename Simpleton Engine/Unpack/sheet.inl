@@ -9,12 +9,6 @@
 #include "../Memory/file io.hpp"
 #include "../Utils/parse string.hpp"
 
-inline Unpack::AtlasReadError::AtlasReadError(const char *const msg)
-  : std::runtime_error(std::string("Atlas read error: ") + msg) {}
-
-inline Unpack::AtlasReadError::AtlasReadError(const std::exception &exception)
-  : std::runtime_error(exception.what()) {}
-
 inline Unpack::SpriteID Unpack::Spritesheet::getIDfromName(const std::string_view name) const {
   auto iter = names.find(std::string(name));
   if (iter == names.cend()) {
@@ -36,7 +30,7 @@ inline glm::vec2 Unpack::Spritesheet::getWhitepixel() const {
   return whitepixel;
 }
 
-inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasPath) {
+inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasPath) try {
   const Memory::Buffer file = Memory::readFile(atlasPath);
   Utils::ParseString string(file.cdata<char>(), file.size());
   Spritesheet sheet;
@@ -82,4 +76,6 @@ inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasP
   }
   
   return sheet;
+} catch (std::exception &e) {
+  throw AtlasReadError(e);
 }

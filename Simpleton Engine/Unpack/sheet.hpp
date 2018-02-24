@@ -11,23 +11,11 @@
 
 #include <string>
 #include <vector>
+#include "types.hpp"
 #include <string_view>
 #include <unordered_map>
-#include "../Math/rect.hpp"
 
 namespace Unpack {
-  using Rect = Math::RectPP<float>;
-  
-  class AtlasReadError final : public std::runtime_error {
-  public:
-    explicit AtlasReadError(const char *);
-    explicit AtlasReadError(const std::exception &);
-  };
-  
-  using SpriteID = uint32_t;
-  constexpr SpriteID NULL_SPRITE = std::numeric_limits<SpriteID>::max();
-  constexpr glm::vec2 NO_WHITEPIXEL = {-1.0f, -1.0f};
-  
   class Spritesheet {
   public:
     //only the factory function can make spritesheets

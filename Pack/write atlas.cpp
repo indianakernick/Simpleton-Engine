@@ -39,11 +39,9 @@ void writeAtlas(
   }
   for (auto r = rects.cbegin(); r != rects.cend(); ++r) {
     stbrp_rect rect = *r;
-    rect.w -= sep;
-    rect.h -= sep;
-    rect.y = length - rect.y - rect.h;
-    rect.w += rect.x;
-    rect.h += rect.y;
+    rect.w = rect.w - sep + rect.x;
+    rect.h = rect.h - sep + rect.y;
+    std::swap(rect.h, rect.y);
     string.writeNumberLil(static_cast<float>(rect.x) / length);
     string.writeNumberLil(static_cast<float>(rect.y) / length);
     string.writeNumberLil(static_cast<float>(rect.w) / length);
