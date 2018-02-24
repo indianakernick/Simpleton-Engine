@@ -51,29 +51,29 @@ void runApp(int argc, const char **argv) {
   
   const char **const end = argv + argc;
   for (; argv != end; ++argv) {
-    if (std::strcmp(*argv, "in") == 0) {
+    if (std::strncmp(*argv, "in", 2) == 0) {
       if (argv[0][2] != '=' || argv[0][3] == 0) {
         throw ArgError();
       }
       in.clear();
       in.append(argv[0] + 3);
-    } else if (std::strcmp(*argv, "out") == 0) {
+    } else if (std::strncmp(*argv, "out", 3) == 0) {
       if (argv[0][3] != '=' || argv[0][4] == 0) {
         throw ArgError();
       }
       out.clear();
       out.append(argv[0] + 4);
-    } else if (std::strcmp(*argv, "sep") == 0) {
+    } else if (std::strncmp(*argv, "sep", 3) == 0) {
       if (argv[0][3] != '=' || argv[0][4] == 0) {
         throw ArgError();
       }
       sep = static_cast<stbrp_coord>(parseInt(argv[0] + 4));
-    } else if (std::strcmp(*argv, "white") == 0) {
+    } else if (std::strncmp(*argv, "white", 5) == 0) {
       if (argv[0][5] != '=' || argv[0][6] == 0) {
         throw ArgError();
       }
       white = static_cast<stbrp_coord>(parseInt(argv[0] + 6));
-    } else if (std::strcmp(*argv, "rec") == 0) {
+    } else if (std::strncmp(*argv, "rec", 3) == 0) {
       if (argv[0][3] != '=' || argv[0][4] == 0) {
         throw ArgError();
       }
@@ -95,8 +95,9 @@ void runApp(int argc, const char **argv) {
   std::vector<stbrp_rect> rects = rectsFromImages(images, sep);
   const stbrp_coord length = packRects(rects);
   
+  const G2D::Surface image = blitImages(images, rects, length);
   std::cout << "Writing image to file \"" << out << ".png\"\n";
-  G2D::writeSurface(out + ".png", blitImages(images, rects, length));
+  G2D::writeSurface(out + ".png", image);
   std::cout << "Writing atlas to file \"" << out << ".atlas\"\n";
   writeAtlas(out + ".atlas", paths, rects, length, sep);
 }

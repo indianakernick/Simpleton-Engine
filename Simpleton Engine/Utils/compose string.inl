@@ -85,14 +85,12 @@ void Utils::ComposeString::writeNumber(const Number num) {
 
 template <typename Number>
 void Utils::ComposeString::writeNumberLil(const Number num) {
-  reserveToFit(sizeof(Number));
   const auto swapped = toLilEndian(num);
   write(reinterpret_cast<const char *>(&swapped), sizeof(Number));
 }
 
 template <typename Number>
 void Utils::ComposeString::writeNumberBig(const Number num) {
-  reserveToFit(sizeof(Number));
   const auto swapped = toBigEndian(num);
   write(reinterpret_cast<const char *>(&swapped), sizeof(Number));
 }

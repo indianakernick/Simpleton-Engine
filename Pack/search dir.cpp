@@ -73,8 +73,6 @@ std::vector<std::string> findFiles(
   const SearchPred pred,
   const size_t maxDepth
 ) {
-  std::cout << "Searching directory \"" << path << "\"\n";
-  
   std::vector<std::string> files;
   
   findFilesHelper(path, pred, maxDepth, files);

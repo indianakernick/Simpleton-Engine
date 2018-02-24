@@ -774,7 +774,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "echo yeah";
+			shellScript = "cp \"$BUILT_PRODUCTS_DIR/$TARGET_NAME\" /usr/local/bin/pack";
 		};
 		45C918E2202E62BC00AC4608 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -866,6 +866,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QY44MADGVC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",

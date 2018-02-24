@@ -53,7 +53,7 @@ namespace Utils {
   template <typename T>
   uint_exact_t<sizeof(T)> toLilEndian(const T n) {
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
-    return n;
+    return *reinterpret_cast<const uint_exact_t<sizeof(T)> *>(&n);
 #elif SDL_BYTEORDER == SDL_BIG_ENDIAN
     return endianSwap(n);
 #else
@@ -66,7 +66,7 @@ namespace Utils {
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
     return endianSwap(n);
 #elif SDL_BYTEORDER == SDL_BIG_ENDIAN
-    return n;
+    return *reinterpret_cast<const uint_exact_t<sizeof(T)> *>(&n);
 #else
 #error Unknown endianess
 #endif
