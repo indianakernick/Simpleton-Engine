@@ -12,9 +12,6 @@
 #include <Simpleton/Utils/profiler.hpp>
 #include <Simpleton/Graphics 2D/load surface.hpp>
 
-NoLoadedImagesError::NoLoadedImagesError()
-  : std::runtime_error("No images successfully loaded") {}
-
 std::vector<G2D::Surface> loadImages(const std::vector<std::string> &files) {
   PROFILE(loadImages);
   
@@ -22,17 +19,7 @@ std::vector<G2D::Surface> loadImages(const std::vector<std::string> &files) {
   images.reserve(files.size());
   
   for (auto f = files.cbegin(); f != files.cend(); ++f) {
-    try {
-      PROFILE(loadImage);
-      std::cout << "Loading image \"" << *f << "\"\n";
-      images.emplace_back(G2D::loadSurfaceRGBA(*f));
-    } catch (G2D::SurfaceLoadError &e) {
-      std::cerr << e.what() << '\n';
-    }
-  }
-  
-  if (images.size() == 0) {
-    throw NoLoadedImagesError();
+    images.emplace_back(G2D::loadSurfaceRGBA(*f));
   }
   
   return images;

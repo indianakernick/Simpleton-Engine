@@ -9,6 +9,7 @@
 #include "write atlas.hpp"
 
 #include <fstream>
+#include <iostream>
 #include <Simpleton/Utils/profiler.hpp>
 
 std::string_view getImageName(const std::string &path) {
@@ -40,6 +41,7 @@ void writeAtlas(
   const stbrp_coord sep
 ) {
   PROFILE(writeAtlas);
+  std::cout << "Writing atlas to file \"" << path << "\"\n";
   
   if (length > 16777216) {
     // 2^24 = 16777216

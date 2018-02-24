@@ -13,11 +13,6 @@
 #include <string>
 #include <Simpleton/Graphics 2D/surface.hpp>
 
-class NoLoadedImagesError final : public std::runtime_error {
-public:
-  NoLoadedImagesError();
-};
-
 std::vector<G2D::Surface> loadImages(const std::vector<std::string> &);
 
 #endif

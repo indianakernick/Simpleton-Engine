@@ -16,6 +16,7 @@
 #include "pack rects.hpp"
 #include "blit images.hpp"
 #include "write atlas.hpp"
+#include "write image.hpp"
 #include <Simpleton/Graphics 2D/write surface.hpp>
 #include <Simpleton/Utils/profiler.hpp>
 
@@ -98,9 +99,6 @@ void runApp(int argc, const char **argv) {
   std::vector<stbrp_rect> rects = rectsFromImages(images, sep);
   const stbrp_coord length = packRects(rects);
   
-  const G2D::Surface image = blitImages(images, rects, length);
-  std::cout << "Writing image to file \"" << out << ".png\"\n";
-  G2D::writeSurface(out + ".png", image);
-  std::cout << "Writing atlas to file \"" << out << ".atlas\"\n";
+  writeImage(out + ".png", blitImages(images, rects, length));
   writeAtlas(out + ".atlas", paths, rects, length, sep);
 }
