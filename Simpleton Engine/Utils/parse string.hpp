@@ -15,15 +15,15 @@
 
 namespace Utils {
   ///A character was expected but not present
-  class ParseStringExpectError final : public std::exception {
+  class ExpectChar final : public std::exception {
   public:
-    ParseStringExpectError(char, unsigned, unsigned);
+    ExpectChar(char, unsigned, unsigned);
   
     char expectedChar() const;
     unsigned line() const;
     unsigned column() const;
     
-    const char* what() const noexcept override;
+    const char *what() const noexcept override;
     
   private:
     unsigned mLine;
@@ -31,17 +31,37 @@ namespace Utils {
     char mExpected;
   };
   
-  ///Unable to parse number
-  class ParseStringNumberError final : public std::runtime_error {
+  ///A sequence of characters was expected but not present
+  class ExpectString final : public std::exception {
   public:
-    explicit ParseStringNumberError(const std::string &);
+    ExpectString(const char *, size_t, unsigned, unsigned);
+    
+    std::string_view expectedStr() const;
+    unsigned line() const;
+    unsigned column() const;
+    
+    const char *what() const noexcept override;
+  
+  private:
+    static constexpr size_t MAX_STR_SIZE = 64;
+    
+    char mExpected[MAX_STR_SIZE];
+    size_t mExpectedSize;
+    unsigned mLine;
+    unsigned mCol;
+  };
+  
+  ///Unable to parse number
+  class InvalidNumber final : public std::runtime_error {
+  public:
+    explicit InvalidNumber(const std::string &);
   };
 
   ///A view onto a string being parsed
   class ParseString {
   public:
     using LineCol = LineCol<unsigned, unsigned>;
-  
+    
     explicit ParseString(const std::string &);
     explicit ParseString(std::string_view);
     ParseString(const char *, size_t);
@@ -94,22 +114,26 @@ namespace Utils {
     ///Move the front forward until the front is whitespace
     void skipUntilWhitespace();
     
-    ///Throw a ParseStringExpectError exception if the front character is not
-    ///equal to the supplied character
+    ///Throw a ExpectChar exception if the front character is not equal to the
+    ///supplied character
     void expect(char);
-    ///Throw a ParseStringExpectError exception if the front part of the string
-    ///is not equal to the supplied string
+    ///Throw a ExpectString exception if the front part of the string is not
+    ///equal to the supplied string
     void expect(const char *, size_t);
-    ///Throw a ParseStringExpectError exception if the front part of the string
-    ///is not equal to the supplied string
+    ///Throw a ExpectString exception if the front part of the string is not
+    ///equal to the supplied string
     void expect(std::string_view);
+    ///Throw a ExpectString exception if the supplied predicate returns false.
+    ///The name of the predicate is copied into the ExpectString exception
+    template <typename Pred>
+    void expect(Pred &&, std::string_view);
     
-    ///Skip characters then throw a ParseStringExpectError exception if the
-    ///front character is not equal to the supplied character
+    ///Skip characters then throw a ExpectChar exception if the front character
+    ///is not equal to the supplied character
     template <typename Pred>
     void expectAfter(Pred &&, char);
-    ///Skip whitespace then throw a ParseStringExpectError exception if the
-    ///front character is not equal to the supplied character
+    ///Skip whitespace then throw a ExpectChar exception if the front character
+    ///is not equal to the supplied character
     void expectAfterWhitespace(char);
     
     ///Advances and returns true if the front character is equal to the supplied
@@ -127,32 +151,32 @@ namespace Utils {
     bool check(Pred &&);
     
     ///Interprets the front part of the string as a number. Throws a
-    ///ParseStringNumberError exception on failure
+    ///InvalidNumber exception on failure
     template <typename Number>
     void parseNumber(Number &);
     ///Interprets the front part of the string as a number. Throws a
-    ///ParseStringNumberError exception on failure
+    ///InvalidNumber exception on failure
     template <typename Number>
     Number parseNumber();
     
     ///Interprets the front part of the string as a little endian binary number.
-    ///Performs a byte-swap if necessary. Throws a ParseStringNumberError
-    ///exception if the string is an insufficient size.
+    ///Performs a byte-swap if necessary. Throws a InvalidNumber exception if
+    ///the string is an insufficient size.
     template <typename Number>
     void readNumberLil(Number &);
     ///Interprets the front part of the string as a big endian binary number.
-    ///Performs a byte-swap if necessary. Throws a ParseStringNumberError
-    ///exception if the string is an insufficient size.
+    ///Performs a byte-swap if necessary. Throws a InvalidNumber exception if
+    ///the string is an insufficient size.
     template <typename Number>
     void readNumberBig(Number &);
     ///Interprets the front part of the string as an array of little endian
-    ///binary numbers. Performs a byte-swap if necessary. Throws a
-    ///ParseStringNumberError exception if the string is an insufficient size.
+    ///binary numbers. Performs a byte-swap if necessary. Throws a InvalidNumber
+    ///exception if the string is an insufficient size.
     template <typename Number>
     void readNumbersLil(Number *, size_t);
     ///Interprets the front part of the string as an array of big endian binary
-    ///numbers. Performs a byte-swap if necessary. Throws a
-    ///ParseStringNumberError exception if the string is an insufficient size.
+    ///numbers. Performs a byte-swap if necessary. Throws a InvalidNumber
+    ///exception if the string is an insufficient size.
     template <typename Number>
     void readNumbersBig(Number *, size_t);
     

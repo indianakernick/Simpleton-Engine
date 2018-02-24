@@ -18,37 +18,74 @@ namespace Utils {
   }
 }
 
-inline Utils::ParseStringExpectError::ParseStringExpectError(
+inline Utils::ExpectChar::ExpectChar(
   const char c,
   const unsigned line,
-  const unsigned col)
-  : mLine(line),
+  const unsigned col
+) : mLine(line),
     mCol(col),
     mExpected(c) {}
 
-inline char Utils::ParseStringExpectError::expectedChar() const {
+inline char Utils::ExpectChar::expectedChar() const {
   return mExpected;
 }
 
-inline unsigned Utils::ParseStringExpectError::line() const {
+inline unsigned Utils::ExpectChar::line() const {
   return mLine;
 }
 
-inline unsigned Utils::ParseStringExpectError::column() const {
+inline unsigned Utils::ExpectChar::column() const {
   return mCol;
 }
 
-inline const char *Utils::ParseStringExpectError::what() const noexcept {
+inline const char *Utils::ExpectChar::what() const noexcept {
   //@TODO use static memory when std::to_chars arrives
-  return (std::string("Expected character '")
-         + mExpected
-         + "' at "
-         + std::to_string(mLine)
-         + ':'
-         + std::to_string(mCol)).c_str();
+  return (
+    std::string("Expected character '")
+    + mExpected
+    + "' at "
+    + std::to_string(mLine)
+    + ':'
+    + std::to_string(mCol)
+  ).c_str();
 }
 
-inline Utils::ParseStringNumberError::ParseStringNumberError(const std::string &error)
+inline Utils::ExpectString::ExpectString(
+  const char *data,
+  const size_t size,
+  const unsigned line,
+  const unsigned col
+) : mLine(line), mCol(col) {
+  mExpectedSize = size < MAX_STR_SIZE ? size : MAX_STR_SIZE;
+  std::memcpy(mExpected, data, mExpectedSize);
+}
+
+inline std::string_view Utils::ExpectString::expectedStr() const {
+  return {mExpected, mExpectedSize};
+}
+
+inline unsigned Utils::ExpectString::line() const {
+  return mLine;
+}
+
+inline unsigned Utils::ExpectString::column() const {
+  return mCol;
+}
+
+inline const char *Utils::ExpectString::what() const noexcept {
+  //@TODO use static memory when std::to_chars arrives
+  return (
+    std::string("Expected string at ")
+    + std::to_string(mLine)
+    + ':'
+    + std::to_string(mCol)
+    + " \""
+    + std::string(mExpected, mExpectedSize)
+    + '"'
+  ).c_str();
+}
+
+inline Utils::InvalidNumber::InvalidNumber(const std::string &error)
   : std::runtime_error("Error while parsing number: " + error) {}
 
 inline Utils::ParseString::ParseString(const std::string &string)
@@ -149,20 +186,29 @@ inline void Utils::ParseString::skipUntilWhitespace() {
 
 inline void Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
-    throw ParseStringExpectError(c, mLineCol.line(), mLineCol.col());
+    throw ExpectChar(c, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck();
 }
 
 inline void Utils::ParseString::expect(const char *data, const size_t size) {
   if (mSize < size || std::memcmp(mData, data, size) != 0) {
-    throw ParseStringExpectError(*data, mLineCol.line(), mLineCol.col());
+    throw ExpectString(data, size, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck(size);
 }
 
 inline void Utils::ParseString::expect(const std::string_view view) {
   expect(view.data(), view.size());
+}
+
+template <typename Pred>
+inline void Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
+  // @TODO new exception class just for this function?
+  if (mSize == 0 || !pred(*mData)) {
+    throw ExpectString(name.data(), name.size(), mLineCol.line(), mLineCol.col());
+  }
+  advanceNoCheck();
 }
 
 template <typename Pred>
@@ -220,10 +266,10 @@ void Utils::ParseString::parseNumber(Number &number) {
       char *end;
       const unsigned long long num = std::strtoull(mData, &end, 0);
       if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
-        throw ParseStringNumberError("Number out of range");
+        throw InvalidNumber("Number out of range");
       }
       if (num == 0 && end == mData) {
-        throw ParseStringNumberError("Invalid number");
+        throw InvalidNumber("Invalid number");
       }
       advanceNoCheck(end - mData);
       number = static_cast<Number>(num);
@@ -231,10 +277,10 @@ void Utils::ParseString::parseNumber(Number &number) {
       char *end;
       const long long num = std::strtoll(mData, &end, 0);
       if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
-        throw ParseStringNumberError("Number out of range");
+        throw InvalidNumber("Number out of range");
       }
       if (num == 0 && end == mData) {
-        throw ParseStringNumberError("Invalid number");
+        throw InvalidNumber("Invalid number");
       }
       advanceNoCheck(end - mData);
       number = static_cast<Number>(num);
@@ -243,10 +289,10 @@ void Utils::ParseString::parseNumber(Number &number) {
     char *end;
     const long double num = std::strtold(mData, &end);
     if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
-      throw ParseStringNumberError("Number out of range");
+      throw InvalidNumber("Number out of range");
     }
     if (num == 0 && end == mData) {
-      throw ParseStringNumberError("Invalid number");
+      throw InvalidNumber("Invalid number");
     }
     advanceNoCheck(end - mData);
     number = static_cast<Number>(num);
@@ -273,7 +319,7 @@ Number Utils::ParseString::parseNumber() {
 template <typename Number>
 void Utils::ParseString::readNumberLil(Number &n) {
   if (mSize < sizeof(Number)) {
-    throw ParseStringNumberError("String is insufficient size to read number");
+    throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromLilEndian(&n, mData, 1);
   advanceBin(sizeof(Number));
@@ -282,7 +328,7 @@ void Utils::ParseString::readNumberLil(Number &n) {
 template <typename Number>
 void Utils::ParseString::readNumberBig(Number &n) {
   if (mSize < sizeof(Number)) {
-    throw ParseStringNumberError("String is insufficient size to read number");
+    throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromBigEndian(&n, mData, 1);
   advanceBin(sizeof(Number));
@@ -291,7 +337,7 @@ void Utils::ParseString::readNumberBig(Number &n) {
 template <typename Number>
 void Utils::ParseString::readNumbersLil(Number *n, const size_t size) {
   if (mSize < sizeof(Number) * size) {
-    throw ParseStringNumberError("String is insufficient size to read number");
+    throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromLilEndian(n, mData, size);
   advanceBin(sizeof(Number) * size);
@@ -300,7 +346,7 @@ void Utils::ParseString::readNumbersLil(Number *n, const size_t size) {
 template <typename Number>
 void Utils::ParseString::readNumbersBig(Number *n, const size_t size) {
   if (mSize < sizeof(Number) * size) {
-    throw ParseStringNumberError("String is insufficient size to read number");
+    throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromBigEndian(n, mData, size);
   advanceBin(sizeof(Number) * size);
