@@ -33,7 +33,7 @@ namespace Memory {
   size_t sizeOfFile(std::FILE *);
   
   void readFile(void *, size_t, std::FILE *);
-  void writeFile(void *, size_t, std::FILE *);
+  void writeFile(const void *, size_t, std::FILE *);
 
   Buffer readFile(const std::string &);
   Buffer readFile(const char *);

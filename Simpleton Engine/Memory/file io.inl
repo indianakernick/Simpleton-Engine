@@ -47,7 +47,7 @@ inline void Memory::readFile(void *const data, const size_t size, std::FILE *con
   }
 }
 
-inline void Memory::writeFile(void *const data, const size_t size, std::FILE *const file) {
+inline void Memory::writeFile(const void *const data, const size_t size, std::FILE *const file) {
   if (std::fwrite(data, size, 1, file) == 0) {
     throw FileError("Failed to write to file");
   }
