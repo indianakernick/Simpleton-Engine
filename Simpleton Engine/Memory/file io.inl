@@ -56,6 +56,10 @@ inline void Memory::writeFile(const void *const data, const size_t size, std::FI
   }
 }
 
+inline Memory::Buffer Memory::readFile(const std::string_view path) {
+  return readFile(std::string(path));
+}
+
 inline Memory::Buffer Memory::readFile(const std::string &path) {
   return readFile(path.c_str());
 }
@@ -80,6 +84,10 @@ inline Memory::Buffer Memory::readFile(std::ifstream &stream) {
   } else {
     throw FileError("Failed to read from input stream");
   }
+}
+
+inline void Memory::writeFile(const Memory::Buffer &buf, const std::string_view path) {
+  writeFile(buf, std::string(path));
 }
 
 inline void Memory::writeFile(const Memory::Buffer &buf, const std::string &path) {

@@ -10,8 +10,10 @@
 #define engine_memory_file_io_hpp
 
 #include <cstdio>
+#include <string>
 #include <fstream>
 #include "buffer.hpp"
+#include <string_view>
 
 namespace Memory {
   class FileError final : public std::runtime_error {
@@ -35,11 +37,13 @@ namespace Memory {
   void readFile(void *, size_t, std::FILE *);
   void writeFile(const void *, size_t, std::FILE *);
 
+  Buffer readFile(std::string_view);
   Buffer readFile(const std::string &);
   Buffer readFile(const char *);
   Buffer readFile(std::FILE *);
   Buffer readFile(std::ifstream &);
   
+  void writeFile(const Buffer &, std::string_view);
   void writeFile(const Buffer &, const std::string &);
   void writeFile(const Buffer &, const char *);
   void writeFile(const Buffer &, std::FILE *);

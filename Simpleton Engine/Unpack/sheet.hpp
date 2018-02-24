@@ -46,14 +46,11 @@ namespace Unpack {
     bool hasWhitepixel() const;
     /// Get whitepixel pos. Returns NO_WHITEPIXEL if there isn't one
     glm::vec2 getWhitepixel() const;
-    /// Get the size of the spritesheet in pixels
-    glm::ivec2 getSize() const;
     
   private:
-    std::unordered_map<std::string, SpriteID> spriteNames;
-    std::vector<Rect> sprites;
+    std::unordered_map<std::string, SpriteID> names;
+    std::vector<Rect> rects;
     glm::vec2 whitepixel;
-    glm::ivec2 size;
   };
   
   Spritesheet makeSpritesheet(std::string_view);
