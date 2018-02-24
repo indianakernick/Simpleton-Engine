@@ -154,6 +154,17 @@ inline void Utils::ParseString::expect(const char c) {
   advanceNoCheck();
 }
 
+inline void Utils::ParseString::expect(const char *data, const size_t size) {
+  if (mSize < size || std::memcmp(mData, data, size) != 0) {
+    throw ParseStringExpectError(*data, mLineCol.line(), mLineCol.col());
+  }
+  advanceNoCheck(size);
+}
+
+inline void Utils::ParseString::expect(const std::string_view view) {
+  expect(view.data(), view.size());
+}
+
 template <typename Pred>
 void Utils::ParseString::expectAfter(Pred &&pred, const char c) {
   skip(pred);

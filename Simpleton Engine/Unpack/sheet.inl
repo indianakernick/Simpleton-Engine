@@ -35,36 +35,51 @@ inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasP
   Utils::ParseString string(file.cdata<char>(), file.size());
   Spritesheet sheet;
   
-  uint32_t numSprites;
-  string.readNumberLil(numSprites);
-  
-  sheet.names.reserve(numSprites);
-  sheet.rects.reserve(numSprites);
-  
-  for (SpriteID i = 0; i != numSprites - 1; ++i) {
+  string.expect("{\"length\":");
+  const auto length = string.parseNumber<uint32_t>();
+  string.expect(",\"names\":{");
+  while (true) {
+    string.expect('"');
     std::string name;
-    string.copyUntil(name, '\n');
-    string.expect('\n');
-    sheet.names.emplace(name, i);
+    string.copyUntil(name, '"');
+    string.expect("\":");
+    sheet.names.emplace(name, string.parseNumber<SpriteID>());
+    if (string.front() == '}') {
+      break;
+    } else {
+      string.expect(',');
+    }
   }
   
-  bool hasWhitepixel = false;
-  std::string lastName;
-  string.copyUntil(lastName, '\n');
-  string.expect('\n');
-  if (lastName == "__WHITEPIXEL__") {
-    hasWhitepixel = true;
-  } else {
-    sheet.names.emplace(lastName, numSprites - 1);
-  }
-  
-  for (uint32_t i = 0; i != numSprites; ++i) {
+  string.expect("},\"rects\":[");
+  while (true) {
     Rect rect;
-    string.readNumbersLil(&rect.min.x, 4);
+    string.expect('[');
+    string.parseNumber(rect.min.x);
+    string.expect(',');
+    string.parseNumber(rect.min.y);
+    string.expect(',');
+    string.parseNumber(rect.max.x);
+    string.expect(',');
+    string.parseNumber(rect.max.y);
+    string.expect(']');
+    
+    rect.min /= glm::vec2(length);
+    rect.max /= glm::vec2(length);
     sheet.rects.push_back(rect);
+    
+    if (string.front() == ']') {
+      break;
+    } else {
+      string.expect(',');
+    }
   }
   
-  if (hasWhitepixel) {
+  string.expect("]}\n");
+  
+  auto iter = sheet.names.find("__WHITEPIXEL__");
+  if (iter != sheet.names.cend()) {
+    sheet.names.erase(iter);
     const Rect whiteRect = sheet.rects.back();
     sheet.rects.pop_back();
     sheet.whitepixel = {

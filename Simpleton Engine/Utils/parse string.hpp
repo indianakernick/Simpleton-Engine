@@ -97,6 +97,13 @@ namespace Utils {
     ///Throw a ParseStringExpectError exception if the front character is not
     ///equal to the supplied character
     void expect(char);
+    ///Throw a ParseStringExpectError exception if the front part of the string
+    ///is not equal to the supplied string
+    void expect(const char *, size_t);
+    ///Throw a ParseStringExpectError exception if the front part of the string
+    ///is not equal to the supplied string
+    void expect(std::string_view);
+    
     ///Skip characters then throw a ParseStringExpectError exception if the
     ///front character is not equal to the supplied character
     template <typename Pred>
