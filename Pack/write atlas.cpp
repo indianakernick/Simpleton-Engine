@@ -8,12 +8,27 @@
 
 #include "write atlas.hpp"
 
-#include <Simpleton/Memory/file io.hpp>
-#include <Simpleton/Utils/compose string.hpp>
+#include <fstream>
 
 std::string_view getImageName(const std::string &path) {
   const size_t lastSlash = path.find_last_of('/');
   return {path.c_str() + lastSlash + 1, path.find_last_of('.') - lastSlash - 1};
+}
+
+void writeName(std::ofstream &file, const std::string &path, const size_t index) {
+  file << '"' << getImageName(path) << "\":" << index;
+}
+
+void writeRect(std::ofstream &file, stbrp_rect rect, const stbrp_coord sep) {
+  rect.w = rect.w - sep + rect.x;
+  rect.h = rect.h - sep + rect.y;
+  std::swap(rect.h, rect.y);
+  file << '['
+    << static_cast<float>(rect.x) << ','
+    << static_cast<float>(rect.y) << ','
+    << static_cast<float>(rect.w) << ','
+    << static_cast<float>(rect.h) << ']'
+  ;
 }
 
 void writeAtlas(
@@ -31,24 +46,21 @@ void writeAtlas(
     throw std::runtime_error("Texture size is too large");
   }
   
-  Utils::ComposeString string(names.size() * 32 + rects.size() * 32);
-  string.writeNumberLil(static_cast<uint32_t>(names.size()));
-  for (auto n = names.cbegin(); n != names.cend(); ++n) {
-    string.write(getImageName(*n));
-    string.write('\n');
+  std::ofstream file{std::string(path)};
+  file << "{\"length\":" << length << ",\"names\":{";
+  for (size_t n = 0; n != names.size() - 1; ++n) {
+    writeName(file, names[n], n);
+    file << ',';
   }
-  for (auto r = rects.cbegin(); r != rects.cend(); ++r) {
-    stbrp_rect rect = *r;
-    rect.w = rect.w - sep + rect.x;
-    rect.h = rect.h - sep + rect.y;
-    std::swap(rect.h, rect.y);
-    string.writeNumberLil(static_cast<float>(rect.x) / length);
-    string.writeNumberLil(static_cast<float>(rect.y) / length);
-    string.writeNumberLil(static_cast<float>(rect.w) / length);
-    string.writeNumberLil(static_cast<float>(rect.h) / length);
-  }
+  writeName(file, names.back(), names.size() - 1);
   
-  const std::string_view view = string.view();
-  const Memory::FileHandle file = Memory::openFileWrite(path.data());
-  Memory::writeFile(view.data(), view.size(), file.get());
+  file << "},\"rects\":[";
+  
+  for (auto r = rects.cbegin(); r != rects.cend() - 1; ++r) {
+    writeRect(file, *r, sep);
+    file << ',';
+  }
+  writeRect(file, rects.back(), sep);
+  
+  file << "]}\n";
 }
