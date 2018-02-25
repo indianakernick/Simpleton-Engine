@@ -93,48 +93,40 @@ namespace Utils {
     
     ///Move the front of the string forward. Increments line and column
     ///numbers accordingly
-    void advance(size_t);
+    ParseString &advance(size_t);
     ///Move the front of the string forward by one character. Increments line
     ///and column numbers accordingly
-    void advance();
+    ParseString &advance();
     
     ///Move the front forward while the front is equal to the supplied character
-    void skip(char);
+    ParseString &skip(char);
     ///Move the front forward while the supplied predicate returns true
     template <typename Pred>
-    void skip(Pred &&);
+    ParseString &skip(Pred &&);
     ///Move the front forward while the front is whitespace
-    void skipWhitespace();
+    ParseString &skipWhitespace();
     
     ///Move the front forward until the front is equal to the supplied character
-    void skipUntil(char);
+    ParseString &skipUntil(char);
     ///Move the front forward until the supplied predicate returns true
     template <typename Pred>
-    void skipUntil(Pred &&);
+    ParseString &skipUntil(Pred &&);
     ///Move the front forward until the front is whitespace
-    void skipUntilWhitespace();
+    ParseString &skipUntilWhitespace();
     
     ///Throw a ExpectChar exception if the front character is not equal to the
     ///supplied character
-    void expect(char);
+    ParseString &expect(char);
     ///Throw a ExpectString exception if the front part of the string is not
     ///equal to the supplied string
-    void expect(const char *, size_t);
+    ParseString &expect(const char *, size_t);
     ///Throw a ExpectString exception if the front part of the string is not
     ///equal to the supplied string
-    void expect(std::string_view);
+    ParseString &expect(std::string_view);
     ///Throw a ExpectString exception if the supplied predicate returns false.
     ///The name of the predicate is copied into the ExpectString exception
     template <typename Pred>
-    void expect(Pred &&, std::string_view);
-    
-    ///Skip characters then throw a ExpectChar exception if the front character
-    ///is not equal to the supplied character
-    template <typename Pred>
-    void expectAfter(Pred &&, char);
-    ///Skip whitespace then throw a ExpectChar exception if the front character
-    ///is not equal to the supplied character
-    void expectAfterWhitespace(char);
+    ParseString &expect(Pred &&, std::string_view);
     
     ///Advances and returns true if the front character is equal to the supplied
     ///character. Does nothing and returns false otherwise
@@ -153,7 +145,7 @@ namespace Utils {
     ///Interprets the front part of the string as a number. Throws a
     ///InvalidNumber exception on failure
     template <typename Number>
-    void parseNumber(Number &);
+    ParseString &parseNumber(Number &);
     ///Interprets the front part of the string as a number. Throws a
     ///InvalidNumber exception on failure
     template <typename Number>
@@ -163,22 +155,22 @@ namespace Utils {
     ///Performs a byte-swap if necessary. Throws a InvalidNumber exception if
     ///the string is an insufficient size.
     template <typename Number>
-    void readNumberLil(Number &);
+    ParseString &readNumberLil(Number &);
     ///Interprets the front part of the string as a big endian binary number.
     ///Performs a byte-swap if necessary. Throws a InvalidNumber exception if
     ///the string is an insufficient size.
     template <typename Number>
-    void readNumberBig(Number &);
+    ParseString &readNumberBig(Number &);
     ///Interprets the front part of the string as an array of little endian
     ///binary numbers. Performs a byte-swap if necessary. Throws a InvalidNumber
     ///exception if the string is an insufficient size.
     template <typename Number>
-    void readNumbersLil(Number *, size_t);
+    ParseString &readNumbersLil(Number *, size_t);
     ///Interprets the front part of the string as an array of big endian binary
     ///numbers. Performs a byte-swap if necessary. Throws a InvalidNumber
     ///exception if the string is an insufficient size.
     template <typename Number>
-    void readNumbersBig(Number *, size_t);
+    ParseString &readNumbersBig(Number *, size_t);
     
     ///Interprets the front part of the string as an enum. Returns the index of
     ///a name that matches or returns the number of names if no name matches.
@@ -189,7 +181,7 @@ namespace Utils {
     size_t copy(char *, size_t);
     ///Copies characters from the front part of the string. Advances the number
     ///of characters that were copied.
-    void copy(std::string &, size_t);
+    ParseString &copy(std::string &, size_t);
     
     ///Copies characters from the front part of the string while the supplied
     ///predicate returns true. Advances the number of characters that
@@ -200,7 +192,7 @@ namespace Utils {
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
-    void copyWhile(std::string &, Pred &&);
+    ParseString &copyWhile(std::string &, Pred &&);
     
     ///Copies characters from the front part of the string until the front is
     ///equal to the supplied character. Advances the number of characters that
@@ -209,7 +201,7 @@ namespace Utils {
     ///Copies characters from the front part of the string until the front is
     ///equal to the supplied character. Advances the number of characters that
     ///were copied.
-    void copyUntil(std::string &, char);
+    ParseString &copyUntil(std::string &, char);
     
     ///Copies characters from the front part of the string until the supplied
     ///predicate returns true. Advances the number of characters that
@@ -220,14 +212,14 @@ namespace Utils {
     ///predicate returns true. Advances the number of characters that
     ///were copied.
     template <typename Pred>
-    void copyUntil(std::string &, Pred &&);
+    ParseString &copyUntil(std::string &, Pred &&);
     
     ///Copies characters from the front part of the string until the front is
     ///whitespace. Advances the number of characters that were copied.
     size_t copyUntilWhitespace(char *, size_t);
     ///Copies characters from the front part of the string until the front is
     ///whitespace. Advances the number of characters that were copied.
-    void copyUntilWhitespace(std::string &);
+    ParseString &copyUntilWhitespace(std::string &);
     
   private:
     const char *mData;

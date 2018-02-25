@@ -140,85 +140,82 @@ inline char Utils::ParseString::front() const {
   return *mData;
 }
 
-inline void Utils::ParseString::advance(const size_t numChars) {
+inline Utils::ParseString &Utils::ParseString::advance(const size_t numChars) {
   if (numChars > mSize) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
   advanceNoCheck(numChars);
+  return *this;
 }
 
-inline void Utils::ParseString::advance() {
+inline Utils::ParseString &Utils::ParseString::advance() {
   if (mSize == 0) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
   advanceNoCheck();
+  return *this;
 }
 
-inline void Utils::ParseString::skip(const char c) {
+inline Utils::ParseString &Utils::ParseString::skip(const char c) {
   skip(charEqualTo(c));
+  return *this;
 }
 
 template <typename Pred>
-void Utils::ParseString::skip(Pred &&pred) {
+Utils::ParseString &Utils::ParseString::skip(Pred &&pred) {
   size_t numChars = 0;
   while (numChars < mSize && pred(mData[numChars])) {
     ++numChars;
   }
   advanceNoCheck(numChars);
+  return *this;
 }
 
-inline void Utils::ParseString::skipWhitespace() {
-  skip(isspace);
+inline Utils::ParseString &Utils::ParseString::skipWhitespace() {
+  return skip(isspace);
 }
 
-inline void Utils::ParseString::skipUntil(const char c) {
-  skipUntil(charEqualTo(c));
+inline Utils::ParseString &Utils::ParseString::skipUntil(const char c) {
+  return skipUntil(charEqualTo(c));
 }
 
 template <typename Pred>
-void Utils::ParseString::skipUntil(Pred &&pred) {
-  skip(std::not_fn(pred));
+Utils::ParseString &Utils::ParseString::skipUntil(Pred &&pred) {
+  return skip(std::not_fn(pred));
 }
 
-inline void Utils::ParseString::skipUntilWhitespace() {
-  skipUntil(isspace);
+inline Utils::ParseString &Utils::ParseString::skipUntilWhitespace() {
+  return skipUntil(isspace);
 }
 
-inline void Utils::ParseString::expect(const char c) {
+inline Utils::ParseString &Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
     throw ExpectChar(c, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck();
+  return *this;
 }
 
-inline void Utils::ParseString::expect(const char *data, const size_t size) {
+inline Utils::ParseString &Utils::ParseString::expect(const char *data, const size_t size) {
   if (mSize < size || std::memcmp(mData, data, size) != 0) {
     throw ExpectString(data, size, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck(size);
+  return *this;
 }
 
-inline void Utils::ParseString::expect(const std::string_view view) {
-  expect(view.data(), view.size());
+inline Utils::ParseString &Utils::ParseString::expect(const std::string_view view) {
+  return expect(view.data(), view.size());
 }
 
 template <typename Pred>
-inline void Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
+inline Utils::ParseString &Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
   // @TODO new exception class just for this function?
   if (mSize == 0 || !pred(*mData)) {
     throw ExpectString(name.data(), name.size(), mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck();
-}
-
-template <typename Pred>
-void Utils::ParseString::expectAfter(Pred &&pred, const char c) {
-  skip(pred);
-  expect(c);
-}
-
-inline void Utils::ParseString::expectAfterWhitespace(const char c) {
-  expectAfter(isspace, c);
+  return *this;
 }
 
 inline bool Utils::ParseString::check(const char c) {
@@ -260,7 +257,7 @@ bool Utils::ParseString::check(Pred &&pred) {
 }
 
 template <typename Number>
-void Utils::ParseString::parseNumber(Number &number) {
+Utils::ParseString &Utils::ParseString::parseNumber(Number &number) {
   if constexpr (std::is_integral<Number>::value) {
     if constexpr (std::is_unsigned<Number>::value) {
       char *end;
@@ -297,6 +294,7 @@ void Utils::ParseString::parseNumber(Number &number) {
     advanceNoCheck(end - mData);
     number = static_cast<Number>(num);
   }
+  return *this;
 
   /*
   @TODO
@@ -306,6 +304,7 @@ void Utils::ParseString::parseNumber(Number &number) {
     throw ParseStringNumberError(error.message());
   }
   advanceNoCheck(end - mData);
+  return *this;
   */
 }
 
@@ -317,39 +316,43 @@ Number Utils::ParseString::parseNumber() {
 }
 
 template <typename Number>
-void Utils::ParseString::readNumberLil(Number &n) {
+Utils::ParseString &Utils::ParseString::readNumberLil(Number &n) {
   if (mSize < sizeof(Number)) {
     throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromLilEndian(&n, mData, 1);
   advanceBin(sizeof(Number));
+  return *this;
 }
 
 template <typename Number>
-void Utils::ParseString::readNumberBig(Number &n) {
+Utils::ParseString &Utils::ParseString::readNumberBig(Number &n) {
   if (mSize < sizeof(Number)) {
     throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromBigEndian(&n, mData, 1);
   advanceBin(sizeof(Number));
+  return *this;
 }
 
 template <typename Number>
-void Utils::ParseString::readNumbersLil(Number *n, const size_t size) {
+Utils::ParseString &Utils::ParseString::readNumbersLil(Number *n, const size_t size) {
   if (mSize < sizeof(Number) * size) {
     throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromLilEndian(n, mData, size);
   advanceBin(sizeof(Number) * size);
+  return *this;
 }
 
 template <typename Number>
-void Utils::ParseString::readNumbersBig(Number *n, const size_t size) {
+Utils::ParseString &Utils::ParseString::readNumbersBig(Number *n, const size_t size) {
   if (mSize < sizeof(Number) * size) {
     throw InvalidNumber("String is insufficient size to read number");
   }
   copyFromBigEndian(n, mData, size);
   advanceBin(sizeof(Number) * size);
+  return *this;
 }
 
 inline size_t Utils::ParseString::parseEnum(const std::string_view *const names, const size_t numNames) {
@@ -371,10 +374,11 @@ inline size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
   return numChars;
 }
 
-inline void Utils::ParseString::copy(std::string &dst, const size_t copySize) {
+inline Utils::ParseString &Utils::ParseString::copy(std::string &dst, const size_t copySize) {
   const size_t numChars = mSize < copySize ? mSize : copySize;
   dst.append(mData, numChars);
   advanceNoCheck(numChars);
+  return *this;
 }
 
 template <typename Pred>
@@ -392,18 +396,19 @@ size_t Utils::ParseString::copyWhile(char *dst, const size_t dstSize, Pred &&pre
 }
 
 template <typename Pred>
-void Utils::ParseString::copyWhile(std::string &dst, Pred &&pred) {
+Utils::ParseString &Utils::ParseString::copyWhile(std::string &dst, Pred &&pred) {
   while (mSize && pred(*mData)) {
     dst.push_back(*mData);
     advanceNoCheck();
   }
+  return *this;
 }
 
 inline size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, const char c) {
   return copyUntil(dst, dstSize, charEqualTo(c));
 }
 
-inline void Utils::ParseString::copyUntil(std::string &dst, const char c) {
+inline Utils::ParseString &Utils::ParseString::copyUntil(std::string &dst, const char c) {
   return copyUntil(dst, charEqualTo(c));
 }
 
@@ -413,16 +418,16 @@ size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, Pred
 }
 
 template <typename Pred>
-void Utils::ParseString::copyUntil(std::string &dst, Pred &&pred) {
-  copyWhile(dst, std::not_fn(pred));
+Utils::ParseString &Utils::ParseString::copyUntil(std::string &dst, Pred &&pred) {
+  return copyWhile(dst, std::not_fn(pred));
 }
 
 inline size_t Utils::ParseString::copyUntilWhitespace(char *const dst, const size_t dstSize) {
   return copyUntil(dst, dstSize, isspace);
 }
 
-inline void Utils::ParseString::copyUntilWhitespace(std::string &dst) {
-  copyUntil(dst, isspace);
+inline Utils::ParseString &Utils::ParseString::copyUntilWhitespace(std::string &dst) {
+  return copyUntil(dst, isspace);
 }
 
 inline void Utils::ParseString::advanceNoCheck(const size_t numChars) {
