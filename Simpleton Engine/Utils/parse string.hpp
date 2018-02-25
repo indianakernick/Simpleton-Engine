@@ -137,6 +137,10 @@ namespace Utils {
     ///Advances and returns true if the front part of the string is equal to the
     ///supplied string. Does nothing and returns false otherwise
     bool check(std::string_view);
+    ///Advances and returns true if the front part of the string is equal to the
+    ///supplied string. Does nothing and returns false otherwise
+    template <size_t SIZE>
+    bool check(const char (&)[SIZE]);
     ///Advances and returns true if the supplied predicate returns true for the
     ///first character. Does nothing and returns false otherwise
     template <typename Pred>

@@ -246,6 +246,11 @@ inline bool Utils::ParseString::check(const std::string_view view) {
   return check(view.data(), view.size());
 }
 
+template <size_t SIZE>
+bool Utils::ParseString::check(const char (&string)[SIZE]) {
+  return check(string, SIZE);
+}
+
 template <typename Pred>
 bool Utils::ParseString::check(Pred &&pred) {
   if (mSize == 0 || !pred(*mData)) {
