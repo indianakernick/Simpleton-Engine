@@ -7,7 +7,7 @@
 		<key>Pack.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Simpleton Engine.xcscheme</key>
 		<dict>
@@ -17,7 +17,7 @@
 		<key>Test.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

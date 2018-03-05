@@ -74,6 +74,7 @@ namespace GL::detail {
       
       default:
         assert(false);
+        return "(Unknown error)";
     }
   }
 }
