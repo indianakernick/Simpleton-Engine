@@ -8,22 +8,111 @@
 
 #include "../SDL/error.hpp"
 
-inline void GL::Context::makeCurrent(SDL_Window *const window) const {
-  CHECK_SDL_ERROR(SDL_GL_MakeCurrent(window, context));
+inline void GL::Context::init(SDL_Window *const newWindow) {
+  window = newWindow;
+  initImpl(false);
 }
 
-inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams &params) {
+inline void GL::Context::initVSync(SDL_Window *const newWindow) {
+  window = newWindow;
+  const int monFPS = getMonitorFPS();
+  if (monFPS == 0) {
+    minFrameTime = 1000 / 70;
+  } else {
+    minFrameTime = 1000 / (monFPS + 10);
+  }
+  initImpl(true);
+}
+
+inline void GL::Context::initLimitFPS(SDL_Window *const newWindow, const uint32_t fps) {
+  window = newWindow;
+  if (getMonitorFPS() == static_cast<int>(fps)) {
+    minFrameTime = 1000 / (fps + 10);
+    initImpl(true);
+  } else {
+    minFrameTime = 1000 / fps;
+    initImpl(false);
+  }
+}
+
+inline void GL::Context::quit() {
+  #ifdef EMSCRIPTEN
+  SDL_DestroyRenderer(renderer);
+  #else
+  SDL_GL_DeleteContext(context);
+  #endif
+  window = nullptr;
+  minFrameTime = 0;
+}
+
+inline void GL::Context::preRender() {
+  #ifdef EMSCRIPTEN
+  
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+  SDL_RenderClear(renderer);
+  
+  #else
+  
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  CHECK_OPENGL_ERROR();
+  glClearDepth(1.0f);
+  CHECK_OPENGL_ERROR();
+  glClearStencil(0);
+  CHECK_OPENGL_ERROR();
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+  CHECK_OPENGL_ERROR();
+  
+  #endif
+}
+
+inline void GL::Context::postRender() {
+  if (minFrameTime == 0) {
+    present();
+  } else {
+    const Uint32 start = SDL_GetTicks();
+    present();
+    const Uint32 end = SDL_GetTicks();
+    
+    const Uint32 swapTime = end - start;
+    if (swapTime < minFrameTime) {
+      SDL_Delay(minFrameTime - swapTime);
+    }
+  }
+}
+
+inline glm::ivec2 GL::Context::getFrameSize() const {
+  glm::ivec2 size;
+  #ifdef EMSCRIPTEN
+  SDL_GetRendererOutputSize(renderer, &size.x, &size.y);
+  #else
+  SDL_GL_GetDrawableSize(window, &size.x, &size.y);
+  #endif
+  return size;
+}
+
+inline void GL::Context::initImpl(const bool vsync) {
+  #ifdef EMSCRIPTEN
+  
+  renderer = CHECK_SDL_NULL(SDL_CreateRenderer(
+    window,
+    -1,
+    SDL_RENDERER_ACCELERATED
+    | (vsync ? SDL_RENDERER_PRESENTVSYNC : 0)
+  ));
+  
+  #else
+  
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, params.majorVersion);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, params.minorVersion);
-  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, params.stencilBits);
-  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, params.depthBits);
-  SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, params.colorBits);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+  SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   
-  Context context(CHECK_SDL_NULL(SDL_GL_CreateContext(window)));
-  CHECK_SDL_ERROR(SDL_GL_SetSwapInterval(params.vsync));
+  context = CHECK_SDL_NULL(SDL_GL_CreateContext(window));
+  CHECK_SDL_ERROR(SDL_GL_SetSwapInterval(vsync));
   
   glewExperimental = GL_TRUE;
   const GLenum glewError = glewInit();
@@ -33,29 +122,19 @@ inline GL::Context GL::makeContext(SDL_Window *const window, const ContextParams
   
   CHECK_OPENGL_ERROR();
   
-  std::cerr << "OpenGL Version:  " << glGetString(GL_VERSION) << '\n';
-  std::cerr << "OpenGL Renderer: " << glGetString(GL_RENDERER) << '\n';
-  std::cerr << "OpenGL Vendor:   " << glGetString(GL_VENDOR) << '\n';
-  
-  CHECK_OPENGL_ERROR();
-  
-  glEnable(GL_FRAMEBUFFER_SRGB);
-  
-  CHECK_OPENGL_ERROR();
-  
-  return context;
+  #endif
 }
 
-inline void GL::clearFrame() {
-  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-  CHECK_OPENGL_ERROR();
-  
-  glClearDepth(1.0f);
-  CHECK_OPENGL_ERROR();
-  
-  glClearStencil(0);
-  CHECK_OPENGL_ERROR();
-  
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-  CHECK_OPENGL_ERROR();
+inline void GL::Context::present() {
+  #ifdef EMSCRIPTEN
+  SDL_RenderPresent(renderer);
+  #else
+  SDL_GL_SwapWindow(window);
+  #endif
+}
+
+inline int GL::Context::getMonitorFPS() {
+  SDL_DisplayMode mode;
+  CHECK_SDL_ERROR(SDL_GetWindowDisplayMode(window, &mode));
+  return mode.refresh_rate;
 }

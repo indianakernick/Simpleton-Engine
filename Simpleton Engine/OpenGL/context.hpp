@@ -10,30 +10,36 @@
 #define engine_opengl_context_hpp
 
 #include "opengl.hpp"
-#include "../Utils/generic raii.hpp"
+#include <glm/vec2.hpp>
 
 namespace GL {
   class Context {
   public:
-    UTILS_RAII_CLASS_FULL(Context, SDL_GLContext, context, SDL_GL_DeleteContext)
-  
-    void makeCurrent(SDL_Window *) const;
+    Context() = default;
+    
+    void init(SDL_Window *);
+    void initVSync(SDL_Window *);
+    void initLimitFPS(SDL_Window *, uint32_t);
+    void quit();
+    
+    void preRender();
+    void postRender();
+    
+    glm::ivec2 getFrameSize() const;
   
   private:
-    SDL_GLContext context;
+    #ifdef EMSCRIPTEN
+    SDL_Renderer *renderer = nullptr;
+    #else
+    SDL_GLContext context = nullptr;
+    #endif
+    SDL_Window *window = nullptr;
+    uint32_t minFrameTime = 0;
+    
+    void initImpl(bool);
+    void present();
+    int getMonitorFPS();
   };
-  
-  struct ContextParams {
-    int stencilBits = 8;
-    int depthBits = 16;
-    int colorBits = 32;
-    int majorVersion = 3;
-    int minorVersion = 3;
-    bool vsync = true;
-  };
-  
-  Context makeContext(SDL_Window *, const ContextParams &);
-  void clearFrame();
 }
 
 #include "context.inl"

@@ -11,14 +11,18 @@
 
 #include <cassert>
 #include <iostream>
+#include <SDL2/SDL.h>
 
-#ifndef NO_INCLUDE_SDL_OPENGL
+#ifdef EMSCRIPTEN
+
+#include <GLES3/gl32.h>
+
+#else
 
 #include <GL/glew.h>
-#include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-#endif // NO_INCLUDE_SDL_OPENGL
+#endif // EMSCRIPTEN
 
 #if defined(DISABLE_OPENGL_ERROR_CHECKING) || !defined(GL_NO_ERROR)
 

@@ -38,6 +38,9 @@ out vec4 outColor;
 
 void main() {
   outColor = color * texture(tex, fragTexCoord);
+  outColor.r = pow(outColor.r, 1.0/2.2);
+  outColor.g = pow(outColor.g, 1.0/2.2);
+  outColor.b = pow(outColor.b, 1.0/2.2);
   gl_FragDepth = (outColor.a == 0.0 ? 1.0 : gl_FragCoord.z);
 }
 )delimiter";
