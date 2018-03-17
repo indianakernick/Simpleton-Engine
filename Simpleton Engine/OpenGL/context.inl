@@ -46,6 +46,11 @@ inline void GL::Context::quit() {
 }
 
 inline void GL::Context::preRender() {
+  glm::ivec2 size;
+  SDL_GetWindowSize(window, &size.x, &size.y);
+  glViewport(0, 0, size.x, size.y);
+  CHECK_OPENGL_ERROR();
+
   #ifdef EMSCRIPTEN
   
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
