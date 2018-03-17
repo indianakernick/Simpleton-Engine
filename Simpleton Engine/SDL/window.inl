@@ -66,3 +66,14 @@ inline bool SDL::Window::captureMouse() const {
 inline void SDL::Window::raise() {
   SDL_RaiseWindow(window);
 }
+
+inline void SDL::Window::fullscreen(const bool enabled) {
+  CHECK_SDL_ERROR(SDL_SetWindowFullscreen(
+    window,
+    enabled ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0
+  ));
+}
+
+inline void SDL::Window::toggleFullscreen() {
+  fullscreen((SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP) == 0);
+}

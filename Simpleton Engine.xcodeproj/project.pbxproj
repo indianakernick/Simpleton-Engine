@@ -134,6 +134,7 @@
 		454B2B3B2041867C00D94D6A /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
+		456B8378205CD63C0016F6D0 /* mainloop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mainloop.hpp; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		45771C0C1FE8770800F533DA /* opengl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = opengl.hpp; sourceTree = "<group>"; };
@@ -621,6 +622,7 @@
 				45B32EAF1FF47C59007BA7F4 /* debug input.hpp */,
 				45B32EB71FF481FD007BA7F4 /* events.inl */,
 				45B32EB81FF481FD007BA7F4 /* events.hpp */,
+				456B8378205CD63C0016F6D0 /* mainloop.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";
@@ -769,6 +771,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)",
 			);
 			outputPaths = (
 			);
