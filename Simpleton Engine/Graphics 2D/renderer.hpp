@@ -10,8 +10,6 @@
 #define engine_graphics_2d_renderer_hpp
 
 #include "types.hpp"
-#include <glm/vec4.hpp>
-#include <glm/mat3x3.hpp>
 #include "../OpenGL/buffer.hpp"
 #include "../OpenGL/texture.hpp"
 #include "../OpenGL/vertex array.hpp"
@@ -28,16 +26,13 @@ namespace G2D {
     
     TextureID addTexture(GL::Texture2D &&);
     
-    Quad *getQuadBuf();
-    size_t getQuadBufSize() const;
-    
-    void setQuadBufSize(size_t);
-    void render(const glm::mat3 &, TextureID, glm::vec4 = glm::vec4(1.0f));
+    void writeQuads(Quads);
+    void render(const RenderJob &);
   
   private:
     std::vector<GL::Texture2D> textures;
-    Quads quads;
     Elems indicies;
+    size_t numQuads = 0;
     GL::ArrayBuffer arrayBuf;
     GL::ElementBuffer elemBuf;
     GL::VertexArray vertArray;
@@ -50,7 +45,7 @@ namespace G2D {
     void initUniforms();
     void initVertexArray();
     void fillIndicies(size_t);
-    void writeVerticies();
+    void setQuadBufSize(size_t);
   };
 }
 

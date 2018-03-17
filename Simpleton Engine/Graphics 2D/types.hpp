@@ -14,6 +14,8 @@
 #include <vector>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat3x3.hpp>
 
 namespace G2D {
   using PosType = glm::vec3;
@@ -26,10 +28,22 @@ namespace G2D {
   };
   
   using Quad = std::array<Vertex, 4>;
-  using Quads = std::vector<Quad>;
   using Elems = std::vector<ElemType>;
-  
   using TextureID = size_t;
+  
+  struct Quads {
+    const Quad *data;
+    size_t size;
+    size_t offset = 0;
+  };
+  
+  struct RenderJob {
+    size_t begin;
+    size_t end;
+    glm::mat3 viewProj;
+    TextureID tex = 0;
+    glm::vec4 color = glm::vec4(1.0f);
+  };
   
   constexpr size_t QUAD_INDICIES = 6;
   constexpr size_t QUAD_VERTS = 4;

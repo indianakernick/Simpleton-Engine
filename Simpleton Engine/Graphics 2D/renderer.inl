@@ -45,50 +45,37 @@ inline G2D::TextureID G2D::Renderer::addTexture(GL::Texture2D &&texture) {
   return id;
 }
 
-inline G2D::Quad *G2D::Renderer::getQuadBuf() {
-  return quads.data();
-}
-
-inline size_t G2D::Renderer::getQuadBufSize() const {
-  return quads.size();
-}
-
-inline void G2D::Renderer::setQuadBufSize(const size_t numQuads) {
-  fillIndicies(numQuads);
-  quads.resize(numQuads);
+inline void G2D::Renderer::writeQuads(const Quads quads) {
+  if (quads.size + quads.offset > numQuads) {
+    setQuadBufSize(quads.size + quads.offset);
+  }
   
   arrayBuf.bind();
-  glBufferData(GL_ARRAY_BUFFER, numQuads * QUAD_ATTR_SIZE, nullptr, GL_DYNAMIC_DRAW);
+  glBufferSubData(
+    GL_ARRAY_BUFFER,
+    sizeof(Quad) * quads.offset,
+    sizeof(Quad) * quads.size,
+    quads.data
+  );
   CHECK_OPENGL_ERROR();
   GL::unbindArrayBuffer();
-  
-  elemBuf.bind();
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numQuads * QUAD_ELEM_SIZE, indicies.data(), GL_STATIC_DRAW);
-  CHECK_OPENGL_ERROR();
-  GL::unbindElementBuffer();
 }
 
-inline void G2D::Renderer::render(
-  const glm::mat3 &viewProj,
-  const TextureID texture,
-  const glm::vec4 color
-) {
+inline void G2D::Renderer::render(const RenderJob &job) {
   vertArray.bind();
   program.use();
   
-  GL::setUniform(viewProjLoc, viewProj);
-  textures.at(texture).bind(0);
-  GL::setUniform(colorLoc, color);
+  GL::setUniform(viewProjLoc, job.viewProj);
+  textures.at(job.tex).bind(0);
+  GL::setUniform(colorLoc, job.color);
   
   program.validateAndLog();
   
-  writeVerticies();
-  
   glDrawElements(
     GL_TRIANGLES,
-    static_cast<GLsizei>(QUAD_INDICIES * quads.size()),
+    static_cast<GLsizei>(QUAD_INDICIES * (job.end - job.begin)),
     GL::TypeEnum<ElemType>::type,
-    nullptr
+    reinterpret_cast<GLvoid *>(QUAD_ELEM_SIZE * job.begin)
   );
   CHECK_OPENGL_ERROR();
   
@@ -127,6 +114,7 @@ inline void G2D::Renderer::initVertexArray() {
 
 inline void G2D::Renderer::fillIndicies(const size_t minQuads) {
   if (indicies.size() < minQuads * QUAD_INDICIES) {
+    indicies.reserve(minQuads * QUAD_INDICIES);
     ElemType index = indicies.size() / QUAD_INDICIES * QUAD_VERTS;
     const ElemType lastIndex = minQuads * QUAD_VERTS;
     for (; index != lastIndex; index += QUAD_VERTS) {
@@ -140,10 +128,17 @@ inline void G2D::Renderer::fillIndicies(const size_t minQuads) {
   }
 }
 
-inline void G2D::Renderer::writeVerticies() {
+inline void G2D::Renderer::setQuadBufSize(const size_t quads) {
+  numQuads = quads;
+  fillIndicies(numQuads);
+  
   arrayBuf.bind();
-  const size_t vertsSize = sizeof(Quad) * quads.size();
-  glBufferSubData(GL_ARRAY_BUFFER, 0, vertsSize, quads.data());
+  glBufferData(GL_ARRAY_BUFFER, numQuads * QUAD_ATTR_SIZE, nullptr, GL_DYNAMIC_DRAW);
   CHECK_OPENGL_ERROR();
   GL::unbindArrayBuffer();
+  
+  elemBuf.bind();
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numQuads * QUAD_ELEM_SIZE, indicies.data(), GL_STATIC_DRAW);
+  CHECK_OPENGL_ERROR();
+  GL::unbindElementBuffer();
 }
