@@ -69,23 +69,26 @@ inline G2D::TextureID G2D::Renderer::addTexture(
   return addTexture(loadSurfaceRGBA(path), params);
 }
 
-inline void G2D::Renderer::writeQuads(const Quads quads) {
-  if (quads.size + quads.offset > numQuads) {
-    setQuadBufSize(quads.size + quads.offset);
+inline void G2D::Renderer::writeQuads(const QuadRange range, const Quad *quads) {
+  if (range.end > numQuads) {
+    setQuadBufSize(range.end);
+  }
+  if (quads == nullptr) {
+    return;
   }
   
   arrayBuf.bind();
   glBufferSubData(
     GL_ARRAY_BUFFER,
-    sizeof(Quad) * quads.offset,
-    sizeof(Quad) * quads.size,
-    quads.data
+    sizeof(Quad) * range.begin,
+    sizeof(Quad) * range.size(),
+    quads
   );
   CHECK_OPENGL_ERROR();
   GL::unbindArrayBuffer();
 }
 
-inline void G2D::Renderer::render(const RenderJob &job) {
+inline void G2D::Renderer::render(const QuadRange range, const RenderJob &job) {
   vertArray.bind();
   program.use();
   
@@ -97,9 +100,9 @@ inline void G2D::Renderer::render(const RenderJob &job) {
   
   glDrawElements(
     GL_TRIANGLES,
-    static_cast<GLsizei>(QUAD_INDICIES * (job.end - job.begin)),
+    static_cast<GLsizei>(QUAD_INDICIES * range.size()),
     GL::TypeEnum<ElemType>::type,
-    reinterpret_cast<GLvoid *>(QUAD_ELEM_SIZE * job.begin)
+    reinterpret_cast<GLvoid *>(QUAD_ELEM_SIZE * range.begin)
   );
   CHECK_OPENGL_ERROR();
   

@@ -30,8 +30,8 @@ namespace G2D {
     TextureID addTexture(const Surface &, GL::TexParams2D);
     TextureID addTexture(std::string_view, GL::TexParams2D);
     
-    void writeQuads(Quads);
-    void render(const RenderJob &);
+    void writeQuads(QuadRange, const Quad *);
+    void render(QuadRange, const RenderJob &);
   
   private:
     std::vector<GL::Texture2D> textures;

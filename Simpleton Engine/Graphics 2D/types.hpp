@@ -31,16 +31,17 @@ namespace G2D {
   using Elems = std::vector<ElemType>;
   using TextureID = size_t;
   
-  struct Quads {
-    const Quad *data;
-    size_t size;
-    size_t offset = 0;
+  struct QuadRange {
+    size_t begin;
+    size_t end;
+    
+    size_t size() const {
+      return end - begin;
+    }
   };
   
   struct RenderJob {
-    size_t begin;
-    size_t end;
-    glm::mat3 viewProj;
+    glm::mat3 viewProj = {};
     TextureID tex = 0;
     glm::vec4 color = glm::vec4(1.0f);
   };
