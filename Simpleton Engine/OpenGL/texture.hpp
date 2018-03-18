@@ -40,13 +40,12 @@ namespace GL {
   
   template <GLenum TARGET>
   void unbindTexture(int);
-  
   void unbindTexture2D(int);
   
   struct TexParams2D {
     GLint wrapS = GL_REPEAT;
     GLint wrapT = GL_REPEAT;
-    GLint minFilter = GL_NEAREST_MIPMAP_LINEAR;
+    GLint minFilter = GL_LINEAR;
     GLint magFilter = GL_LINEAR;
     
     void setWrap(GLint);

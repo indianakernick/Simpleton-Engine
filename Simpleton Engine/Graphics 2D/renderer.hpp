@@ -10,6 +10,8 @@
 #define engine_graphics_2d_renderer_hpp
 
 #include "types.hpp"
+#include <string_view>
+#include "surface.hpp"
 #include "../OpenGL/buffer.hpp"
 #include "../OpenGL/texture.hpp"
 #include "../OpenGL/vertex array.hpp"
@@ -25,6 +27,8 @@ namespace G2D {
     void quit();
     
     TextureID addTexture(GL::Texture2D &&);
+    TextureID addTexture(const Surface &, GL::TexParams2D);
+    TextureID addTexture(std::string_view, GL::TexParams2D);
     
     void writeQuads(Quads);
     void render(const RenderJob &);

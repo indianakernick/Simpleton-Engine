@@ -8,6 +8,7 @@
 
 #include "shaders.hpp"
 
+#include "load surface.hpp"
 #include "../OpenGL/uniforms.hpp"
 #include "../OpenGL/attrib pointer.hpp"
 
@@ -43,6 +44,29 @@ inline G2D::TextureID G2D::Renderer::addTexture(GL::Texture2D &&texture) {
   const TextureID id = textures.size();
   textures.emplace_back(std::move(texture));
   return id;
+}
+
+inline G2D::TextureID G2D::Renderer::addTexture(
+  const Surface &surface,
+  const GL::TexParams2D params
+) {
+  assert(surface.bytesPerPixel() == 3 || surface.bytesPerPixel() == 4);
+  
+  const GL::Image2D glImage = {
+    surface.data(),
+    static_cast<GLsizei>(surface.width()),
+    static_cast<GLsizei>(surface.height()),
+    static_cast<GLint>(surface.pitch()),
+    surface.bytesPerPixel() == 4
+  };
+  return addTexture(GL::makeTexture2D(glImage, params, 0));
+}
+
+inline G2D::TextureID G2D::Renderer::addTexture(
+  const std::string_view path,
+  const GL::TexParams2D params
+) {
+  return addTexture(loadSurfaceRGBA(path), params);
 }
 
 inline void G2D::Renderer::writeQuads(const Quads quads) {

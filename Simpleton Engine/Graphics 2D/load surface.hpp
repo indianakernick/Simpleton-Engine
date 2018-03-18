@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_graphics_2d_load_hpp
-#define engine_graphics_2d_load_hpp
+#ifndef engine_graphics_2d_load_surface_hpp
+#define engine_graphics_2d_load_surface_hpp
 
 #include <stdexcept>
 #include <string_view>

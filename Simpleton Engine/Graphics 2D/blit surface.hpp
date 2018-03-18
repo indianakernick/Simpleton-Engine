@@ -6,8 +6,8 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_graphics_2d_blit_hpp
-#define engine_graphics_2d_blit_hpp
+#ifndef engine_graphics_2d_blit_surface_hpp
+#define engine_graphics_2d_blit_surface_hpp
 
 #include <stdexcept>
 #include "surface.hpp"
