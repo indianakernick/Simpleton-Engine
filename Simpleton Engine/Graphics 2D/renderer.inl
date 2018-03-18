@@ -13,23 +13,11 @@
 #include "../OpenGL/attrib pointer.hpp"
 
 inline void G2D::Renderer::initCore() {
-  initState();
-  program = GL::makeShaderProgram(
-    GL::makeVertShader(CORE_SHADER_VERSION, VERT_SHADER),
-    GL::makeFragShader(CORE_SHADER_VERSION, FRAG_SHADER)
-  );
-  initUniforms();
-  initVertexArray();
+  initImpl(CORE_SHADER_VERSION);
 }
 
 inline void G2D::Renderer::initES() {
-  initState();
-  program = GL::makeShaderProgram(
-    GL::makeVertShader(ES_SHADER_VERSION, VERT_SHADER),
-    GL::makeFragShader(ES_SHADER_VERSION, FRAG_SHADER)
-  );
-  initUniforms();
-  initVertexArray();
+  initImpl(ES_SHADER_VERSION);
 }
 
 inline void G2D::Renderer::quit() {
@@ -67,6 +55,21 @@ inline G2D::TextureID G2D::Renderer::addTexture(
   const GL::TexParams2D params
 ) {
   return addTexture(loadSurfaceRGBA(path), params);
+}
+
+inline void G2D::Renderer::setQuadBufSize(const size_t quads) {
+  numQuads = quads;
+  fillIndicies(numQuads);
+  
+  arrayBuf.bind();
+  glBufferData(GL_ARRAY_BUFFER, numQuads * QUAD_ATTR_SIZE, nullptr, GL_DYNAMIC_DRAW);
+  CHECK_OPENGL_ERROR();
+  GL::unbindArrayBuffer();
+  
+  elemBuf.bind();
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numQuads * QUAD_ELEM_SIZE, indicies.data(), GL_STATIC_DRAW);
+  CHECK_OPENGL_ERROR();
+  GL::unbindElementBuffer();
 }
 
 inline void G2D::Renderer::writeQuads(const QuadRange range, const Quad *quads) {
@@ -155,17 +158,13 @@ inline void G2D::Renderer::fillIndicies(const size_t minQuads) {
   }
 }
 
-inline void G2D::Renderer::setQuadBufSize(const size_t quads) {
-  numQuads = quads;
-  fillIndicies(numQuads);
-  
-  arrayBuf.bind();
-  glBufferData(GL_ARRAY_BUFFER, numQuads * QUAD_ATTR_SIZE, nullptr, GL_DYNAMIC_DRAW);
-  CHECK_OPENGL_ERROR();
-  GL::unbindArrayBuffer();
-  
-  elemBuf.bind();
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numQuads * QUAD_ELEM_SIZE, indicies.data(), GL_STATIC_DRAW);
-  CHECK_OPENGL_ERROR();
-  GL::unbindElementBuffer();
+template <size_t SIZE>
+inline void G2D::Renderer::initImpl(const char (&version)[SIZE]) {
+  initState();
+  program = GL::makeShaderProgram(
+    GL::makeVertShader(version, VERT_SHADER),
+    GL::makeFragShader(version, FRAG_SHADER)
+  );
+  initUniforms();
+  initVertexArray();
 }

@@ -30,6 +30,7 @@ namespace G2D {
     TextureID addTexture(const Surface &, GL::TexParams2D);
     TextureID addTexture(std::string_view, GL::TexParams2D);
     
+    void setQuadBufSize(size_t);
     void writeQuads(QuadRange, const Quad *);
     void render(QuadRange, const RenderJob &);
   
@@ -49,7 +50,8 @@ namespace G2D {
     void initUniforms();
     void initVertexArray();
     void fillIndicies(size_t);
-    void setQuadBufSize(size_t);
+    template <size_t SIZE>
+    void initImpl(const char (&)[SIZE]);
   };
 }
 
