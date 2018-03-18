@@ -9,7 +9,7 @@
 #ifndef engine_graphics_2d_tile_hpp
 #define engine_graphics_2d_tile_hpp
 
-#include "types.hpp"
+#include "geom types.hpp"
 
 namespace G2D {
   /// Write positions of verticies on a quad assuming that the quad is an

@@ -9,7 +9,7 @@
 #ifndef engine_graphics_2d_zsort_hpp
 #define engine_graphics_2d_zsort_hpp
 
-#include "types.hpp"
+#include "geom types.hpp"
 
 namespace G2D {
   /// Sort by the depth of the first vertex

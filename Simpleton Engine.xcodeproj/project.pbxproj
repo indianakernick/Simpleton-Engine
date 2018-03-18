@@ -161,6 +161,10 @@
 		4589059420301F8A0050F1C4 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		4589059520301F8A0050F1C4 /* renderer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = renderer.inl; sourceTree = "<group>"; };
 		45890596203027770050F1C4 /* shaders.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shaders.hpp; sourceTree = "<group>"; };
+		458D21BC205DF7D900FC644A /* quad allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "quad allocator.hpp"; sourceTree = "<group>"; };
+		458D21BD205DF7D900FC644A /* quad allocator.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "quad allocator.inl"; sourceTree = "<group>"; };
+		458D21BE205DF92300FC644A /* geom types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "geom types.hpp"; sourceTree = "<group>"; };
+		458D21BF205DF92B00FC644A /* render types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "render types.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
 		4592B9651F0A24C800D1640D /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		4592B96B1F0A2BA600D1640D /* font library.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "font library.inl"; sourceTree = "<group>"; };
@@ -397,9 +401,13 @@
 			children = (
 				454B2AF9203E92D800D94D6A /* Surface */,
 				4589059320301B0B0050F1C4 /* types.hpp */,
+				458D21BE205DF92300FC644A /* geom types.hpp */,
+				458D21BF205DF92B00FC644A /* render types.hpp */,
 				45890596203027770050F1C4 /* shaders.hpp */,
 				4589059520301F8A0050F1C4 /* renderer.inl */,
 				4589059420301F8A0050F1C4 /* renderer.hpp */,
+				458D21BD205DF7D900FC644A /* quad allocator.inl */,
+				458D21BC205DF7D900FC644A /* quad allocator.hpp */,
 				454B2AF5203D6F5E00D94D6A /* zsort.inl */,
 				454B2AF4203D6F5E00D94D6A /* zsort.hpp */,
 				454B2AF7203D740800D94D6A /* tile.inl */,

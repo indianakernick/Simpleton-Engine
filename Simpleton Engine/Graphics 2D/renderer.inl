@@ -57,27 +57,21 @@ inline G2D::TextureID G2D::Renderer::addTexture(
   return addTexture(loadSurfaceRGBA(path), params);
 }
 
-inline void G2D::Renderer::setQuadBufSize(const size_t quads) {
-  numQuads = quads;
-  fillIndicies(numQuads);
-  
-  arrayBuf.bind();
-  glBufferData(GL_ARRAY_BUFFER, numQuads * QUAD_ATTR_SIZE, nullptr, GL_DYNAMIC_DRAW);
-  CHECK_OPENGL_ERROR();
-  GL::unbindArrayBuffer();
-  
-  elemBuf.bind();
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numQuads * QUAD_ELEM_SIZE, indicies.data(), GL_STATIC_DRAW);
-  CHECK_OPENGL_ERROR();
-  GL::unbindElementBuffer();
+inline bool G2D::Renderer::resizeQuadBuf(const size_t quads) {
+  if (quads > numQuads) {
+    setQuadBufSize(quads);
+    return true;
+  }
+  return false;
 }
 
-inline void G2D::Renderer::writeQuads(const QuadRange range, const Quad *quads) {
-  if (range.end > numQuads) {
+inline bool G2D::Renderer::writeQuads(const QuadRange range, const Quad *quads) {
+  const bool resized = range.end > numQuads;
+  if (resized) {
     setQuadBufSize(range.end);
   }
   if (quads == nullptr) {
-    return;
+    return resized;
   }
   
   arrayBuf.bind();
@@ -89,6 +83,8 @@ inline void G2D::Renderer::writeQuads(const QuadRange range, const Quad *quads) 
   );
   CHECK_OPENGL_ERROR();
   GL::unbindArrayBuffer();
+  
+  return resized;
 }
 
 inline void G2D::Renderer::render(const QuadRange range, const RenderJob &job) {
@@ -156,6 +152,21 @@ inline void G2D::Renderer::fillIndicies(const size_t minQuads) {
       indicies.push_back(index + 0);
     }
   }
+}
+
+inline void G2D::Renderer::setQuadBufSize(const size_t quads) {
+  numQuads = quads;
+  fillIndicies(numQuads);
+  
+  arrayBuf.bind();
+  glBufferData(GL_ARRAY_BUFFER, numQuads * QUAD_ATTR_SIZE, nullptr, GL_DYNAMIC_DRAW);
+  CHECK_OPENGL_ERROR();
+  GL::unbindArrayBuffer();
+  
+  elemBuf.bind();
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, numQuads * QUAD_ELEM_SIZE, indicies.data(), GL_STATIC_DRAW);
+  CHECK_OPENGL_ERROR();
+  GL::unbindElementBuffer();
 }
 
 template <size_t SIZE>
