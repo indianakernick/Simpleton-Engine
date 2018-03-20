@@ -8,6 +8,7 @@
 
 #include <string>
 #include "realloc.hpp"
+#include "../Memory/file io.hpp"
 
 #define STB_IMAGE_WRITE_STATIC
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -30,9 +31,18 @@ inline G2D::SurfaceWriteError::SurfaceWriteError(const std::string_view file)
       + "\""
     ) {}
 
-inline void G2D::writeSurface(const std::string_view file, const Surface &surface) {
-  const int success = stbi_write_png(
-    file.data(),
+namespace G2D::detail {
+  inline void writeFunc(void *context, void *data, int size) {
+    std::FILE *file = reinterpret_cast<std::FILE *>(context);
+    Memory::writeFile(data, size, file);
+  }
+}
+
+inline void G2D::writeSurface(const std::string_view path, const Surface &surface) {
+  Memory::FileHandle file = Memory::openFileWrite(path);
+  const int success = stbi_write_png_to_func(
+    detail::writeFunc,
+    file.get(),
     static_cast<int>(surface.width()),
     static_cast<int>(surface.height()),
     static_cast<int>(surface.bytesPerPixel()),
@@ -41,6 +51,6 @@ inline void G2D::writeSurface(const std::string_view file, const Surface &surfac
   );
   
   if (success == 0) {
-    throw SurfaceWriteError(file);
+    throw SurfaceWriteError(path);
   }
 }

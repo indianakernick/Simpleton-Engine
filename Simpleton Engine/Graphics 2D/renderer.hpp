@@ -10,8 +10,8 @@
 #define engine_graphics_2d_renderer_hpp
 
 #include "types.hpp"
-#include <string_view>
 #include "surface.hpp"
+#include <string_view>
 #include "../OpenGL/buffer.hpp"
 #include "../OpenGL/texture.hpp"
 #include "../OpenGL/vertex array.hpp"

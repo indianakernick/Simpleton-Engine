@@ -13,7 +13,7 @@ inline Memory::FileHandle Memory::openFileRead(const char *const path) {
   assert(path);
   std::FILE *const file = std::fopen(path, "rb");
   if (file == nullptr) {
-    throw Memory::FileError("Failed to open file for reading");
+    throw FileError("Failed to open file for reading");
   } else {
     return {file, {}};
   }
@@ -23,10 +23,28 @@ inline Memory::FileHandle Memory::openFileWrite(const char *const path) {
   assert(path);
   std::FILE *const file = std::fopen(path, "wb");
   if (file == nullptr) {
-    throw Memory::FileError("Failed to open file for writing");
+    throw FileError("Failed to open file for writing");
   } else {
     return {file, {}};
   }
+}
+
+inline Memory::FileHandle Memory::openFileRead(const std::string_view path) {
+  // fopen takes a null terminated string
+  static std::string temp;
+  temp.reserve(path.size());
+  temp.clear();
+  temp.append(path.data(), path.size());
+  return openFileRead(temp.c_str());
+}
+
+inline Memory::FileHandle Memory::openFileWrite(const std::string_view path) {
+  // fopen takes a null terminated string
+  static std::string temp;
+  temp.reserve(path.size());
+  temp.clear();
+  temp.append(path.data(), path.size());
+  return openFileWrite(temp.c_str());
 }
 
 inline size_t Memory::sizeOfFile(std::FILE *const file) {

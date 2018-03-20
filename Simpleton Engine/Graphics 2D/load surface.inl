@@ -8,6 +8,7 @@
 
 #include <string>
 #include "realloc.hpp"
+#include "../Memory/file io.hpp"
 
 #define STBI_NO_GIF
 #define STB_IMAGE_STATIC
@@ -35,28 +36,30 @@ inline G2D::SurfaceLoadError::SurfaceLoadError(
     + reason.data()
   ) {}
 
-inline G2D::Surface G2D::loadSurface(const std::string_view file, const int bpp) {
+inline G2D::Surface G2D::loadSurface(const std::string_view path, const int bpp) {
+  Memory::FileHandle file = Memory::openFileRead(path);
   int width, height;
-  uint8_t *const data = stbi_load(file.data(), &width, &height, nullptr, bpp);
+  uint8_t *const data = stbi_load_from_file(file.get(), &width, &height, nullptr, bpp);
   if (data == nullptr) {
-    throw SurfaceLoadError(file, stbi_failure_reason());
+    throw SurfaceLoadError(path, stbi_failure_reason());
   }
   return Surface(width, height, bpp, width * bpp, data);
 }
 
-inline G2D::Surface G2D::loadSurface(const std::string_view file) {
+inline G2D::Surface G2D::loadSurface(const std::string_view path) {
+  Memory::FileHandle file = Memory::openFileRead(path);
   int width, height, bytesPerPixel;
-  uint8_t *const data = stbi_load(file.data(), &width, &height, &bytesPerPixel, 0);
+  uint8_t *const data = stbi_load_from_file(file.get(), &width, &height, &bytesPerPixel, 0);
   if (data == nullptr) {
-    throw SurfaceLoadError(file, stbi_failure_reason());
+    throw SurfaceLoadError(path, stbi_failure_reason());
   }
   return Surface(width, height, bytesPerPixel, width * bytesPerPixel, data);
 }
 
-inline G2D::Surface G2D::loadSurfaceRGB(const std::string_view file) {
-  return loadSurface(file, STBI_rgb);
+inline G2D::Surface G2D::loadSurfaceRGB(const std::string_view path) {
+  return loadSurface(path, STBI_rgb);
 }
 
-inline G2D::Surface G2D::loadSurfaceRGBA(const std::string_view file) {
-  return loadSurface(file, STBI_rgb_alpha);
+inline G2D::Surface G2D::loadSurfaceRGBA(const std::string_view path) {
+  return loadSurface(path, STBI_rgb_alpha);
 }

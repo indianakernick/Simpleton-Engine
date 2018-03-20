@@ -31,6 +31,9 @@ namespace Memory {
 
   FileHandle openFileRead(const char *);
   FileHandle openFileWrite(const char *);
+  
+  FileHandle openFileRead(std::string_view);
+  FileHandle openFileWrite(std::string_view);
 
   size_t sizeOfFile(std::FILE *);
   
