@@ -22,19 +22,20 @@
 
 void printUsage() {
   std::cout <<
-R"(pack [in=<in>] [out=<out>] [sep=<sep>] [white=<white>] [rec=<rec>]
+R"(pack [in=<in>] [out=<out>] [sep=<sep>] [white=<white>] [rec=<rec>] [bpp=<bpp>]
   
   in     Input directory to search for images                        [default=.]
   out    Output file name without extension                    [default=sprites]
   sep    Number of pixels separating each image                      [default=1]
   white  Radius of the whitepixel                                    [default=0]
   rec    Maximum recursive search depth                              [default=1]
+  bpp    Bytes Per Pixel. Valid values are [1, 2, 3, 4]              [default=4]
 )";
 }
 
 unsigned long parseInt(const char *str) {
-  // std::from_chars should have been in C++ since 1998
-  // IM STILL WAITING
+  // std::from_chars should have been in C++ 20 years ago
+  // I'M STILL WAITING
   
   char *end;
   const unsigned long n = std::strtoul(str, &end, 10);
@@ -52,6 +53,7 @@ void runApp(int argc, const char **argv) {
   stbrp_coord sep = 1;
   stbrp_coord white = 0;
   size_t rec = 1;
+  int bpp = 4;
   
   const char **const end = argv + argc;
   for (; argv != end; ++argv) {
@@ -82,6 +84,14 @@ void runApp(int argc, const char **argv) {
         throw ArgError();
       }
       rec = static_cast<size_t>(parseInt(argv[0] + 4));
+    } else if (std::strncmp(*argv, "bpp", 3) == 0) {
+      if (argv[0][3] != '=' || argv[0][4] == 0) {
+        throw ArgError();
+      }
+      bpp = static_cast<int>(parseInt(argv[0] + 4));
+      if (bpp < 1 || bpp > 4) {
+        throw std::runtime_error("Invalid bpp. Valid values are [1, 2, 3, 4]");
+      }
     }
   }
   
@@ -89,10 +99,14 @@ void runApp(int argc, const char **argv) {
   std::vector<std::string> paths = findFiles(in, extIsImage, rec);
   sortByFrame(paths);
   
-  std::vector<G2D::Surface> images = loadImages(paths);
+  std::vector<G2D::Surface> images = loadImages(paths, bpp);
   if (white) {
     const stbrp_coord size = 1 + white * 2;
-    images.emplace_back(size, size, 4, 255);
+    images.emplace_back(
+      size, size,
+      images.empty() ? 4 : images.front().bytesPerPixel(),
+      255
+    );
     paths.emplace_back("__WHITEPIXEL__.png");
   }
   

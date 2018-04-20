@@ -23,10 +23,14 @@ G2D::Surface blitImages(
   
   std::cout << "Copying smaller images onto larger image\n";
   
-  G2D::Surface image(length, length, 4);
+  G2D::Surface image(
+    length, length,
+    images.empty() ? 4 : images.front().bytesPerPixel(),
+    0
+  );
   
   for (size_t i = 0; i != images.size(); ++i) {
-    blit(image, images[i], rects[i].x, rects[i].y);
+    G2D::blit(image, images[i], rects[i].x, rects[i].y);
   }
   
   return image;

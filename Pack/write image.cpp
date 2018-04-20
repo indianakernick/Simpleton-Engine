@@ -8,10 +8,20 @@
 
 #include "write image.hpp"
 
+#include <cassert>
 #include <iostream>
 #include <libpng16/png.h>
 #include <Simpleton/Utils/profiler.hpp>
 
+int colorspace(const G2D::Surface::BytesPerPixel bpp) {
+  switch (bpp) {
+    case 1: return PNG_COLOR_TYPE_GRAY;
+    case 2: return PNG_COLOR_TYPE_GRAY_ALPHA;
+    case 3: return PNG_COLOR_TYPE_RGB;
+    case 4: return PNG_COLOR_TYPE_RGB_ALPHA;
+    default: assert(false);
+  };
+}
 
 void writeImage(const std::string &path, G2D::Surface image) {
   PROFILE(writeImage);
@@ -51,7 +61,7 @@ void writeImage(const std::string &path, G2D::Surface image) {
     image.width(),
     image.height(),
     8,
-    PNG_COLOR_TYPE_RGBA,
+    colorspace(image.bytesPerPixel()),
     PNG_INTERLACE_NONE,
     PNG_COMPRESSION_TYPE_DEFAULT,
     PNG_FILTER_TYPE_DEFAULT

@@ -12,14 +12,17 @@
 #include <Simpleton/Utils/profiler.hpp>
 #include <Simpleton/Graphics 2D/load surface.hpp>
 
-std::vector<G2D::Surface> loadImages(const std::vector<std::string> &files) {
+std::vector<G2D::Surface> loadImages(
+  const std::vector<std::string> &files,
+  const int bpp
+) {
   PROFILE(loadImages);
   
   std::vector<G2D::Surface> images;
   images.reserve(files.size());
   
   for (auto f = files.cbegin(); f != files.cend(); ++f) {
-    images.emplace_back(G2D::loadSurfaceRGBA(*f));
+    images.emplace_back(G2D::loadSurface(*f, bpp));
   }
   
   return images;

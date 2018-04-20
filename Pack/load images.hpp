@@ -13,6 +13,6 @@
 #include <string>
 #include <Simpleton/Graphics 2D/surface.hpp>
 
-std::vector<G2D::Surface> loadImages(const std::vector<std::string> &);
+std::vector<G2D::Surface> loadImages(const std::vector<std::string> &, int);
 
 #endif
