@@ -85,6 +85,7 @@
 		4533DCC51FBBDF350058390C /* zoom to fit.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "zoom to fit.inl"; sourceTree = "<group>"; };
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
+		45388485208AA9D1003EB260 /* grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = grid.hpp; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
@@ -544,6 +545,7 @@
 				45771C151FE8952D00F533DA /* meta glm.hpp */,
 				45C525A11FEDFC0800A738E0 /* generic raii.hpp */,
 				454B2B0B2040C8C800D94D6A /* endian.hpp */,
+				45388485208AA9D1003EB260 /* grid.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

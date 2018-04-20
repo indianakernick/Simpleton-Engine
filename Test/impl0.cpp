@@ -12,6 +12,7 @@
 #include "../Simpleton Engine/Utils/strong alias.hpp"
 #include "../Simpleton Engine/Utils/dispatcher.hpp"
 #include "../Simpleton Engine/Utils/move test.hpp"
+#include "../Simpleton Engine/Utils/grid.hpp"
 #include "../Simpleton Engine/Utils/tuple.hpp"
 #include "../Simpleton Engine/Utils/instance limiter.hpp"
 #include "../Simpleton Engine/Utils/type name.hpp"
