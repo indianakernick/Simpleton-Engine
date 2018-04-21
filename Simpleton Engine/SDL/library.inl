@@ -30,6 +30,15 @@ inline SDL::Window SDL::makeWindow(const Window::Desc &desc) {
   )));
 }
 
+inline SDL::Window SDL::makeWindow(const char *title, const int w, const int h) {
+  return Window(CHECK_SDL_NULL(SDL_CreateWindow(
+    title,
+    SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+    w, h,
+    SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL
+  )));
+}
+
 inline SDL::Renderer SDL::makeRenderer(Window &window, const bool vsync) {
   return Renderer(CHECK_SDL_NULL(SDL_CreateRenderer(
     window.get(),

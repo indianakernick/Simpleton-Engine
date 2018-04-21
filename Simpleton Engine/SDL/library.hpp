@@ -32,6 +32,7 @@ namespace SDL {
   Library makeLibrary(Uint32 = SDL_INIT_EVERYTHING);
   
   Window makeWindow(const Window::Desc &);
+  Window makeWindow(const char *, int, int);
   Renderer makeRenderer(Window &, bool);
 }
 
