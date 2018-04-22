@@ -86,6 +86,8 @@
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
 		45388485208AA9D1003EB260 /* grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = grid.hpp; sourceTree = "<group>"; };
+		45388504208C24C7003EB260 /* render helper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "render helper.hpp"; sourceTree = "<group>"; };
+		45388505208C24C7003EB260 /* render helper.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "render helper.inl"; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
@@ -162,8 +164,8 @@
 		4589059420301F8A0050F1C4 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		4589059520301F8A0050F1C4 /* renderer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = renderer.inl; sourceTree = "<group>"; };
 		45890596203027770050F1C4 /* shaders.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shaders.hpp; sourceTree = "<group>"; };
-		458D21BC205DF7D900FC644A /* quad allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "quad allocator.hpp"; sourceTree = "<group>"; };
-		458D21BD205DF7D900FC644A /* quad allocator.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "quad allocator.inl"; sourceTree = "<group>"; };
+		458D21BC205DF7D900FC644A /* job manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "job manager.hpp"; sourceTree = "<group>"; };
+		458D21BD205DF7D900FC644A /* job manager.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "job manager.inl"; sourceTree = "<group>"; };
 		458D21BE205DF92300FC644A /* geom types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "geom types.hpp"; sourceTree = "<group>"; };
 		458D21BF205DF92B00FC644A /* render types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "render types.hpp"; sourceTree = "<group>"; };
 		4592B49C1F06427200D1640D /* frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frame.hpp; sourceTree = "<group>"; };
@@ -407,12 +409,14 @@
 				45890596203027770050F1C4 /* shaders.hpp */,
 				4589059520301F8A0050F1C4 /* renderer.inl */,
 				4589059420301F8A0050F1C4 /* renderer.hpp */,
-				458D21BD205DF7D900FC644A /* quad allocator.inl */,
-				458D21BC205DF7D900FC644A /* quad allocator.hpp */,
+				458D21BD205DF7D900FC644A /* job manager.inl */,
+				458D21BC205DF7D900FC644A /* job manager.hpp */,
 				454B2AF5203D6F5E00D94D6A /* zsort.inl */,
 				454B2AF4203D6F5E00D94D6A /* zsort.hpp */,
 				454B2AF7203D740800D94D6A /* tile.inl */,
 				454B2AF6203D740800D94D6A /* tile.hpp */,
+				45388505208C24C7003EB260 /* render helper.inl */,
+				45388504208C24C7003EB260 /* render helper.hpp */,
 			);
 			path = "Graphics 2D";
 			sourceTree = "<group>";

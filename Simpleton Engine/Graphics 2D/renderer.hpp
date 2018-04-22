@@ -30,14 +30,14 @@ namespace G2D {
     TextureID addTexture(const Surface &, GL::TexParams2D);
     TextureID addTexture(std::string_view, GL::TexParams2D);
     
-    /// Increases the size of the GPU quad buffer and returns true if the size
+    /// Increase the size of the GPU quad buffer and return true if the size
     /// was actually increased. Increasing the size will clear the memory.
     bool resizeQuadBuf(size_t);
     /// Copy quads from CPU memory to GPU memory. Returns true if the GPU memory
     /// had to be resized. Resizing will clear the memory.
     bool writeQuads(QuadRange, const Quad *);
     /// Render the quads in GPU memory with the given rendering parameters
-    void render(QuadRange, const RenderJob &);
+    void render(QuadRange, const RenderParams &);
   
   private:
     std::vector<GL::Texture2D> textures;

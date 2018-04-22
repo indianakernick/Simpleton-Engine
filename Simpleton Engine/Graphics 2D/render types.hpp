@@ -25,7 +25,7 @@ namespace G2D {
     }
   };
   
-  struct RenderJob {
+  struct RenderParams {
     glm::mat3 viewProj = {};
     TextureID tex = 0;
     glm::vec4 color = glm::vec4(1.0f);

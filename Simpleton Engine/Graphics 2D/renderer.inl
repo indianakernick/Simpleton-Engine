@@ -87,13 +87,13 @@ inline bool G2D::Renderer::writeQuads(const QuadRange range, const Quad *quads) 
   return resized;
 }
 
-inline void G2D::Renderer::render(const QuadRange range, const RenderJob &job) {
+inline void G2D::Renderer::render(const QuadRange range, const RenderParams &params) {
   vertArray.bind();
   program.use();
   
-  GL::setUniform(viewProjLoc, job.viewProj);
-  textures.at(job.tex).bind(0);
-  GL::setUniform(colorLoc, job.color);
+  GL::setUniform(viewProjLoc, params.viewProj);
+  textures.at(params.tex).bind(0);
+  GL::setUniform(colorLoc, params.color);
   
   program.validateAndLog();
   
