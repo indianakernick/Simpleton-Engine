@@ -9,6 +9,7 @@
 #ifndef engine_graphics_2d_renderer_hpp
 #define engine_graphics_2d_renderer_hpp
 
+#include <vector>
 #include "types.hpp"
 #include "surface.hpp"
 #include <string_view>
