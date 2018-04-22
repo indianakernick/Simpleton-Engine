@@ -196,7 +196,7 @@ namespace Math {
   }
   
   ///Configuration template for converting a direction to a 2D unit vector
-  template <typename Number_, Dir PLUS_X_, Dir PLUS_Y_>
+  template <typename Number_, Dir PLUS_X_ = Dir::RIGHT, Dir PLUS_Y_ = Dir::UP>
   struct ToVec {
     using Number = Number_;
     static constexpr Dir PLUS_X = PLUS_X_;
@@ -227,7 +227,7 @@ namespace Math {
   };
   
   ///Configuration template for converting a 2D unit vector to a direction
-  template <typename Number_, Dir PLUS_X_, Dir PLUS_Y_, bool EXACT_ = true>
+  template <typename Number_, Dir PLUS_X_ = Dir::RIGHT, Dir PLUS_Y_ = Dir::UP, bool EXACT_ = true>
   struct FromVec {
     using Number = Number_;
     static constexpr Dir PLUS_X = PLUS_X_;
@@ -278,47 +278,26 @@ namespace Math {
     }
   };
   
-  ///Configuration template for converting a direction to a number
-  template <typename Number_>
-  struct ToNum {
-    using Number = Number_;
+  ///Convert a direction to a number
+  template <typename Number>
+  Number toNum(const Dir dir) {
+    const Number number = static_cast<Number>(dir);
+    assert(
+      (0 <= number && number < 4) ||
+      number == static_cast<Number>(Dir::NONE)
+    );
+    return number;
+  }
   
-    ///Convert a direction to a number
-    static Number conv(const Dir dir, const Number stride, const Number offset) {
-      return static_cast<Number>(dir) * stride + offset;
-    }
-    
-    ///Convert a direction to a number
-    static Number conv(const Dir dir, const Number stride) {
-      return static_cast<Number>(dir) * stride;
-    }
-    
-    ///Convert a direction to a number
-    static Number conv(const Dir dir) {
-      return static_cast<Number>(dir);
-    }
-  };
-  
-  ///Configuration template for converting a number to a direction
-  template <typename Number_>
-  struct FromNum {
-    using Number = Number_;
-  
-    ///Convert a number to a direction
-    static Dir conv(const Number num, const Number stride, const Number offset) {
-      return static_cast<Dir>((num - offset) / stride);
-    }
-    
-    ///Convert a number to a direction
-    static Dir conv(const Number num, const Number stride) {
-      return static_cast<Dir>(num / stride);
-    }
-    
-    ///Convert a number to a direction
-    static Dir conv(const Number num) {
-      return static_cast<Dir>(num);
-    }
-  };
+  ///Convert a number to a direction
+  template <typename Number>
+  Dir toDir(const Number number) {
+    assert(
+      (0 <= number && number < 4) ||
+      number == static_cast<Number>(Dir::NONE)
+    );
+    return static_cast<Number>(number);
+  }
   
   constexpr std::string_view toUpperCaseString(const Dir dir) {
     switch (dir) {
