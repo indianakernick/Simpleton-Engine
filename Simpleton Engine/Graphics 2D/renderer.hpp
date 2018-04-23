@@ -23,6 +23,7 @@ namespace G2D {
   public:
     Renderer() = default;
   
+    void init();
     void initCore();
     void initES();
     void quit();

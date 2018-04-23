@@ -12,6 +12,14 @@
 #include "../OpenGL/uniforms.hpp"
 #include "../OpenGL/attrib pointer.hpp"
 
+inline void G2D::Renderer::init() {
+  #ifdef EMSCRIPTEN
+  initES();
+  #else
+  initCore();
+  #endif
+}
+
 inline void G2D::Renderer::initCore() {
   initImpl(CORE_SHADER_VERSION);
 }
@@ -44,7 +52,7 @@ inline G2D::TextureID G2D::Renderer::addTexture(
     surface.data(),
     static_cast<GLsizei>(surface.width()),
     static_cast<GLsizei>(surface.height()),
-    static_cast<GLint>(surface.pitch()),
+    static_cast<GLint>(surface.pitch() / surface.bytesPerPixel()),
     surface.bytesPerPixel() == 4
   };
   return addTexture(GL::makeTexture2D(glImage, params, 0));
