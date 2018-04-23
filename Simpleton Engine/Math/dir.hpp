@@ -111,6 +111,30 @@ namespace Math {
     return axis == Axis::NONE ? noneAxis : axis;
   }
   
+  ///Check if a direction is valid
+  constexpr bool valid(const Dir dir) {
+    return dir == Dir::UP ||
+           dir == Dir::RIGHT ||
+           dir == Dir::DOWN ||
+           dir == Dir::LEFT;
+  }
+  
+  ///Check if a direction is either valid or equal to Dir::NONE
+  constexpr bool validOrNone(const Dir dir) {
+    return valid(dir) || dir == Dir::NONE;
+  }
+  
+  ///Check if an axis is valid
+  constexpr bool valid(const Axis axis) {
+    return axis == Axis::VERT ||
+           axis == Axis::HORI;
+  }
+  
+  ///Check if an axis is either valid or equal to Axis::NONE
+  constexpr bool validOrNone(const Axis axis) {
+    return valid(axis) || axis == Axis::NONE;
+  }
+  
   ///Get the opposite of a direction
   constexpr Dir opposite(const Dir dir) {
     //flip the second least significant bit
@@ -281,22 +305,23 @@ namespace Math {
   ///Convert a direction to a number
   template <typename Number>
   Number toNum(const Dir dir) {
-    const Number number = static_cast<Number>(dir);
-    assert(
-      (0 <= number && number < 4) ||
-      number == static_cast<Number>(Dir::NONE)
-    );
-    return number;
+    assert(valid(dir));
+    return static_cast<Number>(dir);
+  }
+  
+  ///Convert a direction to a number and multiply
+  template <typename Number>
+  Number toNum(const Dir dir, const Number factor) {
+    assert(valid(dir));
+    return static_cast<Number>(dir) * factor;
   }
   
   ///Convert a number to a direction
   template <typename Number>
   Dir toDir(const Number number) {
-    assert(
-      (0 <= number && number < 4) ||
-      number == static_cast<Number>(Dir::NONE)
-    );
-    return static_cast<Number>(number);
+    const Dir dir = static_cast<Dir>(number);
+    assert(valid(dir));
+    return dir;
   }
   
   constexpr std::string_view toUpperCaseString(const Dir dir) {
@@ -330,6 +355,32 @@ namespace Math {
         return "none";
       default:
         return "";
+    }
+  }
+}
+
+#include <cmath>
+
+namespace Math {
+  // might potentially be useful
+  inline glm::vec2 roundInDir(const glm::vec2 vec, const Math::Dir dir) {
+    constexpr Math::Dir PLUS_X = Math::Dir::RIGHT;
+    constexpr Math::Dir PLUS_Y = Math::Dir::UP;
+    
+    switch (dir) {
+      case PLUS_X:
+        return {std::ceil(vec.x), vec.y};
+      case PLUS_Y:
+        return {vec.x, std::ceil(vec.y)};
+      case Math::opposite(PLUS_X):
+        return {std::floor(vec.x), vec.y};
+      case Math::opposite(PLUS_Y):
+        return {vec.x, std::floor(vec.y)};
+      case Math::Dir::NONE:
+        return vec;
+      
+      default:
+        assert(false);
     }
   }
   
