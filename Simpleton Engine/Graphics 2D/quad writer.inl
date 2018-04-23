@@ -6,6 +6,8 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
+#include <glm/gtc/constants.hpp>
+
 inline void G2D::QuadWriter::clear() {
   quads.clear();
   sections.clear();
@@ -29,18 +31,58 @@ inline G2D::Quad &G2D::QuadWriter::quad() {
   return quads.back();
 }
 
+inline void G2D::QuadWriter::depth(const float depth) {
+  assert(quads.size() && sections.size() && sections.back());
+  
+  Quad &quad = quads.back();
+  quad[0].pos.z =
+  quad[1].pos.z =
+  quad[2].pos.z =
+  quad[3].pos.z = depth;
+}
+
+namespace G2D::detail {
+  inline void setPos(glm::vec3 &dst, const glm::vec2 src) {
+    dst.x = src.x;
+    dst.y = src.y;
+  }
+}
+
 inline void G2D::QuadWriter::tilePos(
-  const float depth,
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
   assert(quads.size() && sections.size() && sections.back());
   
   Quad &quad = quads.back();
-  quad[0].pos = {pos.x, pos.y, depth};
-  quad[1].pos = {pos.x + size.x, pos.y, depth};
-  quad[2].pos = {pos.x + size.x, pos.y + size.y, depth};
-  quad[3].pos = {pos.x, pos.y + size.y, depth};
+  detail::setPos(quad[0].pos, pos);
+  detail::setPos(quad[1].pos, {pos.x + size.x, pos.y});
+  detail::setPos(quad[2].pos, pos + size);
+  detail::setPos(quad[3].pos, {pos.x, pos.y + size.y});
+}
+
+inline void G2D::QuadWriter::rotTilePos(
+  const float angle,
+  const glm::vec2 pos,
+  const glm::vec2 size
+) {
+  assert(quads.size() && sections.size() && sections.back());
+
+  const glm::vec2 halfSize = size * 0.5f;
+  const glm::vec2 topRight = glm::vec2(
+    std::cos(angle + glm::quarter_pi<float>()),
+    std::sin(angle + glm::quarter_pi<float>())
+  ) * halfSize;
+  const glm::vec2 topLeft = {-topRight.y, topRight.x};
+  const glm::vec2 botLeft = -topRight;
+  const glm::vec2 botRight = -topLeft;
+  const glm::vec2 shift = pos + halfSize;
+  
+  Quad &quad = quads.back();
+  detail::setPos(quad[0].pos, botLeft + shift);
+  detail::setPos(quad[1].pos, botRight + shift);
+  detail::setPos(quad[2].pos, topRight + shift);
+  detail::setPos(quad[3].pos, topLeft + shift);
 }
 
 inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
@@ -51,6 +93,10 @@ inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
   quad[1].texCoord = {max.x, min.y};
   quad[2].texCoord = max;
   quad[3].texCoord = {min.x, max.y};
+}
+
+inline void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
+  tileTex(coords.min, coords.max);
 }
 
 inline void G2D::QuadWriter::render(Renderer &renderer) const {

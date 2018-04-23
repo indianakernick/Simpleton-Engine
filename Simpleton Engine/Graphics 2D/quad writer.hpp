@@ -10,6 +10,7 @@
 #define engine_graphics_2d_quad_writer_hpp
 
 #include "renderer.hpp"
+#include "../Math/rect.hpp"
 
 namespace G2D {
   class QuadWriter {
@@ -25,12 +26,20 @@ namespace G2D {
     void sectionSize(size_t);
     /// Start a new quad and return it
     Quad &quad();
+    /// Set the depth of the current quad
+    void depth(float);
     /// Write positions of verticies on the current quad assuming that the quad
     /// is an axis-aligned rectangle
-    void tilePos(float, glm::vec2, glm::vec2 = {1.0f, 1.0f});
+    void tilePos(glm::vec2, glm::vec2 = {1.0f, 1.0f});
+    /// Write positions of verticies on the current quad assuming that the quad
+    /// is a rectangle rotated around its center
+    void rotTilePos(float, glm::vec2, glm::vec2 = {1.0f, 1.0f});
     /// Write texture coordinates of vertices on the current quad assuming that
     /// the texture is sampled as an axis-aligned rectangle
     void tileTex(glm::vec2, glm::vec2);
+    /// Write texture coordinates of vertices on the current quad assuming that
+    /// the texture is sampled as an axis-aligned rectangle
+    void tileTex(Math::RectPP<float>);
     
     /// Copy the quads into GPU memory and issue an number of draw calls
     void render(Renderer &) const;
