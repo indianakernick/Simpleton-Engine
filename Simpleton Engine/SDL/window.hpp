@@ -40,6 +40,7 @@ namespace SDL {
     
     void size(glm::ivec2);
     glm::ivec2 size() const;
+    float aspect() const;
     
     void relMouse(bool);
     bool relMouse() const;

@@ -44,6 +44,12 @@ inline glm::ivec2 SDL::Window::size() const {
   return size;
 }
 
+inline float SDL::Window::aspect() const {
+  glm::ivec2 size;
+  SDL_GetWindowSize(window, &size.x, &size.y);
+  return static_cast<float>(size.x) / size.y;
+}
+
 inline void SDL::Window::relMouse(const bool status) {
   assert(SDL_GetMouseFocus() == window);
   CHECK_SDL_ERROR(SDL_SetRelativeMouseMode(static_cast<SDL_bool>(status)));
