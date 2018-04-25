@@ -53,8 +53,8 @@ namespace Math {
     R_BEGIN = MAX,
     R_END = std::numeric_limits<DirType>::max(),
     
-    ///Passing NONE to any function other than filterNone or filterNoneCustom
-    ///is undefined behaviour
+    ///A direction that represents "no direction". Passing this value to most
+    ///functions will cause an assertion
     NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
@@ -82,8 +82,8 @@ namespace Math {
     UP_DOWN = VERT,
     LEFT_RIGHT = HORI,
     
-    ///Passing NONE to any function other than filterNone or filterNoneCustom
-    ///is undefined behaviour
+    ///An axis that represents "no axis". Passing this value to most
+    ///functions will cause an assertion
     NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
@@ -137,23 +137,28 @@ namespace Math {
   
   ///Get the opposite of a direction
   constexpr Dir opposite(const Dir dir) {
+    assert(valid(dir));
     //flip the second least significant bit
     return static_cast<Dir>(static_cast<DirType>(dir) ^ DirType(0b10));
   }
   
   ///Get the opposite of an axis
   constexpr Axis opposite(const Axis axis) {
+    assert(valid(axis));
     //flip the least significant bit
     return static_cast<Axis>(static_cast<DirType>(axis) ^ DirType(0b1));
   }
   
   ///Rotate a direction clockwise
   constexpr Dir rotateCW(const Dir dir, const DirType count = 1) {
+    // NONE & 0b11 == UP
+    assert(validOrNone(dir));
     return static_cast<Dir>((static_cast<DirType>(dir) + count) & DirType(0b11));
   }
   
   ///Rotate a direction counter-clockwise (anti-clockwise)
   constexpr Dir rotateCCW(const Dir dir, const DirType count = 1) {
+    assert(valid(dir));
     return static_cast<Dir>((static_cast<DirType>(dir) - count) & DirType(0b11));
   }
   
@@ -165,6 +170,7 @@ namespace Math {
   
   ///Get the distance between directions
   constexpr DirType dist(const Dir a, const Dir b) {
+    assert(valid(a) && valid(b));
     constexpr DirType distances[16] = {
       0, 1, 2, 1, 1, 0, 1, 2, 2, 1, 0, 1, 1, 2, 1, 0
     };
@@ -176,6 +182,7 @@ namespace Math {
   
   ///Get the difference between directions
   constexpr SignedDirType diff(const Dir a, const Dir b) {
+    assert(valid(a) && valid(b));
     constexpr SignedDirType differences[16] = {
       0, 1, 2, -1, -1, 0, 1, 2, -2, -1, 0, 1, 1, -2, -1, 0
     };
@@ -187,22 +194,10 @@ namespace Math {
   
   ///Get the axis that a direction is on
   constexpr Axis getAxis(const Dir dir) {
+    assert(valid(dir));
     //get the least significant bit
     return static_cast<Axis>(static_cast<DirType>(dir) & DirType(0b01));
   }
-  
-  /*
-  This is how convenient these convenience functions are
-  
-  Math::isVert(dir)
-  Math::getAxis(dir) == Math::Axis::VERT
-  
-  Math::isHori(dir)
-  Math::getAxis(dir) == Math::Axis::HORI
-  
-  Math::sameAxis(dir0, dir1)
-  Math::getAxis(dir0) == Math::getAxis(dir1)
-  */
   
   ///Determine whether a direction is on the vertical axis
   constexpr bool isVert(const Dir dir) {
@@ -230,6 +225,8 @@ namespace Math {
   
     ///Convert a direction to a 2D unit vector
     static glm::tvec2<Number> conv(const Dir dir, const Number dist = Number(1)) {
+      assert(valid(dir));
+      
       constexpr Number ZERO(0);
       
       switch (dir) {
@@ -325,6 +322,7 @@ namespace Math {
   }
   
   constexpr std::string_view toUpperCaseString(const Dir dir) {
+    assert(valid(dir));
     switch (dir) {
       case Dir::UP:
         return "UP";
@@ -342,6 +340,7 @@ namespace Math {
   }
   
   constexpr std::string_view toLowerCaseString(const Dir dir) {
+    assert(valid(dir));
     switch (dir) {
       case Dir::UP:
         return "up";
@@ -355,32 +354,6 @@ namespace Math {
         return "none";
       default:
         return "";
-    }
-  }
-}
-
-#include <cmath>
-
-namespace Math {
-  // might potentially be useful
-  inline glm::vec2 roundInDir(const glm::vec2 vec, const Math::Dir dir) {
-    constexpr Math::Dir PLUS_X = Math::Dir::RIGHT;
-    constexpr Math::Dir PLUS_Y = Math::Dir::UP;
-    
-    switch (dir) {
-      case PLUS_X:
-        return {std::ceil(vec.x), vec.y};
-      case PLUS_Y:
-        return {vec.x, std::ceil(vec.y)};
-      case Math::opposite(PLUS_X):
-        return {std::floor(vec.x), vec.y};
-      case Math::opposite(PLUS_Y):
-        return {vec.x, std::floor(vec.y)};
-      case Math::Dir::NONE:
-        return vec;
-      
-      default:
-        assert(false);
     }
   }
   
@@ -435,6 +408,7 @@ namespace Math {
   
   ///Dereference a direction. Used for iterating directions
   constexpr Math::Dir operator*(const Math::Dir dir) {
+    assert(valid(dir));
     return dir;
   }
 }
