@@ -33,6 +33,8 @@ namespace Data {
   const auto CHILD_ITER = PARENT_NODE.find(CHILD_NAME);                         \
   CHILD_ITER != PARENT_NODE.end()
 
+#define DATA_GET(OBJ, NAME) Data::get(OBJ.NAME, j, #NAME)
+
 namespace glm {
   template <typename T>
   void from_json(const json &j, glm::tvec2<T> &vec) {
