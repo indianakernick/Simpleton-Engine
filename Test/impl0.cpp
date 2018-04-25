@@ -94,6 +94,7 @@
 #include "../Simpleton Engine/SDL/mainloop.hpp"
 #include "../Simpleton Engine/SDL/texture.hpp"
 #include "../Simpleton Engine/SDL/font library.hpp"
+#include "../Simpleton Engine/SDL/chunk.hpp"
 #include "../Simpleton Engine/Unpack/sheet.hpp"
 #include "../Simpleton Engine/Unpack/types.hpp"
 #include "../Simpleton Engine/ID/global.hpp"
