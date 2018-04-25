@@ -31,6 +31,14 @@ inline G2D::Quad &G2D::QuadWriter::quad() {
   return quads.back();
 }
 
+inline G2D::Quad &G2D::QuadWriter::dup() {
+  assert(sections.size() && quads.size());
+  
+  ++sections.back();
+  quads.push_back(quads.back());
+  return quads.back();
+}
+
 inline void G2D::QuadWriter::depth(const float depth) {
   assert(quads.size() && sections.size() && sections.back());
   
@@ -45,6 +53,26 @@ namespace G2D::detail {
   inline void setPos(glm::vec3 &dst, const glm::vec2 src) {
     dst.x = src.x;
     dst.y = src.y;
+  }
+}
+
+inline void G2D::QuadWriter::dupPos() {
+  assert(quads.size() > 1 && sections.size() && sections.back());
+  
+  Quad &quad = quads.back();
+  Quad &prev = quads[quads.size() - 2];
+  for (size_t i = 0; i != 4; ++i) {
+    detail::setPos(quad[i].pos, prev[i].pos);
+  }
+}
+
+inline void G2D::QuadWriter::dupPosDepth() {
+  assert(quads.size() > 1 && sections.size() && sections.back());
+  
+  Quad &quad = quads.back();
+  Quad &prev = quads[quads.size() - 2];
+  for (size_t i = 0; i != 4; ++i) {
+    quad[i].pos = prev[i].pos;
   }
 }
 
@@ -83,6 +111,16 @@ inline void G2D::QuadWriter::rotTilePos(
   detail::setPos(quad[1].pos, botRight + shift);
   detail::setPos(quad[2].pos, topRight + shift);
   detail::setPos(quad[3].pos, topLeft + shift);
+}
+
+inline void G2D::QuadWriter::dupTex() {
+  assert(quads.size() > 1 && sections.size() && sections.back());
+  
+  Quad &quad = quads.back();
+  Quad &prev = quads[quads.size() - 2];
+  for (size_t i = 0; i != 4; ++i) {
+    quad[i].texCoord = prev[i].texCoord;
+  }
 }
 
 inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
