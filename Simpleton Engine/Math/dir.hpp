@@ -304,21 +304,21 @@ namespace Math {
   
   ///Convert a direction to a number
   template <typename Number>
-  Number toNum(const Dir dir) {
+  constexpr Number toNum(const Dir dir) {
     assert(valid(dir));
     return static_cast<Number>(dir);
   }
   
   ///Convert a direction to a number and multiply
   template <typename Number>
-  Number toNum(const Dir dir, const Number factor) {
+  constexpr Number toNum(const Dir dir, const Number factor) {
     assert(valid(dir));
     return static_cast<Number>(dir) * factor;
   }
   
   ///Convert a number to a direction
   template <typename Number>
-  Dir toDir(const Number number) {
+  constexpr Dir toDir(const Number number) {
     const Dir dir = static_cast<Dir>(number);
     assert(valid(dir));
     return dir;
