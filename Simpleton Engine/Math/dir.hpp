@@ -137,28 +137,23 @@ namespace Math {
   
   ///Get the opposite of a direction
   constexpr Dir opposite(const Dir dir) {
-    assert(valid(dir));
     //flip the second least significant bit
     return static_cast<Dir>(static_cast<DirType>(dir) ^ DirType(0b10));
   }
   
   ///Get the opposite of an axis
   constexpr Axis opposite(const Axis axis) {
-    assert(valid(axis));
     //flip the least significant bit
     return static_cast<Axis>(static_cast<DirType>(axis) ^ DirType(0b1));
   }
   
   ///Rotate a direction clockwise
   constexpr Dir rotateCW(const Dir dir, const DirType count = 1) {
-    // NONE & 0b11 == UP
-    assert(validOrNone(dir));
     return static_cast<Dir>((static_cast<DirType>(dir) + count) & DirType(0b11));
   }
   
   ///Rotate a direction counter-clockwise (anti-clockwise)
   constexpr Dir rotateCCW(const Dir dir, const DirType count = 1) {
-    assert(valid(dir));
     return static_cast<Dir>((static_cast<DirType>(dir) - count) & DirType(0b11));
   }
   
@@ -194,7 +189,6 @@ namespace Math {
   
   ///Get the axis that a direction is on
   constexpr Axis getAxis(const Dir dir) {
-    assert(valid(dir));
     //get the least significant bit
     return static_cast<Axis>(static_cast<DirType>(dir) & DirType(0b01));
   }
@@ -302,14 +296,12 @@ namespace Math {
   ///Convert a direction to a number
   template <typename Number>
   constexpr Number toNum(const Dir dir) {
-    assert(valid(dir));
     return static_cast<Number>(dir);
   }
   
   ///Convert a direction to a number and multiply
   template <typename Number>
   constexpr Number toNum(const Dir dir, const Number factor) {
-    assert(valid(dir));
     return static_cast<Number>(dir) * factor;
   }
   
