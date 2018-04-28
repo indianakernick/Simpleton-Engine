@@ -13,9 +13,9 @@
 
 namespace Utils {
   template <typename T>
-  constexpr std::string_view typeName() {
+  constexpr std::basic_string_view<char> typeName() {
     //clang   std::string_view Utils::typeName() [T = int]
-    //gcc     std::string_view Utils::typeName() [with T = int]
+    //gcc     constexpr std::string_view Utils::typeName() [with T = int]
     std::string_view name = __PRETTY_FUNCTION__;
     name.remove_prefix(name.find('='));
     //trimming "= "
