@@ -338,7 +338,7 @@
 			name = Surface;
 			sourceTree = "<group>";
 		};
-		454B2B06203E98F600D94D6A /* Unpack */ = {
+		454B2B06203E98F600D94D6A /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
 				454B2B37204138D000D94D6A /* types.inl */,
@@ -346,7 +346,7 @@
 				454B2B08203E994D00D94D6A /* sheet.inl */,
 				454B2B07203E994D00D94D6A /* sheet.hpp */,
 			);
-			path = Unpack;
+			path = Sprite;
 			sourceTree = "<group>";
 		};
 		454B2B122040E0C300D94D6A /* Pack */ = {
@@ -500,7 +500,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
-				454B2B06203E98F600D94D6A /* Unpack */,
+				454B2B06203E98F600D94D6A /* Sprite */,
 				4507595A1FF5E8280009B360 /* Data */,
 				45B32EBC1FF484F2007BA7F4 /* ECS */,
 				45B32EB31FF47E37007BA7F4 /* Box2D */,

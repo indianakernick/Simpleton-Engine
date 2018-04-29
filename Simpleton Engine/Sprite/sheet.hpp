@@ -15,33 +15,33 @@
 #include <string_view>
 #include <unordered_map>
 
-namespace Unpack {
-  class Spritesheet {
+namespace Sprite {
+  class Sheet {
   public:
     //only the factory function can make spritesheets
-    friend Spritesheet makeSpritesheet(std::string_view);
+    friend Sheet makeSheet(std::string_view);
     
-    Spritesheet() = default;
-    ~Spritesheet() = default;
-    Spritesheet(Spritesheet &&) = default;
-    Spritesheet &operator=(Spritesheet &&) = default;
+    Sheet() = default;
+    ~Sheet() = default;
+    Sheet(Sheet &&) = default;
+    Sheet &operator=(Sheet &&) = default;
     
     /// Returns NULL_SPRITE if the name is invalid
-    SpriteID getIDfromName(std::string_view) const;
+    ID getIDfromName(std::string_view) const;
     /// Throws std::out_of_range if SpriteID is invalid
-    Rect getSprite(SpriteID) const;
+    Rect getSprite(ID) const;
     /// Is there a whitepixel position?
     bool hasWhitepixel() const;
     /// Get whitepixel pos. Returns NO_WHITEPIXEL if there isn't one
     glm::vec2 getWhitepixel() const;
     
   private:
-    std::unordered_map<std::string, SpriteID> names;
+    std::unordered_map<std::string, ID> names;
     std::vector<Rect> rects;
     glm::vec2 whitepixel;
   };
   
-  Spritesheet makeSpritesheet(std::string_view);
+  Sheet makeSheet(std::string_view);
 }
 
 #include "sheet.inl"

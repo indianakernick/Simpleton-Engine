@@ -11,7 +11,7 @@
 
 #include "../Math/rect.hpp"
 
-namespace Unpack {
+namespace Sprite {
   using Rect = Math::RectPP<float>;
   
   class AtlasReadError final : public std::runtime_error {
@@ -19,8 +19,8 @@ namespace Unpack {
     explicit AtlasReadError(const std::exception &);
   };
   
-  using SpriteID = uint32_t;
-  constexpr SpriteID NULL_SPRITE = std::numeric_limits<SpriteID>::max();
+  using ID = uint32_t;
+  constexpr ID NULL_SPRITE = std::numeric_limits<ID>::max();
   constexpr glm::vec2 NO_WHITEPIXEL = {-1.0f, -1.0f};
 }
 

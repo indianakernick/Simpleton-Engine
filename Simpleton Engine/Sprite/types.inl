@@ -6,5 +6,5 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-inline Unpack::AtlasReadError::AtlasReadError(const std::exception &exception)
+inline Sprite::AtlasReadError::AtlasReadError(const std::exception &exception)
   : std::runtime_error(exception.what()) {}

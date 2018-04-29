@@ -9,7 +9,7 @@
 #include "../Memory/file io.hpp"
 #include "../Utils/parse string.hpp"
 
-inline Unpack::SpriteID Unpack::Spritesheet::getIDfromName(const std::string_view name) const {
+inline Sprite::ID Sprite::Sheet::getIDfromName(const std::string_view name) const {
   auto iter = names.find(std::string(name));
   if (iter == names.cend()) {
     return NULL_SPRITE;
@@ -18,22 +18,22 @@ inline Unpack::SpriteID Unpack::Spritesheet::getIDfromName(const std::string_vie
   }
 }
 
-inline Unpack::Rect Unpack::Spritesheet::getSprite(const SpriteID sprite) const {
+inline Sprite::Rect Sprite::Sheet::getSprite(const ID sprite) const {
   return rects.at(sprite);
 }
 
-inline bool Unpack::Spritesheet::hasWhitepixel() const {
+inline bool Sprite::Sheet::hasWhitepixel() const {
   return whitepixel != NO_WHITEPIXEL;
 }
 
-inline glm::vec2 Unpack::Spritesheet::getWhitepixel() const {
+inline glm::vec2 Sprite::Sheet::getWhitepixel() const {
   return whitepixel;
 }
 
-inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasPath) try {
+inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
   const Memory::Buffer file = Memory::readFile(atlasPath);
   Utils::ParseString string(file.cdata<char>(), file.size());
-  Spritesheet sheet;
+  Sheet sheet;
   
   string.expect("{\"length\":");
   const auto length = string.parseNumber<uint32_t>();
@@ -43,7 +43,7 @@ inline Unpack::Spritesheet Unpack::makeSpritesheet(const std::string_view atlasP
     std::string name;
     string.copyUntil(name, '"');
     string.expect("\":");
-    sheet.names.emplace(name, string.parseNumber<SpriteID>());
+    sheet.names.emplace(name, string.parseNumber<ID>());
     if (string.front() == '}') {
       break;
     } else {
