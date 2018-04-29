@@ -219,8 +219,6 @@ namespace Math {
   
     ///Convert a direction to a 2D unit vector
     static glm::tvec2<Number> conv(const Dir dir, const Number dist = Number(1)) {
-      assert(valid(dir));
-      
       constexpr Number ZERO(0);
       
       switch (dir) {
