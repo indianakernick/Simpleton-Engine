@@ -218,6 +218,15 @@ inline Utils::ParseString &Utils::ParseString::expect(Pred &&pred, const std::st
   return *this;
 }
 
+template <typename Pred>
+inline Utils::ParseString &Utils::ParseString::expectAfter(const char c, Pred &&pred) {
+  return skip(pred).expect(c);
+}
+
+inline Utils::ParseString &Utils::ParseString::expectAfterWhitespace(const char c) {
+  return skipWhitespace().expect(c);
+}
+
 inline bool Utils::ParseString::check(const char c) {
   if (mSize == 0 || *mData != c) {
     return false;

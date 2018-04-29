@@ -128,6 +128,15 @@ namespace Utils {
     template <typename Pred>
     ParseString &expect(Pred &&, std::string_view);
     
+    ///Throw a ExpectChar exception if the front character is not equal to the
+    ///supplied character after all characters that satisfy the supplied
+    ///predicate have been skipped.
+    template <typename Pred>
+    ParseString &expectAfter(char, Pred &&);
+    ///Throw a ExpectChar exception if the front character is not equal to the
+    ///supplied character after all whitespace characters have been skipped
+    ParseString &expectAfterWhitespace(char);
+    
     ///Advances and returns true if the front character is equal to the supplied
     ///character. Does nothing and returns false otherwise
     bool check(char);
