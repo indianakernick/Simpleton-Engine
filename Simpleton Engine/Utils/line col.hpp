@@ -39,16 +39,6 @@ namespace Utils {
       }
     }
     
-    /*@TODO uncomment
-    
-    template <typename LineT, typename ColT>
-    LineCol(const LineT line, const ColT col) -> LineCol<LineT, ColT>
-      : line(line), col(col) {
-      if (line < FIRST_LINE || col < FIRST_COL) {
-        throw std::out_of_range("Line or column too small");
-      }
-    }*/
-    
     ///Move line and col according to the char
     void putChar(const char c) {
       switch (c) {
