@@ -16,9 +16,6 @@ namespace Memory {
   ///constructors and destructors called
   template <typename T>
   class View {
-  
-    static_assert(std::is_pod<T>::value, "Memory::View can only handle POD types. Use std::vector<> for non-POD types");
-  
   public:
     explicit View(const size_t numObjects)
       : buf(numObjects * sizeof(T)) {}
@@ -32,8 +29,6 @@ namespace Memory {
       : buf(data, numObjects * sizeof(T), NO_DELETE) {}
     
     View(View<T> &&) = default;
-    ~View() = default;
-    
     View<T> &operator=(View<T> &&) = default;
     
     bool operator==(const View<T> &other) const {
@@ -98,22 +93,6 @@ namespace Memory {
     
     Buffer buf;
   };
-  
-  using StringView = View<char>;
-  using WStringView = View<wchar_t>;
-  
-  using Uint8View  = View< uint8_t>;
-  using Int8View   = View<  int8_t>;
-  using Uint16View = View<uint16_t>;
-  using Int16View  = View< int16_t>;
-  using Uint32View = View<uint32_t>;
-  using Int32View  = View< int32_t>;
-  using Uint64View = View<uint64_t>;
-  using Int64View  = View< int64_t>;
-  
-  using Float32View  = View<float>;
-  using Float64View  = View<double>;
-  using Float128View = View<long double>;
 }
 
 #endif

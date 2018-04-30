@@ -31,9 +31,8 @@ namespace Memory {
     Buffer(size_t, Byte);
     Buffer(void *, size_t);
     Buffer(void *, size_t, NoDelete);
-    Buffer(Buffer &&) = default;
-    ~Buffer() = default;
     
+    Buffer(Buffer &&) = default;
     Buffer &operator=(Buffer &&) = default;
     
     bool operator==(const Buffer &) const;

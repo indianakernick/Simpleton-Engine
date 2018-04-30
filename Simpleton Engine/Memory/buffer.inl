@@ -57,7 +57,13 @@ inline bool Memory::Buffer::operator!=(const Buffer &other) const {
 }
 
 inline bool Memory::Buffer::operator<(const Buffer &other) const {
-  return mSize < other.mSize || std::memcmp(data(), other.data(), mSize) < 0;
+  if (mSize < other.mSize) {
+    return true;
+  } else if (other.mSize < mSize) {
+    return false;
+  } else {
+    return std::memcmp(data(), other.data(), mSize) < 0;
+  }
 }
 
 inline void Memory::Buffer::swap(Buffer &other) {
