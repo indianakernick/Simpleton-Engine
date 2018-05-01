@@ -9,28 +9,43 @@
 #include <glm/gtc/constants.hpp>
 
 inline G2D::QuadWriter::QuadWriter()
-  : quads(2048), sections(64) {
-  backQuad = quads.data() - 1;
-  backSection = sections.data() - 1;
-  params.reserve(64);
+  : quads(2048), sections(64), params(64) {
+  clear();
 }
 
 inline void G2D::QuadWriter::clear() {
   backQuad = quads.data() - 1;
   backSection = sections.data() - 1;
-  params.clear();
+  backParam = params.data() - 1;
 }
 
 inline void G2D::QuadWriter::section(const RenderParams &param) {
-  *(++backSection) = backQuad;
-  params.push_back(param);
+  ++backSection;
+  ++backParam;
+  
+  if (backSection == sections.end()) {
+    const size_t oldSize = sections.size();
+    const size_t newSize = oldSize * 2;
+    sections.resizeCopy(newSize);
+    params.resizeCopy(newSize);
+    backSection = sections.data() + oldSize;
+    backParam = params.data() + oldSize;
+  }
+  
+  *backSection = backQuad - quads.data();
+  *backParam = param;
 }
 
 inline void G2D::QuadWriter::sectionSize(const size_t size) {
   // number of quads minus 1
-  const size_t numQuadsM1 = backQuad - quads.data();
-  if (quads.size() <= numQuadsM1 + size) {
-    
+  const size_t backIndex = backQuad - quads.data();
+  const size_t numQuadsM1 = backIndex + size;
+  if (quads.size() <= numQuadsM1) {
+    quads.resizeCopy(
+      // Ceil to nearest power of two
+      (1 << (Utils::bits<long long> - __builtin_clzll(numQuadsM1)))
+    );
+    backQuad = quads.data() + backIndex;
   }
 }
 
@@ -39,9 +54,25 @@ inline G2D::Quad &G2D::QuadWriter::quad() {
   return *(++backQuad);
 }
 
+inline G2D::Quad &G2D::QuadWriter::quadAlloc() {
+  assert(hasSection());
+  ++backQuad;
+  const size_t oldSize = quads.size();
+  if (backQuad == quads.data() + oldSize) {
+    quads.resizeCopy(oldSize * 2);
+    backQuad = quads.data() + oldSize;
+  }
+  return *backQuad;
+}
+
 inline G2D::Quad &G2D::QuadWriter::dup() {
   assert(hasQuad());
   return quad() = *backQuad;
+}
+
+inline G2D::Quad &G2D::QuadWriter::dupAlloc() {
+  assert(hasQuad());
+  return quadAlloc() = *backQuad;
 }
 
 inline void G2D::QuadWriter::depth(const float depth) {
@@ -140,21 +171,26 @@ inline void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
 }
 
 inline void G2D::QuadWriter::render(Renderer &renderer) const {
-  renderer.writeQuads({
-    0, static_cast<size_t>(1 + backQuad - quads.data())},
-    quads.data()
-  );
-  const size_t numSections = 1 + backSection - sections.data();
-  for (size_t s = 0; s != numSections; ++s) {
-    QuadRange range;
-    range.begin = 1 + sections[s] - quads.data();
-    if (s == static_cast<size_t>(backSection - sections.data())) {
-      range.end = 1 + *backSection - quads.data();
-    } else {
-      range.end = 1 + sections[s + 1] - quads.data();
-    }
-    renderer.render(range, params[s]);
+  // the indicies in the sections array point to the beginnings of each
+  // section minus 1. backQuad points to the last quad of the last section
+  const size_t numQuads = 1 + backQuad - quads.data();
+  renderer.writeQuads({0, numQuads}, quads.data());
+  size_t *const endSection = 1 + backSection;
+  const size_t *section = sections.data();
+  if (section == endSection) {
+    return;
   }
+  const RenderParams *param = params.data();
+  QuadRange range;
+  range.begin = 1 + *section;
+  ++section;
+  for (; section != endSection; ++section, ++param) {
+    range.end = 1 + *section;
+    renderer.render(range, *param);
+    range.begin = range.end;
+  }
+  range.end = 1 + backQuad - quads.data();
+  renderer.render(range, *param);
 }
 
 inline bool G2D::QuadWriter::hasQuad() const {

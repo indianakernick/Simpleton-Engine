@@ -26,10 +26,16 @@ namespace G2D {
     /// Make space for the given number of quads
     void sectionSize(size_t);
     
-    /// Start a new quad and return it
+    /// Start a new quad and return it. Undefined behaviour if there isn't
+    /// enough memory allocated.
     Quad &quad();
+    /// Start a new quad and return it. Allocates memory if required. This check
+    /// can reduce performance.
+    Quad &quadAlloc();
     /// Start a new quad that is a duplicate of the previous quad and return it
     Quad &dup();
+    /// Similar to dup() but makes a call to quadAlloc() rather than quad()
+    Quad &dupAlloc();
     
     /// Set the depth of the current quad
     void depth(float);
@@ -62,10 +68,11 @@ namespace G2D {
     
   private:
     Quad *backQuad;
-    Quad **backSection;
+    size_t *backSection;
+    RenderParams *backParam;
     Memory::View<Quad> quads;
-    Memory::View<Quad *> sections;
-    std::vector<RenderParams> params;
+    Memory::View<size_t> sections;
+    Memory::View<RenderParams> params;
     
     bool hasQuad() const;
     bool hasQuads() const;
