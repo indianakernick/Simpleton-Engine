@@ -74,3 +74,19 @@ inline void Memory::Buffer::swap(Buffer &other) {
 inline void Memory::Buffer::copyFrom(const Buffer &buffer) {
   std::memcpy(data(), buffer.data(), mSize < buffer.mSize ? mSize : buffer.mSize);
 }
+
+inline void Memory::Buffer::resize(const size_t size) {
+  mData = std::unique_ptr<Byte, void(*)(void *)>(
+    alloc(size), mData.get_deleter()
+  );
+  mSize = size;
+}
+
+inline void Memory::Buffer::resizeCopy(const size_t size) {
+  auto temp = std::unique_ptr<Byte, void(*)(void *)>(
+    alloc(size), mData.get_deleter()
+  );
+  std::memcpy(temp.get(), mData.get(), mSize < size ? mSize : size);
+  mData = std::move(temp);
+  mSize = size;
+}

@@ -41,6 +41,8 @@ namespace Memory {
     
     void swap(Buffer &);
     void copyFrom(const Buffer &);
+    void resize(size_t);
+    void resizeCopy(size_t);
     
     template <typename T = Byte>
     T *data() {
