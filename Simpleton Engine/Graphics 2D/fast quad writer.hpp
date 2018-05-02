@@ -1,22 +1,22 @@
 //
-//  quad writer.hpp
+//  fast quad writer.hpp
 //  Simpleton Engine
 //
-//  Created by Indi Kernick on 22/4/18.
+//  Created by Indi Kernick on 30/4/18.
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_graphics_2d_quad_writer_hpp
-#define engine_graphics_2d_quad_writer_hpp
+#ifndef engine_graphics_2d_fast_quad_writer_hpp
+#define engine_graphics_2d_fast_quad_writer_hpp
 
 #include "renderer.hpp"
 #include "../Math/rect.hpp"
 #include "../Memory/view.hpp"
 
 namespace G2D {
-  class QuadWriter {
+  class FastQuadWriter {
   public:
-    QuadWriter();
+    FastQuadWriter();
     
     /// Remove all of the sections
     void clear();

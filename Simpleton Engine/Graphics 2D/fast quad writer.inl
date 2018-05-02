@@ -1,25 +1,25 @@
 //
-//  quad writer.inl
+//  fast quad writer.inl
 //  Simpleton Engine
 //
-//  Created by Indi Kernick on 22/4/18.
+//  Created by Indi Kernick on 30/4/18.
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
 #include <glm/gtc/constants.hpp>
 
-inline G2D::QuadWriter::QuadWriter()
+inline G2D::FastQuadWriter::FastQuadWriter()
   : quads(2048), sections(64), params(64) {
   clear();
 }
 
-inline void G2D::QuadWriter::clear() {
+inline void G2D::FastQuadWriter::clear() {
   backQuad = quads.data() - 1;
   backSection = sections.data() - 1;
   backParam = params.data() - 1;
 }
 
-inline void G2D::QuadWriter::section(const RenderParams &param) {
+inline void G2D::FastQuadWriter::section(const RenderParams &param) {
   ++backSection;
   ++backParam;
   
@@ -36,7 +36,7 @@ inline void G2D::QuadWriter::section(const RenderParams &param) {
   *backParam = param;
 }
 
-inline void G2D::QuadWriter::sectionSize(const size_t size) {
+inline void G2D::FastQuadWriter::sectionSize(const size_t size) {
   // number of quads minus 1
   const size_t backIndex = backQuad - quads.data();
   const size_t numQuadsM1 = backIndex + size;
@@ -49,12 +49,12 @@ inline void G2D::QuadWriter::sectionSize(const size_t size) {
   }
 }
 
-inline G2D::Quad &G2D::QuadWriter::quad() {
+inline G2D::Quad &G2D::FastQuadWriter::quad() {
   assert(hasSection());
   return *(++backQuad);
 }
 
-inline G2D::Quad &G2D::QuadWriter::quadAlloc() {
+inline G2D::Quad &G2D::FastQuadWriter::quadAlloc() {
   assert(hasSection());
   ++backQuad;
   const size_t oldSize = quads.size();
@@ -65,17 +65,17 @@ inline G2D::Quad &G2D::QuadWriter::quadAlloc() {
   return *backQuad;
 }
 
-inline G2D::Quad &G2D::QuadWriter::dup() {
+inline G2D::Quad &G2D::FastQuadWriter::dup() {
   assert(hasQuad());
   return quad() = *backQuad;
 }
 
-inline G2D::Quad &G2D::QuadWriter::dupAlloc() {
+inline G2D::Quad &G2D::FastQuadWriter::dupAlloc() {
   assert(hasQuad());
   return quadAlloc() = *backQuad;
 }
 
-inline void G2D::QuadWriter::depth(const float depth) {
+inline void G2D::FastQuadWriter::depth(const float depth) {
   assert(hasQuad());
   Quad &quad = *backQuad;
   quad[0].pos.z =
@@ -85,22 +85,22 @@ inline void G2D::QuadWriter::depth(const float depth) {
 }
 
 namespace G2D::detail {
-  inline void setPos(glm::vec3 &dst, const glm::vec2 src) {
+  inline void setPosF(glm::vec3 &dst, const glm::vec2 src) {
     dst.x = src.x;
     dst.y = src.y;
   }
 }
 
-inline void G2D::QuadWriter::dupPos() {
+inline void G2D::FastQuadWriter::dupPos() {
   assert(hasQuads());
   Quad &quad = *backQuad;
   Quad &prev = *(backQuad - 1);
   for (size_t i = 0; i != 4; ++i) {
-    detail::setPos(quad[i].pos, prev[i].pos);
+    detail::setPosF(quad[i].pos, prev[i].pos);
   }
 }
 
-inline void G2D::QuadWriter::dupPosDepth() {
+inline void G2D::FastQuadWriter::dupPosDepth() {
   assert(hasQuads());
   Quad &quad = *backQuad;
   Quad &prev = *(backQuad - 1);
@@ -109,20 +109,20 @@ inline void G2D::QuadWriter::dupPosDepth() {
   }
 }
 
-inline void G2D::QuadWriter::tilePos(
+inline void G2D::FastQuadWriter::tilePos(
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
   assert(hasQuad());
   
   Quad &quad = *backQuad;
-  detail::setPos(quad[0].pos, pos);
-  detail::setPos(quad[1].pos, {pos.x + size.x, pos.y});
-  detail::setPos(quad[2].pos, pos + size);
-  detail::setPos(quad[3].pos, {pos.x, pos.y + size.y});
+  detail::setPosF(quad[0].pos, pos);
+  detail::setPosF(quad[1].pos, {pos.x + size.x, pos.y});
+  detail::setPosF(quad[2].pos, pos + size);
+  detail::setPosF(quad[3].pos, {pos.x, pos.y + size.y});
 }
 
-inline void G2D::QuadWriter::rotTilePos(
+inline void G2D::FastQuadWriter::rotTilePos(
   const float angle,
   const glm::vec2 pos,
   const glm::vec2 size
@@ -140,13 +140,13 @@ inline void G2D::QuadWriter::rotTilePos(
   const glm::vec2 shift = pos + halfSize;
   
   Quad &quad = *backQuad;
-  detail::setPos(quad[0].pos, botLeft + shift);
-  detail::setPos(quad[1].pos, botRight + shift);
-  detail::setPos(quad[2].pos, topRight + shift);
-  detail::setPos(quad[3].pos, topLeft + shift);
+  detail::setPosF(quad[0].pos, botLeft + shift);
+  detail::setPosF(quad[1].pos, botRight + shift);
+  detail::setPosF(quad[2].pos, topRight + shift);
+  detail::setPosF(quad[3].pos, topLeft + shift);
 }
 
-inline void G2D::QuadWriter::dupTex() {
+inline void G2D::FastQuadWriter::dupTex() {
   assert(hasQuads());
   
   Quad &quad = *backQuad;
@@ -156,7 +156,7 @@ inline void G2D::QuadWriter::dupTex() {
   }
 }
 
-inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
+inline void G2D::FastQuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
   assert(hasQuad());
   
   Quad &quad = *backQuad;
@@ -166,11 +166,11 @@ inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
   quad[3].texCoord = {min.x, max.y};
 }
 
-inline void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
+inline void G2D::FastQuadWriter::tileTex(const Math::RectPP<float> coords) {
   tileTex(coords.min, coords.max);
 }
 
-inline void G2D::QuadWriter::render(Renderer &renderer) const {
+inline void G2D::FastQuadWriter::render(Renderer &renderer) const {
   // the indicies in the sections array point to the beginnings of each
   // section minus 1. backQuad points to the last quad of the last section
   const size_t numQuads = 1 + backQuad - quads.data();
@@ -193,14 +193,14 @@ inline void G2D::QuadWriter::render(Renderer &renderer) const {
   renderer.render(range, *param);
 }
 
-inline bool G2D::QuadWriter::hasQuad() const {
+inline bool G2D::FastQuadWriter::hasQuad() const {
   return backQuad >= quads.data();
 }
 
-inline bool G2D::QuadWriter::hasQuads() const {
+inline bool G2D::FastQuadWriter::hasQuads() const {
   return backQuad > quads.data();
 }
 
-inline bool G2D::QuadWriter::hasSection() const {
+inline bool G2D::FastQuadWriter::hasSection() const {
   return backSection >= sections.data();
 }
