@@ -141,6 +141,8 @@
 		4563D6062097328B00DB2510 /* fast quad writer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fast quad writer.inl"; sourceTree = "<group>"; };
 		45682654209981FC00BA6AE8 /* sheet tex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sheet tex.hpp"; sourceTree = "<group>"; };
 		45682655209981FC00BA6AE8 /* sheet tex.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sheet tex.inl"; sourceTree = "<group>"; };
+		4568265B2099D07500BA6AE8 /* filter surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "filter surface.hpp"; sourceTree = "<group>"; };
+		4568265C2099D07500BA6AE8 /* filter surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "filter surface.inl"; sourceTree = "<group>"; };
 		456B8378205CD63C0016F6D0 /* mainloop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mainloop.hpp; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -332,6 +334,8 @@
 				454B2B01203E930900D94D6A /* write surface.hpp */,
 				454B2B03203E930900D94D6A /* blit surface.inl */,
 				454B2AFF203E930800D94D6A /* blit surface.hpp */,
+				4568265C2099D07500BA6AE8 /* filter surface.inl */,
+				4568265B2099D07500BA6AE8 /* filter surface.hpp */,
 			);
 			name = Surface;
 			sourceTree = "<group>";

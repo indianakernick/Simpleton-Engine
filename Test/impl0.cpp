@@ -112,6 +112,7 @@
 #include "../Simpleton Engine/Graphics 2D/load surface.hpp"
 #include "../Simpleton Engine/Graphics 2D/geom types.hpp"
 #include "../Simpleton Engine/Graphics 2D/write surface.hpp"
+#include "../Simpleton Engine/Graphics 2D/filter surface.hpp"
 #include "../Simpleton Engine/Graphics 2D/blit surface.hpp"
 #include "../Simpleton Engine/Graphics 2D/render types.hpp"
 #include "../Simpleton Engine/Graphics 2D/shaders.hpp"
