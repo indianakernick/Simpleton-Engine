@@ -14,7 +14,6 @@
 
 namespace G2D {
   using TextureID = size_t;
-  using JobID = size_t;
   
   struct QuadRange {
     size_t begin;
