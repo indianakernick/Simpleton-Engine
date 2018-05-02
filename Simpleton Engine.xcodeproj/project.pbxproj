@@ -139,6 +139,8 @@
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		4563D6052097328B00DB2510 /* fast quad writer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "fast quad writer.hpp"; sourceTree = "<group>"; };
 		4563D6062097328B00DB2510 /* fast quad writer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fast quad writer.inl"; sourceTree = "<group>"; };
+		45682654209981FC00BA6AE8 /* sheet tex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sheet tex.hpp"; sourceTree = "<group>"; };
+		45682655209981FC00BA6AE8 /* sheet tex.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sheet tex.inl"; sourceTree = "<group>"; };
 		456B8378205CD63C0016F6D0 /* mainloop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mainloop.hpp; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -415,6 +417,8 @@
 				4538850F208C40F9003EB260 /* quad writer.hpp */,
 				4563D6062097328B00DB2510 /* fast quad writer.inl */,
 				4563D6052097328B00DB2510 /* fast quad writer.hpp */,
+				45682655209981FC00BA6AE8 /* sheet tex.inl */,
+				45682654209981FC00BA6AE8 /* sheet tex.hpp */,
 			);
 			path = "Graphics 2D";
 			sourceTree = "<group>";
