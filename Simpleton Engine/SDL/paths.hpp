@@ -15,6 +15,7 @@
 namespace SDL {
   std::string getSaveDir(std::string_view companyName, std::string_view appName);
   std::string getResDir();
+  std::string res(const std::string &);
 }
 
 #include "paths.inl"

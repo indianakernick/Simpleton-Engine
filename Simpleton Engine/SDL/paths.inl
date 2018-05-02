@@ -24,3 +24,10 @@ inline std::string SDL::getResDir() {
   SDL_free(cstr);
   return str;
 }
+
+inline std::string SDL::res(const std::string &name) {
+  char *cstr = SDL_GetBasePath();
+  std::string out = cstr + name;
+  SDL_free(cstr);
+  return out;
+}
