@@ -86,8 +86,6 @@
 		4533DCC61FBBDF350058390C /* zoom to fit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "zoom to fit.hpp"; sourceTree = "<group>"; };
 		453479B41F21AC860083743E /* error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
 		45388485208AA9D1003EB260 /* grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = grid.hpp; sourceTree = "<group>"; };
-		45388504208C24C7003EB260 /* render helper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "render helper.hpp"; sourceTree = "<group>"; };
-		45388505208C24C7003EB260 /* render helper.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "render helper.inl"; sourceTree = "<group>"; };
 		4538850F208C40F9003EB260 /* quad writer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "quad writer.hpp"; sourceTree = "<group>"; };
 		45388510208C40F9003EB260 /* quad writer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "quad writer.inl"; sourceTree = "<group>"; };
 		45388599209010C5003EB260 /* chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunk.hpp; sourceTree = "<group>"; };
@@ -96,8 +94,6 @@
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
 		454B2AF5203D6F5E00D94D6A /* zsort.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = zsort.inl; sourceTree = "<group>"; };
-		454B2AF6203D740800D94D6A /* tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tile.hpp; sourceTree = "<group>"; };
-		454B2AF7203D740800D94D6A /* tile.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = tile.inl; sourceTree = "<group>"; };
 		454B2AFA203E930700D94D6A /* load surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "load surface.hpp"; sourceTree = "<group>"; };
 		454B2AFB203E930700D94D6A /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
 		454B2AFC203E930800D94D6A /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
@@ -415,10 +411,6 @@
 				4589059420301F8A0050F1C4 /* renderer.hpp */,
 				454B2AF5203D6F5E00D94D6A /* zsort.inl */,
 				454B2AF4203D6F5E00D94D6A /* zsort.hpp */,
-				454B2AF7203D740800D94D6A /* tile.inl */,
-				454B2AF6203D740800D94D6A /* tile.hpp */,
-				45388505208C24C7003EB260 /* render helper.inl */,
-				45388504208C24C7003EB260 /* render helper.hpp */,
 				45388510208C40F9003EB260 /* quad writer.inl */,
 				4538850F208C40F9003EB260 /* quad writer.hpp */,
 				4563D6062097328B00DB2510 /* fast quad writer.inl */,
