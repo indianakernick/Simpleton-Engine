@@ -98,8 +98,8 @@ inline void G2D::QuadWriter::rotTilePos(
 
   const glm::vec2 halfSize = size * 0.5f;
   const glm::vec2 topRight = glm::vec2(
-    std::cos(angle + glm::quarter_pi<float>()),
-    std::sin(angle + glm::quarter_pi<float>())
+    glm::root_two<float>() * std::cos(angle + glm::quarter_pi<float>()),
+    glm::root_two<float>() * std::sin(angle + glm::quarter_pi<float>())
   ) * halfSize;
   const glm::vec2 topLeft = {-topRight.y, topRight.x};
   const glm::vec2 botLeft = -topRight;

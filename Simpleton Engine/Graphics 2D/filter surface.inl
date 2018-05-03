@@ -6,6 +6,8 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
+#include <cassert>
+
 template <uint32_t BPP, typename Function>
 void G2D::filterInplace(G2D::Surface &surface, Function &&filter) {
   assert(surface.bytesPerPixel() == BPP);
