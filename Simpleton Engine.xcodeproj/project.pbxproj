@@ -137,8 +137,6 @@
 		454B2B3B2041867C00D94D6A /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
-		4563D6052097328B00DB2510 /* fast quad writer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "fast quad writer.hpp"; sourceTree = "<group>"; };
-		4563D6062097328B00DB2510 /* fast quad writer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fast quad writer.inl"; sourceTree = "<group>"; };
 		45682654209981FC00BA6AE8 /* sheet tex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sheet tex.hpp"; sourceTree = "<group>"; };
 		45682655209981FC00BA6AE8 /* sheet tex.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sheet tex.inl"; sourceTree = "<group>"; };
 		4568265B2099D07500BA6AE8 /* filter surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "filter surface.hpp"; sourceTree = "<group>"; };
@@ -419,8 +417,6 @@
 				454B2AF4203D6F5E00D94D6A /* zsort.hpp */,
 				45388510208C40F9003EB260 /* quad writer.inl */,
 				4538850F208C40F9003EB260 /* quad writer.hpp */,
-				4563D6062097328B00DB2510 /* fast quad writer.inl */,
-				4563D6052097328B00DB2510 /* fast quad writer.hpp */,
 				45682655209981FC00BA6AE8 /* sheet tex.inl */,
 				45682654209981FC00BA6AE8 /* sheet tex.hpp */,
 			);

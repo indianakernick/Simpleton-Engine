@@ -108,7 +108,6 @@
 #include "../Simpleton Engine/Graphics 2D/quad writer.hpp"
 #include "../Simpleton Engine/Graphics 2D/surface.hpp"
 #include "../Simpleton Engine/Graphics 2D/renderer.hpp"
-#include "../Simpleton Engine/Graphics 2D/fast quad writer.hpp"
 #include "../Simpleton Engine/Graphics 2D/load surface.hpp"
 #include "../Simpleton Engine/Graphics 2D/geom types.hpp"
 #include "../Simpleton Engine/Graphics 2D/write surface.hpp"
