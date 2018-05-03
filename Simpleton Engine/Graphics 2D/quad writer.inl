@@ -8,6 +8,12 @@
 
 #include <glm/gtc/constants.hpp>
 
+inline G2D::QuadWriter::QuadWriter() {
+  quads.reserve(2048);
+  sections.reserve(64);
+  params.reserve(64);
+}
+
 inline void G2D::QuadWriter::clear() {
   quads.clear();
   sections.clear();
@@ -15,7 +21,7 @@ inline void G2D::QuadWriter::clear() {
 }
 
 inline void G2D::QuadWriter::section(const RenderParams &param) {
-  sections.push_back(0);
+  sections.push_back(quads.size());
   params.push_back(param);
 }
 
@@ -26,7 +32,6 @@ inline void G2D::QuadWriter::sectionSize(const size_t size) {
 inline G2D::Quad &G2D::QuadWriter::quad() {
   assert(sections.size());
   
-  ++sections.back();
   quads.push_back({});
   return quads.back();
 }
@@ -34,13 +39,12 @@ inline G2D::Quad &G2D::QuadWriter::quad() {
 inline G2D::Quad &G2D::QuadWriter::dup() {
   assert(sections.size() && quads.size());
   
-  ++sections.back();
   quads.push_back(quads.back());
   return quads.back();
 }
 
 inline void G2D::QuadWriter::depth(const float depth) {
-  assert(quads.size() && sections.size() && sections.back());
+  assert(quads.size() && sections.size());
   
   Quad &quad = quads.back();
   quad[0].pos.z =
@@ -57,7 +61,7 @@ namespace G2D::detail {
 }
 
 inline void G2D::QuadWriter::dupPos() {
-  assert(quads.size() > 1 && sections.size() && sections.back());
+  assert(quads.size() > 1 && sections.size());
   
   Quad &quad = quads.back();
   Quad &prev = quads[quads.size() - 2];
@@ -67,7 +71,7 @@ inline void G2D::QuadWriter::dupPos() {
 }
 
 inline void G2D::QuadWriter::dupPosDepth() {
-  assert(quads.size() > 1 && sections.size() && sections.back());
+  assert(quads.size() > 1 && sections.size());
   
   Quad &quad = quads.back();
   Quad &prev = quads[quads.size() - 2];
@@ -80,7 +84,7 @@ inline void G2D::QuadWriter::tilePos(
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
-  assert(quads.size() && sections.size() && sections.back());
+  assert(quads.size() && sections.size());
   
   Quad &quad = quads.back();
   detail::setPos(quad[0].pos, pos);
@@ -94,7 +98,7 @@ inline void G2D::QuadWriter::rotTilePos(
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
-  assert(quads.size() && sections.size() && sections.back());
+  assert(quads.size() && sections.size());
 
   const glm::vec2 halfSize = size * 0.5f;
   const glm::vec2 topRight = glm::vec2(
@@ -114,7 +118,7 @@ inline void G2D::QuadWriter::rotTilePos(
 }
 
 inline void G2D::QuadWriter::dupTex() {
-  assert(quads.size() > 1 && sections.size() && sections.back());
+  assert(quads.size() > 1 && sections.size());
   
   Quad &quad = quads.back();
   Quad &prev = quads[quads.size() - 2];
@@ -124,7 +128,7 @@ inline void G2D::QuadWriter::dupTex() {
 }
 
 inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
-  assert(quads.size() && sections.size() && sections.back());
+  assert(quads.size() && sections.size());
   
   Quad &quad = quads.back();
   quad[0].texCoord = min;
@@ -139,11 +143,16 @@ inline void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
 
 inline void G2D::QuadWriter::render(Renderer &renderer) const {
   renderer.writeQuads({0, quads.size()}, quads.data());
-  size_t count = 0;
-  for (size_t s = 0; s != sections.size(); ++s) {
-    QuadRange range;
-    range.begin = count;
-    range.end = (count += sections[s]);
-    renderer.render(range, params[s]);
+  if (sections.empty()) {
+    return;
   }
+  QuadRange range;
+  range.begin = sections[0];
+  for (size_t s = 1; s != sections.size(); ++s) {
+    range.end = sections[s];
+    renderer.render(range, params[s - 1]);
+    range.begin = range.end;
+  }
+  range.end = quads.size();
+  renderer.render(range, params.back());
 }

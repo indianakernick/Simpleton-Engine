@@ -15,7 +15,7 @@
 namespace G2D {
   class QuadWriter {
   public:
-    QuadWriter() = default;
+    QuadWriter();
     
     /// Remove all of the sections
     void clear();
