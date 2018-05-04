@@ -127,18 +127,29 @@ inline void G2D::QuadWriter::dupTex() {
   }
 }
 
-inline void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
+template <G2D::PlusXY PLUS_XY>
+void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
   assert(quads.size() && sections.size());
   
+  constexpr size_t Is[4][4] = {
+                  // +x      +y
+    {0, 1, 2, 3}, // right   up
+    {1, 0, 3, 2}, // left    up
+    {3, 2, 1, 0}, // right   down
+    {2, 3, 0, 1}  // left    down
+  };
+  constexpr size_t i = static_cast<size_t>(PLUS_XY);
+  
   Quad &quad = quads.back();
-  quad[0].texCoord = min;
-  quad[1].texCoord = {max.x, min.y};
-  quad[2].texCoord = max;
-  quad[3].texCoord = {min.x, max.y};
+  quad[Is[i][0]].texCoord = min;
+  quad[Is[i][1]].texCoord = {max.x, min.y};
+  quad[Is[i][2]].texCoord = max;
+  quad[Is[i][3]].texCoord = {min.x, max.y};
 }
 
-inline void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
-  tileTex(coords.min, coords.max);
+template <G2D::PlusXY PLUS_XY>
+void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
+  tileTex<PLUS_XY>(coords.min, coords.max);
 }
 
 inline void G2D::QuadWriter::render(Renderer &renderer) const {

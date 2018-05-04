@@ -13,6 +13,13 @@
 #include "../Math/rect.hpp"
 
 namespace G2D {
+  enum class PlusXY {
+    RIGHT_UP,
+    LEFT_UP,
+    RIGHT_DOWN,
+    LEFT_DOWN
+  };
+
   class QuadWriter {
   public:
     QuadWriter();
@@ -51,9 +58,11 @@ namespace G2D {
     void dupTex();
     /// Write texture coordinates of vertices on the current quad assuming that
     /// the texture is sampled as an axis-aligned rectangle
+    template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
     void tileTex(glm::vec2, glm::vec2);
     /// Write texture coordinates of vertices on the current quad assuming that
     /// the texture is sampled as an axis-aligned rectangle
+    template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
     void tileTex(Math::RectPP<float>);
     
     /// Copy the quads into GPU memory and issue an number of draw calls
