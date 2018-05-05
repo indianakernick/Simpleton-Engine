@@ -64,7 +64,7 @@ inline void G2D::QuadWriter::dupPos() {
   assert(quads.size() > 1 && sections.size());
   
   Quad &quad = quads.back();
-  Quad &prev = quads[quads.size() - 2];
+  const Quad &prev = *(quads.cend() - 2);
   for (size_t i = 0; i != 4; ++i) {
     detail::setPos(quad[i].pos, prev[i].pos);
   }
@@ -74,7 +74,7 @@ inline void G2D::QuadWriter::dupPosDepth() {
   assert(quads.size() > 1 && sections.size());
   
   Quad &quad = quads.back();
-  Quad &prev = quads[quads.size() - 2];
+  const Quad &prev = *(quads.cend() - 2);
   for (size_t i = 0; i != 4; ++i) {
     quad[i].pos = prev[i].pos;
   }
@@ -102,9 +102,9 @@ inline void G2D::QuadWriter::rotTilePos(
 
   const glm::vec2 halfSize = size * 0.5f;
   const glm::vec2 topRight = glm::vec2(
-    glm::root_two<float>() * std::cos(angle + glm::quarter_pi<float>()),
-    glm::root_two<float>() * std::sin(angle + glm::quarter_pi<float>())
-  ) * halfSize;
+    std::cos(angle + glm::quarter_pi<float>()),
+    std::sin(angle + glm::quarter_pi<float>())
+  ) * halfSize * glm::root_two<float>();
   const glm::vec2 topLeft = {-topRight.y, topRight.x};
   const glm::vec2 botLeft = -topRight;
   const glm::vec2 botRight = -topLeft;
@@ -117,11 +117,48 @@ inline void G2D::QuadWriter::rotTilePos(
   detail::setPos(quad[3].pos, topLeft + shift);
 }
 
+template <G2D::Origin ORIGIN>
+void G2D::QuadWriter::rotTilePos(
+  const float angle,
+  const glm::vec2 pos,
+  const glm::vec2 size
+) {
+  assert(quads.size() && sections.size());
+  
+  constexpr glm::vec2 ORIGIN_POS[9] = {
+    {0.5f, -0.5f}, {0.0f, -0.5f}, {-0.5f, -0.5f}, {-0.5f, 0.0f},
+    {-0.5f, 0.5f}, {0.0f, 0.5f}, {0.5f, 0.5f}, {0.5f, 0.0f},
+    {0.0f, 0.0f}
+  };
+  constexpr glm::vec2 originPos = ORIGIN_POS[static_cast<size_t>(ORIGIN)];
+  
+  const glm::vec2 origin = originPos * size;
+  
+  const float c = std::cos(angle);
+  const float s = std::sin(angle);
+  const glm::mat2 rot = {
+    {c, s},
+    {-s, c}
+  };
+  
+  const glm::vec2 halfSize = size * 0.5f;
+  const glm::vec2 tr = halfSize;
+  const glm::vec2 bl = -halfSize;
+  const glm::vec2 tl = {bl.x, tr.y};
+  const glm::vec2 br = {tr.x, bl.y};
+  
+  Quad &quad = quads.back();
+  detail::setPos(quad[0].pos, pos + rot * (bl + origin));
+  detail::setPos(quad[1].pos, pos + rot * (br + origin));
+  detail::setPos(quad[2].pos, pos + rot * (tr + origin));
+  detail::setPos(quad[3].pos, pos + rot * (tl + origin));
+}
+
 inline void G2D::QuadWriter::dupTex() {
   assert(quads.size() > 1 && sections.size());
   
   Quad &quad = quads.back();
-  Quad &prev = quads[quads.size() - 2];
+  const Quad &prev = *(quads.cend() - 2);
   for (size_t i = 0; i != 4; ++i) {
     quad[i].texCoord = prev[i].texCoord;
   }
