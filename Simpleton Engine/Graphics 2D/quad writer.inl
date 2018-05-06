@@ -53,6 +53,11 @@ inline void G2D::QuadWriter::depth(const float depth) {
   quad[3].pos.z = depth;
 }
 
+template <typename Enum>
+void G2D::QuadWriter::depth(const Enum e) {
+  depth(static_cast<float>(e) / static_cast<float>(Enum::COUNT));
+}
+
 namespace G2D::detail {
   inline void setPos(glm::vec3 &dst, const glm::vec2 src) {
     dst.x = src.x;

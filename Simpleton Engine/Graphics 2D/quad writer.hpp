@@ -51,6 +51,10 @@ namespace G2D {
     
     /// Set the depth of the current quad
     void depth(float);
+    /// Set the depth of the current quad using an enum. The enum type must have
+    /// have COUNT as the last member
+    template <typename Enum>
+    void depth(Enum);
     
     /// Copy the positions of the verticies from the previous quad into the
     /// current quad
