@@ -34,11 +34,14 @@ namespace Sprite {
     bool hasWhitepixel() const;
     /// Get whitepixel pos. Returns NO_WHITEPIXEL if there isn't one
     glm::vec2 getWhitepixel() const;
+    /// Get the length (in pixels) of the texture
+    uint32_t getLength() const;
     
   private:
     std::unordered_map<std::string, ID> names;
     std::vector<Rect> rects;
     glm::vec2 whitepixel;
+    uint32_t length;
   };
   
   Sheet makeSheet(std::string_view);

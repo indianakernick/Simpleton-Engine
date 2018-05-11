@@ -30,13 +30,17 @@ inline glm::vec2 Sprite::Sheet::getWhitepixel() const {
   return whitepixel;
 }
 
+inline uint32_t Sprite::Sheet::getLength() const {
+  return length;
+}
+
 inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
   const Memory::Buffer file = Memory::readFile(atlasPath);
   Utils::ParseString string(file.cdata<char>(), file.size());
   Sheet sheet;
   
   string.expect("{\"length\":");
-  const auto length = string.parseNumber<uint32_t>();
+  sheet.length = string.parseNumber<uint32_t>();
   string.expect(",\"names\":{");
   while (true) {
     string.expect('"');
@@ -64,8 +68,8 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
     string.parseNumber(rect.max.y);
     string.expect(']');
     
-    rect.min /= glm::vec2(length);
-    rect.max /= glm::vec2(length);
+    rect.min /= glm::vec2(sheet.length);
+    rect.max /= glm::vec2(sheet.length);
     sheet.rects.push_back(rect);
     
     if (string.front() == ']') {
