@@ -6,13 +6,13 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_utils_grid_hpp
-#define engine_utils_grid_hpp
+#ifndef engine_grid_grid_hpp
+#define engine_grid_grid_hpp
 
 #include <vector>
 #include <glm/vec2.hpp>
 
-namespace Utils {
+namespace Grid {
   template <typename _Tile>
   class Grid {
   public:

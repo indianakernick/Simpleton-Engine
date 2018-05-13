@@ -496,6 +496,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				45C6DDE320A82F0C002A133F /* Grid */,
 				454B2B06203E98F600D94D6A /* Sprite */,
 				4507595A1FF5E8280009B360 /* Data */,
 				45B32EBC1FF484F2007BA7F4 /* ECS */,
@@ -551,7 +552,6 @@
 				45771C151FE8952D00F533DA /* meta glm.hpp */,
 				45C525A11FEDFC0800A738E0 /* generic raii.hpp */,
 				454B2B0B2040C8C800D94D6A /* endian.hpp */,
-				45388485208AA9D1003EB260 /* grid.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -676,6 +676,14 @@
 				4592B9711F0A2E7600D1640D /* libSDL2_ttf-2.0.0.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		45C6DDE320A82F0C002A133F /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				45388485208AA9D1003EB260 /* grid.hpp */,
+			);
+			path = Grid;
 			sourceTree = "<group>";
 		};
 		45C918EF202E73CA00AC4608 /* Test */ = {
