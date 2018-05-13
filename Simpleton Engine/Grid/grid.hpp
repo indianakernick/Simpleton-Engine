@@ -13,13 +13,14 @@
 #include <glm/vec2.hpp>
 
 namespace Grid {
-  template <typename _Tile>
+  using Coord = unsigned;
+  using Pos = glm::tvec2<Coord>;
+
+  template <typename Tile_>
   class Grid {
   public:
-    using Tile = _Tile;
+    using Tile = Tile_;
     using Tiles = std::vector<Tile>;
-    using Coord = unsigned;
-    using Pos = glm::tvec2<Coord>;
   
     Grid(Grid &&) = default;
     Grid &operator=(Grid &&) = default;
