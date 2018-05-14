@@ -250,6 +250,8 @@
 		45C525A11FEDFC0800A738E0 /* generic raii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "generic raii.hpp"; sourceTree = "<group>"; };
 		45C525A61FEE034D00A738E0 /* framebuffer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = framebuffer.inl; sourceTree = "<group>"; };
 		45C525A71FEE034D00A738E0 /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
+		45C6DDE420A8301F002A133F /* a star.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "a star.hpp"; sourceTree = "<group>"; };
+		45C6DDE520A8301F002A133F /* a star.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "a star.inl"; sourceTree = "<group>"; };
 		45C918D6202E53B800AC4608 /* impl0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = impl0.cpp; sourceTree = "<group>"; };
 		45C918DB202E541700AC4608 /* libTest.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libTest.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		45C918E0202E628800AC4608 /* impl1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = impl1.cpp; sourceTree = "<group>"; };
@@ -682,6 +684,8 @@
 			isa = PBXGroup;
 			children = (
 				45388485208AA9D1003EB260 /* grid.hpp */,
+				45C6DDE520A8301F002A133F /* a star.inl */,
+				45C6DDE420A8301F002A133F /* a star.hpp */,
 			);
 			path = Grid;
 			sourceTree = "<group>";

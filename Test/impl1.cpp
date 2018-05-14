@@ -131,3 +131,4 @@
 #include "../Simpleton Engine/OpenGL/type enum.hpp"
 #include "../Simpleton Engine/OpenGL/shader program.hpp"
 #include "../Simpleton Engine/Grid/grid.hpp"
+#include "../Simpleton Engine/Grid/a star.hpp"

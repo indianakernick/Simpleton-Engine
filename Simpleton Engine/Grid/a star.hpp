@@ -1,0 +1,21 @@
+//
+//  a star.hpp
+//  Simpleton Engine
+//
+//  Created by Indi Kernick on 13/5/18.
+//  Copyright © 2018 Indi Kernick. All rights reserved.
+//
+
+#ifndef engine_grid_a_star_hpp
+#define engine_grid_a_star_hpp
+
+#include "grid.hpp"
+
+namespace Grid {
+  template <typename Tile, typename Function>
+  std::vector<Pos> astar(const Grid<Tile> &, Function &&, Pos, Pos);
+}
+
+#include "a star.inl"
+
+#endif
