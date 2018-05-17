@@ -34,6 +34,7 @@ namespace Data {
   CHILD_ITER != PARENT_NODE.end()
 
 #define DATA_GET(OBJ, NAME) Data::get(OBJ.NAME, j, #NAME)
+#define DATA_GET_OPT(OBJ, NAME) Data::getOptional(OBJ.NAME, j, #NAME)
 
 namespace glm {
   template <typename T>
