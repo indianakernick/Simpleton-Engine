@@ -10,26 +10,26 @@
 #define engine_math_rect_hpp
 
 #include <cmath>
-#include "dir.hpp"
+#include "../Grid/dir.hpp"
 #include <glm/vec2.hpp>
 
 namespace Math {
-  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
+  template <typename T, Grid::Dir POSITIVE_X, Grid::Dir POSITIVE_Y>
   struct RectPS;
   
-  template <typename T, Dir POSITIVE_X, Dir POSITIVE_Y>
+  template <typename T, Grid::Dir POSITIVE_X, Grid::Dir POSITIVE_Y>
   struct RectCS;
 
   ///A rectangle defined by a minimum point and a maximum point
-  template <typename T, Dir POSITIVE_X = Math::Dir::RIGHT, Dir POSITIVE_Y = Math::Dir::UP>
+  template <typename T, Grid::Dir POSITIVE_X = Grid::Dir::RIGHT, Grid::Dir POSITIVE_Y = Grid::Dir::UP>
   struct RectPP {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
     static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
     
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
-    static constexpr Dir PLUS_X = POSITIVE_X;
-    static constexpr Dir PLUS_Y = POSITIVE_Y;
+    static constexpr Grid::Dir PLUS_X = POSITIVE_X;
+    static constexpr Grid::Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
     
     static const RectPP NEG_INF;
@@ -78,7 +78,7 @@ namespace Math {
       max = point;
     }
     
-    Scalar side(const Dir dir) const {
+    Scalar side(const Grid::Dir dir) const {
       switch (dir) {
         case PLUS_Y:
           return max.y;
@@ -93,7 +93,7 @@ namespace Math {
       }
     }
     
-    void side(const Dir dir, const Scalar val) {
+    void side(const Grid::Dir dir, const Scalar val) {
       switch (dir) {
         case PLUS_Y:
           max.y = val;
@@ -113,59 +113,59 @@ namespace Math {
     }
     
     Scalar top() const {
-      return side(Dir::TOP);
+      return side(Grid::Dir::TOP);
     }
     Scalar right() const {
-      return side(Dir::RIGHT);
+      return side(Grid::Dir::RIGHT);
     }
     Scalar bottom() const {
-      return side(Dir::BOTTOM);
+      return side(Grid::Dir::BOTTOM);
     }
     Scalar left() const {
-      return side(Dir::LEFT);
+      return side(Grid::Dir::LEFT);
     }
     
     void top(const Scalar val) {
-      side(Dir::TOP, val);
+      side(Grid::Dir::TOP, val);
     }
     void right(const Scalar val) {
-      side(Dir::RIGHT, val);
+      side(Grid::Dir::RIGHT, val);
     }
     void bottom(const Scalar val) {
-      side(Dir::BOTTOM, val);
+      side(Grid::Dir::BOTTOM, val);
     }
     void left(const Scalar val) {
-      side(Dir::LEFT, val);
+      side(Grid::Dir::LEFT, val);
     }
     
     Vector topLeft() const {
-      return {side(Dir::LEFT), side(Dir::TOP)};
+      return {side(Grid::Dir::LEFT), side(Grid::Dir::TOP)};
     }
     Vector topRight() const {
-      return {side(Dir::RIGHT), side(Dir::TOP)};
+      return {side(Grid::Dir::RIGHT), side(Grid::Dir::TOP)};
     }
     Vector bottomRight() const {
-      return {side(Dir::RIGHT), side(Dir::BOTTOM)};
+      return {side(Grid::Dir::RIGHT), side(Grid::Dir::BOTTOM)};
     }
     Vector bottomLeft() const {
-      return {side(Dir::LEFT), side(Dir::BOTTOM)};
+      return {side(Grid::Dir::LEFT), side(Grid::Dir::BOTTOM)};
     }
     
     void topLeft(const Vector val) {
-      side(Dir::LEFT, val.x);
-      side(Dir::TOP, val.y);
+      side(Grid::Dir::LEFT, val.x);
+      side(Grid::Dir::TOP, val.y);
     }
     void topRight(const Vector val) {
-      side(Dir::RIGHT, val.x);
-      side(Dir::TOP, val.y);
+      side(Grid::Dir::RIGHT, val.x);
+      side(Grid::Dir::TOP, val.y);
     }
     void bottomRight(const Vector val) {
-      side(Dir::RIGHT, val.x);
-      side(Dir::BOTTOM, val.y);
+      side(Grid::Dir::RIGHT, val.x);
+      side(Grid::Dir::BOTTOM, val.y);
     }
     void bottomLeft(const Vector val) {
-      side(Dir::LEFT, val.x);
-      side(Dir::BOTTOM, val.y);
+      side(Grid::Dir::LEFT, val.x);
+      side(Grid::Dir::BOTTOM, val.y);
     }
     
     Vector size() const {
@@ -215,20 +215,20 @@ namespace Math {
     Vector max;
   };
   
-  template <typename T, Dir P_X, Dir P_Y>
+  template <typename T, Grid::Dir P_X, Grid::Dir P_Y>
   const RectPP<T, P_X, P_Y> RectPP<T, P_X, P_Y>::NEG_INF = {
     RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
     RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
   };
   
-  template <typename T, Dir P_X, Dir P_Y>
+  template <typename T, Grid::Dir P_X, Grid::Dir P_Y>
   const RectPP<T, P_X, P_Y> RectPP<T, P_X, P_Y>::INF = {
     RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
     RectPP<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
   };
   
   ///A rectangle defined by a negative point and a size
-  template <typename T, Dir POSITIVE_X = Math::Dir::RIGHT, Dir POSITIVE_Y = Math::Dir::UP>
+  template <typename T, Grid::Dir POSITIVE_X = Grid::Dir::RIGHT, Grid::Dir POSITIVE_Y = Grid::Dir::UP>
   struct RectPS {
     static_assert(std::is_arithmetic<T>::value, "T must be an arithmetic type");
     static_assert(!sameAxis(POSITIVE_X, POSITIVE_Y));
@@ -236,8 +236,8 @@ namespace Math {
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
   
-    static constexpr Dir PLUS_X = POSITIVE_X;
-    static constexpr Dir PLUS_Y = POSITIVE_Y;
+    static constexpr Grid::Dir PLUS_X = POSITIVE_X;
+    static constexpr Grid::Dir PLUS_Y = POSITIVE_Y;
     static constexpr Scalar EPSILON = std::is_integral<Scalar>::value ? Scalar(1) : Scalar(0);
     
     static const RectPS NEG_INF;
@@ -286,7 +286,7 @@ namespace Math {
       s = Vector(EPSILON);
     }
     
-    Scalar side(const Dir dir) const {
+    Scalar side(const Grid::Dir dir) const {
       switch (dir) {
         case PLUS_Y:
           return p.y + s.y - EPSILON;
@@ -301,7 +301,7 @@ namespace Math {
       }
     }
     
-    void side(const Dir dir, const Scalar val) {
+    void side(const Grid::Dir dir, const Scalar val) {
       switch (dir) {
         case PLUS_Y:
           s.y = val - p.y + EPSILON;
@@ -321,29 +321,29 @@ namespace Math {
     }
     
     Scalar top() const {
-      return side(Dir::TOP);
+      return side(Grid::Dir::TOP);
     }
     Scalar right() const {
-      return side(Dir::RIGHT);
+      return side(Grid::Dir::RIGHT);
     }
     Scalar bottom() const {
-      return side(Dir::BOTTOM);
+      return side(Grid::Dir::BOTTOM);
     }
     Scalar left() const {
-      return side(Dir::LEFT);
+      return side(Grid::Dir::LEFT);
     }
     
     void top(const Scalar val) {
-      side(Dir::TOP, val);
+      side(Grid::Dir::TOP, val);
     }
     void right(const Scalar val) {
-      side(Dir::RIGHT, val);
+      side(Grid::Dir::RIGHT, val);
     }
     void bottom(const Scalar val) {
-      side(Dir::BOTTOM, val);
+      side(Grid::Dir::BOTTOM, val);
     }
     void left(const Scalar val) {
-      side(Dir::LEFT, val);
+      side(Grid::Dir::LEFT, val);
     }
     
     bool interceptsWith(const RectPS other) const {
@@ -375,20 +375,20 @@ namespace Math {
     };
   };
   
-  template <typename T, Dir P_X, Dir P_Y>
+  template <typename T, Grid::Dir P_X, Grid::Dir P_Y>
   const RectPS<T, P_X, P_Y> RectPS<T, P_X, P_Y>::NEG_INF = {
     RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
     RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
   };
   
-  template <typename T, Dir P_X, Dir P_Y>
+  template <typename T, Grid::Dir P_X, Grid::Dir P_Y>
   const RectPS<T, P_X, P_Y> RectPS<T, P_X, P_Y>::INF = {
     RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
     RectPS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),
   };
   
   ///A rectangle defined by a center and a half size
-  template <typename T, Dir POSITIVE_X = Math::Dir::RIGHT, Dir POSITIVE_Y = Math::Dir::UP>
+  template <typename T, Grid::Dir POSITIVE_X = Grid::Dir::RIGHT, Grid::Dir POSITIVE_Y = Grid::Dir::UP>
   struct RectCS {
     /*
     Using integers for this format doesn't really work. The only way to make it
@@ -407,8 +407,8 @@ namespace Math {
     using Scalar = T;
     using Vector = glm::tvec2<Scalar>;
     
-    static constexpr Dir PLUS_X = POSITIVE_X;
-    static constexpr Dir PLUS_Y = POSITIVE_Y;
+    static constexpr Grid::Dir PLUS_X = POSITIVE_X;
+    static constexpr Grid::Dir PLUS_Y = POSITIVE_Y;
     
     static const RectCS NEG_INF;
     static const RectCS INF;
@@ -458,7 +458,7 @@ namespace Math {
       halfSize = Vector(Scalar(0));
     }
     
-    Scalar side(const Dir dir) const {
+    Scalar side(const Grid::Dir dir) const {
       switch (dir) {
         case PLUS_Y:
           return c.y + h.y;
@@ -473,7 +473,7 @@ namespace Math {
       }
     }
     
-    void side(const Dir dir, const Scalar val) {
+    void side(const Grid::Dir dir, const Scalar val) {
       switch (dir) {
         case PLUS_Y: {
           const float delta = (val - c.y - h.y) / Scalar(2);
@@ -505,29 +505,29 @@ namespace Math {
     }
     
     Scalar top() const {
-      return side(Dir::TOP);
+      return side(Grid::Dir::TOP);
     }
     Scalar right() const {
-      return side(Dir::RIGHT);
+      return side(Grid::Dir::RIGHT);
     }
     Scalar bottom() const {
-      return side(Dir::BOTTOM);
+      return side(Grid::Dir::BOTTOM);
     }
     Scalar left() const {
-      return side(Dir::LEFT);
+      return side(Grid::Dir::LEFT);
     }
     
     void top(const Scalar val) {
-      side(Dir::TOP, val);
+      side(Grid::Dir::TOP, val);
     }
     void right(const Scalar val) {
-      side(Dir::RIGHT, val);
+      side(Grid::Dir::RIGHT, val);
     }
     void bottom(const Scalar val) {
-      side(Dir::BOTTOM, val);
+      side(Grid::Dir::BOTTOM, val);
     }
     void left(const Scalar val) {
-      side(Dir::LEFT, val);
+      side(Grid::Dir::LEFT, val);
     }
     
     bool interceptsWith(const RectCS other) const {
@@ -553,13 +553,13 @@ namespace Math {
     };
   };
   
-  template <typename T, Dir P_X, Dir P_Y>
+  template <typename T, Grid::Dir P_X, Grid::Dir P_Y>
   const RectCS<T, P_X, P_Y> RectCS<T, P_X, P_Y>::NEG_INF = {
     RectCS<T, P_X, P_Y>::Vector(T(0)),
     RectCS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::lowest()),
   };
   
-  template <typename T, Dir P_X, Dir P_Y>
+  template <typename T, Grid::Dir P_X, Grid::Dir P_Y>
   const RectCS<T, P_X, P_Y> RectCS<T, P_X, P_Y>::INF = {
     RectCS<T, P_X, P_Y>::Vector(T(0)),
     RectCS<T, P_X, P_Y>::Vector(std::numeric_limits<T>::max()),

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#include "../Math/dir.hpp"
+#include "dir.hpp"
 
 template <typename Tile, typename Function>
 std::vector<Grid::Pos> Grid::onePath(
@@ -22,17 +22,17 @@ std::vector<Grid::Pos> Grid::onePath(
   Pos pos = start;
   std::vector<Pos> path;
   path.push_back(start);
-  Math::Dir prevDir = Math::Dir::NONE;
+  Dir prevDir = Dir::NONE;
   
   do {
     bool deadEnd = true;
     
-    for (const Math::Dir dir : Math::DIR_RANGE) {
-      if (dir == Math::opposite(prevDir)) {
+    for (const Dir dir : DIR_RANGE) {
+      if (dir == opposite(prevDir)) {
         continue;
       }
       
-      const Pos neighPos = pos + Math::ToVec<Coord>::conv(dir);
+      const Pos neighPos = pos + ToVec<Coord>::conv(dir);
       if (grid.outOfRange(neighPos) || notPath(grid[neighPos])) {
         continue;
       }

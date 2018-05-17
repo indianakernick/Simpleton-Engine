@@ -6,12 +6,12 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_math_dir_pair_hpp
-#define engine_math_dir_pair_hpp
+#ifndef engine_grid_dir_pair_hpp
+#define engine_grid_dir_pair_hpp
 
 #include "dir.hpp"
 
-namespace Math {
+namespace Grid {
   ///A pair of 2D orthogonal directions
   enum class DirPair : DirType {
     //don't reoder this

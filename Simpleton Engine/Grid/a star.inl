@@ -6,7 +6,8 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#include "../Math/dir.hpp"
+#include <cmath>
+#include "dir.hpp"
 
 namespace Grid::detail {
   inline float distance(const Pos a, const Pos b) {
@@ -28,7 +29,7 @@ std::vector<Grid::Pos> Grid::astar(
   }
   
   // this algorithm searchs from the end and finds the start
-  // this is too avoid std::reversing the final path vector
+  // this is to avoid std::reversing the final path vector
 
   struct Node {
     Pos pos;
@@ -78,8 +79,8 @@ std::vector<Grid::Pos> Grid::astar(
     const Coord neighPathCost = topNode.pathCost + 1;
     
     // look at all of the tiles around the top node
-    for (const Math::Dir dir : Math::DIR_RANGE) {
-      const Pos neighPos = topNode.pos + Math::ToVec<Coord>::conv(dir);
+    for (const Dir dir : DIR_RANGE) {
+      const Pos neighPos = topNode.pos + ToVec<Coord>::conv(dir);
       if (neighPos == topNode.prevPos || grid.outOfRange(neighPos) || notPath(grid[neighPos])) {
         continue;
       }

@@ -6,12 +6,12 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_math_dir_bits_hpp
-#define engine_math_dir_bits_hpp
+#ifndef engine_grid_dir_bits_hpp
+#define engine_grid_dir_bits_hpp
 
 #include "dir.hpp"
 
-namespace Math {
+namespace Grid {
   ///A bitset where each bit corresponds to a 2D orthogonal direction
   enum class DirBits : DirType {
     //don't reoder this

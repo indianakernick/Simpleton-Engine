@@ -573,9 +573,6 @@
 				45B5E76D1EF8A8A700A6A3E2 /* round.hpp */,
 				45B5E7701EF8A8A700A6A3E2 /* vectors.hpp */,
 				45B5E7711EF8A8A700A6A3E2 /* rect.hpp */,
-				45B5E7721EF8A8A700A6A3E2 /* dir.hpp */,
-				450759811FF9F2EF0009B360 /* dir bits.hpp */,
-				45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */,
 				45103F381F2324A6001B24E2 /* point in polygon.hpp */,
 				452B82F61F41924500AF9AC6 /* rand.hpp */,
 				4541160D1F51479800C2865B /* int float.hpp */,
@@ -690,6 +687,9 @@
 				45C6DDE420A8301F002A133F /* a star.hpp */,
 				4526A34B20A99EC500E4F542 /* one path.inl */,
 				4526A34A20A99EC500E4F542 /* one path.hpp */,
+				45B5E7721EF8A8A700A6A3E2 /* dir.hpp */,
+				450759811FF9F2EF0009B360 /* dir bits.hpp */,
+				45B5E8591EF8CB8D00A6A3E2 /* dir pair.hpp */,
 			);
 			path = Grid;
 			sourceTree = "<group>";

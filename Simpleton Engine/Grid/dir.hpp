@@ -6,15 +6,15 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_math_dir_hpp
-#define engine_math_dir_hpp
+#ifndef engine_grid_dir_hpp
+#define engine_grid_dir_hpp
 
 #include <cctype>
 #include <stdexcept>
 #include <string_view>
 #include <glm/vec2.hpp>
 
-namespace Math {
+namespace Grid {
   ///The underlying type of Dir and Axis
   using DirType = uint8_t;
   
@@ -53,8 +53,8 @@ namespace Math {
     R_BEGIN = MAX,
     R_END = std::numeric_limits<DirType>::max(),
     
-    ///A direction that represents "no direction". Passing this value to most
-    ///functions will cause an assertion
+    ///A direction that represents "no direction". Not many functions explicitly
+    ///handle NONE
     NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
   };
   
@@ -387,17 +387,17 @@ namespace Math {
   }
   
   ///Get the next direction. Used for iterating directions
-  constexpr Math::Dir &operator++(Math::Dir &dir) {
-    return dir = Math::next(dir);
+  constexpr Dir &operator++(Dir &dir) {
+    return dir = next(dir);
   }
 
   ///Get the previous direction. Used for iterating directions in reverse
-  constexpr Math::Dir &operator--(Math::Dir &dir) {
-    return dir = Math::prev(dir);
+  constexpr Dir &operator--(Dir &dir) {
+    return dir = prev(dir);
   }
   
   ///Dereference a direction. Used for iterating directions
-  constexpr Math::Dir operator*(const Math::Dir dir) {
+  constexpr Dir operator*(const Dir dir) {
     assert(valid(dir));
     return dir;
   }
