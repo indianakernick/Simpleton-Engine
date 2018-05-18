@@ -218,7 +218,7 @@ namespace Grid {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
   
     ///Convert a direction to a 2D unit vector
-    static glm::tvec2<Number> conv(const Dir dir, const Number dist = Number(1)) {
+    static constexpr glm::tvec2<Number> conv(const Dir dir, const Number dist = Number(1)) {
       constexpr Number ZERO(0);
       
       switch (dir) {
@@ -239,6 +239,15 @@ namespace Grid {
     }
   };
   
+  // Grid::ToVec<int>::conv(Grid::Dir::UP, 2)
+  // Grid::toVec(Grid::Dir::UP, 2)
+  
+  ///Helper function for converting directions to 2D unit vectors
+  template <typename Number>
+  constexpr glm::tvec2<Number> toVec(const Dir dir, const Number dist = Number(1)) {
+    return ToVec<Number>::conv(dir, dist);
+  }
+  
   ///Configuration template for converting a 2D unit vector to a direction
   template <typename Number_, Dir PLUS_X_ = Dir::RIGHT, Dir PLUS_Y_ = Dir::UP, bool EXACT_ = true>
   struct FromVec {
@@ -250,7 +259,7 @@ namespace Grid {
     static_assert(!sameAxis(PLUS_X, PLUS_Y), "PLUS_X and PLUS_Y must be on different axes");
     
     ///Convert a 2D unit vector to a direction
-    static Dir conv(const glm::tvec2<Number> vec, const Number dist = Number(1)) {
+    static constexpr Dir conv(const glm::tvec2<Number> vec, const Number dist = Number(1)) {
       using Vec = glm::tvec2<Number>;
       constexpr Number ZERO(0);
       
@@ -291,6 +300,21 @@ namespace Grid {
     }
   };
   
+  // Grid::FromVec<int>::conv(vec, 1)
+  // Grid::fromVec(vec, 1)
+  
+  ///Helper function for converting 2D unit vectors to directions
+  template <typename Number>
+  constexpr Dir fromVec(const glm::tvec2<Number> vec, const Number dist = Number(1)) {
+    return FromVec<Number>::conv(vec, dist);
+  }
+  
+  ///Helper function for converting inexact 2D unit vectors to directions
+  template <typename Number>
+  constexpr Dir fromVarVec(const glm::tvec2<Number> vec, const Number dist = Number(1)) {
+    return FromVec<Number, Dir::RIGHT, Dir::UP, false>::conv(vec, dist);
+  }
+  
   ///Convert a direction to a number
   template <typename Number>
   constexpr Number toNum(const Dir dir) {
@@ -307,12 +331,12 @@ namespace Grid {
   template <typename Number>
   constexpr Dir toDir(const Number number) {
     const Dir dir = static_cast<Dir>(number);
-    assert(valid(dir));
+    assert(validOrNone(dir));
     return dir;
   }
   
   constexpr std::string_view toUpperCaseString(const Dir dir) {
-    assert(valid(dir));
+    assert(validOrNone(dir));
     switch (dir) {
       case Dir::UP:
         return "UP";
@@ -330,7 +354,7 @@ namespace Grid {
   }
   
   constexpr std::string_view toLowerCaseString(const Dir dir) {
-    assert(valid(dir));
+    assert(validOrNone(dir));
     switch (dir) {
       case Dir::UP:
         return "up";
