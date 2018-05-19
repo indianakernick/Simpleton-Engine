@@ -6,6 +6,7 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
+#include <algorithm>
 #include <glm/gtc/constants.hpp>
 
 inline G2D::QuadWriter::QuadWriter() {
@@ -27,6 +28,17 @@ inline void G2D::QuadWriter::section(const RenderParams &param) {
 
 inline void G2D::QuadWriter::sectionSize(const size_t size) {
   quads.reserve(quads.size() + size);
+}
+
+template <typename Function>
+void G2D::QuadWriter::sort(Function &&function) {
+  assert(sections.size());
+  
+  std::sort(
+    quads.data() + sections.back(),
+    quads.data() + quads.size(),
+    function
+  );
 }
 
 inline G2D::Quad &G2D::QuadWriter::quad() {
@@ -55,7 +67,7 @@ inline void G2D::QuadWriter::depth(const float depth) {
 
 template <typename Enum>
 void G2D::QuadWriter::depth(const Enum e) {
-  depth(static_cast<float>(e) / static_cast<float>(Enum::COUNT));
+  depth(depth(e));
 }
 
 namespace G2D::detail {

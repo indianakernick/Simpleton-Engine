@@ -31,6 +31,12 @@ namespace G2D {
     MID_LEFT,
     CENTER
   };
+  
+  /// Get the depth of a depth enum. The last enumerator must be COUNT
+  template <typename Enum>
+  constexpr auto depth(const Enum e) {
+    return static_cast<float>(e) / static_cast<float>(Enum::COUNT);
+  }
 
   class QuadWriter {
   public:
@@ -44,6 +50,10 @@ namespace G2D {
     /// Make space for the given number of quads to avoid further reallocations
     void sectionSize(size_t);
     
+    /// Sort the quads in the current section by the given sorting predicate
+    template <typename Function>
+    void sort(Function &&);
+    
     /// Start a new quad and return it
     Quad &quad();
     /// Start a new quad the is a duplicate of the previous quad and return it
@@ -51,8 +61,8 @@ namespace G2D {
     
     /// Set the depth of the current quad
     void depth(float);
-    /// Set the depth of the current quad using an enum. The enum type must have
-    /// have COUNT as the last member
+    /// Set the depth of the current quad using an enum. The last enumerator
+    /// must be COUNT
     template <typename Enum>
     void depth(Enum);
     

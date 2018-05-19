@@ -13,13 +13,13 @@
 
 namespace G2D {
   /// Sort by the depth of the first vertex
-  void sort(Quad *, Quad *);
+  bool sort(const Quad &, const Quad &);
   /// Sort by the average depth of the verticies
-  void sortCenter(Quad *, Quad *);
+  bool sortCenter(const Quad &, const Quad &);
   /// Sort by the depth of the deepest vertex
-  void sortDeep(Quad *, Quad *);
+  bool sortDeep(const Quad &, const Quad &);
   /// Sort by the depth of the shallowest vertex
-  void sortShallow(Quad *, Quad *);
+  bool sortShallow(const Quad &, const Quad &);
 }
 
 #include "zsort.inl"
