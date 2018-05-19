@@ -38,17 +38,16 @@ stbrp_coord calcLength(const uint32_t area) {
   }
 }
 
-void packRects(std::vector<stbrp_rect> &rects, stbrp_coord length) {
+stbrp_coord packRects(std::vector<stbrp_rect> &rects, stbrp_coord length) {
   std::vector<stbrp_node> nodes(length);
   
   int success;
   int retries = 0;
   do {
-    if (retries) {
-      std::cout << "Rectangle pack failed. Retrying with double size\n";
-    }
-    if (retries == 4) {
+    if (retries == 8) {
       throw RectPackError();
+    } else if (retries) {
+      std::cout << "Rectangle pack failed. Retrying with double size\n";
     }
   
     stbrp_context ctx;
@@ -58,6 +57,8 @@ void packRects(std::vector<stbrp_rect> &rects, stbrp_coord length) {
     length *= 2;
     ++retries;
   } while (success == 0);
+  
+  return length / 2;
 }
 
 stbrp_coord packRects(std::vector<stbrp_rect> &rects) {
@@ -69,8 +70,5 @@ stbrp_coord packRects(std::vector<stbrp_rect> &rects) {
     return 0;
   }
   
-  const stbrp_coord length = calcLength(calcArea(rects));
-  packRects(rects, length);
-  
-  return length;
+  return packRects(rects, calcLength(calcArea(rects)));
 }

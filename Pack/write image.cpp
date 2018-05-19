@@ -8,6 +8,7 @@
 
 #include "write image.hpp"
 
+#include <vector>
 #include <cassert>
 #include <iostream>
 #include <libpng16/png.h>
