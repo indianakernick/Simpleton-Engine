@@ -17,7 +17,7 @@
 namespace Grid {
   ///The underlying type of Dir and Axis
   using DirType = uint8_t;
-  
+  ///Signed version of DirType
   using SignedDirType = std::make_signed_t<DirType>;
   
   static_assert(std::is_unsigned_v<DirType>);
@@ -51,11 +51,11 @@ namespace Grid {
     END = COUNT,
     
     R_BEGIN = MAX,
-    R_END = std::numeric_limits<DirType>::max(),
+    R_END = DirType(-1),
     
     ///A direction that represents "no direction". Not many functions explicitly
     ///handle NONE
-    NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
+    NONE = DirType(-COUNT)
   };
   
   struct DirRange {
@@ -67,6 +67,8 @@ namespace Grid {
     }
   };
   
+  ///A range for iterating directions in a loop. Iterates in the order:
+  ///UP, RIGHT, DOWN, LEFT
   constexpr DirRange DIR_RANGE = {};
   
   enum class Axis : DirType {
@@ -82,9 +84,9 @@ namespace Grid {
     UP_DOWN = VERT,
     LEFT_RIGHT = HORI,
     
-    ///An axis that represents "no axis". Passing this value to most
-    ///functions will cause an assertion
-    NONE = std::numeric_limits<DirType>::max() - (COUNT - 1)
+    ///An axis that represents "no axis". Not many functions explicitly
+    ///handle NONE
+    NONE = DirType(-COUNT)
   };
   
   ///Ensure that a Dir is not Dir::NONE by returning Dir::UP instead of
@@ -99,7 +101,7 @@ namespace Grid {
     return dir == Dir::NONE ? noneDir : dir;
   }
   
-  ///Ensure that an Axis is not Axis::NONE by returning Axis::UP instead of
+  ///Ensure that an Axis is not Axis::NONE by returning Axis::VERT instead of
   ///Axis::NONE
   constexpr Axis filterNone(const Axis axis) {
     return static_cast<Axis>(static_cast<DirType>(axis) & DirType(0b1));
@@ -175,7 +177,7 @@ namespace Grid {
     ];
   }
   
-  ///Get the difference between directions
+  ///Get the difference between directions (signed distance from a to b)
   constexpr SignedDirType diff(const Dir a, const Dir b) {
     assert(valid(a) && valid(b));
     constexpr SignedDirType differences[16] = {

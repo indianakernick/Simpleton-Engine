@@ -27,36 +27,51 @@ namespace Grid {
   
     Grid()
       : mSize(0, 0) {}
-    Grid(const Pos size, const Tile &null)
-      : mTiles(size.x * size.y, null), mSize(size) {}
+    explicit Grid(const Pos size, const Tile &tile = {})
+      : mTiles(size.x * size.y, tile), mSize(size) {}
     
-    void resize(const Pos size, const Tile &null) {
-      mTiles.resize(size.x * size.y, null);
+    void clear() {
+      mTiles.clear();
+      mSize = {0, 0};
+    }
+    void resize(const Pos size, const Tile &tile = {}) {
+      mTiles.resize(size.x * size.y, tile);
       mSize = size;
     }
     void fill(const Tile &tile) {
       std::fill(mTiles.begin(), mTiles.end(), tile);
     }
     
-    Tiles &tiles() {
-      return mTiles;
+    auto begin() {
+      return mTiles.begin();
     }
-    const Tiles &tiles() const {
-      return mTiles;
+    auto begin() const {
+      return mTiles.begin();
+    }
+    auto cbegin() const {
+      return mTiles.begin();
+    }
+    auto end() {
+      return mTiles.end();
+    }
+    auto end() const {
+      return mTiles.end();
+    }
+    auto cend() const {
+      return mTiles.end();
     }
     
-    Pos tileSize() const {
+    Pos size() const {
       return mSize;
     }
-    size_t scalarSize() const {
-      return mTiles.size();
-    }
-    
     Coord width() const {
       return mSize.x;
     }
     Coord height() const {
       return mSize.y;
+    }
+    size_t area() const {
+      return mTiles.size();
     }
     
     bool outOfRange(const Pos pos) const {
