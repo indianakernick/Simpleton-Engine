@@ -67,7 +67,7 @@ inline void G2D::QuadWriter::depth(const float depth) {
 
 template <typename Enum>
 void G2D::QuadWriter::depth(const Enum e) {
-  depth(depth(e));
+  depth(G2D::depth(e));
 }
 
 namespace G2D::detail {
