@@ -92,39 +92,3 @@ GL::Shader<TYPE> GL::makeShader(const GLchar (& ...sources)[SIZES]) {
   shader.compileAndLog();
   return shader;
 }
-
-// Why doesn't C++ have function aliases yet. WHY!!!!
-
-inline GL::VertShader GL::makeVertShader() {
-  return makeShader<GL_VERTEX_SHADER>();
-}
-
-inline GL::VertShader GL::makeVertShader(const GLchar *source, const size_t size) {
-  return makeShader<GL_VERTEX_SHADER>(source, size);
-}
-
-inline GL::VertShader GL::makeVertShader(std::istream &stream) {
-  return makeShader<GL_VERTEX_SHADER>(stream);
-}
-
-template <size_t ...SIZES>
-GL::VertShader GL::makeVertShader(const GLchar (& ...sources)[SIZES]) {
-  return makeShader<GL_VERTEX_SHADER>(sources...);
-}
-
-inline GL::FragShader GL::makeFragShader() {
-  return makeShader<GL_FRAGMENT_SHADER>();
-}
-
-inline GL::FragShader GL::makeFragShader(const GLchar *source, const size_t size) {
-  return makeShader<GL_FRAGMENT_SHADER>(source, size);
-}
-
-inline GL::FragShader GL::makeFragShader(std::istream &stream) {
-  return makeShader<GL_FRAGMENT_SHADER>(stream);
-}
-
-template <size_t ...SIZES>
-GL::FragShader GL::makeFragShader(const GLchar (& ...sources)[SIZES]) {
-  return makeShader<GL_FRAGMENT_SHADER>(sources...);
-}

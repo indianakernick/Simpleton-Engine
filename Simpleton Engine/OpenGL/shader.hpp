@@ -12,6 +12,7 @@
 #include <iostream>
 #include "opengl.hpp"
 #include "../Utils/generic raii.hpp"
+#include "../Utils/function alias.hpp"
 
 namespace GL {
   namespace detail {
@@ -74,17 +75,8 @@ namespace GL {
   template <GLenum TYPE, size_t ...SIZES>
   Shader<TYPE> makeShader(const GLchar (& ...sources)[SIZES]);
   
-  VertShader makeVertShader();
-  VertShader makeVertShader(const GLchar *, size_t);
-  VertShader makeVertShader(std::istream &);
-  template <size_t ...SIZES>
-  VertShader makeVertShader(const GLchar (& ...sources)[SIZES]);
-  
-  FragShader makeFragShader();
-  FragShader makeFragShader(const GLchar *, size_t);
-  FragShader makeFragShader(std::istream &);
-  template <size_t ...SIZES>
-  FragShader makeFragShader(const GLchar (& ...sources)[SIZES]);
+  FUN_ALIAS_WRAP(makeVertShader, makeShader<GL_VERTEX_SHADER>)
+  FUN_ALIAS_WRAP(makeFragShader, makeShader<GL_FRAGMENT_SHADER>)
 }
 
 #include "shader.inl"

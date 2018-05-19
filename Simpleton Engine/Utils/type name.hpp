@@ -25,14 +25,14 @@ namespace Utils {
     return name;
   }
   
-  static_assert(Utils::typeName<int>() == "int");
-  static_assert(Utils::typeName<unsigned>() == "unsigned int");
+  static_assert(typeName<int>() == "int");
+  static_assert(typeName<unsigned>() == "unsigned int");
   
   namespace detail {
     class Dummy {};
   }
   
-  static_assert(Utils::typeName<detail::Dummy>() == "Utils::detail::Dummy");
+  static_assert(typeName<detail::Dummy>() == "Utils::detail::Dummy");
   
   template <typename T>
   constexpr size_t typeHash() {

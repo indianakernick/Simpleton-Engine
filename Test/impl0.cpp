@@ -3,6 +3,7 @@
 #include "../Simpleton Engine/Memory/view.hpp"
 #include "../Simpleton Engine/Memory/buffer.hpp"
 #include "../Simpleton Engine/Memory/byteptr.hpp"
+#include "../Simpleton Engine/Utils/function alias.hpp"
 #include "../Simpleton Engine/Utils/hash.hpp"
 #include "../Simpleton Engine/Utils/bits.hpp"
 #include "../Simpleton Engine/Utils/generic raii.hpp"
