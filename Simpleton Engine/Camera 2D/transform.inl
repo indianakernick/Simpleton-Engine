@@ -21,6 +21,10 @@ inline void Cam2D::Transform::setInvertY(const bool newInvertY) {
   invertY = newInvertY;
 }
 
+inline void Cam2D::Transform::setSize(const glm::vec2 size) {
+  boxSize = size;
+}
+
 inline glm::mat3 Cam2D::Transform::toPixels() const {
   return toPixelsMat;
 }
@@ -35,7 +39,7 @@ inline void Cam2D::Transform::calculate(const Props props, const Params params) 
   const glm::mat3 angleMat = glm::rotate(glm::mat3(), props.angle);
   const glm::mat3 invertMat = glm::scale({}, calcInvertedScale());
   const glm::mat3 aspectMat = glm::scale({}, glm::vec2(1.0f, params.aspect));
-  const glm::mat3 posMat = glm::translate({}, -props.pos);
+  const glm::mat3 posMat = glm::translate({}, -props.pos + calcShiftedPos(params));
 
   toPixelsMat = originMat * zoomMat * invertMat * aspectMat * angleMat * posMat;
   toMetersMat = glm::inverse(toPixelsMat);
@@ -69,4 +73,26 @@ inline glm::vec2 Cam2D::Transform::calcInvertedScale() const {
     invertX ? -1.0f : 1.0f,
     invertY ? -1.0f : 1.0f
   };
+}
+
+inline glm::vec2 Cam2D::Transform::calcShiftedPos(const Params params) const {
+  // @TODO I'm not sure if this works for all combinations of origin and invert
+  if (origin == Origin::CENTER || boxSize.x == 0.0f || boxSize.y == 0.0f) {
+    return {0.0f, 0.0f};
+  }
+  
+  const float boxAspect = boxSize.x / boxSize.y;
+  if (params.aspect > boxAspect) {
+    if (origin == Origin::MID_RIGHT || origin == Origin::MID_LEFT) {
+      return {0.0f, 0.0f};
+    } else {
+      return {(params.aspect - boxAspect) / 2.0f * boxSize.y, 0.0f};
+    }
+  } else {
+    if (origin == Origin::TOP_MID || origin == Origin::BOTTOM_MID) {
+      return {0.0f, 0.0f};
+    } else {
+      return {0.0f, (1.0f / params.aspect - 1.0f / boxAspect) / 2.0f * boxSize.x};
+    }
+  }
 }

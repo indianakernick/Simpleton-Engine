@@ -10,7 +10,6 @@
 #define engine_camera_2d_zoom_to_fit_hpp
 
 #include "target.hpp"
-#include <glm/vec2.hpp>
 
 namespace Cam2D {
   class ZoomToFit final : public Target<PropID::ZOOM> {

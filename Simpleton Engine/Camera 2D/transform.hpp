@@ -35,6 +35,7 @@ namespace Cam2D {
     void setOrigin(Origin);
     void setInvertX(bool);
     void setInvertY(bool);
+    void setSize(glm::vec2);
     
     glm::mat3 toPixels() const;
     glm::mat3 toMeters() const;
@@ -44,12 +45,14 @@ namespace Cam2D {
   private:
     glm::mat3 toPixelsMat;
     glm::mat3 toMetersMat;
+    glm::vec2 boxSize = {0.0f, 0.0f};
     Origin origin = Origin::CENTER;
     bool invertX = false;
     bool invertY = false;
     
     glm::vec2 calcOriginPos() const;
     glm::vec2 calcInvertedScale() const;
+    glm::vec2 calcShiftedPos(Params) const;
   };
 }
 
