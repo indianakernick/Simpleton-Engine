@@ -70,8 +70,8 @@ inline void GL::Context::preRender() {
   #endif
 }
 
-inline void GL::Context::postRender() {
-  if (minFrameTime == 0) {
+inline void GL::Context::postRender(const bool skipTiming) {
+  if (skipTiming || minFrameTime == 0) {
     present();
   } else {
     const Uint32 start = SDL_GetTicks();

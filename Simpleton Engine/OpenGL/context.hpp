@@ -23,7 +23,7 @@ namespace GL {
     void quit();
     
     void preRender();
-    void postRender();
+    void postRender(bool = false);
     
     glm::ivec2 getFrameSize() const;
   
