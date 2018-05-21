@@ -112,6 +112,7 @@ namespace Utils {
   template <typename List, size_t NUM = 1>
   using PopFront = typename PopFrontHelper<List, NUM>::type;
   
+  static_assert(std::is_same<PopFront<TypeList<int, char>, 4>, EmptyList>::value);
   static_assert(std::is_same<PopFront<TypeList<int, char, long>, 2>, TypeList<long>>::value);
   
   //Size
@@ -354,8 +355,8 @@ namespace Utils {
   };
   
   static_assert(std::is_same<
-    typename Merge<TypeList<char>, TypeList<int, long long>, SizeLess>::type,
-    TypeList<char, int, long long>
+    typename Merge<TypeList<char[4]>, TypeList<char[2], char[8]>, SizeLess>::type,
+    TypeList<char[2], char[4], char[8]>
   >::value);
   
   //Take Front
@@ -443,7 +444,10 @@ namespace Utils {
   template <typename List, template <typename, typename> typename Less>
   using SortList = typename SortHelper<List, Less>::type;
   
-  static_assert(std::is_same<SortList<TypeList<int, char, long long>, SizeLess>, TypeList<char, int, long long>>::value);
+  static_assert(std::is_same<
+    SortList<TypeList<char[8], char[4], char[2]>, SizeLess>,
+    TypeList<char[2], char[4], char[8]>
+  >::value);
   static_assert(std::is_same<SortList<EmptyList, SizeLess>, EmptyList>::value);
   
   //Filter
