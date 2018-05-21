@@ -17,9 +17,9 @@
 #define UTILS_RAII_CLASS_BASIC(CLASS, TYPE, MEMBER, DELETE)                     \
   using value_type = TYPE;                                                      \
                                                                                 \
-  CLASS() noexcept                                                              \
+  constexpr CLASS() noexcept                                                    \
     : MEMBER() {}                                                               \
-  CLASS(std::nullptr_t) noexcept                                                \
+  constexpr CLASS(std::nullptr_t) noexcept                                      \
     : MEMBER() {}                                                               \
   explicit CLASS(const value_type MEMBER) noexcept                              \
     : MEMBER(MEMBER) {}                                                         \
@@ -38,7 +38,7 @@
   }                                                                             \
                                                                                 \
   value_type release() noexcept {                                               \
-    return std::exchange(MEMBER, value_type());                                 \
+    return std::exchange(MEMBER, value_type{});                                 \
   }                                                                             \
   void reset(const value_type new##MEMBER = {}) noexcept {                      \
     DELETE(MEMBER);                                                             \
@@ -49,7 +49,7 @@
     return MEMBER;                                                              \
   }                                                                             \
   explicit operator bool() const noexcept {                                     \
-    return MEMBER != value_type();                                              \
+    return MEMBER != value_type{};                                              \
   }                                                                             \
 
 #define UTILS_RAII_CLASS_COMPARISON(CLASS, MEMBER)                              \
@@ -74,49 +74,49 @@
 
 #define UTILS_RAII_CLASS_NULL_COMPARISON(CLASS, MEMBER)                         \
   friend bool operator==(const CLASS &obj, std::nullptr_t) noexcept {           \
-    return obj.MEMBER == value_type();                                          \
+    return obj.MEMBER == value_type{};                                          \
   }                                                                             \
   friend bool operator!=(const CLASS &obj, std::nullptr_t) noexcept {           \
-    return obj.MEMBER != value_type();                                          \
+    return obj.MEMBER != value_type{};                                          \
   }                                                                             \
   /* suppressing warnings */                                                    \
   friend bool operator<(const CLASS &obj, std::nullptr_t) noexcept {            \
     if constexpr (std::is_unsigned_v<value_type>) {                             \
       return false;                                                             \
     } else {                                                                    \
-      return obj.MEMBER < value_type();                                         \
+      return obj.MEMBER < value_type{};                                         \
     }                                                                           \
   }                                                                             \
   friend bool operator<=(const CLASS &obj, std::nullptr_t) noexcept {           \
-    return obj.MEMBER <= value_type();                                          \
+    return obj.MEMBER <= value_type{};                                          \
   }                                                                             \
   friend bool operator>(const CLASS &obj, std::nullptr_t) noexcept {            \
-    return obj.MEMBER > value_type();                                           \
+    return obj.MEMBER > value_type{};                                           \
   }                                                                             \
   /* suppressing warnings */                                                    \
   friend bool operator>=(const CLASS &obj, std::nullptr_t) noexcept {           \
     if constexpr (std::is_unsigned_v<value_type>) {                             \
       return true;                                                              \
     } else {                                                                    \
-      return obj.MEMBER >= value_type();                                        \
+      return obj.MEMBER >= value_type{};                                        \
     }                                                                           \
   }                                                                             \
                                                                                 \
   friend bool operator==(std::nullptr_t, const CLASS &obj) noexcept {           \
-    return value_type() == obj.MEMBER;                                          \
+    return value_type{} == obj.MEMBER;                                          \
   }                                                                             \
   friend bool operator!=(std::nullptr_t, const CLASS &obj) noexcept {           \
-    return value_type() != obj.MEMBER;                                          \
+    return value_type{} != obj.MEMBER;                                          \
   }                                                                             \
   friend bool operator<(std::nullptr_t, const CLASS &obj) noexcept {            \
-    return value_type() < obj.MEMBER;                                           \
+    return value_type{} < obj.MEMBER;                                           \
   }                                                                             \
   /* suppressing warnings */                                                    \
   friend bool operator<=(std::nullptr_t, const CLASS &obj) noexcept {           \
     if constexpr (std::is_unsigned_v<value_type>) {                             \
       return true;                                                              \
     } else {                                                                    \
-      return value_type() <= obj.MEMBER;                                        \
+      return value_type{} <= obj.MEMBER;                                        \
     }                                                                           \
   }                                                                             \
   /* suppressing warnings */                                                    \
@@ -124,11 +124,11 @@
     if constexpr (std::is_unsigned_v<value_type>) {                             \
       return false;                                                             \
     } else {                                                                    \
-      return value_type() > obj.MEMBER;                                         \
+      return value_type{} > obj.MEMBER;                                         \
     }                                                                           \
   }                                                                             \
   friend bool operator>=(std::nullptr_t, const CLASS &obj) noexcept {           \
-    return value_type() >= obj.MEMBER;                                          \
+    return value_type{} >= obj.MEMBER;                                          \
   }
 
 #define UTILS_RAII_CLASS_SWAP(CLASS, MEMBER)                                    \
