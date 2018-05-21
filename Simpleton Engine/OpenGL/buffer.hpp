@@ -11,6 +11,7 @@
 
 #include "opengl.hpp"
 #include "../Utils/generic raii.hpp"
+#include "../Utils/function alias.hpp"
 
 namespace GL {
   namespace detail {
@@ -50,13 +51,8 @@ namespace GL {
   template <GLenum TARGET>
   Buffer<TARGET> makeBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
   
-  ArrayBuffer makeArrayBuffer();
-  ArrayBuffer makeArrayBuffer(size_t, GLenum = GL_STATIC_DRAW);
-  ArrayBuffer makeArrayBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
-  
-  ElementBuffer makeElementBuffer();
-  ElementBuffer makeElementBuffer(size_t, GLenum = GL_STATIC_DRAW);
-  ElementBuffer makeElementBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
+  FUN_ALIAS_WRAP(makeArrayBuffer, makeBuffer<GL_ARRAY_BUFFER>)
+  FUN_ALIAS_WRAP(makeElementBuffer, makeBuffer<GL_ELEMENT_ARRAY_BUFFER>)
 }
 
 #include "buffer.inl"
