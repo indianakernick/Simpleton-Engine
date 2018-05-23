@@ -25,7 +25,6 @@ namespace G2D {
   };
   
   using Quad = std::array<Vertex, 4>;
-  using TextureID = size_t;
   
   constexpr size_t QUAD_INDICIES = 6;
   constexpr size_t QUAD_VERTS = 4;

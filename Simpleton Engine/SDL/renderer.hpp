@@ -14,15 +14,17 @@
 #include "../Utils/generic raii.hpp"
 
 namespace SDL {
+  using Color = glm::tvec4<uint8_t>;
+
   class Renderer {
   public:
     UTILS_RAII_CLASS_FULL(Renderer, SDL_Renderer *, renderer, SDL_DestroyRenderer)
     
-    void setColor(glm::tvec4<uint8_t>);
-    glm::tvec4<uint8_t> getColor() const;
+    void setColor(Color);
+    Color getColor() const;
   
     void present();
-    void clear(glm::tvec4<uint8_t> = {0, 0, 0, 0});
+    void clear(Color = {0, 0, 0, 0});
 
   private:
     SDL_Renderer *renderer;

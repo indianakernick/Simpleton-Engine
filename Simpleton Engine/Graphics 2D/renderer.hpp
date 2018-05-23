@@ -36,7 +36,8 @@ namespace G2D {
     /// was actually increased. Increasing the size will clear the memory.
     bool resizeQuadBuf(size_t);
     /// Copy quads from CPU memory to GPU memory. Returns true if the GPU memory
-    /// had to be resized. Resizing will clear the memory.
+    /// had to be resized. If the GPU buffer had to be resized, it's contents
+    /// will be cleared but only the given quads will be copied.
     bool writeQuads(QuadRange, const Quad *);
     /// Render the quads in GPU memory with the given rendering parameters
     void render(QuadRange, const RenderParams &);

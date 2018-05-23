@@ -34,7 +34,7 @@ namespace G2D {
   
   /// Get the depth of a depth enum. The last enumerator must be COUNT
   template <typename Enum>
-  constexpr auto depth(const Enum e) {
+  constexpr float depth(const Enum e) {
     return static_cast<float>(e) / static_cast<float>(Enum::COUNT);
   }
 
@@ -102,6 +102,7 @@ namespace G2D {
     
   private:
     std::vector<Quad> quads;
+    // each section is an index to it's first quad
     std::vector<size_t> sections;
     std::vector<RenderParams> params;
   };
