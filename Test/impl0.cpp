@@ -80,6 +80,7 @@
 #include "../Simpleton Engine/Time/frame.hpp"
 #include "../Simpleton Engine/SDL/surface.hpp"
 #include "../Simpleton Engine/SDL/paths.hpp"
+#include "../Simpleton Engine/SDL/mouse pos.hpp"
 #include "../Simpleton Engine/SDL/debug input.hpp"
 #include "../Simpleton Engine/SDL/renderer.hpp"
 #include "../Simpleton Engine/SDL/music.hpp"

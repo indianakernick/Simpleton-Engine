@@ -73,6 +73,8 @@
 		450ED6481FBBAF60008F2902 /* transform.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = transform.inl; sourceTree = "<group>"; };
 		450ED6491FBBAF60008F2902 /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
+		4512454820B5654B0025A651 /* mouse pos.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "mouse pos.hpp"; sourceTree = "<group>"; };
+		4512454920B5654B0025A651 /* mouse pos.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "mouse pos.inl"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
 		4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "static char buffer.hpp"; sourceTree = "<group>"; };
 		4526A34A20A99EC500E4F542 /* one path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "one path.hpp"; sourceTree = "<group>"; };
@@ -644,6 +646,8 @@
 				45B32EB71FF481FD007BA7F4 /* events.inl */,
 				45B32EB81FF481FD007BA7F4 /* events.hpp */,
 				456B8378205CD63C0016F6D0 /* mainloop.hpp */,
+				4512454920B5654B0025A651 /* mouse pos.inl */,
+				4512454820B5654B0025A651 /* mouse pos.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";
