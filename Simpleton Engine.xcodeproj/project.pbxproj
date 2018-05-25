@@ -65,6 +65,8 @@
 		4507597D1FF86B290009B360 /* level manager.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "level manager.inl"; sourceTree = "<group>"; };
 		450759811FF9F2EF0009B360 /* dir bits.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "dir bits.hpp"; sourceTree = "<group>"; };
 		4509F8E31F5BB83B00927A19 /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
+		450E925920B7F5B3003683B6 /* system cursors.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "system cursors.hpp"; sourceTree = "<group>"; };
+		450E925A20B7F5B3003683B6 /* system cursors.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "system cursors.inl"; sourceTree = "<group>"; };
 		450ED62E1FB93B43008F2902 /* progress speed anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "progress speed anim.hpp"; sourceTree = "<group>"; };
 		450ED63F1FBBAE40008F2902 /* camera.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = camera.inl; sourceTree = "<group>"; };
 		450ED6401FBBAE40008F2902 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
@@ -648,6 +650,8 @@
 				456B8378205CD63C0016F6D0 /* mainloop.hpp */,
 				4512454920B5654B0025A651 /* mouse pos.inl */,
 				4512454820B5654B0025A651 /* mouse pos.hpp */,
+				450E925A20B7F5B3003683B6 /* system cursors.inl */,
+				450E925920B7F5B3003683B6 /* system cursors.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";

@@ -89,6 +89,7 @@
 #include "../Simpleton Engine/SDL/events.hpp"
 #include "../Simpleton Engine/SDL/error.hpp"
 #include "../Simpleton Engine/SDL/window.hpp"
+#include "../Simpleton Engine/SDL/system cursors.hpp"
 #include "../Simpleton Engine/SDL/mainloop.hpp"
 #include "../Simpleton Engine/SDL/texture.hpp"
 #include "../Simpleton Engine/SDL/font library.hpp"
