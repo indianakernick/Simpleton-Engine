@@ -32,22 +32,21 @@ namespace Utils {
   constexpr bool is_mem_fun = function_traits<Function>::is_mem_fun;
 
   //function
-  template <typename Return, typename ...Args>
-  struct function_traits<Return (Args...)> {
+  template <bool NOEXCEPT, typename Return, typename ...Args>
+  struct function_traits<Return (Args...) noexcept(NOEXCEPT)> {
     using ret = Return;
     
     static constexpr size_t arity = sizeof...(Args);
-    
     using args = std::tuple<Args...>;
-    
     template <size_t I>
     using arg = typename std::tuple_element<I, args>::type;
+    
+    static constexpr bool is_noexcept = NOEXCEPT;
     
     static constexpr bool is_mem_fun = false;
     static constexpr bool is_mem_var = false;
     
     using mem_class_type = void;
-    
     using mem_var_type = void;
     
     static constexpr bool is_const_mem_fun = false;
@@ -55,6 +54,7 @@ namespace Utils {
     static constexpr bool is_rvalue_mem_fun = false;
   };
 
+  //member function
   template <typename Function, typename Class, bool CONST, bool LVALUE, bool RVALUE>
   struct member_function : function_traits<Function> {
     static constexpr bool is_mem_fun = true;
@@ -66,49 +66,44 @@ namespace Utils {
     static constexpr bool is_rvalue_mem_fun = RVALUE;
   };
 
+  //member variable
   template <typename Function, typename Class>
   struct member_variable : function_traits<Function> {
     static constexpr bool is_mem_var = true;
     
     using mem_class_type = Class;
-    
     using mem_var_type = typename function_traits<Function>::ret;
   };
 
-  //pointer to function
-  template <typename Return, typename ...Args>
-  struct function_traits<Return (*)(Args...)> :
-    function_traits<Return (Args...)> {};
-
   //pointer to member function
-  template <typename Class, typename Return, typename ...Args>
-  struct function_traits<Return (Class::*) (Args...)> :
-    member_function<Return (Args...), Class, false, true, true> {};
+  template <bool NOEXCEPT, typename Class, typename Return, typename ...Args>
+  struct function_traits<Return (Class::*) (Args...) noexcept(NOEXCEPT)> :
+    member_function<Return (Args...) noexcept(NOEXCEPT), Class, false, true, true> {};
 
   //pointer to const member function
-  template <typename Class, typename Return, typename ...Args>
-  struct function_traits<Return (Class::*) (Args...) const> :
-    member_function<Return (Args...), Class, true, true, true> {};
+  template <bool NOEXCEPT, typename Class, typename Return, typename ...Args>
+  struct function_traits<Return (Class::*) (Args...) const noexcept(NOEXCEPT)> :
+    member_function<Return (Args...) noexcept(NOEXCEPT), Class, true, true, true> {};
 
   //pointer to lvalue member function
-  template <typename Class, typename Return, typename ...Args>
-  struct function_traits<Return (Class::*) (Args...) &> :
-    member_function<Return (Args...), Class, false, true, false> {};
+  template <bool NOEXCEPT, typename Class, typename Return, typename ...Args>
+  struct function_traits<Return (Class::*) (Args...) & noexcept(NOEXCEPT)> :
+    member_function<Return (Args...) noexcept(NOEXCEPT), Class, false, true, false> {};
 
   //pointer to const lvalue member function
-  template <typename Class, typename Return, typename ...Args>
-  struct function_traits<Return (Class::*) (Args...) const &> :
-    member_function<Return (Args...), Class, true, true, false> {};
+  template <bool NOEXCEPT, typename Class, typename Return, typename ...Args>
+  struct function_traits<Return (Class::*) (Args...) const & noexcept(NOEXCEPT)> :
+    member_function<Return (Args...) noexcept(NOEXCEPT), Class, true, true, false> {};
 
   //pointer to rvalue member function
-  template <typename Class, typename Return, typename ...Args>
-  struct function_traits<Return (Class::*) (Args...) &&> :
-    member_function<Return (Args...), Class, false, false, true> {};
+  template <bool NOEXCEPT, typename Class, typename Return, typename ...Args>
+  struct function_traits<Return (Class::*) (Args...) && noexcept(NOEXCEPT)> :
+    member_function<Return (Args...) noexcept(NOEXCEPT), Class, false, false, true> {};
 
   //pointer to const rvalue member function
-  template <typename Class, typename Return, typename ...Args>
-  struct function_traits<Return (Class::*) (Args...) const &&> :
-    member_function<Return (Args...), Class, true, false, true> {};
+  template <bool NOEXCEPT, typename Class, typename Return, typename ...Args>
+  struct function_traits<Return (Class::*) (Args...) const && noexcept(NOEXCEPT)> :
+    member_function<Return (Args...) noexcept(NOEXCEPT), Class, true, false, true> {};
 
   //pointer to member variable
   template <typename Class, typename Type>
@@ -116,9 +111,9 @@ namespace Utils {
     member_variable<Type (), Class> {};
 
   //std::function
-  template <typename Return, typename ...Args>
-  struct function_traits<std::function<Return (Args...)>> :
-    function_traits<Return (Args...)> {};
+  template <bool NOEXCEPT, typename Return, typename ...Args>
+  struct function_traits<std::function<Return (Args...) noexcept(NOEXCEPT)>> :
+    function_traits<Return (Args...) noexcept(NOEXCEPT)> {};
 
   //functor
   template <typename Functor>
@@ -137,6 +132,10 @@ namespace Utils {
   //rvalue reference to function
   template <typename Function>
   struct function_traits<Function &&> : function_traits<Function> {};
+  
+  //pointer to function
+  template <typename Function>
+  struct function_traits<Function *> : function_traits<Function> {};
 }
 
 #endif
