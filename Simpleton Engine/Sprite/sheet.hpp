@@ -26,10 +26,12 @@ namespace Sprite {
     Sheet(Sheet &&) = default;
     Sheet &operator=(Sheet &&) = default;
     
-    /// Returns NULL_SPRITE if the name is invalid
+    /// Returns NULL_SPRITE if the name is invalid. O(n log n)
     ID getIDfromName(std::string_view) const;
-    /// Throws std::out_of_range if SpriteID is invalid
+    /// Throws std::out_of_range if SpriteID is invalid. O(1)
     Rect getSprite(ID) const;
+    /// Throws std::out_of_range if name is invalid. O(n log n)
+    Rect getSprite(std::string_view) const;
     /// Is there a whitepixel position?
     bool hasWhitepixel() const;
     /// Get whitepixel pos. Returns NO_WHITEPIXEL if there isn't one

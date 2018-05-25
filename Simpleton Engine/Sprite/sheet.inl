@@ -22,6 +22,10 @@ inline Sprite::Rect Sprite::Sheet::getSprite(const ID sprite) const {
   return rects.at(sprite);
 }
 
+inline Sprite::Rect Sprite::Sheet::getSprite(const std::string_view name) const {
+  return getSprite(getIDfromName(name));
+}
+
 inline bool Sprite::Sheet::hasWhitepixel() const {
   return whitepixel != NO_WHITEPIXEL;
 }
