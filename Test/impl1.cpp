@@ -64,6 +64,7 @@
 #include "../Simpleton Engine/Math/constants.hpp"
 #include "../Simpleton Engine/Math/siconstants.hpp"
 #include "../Simpleton Engine/Math/byteconstants.hpp"
+#include "../Simpleton Engine/Math/rational.hpp"
 #include "../Simpleton Engine/Math/int float.hpp"
 #include "../Simpleton Engine/Math/live stats.hpp"
 #include "../Simpleton Engine/Math/vectors.hpp"

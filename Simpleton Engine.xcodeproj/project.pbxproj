@@ -185,6 +185,7 @@
 		4592BAE91F11C3CB00D1640D /* app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
 		4592BAED1F11C50F00D1640D /* sdl app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl app.hpp"; sourceTree = "<group>"; };
 		4592BB111F11F86F00D1640D /* main loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "main loop.hpp"; sourceTree = "<group>"; };
+		459BED5820BD5379001BDA25 /* rational.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rational.hpp; sourceTree = "<group>"; };
 		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
 		45B32EAE1FF47C59007BA7F4 /* debug input.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "debug input.inl"; sourceTree = "<group>"; };
 		45B32EAF1FF47C59007BA7F4 /* debug input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "debug input.hpp"; sourceTree = "<group>"; };
@@ -584,6 +585,7 @@
 				4541160D1F51479800C2865B /* int float.hpp */,
 				452FF9F11F68CCB3003A98B1 /* live stats.hpp */,
 				4584F4151FCE7D5B0062B93E /* digit stack.hpp */,
+				459BED5820BD5379001BDA25 /* rational.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";

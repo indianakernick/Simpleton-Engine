@@ -15,31 +15,19 @@
 
 namespace Math {
   template <typename Number>
-  constexpr std::enable_if_t<
-    std::is_arithmetic<Number>::value,
-    Number
-  >
-  square(const Number n) {
+  constexpr Number square(const Number n) {
     return n * n;
   }
   
   template <typename Number>
-  constexpr std::enable_if_t<
-    std::is_arithmetic<Number>::value,
-    Number
-  >
-  cube(const Number n) {
+  constexpr Number cube(const Number n) {
     return n * n * n;
   }
 
   //24% faster than std::pow for integers
 
   template <typename Number, typename Exponent>
-  constexpr std::enable_if_t<
-    std::is_arithmetic<Number>::value &&
-    std::is_unsigned<Exponent>::value,
-    Number
-  >
+  constexpr std::enable_if_t<std::is_unsigned_v<Exponent>, Number>
   pow(const Number num, Exponent exp) {
     Number out = Number(1);
     while (exp--) {
@@ -49,11 +37,7 @@ namespace Math {
   }
   
   template <typename Number, typename Exponent>
-  constexpr std::enable_if_t<
-    std::is_arithmetic<Number>::value &&
-    std::is_signed<Exponent>::value,
-    Number
-  >
+  constexpr std::enable_if_t<std::is_signed_v<Exponent>, Number>
   pow(const Number num, const Exponent exp) {
     if (exp < Exponent(0)) {
       return Number(1) / pow(num, static_cast<std::make_unsigned_t<Exponent>>(-exp));
@@ -63,11 +47,7 @@ namespace Math {
   }
   
   template <long long EXPONENT, typename Number>
-  constexpr std::enable_if_t<
-    std::is_arithmetic<Number>::value,
-    Number
-  >
-  pow(const Number num) {
+  constexpr Number pow(const Number num) {
     if constexpr (EXPONENT < 0ll) {
       assert(num != Number(0));
       return Number(1) / pow<-EXPONENT>(num);
@@ -156,16 +136,12 @@ namespace Math {
   }
   
   ///Compute the floor of the logarithm of a number
-  template <typename UnsignedInt>
-  constexpr std::enable_if_t<
-    std::is_unsigned<UnsignedInt>::value,
-    UnsignedInt
-  >
-  log(const UnsignedInt base, UnsignedInt num) {
+  template <typename Number>
+  constexpr Number log(const Number base, Number num) {
     assert(base > 1);
-    assert(num != 0);
+    assert(num > 0);
     
-    UnsignedInt count = 0;
+    Number count = 0;
     while (num /= base) {
       ++count;
     }
@@ -173,18 +149,14 @@ namespace Math {
   }
   
   ///Compute the ceil of the logarithm of a number
-  template <typename UnsignedInt>
-  constexpr std::enable_if_t<
-    std::is_unsigned<UnsignedInt>::value,
-    UnsignedInt
-  >
-  logCeil(const UnsignedInt base, UnsignedInt num) {
+  template <typename Number>
+  constexpr Number logCeil(const Number base, Number num) {
     assert(base > 1);
-    assert(num != 0);
+    assert(num > 0);
     
-    UnsignedInt count = 0;
+    Number count = 0;
     bool up = false;
-    while (UnsignedInt numDivBase = num / base) {
+    while (Number numDivBase = num / base) {
       up = up || (num % base);
       ++count;
       num = numDivBase;
@@ -193,26 +165,18 @@ namespace Math {
   }
   
   ///Is num a power of 2?
-  template <typename UnsignedInt>
-  constexpr std::enable_if_t<
-    std::is_unsigned<UnsignedInt>::value,
-    bool
-  >
-  isPowerOf2(const UnsignedInt num) {
-    assert(num != 0);
+  template <typename Number>
+  constexpr bool isPowerOf2(const Number num) {
+    assert(num > 0);
     
     return (num & (num - 1)) == 0;
   }
   
   ///Is num a power of base?
-  template <typename UnsignedInt>
-  constexpr std::enable_if_t<
-    std::is_unsigned<UnsignedInt>::value,
-    bool
-  >
-  isPower(const UnsignedInt base, UnsignedInt num) {
+  template <typename Number>
+  constexpr bool isPower(const Number base, Number num) {
     assert(base > 1);
-    assert(num != 0);
+    assert(num > 0);
     
     while (num % base == 0) {
       num /= base;
