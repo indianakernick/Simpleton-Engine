@@ -13,6 +13,8 @@
 #include "comp init.hpp"
 #include "../Utils/tuple.hpp"
 #include "../Type List/type.hpp"
+#include "../Type List/pack.hpp"
+#include "../Type List/transform.hpp"
 
 namespace ECS {
   template <typename CompList>

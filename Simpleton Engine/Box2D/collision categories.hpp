@@ -24,7 +24,8 @@ An example of a possible definition of CATEGORIES is this
 
 #include <string>
 #include <cstdint>
-#include "../Utils/type list.hpp"
+#include "../Type List/get.hpp"
+#include "../Type List/index.hpp"
 
 namespace B2 {
   using CategoryBit = uint16_t;
@@ -37,7 +38,7 @@ namespace B2 {
     #undef CAT
   }
   
-  using Categories = Utils::TypeList<
+  using Categories = List::Type<
     #define CAT(NAME) Cat::NAME,
     #define LAST_CAT(NAME) Cat::NAME
     CATEGORIES
@@ -45,17 +46,17 @@ namespace B2 {
     #undef CAT
   >;
   
-  static_assert(Utils::listSize<Categories> <= 16);
+  static_assert(List::Size<Categories> <= 16);
   
   inline CategoryBit getCategoryBit(const std::string &categoryName) {
     try {
-      return Utils::getValueByName<CategoryBit, Categories>(
+      return List::getValueByName<CategoryBit, Categories>(
         "B2::Cat::" + categoryName,
         [] (auto t) {
-          return 1 << Utils::indexOf<Categories, UTILS_TYPE(t)>;
+          return 1 << List::IndexOf<Categories, LIST_TYPE(t)>;
         }
       );
-    } catch (Utils::TypeNotFound &) {
+    } catch (List::TypeNotFound &) {
       throw std::runtime_error("Invalid category name");
     }
   }

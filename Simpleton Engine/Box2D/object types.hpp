@@ -25,7 +25,8 @@ An example of a possible definition of OBJECT_TYPES is this
 
 #include <string>
 #include <cstdint>
-#include "../Utils/type list.hpp"
+#include "../Type List/get.hpp"
+#include "../Type List/index.hpp"
 
 namespace B2 {
   using ObjectTypeID = uint16_t;
@@ -38,7 +39,7 @@ namespace B2 {
     #undef OBJECT_TYPE
   }
   
-  using ObjectTypes = Utils::TypeList<
+  using ObjectTypes = List::Type<
     #define OBJECT_TYPE(NAME) ObjT::NAME,
     #define LAST_OBJECT_TYPE(NAME) ObjT::NAME
     OBJECT_TYPES
@@ -48,7 +49,7 @@ namespace B2 {
 
   template <typename ObjectType>
   ObjectTypeID getObjectTypeID() {
-    return static_cast<ObjectTypeID>(Utils::indexOf<ObjectTypes, ObjectType>);
+    return static_cast<ObjectTypeID>(List::IndexOf<ObjectTypes, ObjectType>);
   }
 
   template <typename ObjectType>
@@ -66,13 +67,13 @@ namespace B2 {
   
   inline void *getObjectTypeUserData(const std::string &objectTypeName) {
     try {
-      return Utils::getValueByName<void *, ObjectTypes>(
+      return List::getValueByName<void *, ObjectTypes>(
         "B2::ObjT::" + objectTypeName,
         [] (const auto t) {
-          return getObjectTypeUserData<UTILS_TYPE(t)>();
+          return getObjectTypeUserData<LIST_TYPE(t)>();
         }
       );
-    } catch (Utils::TypeNotFound &) {
+    } catch (List::TypeNotFound &) {
       throw std::runtime_error("Invalid object type name");
     }
   }
