@@ -38,30 +38,36 @@ namespace List {
   static_assert(Same<Transform<EmptyType, detail::AddPointer>, EmptyType>);
 
   // Reverse
+
+  namespace detail {
+    template <typename List>
+    struct ReverseI;
+    
+    template <>
+    struct ReverseI<EmptyType> {
+      using type = EmptyType;
+    };
+    
+    template <typename T>
+    struct ReverseI<Type<T>> {
+      using type = Type<T>;
+    };
+    
+    template <typename FirstType, typename... Types>
+    struct ReverseI<Type<FirstType, Types...>> {
+      using type = Concat<typename ReverseI<Type<Types...>>::type, Type<FirstType>>;
+    };
+  }
   
-  /*template <typename List, typename Sequence>
-  struct ReverseHelperHelper;
-  
-  template <typename List, size_t ...INDICIES>
-  struct ReverseHelperHelper<List, std::index_sequence<INDICIES...>> {
-    using type = TypeList<AtIndexRev<List, INDICIES>...>;
-  };
-  
+  /// Reverse the order of the types in the list
   template <typename List>
-  struct ReverseHelper {
-    using type = typename ReverseHelperHelper<List, std::make_index_sequence<listSize<List>>>::type;
-  };
+  using Reverse = typename detail::ReverseI<List>::type;
+
+  static_assert(Same<
+    Reverse<Type<int, char, float, long, double>>,
+    Type<double, long, float, char, int>
+  >);
   
-  template <>
-  struct ReverseHelper<EmptyList> {
-    using type = EmptyList;
-  };
-  
-  template <typename List>
-  using ReverseList = typename ReverseHelper<List>::type;
-  
-  static_assert(std::is_same<ReverseList<TypeList<int, char, long>>, TypeList<long, char, int>>::value);
-*/
   // Contains
   
   namespace detail {
