@@ -10,12 +10,11 @@
 #define engine_ecs_registry_hpp
 
 #include <limits>
-#include <cstdint>
 #include <entt/entity/registry.hpp>
 
 namespace ECS {
-  using EntityID = uint32_t;
-  using Registry = entt::Registry<EntityID>;
+  using Registry = entt::DefaultRegistry;
+  using EntityID = Registry::entity_type;
   constexpr EntityID NULL_ENTITY = std::numeric_limits<EntityID>::max();
 }
 

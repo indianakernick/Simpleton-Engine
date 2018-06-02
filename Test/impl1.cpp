@@ -41,6 +41,7 @@
 #include "../Simpleton Engine/Utils/terminal color.hpp"
 #include "../Simpleton Engine/Utils/int least.hpp"
 #include "../Simpleton Engine/Utils/profiler.hpp"
+#include "../Simpleton Engine/ECS/prototype.hpp"
 #include "../Simpleton Engine/ECS/entity id map.hpp"
 #include "../Simpleton Engine/ECS/json.hpp"
 #include "../Simpleton Engine/ECS/registry.hpp"

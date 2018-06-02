@@ -179,6 +179,7 @@
 		457EB34D20C22F6E0054E16F /* pred.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pred.hpp; sourceTree = "<group>"; };
 		457EB34E20C269DA0054E16F /* splice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = splice.hpp; sourceTree = "<group>"; };
 		457EB35020C27FA50054E16F /* sheet writer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sheet writer.hpp"; sourceTree = "<group>"; };
+		457EB35220C296B40054E16F /* prototype.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = prototype.hpp; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -494,6 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				45B32EBD1FF4852D007BA7F4 /* registry.hpp */,
+				457EB35220C296B40054E16F /* prototype.hpp */,
 				450759681FF610EC0009B360 /* json.inl */,
 				450759691FF610EC0009B360 /* json.hpp */,
 				450759661FF60E290009B360 /* entity id map.inl */,
