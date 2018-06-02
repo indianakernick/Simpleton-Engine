@@ -10,8 +10,8 @@
 #define engine_utils_hash_hpp
 
 #include <array>
+#include "tuple.hpp"
 #include <functional>
-#include "type list.hpp"
 #include "combine hashes.hpp"
 
 namespace Utils {

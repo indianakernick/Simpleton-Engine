@@ -168,6 +168,15 @@
 		45771C2B1FE90D1500F533DA /* buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = buffer.hpp; sourceTree = "<group>"; };
 		45771C2E1FE9129D00F533DA /* vertex array.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "vertex array.inl"; sourceTree = "<group>"; };
 		45771C2F1FE9129D00F533DA /* vertex array.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "vertex array.hpp"; sourceTree = "<group>"; };
+		457EB34520C20B430054E16F /* type.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = type.hpp; sourceTree = "<group>"; };
+		457EB34620C20CF80054E16F /* pack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pack.hpp; sourceTree = "<group>"; };
+		457EB34720C20DEA0054E16F /* index.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = index.hpp; sourceTree = "<group>"; };
+		457EB34820C212D10054E16F /* sort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sort.hpp; sourceTree = "<group>"; };
+		457EB34920C216010054E16F /* concat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = concat.hpp; sourceTree = "<group>"; };
+		457EB34A20C2171B0054E16F /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
+		457EB34B20C217D20054E16F /* foreach.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = foreach.hpp; sourceTree = "<group>"; };
+		457EB34C20C2183E0054E16F /* get.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = get.hpp; sourceTree = "<group>"; };
+		457EB34D20C22F6E0054E16F /* pred.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pred.hpp; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -268,7 +277,6 @@
 		45DEA0321F7F757200B1DA72 /* parse string.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "parse string.inl"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
-		45F3DB841F1AFEF10058D36B /* type list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "type list.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45F623F4200C96A500AEB428 /* audio library.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio library.hpp"; sourceTree = "<group>"; };
 		45F623F5200C96A500AEB428 /* audio library.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "audio library.inl"; sourceTree = "<group>"; };
@@ -413,6 +421,22 @@
 			path = OpenGL;
 			sourceTree = "<group>";
 		};
+		457EB34420C16D4D0054E16F /* Type List */ = {
+			isa = PBXGroup;
+			children = (
+				457EB34520C20B430054E16F /* type.hpp */,
+				457EB34620C20CF80054E16F /* pack.hpp */,
+				457EB34720C20DEA0054E16F /* index.hpp */,
+				457EB34920C216010054E16F /* concat.hpp */,
+				457EB34820C212D10054E16F /* sort.hpp */,
+				457EB34A20C2171B0054E16F /* transform.hpp */,
+				457EB34B20C217D20054E16F /* foreach.hpp */,
+				457EB34C20C2183E0054E16F /* get.hpp */,
+				457EB34D20C22F6E0054E16F /* pred.hpp */,
+			);
+			path = "Type List";
+			sourceTree = "<group>";
+		};
 		4589059220301AF10050F1C4 /* Graphics 2D */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +530,7 @@
 		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
 			isa = PBXGroup;
 			children = (
+				457EB34420C16D4D0054E16F /* Type List */,
 				45C6DDE320A82F0C002A133F /* Grid */,
 				454B2B06203E98F600D94D6A /* Sprite */,
 				4507595A1FF5E8280009B360 /* Data */,
@@ -548,7 +573,6 @@
 				45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */,
 				45B5E7E01EF8A93900A6A3E2 /* multi dim array.hpp */,
 				45B5E7E11EF8A93900A6A3E2 /* multi dim container.hpp */,
-				45F3DB841F1AFEF10058D36B /* type list.hpp */,
 				45F3DB861F1B4F750058D36B /* strong alias.hpp */,
 				4529DEE91F31AABD00071267 /* line col.hpp */,
 				45FA99411F3695E500F8C639 /* hash.hpp */,

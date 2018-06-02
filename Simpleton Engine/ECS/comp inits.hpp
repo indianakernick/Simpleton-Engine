@@ -12,7 +12,7 @@
 #include <memory>
 #include "comp init.hpp"
 #include "../Utils/tuple.hpp"
-#include "../Utils/type list.hpp"
+#include "../Type List/type.hpp"
 
 namespace ECS {
   template <typename CompList>
@@ -61,16 +61,16 @@ namespace ECS {
     struct InitPointer {
       using type = std::unique_ptr<CompInit<Comp>>;
     };
-    Utils::ListToTuple<Utils::TransformList<CompList, InitPointer>> inits;
+    List::ToTuple<List::Transform<CompList, InitPointer>> inits;
     
     template <typename Comp>
     auto &getInit() {
-      return std::get<Utils::indexOf<CompList, Comp>>(inits);
+      return std::get<List::IndexOf<CompList, Comp>>(inits);
     }
     
     template <typename Comp>
     auto &getInit() const {
-      return std::get<Utils::indexOf<CompList, Comp>>(inits);
+      return std::get<List::IndexOf<CompList, Comp>>(inits);
     }
   };
 }

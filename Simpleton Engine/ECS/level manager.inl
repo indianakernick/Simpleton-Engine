@@ -10,6 +10,7 @@
 #include <fstream>
 #include "json.hpp"
 #include "entity id map.hpp"
+#include "../Type List/get.hpp"
 
 namespace ECS::detail {
   template <typename CompList>
@@ -22,10 +23,10 @@ namespace ECS::detail {
   ) {
     const json::object_t &obj = comps.get_ref<const json::object_t &>();
     for (auto &pair : obj) {
-      const bool gotComp = Utils::getByName<CompList>(
+      const bool gotComp = List::getByName<CompList>(
         pair.first,
         [id, &idMap, &registry, &compInits, &props = pair.second] (auto t) {
-          compInits.init(registry.assign<UTILS_TYPE(t)>(id), props, idMap, id);
+          compInits.init(registry.assign<LIST_TYPE(t)>(id), props, idMap, id);
         }
       );
       if (!gotComp) {
