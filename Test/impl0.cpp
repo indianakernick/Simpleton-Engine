@@ -17,7 +17,6 @@
 #include "../Simpleton Engine/Utils/bits.hpp"
 #include "../Simpleton Engine/Utils/generic raii.hpp"
 #include "../Simpleton Engine/Utils/multi dim array.hpp"
-#include "../Simpleton Engine/Utils/variadic type traits.hpp"
 #include "../Simpleton Engine/Utils/combine hashes.hpp"
 #include "../Simpleton Engine/Utils/strong alias.hpp"
 #include "../Simpleton Engine/Utils/dispatcher.hpp"
