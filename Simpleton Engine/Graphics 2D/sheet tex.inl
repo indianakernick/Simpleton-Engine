@@ -6,10 +6,10 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#include <Simpleton/SDL/paths.hpp>
+#include "../SDL/paths.hpp"
 
 inline void G2D::SheetTex::load(
-  G2D::Renderer &renderer,
+  Renderer &renderer,
   const std::string &fontname,
   const GLenum filter
 ) {
@@ -17,14 +17,14 @@ inline void G2D::SheetTex::load(
   params.setWrap(GL_CLAMP_TO_EDGE);
   params.setFilter(filter);
   const std::string path = SDL::res(fontname);
-  mTex = renderer.addTexture(path + ".png", params);
-  mSheet = Sprite::makeSheet(path + ".atlas");
+  tex_ = renderer.addTexture(path + ".png", params);
+  sheet_ = Sprite::makeSheet(path + ".atlas");
 }
 
 inline const Sprite::Sheet &G2D::SheetTex::sheet() const {
-  return mSheet;
+  return sheet_;
 }
 
 inline G2D::TextureID G2D::SheetTex::tex() const {
-  return mTex;
+  return tex_;
 }

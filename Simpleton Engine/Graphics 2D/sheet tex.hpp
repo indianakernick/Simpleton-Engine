@@ -9,19 +9,20 @@
 #ifndef engine_graphics_2d_sheet_tex_hpp
 #define engine_graphics_2d_sheet_tex_hpp
 
-#include <Simpleton/Sprite/sheet.hpp>
-#include <Simpleton/Graphics 2D/renderer.hpp>
+#include "renderer.hpp"
+#include "../Sprite/sheet.hpp"
 
 namespace G2D {
+  /// A Sprite::Sheet and a TextureID
   class SheetTex {
   public:
-    void load(G2D::Renderer &, const std::string &, GLenum = GL_NEAREST);
+    void load(Renderer &, const std::string &, GLenum = GL_NEAREST);
     const Sprite::Sheet &sheet() const;
-    G2D::TextureID tex() const;
+    TextureID tex() const;
     
   private:
-    Sprite::Sheet mSheet;
-    G2D::TextureID mTex;
+    Sprite::Sheet sheet_;
+    TextureID tex_;
   };
 }
 
