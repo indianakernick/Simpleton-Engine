@@ -97,12 +97,17 @@ namespace G2D {
     template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
     void tileTex(Math::RectPP<float>);
     
+    /// Append all sections from the given writer into this writer. Quads before
+    /// the first section in the given writer become part of the current
+    /// section in this writer.
+    void append(const QuadWriter &);
+    
     /// Copy the quads into GPU memory and issue an number of draw calls
     void render(Renderer &) const;
     
   private:
     std::vector<Quad> quads;
-    // each section is an index to it's first quad
+    // each section is an index to its first quad
     std::vector<size_t> sections;
     std::vector<RenderParams> params;
   };

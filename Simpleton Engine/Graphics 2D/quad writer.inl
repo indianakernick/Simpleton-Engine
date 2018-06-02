@@ -206,6 +206,15 @@ void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
   tileTex<PLUS_XY>(coords.min, coords.max);
 }
 
+inline void G2D::QuadWriter::append(const QuadWriter &writer) {
+  const size_t numQuads = quads.size();
+  quads.insert(quads.end(), writer.quads.cbegin(), writer.quads.cend());
+  for (const size_t section : writer.sections) {
+    sections.push_back(numQuads + section);
+  }
+  params.insert(params.end(), writer.params.cbegin(), writer.params.cend());
+}
+
 inline void G2D::QuadWriter::render(Renderer &renderer) const {
   renderer.writeQuads({0, quads.size()}, quads.data());
   if (sections.empty()) {
