@@ -177,6 +177,7 @@
 		457EB34B20C217D20054E16F /* foreach.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = foreach.hpp; sourceTree = "<group>"; };
 		457EB34C20C2183E0054E16F /* get.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = get.hpp; sourceTree = "<group>"; };
 		457EB34D20C22F6E0054E16F /* pred.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pred.hpp; sourceTree = "<group>"; };
+		457EB34E20C269DA0054E16F /* splice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = splice.hpp; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -432,6 +433,7 @@
 				457EB34B20C217D20054E16F /* foreach.hpp */,
 				457EB34C20C2183E0054E16F /* get.hpp */,
 				457EB34D20C22F6E0054E16F /* pred.hpp */,
+				457EB34E20C269DA0054E16F /* splice.hpp */,
 			);
 			path = "Type List";
 			sourceTree = "<group>";
