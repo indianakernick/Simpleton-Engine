@@ -37,7 +37,7 @@ namespace List {
   /// a type member
   template <typename List, typename Function>
   constexpr void forEach(Function &&func) {
-    detail::ForEachI<List>::iter(func);
+    detail::ForEachI<List>::iter(static_cast<Function &&>(func));
   }
 }
 
