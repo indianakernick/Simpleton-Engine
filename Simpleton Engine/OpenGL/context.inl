@@ -15,18 +15,13 @@ inline void GL::Context::init(SDL_Window *const newWindow) {
 
 inline void GL::Context::initVSync(SDL_Window *const newWindow) {
   window = newWindow;
-  const int monFPS = getMonitorFPS();
-  if (monFPS == 0) {
-    minFrameTime = 1000 / 70;
-  } else {
-    minFrameTime = 1000 / (monFPS + 10);
-  }
+  minFrameTime = 1000 / (getMonitorFPS() + 10);
   initImpl(true);
 }
 
 inline void GL::Context::initLimitFPS(SDL_Window *const newWindow, const uint32_t fps) {
   window = newWindow;
-  if (getMonitorFPS() == static_cast<int>(fps)) {
+  if (getMonitorFPS() == fps) {
     minFrameTime = 1000 / (fps + 10);
     initImpl(true);
   } else {
@@ -95,6 +90,16 @@ inline glm::ivec2 GL::Context::getFrameSize() const {
   return size;
 }
 
+inline uint32_t GL::Context::getMonitorFPS() const {
+  SDL_DisplayMode mode;
+  CHECK_SDL_ERROR(SDL_GetWindowDisplayMode(window, &mode));
+  if (mode.refresh_rate <= 0) {
+    return 60;
+  } else {
+    return mode.refresh_rate;
+  }
+}
+
 inline void GL::Context::initImpl(const bool vsync) {
   #ifdef EMSCRIPTEN
   
@@ -136,10 +141,4 @@ inline void GL::Context::present() {
   #else
   SDL_GL_SwapWindow(window);
   #endif
-}
-
-inline int GL::Context::getMonitorFPS() {
-  SDL_DisplayMode mode;
-  CHECK_SDL_ERROR(SDL_GetWindowDisplayMode(window, &mode));
-  return mode.refresh_rate;
 }

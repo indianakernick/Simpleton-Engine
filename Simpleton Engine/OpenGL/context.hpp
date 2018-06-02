@@ -26,6 +26,7 @@ namespace GL {
     void postRender(bool = false);
     
     glm::ivec2 getFrameSize() const;
+    uint32_t getMonitorFPS() const;
   
   private:
     #ifdef EMSCRIPTEN
@@ -38,7 +39,6 @@ namespace GL {
     
     void initImpl(bool);
     void present();
-    int getMonitorFPS();
   };
 }
 
