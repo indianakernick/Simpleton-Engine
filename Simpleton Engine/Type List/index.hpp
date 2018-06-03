@@ -22,9 +22,7 @@ namespace List {
     
     template <size_t Index, typename FirstType, typename... Types>
     struct AtIndexI<Type<FirstType, Types...>, Index> {
-      using type = typename AtIndexI<
-        Type<Types...>, Index - 1
-      >::type;
+      using type = typename AtIndexI<Type<Types...>, Index - 1>::type;
     };
     
     template <typename First, typename... Types>

@@ -9,7 +9,7 @@
 #ifndef engine_type_list_pred_hpp
 #define engine_type_list_pred_hpp
 
-#include "type.hpp"
+#include "concat.hpp"
 
 namespace List {
   namespace detail {
@@ -80,14 +80,23 @@ namespace List {
   // Filter
   
   namespace detail {
+    template <typename T, bool Pred>
+    struct FilterOne {
+      using type = Type<T>;
+    };
+    
+    template <typename T>
+    struct FilterOne<T, false> {
+      using type = EmptyType;
+    };
+  
     template <typename List, template <typename> typename Pred>
     struct FilterI;
     
     template <template <typename> typename Pred, typename First, typename... Types>
     struct FilterI<Type<First, Types...>, Pred> {
-      using type = Conditional<
-        Pred<First>::value,
-        Concat<Type<First>, typename FilterI<Type<Types...>, Pred>::type>,
+      using type = Concat<
+        typename FilterOne<First, Pred<First>::value>::type,
         typename FilterI<Type<Types...>, Pred>::type
       >;
     };

@@ -194,6 +194,38 @@ namespace List {
   static_assert(Same<Erase<Type<int, float, double, char, long>, 1, 2>, Type<int, char, long>>);
   static_assert(Same<Erase<Type<int, char, float, double, long>, 2, 2>, Type<int, char, long>>);
   static_assert(Same<Erase<Type<int, char, long, float, double>, 3, 2>, Type<int, char, long>>);
+  
+  // Remove
+  
+  namespace detail {
+    template <typename List, typename Type>
+    struct RemoveI;
+    
+    template <typename T, typename First, typename... Types>
+    struct RemoveI<Type<First, Types...>, T> {
+      using type = Concat<Type<First>, typename RemoveI<Type<Types...>, T>::type>;
+    };
+    
+    template <typename First, typename... Types>
+    struct RemoveI<Type<First, Types...>, First> {
+      using type = typename RemoveI<Type<Types...>, First>::type;
+    };
+    
+    template <typename T>
+    struct RemoveI<EmptyType, T> {
+      using type = EmptyType;
+    };
+  }
+  
+  /// Remove a type from a list
+  template <typename List, typename Type>
+  using Remove = typename detail::RemoveI<List, Type>::type;
+  
+  static_assert(Same<Remove<Type<int, char, long>, float>, Type<int, char, long>>);
+  static_assert(Same<Remove<Type<int, char, long>, int>, Type<char, long>>);
+  static_assert(Same<Remove<Type<int, char, long>, char>, Type<int, long>>);
+  static_assert(Same<Remove<Type<int, char, long>, long>, Type<int, char>>);
+  static_assert(Same<Remove<Type<float, int, float, char, float, long>, float>, Type<int, char, long>>);
 }
 
 #endif
