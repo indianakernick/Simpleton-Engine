@@ -32,6 +32,22 @@ namespace List {
   // Merge
   
   namespace detail {
+    template <bool Cond, typename True, typename False>
+    struct ConditionalHelper;
+    
+    template <typename True, typename False>
+    struct ConditionalHelper<true, True, False> {
+      using type = True;
+    };
+    
+    template <typename True, typename False>
+    struct ConditionalHelper<false, True, False> {
+      using type = False;
+    };
+    
+    template <bool Cond, typename True, typename False>
+    using Conditional = typename ConditionalHelper<Cond, True, False>::type;
+  
     template <typename LeftList, typename RightList, template <typename, typename> typename Less>
     struct MergeI;
     
