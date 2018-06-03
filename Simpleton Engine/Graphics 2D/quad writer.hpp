@@ -49,6 +49,10 @@ namespace G2D {
     void section(const RenderParams &);
     /// Make space for the given number of quads to avoid further reallocations
     void sectionSize(size_t);
+    /// Get the RenderParams object associated with the current section
+    const RenderParams &sectionInfo() const;
+    /// Get the number of quads in the current section
+    size_t sectionSize() const;
     
     /// Sort the quads in the current section by the given sorting predicate
     template <typename Function>

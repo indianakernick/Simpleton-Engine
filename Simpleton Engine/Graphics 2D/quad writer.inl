@@ -30,6 +30,16 @@ inline void G2D::QuadWriter::sectionSize(const size_t size) {
   quads.reserve(quads.size() + size);
 }
 
+inline const G2D::RenderParams &G2D::QuadWriter::sectionInfo() const {
+  assert(params.size());
+  return params.back();
+}
+
+inline size_t G2D::QuadWriter::sectionSize() const {
+  assert(sections.size());
+  return quads.size() - sections.back();
+}
+
 template <typename Function>
 void G2D::QuadWriter::sort(Function &&function) {
   assert(sections.size());
