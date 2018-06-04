@@ -35,12 +35,17 @@ inline glm::mat3 Cam2D::Transform::toMeters() const {
 }
 
 inline void Cam2D::Transform::calculate(const Props props, const Params params) {
-  const glm::mat3 originMat = glm::translate({}, calcOriginPos());
-  const glm::mat3 zoomMat = glm::scale({}, glm::vec2(props.scale));
-  const glm::mat3 angleMat = glm::rotate(glm::mat3(), props.angle);
-  const glm::mat3 invertMat = glm::scale({}, calcInvertedScale());
-  const glm::mat3 aspectMat = glm::scale({}, glm::vec2(1.0f, params.aspect));
-  const glm::mat3 posMat = glm::translate({}, -props.pos + calcShiftedPos(params));
+  static constexpr glm::mat3 I = {
+    {1, 0, 0},
+    {0, 1, 0},
+    {0, 0, 1}
+  };
+  const glm::mat3 originMat = glm::translate(I, calcOriginPos());
+  const glm::mat3 zoomMat = glm::scale(I, glm::vec2(props.scale));
+  const glm::mat3 angleMat = glm::rotate(I, props.angle);
+  const glm::mat3 invertMat = glm::scale(I, calcInvertedScale());
+  const glm::mat3 aspectMat = glm::scale(I, glm::vec2(1.0f, params.aspect));
+  const glm::mat3 posMat = glm::translate(I, -props.pos + calcShiftedPos(params));
 
   toPixelsMat = originMat * zoomMat * invertMat * aspectMat * angleMat * posMat;
   toMetersMat = glm::inverse(toPixelsMat);
