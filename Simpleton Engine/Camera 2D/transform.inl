@@ -7,6 +7,7 @@
 //
 
 #include "props.hpp"
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/matrix_transform_2d.hpp>
 
 inline void Cam2D::Transform::setOrigin(const Origin newOrigin) {

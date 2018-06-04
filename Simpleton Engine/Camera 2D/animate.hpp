@@ -10,6 +10,7 @@
 #define engine_camera_2d_animate_hpp
 
 #include "props.hpp"
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/norm.hpp>
 
 namespace Cam2D {
