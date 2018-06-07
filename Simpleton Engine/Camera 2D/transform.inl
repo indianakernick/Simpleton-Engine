@@ -36,9 +36,9 @@ inline glm::mat3 Cam2D::Transform::toMeters() const {
 
 inline void Cam2D::Transform::calculate(const Props props, const Params params) {
   static constexpr glm::mat3 I = {
-    {1, 0, 0},
-    {0, 1, 0},
-    {0, 0, 1}
+    {1.0f, 0.0f, 0.0f},
+    {0.0f, 1.0f, 0.0f},
+    {0.0f, 0.0f, 1.0f}
   };
   const glm::mat3 originMat = glm::translate(I, calcOriginPos());
   const glm::mat3 zoomMat = glm::scale(I, glm::vec2(props.scale));
