@@ -72,10 +72,10 @@ namespace List {
   template <typename List, typename Type>
   constexpr size_t IndexOf = detail::IndexOfI<List, Type>::value;
   
-  static_assert(IndexOf<Type<int, char, long>,  int> == 0);
-  static_assert(IndexOf<Type<int, char, long>,  char> == 1);
-  static_assert(IndexOf<Type<int, char, long>,  long> == 2);
-  static_assert(IndexOf<Type<int, char, long>,  float> == size_t(-1));
+  static_assert(IndexOf<Type<int, char, long>, int> == 0);
+  static_assert(IndexOf<Type<int, char, long>, char> == 1);
+  static_assert(IndexOf<Type<int, char, long>, long> == 2);
+  static_assert(IndexOf<Type<int, char, long>, float> == size_t(-1));
 }
 
 #endif

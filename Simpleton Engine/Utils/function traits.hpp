@@ -9,8 +9,8 @@
 #ifndef engine_utils_function_traits_hpp
 #define engine_utils_function_traits_hpp
 
-#include <tuple>
 #include <functional>
+#include "../Type List/index.hpp"
 
 namespace Utils {
   template <typename Function>
@@ -37,9 +37,9 @@ namespace Utils {
     using ret = Return;
     
     static constexpr size_t arity = sizeof...(Args);
-    using args = std::tuple<Args...>;
+    using args = List::Type<Args...>;
     template <size_t I>
-    using arg = typename std::tuple_element<I, args>::type;
+    using arg = List::AtIndex<args, I>;
     
     static constexpr bool is_noexcept = NOEXCEPT;
     
