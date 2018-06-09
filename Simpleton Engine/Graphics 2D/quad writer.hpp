@@ -33,21 +33,21 @@ namespace G2D {
     Section &operator=(Section &&) = default;
     Section(const RenderParams &, const Sprite::Sheet &);
   
-    /// Get the RenderParams object associated with this section
+    /// Get the RenderParams object
     const RenderParams &params() const;
-    /// Get the Sprite::Sheet object associated with this section
+    /// Get the Sprite::Sheet object
     const Sprite::Sheet &sheet() const;
     /// Remove all quads
     void clear();
-    /// Make space for additional quads in the current section
+    /// Make space for additional quads
     void reserveQuads(size_t);
-    /// Sort the quads in the current section by the given sorting predicate
+    /// Sort the quads by the given sorting predicate
     template <typename Function>
     void sort(Function &&);
   
-    /// Start a new quad and return it
+    /// Create a new quad
     Quad &quad();
-    /// Start a new quad the is a duplicate of the previous quad and return it
+    /// Create a new quad that is a duplicate of the previous quad
     Quad &dup();
     
     /// Set the depth of the current quad
@@ -110,14 +110,14 @@ namespace G2D {
     
     /// Remove all of the sections
     void clear();
-    /// Clear quads but preseve sections
+    /// Clear quads on all sections
     void clearQuads();
     
-    /// Create a new section with the given rendering params or get an
-    /// existing section with the same params.
+    /// Create a new section with the given rendering params or get an existing
+    /// section with the same params.
     Section &section(const glm::mat3 &, const SheetTex &, glm::vec4 = glm::vec4{1.0f});
     
-    /// Render each of the section
+    /// Render all of the sections
     void render(Renderer &) const;
     
   private:
