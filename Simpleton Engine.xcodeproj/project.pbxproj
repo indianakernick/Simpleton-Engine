@@ -182,7 +182,6 @@
 		457EB34C20C2183E0054E16F /* get.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = get.hpp; sourceTree = "<group>"; };
 		457EB34D20C22F6E0054E16F /* pred.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pred.hpp; sourceTree = "<group>"; };
 		457EB34E20C269DA0054E16F /* splice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = splice.hpp; sourceTree = "<group>"; };
-		457EB35020C27FA50054E16F /* sheet writer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sheet writer.hpp"; sourceTree = "<group>"; };
 		457EB35220C296B40054E16F /* prototype.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = prototype.hpp; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
@@ -464,7 +463,6 @@
 				453E25B220CB7FA000B85EEE /* quad writer lite.hpp */,
 				45682655209981FC00BA6AE8 /* sheet tex.inl */,
 				45682654209981FC00BA6AE8 /* sheet tex.hpp */,
-				457EB35020C27FA50054E16F /* sheet writer.hpp */,
 			);
 			path = "Graphics 2D";
 			sourceTree = "<group>";

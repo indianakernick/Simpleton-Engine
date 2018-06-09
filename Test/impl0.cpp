@@ -130,7 +130,6 @@
 #include "../Simpleton Engine/Graphics 2D/zsort.hpp"
 #include "../Simpleton Engine/Graphics 2D/types.hpp"
 #include "../Simpleton Engine/Graphics 2D/sheet tex.hpp"
-#include "../Simpleton Engine/Graphics 2D/sheet writer.hpp"
 #include "../Simpleton Engine/OpenGL/attrib pointer.hpp"
 #include "../Simpleton Engine/OpenGL/opengl.hpp"
 #include "../Simpleton Engine/OpenGL/context.hpp"
