@@ -9,83 +9,47 @@
 #include <algorithm>
 #include <glm/gtc/constants.hpp>
 
-namespace G2D::detail {
-  template <typename Enum>
-  constexpr auto depth(const Enum e, int) -> decltype(Enum::COUNT, float{}) {
-    return static_cast<float>(e) / static_cast<float>(Enum::COUNT);
-  }
-  
-  /// Get the depth of a depth enum
-  template <typename Enum>
-  constexpr float depth(const Enum e, long) {
-    return static_cast<float>(e) / 255.0f;
-  }
+inline G2D::Section::Section(const RenderParams &params, const Sprite::Sheet &sheet)
+  : renderParams{params}, spriteSheet{sheet} {
+  quads.reserve(512);
 }
 
-template <typename Enum>
-constexpr float G2D::depth(const Enum e) {
-  return detail::depth(e, 0);
+inline const G2D::RenderParams &G2D::Section::params() const {
+  return renderParams;
 }
 
-inline G2D::QuadWriter::QuadWriter() {
-  quads.reserve(2048);
-  sections.reserve(64);
-  params.reserve(64);
+inline const Sprite::Sheet &G2D::Section::sheet() const {
+  return spriteSheet;
 }
 
-inline void G2D::QuadWriter::clear() {
+inline void G2D::Section::clear() {
   quads.clear();
-  sections.clear();
-  params.clear();
 }
 
-inline void G2D::QuadWriter::section(const RenderParams &param) {
-  sections.push_back(quads.size());
-  params.push_back(param);
-}
-
-inline void G2D::QuadWriter::sectionSize(const size_t size) {
+inline void G2D::Section::reserveQuads(const size_t size) {
   quads.reserve(quads.size() + size);
 }
 
-inline const G2D::RenderParams &G2D::QuadWriter::sectionInfo() const {
-  assert(params.size());
-  return params.back();
-}
-
-inline size_t G2D::QuadWriter::sectionSize() const {
-  assert(sections.size());
-  return quads.size() - sections.back();
-}
-
 template <typename Function>
-void G2D::QuadWriter::sort(Function &&function) {
-  assert(sections.size());
-  
+void G2D::Section::sort(Function &&function) {
   std::sort(
-    quads.data() + sections.back(),
-    quads.data() + quads.size(),
+    quads.begin(),
+    quads.end(),
     function
   );
 }
 
-inline G2D::Quad &G2D::QuadWriter::quad() {
-  assert(sections.size());
-  
-  quads.push_back({});
-  return quads.back();
+inline G2D::Quad &G2D::Section::quad() {
+  return quads.emplace_back();
 }
 
-inline G2D::Quad &G2D::QuadWriter::dup() {
-  assert(sections.size() && quads.size());
-  
-  quads.push_back(quads.back());
-  return quads.back();
+inline G2D::Quad &G2D::Section::dup() {
+  assert(!quads.empty());
+  return quads.emplace_back(quads.back());
 }
 
-inline void G2D::QuadWriter::depth(const float depth) {
-  assert(quads.size() && sections.size());
-  
+inline void G2D::Section::depth(const float depth) {
+  assert(!quads.empty());
   Quad &quad = quads.back();
   quad[0].pos.z =
   quad[1].pos.z =
@@ -94,7 +58,7 @@ inline void G2D::QuadWriter::depth(const float depth) {
 }
 
 template <typename Enum>
-void G2D::QuadWriter::depth(const Enum e) {
+void G2D::Section::depth(const Enum e) {
   depth(G2D::depth(e));
 }
 
@@ -105,9 +69,8 @@ namespace G2D::detail {
   }
 }
 
-inline void G2D::QuadWriter::dupPos() {
-  assert(quads.size() > 1 && sections.size());
-  
+inline void G2D::Section::dupPos() {
+  assert(quads.size() > 1);
   Quad &quad = quads.back();
   const Quad &prev = *(quads.cend() - 2);
   for (size_t i = 0; i != 4; ++i) {
@@ -115,9 +78,8 @@ inline void G2D::QuadWriter::dupPos() {
   }
 }
 
-inline void G2D::QuadWriter::dupPosDepth() {
-  assert(quads.size() > 1 && sections.size());
-  
+inline void G2D::Section::dupPosDepth() {
+  assert(quads.size() > 1);
   Quad &quad = quads.back();
   const Quad &prev = *(quads.cend() - 2);
   for (size_t i = 0; i != 4; ++i) {
@@ -125,12 +87,11 @@ inline void G2D::QuadWriter::dupPosDepth() {
   }
 }
 
-inline void G2D::QuadWriter::tilePos(
+inline void G2D::Section::tilePos(
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
-  assert(quads.size() && sections.size());
-  
+  assert(!quads.empty());
   Quad &quad = quads.back();
   detail::setPos(quad[0].pos, pos);
   detail::setPos(quad[1].pos, {pos.x + size.x, pos.y});
@@ -138,12 +99,12 @@ inline void G2D::QuadWriter::tilePos(
   detail::setPos(quad[3].pos, {pos.x, pos.y + size.y});
 }
 
-inline void G2D::QuadWriter::rotTilePos(
+inline void G2D::Section::rotTilePos(
   const float angle,
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
-  assert(quads.size() && sections.size());
+  assert(!quads.empty());
 
   const glm::vec2 halfSize = size * 0.5f;
   const glm::vec2 topRight = glm::vec2(
@@ -163,13 +124,13 @@ inline void G2D::QuadWriter::rotTilePos(
 }
 
 template <G2D::Origin ORIGIN>
-void G2D::QuadWriter::rotTilePos(
+void G2D::Section::rotTilePos(
   const float angle,
   const glm::vec2 pos,
   const glm::vec2 size
 ) {
-  assert(quads.size() && sections.size());
-  
+  assert(!quads.empty());
+
   constexpr glm::vec2 ORIGIN_POS[9] = {
     {0.5f, -0.5f}, {0.0f, -0.5f}, {-0.5f, -0.5f}, {-0.5f, 0.0f},
     {-0.5f, 0.5f}, {0.0f, 0.5f}, {0.5f, 0.5f}, {0.5f, 0.0f},
@@ -178,7 +139,6 @@ void G2D::QuadWriter::rotTilePos(
   constexpr glm::vec2 originPos = ORIGIN_POS[static_cast<size_t>(ORIGIN)];
   
   const glm::vec2 origin = originPos * size;
-  
   const float c = std::cos(angle);
   const float s = std::sin(angle);
   const glm::mat2 rot = {
@@ -199,9 +159,8 @@ void G2D::QuadWriter::rotTilePos(
   detail::setPos(quad[3].pos, pos + rot * (tl + origin));
 }
 
-inline void G2D::QuadWriter::dupTex() {
-  assert(quads.size() > 1 && sections.size());
-  
+inline void G2D::Section::dupTex() {
+  assert(quads.size() > 1);
   Quad &quad = quads.back();
   const Quad &prev = *(quads.cend() - 2);
   for (size_t i = 0; i != 4; ++i) {
@@ -210,8 +169,8 @@ inline void G2D::QuadWriter::dupTex() {
 }
 
 template <G2D::PlusXY PLUS_XY>
-void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
-  assert(quads.size() && sections.size());
+void G2D::Section::tileTex(const glm::vec2 min, const glm::vec2 max) {
+  assert(!quads.empty());
   
   constexpr size_t Is[4][4] = {
                   // +x      +y
@@ -230,31 +189,56 @@ void G2D::QuadWriter::tileTex(const glm::vec2 min, const glm::vec2 max) {
 }
 
 template <G2D::PlusXY PLUS_XY>
-void G2D::QuadWriter::tileTex(const Math::RectPP<float> coords) {
+void G2D::Section::tileTex(const Math::RectPP<float> coords) {
   tileTex<PLUS_XY>(coords.min, coords.max);
 }
 
-inline void G2D::QuadWriter::append(const QuadWriter &writer) {
-  const size_t numQuads = quads.size();
-  quads.insert(quads.end(), writer.quads.cbegin(), writer.quads.cend());
-  for (const size_t section : writer.sections) {
-    sections.push_back(numQuads + section);
+template <G2D::PlusXY PLUS_XY>
+void G2D::Section::tileTex(const Sprite::ID sprite) {
+  tileTex<PLUS_XY>(spriteSheet.getSprite(sprite));
+}
+
+template <G2D::PlusXY PLUS_XY>
+void G2D::Section::tileTex(const std::string_view name) {
+  tileTex<PLUS_XY>(spriteSheet.getIDfromName(name));
+}
+
+inline void G2D::Section::render(Renderer &renderer) const {
+  const QuadRange range {0, quads.size()};
+  renderer.writeQuads(range, quads.data());
+  renderer.render(range, renderParams);
+}
+
+inline G2D::QuadWriter::QuadWriter() {
+  sections.reserve(64);
+}
+
+inline void G2D::QuadWriter::clear() {
+  sections.clear();
+}
+
+inline void G2D::QuadWriter::clearQuads() {
+  for (Section &section : sections) {
+    section.clear();
   }
-  params.insert(params.end(), writer.params.cbegin(), writer.params.cend());
+}
+
+inline G2D::Section &G2D::QuadWriter::section(
+  const glm::mat3 &cam,
+  const SheetTex &sheetTex,
+  const glm::vec4 color
+) {
+  const RenderParams params {cam, sheetTex.tex(), color};
+  for (auto s = sections.begin(); s != sections.end(); ++s) {
+    if (s->params() == params) {
+      return *s;
+    }
+  }
+  return sections.emplace_back(params, sheetTex.sheet());
 }
 
 inline void G2D::QuadWriter::render(Renderer &renderer) const {
-  renderer.writeQuads({0, quads.size()}, quads.data());
-  if (sections.empty()) {
-    return;
+  for (const Section &section : sections) {
+    section.render(renderer);
   }
-  QuadRange range;
-  range.begin = sections[0];
-  for (size_t s = 1; s != sections.size(); ++s) {
-    range.end = sections[s];
-    renderer.render(range, params[s - 1]);
-    range.begin = range.end;
-  }
-  range.end = quads.size();
-  renderer.render(range, params.back());
 }

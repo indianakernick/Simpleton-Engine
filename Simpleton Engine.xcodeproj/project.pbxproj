@@ -97,6 +97,10 @@
 		45388599209010C5003EB260 /* chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunk.hpp; sourceTree = "<group>"; };
 		4538859A209010C5003EB260 /* chunk.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = chunk.inl; sourceTree = "<group>"; };
 		453B288F20B03A1900F6E9E6 /* function alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "function alias.hpp"; sourceTree = "<group>"; };
+		453E25B220CB7FA000B85EEE /* quad writer lite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "quad writer lite.hpp"; sourceTree = "<group>"; };
+		453E25B320CB7FA000B85EEE /* quad writer lite.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "quad writer lite.inl"; sourceTree = "<group>"; };
+		453E25B420CB807500B85EEE /* depth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depth.hpp; sourceTree = "<group>"; };
+		453E25B520CB807500B85EEE /* depth.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = depth.inl; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
@@ -452,8 +456,12 @@
 				4589059420301F8A0050F1C4 /* renderer.hpp */,
 				454B2AF5203D6F5E00D94D6A /* zsort.inl */,
 				454B2AF4203D6F5E00D94D6A /* zsort.hpp */,
+				453E25B520CB807500B85EEE /* depth.inl */,
+				453E25B420CB807500B85EEE /* depth.hpp */,
 				45388510208C40F9003EB260 /* quad writer.inl */,
 				4538850F208C40F9003EB260 /* quad writer.hpp */,
+				453E25B320CB7FA000B85EEE /* quad writer lite.inl */,
+				453E25B220CB7FA000B85EEE /* quad writer lite.hpp */,
 				45682655209981FC00BA6AE8 /* sheet tex.inl */,
 				45682654209981FC00BA6AE8 /* sheet tex.hpp */,
 				457EB35020C27FA50054E16F /* sheet writer.hpp */,

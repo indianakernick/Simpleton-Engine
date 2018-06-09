@@ -33,6 +33,20 @@ namespace G2D {
     TextureID tex {0};
     glm::vec4 color {1.0f};
   };
+  
+  constexpr bool operator==(const RenderParams &a, const RenderParams &b) {
+    return a.tex == b.tex && a.color == b.color && a.viewProj == b.viewProj;
+  }
+  constexpr bool operator!=(const RenderParams &a, const RenderParams &b) {
+    return !(a == b);
+  }
+  
+  enum class PlusXY {
+    RIGHT_UP,
+    LEFT_UP,
+    RIGHT_DOWN,
+    LEFT_DOWN
+  };
 }
 
 #endif

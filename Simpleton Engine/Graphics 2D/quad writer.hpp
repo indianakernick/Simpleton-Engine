@@ -9,17 +9,12 @@
 #ifndef engine_graphics_2d_quad_writer_hpp
 #define engine_graphics_2d_quad_writer_hpp
 
+#include "depth.hpp"
 #include "renderer.hpp"
+#include "sheet tex.hpp"
 #include "../Math/rect.hpp"
 
 namespace G2D {
-  enum class PlusXY {
-    RIGHT_UP,
-    LEFT_UP,
-    RIGHT_DOWN,
-    LEFT_DOWN
-  };
-  
   enum class Origin {
     TOP_LEFT,
     TOP_MID,
@@ -31,31 +26,25 @@ namespace G2D {
     MID_LEFT,
     CENTER
   };
-  
-  /// Get the depth of a depth enum
-  template <typename Enum>
-  constexpr float depth(Enum);
 
-  class QuadWriter {
+  class Section {
   public:
-    QuadWriter();
-    
-    /// Remove all of the sections
+    Section(Section &&) = default;
+    Section &operator=(Section &&) = default;
+    Section(const RenderParams &, const Sprite::Sheet &);
+  
+    /// Get the RenderParams object associated with this section
+    const RenderParams &params() const;
+    /// Get the Sprite::Sheet object associated with this section
+    const Sprite::Sheet &sheet() const;
+    /// Remove all quads
     void clear();
-    
-    /// Start a new section with the given rendering parameters
-    void section(const RenderParams &);
-    /// Make space for the given number of quads to avoid further reallocations
-    void sectionSize(size_t);
-    /// Get the RenderParams object associated with the current section
-    const RenderParams &sectionInfo() const;
-    /// Get the number of quads in the current section
-    size_t sectionSize() const;
-    
+    /// Make space for additional quads in the current section
+    void reserveQuads(size_t);
     /// Sort the quads in the current section by the given sorting predicate
     template <typename Function>
     void sort(Function &&);
-    
+  
     /// Start a new quad and return it
     Quad &quad();
     /// Start a new quad the is a duplicate of the previous quad and return it
@@ -63,8 +52,7 @@ namespace G2D {
     
     /// Set the depth of the current quad
     void depth(float);
-    /// Set the depth of the current quad using an enum. The last enumerator
-    /// must be COUNT
+    /// Set the depth of the current quad using an enum
     template <typename Enum>
     void depth(Enum);
     
@@ -98,20 +86,42 @@ namespace G2D {
     /// the texture is sampled as an axis-aligned rectangle
     template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
     void tileTex(Math::RectPP<float>);
+    /// Write texture coordinates of vertices on the current quad assuming that
+    /// the texture is sampled as an axis-aligned rectangle
+    template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
+    void tileTex(Sprite::ID);
+    /// Write texture coordinates of vertices on the current quad assuming that
+    /// the texture is sampled as an axis-aligned rectangle
+    template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
+    void tileTex(std::string_view);
     
-    /// Append all sections from the given writer into this writer. Quads before
-    /// the first section in the given writer become part of the current
-    /// section in this writer.
-    void append(const QuadWriter &);
-    
-    /// Copy the quads into GPU memory and issue an number of draw calls
+    /// Copy the quads into GPU memory and issue a draw call
     void render(Renderer &) const;
     
   private:
+    RenderParams renderParams;
+    const Sprite::Sheet &spriteSheet;
     std::vector<Quad> quads;
-    // each section is an index to its first quad
-    std::vector<size_t> sections;
-    std::vector<RenderParams> params;
+  };
+
+  class QuadWriter {
+  public:
+    QuadWriter();
+    
+    /// Remove all of the sections
+    void clear();
+    /// Clear quads but preseve sections
+    void clearQuads();
+    
+    /// Create a new section with the given rendering params or get an
+    /// existing section with the same params.
+    Section &section(const glm::mat3 &, const SheetTex &, glm::vec4 = glm::vec4{1.0f});
+    
+    /// Render each of the section
+    void render(Renderer &) const;
+    
+  private:
+    std::vector<Section> sections;
   };
 }
 
