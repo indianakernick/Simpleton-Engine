@@ -14,18 +14,10 @@
 
 inline void G2D::Renderer::init() {
   #ifdef EMSCRIPTEN
-  initES();
-  #else
-  initCore();
-  #endif
-}
-
-inline void G2D::Renderer::initCore() {
-  initImpl(CORE_SHADER_VERSION);
-}
-
-inline void G2D::Renderer::initES() {
   initImpl(ES_SHADER_VERSION);
+  #else
+  initImpl(CORE_SHADER_VERSION);
+  #endif
 }
 
 inline void G2D::Renderer::quit() {
@@ -44,23 +36,29 @@ inline G2D::TextureID G2D::Renderer::addTexture(GL::Texture2D &&texture) {
 
 inline G2D::TextureID G2D::Renderer::addTexture(
   const Surface &surface,
-  const GL::TexParams2D params
+  const TexParams params
 ) {
   assert(surface.bytesPerPixel() == 3 || surface.bytesPerPixel() == 4);
   
-  const GL::Image2D glImage = {
+  const GL::Image2D glImage {
     surface.data(),
     static_cast<GLsizei>(surface.width()),
     static_cast<GLsizei>(surface.height()),
     static_cast<GLint>(surface.pitch() / surface.bytesPerPixel()),
     surface.bytesPerPixel() == 4
   };
-  return addTexture(GL::makeTexture2D(glImage, params, 0));
+  const GL::TexParams2D glParams {
+    params.wrap == TexWrap::REPEAT ? GL_REPEAT : GL_CLAMP_TO_EDGE,
+    params.wrap == TexWrap::REPEAT ? GL_REPEAT : GL_CLAMP_TO_EDGE,
+    params.min == MinFilter::NEAREST ? GL_NEAREST : GL_LINEAR,
+    params.mag == MagFilter::NEAREST ? GL_NEAREST : GL_LINEAR
+  };
+  return addTexture(GL::makeTexture2D(glImage, glParams, 0));
 }
 
 inline G2D::TextureID G2D::Renderer::addTexture(
   const std::string_view path,
-  const GL::TexParams2D params
+  const TexParams params
 ) {
   return addTexture(loadSurfaceRGBA(path), params);
 }

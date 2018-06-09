@@ -10,15 +10,24 @@
 
 inline void G2D::SheetTex::load(
   Renderer &renderer,
-  const std::string &fontname,
-  const GLenum filter
+  const std::string &name,
+  const TexParams params
 ) {
-  GL::TexParams2D params;
-  params.setWrap(GL_CLAMP_TO_EDGE);
-  params.setFilter(filter);
-  const std::string path = SDL::res(fontname);
+  const std::string path = SDL::res(name);
   tex_ = renderer.addTexture(path + ".png", params);
   sheet_ = Sprite::makeSheet(path + ".atlas");
+}
+
+inline void G2D::SheetTex::load(
+  Renderer &renderer,
+  const std::string &name,
+  const MagFilter filter
+) {
+  TexParams params;
+  params.wrap = TexWrap::CLAMP;
+  params.min = static_cast<MinFilter>(filter);
+  params.mag = filter;
+  load(renderer, name, params);
 }
 
 inline const Sprite::Sheet &G2D::SheetTex::sheet() const {

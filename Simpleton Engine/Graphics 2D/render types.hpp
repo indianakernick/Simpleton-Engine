@@ -47,6 +47,25 @@ namespace G2D {
     RIGHT_DOWN,
     LEFT_DOWN
   };
+  
+  enum class MinFilter {
+    NEAREST,
+    LINEAR
+  };
+  enum class MagFilter {
+    NEAREST,
+    LINEAR
+  };
+  enum class TexWrap {
+    CLAMP,
+    REPEAT
+  };
+  
+  struct TexParams {
+    TexWrap wrap;
+    MinFilter min;
+    MagFilter mag;
+  };
 }
 
 #endif

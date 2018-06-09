@@ -24,13 +24,11 @@ namespace G2D {
     Renderer() = default;
   
     void init();
-    void initCore();
-    void initES();
     void quit();
     
     TextureID addTexture(GL::Texture2D &&);
-    TextureID addTexture(const Surface &, GL::TexParams2D);
-    TextureID addTexture(std::string_view, GL::TexParams2D);
+    TextureID addTexture(const Surface &, TexParams);
+    TextureID addTexture(std::string_view, TexParams);
     
     /// Increase the size of the GPU quad buffer and return true if the size
     /// was actually increased. Increasing the size will clear the memory.

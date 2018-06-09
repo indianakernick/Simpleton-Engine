@@ -16,7 +16,8 @@ namespace G2D {
   /// A Sprite::Sheet and a TextureID
   class SheetTex {
   public:
-    void load(Renderer &, const std::string &, GLenum = GL_NEAREST);
+    void load(Renderer &, const std::string &, TexParams);
+    void load(Renderer &, const std::string &, MagFilter = MagFilter::NEAREST);
     const Sprite::Sheet &sheet() const;
     TextureID tex() const;
     

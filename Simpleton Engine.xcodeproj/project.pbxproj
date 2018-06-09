@@ -101,6 +101,7 @@
 		453E25B320CB7FA000B85EEE /* quad writer lite.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "quad writer lite.inl"; sourceTree = "<group>"; };
 		453E25B420CB807500B85EEE /* depth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depth.hpp; sourceTree = "<group>"; };
 		453E25B520CB807500B85EEE /* depth.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = depth.inl; sourceTree = "<group>"; };
+		453E25B920CBCDBB00B85EEE /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = ../../../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.a; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
@@ -715,6 +716,7 @@
 		45B5E8AF1EF9028600A6A3E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				453E25B920CBCDBB00B85EEE /* libGLEW.a */,
 				454B2B3B2041867C00D94D6A /* libz.1.dylib */,
 				45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */,
 				45771B841FE7238200F533DA /* SDL2.framework */,
@@ -1147,7 +1149,10 @@
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glew/2.1.0/lib,
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-Wall",
@@ -1157,6 +1162,7 @@
 					"-Wextra-semi",
 					"-Wno-documentation",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1179,7 +1185,10 @@
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glew/2.1.0/lib,
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-Wall",
@@ -1189,6 +1198,7 @@
 					"-Wextra-semi",
 					"-Wno-documentation",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
