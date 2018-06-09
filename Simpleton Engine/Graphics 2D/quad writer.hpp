@@ -32,11 +32,9 @@ namespace G2D {
     CENTER
   };
   
-  /// Get the depth of a depth enum. The last enumerator must be COUNT
+  /// Get the depth of a depth enum
   template <typename Enum>
-  constexpr float depth(const Enum e) {
-    return static_cast<float>(e) / static_cast<float>(Enum::COUNT);
-  }
+  constexpr float depth(Enum);
 
   class QuadWriter {
   public:

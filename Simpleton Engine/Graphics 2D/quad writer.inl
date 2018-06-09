@@ -9,6 +9,24 @@
 #include <algorithm>
 #include <glm/gtc/constants.hpp>
 
+namespace G2D::detail {
+  template <typename Enum>
+  constexpr auto depth(const Enum e, int) -> decltype(Enum::COUNT, float{}) {
+    return static_cast<float>(e) / static_cast<float>(Enum::COUNT);
+  }
+  
+  /// Get the depth of a depth enum
+  template <typename Enum>
+  constexpr float depth(const Enum e, long) {
+    return static_cast<float>(e) / 255.0f;
+  }
+}
+
+template <typename Enum>
+constexpr float G2D::depth(const Enum e) {
+  return detail::depth(e, 0);
+}
+
 inline G2D::QuadWriter::QuadWriter() {
   quads.reserve(2048);
   sections.reserve(64);

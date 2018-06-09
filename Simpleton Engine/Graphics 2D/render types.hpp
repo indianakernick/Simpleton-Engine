@@ -25,8 +25,12 @@ namespace G2D {
   };
   
   struct RenderParams {
-    glm::mat3 viewProj = {};
-    TextureID tex = 0;
+    glm::mat3 viewProj {
+      1.0f, 0.0f, 0.0f,
+      0.0f, 1.0f, 0.0f,
+      0.0f, 0.0f, 1.0f
+    };
+    TextureID tex {0};
     glm::vec4 color {1.0f};
   };
 }

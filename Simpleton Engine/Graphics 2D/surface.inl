@@ -46,7 +46,7 @@ inline G2D::Surface::Byte *G2D::Surface::data(const Size x, const Size y) {
 }
 
 inline G2D::Surface::Byte *G2D::Surface::dataEnd() {
-  return mData.get() + (mHeight * mPitch);
+  return mData.get() + (static_cast<Pitch>(mHeight) * mPitch);
 }
 
 inline const G2D::Surface::Byte *G2D::Surface::data() const {
