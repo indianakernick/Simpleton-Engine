@@ -10,8 +10,7 @@
 #define engine_opengl_attrib_pointer_hpp
 
 #include "type enum.hpp"
-#include "../Utils/tuple.hpp"
-#include "../Utils/meta glm.hpp"
+#include "../Type List/foreach.hpp"
 
 namespace GL {
   enum class AttribMode : unsigned {
@@ -160,15 +159,15 @@ namespace GL {
   }
   
   /// Calls glVertexAttribPointer and glEnableVertexAttribArray for all of the
-  /// attributes in the tuple. Stride and offset is set such that all of the
+  /// attributes in the type list. Stride and offset is set such that all of the
   /// attributes are in the same buffer
   template <typename Attribs>
   void attribs() {
     size_t currentOffset = 0;
     GLint currentID = 0;
-    Utils::forEachIndex<std::tuple_size_v<Attribs>>([&currentOffset, &currentID] (const auto i) {
-      constexpr size_t stride = sizeof(Attribs);
-      using AttribType = std::tuple_element_t<UTILS_VALUE(i), Attribs>;
+    List::forEach<Attribs>([&currentOffset, &currentID] (auto t) {
+      constexpr size_t stride = List::ByteSize<Attribs>;
+      using AttribType = LIST_TYPE(t);
       
       detail::attribPointer<AttribType, AttribMode::NO_CHANGE>(currentID, stride, currentOffset);
       
@@ -183,19 +182,20 @@ namespace GL {
   }
   
   /// Calls glVertexAttribPointer and glEnableVertexAttribArray for all of the
-  /// attributes in the tuple. Stride and offset is set such that all of the
+  /// attributes in the type list. Stride and offset is set such that all of the
   /// attributes are in the same buffer
   template <typename Attribs>
   void attribsMode() {
     size_t stride = 0;
-    Utils::forEachIndex<std::tuple_size_v<Attribs>>([&stride] (const auto i) {
-      stride += sizeof(typename std::tuple_element_t<UTILS_VALUE(i), Attribs>::type);
+    List::forEach<Attribs>([&stride] (auto t) {
+      using Attrib = LIST_TYPE(t);
+      stride += sizeof(typename Attrib::type);
     });
   
     size_t currentOffset = 0;
     GLint currentID = 0;
-    Utils::forEachIndex<std::tuple_size_v<Attribs>>([&currentOffset, &currentID, stride] (const auto i) {
-      using Attrib = std::tuple_element_t<UTILS_VALUE(i), Attribs>;
+    List::forEach<Attribs>([&currentOffset, &currentID, stride] (auto t) {
+      using Attrib = LIST_TYPE(t);
       using AttribType = typename Attrib::type;
       constexpr AttribMode MODE = detail::getMode<Attrib>();
       

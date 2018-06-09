@@ -10,9 +10,9 @@
 #define engine_graphics_2d_geom_types_hpp
 
 #include <array>
-#include <tuple>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#include "../Type List/type.hpp"
 
 namespace G2D {
   using PosType = glm::vec3;
@@ -31,7 +31,7 @@ namespace G2D {
   constexpr size_t QUAD_ATTR_SIZE = sizeof(Quad);
   constexpr size_t QUAD_ELEM_SIZE = sizeof(ElemType) * QUAD_INDICIES;
   
-  using Attribs = std::tuple<PosType, TexCoordType>;
+  using Attribs = List::Type<PosType, TexCoordType>;
 }
 
 #endif

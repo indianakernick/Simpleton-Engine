@@ -63,6 +63,26 @@ namespace List {
   static_assert(Size<Type<int, char, long>> == 3);
   static_assert(Size<Type<int>> == 1);
   static_assert(Size<Type<>> == 0);
+  
+  // Byte Size
+  
+  namespace detail {
+    template <typename List>
+    struct ByteSizeI;
+    
+    template <typename... Types>
+    struct ByteSizeI<Type<Types...>> {
+      static constexpr size_t value = (sizeof(Types) + ... + 0);
+    };
+  }
+  
+  /// The total size in bytes of all of the types
+  template <typename List>
+  constexpr size_t ByteSize = detail::ByteSizeI<List>::value;
+  
+  static_assert(ByteSize<EmptyType> == 0);
+  static_assert(ByteSize<Type<int>> == sizeof(int));
+  static_assert(ByteSize<Type<int, char, long>> == sizeof(int) + sizeof(char) + sizeof(long));
 }
 
 #endif
