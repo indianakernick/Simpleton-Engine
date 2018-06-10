@@ -69,11 +69,14 @@ namespace G2D {
     /// around it's center. The quad is position relative to it's bottom left
     /// corner like tilePos.
     void rotTilePos(float, glm::vec2, glm::vec2 = {1.0f, 1.0f});
-    /// Write positions of verticies on the current quad as rectangle rotated
+    /// Write positions of verticies on the current quad as a rectangle rotated
     /// around a given origin. The quad is positioned relative to the origin.
     /// This function isn't quite as fast as rotTilePos without an origin.
     template <Origin ORIGIN>
     void rotTilePos(float, glm::vec2, glm::vec2 = {1.0f, 1.0f});
+    /// Write positions of verticies on the current quad as a line between two
+    /// points
+    void linePos(glm::vec2, glm::vec2, float = 1.0f);
     
     /// Copy the texture coordinates of the verticies on the previous quad onto
     /// the current quad

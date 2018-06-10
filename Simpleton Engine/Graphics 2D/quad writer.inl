@@ -159,6 +159,25 @@ void G2D::Section::rotTilePos(
   detail::setPos(quad[3].pos, pos + rot * (tl + origin));
 }
 
+inline void G2D::Section::linePos(
+  const glm::vec2 start,
+  const glm::vec2 end,
+  const float thickness
+) {
+  const float angle = std::atan2(end.y - start.y, end.x - start.x);
+  const float halfThickness = thickness * 0.5f;
+  const float xOff = std::cos(angle - glm::half_pi<float>());
+  const float yOff = std::sin(angle - glm::half_pi<float>());
+  const glm::vec2 bottom = glm::vec2(xOff, yOff) * halfThickness;
+  const glm::vec2 top = glm::vec2(-xOff, -yOff) * halfThickness;
+  
+  Quad &quad = quads.back();
+  detail::setPos(quad[0].pos, start + bottom);
+  detail::setPos(quad[1].pos, end + bottom);
+  detail::setPos(quad[2].pos, end + top);
+  detail::setPos(quad[3].pos, start + top);
+}
+
 inline void G2D::Section::dupTex() {
   assert(quads.size() > 1);
   Quad &quad = quads.back();
