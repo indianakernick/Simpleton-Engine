@@ -12,23 +12,21 @@
 #include "anim.hpp"
 #include "../Data/json.hpp"
 
-namespace Sprite::detail {
-  inline void from_json(const json &j, Sprite::Anim &anim) {
+namespace Sprite {
+  inline void from_json(const json &j, Anim &anim) {
     anim = {
       j.at("sprite").get<ID>(),
       j.at("frames").get<ID>()
     };
   }
   
-  inline void from_json(const json &j, Sprite::DelayAnim &anim) {
+  inline void from_json(const json &j, DelayAnim &anim) {
+    const auto iter = j.find("delay");
     anim = {
       j.at("sprite").get<ID>(),
       j.at("frames").get<ID>(),
+      iter == j.cend() ? 1 : iter->get<ID>()
     };
-    auto iter = j.find("delay");
-    if (iter != j.cend()) {
-      anim.delay(iter->get<ID>());
-    }
   }
 }
 

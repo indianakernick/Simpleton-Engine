@@ -8,42 +8,24 @@
 
 #include <cassert>
 
-/*Sprite::Anim::Anim() {}
-
-Sprite::ID Sprite::Anim::sprite() const {
-  assert(frame_ < Base::endFrame());
-  assert(sprite_ != NULL_SPRITE);
-  return sprite_ + Base::frame();
-}
-
-inline void f() {
-  Sprite::Anim<0> anim;
-  anim.sprite();
-}
-
-template <Sprite::ID Delay>
 inline Sprite::Anim::Anim()
   : sprite_{NULL_SPRITE}, frames_{0}, frame_{0} {}
 
-template <Sprite::ID Delay>
 inline Sprite::Anim::Anim(const ID sprite, const ID frames)
   : sprite_{sprite}, frames_{frames}, frame_{0} {
   assert(frames_ != 0);
 }
 
-template <Sprite::ID Delay>
 inline void Sprite::Anim::incr() {
   assert(frame_ < frames_);
   ++frame_;
 }
 
-template <Sprite::ID Delay>
 inline void Sprite::Anim::incrRepeat() {
   assert(frame_ < frames_);
   frame_ = (frame_ + 1) % frames_;
 }
 
-template <Sprite::ID Delay>
 inline bool Sprite::Anim::incrStop() {
   assert(frame_ < frames_);
   ++frame_;
@@ -52,35 +34,29 @@ inline bool Sprite::Anim::incrStop() {
   return end;
 }
 
-template <Sprite::ID Delay>
 inline Sprite::ID Sprite::Anim::firstSprite() const {
   return sprite_;
 }
 
-template <Sprite::ID Delay>
 inline Sprite::ID Sprite::Anim::sprite() const {
   assert(frame_ < frames_);
   assert(sprite_ != NULL_SPRITE);
   return sprite_ + frame_;
 }
 
-template <Sprite::ID Delay>
 inline Sprite::ID Sprite::Anim::sprite(const ID group) const {
   return sprite() + frames_ * group;
 }
 
-template <Sprite::ID Delay>
 template <typename T>
 Sprite::ID Sprite::Anim::sprite(const T group) const {
   return sprite(static_cast<ID>(group));
 }
 
-template <Sprite::ID Delay>
 inline Sprite::ID Sprite::Anim::frame() const {
   return frame_;
 }
 
-template <Sprite::ID Delay>
 inline float Sprite::Anim::progress() const {
   assert(frames_ != 0);
   if (frames_ == 1) {
@@ -90,7 +66,6 @@ inline float Sprite::Anim::progress() const {
   }
 }
 
-template <Sprite::ID Delay>
 inline bool Sprite::Anim::firstFrame() const {
   return frame_ == 0;
 }
@@ -129,6 +104,28 @@ inline bool Sprite::DelayAnim::incrStop() {
   return end;
 }
 
+inline void Sprite::DelayAnim::delay(const ID delay) {
+  assert(delay != 0);
+  if (delay_ != delay) {
+    frame_ /= delay_;
+    frame_ *= delay;
+    delay_ = delay;
+  }
+}
+
+inline void Sprite::DelayAnim::noDelay() {
+  delay(1);
+}
+
+inline void Sprite::DelayAnim::maxDelay() {
+  delay(~ID{} / frames_);
+}
+
+inline void Sprite::DelayAnim::speed(const double speed) {
+  assert(speed > 0.0);
+  delay(1.0 / speed + 0.5);
+}
+
 inline Sprite::ID Sprite::DelayAnim::firstSprite() const {
   return sprite_;
 }
@@ -147,12 +144,3 @@ template <typename T>
 Sprite::ID Sprite::DelayAnim::sprite(const T group) const {
   return sprite(static_cast<ID>(group));
 }
-
-inline bool Sprite::DelayAnim::firstFrame() const {
-  return frame_ == 0;
-}
-
-inline bool Sprite::DelayAnim::lastFrame() const {
-  return frame_ == frames_ * delay_;
-}
-*/
