@@ -77,6 +77,8 @@
 		45103F381F2324A6001B24E2 /* point in polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "point in polygon.hpp"; sourceTree = "<group>"; };
 		4512454820B5654B0025A651 /* mouse pos.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "mouse pos.hpp"; sourceTree = "<group>"; };
 		4512454920B5654B0025A651 /* mouse pos.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "mouse pos.inl"; sourceTree = "<group>"; };
+		4515869120CD2EA600DD4F2E /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
+		4515869220CD3A6B00DD4F2E /* id.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = id.hpp; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
 		4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "static char buffer.hpp"; sourceTree = "<group>"; };
 		4526A34A20A99EC500E4F542 /* one path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "one path.hpp"; sourceTree = "<group>"; };
@@ -102,6 +104,8 @@
 		453E25B420CB807500B85EEE /* depth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depth.hpp; sourceTree = "<group>"; };
 		453E25B520CB807500B85EEE /* depth.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = depth.inl; sourceTree = "<group>"; };
 		453E25B920CBCDBB00B85EEE /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = ../../../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.a; sourceTree = "<group>"; };
+		453E25BE20CCDE8C00B85EEE /* anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = anim.hpp; sourceTree = "<group>"; };
+		453E25BF20CCDE8C00B85EEE /* anim.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = anim.inl; sourceTree = "<group>"; };
 		4541160D1F51479800C2865B /* int float.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "int float.hpp"; sourceTree = "<group>"; };
 		4541A4B41FD7734400AD20C1 /* constant scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "constant scale.hpp"; sourceTree = "<group>"; };
 		454B2AF4203D6F5E00D94D6A /* zsort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = zsort.hpp; sourceTree = "<group>"; };
@@ -365,10 +369,14 @@
 		454B2B06203E98F600D94D6A /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
+				4515869220CD3A6B00DD4F2E /* id.hpp */,
 				454B2B37204138D000D94D6A /* types.inl */,
 				454B2B36204138D000D94D6A /* types.hpp */,
+				453E25BF20CCDE8C00B85EEE /* anim.inl */,
+				453E25BE20CCDE8C00B85EEE /* anim.hpp */,
 				454B2B08203E994D00D94D6A /* sheet.inl */,
 				454B2B07203E994D00D94D6A /* sheet.hpp */,
+				4515869120CD2EA600DD4F2E /* json.hpp */,
 			);
 			path = Sprite;
 			sourceTree = "<group>";

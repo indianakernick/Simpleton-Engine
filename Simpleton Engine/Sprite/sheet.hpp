@@ -6,8 +6,8 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#ifndef engine_unpack_sheet_hpp
-#define engine_unpack_sheet_hpp
+#ifndef engine_sprite_sheet_hpp
+#define engine_sprite_sheet_hpp
 
 #include <string>
 #include <vector>
