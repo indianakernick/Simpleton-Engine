@@ -28,6 +28,15 @@ namespace Sprite {
       iter == j.cend() ? 1 : iter->get<ID>()
     };
   }
+  
+  inline void from_json(const json &j, ToggleAnim &anim) {
+    const auto iter = j.find("enabled");
+    anim = {
+      j.at("sprite").get<ID>(),
+      j.at("frames").get<ID>(),
+      iter == j.cend() ? false : iter->get<bool>()
+    };
+  }
 }
 
 #endif

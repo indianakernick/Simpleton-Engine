@@ -118,7 +118,7 @@ inline void Sprite::DelayAnim::noDelay() {
 }
 
 inline void Sprite::DelayAnim::maxDelay() {
-  delay(~ID{} / frames_);
+  delay(NULL_SPRITE / frames_);
 }
 
 inline void Sprite::DelayAnim::speed(const double speed) {
@@ -143,4 +143,123 @@ inline Sprite::ID Sprite::DelayAnim::sprite(const ID group) const {
 template <typename T>
 Sprite::ID Sprite::DelayAnim::sprite(const T group) const {
   return sprite(static_cast<ID>(group));
+}
+
+inline Sprite::ID Sprite::DelayAnim::frame() const {
+  return frame_ / delay_;
+}
+
+inline float Sprite::DelayAnim::progress() const {
+  assert(frames_ != 0);
+  if (frames_ == 1) {
+    return 0.0f;
+  } else {
+    return static_cast<float>(frame_) / (frames_ - 1);
+  }
+}
+
+inline bool Sprite::DelayAnim::firstFrame() const {
+  return frame_ == 0;
+}
+
+inline bool Sprite::DelayAnim::lastFrame() const {
+  return frame_ == frames_ * delay_;
+}
+
+inline Sprite::ToggleAnim::ToggleAnim()
+  : sprite_{NULL_SPRITE}, frames_{0}, frame_{0} {}
+
+inline Sprite::ToggleAnim::ToggleAnim(
+  const ID sprite,
+  const ID frames,
+  const bool enabled
+) : sprite_{sprite}, frames_{frames}, frame_{enabled ? 0 : STOPPED} {
+  assert(sprite_ != NULL_SPRITE);
+  assert(frames_ != 0);
+}
+
+inline void Sprite::ToggleAnim::incr() {
+  if (frame_ != STOPPED) {
+    assert(frame_ < frames_);
+    ++frame_;
+  }
+}
+
+inline void Sprite::ToggleAnim::incrRepeat() {
+  if (frame_ != STOPPED) {
+    assert(frame_ < frames_);
+    frame_ = (frame_ + 1) % frames_;
+  }
+}
+
+inline bool Sprite::ToggleAnim::incrStop() {
+  if (frame_ != STOPPED) {
+    assert(frame_ < frames_);
+    ++frame_;
+    const bool end = (frame_ == frames_);
+    frame_ -= end;
+    return end;
+  } else {
+    return false;
+  }
+}
+
+inline void Sprite::ToggleAnim::start() {
+  frame_ = 0;
+}
+
+inline void Sprite::ToggleAnim::stop() {
+  frame_ = STOPPED;
+}
+
+inline bool Sprite::ToggleAnim::enabled() const {
+  return frame_ != STOPPED;
+}
+
+inline bool Sprite::ToggleAnim::disabled() const {
+  return frame_ == STOPPED;
+}
+
+inline Sprite::ID Sprite::ToggleAnim::firstSprite() const {
+  return sprite_;
+}
+
+inline Sprite::ID Sprite::ToggleAnim::sprite() const {
+  assert(sprite_ != NULL_SPRITE);
+  assert((frame_ & MASK) < frames_);
+  return sprite_ + (frame_ & MASK);
+}
+
+inline Sprite::ID Sprite::ToggleAnim::sprite(const ID group) const {
+  return sprite() + frames_ * group;
+}
+
+template <typename T>
+Sprite::ID Sprite::ToggleAnim::sprite(const T group) const {
+  return sprite(static_cast<ID>(group));
+}
+
+inline Sprite::ID Sprite::ToggleAnim::frame() const {
+  return frame_;
+}
+
+inline Sprite::ID Sprite::ToggleAnim::frameOrZero() const {
+  return frame_ & MASK;
+}
+
+inline float Sprite::ToggleAnim::progress() const {
+  assert(frames_ != 0);
+  if (frames_ == 1) {
+    return 0.0f;
+  } else {
+    return static_cast<float>(frame_ & MASK) / (frames_ - 1);
+  }
+}
+
+inline bool Sprite::ToggleAnim::firstFrame() const {
+  return frame_ == 0;
+}
+
+inline bool Sprite::ToggleAnim::lastFrame() const {
+  return frame_ == frames_ - 1;
 }
