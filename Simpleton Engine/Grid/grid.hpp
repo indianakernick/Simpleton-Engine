@@ -11,9 +11,10 @@
 
 #include <vector>
 #include <glm/vec2.hpp>
+#include "../Utils/numeric iterators.hpp"
 
 namespace Grid {
-  using Coord = unsigned;
+  using Coord = uint32_t;
   using Pos = glm::tvec2<Coord>;
 
   template <typename Tile_>
@@ -59,6 +60,19 @@ namespace Grid {
     }
     auto cend() const {
       return mTiles.end();
+    }
+    
+    auto hori() const {
+      return Utils::numRange(Coord{}, mSize.x);
+    }
+    auto vert() const {
+      return Utils::numRange(Coord{}, mSize.y);
+    }
+    auto horiRev() const {
+      return Utils::numRangeRev(Coord{}, mSize.x);
+    }
+    auto vertRev() const {
+      return Utils::numRangeRev(Coord{}, mSize.y);
     }
     
     Pos size() const {

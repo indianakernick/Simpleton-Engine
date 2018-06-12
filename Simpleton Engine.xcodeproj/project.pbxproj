@@ -79,6 +79,7 @@
 		4512454920B5654B0025A651 /* mouse pos.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "mouse pos.inl"; sourceTree = "<group>"; };
 		4515869120CD2EA600DD4F2E /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		4515869220CD3A6B00DD4F2E /* id.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = id.hpp; sourceTree = "<group>"; };
+		451586A720CFBFD300DD4F2E /* numeric iterators.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "numeric iterators.hpp"; sourceTree = "<group>"; };
 		451CC0DF1F9312C70000E424 /* block allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "block allocator.hpp"; sourceTree = "<group>"; };
 		4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "static char buffer.hpp"; sourceTree = "<group>"; };
 		4526A34A20A99EC500E4F542 /* one path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "one path.hpp"; sourceTree = "<group>"; };
@@ -606,6 +607,7 @@
 				45C525A11FEDFC0800A738E0 /* generic raii.hpp */,
 				454B2B0B2040C8C800D94D6A /* endian.hpp */,
 				453B288F20B03A1900F6E9E6 /* function alias.hpp */,
+				451586A720CFBFD300DD4F2E /* numeric iterators.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
