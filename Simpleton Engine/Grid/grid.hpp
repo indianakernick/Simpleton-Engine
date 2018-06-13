@@ -63,16 +63,16 @@ namespace Grid {
     }
     
     auto hori() const {
-      return Utils::numRange(Coord{}, mSize.x);
+      return Utils::range(mSize.x);
     }
     auto vert() const {
-      return Utils::numRange(Coord{}, mSize.y);
+      return Utils::range(mSize.y);
     }
     auto horiRev() const {
-      return Utils::numRangeRev(Coord{}, mSize.x);
+      return Utils::rangeRev(mSize.x);
     }
     auto vertRev() const {
-      return Utils::numRangeRev(Coord{}, mSize.y);
+      return Utils::rangeRev(mSize.y);
     }
     
     Pos size() const {

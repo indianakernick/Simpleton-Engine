@@ -12,7 +12,7 @@
 #include <iterator>
 
 namespace Utils {
-  template <typename Number_, Number_ Delta = 1>
+  template <typename Number_, Number_ Step = 1>
   class AddingIterator {
   public:
     using difference_type = Number_;
@@ -32,17 +32,17 @@ namespace Utils {
     }
     
     AddingIterator &operator+=(const difference_type advance) {
-      value += advance * Delta;
+      value += advance * Step;
     }
     AddingIterator &operator-=(const difference_type advance) {
-      value -= advance * Delta;
+      value -= advance * Step;
     }
     
     AddingIterator operator+(const difference_type advance) const {
-      return {value + advance * Delta};
+      return {value + advance * Step};
     }
     AddingIterator operator-(const difference_type advance) const {
-      return {value - advance * Delta};
+      return {value - advance * Step};
     }
     
     difference_type operator-(const AddingIterator other) const {
@@ -50,21 +50,21 @@ namespace Utils {
     }
     
     AddingIterator &operator++() {
-      value += Delta;
+      value += Step;
       return *this;
     }
     AddingIterator &operator--() {
-      value -= Delta;
+      value -= Step;
       return *this;
     }
     AddingIterator operator++(int) {
       const AddingIterator copy = *this;
-      value += Delta;
+      value += Step;
       return *this;
     }
     AddingIterator operator--(int) {
       const AddingIterator copy = *this;
-      value -= Delta;
+      value -= Step;
       return *this;
     }
     
@@ -95,7 +95,7 @@ namespace Utils {
   };
   
   template <typename Number>
-  constexpr auto numRange(const Number begin, const Number end) {
+  constexpr auto range(const Number begin, const Number end) {
     using Iterator = AddingIterator<Number>;
     return Range<Iterator>{
       Iterator{begin}, Iterator{end}
@@ -103,11 +103,21 @@ namespace Utils {
   }
   
   template <typename Number>
-  constexpr auto numRangeRev(const Number begin, const Number end) {
+  constexpr auto range(const Number size) {
+    return range(Number{0}, size);
+  }
+  
+  template <typename Number>
+  constexpr auto rangeRev(const Number begin, const Number end) {
     using Iterator = AddingIterator<Number, Number{0} - Number{1}>;
     return Range<Iterator>{
       Iterator{end - Number{1}}, Iterator{begin - Number{1}}
     };
+  }
+  
+  template <typename Number>
+  constexpr auto rangeRev(const Number size) {
+    return rangeRev(Number{0}, size);
   }
 }
 
