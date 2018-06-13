@@ -12,63 +12,38 @@
 #include <iterator>
 
 namespace Utils {
-  template <typename Number_, Number_ Step = 1>
+  template <typename Number, Number Step = 1>
   class AddingIterator {
   public:
-    using difference_type = Number_;
-    using value_type = Number_;
+    static_assert(Step != 0);
+  
+    using difference_type = Number;
+    using value_type = Number;
     using reference = const value_type &;
     using pointer = const value_type *;
-    using iterator_category = std::random_access_iterator_tag;
+    using iterator_category = std::input_iterator_tag;
     
-    explicit AddingIterator(const value_type value)
+    constexpr explicit AddingIterator(const value_type value)
       : value(value) {}
     
-    bool operator==(const AddingIterator other) const {
+    constexpr bool operator==(const AddingIterator other) const {
       return value == other.value;
     }
-    bool operator!=(const AddingIterator other) const {
+    constexpr bool operator!=(const AddingIterator other) const {
       return value != other.value;
     }
     
-    AddingIterator &operator+=(const difference_type advance) {
-      value += advance * Step;
-    }
-    AddingIterator &operator-=(const difference_type advance) {
-      value -= advance * Step;
-    }
-    
-    AddingIterator operator+(const difference_type advance) const {
-      return {value + advance * Step};
-    }
-    AddingIterator operator-(const difference_type advance) const {
-      return {value - advance * Step};
-    }
-    
-    difference_type operator-(const AddingIterator other) const {
-      return value - other.value;
-    }
-    
-    AddingIterator &operator++() {
+    constexpr AddingIterator &operator++() {
       value += Step;
       return *this;
     }
-    AddingIterator &operator--() {
-      value -= Step;
-      return *this;
-    }
-    AddingIterator operator++(int) {
+    constexpr AddingIterator operator++(int) {
       const AddingIterator copy = *this;
       value += Step;
       return *this;
     }
-    AddingIterator operator--(int) {
-      const AddingIterator copy = *this;
-      value -= Step;
-      return *this;
-    }
     
-    value_type operator*() const {
+    constexpr value_type operator*() const {
       return value;
     }
     
