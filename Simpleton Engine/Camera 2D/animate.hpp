@@ -12,6 +12,7 @@
 #include "props.hpp"
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/norm.hpp>
+#undef GLM_ENABLE_EXPERIMENTAL
 
 namespace Cam2D {
   template <PropID PROP_>

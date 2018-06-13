@@ -9,78 +9,34 @@
 #ifndef engine_utils_meta_glm_hpp
 #define engine_utils_meta_glm_hpp
 
-#include <glm/glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/type_trait.hpp>
+#undef GLM_ENABLE_EXPERIMENTAL
 
 namespace Utils {
-  template <typename Any>
-  struct VecTraits {
-    static constexpr bool isVec = false;
-  };
-  
-  #define VEC_TRAITS(SIZE)                                                      \
-    template <typename ValueType, glm::precision PRECISION>                     \
-    struct VecTraits<glm::tvec##SIZE<ValueType, PRECISION>> {                   \
-      static constexpr bool isVec = true;                                       \
-      static constexpr size_t size = SIZE;                                      \
-      using valueType = ValueType;                                              \
-    }
- 
-  VEC_TRAITS(1);
-  VEC_TRAITS(2);
-  VEC_TRAITS(3);
-  VEC_TRAITS(4);
-  
-  #undef VEC_TRAITS
+  template <typename Vec>
+  constexpr bool is_vec = glm::type<Vec>::is_vec;
   
   template <typename Vec>
-  constexpr bool is_vec = VecTraits<Vec>::isVec;
+  constexpr size_t vec_size = glm::type<Vec>::components;
   
   template <typename Vec>
-  constexpr size_t vec_size = VecTraits<Vec>::size;
-  
-  template <typename Vec>
-  using vec_value_type = typename VecTraits<Vec>::valueType;
-  
-  template <typename Any>
-  struct MatTraits {
-    static constexpr bool isMat = false;
-  };
-  
-  #define MAT_TRAITS(ROWS, COLS)                                                \
-    template <typename ValueType, glm::precision PRECISION>                     \
-    struct MatTraits<glm::tmat##ROWS##x##COLS<ValueType, PRECISION>> {          \
-      static constexpr bool isMat = true;                                       \
-      static constexpr size_t rows = ROWS;                                      \
-      static constexpr size_t cols = COLS;                                      \
-      using valueType = ValueType;                                              \
-    };
-  
-  MAT_TRAITS(2, 2);
-  MAT_TRAITS(2, 3);
-  MAT_TRAITS(2, 4);
-  MAT_TRAITS(3, 2);
-  MAT_TRAITS(3, 3);
-  MAT_TRAITS(3, 4);
-  MAT_TRAITS(4, 2);
-  MAT_TRAITS(4, 3);
-  MAT_TRAITS(4, 4);
-  
-  #undef MAT_TRAITS
+  using vec_value_type = typename Vec::value_type;
   
   template <typename Mat>
-  constexpr bool is_mat = MatTraits<Mat>::isMat;
+  constexpr bool is_mat = glm::type<Mat>::is_mat;
   
   template <typename Mat>
-  constexpr size_t mat_rows = MatTraits<Mat>::rows;
+  constexpr size_t mat_rows = glm::type<Mat>::rows;
   
   template <typename Mat>
-  constexpr size_t mat_cols = MatTraits<Mat>::cols;
+  constexpr size_t mat_cols = glm::type<Mat>::cols;
   
   template <typename Mat>
   constexpr size_t mat_cells = mat_rows<Mat> * mat_cols<Mat>;
   
   template <typename Mat>
-  using mat_value_type = typename MatTraits<Mat>::valueType;
+  using mat_value_type = typename Mat::value_type;
 }
 
 #endif
