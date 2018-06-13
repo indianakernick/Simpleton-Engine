@@ -9,14 +9,10 @@
 #ifndef engine_grid_grid_hpp
 #define engine_grid_grid_hpp
 
-#include <vector>
-#include <glm/vec2.hpp>
+#include "pos.hpp"
 #include "../Utils/numeric iterators.hpp"
 
 namespace Grid {
-  using Coord = uint32_t;
-  using Pos = glm::tvec2<Coord>;
-
   template <typename Tile_>
   class Grid {
   public:

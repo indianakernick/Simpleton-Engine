@@ -150,5 +150,7 @@
 #include "../Simpleton Engine/Grid/grid.hpp"
 #include "../Simpleton Engine/Grid/a star.hpp"
 #include "../Simpleton Engine/Grid/dir bits.hpp"
+#include "../Simpleton Engine/Grid/pos.hpp"
 #include "../Simpleton Engine/Grid/dir pair.hpp"
+#include "../Simpleton Engine/Grid/morton.hpp"
 #include "../Simpleton Engine/Grid/one path.hpp"
