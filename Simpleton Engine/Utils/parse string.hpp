@@ -52,9 +52,21 @@ namespace Utils {
   };
   
   ///Unable to parse number
-  class InvalidNumber final : public std::runtime_error {
+  class InvalidNumber final : public std::exception {
   public:
-    explicit InvalidNumber(const std::string &);
+    InvalidNumber(std::error_code, unsigned, unsigned);
+    InvalidNumber(std::errc, unsigned, unsigned);
+  
+    std::error_code error() const;
+    unsigned line() const;
+    unsigned column() const;
+  
+    const char *what() const noexcept override;
+  
+  private:
+    std::error_code mError;
+    unsigned mLine;
+    unsigned mCol;
   };
 
   ///A view onto a string being parsed
@@ -155,11 +167,15 @@ namespace Utils {
     template <typename Pred>
     bool check(Pred &&);
     
-    ///Interprets the front part of the string as a number. Throws a
+    ///Interprets the front part of the string as a number. Returns a
+    ///positive error code on failure
+    template <typename Number>
+    std::error_code tryParseNumber(Number &);
+    ///Interprets the front part of the string as a number. Throws an
     ///InvalidNumber exception on failure
     template <typename Number>
     ParseString &parseNumber(Number &);
-    ///Interprets the front part of the string as a number. Throws a
+    ///Interprets the front part of the string as a number. Throws an
     ///InvalidNumber exception on failure
     template <typename Number>
     Number parseNumber();
