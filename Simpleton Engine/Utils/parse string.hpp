@@ -180,27 +180,6 @@ namespace Utils {
     template <typename Number>
     Number parseNumber();
     
-    ///Interprets the front part of the string as a little endian binary number.
-    ///Performs a byte-swap if necessary. Throws a InvalidNumber exception if
-    ///the string is an insufficient size.
-    template <typename Number>
-    ParseString &readNumberLil(Number &);
-    ///Interprets the front part of the string as a big endian binary number.
-    ///Performs a byte-swap if necessary. Throws a InvalidNumber exception if
-    ///the string is an insufficient size.
-    template <typename Number>
-    ParseString &readNumberBig(Number &);
-    ///Interprets the front part of the string as an array of little endian
-    ///binary numbers. Performs a byte-swap if necessary. Throws a InvalidNumber
-    ///exception if the string is an insufficient size.
-    template <typename Number>
-    ParseString &readNumbersLil(Number *, size_t);
-    ///Interprets the front part of the string as an array of big endian binary
-    ///numbers. Performs a byte-swap if necessary. Throws a InvalidNumber
-    ///exception if the string is an insufficient size.
-    template <typename Number>
-    ParseString &readNumbersBig(Number *, size_t);
-    
     ///Interprets the front part of the string as an enum. Returns the index of
     ///a name that matches or returns the number of names if no name matches.
     size_t parseEnum(const std::string_view *, size_t);
@@ -258,8 +237,6 @@ namespace Utils {
     //Advance without range checks
     void advanceNoCheck(size_t);
     void advanceNoCheck();
-    //Advance without range checks or updating LineCol
-    void advanceBin(size_t);
   };
 }
 

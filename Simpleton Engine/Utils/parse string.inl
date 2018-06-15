@@ -7,7 +7,6 @@
 //
 
 #include <cerrno>
-#include "endian.hpp"
 #include <functional>
 
 namespace Utils {
@@ -372,46 +371,6 @@ Number Utils::ParseString::parseNumber() {
   return number;
 }
 
-template <typename Number>
-Utils::ParseString &Utils::ParseString::readNumberLil(Number &n) {
-  if (mSize < sizeof(Number)) {
-    throw InvalidNumber(std::errc::no_buffer_space, mLineCol.line(), mLineCol.col());
-  }
-  copyFromLilEndian(&n, mData, 1);
-  advanceBin(sizeof(Number));
-  return *this;
-}
-
-template <typename Number>
-Utils::ParseString &Utils::ParseString::readNumberBig(Number &n) {
-  if (mSize < sizeof(Number)) {
-    throw InvalidNumber(std::errc::no_buffer_space, mLineCol.line(), mLineCol.col());
-  }
-  copyFromBigEndian(&n, mData, 1);
-  advanceBin(sizeof(Number));
-  return *this;
-}
-
-template <typename Number>
-Utils::ParseString &Utils::ParseString::readNumbersLil(Number *n, const size_t size) {
-  if (mSize < sizeof(Number) * size) {
-    throw InvalidNumber(std::errc::no_buffer_space, mLineCol.line(), mLineCol.col());
-  }
-  copyFromLilEndian(n, mData, size);
-  advanceBin(sizeof(Number) * size);
-  return *this;
-}
-
-template <typename Number>
-Utils::ParseString &Utils::ParseString::readNumbersBig(Number *n, const size_t size) {
-  if (mSize < sizeof(Number) * size) {
-    throw InvalidNumber(std::errc::no_buffer_space, mLineCol.line(), mLineCol.col());
-  }
-  copyFromBigEndian(n, mData, size);
-  advanceBin(sizeof(Number) * size);
-  return *this;
-}
-
 inline size_t Utils::ParseString::parseEnum(const std::string_view *const names, const size_t numNames) {
   throwIfNull(names);
   const std::string_view *const end = names + numNames;
@@ -497,9 +456,4 @@ inline void Utils::ParseString::advanceNoCheck() {
   mLineCol.putChar(*mData);
   ++mData;
   --mSize;
-}
-
-inline void Utils::ParseString::advanceBin(const size_t numChars) {
-  mData += numChars;
-  mSize -= numChars;
 }
