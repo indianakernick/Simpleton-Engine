@@ -14,59 +14,73 @@
 #include "line col.hpp"
 
 namespace Utils {
+  class ParsingError : public std::exception {
+  public:
+    ParsingError(unsigned, unsigned);
+    
+    unsigned line() const;
+    unsigned column() const;
+  
+  protected:
+    const unsigned mLine;
+    const unsigned mCol;
+  };
+
   ///A character was expected but not present
-  class ExpectChar final : public std::exception {
+  class ExpectChar final : public ParsingError {
   public:
     ExpectChar(char, unsigned, unsigned);
   
     char expectedChar() const;
-    unsigned line() const;
-    unsigned column() const;
     
     const char *what() const noexcept override;
     
   private:
-    unsigned mLine;
-    unsigned mCol;
     char mExpected;
   };
   
   ///A sequence of characters was expected but not present
-  class ExpectString final : public std::exception {
+  class ExpectString final : public ParsingError {
   public:
-    ExpectString(const char *, size_t, unsigned, unsigned);
+    ExpectString(std::string_view, unsigned, unsigned);
     
     std::string_view expectedStr() const;
-    unsigned line() const;
-    unsigned column() const;
     
     const char *what() const noexcept override;
   
   private:
     static constexpr size_t MAX_STR_SIZE = 64;
-    
     char mExpected[MAX_STR_SIZE];
     size_t mExpectedSize;
-    unsigned mLine;
-    unsigned mCol;
   };
   
-  ///Unable to parse number
-  class InvalidNumber final : public std::exception {
+  ///Unable to interpret characters as a number
+  class InvalidNumber final : public ParsingError {
   public:
     InvalidNumber(std::error_code, unsigned, unsigned);
     InvalidNumber(std::errc, unsigned, unsigned);
   
     std::error_code error() const;
-    unsigned line() const;
-    unsigned column() const;
   
     const char *what() const noexcept override;
   
   private:
     std::error_code mError;
-    unsigned mLine;
-    unsigned mCol;
+  };
+  
+  ///Unable to interpret characters as an enumeration
+  class InvalidEnum final : public ParsingError {
+  public:
+    InvalidEnum(std::string_view, unsigned, unsigned);
+    
+    std::string_view name() const;
+    
+    const char *what() const noexcept override;
+  
+  private:
+    static constexpr size_t MAX_STR_SIZE = 64;
+    char name_[MAX_STR_SIZE];
+    size_t size_;
   };
 
   ///A view onto a string being parsed
@@ -91,7 +105,7 @@ namespace Utils {
     std::string_view view() const;
     ///Get a std::string_view of the unparsed string no larger than the size
     ///provided. Returned size may be less than requested size to avoid
-    ///running of the end of the string.
+    ///running off the end of the string.
     std::string_view view(size_t) const;
     
     ///Return true if the string is empty
@@ -182,7 +196,11 @@ namespace Utils {
     
     ///Interprets the front part of the string as an enum. Returns the index of
     ///a name that matches or returns the number of names if no name matches.
-    size_t parseEnum(const std::string_view *, size_t);
+    size_t tryParseEnum(const std::string_view *, size_t);
+    ///Interprest the front part of the string as an enum. Returns an enum with
+    ///the matched name or throws a InvalidEnum exception if no name matches.
+    template <typename Enum>
+    Enum parseEnum(const std::string_view *, size_t);
     
     ///Copies characters from the front part of the string. Advances the number
     ///of characters that were copied.

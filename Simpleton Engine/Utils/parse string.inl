@@ -17,24 +17,28 @@ namespace Utils {
   }
 }
 
+inline Utils::ParsingError::ParsingError(
+  const unsigned line,
+  const unsigned col
+) : mLine(line),
+    mCol(col) {}
+
+inline unsigned Utils::ParsingError::line() const {
+  return mLine;
+}
+
+inline unsigned Utils::ParsingError::column() const {
+  return mCol;
+}
+
 inline Utils::ExpectChar::ExpectChar(
   const char c,
   const unsigned line,
   const unsigned col
-) : mLine(line),
-    mCol(col),
-    mExpected(c) {}
+) : ParsingError(line, col), mExpected(c) {}
 
 inline char Utils::ExpectChar::expectedChar() const {
   return mExpected;
-}
-
-inline unsigned Utils::ExpectChar::line() const {
-  return mLine;
-}
-
-inline unsigned Utils::ExpectChar::column() const {
-  return mCol;
 }
 
 inline const char *Utils::ExpectChar::what() const noexcept {
@@ -50,29 +54,20 @@ inline const char *Utils::ExpectChar::what() const noexcept {
 }
 
 inline Utils::ExpectString::ExpectString(
-  const char *data,
-  const size_t size,
+  const std::string_view string,
   const unsigned line,
   const unsigned col
-) : mLine(line), mCol(col) {
-  mExpectedSize = size < MAX_STR_SIZE ? size : MAX_STR_SIZE;
-  std::memcpy(mExpected, data, mExpectedSize);
+) : ParsingError(line, col) {
+  mExpectedSize = string.size() < MAX_STR_SIZE ? string.size() : MAX_STR_SIZE;
+  std::memcpy(mExpected, string.data(), mExpectedSize);
 }
 
 inline std::string_view Utils::ExpectString::expectedStr() const {
   return {mExpected, mExpectedSize};
 }
 
-inline unsigned Utils::ExpectString::line() const {
-  return mLine;
-}
-
-inline unsigned Utils::ExpectString::column() const {
-  return mCol;
-}
-
 inline const char *Utils::ExpectString::what() const noexcept {
-  //@TODO use static memory when std::to_chars arrives
+  //@TODO use static memory
   return (
     std::string("Expected string at ")
     + std::to_string(mLine)
@@ -88,24 +83,16 @@ inline Utils::InvalidNumber::InvalidNumber(
   const std::error_code error,
   const unsigned line,
   const unsigned col
-) : mError{error}, mLine{line}, mCol{col} {}
+) : ParsingError{line, col}, mError{error} {}
 
 inline Utils::InvalidNumber::InvalidNumber(
   const std::errc error,
   const unsigned line,
   const unsigned col
-) : mError{std::make_error_code(error)}, mLine{line}, mCol{col} {}
+) : InvalidNumber{std::make_error_code(error), line, col} {}
 
 inline std::error_code Utils::InvalidNumber::error() const {
   return mError;
-}
-
-inline unsigned Utils::InvalidNumber::line() const {
-  return mLine;
-}
-
-inline unsigned Utils::InvalidNumber::column() const {
-  return mCol;
 }
 
 inline const char *Utils::InvalidNumber::what() const noexcept {
@@ -117,6 +104,32 @@ inline const char *Utils::InvalidNumber::what() const noexcept {
     + std::to_string(mCol)
     + " \""
     + mError.message()
+    + '"'
+  ).c_str();
+}
+
+inline Utils::InvalidEnum::InvalidEnum(
+  const std::string_view name,
+  const unsigned line,
+  const unsigned col
+) : ParsingError{line, col} {
+  size_ = name.size() < MAX_STR_SIZE ? name.size() : MAX_STR_SIZE;
+  std::memcpy(name_, name.data(), size_);
+}
+
+inline std::string_view Utils::InvalidEnum::name() const {
+  return {name_, size_};
+}
+
+inline const char *Utils::InvalidEnum::what() const noexcept {
+  //@TODO use static memory
+  return (
+    std::string("Expected enumeration at ")
+    + std::to_string(mLine)
+    + ':'
+    + std::to_string(mCol)
+    + " No matching enumeration for \""
+    + std::string(name_, size_)
     + '"'
   ).c_str();
 }
@@ -231,7 +244,7 @@ inline Utils::ParseString &Utils::ParseString::expect(const char c) {
 
 inline Utils::ParseString &Utils::ParseString::expect(const char *data, const size_t size) {
   if (mSize < size || std::memcmp(mData, data, size) != 0) {
-    throw ExpectString(data, size, mLineCol.line(), mLineCol.col());
+    throw ExpectString({data, size}, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck(size);
   return *this;
@@ -245,7 +258,7 @@ template <typename Pred>
 inline Utils::ParseString &Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
   // @TODO new exception class just for this function?
   if (mSize == 0 || !pred(*mData)) {
-    throw ExpectString(name.data(), name.size(), mLineCol.line(), mLineCol.col());
+    throw ExpectString(name, mLineCol.line(), mLineCol.col());
   }
   advanceNoCheck();
   return *this;
@@ -371,7 +384,10 @@ Number Utils::ParseString::parseNumber() {
   return number;
 }
 
-inline size_t Utils::ParseString::parseEnum(const std::string_view *const names, const size_t numNames) {
+inline size_t Utils::ParseString::tryParseEnum(
+  const std::string_view *const names,
+  const size_t numNames
+) {
   throwIfNull(names);
   const std::string_view *const end = names + numNames;
   for (const std::string_view *n = names; n != end; ++n) {
@@ -380,6 +396,18 @@ inline size_t Utils::ParseString::parseEnum(const std::string_view *const names,
     }
   }
   return numNames;
+}
+
+template <typename Enum>
+Enum Utils::ParseString::parseEnum(
+  const std::string_view *const names,
+  const size_t numNames
+) {
+  const size_t index = tryParseEnum(names, numNames);
+  if (index == numNames) {
+    throw InvalidEnum(view(), mLineCol.line(), mLineCol.col());
+  }
+  return static_cast<Enum>(index);
 }
 
 inline size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
