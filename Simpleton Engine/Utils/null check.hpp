@@ -9,7 +9,7 @@
 #ifndef engine_utils_null_check_hpp
 #define engine_utils_null_check_hpp
 
-#include <stdexcept>
+#include <exception>
 
 namespace Utils {
   class NullPointerError final : public std::exception {
@@ -22,8 +22,8 @@ namespace Utils {
   };
 
   template <typename Type>
-  const Type *zeroIfNull(const Type *const ptr) {
-    static const Type ZERO = {};
+  const Type *zeroIfNull(const Type *const ptr) noexcept {
+    static const Type ZERO {};
     return ptr == nullptr ? &ZERO : ptr;
   }
 
