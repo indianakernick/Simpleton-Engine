@@ -6,6 +6,7 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
+#include <cassert>
 #include "props.hpp"
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/matrix_transform_2d.hpp>
@@ -71,6 +72,9 @@ inline glm::vec2 Cam2D::Transform::calcOriginPos() const {
     case Origin::MID_LEFT:
       return {-1.0f, 0.0f};
     case Origin::CENTER:
+      return {0.0f, 0.0f};
+    default:
+      assert(false);
       return {0.0f, 0.0f};
   }
 }
