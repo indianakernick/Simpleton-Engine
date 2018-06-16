@@ -50,26 +50,11 @@ namespace Utils {
     template <typename Number>
     void writeNumber(Number);
     
-    ///Write a number as little endian
-    template <typename Number>
-    void writeNumberLil(Number);
-    ///Write a number as big endian
-    template <typename Number>
-    void writeNumberBig(Number);
-    ///Write an array of numbers as little endian. This writes the size of the
-    ///array as well as the array itself
-    template <typename Number>
-    void writeNumbersLil(const Number *, size_t);
-    ///Write an array of numbers as big endian. This writes the size of the
-    ///array as well as the array itself
-    template <typename Number>
-    void writeNumbersBig(const Number *, size_t);
-    
     ///Write an enum given names for all enumerators
     template <typename Enum>
     void writeEnum(Enum, const std::string_view *);
     
-    ///Open a pair delimiting strings. The first string is written immediately
+    ///Open a pair of delimiter strings. The first string is written immediately
     ///and the second string is pushed onto a stack. The second string will be
     ///written when close is called.
     void open(const std::string &, const std::string &);

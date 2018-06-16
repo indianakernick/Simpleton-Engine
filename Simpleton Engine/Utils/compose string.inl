@@ -6,8 +6,6 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-#include "endian.hpp"
-
 inline Utils::ComposeString::ComposeString(const size_t capacity)
   : string(std::make_unique<char []>(capacity)), size(0), capacity(capacity) {}
 
@@ -81,34 +79,6 @@ void Utils::ComposeString::writeNumber(const Number num) {
     size = ptr - string.get();
   }
   */
-}
-
-template <typename Number>
-void Utils::ComposeString::writeNumberLil(const Number num) {
-  const auto swapped = toLilEndian(num);
-  write(reinterpret_cast<const char *>(&swapped), sizeof(Number));
-}
-
-template <typename Number>
-void Utils::ComposeString::writeNumberBig(const Number num) {
-  const auto swapped = toBigEndian(num);
-  write(reinterpret_cast<const char *>(&swapped), sizeof(Number));
-}
-
-template <typename Number>
-void Utils::ComposeString::writeNumbersLil(const Number *n, const size_t s) {
-  reserveToFit(sizeof(size_t) + sizeof(Number) * s);
-  copyToLilEndian(curr(), &s, 1);
-  copyToLilEndian(curr() + sizeof(size_t), n, s);
-  addSize(sizeof(size_t) + sizeof(Number) * s);
-}
-
-template <typename Number>
-void Utils::ComposeString::writeNumbersBig(const Number *n, const size_t s) {
-  reserveToFit(sizeof(size_t) + sizeof(Number) * s);
-  copyToBigEndian(curr(), &s, 1);
-  copyToBigEndian(curr() + sizeof(size_t), n, s);
-  addSize(sizeof(size_t) + sizeof(Number) * s);
 }
         
 template <typename Enum>
