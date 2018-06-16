@@ -16,7 +16,13 @@
 namespace Utils {
   ///Keeps track of lines and columns in text.
   ///Great for writing error messages in parsers
-  template <typename Line_, typename Col_, Col_ SIZE_OF_TAB_ = 8, Line_ FIRST_LINE_ = 1, Col_ FIRST_COL_ = 1>
+  template <
+    typename Line_ = uint32_t,
+    typename Col_ = uint32_t,
+    Col_ SIZE_OF_TAB_ = 8,
+    Line_ FIRST_LINE_ = 1,
+    Col_ FIRST_COL_ = 1
+  >
   class LineCol {
   public:
     using Line = Line_;
@@ -27,16 +33,15 @@ namespace Utils {
     static constexpr Col  FIRST_COL   = FIRST_COL_;
     
     // 3.9 lines and 18.4 columns doesn't make any sense!
-    static_assert(std::is_integral<Line>::value, "Type of line must be an integer");
-    static_assert(std::is_integral<Col>::value, "Type of column must be an integer");
+    static_assert(std::is_integral_v<Line>, "Type of line must be an integer");
+    static_assert(std::is_integral_v<Col>, "Type of column must be an integer");
   
     LineCol()
       : mLine(FIRST_LINE), mCol(FIRST_COL) {}
     LineCol(const Line line, const Col col)
       : mLine(line), mCol(col) {
-      if (line < FIRST_LINE || col < FIRST_COL) {
-        throw std::out_of_range("Line or column too small");
-      }
+      assert(line >= FIRST_LINE);
+      assert(col >= FIRST_COL);
     }
     
     ///Move line and col according to the char
@@ -158,6 +163,10 @@ namespace Utils {
     Line mLine;
     Col mCol;
   };
+  
+  LineCol() -> LineCol<>;
+  template <typename Line, typename Col>
+  LineCol(Line, Col) -> LineCol<std::decay_t<Line>, std::decay_t<Col>>;
 }
 
 #endif

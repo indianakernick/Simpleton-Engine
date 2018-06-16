@@ -16,20 +16,20 @@
 namespace Utils {
   class ParsingError : public std::exception {
   public:
-    ParsingError(unsigned, unsigned);
+    explicit ParsingError(LineCol<>);
     
-    unsigned line() const;
-    unsigned column() const;
+    LineCol<>::Line line() const;
+    LineCol<>::Col column() const;
   
   protected:
-    const unsigned mLine;
-    const unsigned mCol;
+    const LineCol<>::Line mLine;
+    const LineCol<>::Col mCol;
   };
 
   ///A character was expected but not present
   class ExpectChar final : public ParsingError {
   public:
-    ExpectChar(char, unsigned, unsigned);
+    ExpectChar(char, LineCol<>);
   
     char expectedChar() const;
     
@@ -42,7 +42,7 @@ namespace Utils {
   ///A sequence of characters was expected but not present
   class ExpectString final : public ParsingError {
   public:
-    ExpectString(std::string_view, unsigned, unsigned);
+    ExpectString(std::string_view, LineCol<>);
     
     std::string_view expectedStr() const;
     
@@ -57,8 +57,8 @@ namespace Utils {
   ///Unable to interpret characters as a number
   class InvalidNumber final : public ParsingError {
   public:
-    InvalidNumber(std::error_code, unsigned, unsigned);
-    InvalidNumber(std::errc, unsigned, unsigned);
+    InvalidNumber(std::error_code, LineCol<>);
+    InvalidNumber(std::errc, LineCol<>);
   
     std::error_code error() const;
   
@@ -71,7 +71,7 @@ namespace Utils {
   ///Unable to interpret characters as an enumeration
   class InvalidEnum final : public ParsingError {
   public:
-    InvalidEnum(std::string_view, unsigned, unsigned);
+    InvalidEnum(std::string_view, LineCol<>);
     
     std::string_view name() const;
     
@@ -86,8 +86,6 @@ namespace Utils {
   ///A view onto a string being parsed
   class ParseString {
   public:
-    using LineCol = LineCol<unsigned, unsigned>;
-    
     explicit ParseString(const std::string &);
     explicit ParseString(std::string_view);
     ParseString(const char *, size_t);
@@ -100,7 +98,7 @@ namespace Utils {
     size_t size() const;
     ///Get the line and column position of the string yet to be parsed
     ///relative to the beginning.
-    LineCol lineCol() const;
+    LineCol<> lineCol() const;
     ///Get a std::string_view of the unparsed string
     std::string_view view() const;
     ///Get a std::string_view of the unparsed string no larger than the size
@@ -250,7 +248,7 @@ namespace Utils {
   private:
     const char *mData;
     size_t mSize;
-    LineCol mLineCol;
+    LineCol<> mLineCol;
     
     //Advance without range checks
     void advanceNoCheck(size_t);

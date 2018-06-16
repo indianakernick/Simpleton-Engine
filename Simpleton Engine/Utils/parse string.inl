@@ -18,10 +18,9 @@ namespace Utils {
 }
 
 inline Utils::ParsingError::ParsingError(
-  const unsigned line,
-  const unsigned col
-) : mLine(line),
-    mCol(col) {}
+  const LineCol<> lineCol
+) : mLine(lineCol.line()),
+    mCol(lineCol.col()) {}
 
 inline unsigned Utils::ParsingError::line() const {
   return mLine;
@@ -33,9 +32,8 @@ inline unsigned Utils::ParsingError::column() const {
 
 inline Utils::ExpectChar::ExpectChar(
   const char c,
-  const unsigned line,
-  const unsigned col
-) : ParsingError(line, col), mExpected(c) {}
+  const LineCol<> lineCol
+) : ParsingError(lineCol), mExpected(c) {}
 
 inline char Utils::ExpectChar::expectedChar() const {
   return mExpected;
@@ -55,9 +53,8 @@ inline const char *Utils::ExpectChar::what() const noexcept {
 
 inline Utils::ExpectString::ExpectString(
   const std::string_view string,
-  const unsigned line,
-  const unsigned col
-) : ParsingError(line, col) {
+  const LineCol<> lineCol
+) : ParsingError(lineCol) {
   mExpectedSize = string.size() < MAX_STR_SIZE ? string.size() : MAX_STR_SIZE;
   std::memcpy(mExpected, string.data(), mExpectedSize);
 }
@@ -81,15 +78,13 @@ inline const char *Utils::ExpectString::what() const noexcept {
 
 inline Utils::InvalidNumber::InvalidNumber(
   const std::error_code error,
-  const unsigned line,
-  const unsigned col
-) : ParsingError{line, col}, mError{error} {}
+  const LineCol<> lineCol
+) : ParsingError{lineCol}, mError{error} {}
 
 inline Utils::InvalidNumber::InvalidNumber(
   const std::errc error,
-  const unsigned line,
-  const unsigned col
-) : InvalidNumber{std::make_error_code(error), line, col} {}
+  const LineCol<> lineCol
+) : InvalidNumber{std::make_error_code(error), lineCol} {}
 
 inline std::error_code Utils::InvalidNumber::error() const {
   return mError;
@@ -110,9 +105,8 @@ inline const char *Utils::InvalidNumber::what() const noexcept {
 
 inline Utils::InvalidEnum::InvalidEnum(
   const std::string_view name,
-  const unsigned line,
-  const unsigned col
-) : ParsingError{line, col} {
+  const LineCol<> lineCol
+) : ParsingError{lineCol} {
   size_ = name.size() < MAX_STR_SIZE ? name.size() : MAX_STR_SIZE;
   std::memcpy(name_, name.data(), size_);
 }
@@ -155,7 +149,7 @@ inline size_t Utils::ParseString::size() const {
   return mSize;
 }
 
-inline Utils::ParseString::LineCol Utils::ParseString::lineCol() const {
+inline Utils::LineCol<> Utils::ParseString::lineCol() const {
   return mLineCol;
 }
 
@@ -236,7 +230,7 @@ inline Utils::ParseString &Utils::ParseString::skipUntilWhitespace() {
 
 inline Utils::ParseString &Utils::ParseString::expect(const char c) {
   if (mSize == 0 || *mData != c) {
-    throw ExpectChar(c, mLineCol.line(), mLineCol.col());
+    throw ExpectChar(c, mLineCol);
   }
   advanceNoCheck();
   return *this;
@@ -244,7 +238,7 @@ inline Utils::ParseString &Utils::ParseString::expect(const char c) {
 
 inline Utils::ParseString &Utils::ParseString::expect(const char *data, const size_t size) {
   if (mSize < size || std::memcmp(mData, data, size) != 0) {
-    throw ExpectString({data, size}, mLineCol.line(), mLineCol.col());
+    throw ExpectString({data, size}, mLineCol);
   }
   advanceNoCheck(size);
   return *this;
@@ -258,7 +252,7 @@ template <typename Pred>
 inline Utils::ParseString &Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
   // @TODO new exception class just for this function?
   if (mSize == 0 || !pred(*mData)) {
-    throw ExpectString(name, mLineCol.line(), mLineCol.col());
+    throw ExpectString(name, mLineCol);
   }
   advanceNoCheck();
   return *this;
@@ -372,7 +366,7 @@ template <typename Number>
 Utils::ParseString &Utils::ParseString::parseNumber(Number &number) {
   const std::error_code error = tryParseNumber(number);
   if (error) {
-    throw InvalidNumber(error, mLineCol.line(), mLineCol.col());
+    throw InvalidNumber(error, mLineCol);
   }
   return *this;
 }
@@ -405,7 +399,7 @@ Enum Utils::ParseString::parseEnum(
 ) {
   const size_t index = tryParseEnum(names, numNames);
   if (index == numNames) {
-    throw InvalidEnum(view(), mLineCol.line(), mLineCol.col());
+    throw InvalidEnum(view(), mLineCol);
   }
   return static_cast<Enum>(index);
 }
