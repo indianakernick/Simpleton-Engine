@@ -278,6 +278,8 @@
 		45B5E8AC1EF8E3ED00A6A3E2 /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		45B5E8C41EF9047000A6A3E2 /* paths.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paths.inl; sourceTree = "<group>"; };
 		45B5E8C51EF9047000A6A3E2 /* paths.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = paths.hpp; sourceTree = "<group>"; };
+		45BBA3DF20D5EBA0006108C1 /* load prototype.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "load prototype.hpp"; sourceTree = "<group>"; };
+		45BBA3E020D5EBA1006108C1 /* load prototype.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "load prototype.inl"; sourceTree = "<group>"; };
 		45C525A11FEDFC0800A738E0 /* generic raii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "generic raii.hpp"; sourceTree = "<group>"; };
 		45C525A61FEE034D00A738E0 /* framebuffer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = framebuffer.inl; sourceTree = "<group>"; };
 		45C525A71FEE034D00A738E0 /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
@@ -515,6 +517,8 @@
 			children = (
 				45B32EBD1FF4852D007BA7F4 /* registry.hpp */,
 				457EB35220C296B40054E16F /* prototype.hpp */,
+				45BBA3E020D5EBA1006108C1 /* load prototype.inl */,
+				45BBA3DF20D5EBA0006108C1 /* load prototype.hpp */,
 				450759681FF610EC0009B360 /* json.inl */,
 				450759691FF610EC0009B360 /* json.hpp */,
 				450759661FF60E290009B360 /* entity id map.inl */,

@@ -48,6 +48,7 @@
 #include "../Simpleton Engine/ECS/comp inits.hpp"
 #include "../Simpleton Engine/ECS/progress manager.hpp"
 #include "../Simpleton Engine/ECS/level.hpp"
+#include "../Simpleton Engine/ECS/load prototype.hpp"
 #include "../Simpleton Engine/ECS/level manager.hpp"
 #include "../Simpleton Engine/ECS/comp init.hpp"
 #include "../Simpleton Engine/Camera 2D/animate.hpp"
