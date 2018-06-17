@@ -14,6 +14,7 @@
 #include "line col.hpp"
 
 namespace Utils {
+  /// An error related to parsing with a Utils::ParseString
   class ParsingError : public std::exception {
   public:
     explicit ParsingError(LineCol<>);
@@ -39,6 +40,18 @@ namespace Utils {
     char mExpected;
   };
   
+  template <size_t Size>
+  class StackString {
+  public:
+    explicit StackString(std::string_view);
+    
+    std::string_view view() const;
+  
+  private:
+    char data[Size];
+    size_t size;
+  };
+  
   ///A sequence of characters was expected but not present
   class ExpectString final : public ParsingError {
   public:
@@ -49,9 +62,7 @@ namespace Utils {
     const char *what() const noexcept override;
   
   private:
-    static constexpr size_t MAX_STR_SIZE = 64;
-    char mExpected[MAX_STR_SIZE];
-    size_t mExpectedSize;
+    StackString<64> expected;
   };
   
   ///Unable to interpret characters as a number
@@ -78,9 +89,7 @@ namespace Utils {
     const char *what() const noexcept override;
   
   private:
-    static constexpr size_t MAX_STR_SIZE = 64;
-    char name_[MAX_STR_SIZE];
-    size_t size_;
+    StackString<64> nameStr;
   };
 
   ///A view onto a string being parsed
@@ -147,10 +156,6 @@ namespace Utils {
     ///Throw a ExpectString exception if the front part of the string is not
     ///equal to the supplied string
     ParseString &expect(std::string_view);
-    ///Throw a ExpectString exception if the supplied predicate returns false.
-    ///The name of the predicate is copied into the ExpectString exception
-    template <typename Pred>
-    ParseString &expect(Pred &&, std::string_view);
     
     ///Throw a ExpectChar exception if the front character is not equal to the
     ///supplied character after all characters that satisfy the supplied

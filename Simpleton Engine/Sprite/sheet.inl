@@ -44,7 +44,7 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
   Sheet sheet;
   
   string.expect("{\"length\":");
-  sheet.length = string.parseNumber<uint32_t>();
+  string.parseNumber(sheet.length);
   string.expect(",\"names\":{");
   while (true) {
     string.expect('"');
@@ -52,14 +52,14 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
     string.copyUntil(name, '"');
     string.expect("\":");
     sheet.names.emplace(name, string.parseNumber<ID>());
-    if (string.front() == '}') {
+    if (string.check('}')) {
       break;
     } else {
       string.expect(',');
     }
   }
   
-  string.expect("},\"rects\":[");
+  string.expect(",\"rects\":[");
   while (true) {
     Rect rect;
     string.expect('[');
@@ -76,14 +76,14 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
     rect.max /= glm::vec2(sheet.length);
     sheet.rects.push_back(rect);
     
-    if (string.front() == ']') {
+    if (string.check(']')) {
       break;
     } else {
       string.expect(',');
     }
   }
   
-  string.expect("]}\n");
+  string.expect("}\n");
   
   auto iter = sheet.names.find("__WHITEPIXEL__");
   if (iter != sheet.names.cend()) {

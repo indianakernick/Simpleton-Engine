@@ -51,16 +51,24 @@ inline const char *Utils::ExpectChar::what() const noexcept {
   ).c_str();
 }
 
+template <size_t Size>
+Utils::StackString<Size>::StackString(const std::string_view view) {
+  size = view.size() < Size ? view.size() : Size;
+  std::memcpy(data, view.data(), size);
+}
+
+template <size_t Size>
+std::string_view Utils::StackString<Size>::view() const {
+  return {data, size};
+}
+
 inline Utils::ExpectString::ExpectString(
   const std::string_view string,
   const LineCol<> lineCol
-) : ParsingError(lineCol) {
-  mExpectedSize = string.size() < MAX_STR_SIZE ? string.size() : MAX_STR_SIZE;
-  std::memcpy(mExpected, string.data(), mExpectedSize);
-}
+) : ParsingError{lineCol}, expected{string} {}
 
 inline std::string_view Utils::ExpectString::expectedStr() const {
-  return {mExpected, mExpectedSize};
+  return expected.view();
 }
 
 inline const char *Utils::ExpectString::what() const noexcept {
@@ -71,7 +79,7 @@ inline const char *Utils::ExpectString::what() const noexcept {
     + ':'
     + std::to_string(mCol)
     + " \""
-    + std::string(mExpected, mExpectedSize)
+    + std::string(expected.view())
     + '"'
   ).c_str();
 }
@@ -106,13 +114,10 @@ inline const char *Utils::InvalidNumber::what() const noexcept {
 inline Utils::InvalidEnum::InvalidEnum(
   const std::string_view name,
   const LineCol<> lineCol
-) : ParsingError{lineCol} {
-  size_ = name.size() < MAX_STR_SIZE ? name.size() : MAX_STR_SIZE;
-  std::memcpy(name_, name.data(), size_);
-}
+) : ParsingError{lineCol}, nameStr{name} {}
 
 inline std::string_view Utils::InvalidEnum::name() const {
-  return {name_, size_};
+  return nameStr.view();
 }
 
 inline const char *Utils::InvalidEnum::what() const noexcept {
@@ -123,7 +128,7 @@ inline const char *Utils::InvalidEnum::what() const noexcept {
     + ':'
     + std::to_string(mCol)
     + " No matching enumeration for \""
-    + std::string(name_, size_)
+    + std::string(nameStr.view())
     + '"'
   ).c_str();
 }
@@ -245,16 +250,6 @@ inline Utils::ParseString &Utils::ParseString::expect(const char *data, const si
 
 inline Utils::ParseString &Utils::ParseString::expect(const std::string_view view) {
   return expect(view.data(), view.size());
-}
-
-template <typename Pred>
-inline Utils::ParseString &Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
-  // @TODO new exception class just for this function?
-  if (empty() || !pred(*beg)) {
-    throw ExpectString(name, pos);
-  }
-  advanceNoCheck();
-  return *this;
 }
 
 template <typename Pred>
