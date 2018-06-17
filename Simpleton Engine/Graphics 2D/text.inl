@@ -16,6 +16,7 @@ inline void G2D::Text::section(G2D::Section &section) {
 }
 
 inline G2D::Section &G2D::Text::section() const {
+  assert(section_);
   return *section_;
 }
 

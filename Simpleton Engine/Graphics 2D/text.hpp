@@ -14,6 +14,7 @@
 #include "quad writer.hpp"
 
 namespace G2D {
+  /// Text alignment
   enum class Align {
     LEFT,
     CENTER,
@@ -32,20 +33,37 @@ namespace G2D {
     Text() = default;
     explicit Text(Section &);
     
+    /// Set the section that glyphs will be written to. A pointer to the section
+    /// is stored interally.
     void section(Section &);
+    /// Get a refernce to the section that is currently being written to.
     Section &section() const;
     
+    /// Set the size (in camera coordinates) of a glyph at a scale of 1.0
     void glyphSize(glm::vec2);
+    /// Set the advance distance (in camera coordinates) for advancing to the
+    /// next character or next line. This class only supports monospaced text
     void advance(glm::vec2);
+    /// Set the scale relative to the glyph size that the glyphs will be
+    /// written. If scale is 2.0f then glyphs will be written at a size of
+    /// glyphSize * 2.0f
     void scale(float);
+    /// Set the depth of the text using a float
     void depth(float);
+    /// Set the depth of the text using a depth enum
     template <typename Enum>
     void depth(Enum);
     
+    /// Write a string of characters at a position and return the position of
+    /// the next character
     template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN>
     glm::vec2 write(glm::vec2, std::string_view);
+    /// Write a single character at a position and return the position of the
+    /// next character
     template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN>
     glm::vec2 write(glm::vec2, char);
+    /// Write a serializable object at a position and return the position of the
+    /// next character. The type must have an overloaded operator<<
     template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN, typename T>
     EnableNotStr<T, glm::vec2> write(glm::vec2, const T &);
     
