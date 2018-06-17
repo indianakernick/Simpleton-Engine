@@ -22,3 +22,11 @@ template <typename Enum>
 constexpr float G2D::depth(const Enum e) {
   return detail::depth(e, 0);
 }
+
+constexpr float G2D::depth(const float d) {
+  return d;
+}
+
+constexpr float G2D::depth(const double d) {
+  return d;
+}

@@ -280,6 +280,8 @@
 		45B5E8C51EF9047000A6A3E2 /* paths.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = paths.hpp; sourceTree = "<group>"; };
 		45BBA3DF20D5EBA0006108C1 /* load prototype.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "load prototype.hpp"; sourceTree = "<group>"; };
 		45BBA3E020D5EBA1006108C1 /* load prototype.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "load prototype.inl"; sourceTree = "<group>"; };
+		45BBA3E120D5EEBD006108C1 /* text.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = text.hpp; sourceTree = "<group>"; };
+		45BBA3E220D5EEBD006108C1 /* text.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = text.inl; sourceTree = "<group>"; };
 		45C525A11FEDFC0800A738E0 /* generic raii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "generic raii.hpp"; sourceTree = "<group>"; };
 		45C525A61FEE034D00A738E0 /* framebuffer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = framebuffer.inl; sourceTree = "<group>"; };
 		45C525A71FEE034D00A738E0 /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
@@ -478,6 +480,8 @@
 				453E25B220CB7FA000B85EEE /* quad writer lite.hpp */,
 				45682655209981FC00BA6AE8 /* sheet tex.inl */,
 				45682654209981FC00BA6AE8 /* sheet tex.hpp */,
+				45BBA3E220D5EEBD006108C1 /* text.inl */,
+				45BBA3E120D5EEBD006108C1 /* text.hpp */,
 			);
 			path = "Graphics 2D";
 			sourceTree = "<group>";

@@ -13,6 +13,8 @@ namespace G2D {
   /// Get the depth of a depth enum
   template <typename Enum>
   constexpr float depth(Enum);
+  constexpr float depth(float);
+  constexpr float depth(double);
 }
 
 #include "depth.inl"
