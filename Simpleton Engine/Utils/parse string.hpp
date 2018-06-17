@@ -246,13 +246,14 @@ namespace Utils {
     ParseString &copyUntilWhitespace(std::string &);
     
   private:
-    const char *mData;
-    size_t mSize;
-    LineCol<> mLineCol;
+    const char *beg;
+    const char *end;
+    LineCol<> pos;
     
     //Advance without range checks
     void advanceNoCheck(size_t);
     void advanceNoCheck();
+    size_t minSize(size_t) const;
   };
 }
 

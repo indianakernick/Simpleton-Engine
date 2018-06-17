@@ -129,59 +129,60 @@ inline const char *Utils::InvalidEnum::what() const noexcept {
 }
 
 inline Utils::ParseString::ParseString(const std::string &string)
-  : mData(string.data()), mSize(string.size()) {}
+  : beg{string.data()}, end{string.data() + string.size()} {}
 
 inline Utils::ParseString::ParseString(const std::string_view view)
-  : mData(view.data()), mSize(view.size()) {
+  : beg{view.data()}, end{view.data() + view.size()} {
   throwIfNull(view.data());
 }
 
-inline Utils::ParseString::ParseString(const char *data, const size_t size)
-  : mData(data), mSize(size) {
+inline Utils::ParseString::ParseString(const char *const data, const size_t size)
+  : beg{data}, end{data + size} {
   throwIfNull(data);
 }
 
 inline const char *Utils::ParseString::data() const {
-  return mData;
+  return beg;
 }
 
 inline size_t Utils::ParseString::size() const {
-  return mSize;
+  return end - beg;
 }
 
 inline Utils::LineCol<> Utils::ParseString::lineCol() const {
-  return mLineCol;
+  return pos;
 }
 
 inline std::string_view Utils::ParseString::view() const {
-  return {mData, mSize};
+  return {beg, size()};
 }
 
 inline std::string_view Utils::ParseString::view(const size_t numChars) const {
-  return {mData, mSize < numChars ? mSize : numChars};
+  return {beg, minSize(numChars)};
 }
 
 inline bool Utils::ParseString::empty() const {
-  return mSize == 0;
+  return beg == end;
 }
 
 inline char Utils::ParseString::operator[](const size_t i) const {
-  return mData[i];
+  return beg[i];
 }
 
 inline char Utils::ParseString::at(const size_t i) const {
-  if (i >= mSize) {
+  const char *const ptr = beg + i;
+  if (ptr >= end) {
     throw std::out_of_range("Index on parse string out of range");
   }
-  return mData[i];
+  return *ptr;
 }
 
 inline char Utils::ParseString::front() const {
-  return *mData;
+  return *beg;
 }
 
 inline Utils::ParseString &Utils::ParseString::advance(const size_t numChars) {
-  if (numChars > mSize) {
+  if (beg + numChars >= end) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
   advanceNoCheck(numChars);
@@ -189,7 +190,7 @@ inline Utils::ParseString &Utils::ParseString::advance(const size_t numChars) {
 }
 
 inline Utils::ParseString &Utils::ParseString::advance() {
-  if (mSize == 0) {
+  if (empty()) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
   advanceNoCheck();
@@ -203,11 +204,9 @@ inline Utils::ParseString &Utils::ParseString::skip(const char c) {
 
 template <typename Pred>
 Utils::ParseString &Utils::ParseString::skip(Pred &&pred) {
-  size_t numChars = 0;
-  while (numChars < mSize && pred(mData[numChars])) {
-    ++numChars;
+  while (beg < end && pred(*beg)) {
+    advanceNoCheck();
   }
-  advanceNoCheck(numChars);
   return *this;
 }
 
@@ -229,18 +228,18 @@ inline Utils::ParseString &Utils::ParseString::skipUntilWhitespace() {
 }
 
 inline Utils::ParseString &Utils::ParseString::expect(const char c) {
-  if (mSize == 0 || *mData != c) {
-    throw ExpectChar(c, mLineCol);
+  if (empty() || *beg != c) {
+    throw ExpectChar(c, pos);
   }
   advanceNoCheck();
   return *this;
 }
 
-inline Utils::ParseString &Utils::ParseString::expect(const char *data, const size_t size) {
-  if (mSize < size || std::memcmp(mData, data, size) != 0) {
-    throw ExpectString({data, size}, mLineCol);
+inline Utils::ParseString &Utils::ParseString::expect(const char *data, const size_t bufSize) {
+  if (size() < bufSize || std::memcmp(beg, data, bufSize) != 0) {
+    throw ExpectString({data, bufSize}, pos);
   }
-  advanceNoCheck(size);
+  advanceNoCheck(bufSize);
   return *this;
 }
 
@@ -251,8 +250,8 @@ inline Utils::ParseString &Utils::ParseString::expect(const std::string_view vie
 template <typename Pred>
 inline Utils::ParseString &Utils::ParseString::expect(Pred &&pred, const std::string_view name) {
   // @TODO new exception class just for this function?
-  if (mSize == 0 || !pred(*mData)) {
-    throw ExpectString(name, mLineCol);
+  if (empty() || !pred(*beg)) {
+    throw ExpectString(name, pos);
   }
   advanceNoCheck();
   return *this;
@@ -268,7 +267,7 @@ inline Utils::ParseString &Utils::ParseString::expectAfterWhitespace(const char 
 }
 
 inline bool Utils::ParseString::check(const char c) {
-  if (mSize == 0 || *mData != c) {
+  if (empty() || *beg != c) {
     return false;
   } else {
     advanceNoCheck();
@@ -277,13 +276,13 @@ inline bool Utils::ParseString::check(const char c) {
 }
 
 inline bool Utils::ParseString::check(const char *data, const size_t size) {
-  if (mSize < size) {
-    return false;
-  }
   if (size == 0) {
     return true;
   }
-  if (std::memcmp(mData, data, size) == 0) {
+  if (end <= data + size) {
+    return false;
+  }
+  if (std::memcmp(beg, data, size) == 0) {
     advanceNoCheck(size);
     return true;
   } else {
@@ -302,7 +301,7 @@ bool Utils::ParseString::check(const char (&string)[SIZE]) {
 
 template <typename Pred>
 bool Utils::ParseString::check(Pred &&pred) {
-  if (mSize == 0 || !pred(*mData)) {
+  if (empty() || !pred(*beg)) {
     return false;
   } else {
     advanceNoCheck();
@@ -315,37 +314,37 @@ std::error_code Utils::ParseString::tryParseNumber(Number &number) {
   if constexpr (std::is_integral<Number>::value) {
     if constexpr (std::is_unsigned<Number>::value) {
       char *end;
-      const unsigned long long num = std::strtoull(mData, &end, 0);
+      const unsigned long long num = std::strtoull(beg, &end, 0);
       if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
         return std::make_error_code(std::errc::result_out_of_range);
       }
-      if (num == 0 && end == mData) {
+      if (num == 0 && end == beg) {
         return std::make_error_code(std::errc::invalid_argument);
       }
-      advanceNoCheck(end - mData);
+      advanceNoCheck(end - beg);
       number = static_cast<Number>(num);
     } else if constexpr (std::is_signed<Number>::value) {
       char *end;
-      const long long num = std::strtoll(mData, &end, 0);
+      const long long num = std::strtoll(beg, &end, 0);
       if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
         return std::make_error_code(std::errc::result_out_of_range);
       }
-      if (num == 0 && end == mData) {
+      if (num == 0 && end == beg) {
         return std::make_error_code(std::errc::invalid_argument);
       }
-      advanceNoCheck(end - mData);
+      advanceNoCheck(end - beg);
       number = static_cast<Number>(num);
     }
   } else if constexpr (std::is_floating_point<Number>::value) {
     char *end;
-    const long double num = std::strtold(mData, &end);
+    const long double num = std::strtold(beg, &end);
     if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
       return std::make_error_code(std::errc::result_out_of_range);
     }
-    if (num == 0 && end == mData) {
+    if (num == 0 && end == beg) {
       return std::make_error_code(std::errc::invalid_argument);
     }
-    advanceNoCheck(end - mData);
+    advanceNoCheck(end - beg);
     number = static_cast<Number>(num);
   }
   
@@ -366,7 +365,7 @@ template <typename Number>
 Utils::ParseString &Utils::ParseString::parseNumber(Number &number) {
   const std::error_code error = tryParseNumber(number);
   if (error) {
-    throw InvalidNumber(error, mLineCol);
+    throw InvalidNumber(error, pos);
   }
   return *this;
 }
@@ -399,22 +398,22 @@ Enum Utils::ParseString::parseEnum(
 ) {
   const size_t index = tryParseEnum(names, numNames);
   if (index == numNames) {
-    throw InvalidEnum(view(), mLineCol);
+    throw InvalidEnum(view(), pos);
   }
   return static_cast<Enum>(index);
 }
 
 inline size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
   throwIfNull(dst);
-  const size_t numChars = mSize < dstSize ? mSize : dstSize;
-  std::memcpy(dst, mData, numChars);
+  const size_t numChars = minSize(dstSize);
+  std::memcpy(dst, beg, numChars);
   advanceNoCheck(numChars);
   return numChars;
 }
 
 inline Utils::ParseString &Utils::ParseString::copy(std::string &dst, const size_t copySize) {
-  const size_t numChars = mSize < copySize ? mSize : copySize;
-  dst.append(mData, numChars);
+  const size_t numChars = minSize(copySize);
+  dst.append(beg, numChars);
   advanceNoCheck(numChars);
   return *this;
 }
@@ -423,9 +422,9 @@ template <typename Pred>
 size_t Utils::ParseString::copyWhile(char *dst, const size_t dstSize, Pred &&pred) {
   throwIfNull(dst);
   size_t numChars = 0;
-  const size_t maxChars = mSize < dstSize ? mSize : dstSize;
-  while (numChars < maxChars && pred(*mData)) {
-    *dst = *mData;
+  const size_t maxChars = minSize(dstSize);
+  while (numChars < maxChars && pred(*beg)) {
+    *dst = *beg;
     ++dst;
     advanceNoCheck(); // increments mData
     ++numChars;
@@ -435,8 +434,8 @@ size_t Utils::ParseString::copyWhile(char *dst, const size_t dstSize, Pred &&pre
 
 template <typename Pred>
 Utils::ParseString &Utils::ParseString::copyWhile(std::string &dst, Pred &&pred) {
-  while (mSize && pred(*mData)) {
-    dst.push_back(*mData);
+  while (!empty() && pred(*beg)) {
+    dst.push_back(*beg);
     advanceNoCheck();
   }
   return *this;
@@ -469,13 +468,16 @@ inline Utils::ParseString &Utils::ParseString::copyUntilWhitespace(std::string &
 }
 
 inline void Utils::ParseString::advanceNoCheck(const size_t numChars) {
-  mLineCol.putString(mData, numChars);
-  mData += numChars;
-  mSize -= numChars;
+  pos.putString(beg, numChars);
+  beg += numChars;
 }
 
 inline void Utils::ParseString::advanceNoCheck() {
-  mLineCol.putChar(*mData);
-  ++mData;
-  --mSize;
+  pos.putChar(*beg);
+  ++beg;
+}
+
+inline size_t Utils::ParseString::minSize(const size_t otherSize) const {
+  const size_t thisSize = size();
+  return thisSize < otherSize ? thisSize : otherSize;
 }
