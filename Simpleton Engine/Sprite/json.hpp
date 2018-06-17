@@ -14,27 +14,13 @@
 
 namespace Sprite {
   inline void from_json(const json &j, Anim &anim) {
-    anim = {
-      j.at("sprite").get<ID>(),
-      j.at("frames").get<ID>()
-    };
-  }
-  
-  inline void from_json(const json &j, DelayAnim &anim) {
-    const auto iter = j.find("delay");
+    const auto delay = j.find("delay");
+    const auto enabled = j.find("enabled");
     anim = {
       j.at("sprite").get<ID>(),
       j.at("frames").get<ID>(),
-      iter == j.cend() ? 1 : iter->get<ID>()
-    };
-  }
-  
-  inline void from_json(const json &j, ToggleAnim &anim) {
-    const auto iter = j.find("enabled");
-    anim = {
-      j.at("sprite").get<ID>(),
-      j.at("frames").get<ID>(),
-      iter == j.cend() ? false : iter->get<bool>()
+      delay == j.cend() ? ID{1} : delay->get<ID>(),
+      enabled == j.cend() ? true : enabled->get<bool>()
     };
   }
 }
