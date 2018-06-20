@@ -41,6 +41,7 @@ namespace Utils {
     char mExpected;
   };
   
+  /// A string stored on the stack
   template <size_t Size>
   class StackString {
   public:

@@ -274,7 +274,7 @@ inline bool Utils::ParseString::check(const char *data, const size_t size) {
   if (size == 0) {
     return true;
   }
-  if (end <= data + size) {
+  if (end < beg + size) {
     return false;
   }
   if (std::memcmp(beg, data, size) == 0) {
