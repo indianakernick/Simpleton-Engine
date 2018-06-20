@@ -186,6 +186,13 @@ namespace Utils {
     template <typename Pred>
     bool check(Pred &&);
     
+    ///Advances and returns true if the front character is equal to any of the
+    ///supplied characters
+    bool checkAnyChar(const char *, size_t);
+    ///Advances and returns true if the front character is equal to any of the
+    ///supplied characters
+    bool checkAnyChar(std::string_view);
+    
     ///Interprets the front part of the string as a number. Returns a
     ///positive error code on failure
     template <typename Number>

@@ -304,6 +304,23 @@ bool Utils::ParseString::check(Pred &&pred) {
   }
 }
 
+inline bool Utils::ParseString::checkAnyChar(const char *data, const size_t size) {
+  return checkAnyChar({data, size});
+}
+
+inline bool Utils::ParseString::checkAnyChar(const std::string_view str) {
+  if (empty()) {
+    return false;
+  }
+  for (const char c : str) {
+    if (c == *beg) {
+      advanceNoCheck();
+      return true;
+    }
+  }
+  return false;
+}
+
 template <typename Number>
 std::error_code Utils::ParseString::tryParseNumber(Number &number) {
   if constexpr (std::is_integral<Number>::value) {
