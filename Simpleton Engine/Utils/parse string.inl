@@ -462,6 +462,14 @@ inline Utils::ParseString &Utils::ParseString::copyUntilWhitespace(std::string &
   return copyUntil(dst, isspace);
 }
 
+inline std::string_view Utils::ParseString::beginViewing() const {
+  return {beg, 0};
+}
+
+inline void Utils::ParseString::endViewing(std::string_view &view) const {
+  view = {view.data(), static_cast<size_t>(beg - view.data())};
+}
+
 inline void Utils::ParseString::advanceNoCheck(const size_t numChars) {
   pos.putString(beg, numChars);
   beg += numChars;

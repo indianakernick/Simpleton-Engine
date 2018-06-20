@@ -12,6 +12,7 @@
 #include <string>
 #include <string_view>
 #include "line col.hpp"
+#include <system_error>
 
 namespace Utils {
   /// An error related to parsing with a Utils::ParseString
@@ -249,6 +250,13 @@ namespace Utils {
     ///Copies characters from the front part of the string until the front is
     ///whitespace. Advances the number of characters that were copied.
     ParseString &copyUntilWhitespace(std::string &);
+    
+    ///Creates a std::string_view that views the front of the string with a
+    ///size of 0
+    std::string_view beginViewing() const;
+    ///Modify a std::string_view to view a region of the string between the
+    ///call to beginViewing and the current position
+    void endViewing(std::string_view &) const;
     
   private:
     const char *beg;
