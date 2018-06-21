@@ -158,6 +158,14 @@ inline Utils::LineCol<> Utils::ParseString::lineCol() const {
   return pos;
 }
 
+inline Utils::LineCol<>::Line Utils::ParseString::line() const {
+  return pos.line();
+}
+
+inline Utils::LineCol<>::Col Utils::ParseString::col() const {
+  return pos.col();
+}
+
 inline std::string_view Utils::ParseString::view() const {
   return {beg, size()};
 }

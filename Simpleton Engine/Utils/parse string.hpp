@@ -110,6 +110,10 @@ namespace Utils {
     ///Get the line and column position of the string yet to be parsed
     ///relative to the beginning.
     LineCol<> lineCol() const;
+    ///Get the line
+    LineCol<>::Line line() const;
+    ///Get the column
+    LineCol<>::Col col() const;
     ///Get a std::string_view of the unparsed string
     std::string_view view() const;
     ///Get a std::string_view of the unparsed string no larger than the size
