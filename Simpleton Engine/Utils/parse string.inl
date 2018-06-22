@@ -299,7 +299,7 @@ inline bool Utils::ParseString::check(const std::string_view view) {
 
 template <size_t SIZE>
 bool Utils::ParseString::check(const char (&string)[SIZE]) {
-  return check(string, SIZE);
+  return check(string, SIZE - 1);
 }
 
 template <typename Pred>
