@@ -11,6 +11,13 @@
 
 #include <cstdint>
 
+// @TODO
+// std::cout << Term::text_green << "Hello " << Term::text_blue << "world\n";
+
+#ifndef TERM_STREAM
+#define TERM_STREAM stdout
+#endif
+
 namespace Utils::Term {
   void cursorUp(unsigned = 1);
   void cursorDown(unsigned = 1);
