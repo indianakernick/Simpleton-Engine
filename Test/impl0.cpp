@@ -24,6 +24,7 @@
 #include "../Simpleton Engine/Utils/move test.hpp"
 #include "../Simpleton Engine/Utils/tuple.hpp"
 #include "../Simpleton Engine/Utils/instance limiter.hpp"
+#include "../Simpleton Engine/Utils/console color.hpp"
 #include "../Simpleton Engine/Utils/type name.hpp"
 #include "../Simpleton Engine/Utils/safe down cast.hpp"
 #include "../Simpleton Engine/Utils/multi dim container.hpp"

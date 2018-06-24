@@ -295,6 +295,7 @@
 		45DEA0321F7F757200B1DA72 /* parse string.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "parse string.inl"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
+		45EE9C2120DF9D9000CC3289 /* console color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "console color.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45F623F4200C96A500AEB428 /* audio library.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio library.hpp"; sourceTree = "<group>"; };
 		45F623F5200C96A500AEB428 /* audio library.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "audio library.inl"; sourceTree = "<group>"; };
@@ -598,6 +599,7 @@
 				45B5E7D71EF8A93900A6A3E2 /* type name.hpp */,
 				45B5E7D91EF8A93900A6A3E2 /* terminal color.inl */,
 				45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */,
+				45EE9C2120DF9D9000CC3289 /* console color.hpp */,
 				45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */,
 				45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */,
 				45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */,
