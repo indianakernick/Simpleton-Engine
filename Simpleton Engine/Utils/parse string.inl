@@ -423,6 +423,44 @@ Enum Utils::ParseString::parseEnum(
   return static_cast<Enum>(index);
 }
 
+template <typename Pred>
+size_t Utils::ParseString::tryParseEnum(
+  const std::string_view *const names,
+  const size_t numNames,
+  Pred &&pred
+) {
+  throwIfNull(names);
+  const std::string_view *const namesEnd = names + numNames;
+  for (const std::string_view *n = names; n != namesEnd; ++n) {
+    if (end < beg + n->size()) {
+      continue;
+    }
+    if (n->size() == 0 && (beg == end || pred(*beg))) {
+      return n - names;
+    }
+    if (beg + n->size() == end || pred(beg[n->size()])) {
+      if (std::memcmp(beg, n->data(), n->size()) == 0) {
+        advanceNoCheck(n->size());
+        return n - names;
+      }
+    }
+  }
+  return numNames;
+}
+
+template <typename Enum, typename Pred>
+Enum Utils::ParseString::parseEnum(
+  const std::string_view *const names,
+  const size_t numNames,
+  Pred &&pred
+) {
+  const size_t index = tryParseEnum(names, numNames, std::forward<Pred>(pred));
+  if (index == numNames) {
+    throw InvalidEnum(view(), pos);
+  }
+  return static_cast<Enum>(index);
+}
+
 inline size_t Utils::ParseString::copy(char *const dst, const size_t dstSize) {
   throwIfNull(dst);
   const size_t numChars = minSize(dstSize);

@@ -213,10 +213,22 @@ namespace Utils {
     ///Interprets the front part of the string as an enum. Returns the index of
     ///a name that matches or returns the number of names if no name matches.
     size_t tryParseEnum(const std::string_view *, size_t);
-    ///Interprest the front part of the string as an enum. Returns an enum with
+    ///Interprets the front part of the string as an enum. Returns an enum with
     ///the matched name or throws a InvalidEnum exception if no name matches.
     template <typename Enum>
     Enum parseEnum(const std::string_view *, size_t);
+    
+    
+    ///Interprets the front part of the string as an enum followed by a
+    ///character for which the predicate returns true. Returns the index of
+    ///a name that matches or returns the number of names if no name matches.
+    template <typename Pred>
+    size_t tryParseEnum(const std::string_view *, size_t, Pred &&);
+    ///Interprets the front part of the string as an enum followed by a
+    ///character for which the predicate returns true. Returns an enum with
+    ///the matched name or throws a InvalidEnum exception if no name matches.
+    template <typename Enum, typename Pred>
+    Enum parseEnum(const std::string_view *, size_t, Pred &&);
     
     ///Copies characters from the front part of the string. Advances the number
     ///of characters that were copied.
