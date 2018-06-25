@@ -12,7 +12,7 @@
 #include <cstdint>
 
 // @TODO
-// std::cout << Term::text_green << "Hello " << Term::text_blue << "world\n";
+// std::cout << con::curs_up(5) << con::hide_curs
 
 #ifndef TERM_STREAM
 #define TERM_STREAM stdout
