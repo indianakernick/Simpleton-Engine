@@ -85,16 +85,11 @@ inline const char *Utils::ExpectString::what() const noexcept {
 }
 
 inline Utils::InvalidNumber::InvalidNumber(
-  const std::error_code error,
+  const std::errc error,
   const LineCol<> lineCol
 ) : ParsingError{lineCol}, mError{error} {}
 
-inline Utils::InvalidNumber::InvalidNumber(
-  const std::errc error,
-  const LineCol<> lineCol
-) : InvalidNumber{std::make_error_code(error), lineCol} {}
-
-inline std::error_code Utils::InvalidNumber::error() const {
+inline std::errc Utils::InvalidNumber::error() const {
   return mError;
 }
 
@@ -106,7 +101,7 @@ inline const char *Utils::InvalidNumber::what() const noexcept {
     + ':'
     + std::to_string(mCol)
     + " \""
-    + mError.message()
+    + std::make_error_code(mError).message()
     + '"'
   ).c_str();
 }
@@ -330,16 +325,16 @@ inline bool Utils::ParseString::checkAnyChar(const std::string_view str) {
 }
 
 template <typename Number>
-std::error_code Utils::ParseString::tryParseNumber(Number &number) {
+std::errc Utils::ParseString::tryParseNumber(Number &number) {
   if constexpr (std::is_integral<Number>::value) {
     if constexpr (std::is_unsigned<Number>::value) {
       char *end;
       const unsigned long long num = std::strtoull(beg, &end, 0);
       if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
-        return std::make_error_code(std::errc::result_out_of_range);
+        return std::errc::result_out_of_range;
       }
       if (num == 0 && end == beg) {
-        return std::make_error_code(std::errc::invalid_argument);
+        return std::errc::invalid_argument;
       }
       advanceNoCheck(end - beg);
       number = static_cast<Number>(num);
@@ -347,10 +342,10 @@ std::error_code Utils::ParseString::tryParseNumber(Number &number) {
       char *end;
       const long long num = std::strtoll(beg, &end, 0);
       if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
-        return std::make_error_code(std::errc::result_out_of_range);
+        return std::errc::result_out_of_range;
       }
       if (num == 0 && end == beg) {
-        return std::make_error_code(std::errc::invalid_argument);
+        return std::errc::invalid_argument;
       }
       advanceNoCheck(end - beg);
       number = static_cast<Number>(num);
@@ -359,22 +354,22 @@ std::error_code Utils::ParseString::tryParseNumber(Number &number) {
     char *end;
     const long double num = std::strtold(beg, &end);
     if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
-      return std::make_error_code(std::errc::result_out_of_range);
+      return std::errc::result_out_of_range;
     }
     if (num == 0 && end == beg) {
-      return std::make_error_code(std::errc::invalid_argument);
+      return std::errc::invalid_argument;
     }
     advanceNoCheck(end - beg);
     number = static_cast<Number>(num);
   }
   
-  return std::error_code{};
+  return std::errc{};
   
   /*
   @TODO std::from_chars
   
-  const auto [end, error] = std::from_chars(mData, mData + mSize, number);
-  if (!error) {
+  const auto [end, ec] = std::from_chars(mData, mData + mSize, number);
+  if (ec == std::errc{}) {
     advanceNoCheck(end - mData);
   }
   return error;
@@ -383,8 +378,8 @@ std::error_code Utils::ParseString::tryParseNumber(Number &number) {
 
 template <typename Number>
 Utils::ParseString &Utils::ParseString::parseNumber(Number &number) {
-  const std::error_code error = tryParseNumber(number);
-  if (error) {
+  const std::errc error = tryParseNumber(number);
+  if (error != std::errc{}) {
     throw InvalidNumber(error, pos);
   }
   return *this;

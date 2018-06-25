@@ -70,15 +70,14 @@ namespace Utils {
   ///Unable to interpret characters as a number
   class InvalidNumber final : public ParsingError {
   public:
-    InvalidNumber(std::error_code, LineCol<>);
     InvalidNumber(std::errc, LineCol<>);
   
-    std::error_code error() const;
+    std::errc error() const;
   
     const char *what() const noexcept override;
   
   private:
-    std::error_code mError;
+    std::errc mError;
   };
   
   ///Unable to interpret characters as an enumeration
@@ -200,7 +199,7 @@ namespace Utils {
     ///Interprets the front part of the string as a number. Returns a
     ///positive error code on failure
     template <typename Number>
-    std::error_code tryParseNumber(Number &);
+    std::errc tryParseNumber(Number &);
     ///Interprets the front part of the string as a number. Throws an
     ///InvalidNumber exception on failure
     template <typename Number>
@@ -217,7 +216,6 @@ namespace Utils {
     ///the matched name or throws a InvalidEnum exception if no name matches.
     template <typename Enum>
     Enum parseEnum(const std::string_view *, size_t);
-    
     
     ///Interprets the front part of the string as an enum followed by a
     ///character for which the predicate returns true. Returns the index of
