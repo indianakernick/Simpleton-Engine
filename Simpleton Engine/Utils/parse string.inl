@@ -190,7 +190,7 @@ inline char Utils::ParseString::front() const {
 }
 
 inline Utils::ParseString &Utils::ParseString::advance(const size_t numChars) {
-  if (beg + numChars >= end) {
+  if (beg + numChars > end) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
   advanceNoCheck(numChars);
@@ -198,7 +198,7 @@ inline Utils::ParseString &Utils::ParseString::advance(const size_t numChars) {
 }
 
 inline Utils::ParseString &Utils::ParseString::advance() {
-  if (empty()) {
+  if (beg + 1 > end) {
     throw std::out_of_range("Advanced parse string too many characters");
   }
   advanceNoCheck();
@@ -326,11 +326,13 @@ inline bool Utils::ParseString::checkAnyChar(const std::string_view str) {
 
 template <typename Number>
 std::errc Utils::ParseString::tryParseNumber(Number &number) {
+  errno = 0;
   if constexpr (std::is_integral<Number>::value) {
     if constexpr (std::is_unsigned<Number>::value) {
       char *end;
       const unsigned long long num = std::strtoull(beg, &end, 0);
       if (errno == ERANGE || num > std::numeric_limits<Number>::max()) {
+        errno = 0;
         return std::errc::result_out_of_range;
       }
       if (num == 0 && end == beg) {
@@ -342,6 +344,7 @@ std::errc Utils::ParseString::tryParseNumber(Number &number) {
       char *end;
       const long long num = std::strtoll(beg, &end, 0);
       if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
+        errno = 0;
         return std::errc::result_out_of_range;
       }
       if (num == 0 && end == beg) {
@@ -354,6 +357,7 @@ std::errc Utils::ParseString::tryParseNumber(Number &number) {
     char *end;
     const long double num = std::strtold(beg, &end);
     if (errno == ERANGE || num < std::numeric_limits<Number>::lowest() || num > std::numeric_limits<Number>::max()) {
+      errno = 0;
       return std::errc::result_out_of_range;
     }
     if (num == 0 && end == beg) {
