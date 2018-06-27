@@ -543,7 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				45C918EF202E73CA00AC4608 /* Test */,
-				45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */,
+				45B5E6A11EF7C25200A6A3E2 /* Simpleton */,
 				454B2B122040E0C300D94D6A /* Pack */,
 				45B5E6A01EF7C25200A6A3E2 /* Products */,
 				45B5E8AF1EF9028600A6A3E2 /* Frameworks */,
@@ -560,7 +560,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		45B5E6A11EF7C25200A6A3E2 /* Simpleton Engine */ = {
+		45B5E6A11EF7C25200A6A3E2 /* Simpleton */ = {
 			isa = PBXGroup;
 			children = (
 				457EB34420C16D4D0054E16F /* Type List */,
@@ -581,7 +581,7 @@
 				45B5E6B21EF7C3C700A6A3E2 /* Math */,
 				45B5E6B01EF7C3BB00A6A3E2 /* Utils */,
 			);
-			path = "Simpleton Engine";
+			path = Simpleton;
 			sourceTree = "<group>";
 		};
 		45B5E6B01EF7C3BB00A6A3E2 /* Utils */ = {
@@ -885,7 +885,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -RpX \"$PROJECT_DIR/$PROJECT/\" $INSTALL_DIR";
+			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -RpX \"$PROJECT_DIR/Simpleton/\" $INSTALL_DIR";
 		};
 		454B2B182040E13200D94D6A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -911,7 +911,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# \"*\" for all modules \"*Utils*\" for just Utils module\nMODULE=\"*\"\n\nfind \"$PROJECT\" -name \"*.hpp\" -path \"$MODULE\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null";
+			shellScript = "# \"*\" for all modules \"*Utils*\" for just Utils module\nMODULE=\"*\"\n\nfind \"Simpleton\" -name \"*.hpp\" -path \"$MODULE\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null";
 		};
 /* End PBXShellScriptBuildPhase section */
 
