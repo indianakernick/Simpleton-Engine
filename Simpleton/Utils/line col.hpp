@@ -163,10 +163,6 @@ namespace Utils {
     Line mLine;
     Col mCol;
   };
-  
-  LineCol() -> LineCol<>;
-  template <typename Line, typename Col>
-  LineCol(Line, Col) -> LineCol<std::decay_t<Line>, std::decay_t<Col>>;
 }
 
 #endif
