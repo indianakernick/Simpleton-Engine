@@ -7,6 +7,7 @@
 //
 
 #include <cerrno>
+#include <cstring>
 #include <functional>
 
 namespace Utils {
