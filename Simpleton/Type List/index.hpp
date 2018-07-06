@@ -47,6 +47,8 @@ namespace List {
   
   // Index Of
   
+  constexpr size_t npos = size_t(-1);
+  
   namespace detail {
     template <typename List, typename Type, size_t Index = 0>
     struct IndexOfI;
@@ -63,19 +65,18 @@ namespace List {
     
     template <typename T, size_t Index>
     struct IndexOfI<EmptyType, T, Index> {
-      static constexpr size_t value = size_t(-1);
+      static constexpr size_t value = npos;
     };
   }
   
-  /// The index of the type in the list. size_t(-1) if the type is not in the
-  /// list
+  /// The index of the type in the list. npos if the type is not in the list
   template <typename List, typename Type>
   constexpr size_t IndexOf = detail::IndexOfI<List, Type>::value;
   
   static_assert(IndexOf<Type<int, char, long>, int> == 0);
   static_assert(IndexOf<Type<int, char, long>, char> == 1);
   static_assert(IndexOf<Type<int, char, long>, long> == 2);
-  static_assert(IndexOf<Type<int, char, long>, float> == size_t(-1));
+  static_assert(IndexOf<Type<int, char, long>, float> == npos);
 }
 
 #endif
