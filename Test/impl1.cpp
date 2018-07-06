@@ -1,4 +1,5 @@
 #include "../Simpleton/Type List/splice.hpp"
+#include "../Simpleton/Type List/reduce.hpp"
 #include "../Simpleton/Type List/get.hpp"
 #include "../Simpleton/Type List/type.hpp"
 #include "../Simpleton/Type List/index.hpp"

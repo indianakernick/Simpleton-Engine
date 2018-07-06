@@ -163,6 +163,7 @@
 		4568265B2099D07500BA6AE8 /* filter surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "filter surface.hpp"; sourceTree = "<group>"; };
 		4568265C2099D07500BA6AE8 /* filter surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "filter surface.inl"; sourceTree = "<group>"; };
 		456B8378205CD63C0016F6D0 /* mainloop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mainloop.hpp; sourceTree = "<group>"; };
+		4572CA6020EF454700EA1A56 /* reduce.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = reduce.hpp; sourceTree = "<group>"; };
 		45771B841FE7238200F533DA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		45771B861FE723B600F533DA /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		45771C0C1FE8770800F533DA /* opengl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = opengl.hpp; sourceTree = "<group>"; };
@@ -457,6 +458,7 @@
 				457EB34C20C2183E0054E16F /* get.hpp */,
 				457EB34D20C22F6E0054E16F /* pred.hpp */,
 				457EB34E20C269DA0054E16F /* splice.hpp */,
+				4572CA6020EF454700EA1A56 /* reduce.hpp */,
 			);
 			path = "Type List";
 			sourceTree = "<group>";
