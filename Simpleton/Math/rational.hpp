@@ -22,8 +22,7 @@ namespace Math {
       : n{0}, d{1} {}
     
     // not explicit
-    template <typename Int, std::enable_if_t<std::is_integral_v<Int>, int> = 0>
-    constexpr Rational(const Int i)
+    constexpr Rational(const intmax_t i)
       : n{i}, d{1} {}
     
     constexpr Rational(const intmax_t n, const intmax_t d)
