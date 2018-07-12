@@ -29,11 +29,11 @@ namespace Math {
       : n{n}, d{d} {}
     
     constexpr bool eq(Rational) const;
-    constexpr bool neq(Rational) const;
+    constexpr bool ne(Rational) const;
     constexpr bool lt(Rational) const;
-    constexpr bool lteq(Rational) const;
+    constexpr bool le(Rational) const;
     constexpr bool gt(Rational) const;
-    constexpr bool gteq(Rational) const;
+    constexpr bool ge(Rational) const;
   };
  
   constexpr intmax_t ratio_num_max = std::numeric_limits<intmax_t>::max();
@@ -156,19 +156,19 @@ namespace Math {
   constexpr bool Rational::eq(const Rational other) const {
     return norm(*this) == norm(other);
   }
-  constexpr bool Rational::neq(const Rational other) const {
+  constexpr bool Rational::ne(const Rational other) const {
     return norm(*this) != norm(other);
   }
   constexpr bool Rational::lt(const Rational other) const {
     return normSign(*this) < normSign(other);
   }
-  constexpr bool Rational::lteq(const Rational other) const {
+  constexpr bool Rational::le(const Rational other) const {
     return normSign(*this) <= normSign(other);
   }
   constexpr bool Rational::gt(const Rational other) const {
     return normSign(*this) > normSign(other);
   }
-  constexpr bool Rational::gteq(const Rational other) const {
+  constexpr bool Rational::ge(const Rational other) const {
     return normSign(*this) >= normSign(other);;
   }
   
