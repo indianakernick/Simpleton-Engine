@@ -5,6 +5,7 @@
 #include "../Simpleton/Type List/index.hpp"
 #include "../Simpleton/Type List/transform.hpp"
 #include "../Simpleton/Type List/pack.hpp"
+#include "../Simpleton/Type List/string.hpp"
 #include "../Simpleton/Type List/sort.hpp"
 #include "../Simpleton/Type List/foreach.hpp"
 #include "../Simpleton/Type List/concat.hpp"
