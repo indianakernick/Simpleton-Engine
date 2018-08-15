@@ -69,7 +69,7 @@ namespace Memory {
     template <typename T>
     struct SmartRefHelper {
       using type = std::conditional_t<
-        std::is_trivially_copyable<T>::value && sizeof(T) <= sizeof(size_t) * 4,
+        std::is_trivially_copyable<T>::value && sizeof(T) <= 2 * sizeof(void *),
         const T,
         const T &
       >;
