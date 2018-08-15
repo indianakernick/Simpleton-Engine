@@ -10,8 +10,9 @@
 #define engine_utils_safe_down_cast_hpp
 
 #include <memory>
+#include <cassert>
 
-#ifdef RELEASE
+#ifdef NDEBUG
 
 namespace Utils {
   ///Dynamic cast and return nullptr on failure
@@ -61,6 +62,10 @@ namespace Utils {
 
 #else
 
+#ifndef UTILS_SAFE_DOWN_CAST_FAIL
+#define UTILS_SAFE_DOWN_CAST_FAIL assert(false);
+#endif
+
 namespace Utils {
   ///Dynamic cast and throw std::bad_cast on failure
   template <typename Derived, typename Base>
@@ -72,7 +77,7 @@ namespace Utils {
   safeDownCast(Base * const base) {
     Derived * const derived = dynamic_cast<Derived * const>(base);
     if (derived == nullptr) {
-      throw std::bad_cast();
+      UTILS_SAFE_DOWN_CAST_FAIL
     } else {
       return derived;
     }
@@ -88,7 +93,7 @@ namespace Utils {
   safeDownCast(const Base * const base) {
     const Derived * const derived = dynamic_cast<const Derived * const>(base);
     if (derived == nullptr) {
-      throw std::bad_cast();
+      UTILS_SAFE_DOWN_CAST_FAIL
     } else {
       return derived;
     }
@@ -104,7 +109,7 @@ namespace Utils {
   safeDownCast(const std::shared_ptr<Base> &base) {
     Derived * const derived = dynamic_cast<Derived * const>(base.get());
     if (derived == nullptr) {
-      throw std::bad_cast();
+      UTILS_SAFE_DOWN_CAST_FAIL
     } else {
       return std::shared_ptr<Derived>(base, derived);
     }
@@ -120,7 +125,7 @@ namespace Utils {
   safeDownCast(const std::shared_ptr<const Base> &base) {
     const Derived * const derived = dynamic_cast<const Derived * const>(base.get());
     if (derived == nullptr) {
-      throw std::bad_cast();
+      UTILS_SAFE_DOWN_CAST_FAIL
     } else {
       return std::shared_ptr<const Derived>(base, derived);
     }
