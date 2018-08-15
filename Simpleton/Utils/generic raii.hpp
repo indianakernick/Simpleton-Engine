@@ -18,13 +18,13 @@
   using value_type = TYPE;                                                      \
                                                                                 \
   constexpr CLASS() noexcept                                                    \
-    : MEMBER() {}                                                               \
+    : MEMBER{} {}                                                               \
   constexpr CLASS(std::nullptr_t) noexcept                                      \
-    : MEMBER() {}                                                               \
+    : MEMBER{} {}                                                               \
   explicit CLASS(const value_type MEMBER) noexcept                              \
-    : MEMBER(MEMBER) {}                                                         \
+    : MEMBER{MEMBER} {}                                                         \
   CLASS(CLASS &&other) noexcept                                                 \
-    : MEMBER(other.release()) {}                                                \
+    : MEMBER{other.release()} {}                                                \
   CLASS &operator=(CLASS &&other) noexcept {                                    \
     reset(other.release());                                                     \
     return *this;                                                               \
