@@ -10,30 +10,23 @@
 #define engine_camera_2d_rotate_hpp
 
 #include "target.hpp"
-#include <glm/vec2.hpp>
 
 namespace Cam2D {
   class Rotate final : public Target<PropID::ANGLE> {
   public:
-    enum class Dir {
-      /// Counter-clockwise (anti-clockwise)
-      CCW,
-      /// Clockwise
-      CW
-    };
-  
     Rotate() = default;
-    Rotate(Dir, bool);
+    Rotate(float, bool);
     
-    void setDir(Dir);
-    void setEnabled(bool);
+    /// Set rotation speed in radians per second. Positive is counter-clockwise
+    void speed(float);
+    void enabled(bool);
     
     float calcTarget(Props, Params) override;
   
   private:
-    float lastAngle = 0.0f;
-    Dir dir = Dir::CCW;
-    bool enabled = true;
+    float lastAngle_ = 0.0f;
+    float speed_ = 1.0f;
+    bool enabled_ = true;
   };
 }
 

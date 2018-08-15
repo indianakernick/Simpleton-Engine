@@ -6,26 +6,20 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-inline Cam2D::Rotate::Rotate(const Dir dir, const bool enabled)
-  : dir(dir), enabled(enabled) {}
+inline Cam2D::Rotate::Rotate(const float speed, const bool enabled)
+  : speed_{speed}, enabled_{enabled} {}
 
-inline void Cam2D::Rotate::setDir(const Dir newDir) {
-  dir = newDir;
+inline void Cam2D::Rotate::speed(const float speed) {
+  speed_ = speed;
 }
 
-inline void Cam2D::Rotate::setEnabled(const bool newEnabled) {
-  enabled = newEnabled;
+inline void Cam2D::Rotate::enabled(const bool enabled) {
+  enabled_ = enabled;
 }
 
-inline float Cam2D::Rotate::calcTarget(const Props props, Params) {
-  if (enabled) {
-    constexpr float offset = glm::pi<float>() - 0.000001f;
-    if (dir == Dir::CCW) {
-      return (lastAngle = props.angle + offset);
-    } else {
-      return (lastAngle = props.angle - offset);
-    }
-  } else {
-    return lastAngle;
+inline float Cam2D::Rotate::calcTarget(const Props props, const Params params) {
+  if (enabled_) {
+    lastAngle_ = props.angle + params.delta * speed_;
   }
+  return lastAngle_;
 }
