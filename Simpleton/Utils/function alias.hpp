@@ -18,14 +18,14 @@
 /// Create a function alias using a wrapper function
 #define FUN_ALIAS_WRAP(NEW_NAME, ...)                                           \
   template <typename... Args>                                                   \
-  inline auto NEW_NAME(Args &&... args) {                                       \
+  inline auto NEW_NAME(Args &&... args) noexcept(noexcept(__VA_ARGS__)) {       \
     return __VA_ARGS__(std::forward<Args>(args)...);                            \
   }
 
 /// Create a function alias using a constexpr wrapper function
 #define FUN_ALIAS_CON_WRAP(NEW_NAME, ...)                                       \
   template <typename... Args>                                                   \
-  constexpr auto NEW_NAME(Args &&.. args) {                                     \
+  constexpr auto NEW_NAME(Args &&.. args) noexcept(noexcept(__VA_ARGS__)) {     \
     return __VA_ARGS__(std::forward<Args>(args)...);                            \
   }
 
