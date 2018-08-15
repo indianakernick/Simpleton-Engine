@@ -10,7 +10,6 @@
 #define engine_math_digit_stack_hpp
 
 #include <cmath>
-#include <type_traits>
 
 namespace Math {
   /*
@@ -23,6 +22,7 @@ namespace Math {
     digits.push_back('3');
     int number;
     std::from_chars(digits.data(), digits.data() + digits.size(), number);
+    // number == 123
   }
   
   void good() {
@@ -31,52 +31,42 @@ namespace Math {
     stack.push(2);
     stack.push(3);
     int number = stack.get();
+    // number == 123
   }
   */
 
-  class Negative {};
-  constexpr Negative NEGATIVE;
-
-  template <typename Value_, int BASE_ = 10>
+  template <typename Value_, unsigned long long base_ = 10>
   class DigitStack {
   public:
     using Value = Value_;
-    static constexpr Value BASE = static_cast<Value>(BASE_);
+    static constexpr Value base = static_cast<Value>(base_);
     
-    static_assert(BASE > Value(1));
+    static_assert(base > Value(1));
 
     DigitStack() = default;
-    explicit DigitStack(Negative)
-      : neg(true) {}
     explicit DigitStack(const Value val)
-      : val(val) {
+      : val{val} {
+      assert(val >= Value(0));
       if (val == Value(0)) {
         numDigits = 1;
-        return;
-      } else if (val < Value(0)) {
-        neg = true;
+      } else {
+        numDigits = std::log2(val) / std::log2(base) + 1.0;
       }
-      numDigits = std::log2(neg ? -val : val) / std::log2(BASE) + 1.0;
     }
     
     void push(const Value digit) {
-      if (neg) {
-        val = val * BASE - digit;
-      } else {
-        val = val * BASE + digit;
-      }
+      val = val * base + digit;
       ++numDigits;
     }
     void pop() {
       if (numDigits != 0) {
-        val /= BASE;
+        val /= base;
         --numDigits;
       }
     }
-    void clear(const bool negative = false) {
+    void clear() {
       val = 0;
       numDigits = 0;
-      neg = negative;
     }
     
     Value get() const {
@@ -92,7 +82,6 @@ namespace Math {
   private:
     Value val = 0;
     unsigned char numDigits = 0;
-    bool neg = false;
   };
 }
 
