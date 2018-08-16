@@ -8,33 +8,21 @@
 
 #include "../Utils/null check.hpp"
 
-namespace Memory {
-  inline Byte *alloc(const size_t size) {
-    return reinterpret_cast<Byte *>(operator new(size));
-  }
-
-  inline void free(void *const data) {
-    operator delete(data);
-  }
-  
-  inline void noFree(void *const) {}
-}
-
 inline Memory::Buffer::Buffer(const size_t size)
-  : mData(alloc(size), &free), mSize(size) {}
+  : mData(allocBytes(size), &free), mSize(size) {}
 
 inline Memory::Buffer::Buffer(const size_t size, Zero)
-  : mData(alloc(size), &free), mSize(size) {
+  : mData(allocBytes(size), &free), mSize(size) {
   std::memset(data(), 0, mSize);
 }
 
 inline Memory::Buffer::Buffer(const size_t size, One)
-  : mData(alloc(size), &free), mSize(size) {
+  : mData(allocBytes(size), &free), mSize(size) {
   std::memset(data(), 255, mSize);
 }
 
 inline Memory::Buffer::Buffer(const size_t size, const Byte byte)
-  : mData(alloc(size), &free), mSize(size) {
+  : mData(allocBytes(size), &free), mSize(size) {
   std::memset(data(), byte, mSize);
 }
 
@@ -77,14 +65,14 @@ inline void Memory::Buffer::copyFrom(const Buffer &buffer) {
 
 inline void Memory::Buffer::resize(const size_t size) {
   mData = std::unique_ptr<Byte, void(*)(void *)>(
-    alloc(size), mData.get_deleter()
+    allocBytes(size), mData.get_deleter()
   );
   mSize = size;
 }
 
 inline void Memory::Buffer::resizeCopy(const size_t size) {
   auto temp = std::unique_ptr<Byte, void(*)(void *)>(
-    alloc(size), mData.get_deleter()
+    allocBytes(size), mData.get_deleter()
   );
   std::memcpy(temp.get(), mData.get(), mSize < size ? mSize : size);
   mData = std::move(temp);

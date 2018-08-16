@@ -213,6 +213,7 @@
 		4592BB111F11F86F00D1640D /* main loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "main loop.hpp"; sourceTree = "<group>"; };
 		459BED5820BD5379001BDA25 /* rational.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rational.hpp; sourceTree = "<group>"; };
 		45A72331211BAA7B00BFE7FB /* string.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = string.hpp; sourceTree = "<group>"; };
+		45A723352125633700BFE7FB /* alloc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = alloc.hpp; sourceTree = "<group>"; };
 		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
 		45B32EAE1FF47C59007BA7F4 /* debug input.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "debug input.inl"; sourceTree = "<group>"; };
 		45B32EAF1FF47C59007BA7F4 /* debug input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "debug input.hpp"; sourceTree = "<group>"; };
@@ -661,6 +662,7 @@
 				45B5E7961EF8A90D00A6A3E2 /* file io.inl */,
 				45B5E7971EF8A90D00A6A3E2 /* file io.hpp */,
 				451CC0DF1F9312C70000E424 /* block allocator.hpp */,
+				45A723352125633700BFE7FB /* alloc.hpp */,
 			);
 			path = Memory;
 			sourceTree = "<group>";

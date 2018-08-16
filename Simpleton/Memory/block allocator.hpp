@@ -9,36 +9,43 @@
 #ifndef engine_memory_block_allocator_hpp
 #define engine_memory_block_allocator_hpp
 
-#include <new>
-#include <memory>
+#include <array>
 #include <iostream>
+#include "alloc.hpp"
 #include <type_traits>
 
 namespace Memory {
-  template <typename Object_, size_t BLOCK_SIZE_>
+  enum class AllocFail {
+    throw_bad_alloc,
+    return_nullptr
+  };
+
+  template <typename Object_, size_t BLOCK_SIZE_, AllocFail FAIL_ = AllocFail::throw_bad_alloc>
   class BlockAllocator {
   public:
     using Object = Object_;
     static constexpr size_t BLOCK_SIZE = BLOCK_SIZE_;
+    static constexpr AllocFail FAIL = FAIL_;
     
-    static_assert(std::is_default_constructible<Object>::value, "Object must be default constructible");
-    static_assert(std::is_destructible<Object>::value, "Object must be destructible");
+    static_assert(std::is_default_constructible_v<Object>, "Object must be default constructible");
+    static_assert(std::is_destructible_v<Object>, "Object must be destructible");
     static_assert(BLOCK_SIZE != 0, "Block size must be greater than 0");
   
   private:
     union Block {
       Block *nextFree;
-      Object objects[BLOCK_SIZE];
+      std::array<Object, BLOCK_SIZE> objects;
     };
   
   public:
     explicit BlockAllocator(const size_t numBlocks)
-      : blocks(std::make_unique<Block []>(numBlocks)),
-        numBlocks(numBlocks),
-        head(blocks.get()) {
+      : blocks{allocArr<Block>(numBlocks)},
+        numBlocks{numBlocks},
+        head{blocks},
+        allocations{0} {
       if (numBlocks != 0) {
-        Block *prevBlock = blocks.get();
-        Block *const lastBlock = blocks.get() + (numBlocks - 1);
+        Block *prevBlock = blocks;
+        Block *const lastBlock = blocks + (numBlocks - 1);
         while (prevBlock != lastBlock) {
           Block *const nextBlock = prevBlock + 1;
           prevBlock->nextFree = nextBlock;
@@ -47,6 +54,7 @@ namespace Memory {
       }
     }
     ~BlockAllocator() {
+      free(blocks);
       if (allocations != 0) {
         if (allocations == 1) {
           std::cout << "1 block was ";
@@ -60,16 +68,24 @@ namespace Memory {
     BlockAllocator(BlockAllocator &&) = default;
     BlockAllocator &operator=(BlockAllocator &&) = default;
     
-    ///Returns whether there are any free blocks available for allocation
+    /// Are there any free blocks available for allocation?
     bool canAlloc() const {
       return head;
+    }
+    /// How many blocks have been allocated?
+    size_t allocCount() const {
+      return allocations;
+    }
+    /// How many blocks have not been allocated?
+    size_t freeCount() const {
+      return numBlocks - allocations;
     }
     
   private:
     template <typename T>
     struct SmartRefHelper {
       using type = std::conditional_t<
-        std::is_trivially_copyable<T>::value && sizeof(T) <= 2 * sizeof(void *),
+        std::is_trivially_copyable_v<T> && sizeof(T) <= 2 * sizeof(void *),
         const T,
         const T &
       >;
@@ -78,40 +94,28 @@ namespace Memory {
     using SmartRef = typename SmartRefHelper<T>::type;
    
   public:
-    ///Allocate a block. Throws std::bad_alloc if there are no free blocks
-    template <typename ...Args>
-    std::enable_if_t< // Have to make the condition dependant on this template
-      BLOCK_SIZE != 1 && (!std::is_void<Args>::value && ...),
-      Object *
-    >
-    alloc(const Args &... args) {
+    /// Allocate a block. Throws std::bad_alloc if there are no free blocks
+    template <typename... Args>
+    Object *alloc(Args &&... args) {
       if (head == nullptr) {
-        throw std::bad_alloc();
+        if constexpr (FAIL == AllocFail::throw_bad_alloc) {
+          throw std::bad_alloc();
+        } else if constexpr (FAIL == AllocFail::return_nullptr) {
+          return nullptr;
+        }
       }
       ++allocations;
       Block *const newBlock = head;
       head = head->nextFree;
-      copyConstruct<SmartRef<Args>...>(newBlock, args...);
-      return newBlock->objects;
-    }
-    ///Allocate a block. Throws std::bad_alloc if there are no free blocks
-    template <typename ...Args>
-    std::enable_if_t<  // Have to make the condition dependant on this template
-      BLOCK_SIZE == 1 && (!std::is_void<Args>::value && ...),
-      Object *
-    >
-    alloc(Args &&... args) {
-      if (head == nullptr) {
-        throw std::bad_alloc();
+      if constexpr (BLOCK_SIZE == 1) {
+        moveConstruct(newBlock, std::forward<Args>(args)...);
+      } else {
+        copyConstruct<SmartRef<Args>...>(newBlock, args...);
       }
-      ++allocations;
-      Block *const newBlock = head;
-      head = head->nextFree;
-      moveConstruct(newBlock, std::forward<Args>(args)...);
-      return newBlock->objects;
+      return newBlock->objects.data();
     }
     
-    ///Deallocate a block
+    /// Deallocate a block
     void free(Object *const object) {
       if (object == nullptr) {
         return;
@@ -125,45 +129,43 @@ namespace Memory {
     }
   
   private:
-    std::unique_ptr<Block []> blocks;
+    Block *blocks;
     size_t numBlocks;
     Block *head;
-    size_t allocations = 0;
+    size_t allocations;
     
-    template <typename ...Args>
+    template <typename... Args>
     void copyConstruct(Block *const block, Args... args) {
-      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible<Object>::value) {
+      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible_v<Object>) {
         return;
       }
-      Object *const endObject = block->objects + BLOCK_SIZE;
-      for (Object *o = block->objects; o != endObject; ++o) {
-        new (o) Object(args...);
+      for (Object &o : block->objects) {
+        new (&o) Object{args...};
       }
     }
-    template <typename ...Args>
+    template <typename... Args>
     void moveConstruct(Block *const block, Args &&... args) {
-      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible<Object>::value) {
+      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible_v<Object>) {
         return;
       }
       static_assert(BLOCK_SIZE == 1);
-      new (block->objects) Object(std::forward<Args>(args)...);
+      new (block->objects.data()) Object{std::forward<Args>(args)...};
     }
     
     void destroy(Block *const block) {
-      if constexpr (std::is_trivially_destructible<Object>::value) {
+      if constexpr (std::is_trivially_destructible_v<Object>) {
         return;
       }
-      Object *const endObject = block->objects + BLOCK_SIZE;
-      for (Object *o = block->objects; o != endObject; ++o) {
-        o->~Object();
+      for (Object &o : block->objects) {
+        o.~Object();
       }
     }
     
     void rangeCheck(const Object *const object) {
       const uintptr_t objectInt = reinterpret_cast<uintptr_t>(object);
-      const uintptr_t firstInt = reinterpret_cast<uintptr_t>(blocks.get());
-      const uintptr_t lastInt = reinterpret_cast<uintptr_t>(blocks.get() + BLOCK_SIZE);
-      if (objectInt < firstInt || objectInt > lastInt) {
+      const uintptr_t firstInt = reinterpret_cast<uintptr_t>(blocks);
+      const uintptr_t lastInt = reinterpret_cast<uintptr_t>(blocks + BLOCK_SIZE);
+      if (objectInt < firstInt || objectInt >= lastInt) {
         throw std::range_error("Pointer to free was not allocated");
       }
       if ((objectInt - firstInt) % sizeof(Block) != 0) {

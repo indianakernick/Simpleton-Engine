@@ -10,6 +10,7 @@
 #include "../Simpleton/Type List/foreach.hpp"
 #include "../Simpleton/Type List/concat.hpp"
 #include "../Simpleton/Type List/pred.hpp"
+#include "../Simpleton/Memory/alloc.hpp"
 #include "../Simpleton/Memory/block allocator.hpp"
 #include "../Simpleton/Memory/file io.hpp"
 #include "../Simpleton/Memory/view.hpp"

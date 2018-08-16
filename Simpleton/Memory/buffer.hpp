@@ -12,7 +12,7 @@
 #include <memory>
 #include <cassert>
 #include <cstdint>
-#include "byteptr.hpp"
+#include "alloc.hpp"
 
 namespace Memory {
   class Zero {};
