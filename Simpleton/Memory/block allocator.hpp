@@ -54,7 +54,7 @@ namespace Memory {
       }
     }
     ~BlockAllocator() {
-      free(blocks);
+      dealloc(blocks);
       if (allocations != 0) {
         if (allocations == 1) {
           std::cout << "1 block was ";

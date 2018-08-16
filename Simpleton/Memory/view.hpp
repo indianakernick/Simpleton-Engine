@@ -25,8 +25,6 @@ namespace Memory {
     }
     View(T *data, const size_t numObjects)
       : buf(data, numObjects * sizeof(T)) {}
-    View(T *data, const size_t numObjects, NoDelete)
-      : buf(data, numObjects * sizeof(T), NO_DELETE) {}
     
     View(View<T> &&) = default;
     View<T> &operator=(View<T> &&) = default;

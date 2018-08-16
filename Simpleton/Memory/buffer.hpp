@@ -9,31 +9,25 @@
 #ifndef engine_memory_buffer_hpp
 #define engine_memory_buffer_hpp
 
-#include <memory>
-#include <cassert>
-#include <cstdint>
 #include "alloc.hpp"
 
 namespace Memory {
   class Zero {};
   class One {};
-  class NoDelete {};
   
   constexpr Zero ZERO_INIT {};
   constexpr One ONE_INIT {};
-  constexpr NoDelete NO_DELETE {};
 
   class Buffer {
   public:
     explicit Buffer(size_t);
     Buffer(size_t, Zero);
     Buffer(size_t, One);
-    Buffer(size_t, Byte);
-    Buffer(void *, size_t);
-    Buffer(void *, size_t, NoDelete);
+    Buffer(size_t, std::byte);
     
-    Buffer(Buffer &&) = default;
-    Buffer &operator=(Buffer &&) = default;
+    Buffer(Buffer &&);
+    Buffer &operator=(Buffer &&);
+    ~Buffer();
     
     bool operator==(const Buffer &) const;
     bool operator!=(const Buffer &) const;
@@ -44,17 +38,17 @@ namespace Memory {
     void resize(size_t);
     void resizeCopy(size_t);
     
-    template <typename T = Byte>
+    template <typename T = std::byte>
     T *data() {
-      return reinterpret_cast<T *>(mData.get());
+      return reinterpret_cast<T *>(mData);
     }
-    template <typename T = Byte>
+    template <typename T = std::byte>
     const T *data() const {
-      return reinterpret_cast<const T *>(mData.get());
+      return reinterpret_cast<const T *>(mData);
     }
-    template <typename T = Byte>
+    template <typename T = std::byte>
     const T *cdata() const {
-      return reinterpret_cast<const T *>(mData.get());
+      return reinterpret_cast<const T *>(mData);
     }
     
     template <typename T = size_t>
@@ -62,35 +56,35 @@ namespace Memory {
       return static_cast<T>(mSize);
     }
     
-    template <typename T = Byte>
+    template <typename T = std::byte>
     T *begin() {
-      return reinterpret_cast<T *>(mData.get());
+      return reinterpret_cast<T *>(mData);
     }
-    template <typename T = Byte>
+    template <typename T = std::byte>
     T *end() {
-      return reinterpret_cast<T *>(mData.get() + mSize);
+      return reinterpret_cast<T *>(mData + mSize);
     }
     
-    template <typename T = Byte>
+    template <typename T = std::byte>
     const T *begin() const {
-      return reinterpret_cast<const T *>(mData.get());
+      return reinterpret_cast<const T *>(mData);
     }
-    template <typename T = Byte>
+    template <typename T = std::byte>
     const T *end() const {
-      return reinterpret_cast<const T *>(mData.get() + mSize);
+      return reinterpret_cast<const T *>(mData + mSize);
     }
     
-    template <typename T = Byte>
+    template <typename T = std::byte>
     const T *cbegin() const {
-      return reinterpret_cast<const T *>(mData.get());
+      return reinterpret_cast<const T *>(mData);
     }
-    template <typename T = Byte>
+    template <typename T = std::byte>
     const T *cend() const {
-      return reinterpret_cast<const T *>(mData.get() + mSize);
+      return reinterpret_cast<const T *>(mData + mSize);
     }
   
   private:
-    std::unique_ptr<Byte, void (*)(void *)> mData;
+    std::byte *mData;
     size_t mSize;
   };
 }

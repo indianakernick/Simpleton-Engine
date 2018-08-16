@@ -9,12 +9,15 @@
 #ifndef engine_memory_alloc_hpp
 #define engine_memory_alloc_hpp
 
-#include "byteptr.hpp"
+#include <new>
+#include <cstddef>
 
 namespace Memory {
   /// Allocate uninitialized bytes
-  inline Byte *allocBytes(const size_t bytes) {
-    return static_cast<Byte *>(operator new(bytes));
+  inline std::byte *allocBytes(const size_t bytes) {
+    return static_cast<std::byte *>(operator new(
+      bytes, std::align_val_t{alignof(std::max_align_t)}
+    ));
   }
   
   /// Allocate uninitialized object
@@ -33,13 +36,10 @@ namespace Memory {
     ));
   }
 
-  /// Free memory
-  inline void free(void *const ptr) {
+  /// Deallocate memory
+  inline void dealloc(void *const ptr) {
     operator delete(ptr);
   }
-  
-  /// Don't free memory
-  inline void noFree(void *const) {}
 }
 
 #endif
