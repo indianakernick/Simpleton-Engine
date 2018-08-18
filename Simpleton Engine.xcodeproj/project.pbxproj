@@ -985,7 +985,7 @@
 					"-Wno-documentation",
 					"-msse2",
 				);
-				OTHER_LDFLAGS = /usr/local/Cellar/libpng/1.6.34/lib/libpng.a;
+				OTHER_LDFLAGS = /usr/local/Cellar/libpng/1.6.35/lib/libpng.a;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1015,7 +1015,7 @@
 					"-Wno-documentation",
 					"-msse2",
 				);
-				OTHER_LDFLAGS = /usr/local/Cellar/libpng/1.6.34/lib/libpng.a;
+				OTHER_LDFLAGS = /usr/local/Cellar/libpng/1.6.35/lib/libpng.a;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

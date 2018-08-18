@@ -61,7 +61,7 @@ void writeImage(const std::string &path, G2D::Surface image) {
     info,
     image.width(),
     image.height(),
-    8,
+    CHAR_BIT,
     colorspace(image.bytesPerPixel()),
     PNG_INTERLACE_NONE,
     PNG_COMPRESSION_TYPE_DEFAULT,
