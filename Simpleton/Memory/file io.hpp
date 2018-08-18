@@ -22,12 +22,14 @@ namespace Memory {
   };
   
   struct FileCloser {
-    void operator()(std::FILE *const file) {
+    void operator()(std::FILE *const file) const noexcept {
       std::fclose(file);
     }
   };
 
   using FileHandle = std::unique_ptr<std::FILE, FileCloser>;
+  
+  static_assert(sizeof(FileHandle) == sizeof(std::FILE *));
 
   FileHandle openFileRead(const char *);
   FileHandle openFileWrite(const char *);

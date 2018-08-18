@@ -9,7 +9,6 @@
 #ifndef engine_memory_block_allocator_hpp
 #define engine_memory_block_allocator_hpp
 
-#include <array>
 #include <iostream>
 #include "alloc.hpp"
 #include <type_traits>
@@ -34,7 +33,7 @@ namespace Memory {
   private:
     union Block {
       Block *nextFree;
-      std::array<Object, BLOCK_SIZE> objects;
+      Object objects[BLOCK_SIZE];
     };
   
   public:
@@ -54,7 +53,7 @@ namespace Memory {
       }
     }
     ~BlockAllocator() {
-      dealloc(blocks);
+      Memory::dealloc(blocks);
       if (allocations != 0) {
         if (allocations == 1) {
           std::cout << "1 block was ";
@@ -81,22 +80,8 @@ namespace Memory {
       return numBlocks - allocations;
     }
     
-  private:
-    template <typename T>
-    struct SmartRefHelper {
-      using type = std::conditional_t<
-        std::is_trivially_copyable_v<T> && sizeof(T) <= 2 * sizeof(void *),
-        const T,
-        const T &
-      >;
-    };
-    template <typename T>
-    using SmartRef = typename SmartRefHelper<T>::type;
-   
-  public:
-    /// Allocate a block. Throws std::bad_alloc if there are no free blocks
-    template <typename... Args>
-    Object *alloc(Args &&... args) {
+    /// Allocate a block
+    Object *alloc() {
       if (head == nullptr) {
         if constexpr (FAIL == AllocFail::throw_bad_alloc) {
           throw std::bad_alloc();
@@ -107,22 +92,83 @@ namespace Memory {
       ++allocations;
       Block *const newBlock = head;
       head = head->nextFree;
-      if constexpr (BLOCK_SIZE == 1) {
-        moveConstruct(newBlock, std::forward<Args>(args)...);
-      } else {
-        copyConstruct<SmartRef<Args>...>(newBlock, args...);
-      }
-      return newBlock->objects.data();
+      return newBlock->objects;
     }
     
     /// Deallocate a block
-    void free(Object *const object) {
+    void dealloc(Object *const object) {
       if (object == nullptr) {
         return;
       }
       rangeCheck(object);
       Block *const block = reinterpret_cast<Block *>(object);
-      destroy(block);
+      block->nextFree = head;
+      head = block;
+      --allocations;
+    }
+    
+    /// Allocate a block and default construct the objects
+    Object *allocDefContruct() {
+      Object *const objs = alloc();
+      if constexpr (FAIL == AllocFail::return_nullptr) {
+        if (objs == nullptr) {
+          return nullptr;
+        }
+      }
+      if constexpr (std::is_trivially_default_constructible_v<Object>) {
+        std::memset(objs, 0, sizeof(Block));
+        return objs;
+      } else if constexpr (std::is_default_constructible_v<Object>) {
+        new (objs) Object[BLOCK_SIZE];
+        return objs;
+      }
+    }
+    
+    /// Allocate a block, construct a temporary object from the provided args
+    /// and copy construct the objects with the temporary
+    template <typename... Args>
+    Object *allocCopyConstruct(Args &&... args) {
+      Object *const objs = alloc();
+      if constexpr (FAIL == AllocFail::return_nullptr) {
+        if (objs == nullptr) {
+          return nullptr;
+        }
+      }
+      const Object copy{std::forward<Args>(args)...};
+      Object *const end = objs + BLOCK_SIZE;
+      for (Object *o = objs; o != end; ++o) {
+        new (o) Object{copy};
+      }
+      return objs;
+    }
+    
+    /// Allocate a block and construct a single object with the provided args
+    template <typename... Args>
+    Object *allocMoveConstruct(Args &&... args) {
+      static_assert(BLOCK_SIZE == 1);
+      Object *const obj = alloc();
+      if constexpr (FAIL == AllocFail::return_nullptr) {
+        if (obj == nullptr) {
+          return nullptr;
+        }
+      }
+      new (obj) Object{std::forward<Args>(args)...};
+      return obj;
+    }
+    
+    /// Deallocate a block and destroy the objects
+    void deallocDestroy(Object *const object) {
+      if (object == nullptr) {
+        return;
+      }
+      rangeCheck(object);
+      if constexpr (!std::is_trivially_destructible_v<Object>) {
+        Object *const end = object + BLOCK_SIZE;
+        for (Object *o = object; o != end; ++o) {
+          o->~Object();
+        }
+      }
+      Block *const block = reinterpret_cast<Block *>(object);
       block->nextFree = head;
       head = block;
       --allocations;
@@ -133,33 +179,6 @@ namespace Memory {
     size_t numBlocks;
     Block *head;
     size_t allocations;
-    
-    template <typename... Args>
-    void copyConstruct(Block *const block, Args... args) {
-      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible_v<Object>) {
-        return;
-      }
-      for (Object &o : block->objects) {
-        new (&o) Object{args...};
-      }
-    }
-    template <typename... Args>
-    void moveConstruct(Block *const block, Args &&... args) {
-      if constexpr (sizeof...(Args) == 0 && std::is_trivially_default_constructible_v<Object>) {
-        return;
-      }
-      static_assert(BLOCK_SIZE == 1);
-      new (block->objects.data()) Object{std::forward<Args>(args)...};
-    }
-    
-    void destroy(Block *const block) {
-      if constexpr (std::is_trivially_destructible_v<Object>) {
-        return;
-      }
-      for (Object &o : block->objects) {
-        o.~Object();
-      }
-    }
     
     void rangeCheck(const Object *const object) {
       const uintptr_t objectInt = reinterpret_cast<uintptr_t>(object);
