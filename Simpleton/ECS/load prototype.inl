@@ -10,16 +10,14 @@
 #include "../Type List/foreach.hpp"
 
 namespace ECS::detail {
-  namespace {
-    template <typename Comp>
-    constexpr auto hasFromjson(int) -> decltype(from_json(json{}, std::declval<Comp &>()), bool{}) {
-      return true;
-    }
+  template <typename Comp>
+  constexpr auto hasFromjson(int) -> decltype(from_json(json{}, std::declval<Comp &>()), bool{}) {
+    return true;
+  }
 
-    template <typename Comp>
-    constexpr bool hasFromjson(long) {
-      return false;
-    }
+  template <typename Comp>
+  constexpr bool hasFromjson(long) {
+    return false;
   }
 
   template <typename CompList>
