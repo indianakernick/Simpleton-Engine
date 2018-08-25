@@ -9,7 +9,8 @@
 #ifndef engine_memory_block_allocator_hpp
 #define engine_memory_block_allocator_hpp
 
-#include <iostream>
+#include <cstring>
+#include <exception>
 #include "alloc.hpp"
 #include <type_traits>
 
@@ -17,6 +18,15 @@ namespace Memory {
   enum class AllocFail {
     throw_bad_alloc,
     return_nullptr
+  };
+
+  class BadFreePtr final : public std::exception {
+  public:
+    BadFreePtr() = default;
+    
+    inline const char *what() const noexcept override {
+      return "Attempt to dealloc invalid pointer";
+    }
   };
 
   template <typename Object_, size_t BLOCK_SIZE_, AllocFail FAIL_ = AllocFail::throw_bad_alloc>
@@ -54,14 +64,6 @@ namespace Memory {
     }
     ~BlockAllocator() {
       Memory::dealloc(blocks);
-      if (allocations != 0) {
-        if (allocations == 1) {
-          std::cout << "1 block was ";
-        } else {
-          std::cout << allocations << " blocks were ";
-        }
-        std::cout << "not freed before the allocator was destroyed\n";
-      }
     }
     
     BlockAllocator(BlockAllocator &&) = default;
@@ -185,10 +187,10 @@ namespace Memory {
       const uintptr_t firstInt = reinterpret_cast<uintptr_t>(blocks);
       const uintptr_t lastInt = reinterpret_cast<uintptr_t>(blocks + BLOCK_SIZE);
       if (objectInt < firstInt || objectInt >= lastInt) {
-        throw std::range_error("Pointer to free was not allocated");
+        throw BadFreePtr{}; // Not within the pool
       }
       if ((objectInt - firstInt) % sizeof(Block) != 0) {
-        throw std::range_error("Pointer to free was not aligned");
+        throw BadFreePtr{}; // Not aligned properly
       }
     }
   };
