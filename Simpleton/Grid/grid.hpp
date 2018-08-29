@@ -99,6 +99,12 @@ namespace Grid {
       return {cindex % mSize.x, cindex / mSize.x};
     }
     
+    Tile &operator()(const Coord x, const Coord y) {
+      return mTiles[toIndex({x, y})];
+    }
+    const Tile &operator()(const Coord x, const Coord y) const {
+      return mTiles[toIndex({x, y})];
+    }
     Tile &operator[](const Pos pos) {
       return mTiles[toIndex(pos)];
     }
