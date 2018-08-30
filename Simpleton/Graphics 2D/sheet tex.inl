@@ -8,6 +8,9 @@
 
 #include "../SDL/paths.hpp"
 
+inline G2D::SheetTex::SheetTex(Sprite::Sheet &&sheet, const TextureID tex)
+  : sheet_{std::move(sheet)}, tex_{tex} {}
+
 inline void G2D::SheetTex::load(
   Renderer &renderer,
   const std::string &name,

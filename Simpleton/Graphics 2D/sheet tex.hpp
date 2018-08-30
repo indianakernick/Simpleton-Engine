@@ -16,8 +16,12 @@ namespace G2D {
   /// A Sprite::Sheet and a TextureID
   class SheetTex {
   public:
+    SheetTex() = default;
+    SheetTex(Sprite::Sheet &&, TextureID);
+    
     void load(Renderer &, const std::string &, TexParams);
     void load(Renderer &, const std::string &, MagFilter = MagFilter::NEAREST);
+    
     const Sprite::Sheet &sheet() const;
     TextureID tex() const;
     
