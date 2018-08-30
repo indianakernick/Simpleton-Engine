@@ -113,7 +113,7 @@ Grid::test(dirs, Grid::Dir::RIGHT); // false
 
 ### [Camera 2D](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Camera%202D)
 
-This is a modular and extensible 2D camera. 
+This is a modular and extensible 2D camera. This module depends on __GLM__ for matricies and vectors.
 
 #### [Camera](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Camera%202D/camera.hpp)
 
@@ -188,3 +188,76 @@ camera.transform.setSize({20.0f, 11.25f});
 ```
 
 Note that the size given to `Cam2D::ZoomToFit` is the same as the size given to `Cam2D::Transform`. This is important. Everything falls to pieces if this isn't done. I'm thinking about putting the functionality of `Cam2D::ZoomToFit` into `Cam2D::Transform` so that the size only needs to be set once. I'm not sure how well that will go though.
+
+### [Spritesheet](https://github.com/Kerndog73/Simpleton-Engine/tree/master/Simpleton/Sprite) and [Packer](https://github.com/Kerndog73/Simpleton-Engine/tree/master/Pack)
+
+This module consists of a class for dealing with sprite sheets and a tool for packing them. The packing tool depends on __libPNG__ which depends on __zlib__.
+
+There is a CMake script for building the packing tool but it isn't cross platform. I plan on writing a script that downloads libPNG and zlib and builds them from source. The tool also uses `dirent.h` to search directories so it will only work on Mac and maybe Linux. I plan on utilizing `std::filesystem` when it's more widely supported. To build the packing tool on a mac:
+
+```sh
+cd Pack
+mkdir build
+cd build
+brew install libpng
+brew install zlib
+cmake ..
+make
+make install
+```
+
+The tool will print a list of available options if you pass it invalid arguments like `pack help`. I think the options are pretty self-explainatory. The tool will generate two files, a png spritesheet and a json atlas. 
+
+If there are two files in a directory: `first.png` and `second.png`. Both of them can be packing into a spritesheet with this command:
+
+```sh
+pack sep=0
+```
+
+If both images are 16x16 then this will produce a `sprites.png` file that is 32x32. The spritesheet is always square and always a power-of-two in length. The atlas produced looks like this:
+
+```json
+{"length":64,"names":{"first":0,"second":1},"rects":[[0,32,32,0],[32,32,64,0]]}
+```
+
+Here it is pretty printed:
+```json
+{
+  "length": 64,
+  "names": {
+    "first": 0,
+    "second": 1
+  },
+  "rects": [
+    [0, 32, 32, 0],
+    [32, 32, 64, 0]
+  ]
+}
+```
+
+I must warn you that you shouldn't modify the atlas. The packer and unpacker aren't actually dealing with JSON. They're dealing with a binary format that just happens to be valid JSON. This makes producing and parsing the atlas quite a bit faster but if you put a space somewhere in the atlas, the unpacker will fail to load the atlas.
+
+The atlas contains a mapping from names to indicies and a mapping from indicies to rectangles. This is handy for animation because you can carry around an ID and a count and then use that to calculate the index of a rectangle. Source images that end in numbers are sorted by that number. This means that if you had these files:
+
+```
+standing.png
+jumping.png
+running 0.png
+running 1.png
+running 2.png
+running 3.png
+walking 0.png
+walking 1.png
+walking 2.png
+walking 3.png
+```
+
+You can take the ID of `running 0` and add the frame number to that ID to get the ID of the current sprite. For example:
+
+```C++
+Sprite::Sheet sheet = Sprite::makeSheet("sprites");
+Sprite::ID running = sheet.getIDfromName("running 0");
+// the following two lines are equivilent
+Sprite::Rect running2 = sheet.getSprite(running + 2); // fast array lookup
+Sprite::Rect running2 = sheet.getSprite("running 2"); // slow hash table lookup
+```
