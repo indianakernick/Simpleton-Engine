@@ -13,9 +13,11 @@
 #include "surface.hpp"
 
 namespace G2D {
-  class FormatError final : public std::runtime_error {
+  class FormatError final : public std::exception {
   public:
-    FormatError();
+    FormatError() = default;
+    
+    const char *what() const noexcept override;
   };
 
   void blit(Surface &, const Surface &);

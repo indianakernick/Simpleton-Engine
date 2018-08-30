@@ -6,8 +6,9 @@
 //  Copyright © 2017 Indi Kernick. All rights reserved.
 //
 
-inline G2D::FormatError::FormatError()
-  : std::runtime_error("Cannot blit surfaces with different bytesPerPixel") {}
+inline const char *G2D::FormatError::what() const noexcept {
+  return "Cannot blit surfaces with different bytesPerPixel";
+}
 
 inline void G2D::blit(Surface &dst, const Surface &src) {
   blit(dst, src, 0, 0);
