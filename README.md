@@ -10,6 +10,7 @@ This library is header-only so most of these are optional.
  * __C++17__ There are various usages of C++17 features around the place.
  * [GLM](https://github.com/g-truc/glm) This is another header-only library that is heavily used throughout the entire library
  * [libPNG](https://github.com/glennrp/libpng) This is used in the spritesheet packer for writing PNGs. STB_image_write was too slow
+ * [zlib](https://github.com/madler/zlib) A dependency of __libPNG__
  * [nlohmann_json](https://github.com/nlohmann/json) This is only used in a couple of places. You won't need it if you aren't already using it
  * [STB](https://github.com/nothings/stb) A couple of the STB libraries are embedded in the source
  * [SDL2](https://www.libsdl.org/download-2.0.php) There's a paper-thin SDL2 wrapper in the [SDL module](https://github.com/Kerndog73/Simpleton-Engine/tree/master/Simpleton/SDL).
@@ -261,3 +262,184 @@ Sprite::ID running = sheet.getIDfromName("running 0");
 Sprite::Rect running2 = sheet.getSprite(running + 2); // fast array lookup
 Sprite::Rect running2 = sheet.getSprite("running 2"); // slow hash table lookup
 ```
+
+### [Graphics 2D](https://github.com/Kerndog73/Simpleton-Engine/tree/master/Simpleton/Graphics%202D)
+
+A 2D rendering abstraction that supports OpenGL 3.3, OpenGL ES 3.0 and WebGL 2.0. Implementations in Vulkan, Metal and DirectX 12 might appear in future. All that would need to change is the 200 lines of OpenGL code in [renderer.inl](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/renderer.inl).
+
+#### [Surface](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/surface.hpp)
+
+A surface is an image stored in RAM as opposed to a texture which is stored in VRAM. Surfaces are used in the spritesheet packer for loading images and constructing the spritesheet. Surfaces are pretty simple and I think the code speaks for itself so I won't go into too much detail here.
+
+Surfaces can be [loaded](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/load%20surface.hpp) from any image format supported by [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h).
+
+Surfaces can be [written](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/write%20surface.hpp) to PNGs using [stb_image_write](https://github.com/nothings/stb/blob/master/stb_image_write.h). I chose to write PNGs using __libPNG__ in the spritesheet packer because I was generating very large spritesheets and __stb_image_write__ was quite slow.
+
+Surfaces can be [blitted](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/blit%20surface.hpp) to each other. This means copy one surface onto another surface. This is used in the spritesheet packer to copy the source images onto the spritesheet.
+
+Finally, surfaces can be [filtered](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/filter%20surface.hpp). This involves applying a function to each pixel to calculate a new pixel. The filter function should have this signature `std::array<uint8_t, DST_BPP>(std::array<uint8_t, SRC_BPP>)`.
+
+#### [Renderer](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/renderer.hpp)
+
+This is a complete abstraction of the underlying rendering library. All it does it render textured quads. Supporting Metal or Vulkan would involve reimplementing this class and that is all.
+
+This is how you would render a texture that covers the whole window using this class. If you've ever used a low level rendering library like OpenGL then this should be pretty easy to understand.
+
+```C++
+G2D::Renderer renderer;
+renderer.init();
+const G2D::TexParams texParams = {
+  .wrap = G2D::TexWrap::REPEAT,
+  .min = G2D::MinFilter::LINEAR,
+  .mag = G2D::MagFilter::LINEAR
+};
+// texture ID is just an index onto an array
+// tex is 0
+const G2D::TextureID tex = renderer.addTexture("my texture.png", texParams);
+
+// rendering loop
+while (true) {
+  const G2D::QuadRange range = {0, 1};
+  G2D::Quad quad;
+  // trying to get this right is the reason why there are abstractions over this interface
+  quad[0].pos = {-1.0f, -1.0f, 0.0f};
+  quad[0].texCoord = {0.0f, 0.0f};
+  quad[1].pos = {1.0f, -1.0f, 0.0f};
+  quad[1].texCoord = {1.0f, 0.0f};
+  quad[2].pos = {1.0f, 1.0f, 0.0f};
+  quad[2].texCoord = {1.0f, 1.0f};
+  quad[3].pos = {-1.0f, 1.0f, 0.0f};
+  quad[3].texCoord = {0.0f, 1.0f};
+  // the format for the quads on the CPU and GPU is exactly the same
+  // writeQuads is essentially a memcpy from RAM to VRAM
+  // for an OpenGL implementation, this is just glBufferSubData
+  renderer.writeQuads(range, &quad);
+  
+  // now that our huge array of one quad is in VRAM, we can issue a draw call!
+  
+  // this object stores the values of the uniforms in the shaders
+  G2D::RenderParams params;
+  params.viewProj = {};  // the view_proj matrix is identity by default
+  params.tex = tex;      // ID of the texture to bind
+  params.color = {1.0f}; // Color to multiply by the texture pixels
+  // this is the call to glDrawElements
+  renderer.render(range, params);
+}
+```
+
+#### [Quad Writer](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/quad%20writer.hpp)
+
+Using the renderer directly is a pain. Luckily, there are abstractions! This example is the same as the previous example, except that it uses `G2D::QuadWriter`.
+
+```C++
+G2D::Renderer renderer;
+renderer.init();
+const G2D::TexParams texParams = {
+  .wrap = G2D::TexWrap::REPEAT,
+  .min = G2D::MinFilter::LINEAR,
+  .mag = G2D::MagFilter::LINEAR
+};
+// a Sprite::Sheet and a G2D::TextureID
+G2D::SheetTex sheetTex {{}, renderer.addTexture("my texture.png", texParams)};
+G2D::QuadWriter writer;
+
+//rendering loop
+while (true) {
+  G2D::Section &sec = writer.section(glm::mat3{}, sheetTex, glm::vec4{1.0f});
+  sec.quad();
+  sec.depth(0.0f);
+  sec.tilePos({-1.0f, -1.0f}, {2.0f, 2.0f});
+  sec.tileTex({0.0f, 0.0f}, {1.0f, 1.0f});
+  writer.render(renderer);
+}
+```
+
+A `G2D::Section` represents a group of quads and the uniform values (camera matrix, texture and color). A section also carries an extra piece of information: a `Sprite::Sheet`. This means that you can pass a `Sprite::ID` to `G2D::Section::tileTex` and the texture coordinates will automatically be added to the quad. Pretty cool huh?
+
+`G2D::Section` maintains an array of `G2D::Quad`s. `quad()` pushes a new quad onto the the array. The pushed quad becomes the "current" quad. Functions like `depth()` and `tilePos()` modify the current quad.
+
+Getting the depth of each quad correct can be difficult. This quad needs to above that quad and below this other quad... It's a headache. You need to put the depth information in one place. The order of every layer in your game must be defined in one place. I think the best way to do this is with an enum. This is the depth enum from __Classic Tower Defence__:
+
+```C++
+enum class Depth {
+  UI_TEXT,
+  UI_ELEM_1,
+  UI_ELEM,
+  UI_BASE,
+
+  TOWER_RANGE,
+  UNIT_HEALTH,
+  UNIT_DEATH,
+  TOWER_AURA,
+  TOWER_GUN,
+  TOWER_PROJ,
+  TOWER_BEAM,
+  UNIT,
+  TOWER_BASE,
+  MAP,
+  
+  COUNT
+};
+```
+
+From this enum, we can clearly see that the UI must be above the game and the unit's health bar must be above the unit. If the depth of anything in the game needs to change, this enum is all that needs to change. `G2D::Section::depth` can take an enum instead of a float and calculate the depth from that. `sec.depth(Depth::UNIT)` instead of `sec.depth(0.1234f)`. Note that if the enum doesn't have a `COUNT` member then it is assumed that there are `255` layers. It is highly recommended that you include a `COUNT` member because of the precision of depth values in the depth buffer is typically only 8 or 16 bits so you want your layers to be as far apart as possible.
+
+Here is the map rendering system from __Classic Tower Defence__. This is not a trick - it really is this simple!
+
+```C++
+// Note that ECS::Registry is entt::DefaultRegistry
+// and       Map           is Grid::Grid<TileType>
+void mapRenderingSystem(ECS::Registry &reg, G2D::Section &sec) {
+  const Map &map = reg.get<Map>();
+  const MapSprites &sprites = reg.get<MapSprites>();
+  for (size_t t = 0; t != map.area(); ++t) {
+    const Sprite::ID id = sprites.sprite + static_cast<Sprite::ID>(map[t]);
+    sec.quad();
+    sec.depth(Depth::MAP);
+    sec.tilePos(map.toPos(t));
+    sec.tileTex(id);
+  }
+}
+```
+
+The map rendering system is a perfect example of how `G2D::Section` should be used. You would typically initialize a `G2D::Section` with the game spritesheet and pass it to all of your rendering systems. The systems would push a few quads and happy days!
+
+#### [Z Sort](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/zsort.hpp)
+
+There are times where the pixels on the texture have an alpha value that is between 0 and 1. So you have to sort. The zsort header contains a few predicates for sorting quads. You would typically just use `G2D::sort` without a second thought but there are others just-in-case! You can pass these sorting predicates to `G2D::Section::sort`.
+
+```C++
+sec.sort(G2D::sort);
+```
+
+It couldn't be simpler!
+
+#### [Quad Writer (Lite)](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/quad%20writer%20lite.hpp)
+
+`G2D::QuadWriterLite` is very similar to `G2D::QuadWriter` except that there are no `G2D::Section` objects. There is one array of quads and sections are ranges on this array. This makes `G2D::QuadWriterLite` slightly faster than `G2D::QuadWriter` at the cost of being a bit inflexible. `G2D::QuadWriterLite` also doesn't deal with `Sprite::Sheet` so you can't just pass in a `Sprite::ID`. This class is actually a previous version of the quad writer that I renamed to be the "lite" version.
+
+Each instance of `G2D::Section` has it's own array of quads so you can write to many `G2D::Section`s at once in any order you like. With `G2D::QuadWriterLite`, you don't have this luxury. You can only write quads to the current section, much like you can only modify the current quad. You change the section by calling `G2D::QuadWriterLite::section` with a `G2D::RenderParams`. Sorting is also possible. Sorting is done on a per-section basis, much like `G2D::QuadWriter`.
+
+The neat thing about `G2D::QuadWriterLite` is that they can be appended. This is possible because it stores one single array of quads. You can write quads to two separate writers and then append one to the other. In a way, this gives you the flexibility of `G2D::Section` but I think it's kind of messy.
+
+#### [Text](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Graphics%202D/text.hpp)
+
+This class calculates the positions of glyphs of a monospaced font and writes them to a `G2D::Section`. For __Classic Tower Defence__, I created my own bitmap font and used this class to render it. I was really proud of the results! I love the look of old school pixel fonts!
+
+This is the very first test of the text renderer. I nearly fell out of my chair when I saw this!
+
+![First test](https://i.imgur.com/J11H0H6.png)
+
+Isn't that a sight to behold!
+
+`G2D::Text` holds a reference to a `G2D::Section`. The section should have a compatible spritesheet. A compatible sprite sheet should have all of the printable ASCII characters. That's `!` up to `~`. Sprite ID 0 should be `!`, Sprite ID 1 should be `"`, etc. I did this by naming the source images `33.png`, `34.png`, etc.
+
+Writing text is fairly straight forward. It can be as simple as this:
+
+```C++
+text.write({4.0f, 5.0f}, "Hello World!");
+// or do some fancy center alignment
+text.write<G2D::Align::CENTER>({4.0f, 5.0f}, "Hello World!");
+```
+
+All of the special whitespace characters that ASCII has to offer are supported so you can use tabs, newlines and carriage returns and everything will work as expected.
