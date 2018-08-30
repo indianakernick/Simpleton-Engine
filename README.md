@@ -8,6 +8,7 @@ This isn't really a framework kind of game engine as it doesn't make any assumpt
 This library is header-only so most of these are optional.
 
  * __C++17__ There are various usages of C++17 features around the place.
+ * [EnTT](https://github.com/skypjack/entt) The best ECS framework ever!
  * [GLM](https://github.com/g-truc/glm) This is another header-only library that is heavily used throughout the entire library
  * [libPNG](https://github.com/glennrp/libpng) This is used in the spritesheet packer for writing PNGs. STB_image_write was too slow
  * [zlib](https://github.com/madler/zlib) A dependency of __libPNG__
