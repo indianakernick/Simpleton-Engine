@@ -300,6 +300,7 @@
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
 		45EE9C2120DF9D9000CC3289 /* console color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "console color.hpp"; sourceTree = "<group>"; };
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
+		45F4435A2137818200B28F05 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		45F623F4200C96A500AEB428 /* audio library.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio library.hpp"; sourceTree = "<group>"; };
 		45F623F5200C96A500AEB428 /* audio library.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "audio library.inl"; sourceTree = "<group>"; };
 		45F6242E200CB59900AEB428 /* music.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = music.hpp; sourceTree = "<group>"; };
@@ -396,6 +397,7 @@
 		454B2B122040E0C300D94D6A /* Pack */ = {
 			isa = PBXGroup;
 			children = (
+				45F4435A2137818200B28F05 /* CMakeLists.txt */,
 				454B2B1C2040E1C000D94D6A /* search dir.cpp */,
 				454B2B1B2040E1C000D94D6A /* search dir.hpp */,
 				454B2B222040E3A300D94D6A /* sort by frame.cpp */,

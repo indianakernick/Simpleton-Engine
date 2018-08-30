@@ -20,7 +20,7 @@ int colorspace(const G2D::Surface::BytesPerPixel bpp) {
     case 2: return PNG_COLOR_TYPE_GRAY_ALPHA;
     case 3: return PNG_COLOR_TYPE_RGB;
     case 4: return PNG_COLOR_TYPE_RGB_ALPHA;
-    default: assert(false);
+    default: assert(false); return -1;
   };
 }
 
