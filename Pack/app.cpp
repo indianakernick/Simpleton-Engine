@@ -92,6 +92,8 @@ void runApp(int argc, const char **argv) {
       if (bpp < 1 || bpp > 4) {
         throw std::runtime_error("Invalid bpp. Valid values are [1, 2, 3, 4]");
       }
+    } else {
+      throw ArgError();
     }
   }
   
