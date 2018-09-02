@@ -57,21 +57,21 @@ namespace G2D {
     
     /// Write a string of characters at a position and return the position of
     /// the next character
-    template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN>
+    template <Align ALIGN, PlusXY PLUS_XY>
     glm::vec2 write(glm::vec2, std::string_view);
     /// Write a single character at a position and return the position of the
     /// next character
-    template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN>
+    template <Align ALIGN, PlusXY PLUS_XY>
     glm::vec2 write(glm::vec2, char);
     /// Write a serializable object at a position and return the position of the
     /// next character. The type must have an overloaded operator<<
-    template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN, typename T>
+    template <Align ALIGN, PlusXY PLUS_XY, typename T>
     EnableNotStr<T, glm::vec2> write(glm::vec2, const T &);
     
-    #define WRAPPER(NAME, ALIGN) \
-      template <PlusXY PLUS_XY = PlusXY::RIGHT_DOWN, typename Value> \
-      glm::vec2 write##NAME(const glm::vec2 pos, Value &&value) { \
-        return write<Align::ALIGN, PLUS_XY>(pos, std::forward<Value>(value)); \
+    #define WRAPPER(NAME, ALIGN)                                                \
+      template <PlusXY PLUS_XY = PlusXY::RIGHT_DOWN, typename Value>            \
+      glm::vec2 write##NAME(const glm::vec2 pos, Value &&value) {               \
+        return write<Align::ALIGN, PLUS_XY>(pos, std::forward<Value>(value));   \
       }
     WRAPPER(Left, LEFT)
     WRAPPER(Center, CENTER)
