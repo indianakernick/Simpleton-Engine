@@ -51,8 +51,8 @@ namespace GL {
   template <GLenum TARGET>
   Buffer<TARGET> makeBuffer(const GLvoid *, size_t, GLenum = GL_STATIC_DRAW);
   
-  FUN_ALIAS_WRAP(makeArrayBuffer, makeBuffer<GL_ARRAY_BUFFER>)
-  FUN_ALIAS_WRAP(makeElementBuffer, makeBuffer<GL_ELEMENT_ARRAY_BUFFER>)
+  FUN_ALIAS(makeArrayBuffer, makeBuffer<GL_ARRAY_BUFFER>)
+  FUN_ALIAS(makeElementBuffer, makeBuffer<GL_ELEMENT_ARRAY_BUFFER>)
 }
 
 #include "buffer.inl"

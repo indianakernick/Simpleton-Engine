@@ -152,7 +152,7 @@ G2D::Text::EnableNotStr<T, glm::vec2> G2D::Text::write(
 }
 
 template <G2D::PlusXY PLUS_XY>
-glm::vec2 G2D::Text::writeLeft(const glm::vec2 origin, const std::string_view str) {
+glm::vec2 G2D::Text::writeImpl(const glm::vec2 origin, const std::string_view str) {
   glm::vec2 pos = {0.0f, 0.0f};
   const glm::vec2 scaledSize = scale_ * glyphSize_;
   const glm::vec2 scaleAdv = scale_ * advance_;

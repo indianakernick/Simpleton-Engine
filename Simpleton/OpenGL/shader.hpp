@@ -26,8 +26,8 @@ namespace GL {
   
     static constexpr GLenum TYPE = TYPE_;
   
-    template <size_t ...SIZES>
-    void uploadSource(const GLchar (& ...sources)[SIZES]) const {
+    template <size_t... SIZES>
+    void uploadSource(const GLchar (&... sources)[SIZES]) const {
       const GLchar *ptrs[] = {sources...};
       const GLint sizes[] = {static_cast<GLint>(SIZES - 1)...};
       glShaderSource(id, sizeof...(SIZES), ptrs, sizes);
@@ -72,11 +72,11 @@ namespace GL {
   Shader<TYPE> makeShader(const GLchar *, size_t);
   template <GLenum TYPE>
   Shader<TYPE> makeShader(std::istream &);
-  template <GLenum TYPE, size_t ...SIZES>
-  Shader<TYPE> makeShader(const GLchar (& ...sources)[SIZES]);
+  template <GLenum TYPE, size_t... SIZES>
+  Shader<TYPE> makeShader(const GLchar (&... sources)[SIZES]);
   
-  FUN_ALIAS_WRAP(makeVertShader, makeShader<GL_VERTEX_SHADER>)
-  FUN_ALIAS_WRAP(makeFragShader, makeShader<GL_FRAGMENT_SHADER>)
+  FUN_ALIAS(makeVertShader, makeShader<GL_VERTEX_SHADER>)
+  FUN_ALIAS(makeFragShader, makeShader<GL_FRAGMENT_SHADER>)
 }
 
 #include "shader.inl"

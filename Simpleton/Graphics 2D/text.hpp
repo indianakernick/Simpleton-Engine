@@ -12,6 +12,7 @@
 #include <string_view>
 #include <type_traits>
 #include "quad writer.hpp"
+#include "../Utils/function alias.hpp"
 
 namespace G2D {
   /// Text alignment
@@ -67,6 +68,16 @@ namespace G2D {
     template <Align ALIGN = Align::LEFT, PlusXY PLUS_XY = PlusXY::RIGHT_DOWN, typename T>
     EnableNotStr<T, glm::vec2> write(glm::vec2, const T &);
     
+    #define WRAPPER(NAME, ALIGN) \
+      template <PlusXY PLUS_XY = PlusXY::RIGHT_DOWN, typename Value> \
+      glm::vec2 write##NAME(const glm::vec2 pos, Value &&value) { \
+        return write<Align::ALIGN, PLUS_XY>(pos, std::forward<Value>(value)); \
+      }
+    WRAPPER(Left, LEFT)
+    WRAPPER(Center, CENTER)
+    WRAPPER(Right, RIGHT)
+    #undef WRAPPER
+    
   private:
     Section *section_ = nullptr;
     glm::vec2 glyphSize_ {1.0f};
@@ -75,7 +86,7 @@ namespace G2D {
     float depth_ = 0.0f;
 
     template <PlusXY PLUS_XY>
-    glm::vec2 writeLeft(glm::vec2, std::string_view);
+    glm::vec2 writeImpl(glm::vec2, std::string_view);
     template <PlusXY PLUS_XY>
     void writeChar(glm::vec2, glm::vec2, char);
   };
