@@ -9,28 +9,25 @@
 #ifndef engine_utils_instance_limiter_hpp
 #define engine_utils_instance_limiter_hpp
 
-#include <string>
-#include <stdexcept>
-#include <string_view>
+#include <exception>
+#include "type name.hpp"
 
 namespace Utils {
-  class TooManyInstances final : std::logic_error {
+  class TooManyInstances : public std::exception {};
+
+  template <typename T>
+  class TooManyInstancesOf final : public TooManyInstances {
   public:
-    TooManyInstances(
-      const std::string_view type,
-      const size_t maxCount
-    ) : std::logic_error(
-          "Too many instances of type \"" +
-          std::string(type) +
-          "\"\nMaximum is " +
-          std::to_string(maxCount)
-        ) {}
+    const char *what() const noexcept override {
+      return "Too many instances";
+    }
   };
 }
 
-#ifdef ENABLE_INSTANCE_LIMITER
+// this is causing some problems with UTILS_RAII_CLASS
+#define DISABLE_INSTANCE_LIMITER
 
-#include "type name.hpp"
+#ifndef DISABLE_INSTANCE_LIMITER
 
 namespace Utils {
   ///Limit the number of instances of a derived class
@@ -39,7 +36,7 @@ namespace Utils {
   private:
     static void checkCount() {
       if (count > MAX_COUNT) {
-        throw TooManyInstances(typeName<T>(), MAX_COUNT);
+        throw TooManyInstancesOf<T>{};
       }
     }
 
@@ -76,7 +73,7 @@ namespace Utils {
   protected:
     LimitInstances() {
       if (created) {
-        throw TooManyInstances(typeName<T>(), 1);
+        throw TooManyInstancesOf<T>{};
       } else {
         created = true;
       }
