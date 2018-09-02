@@ -438,9 +438,9 @@ Isn't that a sight to behold!
 Writing text is fairly straight forward. It can be as simple as this:
 
 ```C++
-text.write({4.0f, 5.0f}, "Hello World!");
+text.writeLeft({4.0f, 5.0f}, "Hello World!");
 // or do some fancy center alignment
-text.write<G2D::Align::CENTER>({4.0f, 5.0f}, "Hello World!");
+text.writeCenter({4.0f, 5.0f}, "Hello World!");
 ```
 
 All of the special whitespace characters that ASCII has to offer are supported so you can use tabs, newlines and carriage returns and everything will work as expected.
