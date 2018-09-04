@@ -27,7 +27,7 @@ namespace B2 {
     return left.type == right.type && left.entity == right.entity;
   }
 
-  constexpr EntityPair NULL_ENTITY_PAIR = {ECS::NULL_ENTITY, ECS::NULL_ENTITY};
+  constexpr EntityPair NULL_ENTITY_PAIR = {entt::null, entt::null};
 
   class CollisionPairs {
   public:

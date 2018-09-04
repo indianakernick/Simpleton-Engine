@@ -41,7 +41,7 @@ inline B2::EntityPair B2::CollisionPairs::getPair(const ObjectTypePair type) con
 inline ECS::EntityID B2::CollisionPairs::getHalfPair(const ObjectTypeID type) const {
   const auto iter = find(type);
   if (iter == pairs.cend()) {
-    return ECS::NULL_ENTITY;
+    return entt::null;
   } else {
     if (iter->type.first == type) {
       return iter->entity.first;

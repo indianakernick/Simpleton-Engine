@@ -9,13 +9,11 @@
 #ifndef engine_ecs_registry_hpp
 #define engine_ecs_registry_hpp
 
-#include <limits>
 #include <entt/entity/registry.hpp>
 
 namespace ECS {
   using Registry = entt::DefaultRegistry;
   using EntityID = Registry::entity_type;
-  constexpr EntityID NULL_ENTITY = entt::null;
 }
 
 #endif
