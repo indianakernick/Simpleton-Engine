@@ -26,7 +26,7 @@ namespace Sprite {
     Sheet(Sheet &&) = default;
     Sheet &operator=(Sheet &&) = default;
     
-    /// Returns NULL_SPRITE if the name is invalid. O(n log n)
+    /// Returns null if the name is invalid. O(n log n)
     ID getIDfromName(std::string_view) const;
     /// Throws std::out_of_range if SpriteID is invalid. O(1)
     Rect getSprite(ID) const;

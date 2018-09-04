@@ -12,7 +12,7 @@
 inline Sprite::ID Sprite::Sheet::getIDfromName(const std::string_view name) const {
   auto iter = names.find(std::string(name));
   if (iter == names.cend()) {
-    return NULL_SPRITE;
+    return null;
   } else {
     return iter->second;
   }

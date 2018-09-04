@@ -13,7 +13,7 @@
 
 namespace Sprite {
   using ID = uint32_t;
-  constexpr ID NULL_SPRITE = ~ID{};
+  constexpr ID null = ~ID{};
 }
 
 #endif
