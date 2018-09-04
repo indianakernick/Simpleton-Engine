@@ -15,7 +15,7 @@
 namespace ECS {
   using Registry = entt::DefaultRegistry;
   using EntityID = Registry::entity_type;
-  constexpr EntityID NULL_ENTITY = std::numeric_limits<EntityID>::max();
+  constexpr EntityID NULL_ENTITY = entt::null;
 }
 
 #endif
