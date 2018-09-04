@@ -86,7 +86,7 @@ namespace G2D {
     float depth_ = 0.0f;
 
     template <PlusXY PLUS_XY>
-    glm::vec2 writeImpl(glm::vec2, std::string_view);
+    glm::vec2 writeLeftImpl(glm::vec2, std::string_view);
     template <PlusXY PLUS_XY>
     void writeChar(glm::vec2, glm::vec2, char);
   };

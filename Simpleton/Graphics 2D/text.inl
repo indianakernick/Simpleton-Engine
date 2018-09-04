@@ -88,7 +88,7 @@ namespace G2D::detail {
 template <G2D::Align ALIGN, G2D::PlusXY PLUS_XY>
 glm::vec2 G2D::Text::write(const glm::vec2 origin, const std::string_view str) {
   if constexpr (ALIGN == Align::LEFT) {
-    return writeLeft<PLUS_XY>(origin, str);
+    return writeLeftImpl<PLUS_XY>(origin, str);
   }
   
   glm::vec2 beginPos = {0.0f, 0.0f};
@@ -152,7 +152,7 @@ G2D::Text::EnableNotStr<T, glm::vec2> G2D::Text::write(
 }
 
 template <G2D::PlusXY PLUS_XY>
-glm::vec2 G2D::Text::writeImpl(const glm::vec2 origin, const std::string_view str) {
+glm::vec2 G2D::Text::writeLeftImpl(const glm::vec2 origin, const std::string_view str) {
   glm::vec2 pos = {0.0f, 0.0f};
   const glm::vec2 scaledSize = scale_ * glyphSize_;
   const glm::vec2 scaleAdv = scale_ * advance_;
