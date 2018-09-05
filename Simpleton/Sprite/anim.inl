@@ -89,6 +89,10 @@ inline void Sprite::Anim::pause() {
   frame_ |= stopped_bit;
 }
 
+inline void Sprite::Anim::toggle() {
+  frame_ ^= stopped_bit;
+}
+
 inline bool Sprite::Anim::running() const {
   return (frame_ & stopped_bit) == 0;
 }
@@ -130,8 +134,8 @@ inline Sprite::ID Sprite::Anim::sprite() const {
   return sprite_ + frame();
 }
 
-template <typename T>
-Sprite::ID Sprite::Anim::sprite(const T group) const {
+template <typename Group>
+Sprite::ID Sprite::Anim::sprite(const Group group) const {
   return sprite() + frames_ * static_cast<ID>(group);
 }
 

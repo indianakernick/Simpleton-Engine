@@ -59,6 +59,7 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
     }
   }
   
+  sheet.rects.reserve(sheet.names.size());
   string.expect(",\"rects\":[");
   while (true) {
     Rect rect;

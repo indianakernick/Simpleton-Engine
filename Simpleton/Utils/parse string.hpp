@@ -277,7 +277,8 @@ namespace Utils {
     ///size of 0
     std::string_view beginViewing() const;
     ///Modify a std::string_view to view a region of the string between the
-    ///call to beginViewing and the current position
+    ///call to beginViewing and the current position (not including the current
+    ///character)
     void endViewing(std::string_view &) const;
     
   private:

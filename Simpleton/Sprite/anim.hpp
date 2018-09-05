@@ -20,7 +20,7 @@ namespace Sprite {
     /// Initialize with sprite, number of frames and running state
     Anim(ID, ID, bool = true);
     /// Initialize with sprite, number of frames, delay and running state
-    Anim(ID, ID, ID = 1, bool = true);
+    Anim(ID, ID, ID, bool = true);
     
     /// Advances the animation forward by one frame if the animation is
     /// currently running.
@@ -43,6 +43,8 @@ namespace Sprite {
     void resume();
     /// Put the animation into a stopped state. Leave the frame number as it is
     void pause();
+    /// Toggle the running state. Leave the frame number as it is
+    void toggle();
     /// Is the animation currently in a running state?
     bool running() const;
     /// Is the animation currently in a stopped state?
@@ -66,8 +68,8 @@ namespace Sprite {
     /// firstSprite() + frame()
     ID sprite() const;
     /// Get the current sprite of the animation in the given animation group
-    template <typename T = ID>
-    ID sprite(T) const;
+    template <typename Group = ID>
+    ID sprite(Group) const;
     
     /// Get the current frame of the animaion
     ID frame() const;
