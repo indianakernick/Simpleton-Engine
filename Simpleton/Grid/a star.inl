@@ -46,9 +46,7 @@ std::vector<Grid::Pos> Grid::astar(
   std::vector<Node> queue;
   std::vector<Node> popped;
   
-  const Node endNode {end, end, 0, detail::distance(start, end)};
-  queue.push_back(endNode);
-  std::push_heap(queue.begin(), queue.end(), comp);
+  queue.push_back({end, end, 0, detail::distance(start, end)});
   
   do {
     if (queue.empty()) {
