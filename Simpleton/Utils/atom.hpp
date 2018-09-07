@@ -9,18 +9,32 @@
 #ifndef engine_utils_atom_hpp
 #define engine_utils_atom_hpp
 
-#include <array>
 #include <cstdint>
+#include <stdexcept>
 
 namespace Utils {
   using AtomInt = uint64_t;
   
-  template <size_t Bits>
   struct Atom {
-    static constexpr size_t bits = Bits;
+    static constexpr size_t bits = 5;
     static constexpr size_t digits = 64 / bits;
-    static constexpr AtomInt digit_mask = (1 << Bits) - 1;
-    using char_array = std::array<char, digits + 1>;
+    static constexpr AtomInt digit_mask = (1 << bits) - 1;
+    
+    struct char_array {
+      constexpr char_array()
+        : data{} {}
+      
+      constexpr char &operator[](const size_t index) noexcept {
+        return data[index];
+      }
+      
+      constexpr char operator[](const size_t index) const noexcept {
+        return data[index];
+      }
+      
+    private:
+      char data[digits + 1];
+    };
   
     constexpr explicit Atom(const AtomInt value)
       : value{value} {}
@@ -32,109 +46,89 @@ namespace Utils {
   private:
     AtomInt value;
   };
-  
-  using Atom5 = Atom<5>;
-  using Atom6 = Atom<6>;
 
   namespace detail {
     constexpr AtomInt no = ~AtomInt{};
     
-    template <size_t Bits>
-    struct Tables;
-    
-    template <>
-    struct Tables<5> {
-      static constexpr AtomInt to[128] {
-    //  32 special characters
-        0,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
-       no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
-    //     !  "  #  $  %  &  '  (  )  *  +  ,  -  .  /
-       no,no,no,27,no,no,no,no,no,no,no,no,no,no,28,29,
-    //  0  1  2  3  4  5  6  7  8  9  :  ;  <  =  >  ?
-       no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
-    //  @  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O
-       30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,
-    //  P  Q  R  S  T  U  V  W  X  Y  Z  [  \  ]  ^  _
-       16,17,18,19,20,21,22,23,24,25,26,no,no,no,no,31,
-    //  `  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o
-       no, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,
-    //  p  q  r  s  t  u  v  w  x  y  z  {  |  }  ~  DEL
-       16,17,18,19,20,21,22,23,24,25,26,no,no,no,no,no,
-      };
-      
-      static constexpr char from[(1 << 5) + 1] {"\0abcdefghijklmnopqrstuvwxyz#./@_"};
+    constexpr AtomInt to_atom[128] {
+  //  32 special characters
+      0,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
+     no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
+  //     !  "  #  $  %  &  '  (  )  *  +  ,  -  .  /
+     no,no,no,27,no,no,no,no,no,no,no,no,no,no,28,29,
+  //  0  1  2  3  4  5  6  7  8  9  :  ;  <  =  >  ?
+     no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
+  //  @  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O
+     30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,
+  //  P  Q  R  S  T  U  V  W  X  Y  Z  [  \  ]  ^  _
+     16,17,18,19,20,21,22,23,24,25,26,no,no,no,no,31,
+  //  `  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o
+     no, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,
+  //  p  q  r  s  t  u  v  w  x  y  z  {  |  }  ~  DEL
+     16,17,18,19,20,21,22,23,24,25,26,no,no,no,no,no,
     };
     
-    template <>
-    struct Tables<6> {
-      static constexpr AtomInt to[128] {
-    //  32 special characters
-        0,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
-       no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
-    //     !  "  #  $  %  &  '  (  )  *  +  ,  -  .  /
-       no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,
-    //  0  1  2  3  4  5  6  7  8  9  :  ;  <  =  >  ?
-       53,54,55,56,57,58,59,60,61,62,no,no,no,no,no,no,
-    //  @  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O
-       no, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,
-    //  P  Q  R  S  T  U  V  W  X  Y  Z  [  \  ]  ^  _
-       16,17,18,19,20,21,22,23,24,25,26,no,no,no,no,63,
-    //  `  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o
-       no,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,
-    //  p  q  r  s  t  u  v  w  x  y  z  {  |  }  ~  DEL
-       42,43,44,45,46,47,48,49,50,51,52,no,no,no,no,no,
-      };
-      static constexpr char from[(1 << 6) + 1] {"\0ABCDEFGHIJKLMnoPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"};
-    };
+    constexpr char from_atom[(1 << Atom::bits) + 1] {"\0abcdefghijklmnopqrstuvwxyz#./@_"};
   }
 
-  template <size_t Bits>
-  constexpr Atom<Bits> toAtom(const char *data, const size_t size) {
+  constexpr Atom toAtom(const char *data, const size_t size) {
     AtomInt set = 0;
-    if (size > Atom<Bits>::digits) {
-      throw "String too long";
+    if (size > Atom::digits) {
+      throw std::runtime_error("String too long");
     }
     for (AtomInt index = 0; index != size; ++index) {
       const size_t tableIndex = data[index];
-      const AtomInt code = detail::Tables<Bits>::to[tableIndex];
+      const AtomInt code = detail::to_atom[tableIndex];
       if (code == detail::no) {
-        throw "Invalid character in string";
+        throw std::runtime_error("Invalid character in string");
       }
-      set |= code << (index * Bits);
+      set |= code << (index * Atom::bits);
     }
-    return Atom<Bits>{set};
+    return Atom{set};
   }
 
-  template <size_t Bits>
-  constexpr typename Atom<Bits>::char_array fromAtom(const Atom<Bits> atom) {
-    typename Atom<Bits>::char_array array;
-    array.fill(0);
+  constexpr Atom::char_array fromAtom(const Atom atom) noexcept {
+    Atom::char_array array;
     AtomInt set = atom;
-    for (AtomInt index = 0; index != Atom<Bits>::digits; ++index) {
-      const AtomInt code = (set >> (index * Bits)) & Atom<Bits>::digit_mask;
-      array[index] = detail::Tables<Bits>::from[code];
+    for (AtomInt index = 0; index != Atom::digits; ++index) {
+      const AtomInt code = (set >> (index * Atom::bits)) & Atom::digit_mask;
+      array[index] = detail::from_atom[code];
     }
     return array;
   }
   
   namespace Literals {
-    constexpr Atom5 operator""_atom5(const char *data, const size_t size) noexcept {
-      return toAtom<5>(data, size);
+    constexpr Atom operator""_atom(const char *data, const size_t size) noexcept {
+      return toAtom(data, size);
     }
     
-    constexpr Atom6 operator""_atom6(const char *data, const size_t size) noexcept {
-      return toAtom<6>(data, size);
-    }
+    static_assert(""_atom == 0);
+    static_assert("a"_atom == 1);
+    static_assert("aa"_atom == 33);
+    static_assert("abcdefghijkl"_atom == 445092485129178177);
     
-    static_assert(""_atom5 == 0);
-    static_assert("A"_atom5 == 1);
-    static_assert("AA"_atom5 == 33);
-    static_assert("ABCDEFGHIJKL"_atom5 == 445092485129178177);
+    static_assert(fromAtom(""_atom)[0] == 0);
     
-    static_assert(""_atom6 == 0);
-    static_assert("A"_atom6 == 1);
-    static_assert("AA"_atom6 == 65);
-    static_assert("ABCDEFGHIJ"_atom6 == 182712931821039745);
+    static_assert(fromAtom("a"_atom)[0] == 'a');
+    static_assert(fromAtom("a"_atom)[1] == 0  );
+    
+    static_assert(fromAtom("aa"_atom)[0] == 'a');
+    static_assert(fromAtom("aa"_atom)[1] == 'a');
+    static_assert(fromAtom("aa"_atom)[2] == 0  );
+    
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 0] == 'a');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 1] == 'b');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 2] == 'c');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 3] == 'd');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 4] == 'e');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 5] == 'f');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 6] == 'g');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 7] == 'h');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 8] == 'i');
+    static_assert(fromAtom("abcdefghijkl"_atom)[ 9] == 'j');
+    static_assert(fromAtom("abcdefghijkl"_atom)[10] == 'k');
+    static_assert(fromAtom("abcdefghijkl"_atom)[11] == 'l');
+    static_assert(fromAtom("abcdefghijkl"_atom)[12] == 0  );
   }
 }
 
