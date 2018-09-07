@@ -30,6 +30,7 @@
 #include "../Simpleton/Utils/console color.hpp"
 #include "../Simpleton/Utils/type name.hpp"
 #include "../Simpleton/Utils/safe down cast.hpp"
+#include "../Simpleton/Utils/atom.hpp"
 #include "../Simpleton/Utils/multi dim container.hpp"
 #include "../Simpleton/Utils/member function.hpp"
 #include "../Simpleton/Utils/endian.hpp"

@@ -302,6 +302,7 @@
 		45F3DB861F1B4F750058D36B /* strong alias.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "strong alias.hpp"; sourceTree = "<group>"; };
 		45F4435A2137818200B28F05 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		45F4435B213BFA1E00B28F05 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		45F44362214226F400B28F05 /* atom.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = atom.hpp; sourceTree = "<group>"; };
 		45F623F4200C96A500AEB428 /* audio library.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio library.hpp"; sourceTree = "<group>"; };
 		45F623F5200C96A500AEB428 /* audio library.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "audio library.inl"; sourceTree = "<group>"; };
 		45F6242E200CB59900AEB428 /* music.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = music.hpp; sourceTree = "<group>"; };
@@ -629,6 +630,7 @@
 				454B2B0B2040C8C800D94D6A /* endian.hpp */,
 				453B288F20B03A1900F6E9E6 /* function alias.hpp */,
 				451586A720CFBFD300DD4F2E /* numeric iterators.hpp */,
+				45F44362214226F400B28F05 /* atom.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
