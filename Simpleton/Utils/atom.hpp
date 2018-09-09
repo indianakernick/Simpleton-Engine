@@ -21,13 +21,18 @@ namespace Utils {
     static constexpr AtomInt digit_mask = (1 << bits) - 1;
     
     struct char_array {
-      constexpr char_array()
+      constexpr explicit char_array()
         : data{} {}
       
+      constexpr const char *str() const noexcept {
+        return data;
+      }
+      static constexpr size_t size() noexcept {
+        return digits;
+      }
       constexpr char &operator[](const size_t index) noexcept {
         return data[index];
       }
-      
       constexpr char operator[](const size_t index) const noexcept {
         return data[index];
       }
