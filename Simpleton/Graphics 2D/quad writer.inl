@@ -131,7 +131,7 @@ void G2D::Section::rotTilePos(
 ) {
   assert(!quads.empty());
 
-  constexpr glm::vec2 ORIGIN_POS[9] = {
+  const glm::vec2 ORIGIN_POS[9] = {
     {0.5f, -0.5f}, {0.0f, -0.5f}, {-0.5f, -0.5f}, {-0.5f, 0.0f},
     {-0.5f, 0.5f}, {0.0f, 0.5f}, {0.5f, 0.5f}, {0.5f, 0.0f},
     {0.0f, 0.0f}
