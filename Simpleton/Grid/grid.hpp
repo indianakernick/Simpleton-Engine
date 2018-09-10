@@ -16,7 +16,7 @@
 
 namespace Grid {
   namespace detail {
-    template <typename Derived>
+    template <typename Derived, typename Tile>
     class GridBase {
     private:
       Derived &that() {
@@ -25,8 +25,6 @@ namespace Grid {
       const Derived &that() const {
       	return *static_cast<const Derived *>(this);
       }
-
-      using Tile = typename Derived::Tile;
 
       void checkRange(const Pos pos) const {
         if (that().outOfRange(pos)) {
@@ -111,9 +109,9 @@ namespace Grid {
   }
 
   template <typename Tile_, Coord Width_ = 0, Coord Height_ = 0>
-  class Grid final : public detail::GridBase<Grid<Tile_, Width_, Height_>> {
+  class Grid final : public detail::GridBase<Grid<Tile_, Width_, Height_>, Tile_> {
   public:
-    friend detail::GridBase<Grid<Tile_, Width_, Height_>>;
+    friend detail::GridBase<Grid<Tile_, Width_, Height_>, Tile_>;
   
     using Tile = Tile_;
     static constexpr Coord Width = Width_;
@@ -166,9 +164,9 @@ namespace Grid {
   };
 
   template <typename Tile_>
-  class Grid<Tile_, 0, 0> final : public detail::GridBase<Grid<Tile_, 0, 0>> {
+  class Grid<Tile_, 0, 0> final : public detail::GridBase<Grid<Tile_, 0, 0>, Tile_> {
   public:
-    friend detail::GridBase<Grid<Tile_, 0, 0>>;
+    friend detail::GridBase<Grid<Tile_, 0, 0>, Tile_>;
   
     using Tile = Tile_;
     using Tiles = std::vector<Tile>;
