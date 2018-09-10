@@ -43,7 +43,6 @@
 #include "../Simpleton/Utils/bool enable.hpp"
 #include "../Simpleton/Utils/null check.hpp"
 #include "../Simpleton/Utils/op stack.hpp"
-#include "../Simpleton/Utils/terminal color.hpp"
 #include "../Simpleton/Utils/int least.hpp"
 #include "../Simpleton/Utils/profiler.hpp"
 #include "../Simpleton/ECS/prototype.hpp"

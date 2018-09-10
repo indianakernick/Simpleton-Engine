@@ -256,8 +256,6 @@
 		45B5E7D31EF8A93900A6A3E2 /* bool enable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "bool enable.hpp"; sourceTree = "<group>"; };
 		45B5E7D51EF8A93900A6A3E2 /* safe down cast.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "safe down cast.hpp"; sourceTree = "<group>"; };
 		45B5E7D71EF8A93900A6A3E2 /* type name.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "type name.hpp"; sourceTree = "<group>"; };
-		45B5E7D91EF8A93900A6A3E2 /* terminal color.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "terminal color.inl"; sourceTree = "<group>"; };
-		45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "terminal color.hpp"; sourceTree = "<group>"; };
 		45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dispatcher.hpp; sourceTree = "<group>"; };
 		45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "null check.hpp"; sourceTree = "<group>"; };
 		45B5E7DE1EF8A93900A6A3E2 /* function traits.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "function traits.hpp"; sourceTree = "<group>"; };
@@ -607,8 +605,6 @@
 				45B5E7D31EF8A93900A6A3E2 /* bool enable.hpp */,
 				45B5E7D51EF8A93900A6A3E2 /* safe down cast.hpp */,
 				45B5E7D71EF8A93900A6A3E2 /* type name.hpp */,
-				45B5E7D91EF8A93900A6A3E2 /* terminal color.inl */,
-				45B5E7DA1EF8A93900A6A3E2 /* terminal color.hpp */,
 				45EE9C2120DF9D9000CC3289 /* console color.hpp */,
 				45B5E7DB1EF8A93900A6A3E2 /* dispatcher.hpp */,
 				45B5E7DD1EF8A93900A6A3E2 /* null check.hpp */,
