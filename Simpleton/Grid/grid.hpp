@@ -120,8 +120,8 @@ namespace Grid {
     static constexpr Coord Height = Height_;
     using Tiles = std::array<Tile, Width * Height>;
     
-    static_assert(Width > 0);
-    static_assert(Height > 0);
+    static_assert(Width > 0, "Width must be greater than 0");
+    static_assert(Height > 0, "Height must be greater than 0");
 
     Grid(Grid &&) = default;
     Grid &operator=(Grid &&) = default;

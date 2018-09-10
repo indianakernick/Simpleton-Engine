@@ -15,7 +15,7 @@ namespace Utils {
   template <typename Number, Number Step = 1>
   class AddingIterator {
   public:
-    static_assert(Step != 0);
+    static_assert(Step != 0, "Step cannot be zero");
   
     using difference_type = Number;
     using value_type = Number;
