@@ -6,47 +6,47 @@
 //  Copyright © 2018 Indi Kernick. All rights reserved.
 //
 
-namespace Grid {
-  template <template <Coord, Coord> typename... Trans>
-  struct Combine;
+#define TRANSFORM(...)                                                          \
+  for (const Coord y : in.vert()) {                                             \
+    for (const Coord x : in.hori()) {                                           \
+      __VA_ARGS__;                                                              \
+    }                                                                           \
+  }
 
-  template <
-    template <Coord, Coord> typename First,
-    template <Coord, Coord> typename Second
-  >
-  struct CombinePair {
-    template <Coord Width, Coord Height>
-    struct type {
-    private:
-      using SizedFirst = First<Width, Height>;
-      using SizedSecond = Second<SizedFirst::new_width, SizedFirst::new_height>;
-      
-    public:
-      static constexpr Coord new_width = SizedSecond::new_width;
-      static constexpr Coord new_height = SizedSecond::new_height;
-      static constexpr Pos apply(const Pos pos) {
-        return SizedSecond::apply(SizedFirst::apply(pos));
-      }
-    };
-  };
-  
-  template <template <Coord, Coord> typename Trans>
-  struct Combine<Trans> {
-    template <Coord Width, Coord Height>
-    struct type : Trans<Width, Height> {};
-  };
-  
-  template <
-    template <Coord, Coord> typename First,
-    template <Coord, Coord> typename Second,
-    template <Coord, Coord> typename... Rest
-  >
-  struct Combine<First, Second, Rest...> {
-  private:
-    template <Coord Width, Coord Height>
-    struct Pair : CombinePair<First, Second>::template type<Width, Height> {};
-  public:
-    template <Coord Width, Coord Height>
-    struct type : Combine<Pair, Rest...>::template type<Width, Height> {};
-  };
+template <typename Tile, Grid::Coord Width, Grid::Coord Height>
+Grid::Grid<Tile, Width, Height> Grid::flip_x(const Grid<Tile, Width, Height> &in) {
+  Grid<Tile, Width, Height> out;
+  TRANSFORM(out(Width - x - 1, y) = in(x, y))
+  return out;
+}
+
+template <typename Tile, Grid::Coord Width, Grid::Coord Height>
+Grid::Grid<Tile, Width, Height> Grid::flip_y(const Grid<Tile, Width, Height> &in) {
+  Grid<Tile, Width, Height> out;
+  TRANSFORM(out(x, Height - y - 1) = in(x, y))
+  return out;
+}
+
+template <typename Tile, Grid::Coord Width, Grid::Coord Height>
+Grid::Grid<Tile, Height, Width> Grid::transpose(const Grid<Tile, Width, Height> &in) {
+  Grid<Tile, Height, Width> out;
+  TRANSFORM(out(y, x) = in(x, y))
+  return out;
+}
+
+#undef TRANSFORM
+
+template <typename Tile, Grid::Coord Width, Grid::Coord Height>
+Grid::Grid<Tile, Width, Height> Grid::flip_xy(const Grid<Tile, Width, Height> &in) {
+  return flip_x(flip_y(in));
+}
+
+template <typename Tile, Grid::Coord Width, Grid::Coord Height>
+Grid::Grid<Tile, Height, Width> Grid::rot_x2y(const Grid<Tile, Width, Height> &in) {
+  return transpose(flip_x(in));
+}
+
+template <typename Tile, Grid::Coord Width, Grid::Coord Height>
+Grid::Grid<Tile, Height, Width> Grid::rot_y2x(const Grid<Tile, Width, Height> &in) {
+  return tranpose(flip_y(in));
 }
