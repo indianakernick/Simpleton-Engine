@@ -120,12 +120,11 @@ namespace Grid {
     
     static_assert(Width > 0, "Width must be greater than 0");
     static_assert(Height > 0, "Height must be greater than 0");
-
-    Grid(Grid &&) = default;
-    Grid &operator=(Grid &&) = default;
     
     Grid() = default;
-    // explicit Grid(const Tile &tile)
+    explicit Grid(const Tile &tile) {
+      mTiles.fill(tile);
+    }
 
     void fill(const Tile &tile) {
       mTiles.fill(tile);
@@ -170,9 +169,6 @@ namespace Grid {
   
     using Tile = Tile_;
     using Tiles = std::vector<Tile>;
-  
-    Grid(Grid &&) = default;
-    Grid &operator=(Grid &&) = default;
   
     Grid()
       : mSize(0, 0) {}
