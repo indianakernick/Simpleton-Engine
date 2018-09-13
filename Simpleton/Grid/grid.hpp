@@ -113,7 +113,7 @@ namespace Grid {
   template <typename Tile_, Coord Width_ = runtime, Coord Height_ = runtime>
   class Grid final : public detail::GridBase<Grid<Tile_, Width_, Height_>, Tile_> {
   public:
-    friend detail::GridBase<Grid<Tile_, Width_, Height_>, Tile_>;
+    friend detail::GridBase<Grid, Tile_>;
   
     using Tile = Tile_;
     static constexpr Coord Width = Width_;
@@ -167,7 +167,7 @@ namespace Grid {
   template <typename Tile_>
   class Grid<Tile_, runtime, runtime> final : public detail::GridBase<Grid<Tile_, runtime, runtime>, Tile_> {
   public:
-    friend detail::GridBase<Grid<Tile_, runtime, runtime>, Tile_>;
+    friend detail::GridBase<Grid, Tile_>;
   
     using Tile = Tile_;
     using Tiles = std::vector<Tile>;
