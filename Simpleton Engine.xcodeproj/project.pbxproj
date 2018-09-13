@@ -88,6 +88,8 @@
 		452023B5214A39FF006174DB /* transform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		452023B6214A3A00006174DB /* transform.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = transform.inl; sourceTree = "<group>"; };
 		452023B7214A6798006174DB /* smart const ref.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "smart const ref.hpp"; sourceTree = "<group>"; };
+		452023B8214A927E006174DB /* blit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blit.hpp; sourceTree = "<group>"; };
+		452023B9214A927E006174DB /* blit.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = blit.inl; sourceTree = "<group>"; };
 		4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "static char buffer.hpp"; sourceTree = "<group>"; };
 		4526A34A20A99EC500E4F542 /* one path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "one path.hpp"; sourceTree = "<group>"; };
 		4526A34B20A99EC500E4F542 /* one path.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "one path.inl"; sourceTree = "<group>"; };
@@ -778,6 +780,8 @@
 				451586A920D1102600DD4F2E /* morton.hpp */,
 				452023B6214A3A00006174DB /* transform.inl */,
 				452023B5214A39FF006174DB /* transform.hpp */,
+				452023B9214A927E006174DB /* blit.inl */,
+				452023B8214A927E006174DB /* blit.hpp */,
 			);
 			path = Grid;
 			sourceTree = "<group>";

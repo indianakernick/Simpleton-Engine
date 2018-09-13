@@ -161,4 +161,5 @@
 #include "../Simpleton/Grid/pos.hpp"
 #include "../Simpleton/Grid/dir pair.hpp"
 #include "../Simpleton/Grid/morton.hpp"
+#include "../Simpleton/Grid/blit.hpp"
 #include "../Simpleton/Grid/one path.hpp"
