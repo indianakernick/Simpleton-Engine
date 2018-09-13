@@ -22,13 +22,13 @@ namespace Grid {
   Grid<Tile, Height, Width> transpose(const Grid<Tile, Width, Height> &);
   
   template <typename Tile, Coord Width, Coord Height>
-  Grid<Tile, Width, Height> flip_xy(const Grid<Tile, Width, Height> &);
+  auto flip_xy(const Grid<Tile, Width, Height> &);
   
   template <typename Tile, Coord Width, Coord Height>
-  Grid<Tile, Height, Width> rot_x2y(const Grid<Tile, Width, Height> &);
+  auto rot_x2y(const Grid<Tile, Width, Height> &);
   
   template <typename Tile, Coord Width, Coord Height>
-  Grid<Tile, Height, Width> rot_y2x(const Grid<Tile, Width, Height> &);
+  auto rot_y2x(const Grid<Tile, Width, Height> &);
 }
 
 #include "transform.inl"

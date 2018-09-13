@@ -16,14 +16,14 @@
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
 Grid::Grid<Tile, Width, Height> Grid::flip_x(const Grid<Tile, Width, Height> &in) {
   Grid<Tile, Width, Height> out;
-  TRANSFORM(out(Width - x - 1, y) = in(x, y))
+  TRANSFORM(out(in.width() - x - 1, y) = in(x, y))
   return out;
 }
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
 Grid::Grid<Tile, Width, Height> Grid::flip_y(const Grid<Tile, Width, Height> &in) {
   Grid<Tile, Width, Height> out;
-  TRANSFORM(out(x, Height - y - 1) = in(x, y))
+  TRANSFORM(out(x, in.height() - y - 1) = in(x, y))
   return out;
 }
 
@@ -37,16 +37,16 @@ Grid::Grid<Tile, Height, Width> Grid::transpose(const Grid<Tile, Width, Height> 
 #undef TRANSFORM
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
-Grid::Grid<Tile, Width, Height> Grid::flip_xy(const Grid<Tile, Width, Height> &in) {
+auto Grid::flip_xy(const Grid<Tile, Width, Height> &in) {
   return flip_x(flip_y(in));
 }
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
-Grid::Grid<Tile, Height, Width> Grid::rot_x2y(const Grid<Tile, Width, Height> &in) {
+auto Grid::rot_x2y(const Grid<Tile, Width, Height> &in) {
   return transpose(flip_x(in));
 }
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
-Grid::Grid<Tile, Height, Width> Grid::rot_y2x(const Grid<Tile, Width, Height> &in) {
+auto Grid::rot_y2x(const Grid<Tile, Width, Height> &in) {
   return tranpose(flip_y(in));
 }
