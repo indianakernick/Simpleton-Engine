@@ -15,21 +15,21 @@
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
 Grid::Grid<Tile, Width, Height> Grid::flip_x(const Grid<Tile, Width, Height> &in) {
-  Grid<Tile, Width, Height> out;
+  Grid<Tile, Width, Height> out{in.size()};
   TRANSFORM(out(in.width() - x - 1, y) = in(x, y))
   return out;
 }
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
 Grid::Grid<Tile, Width, Height> Grid::flip_y(const Grid<Tile, Width, Height> &in) {
-  Grid<Tile, Width, Height> out;
+  Grid<Tile, Width, Height> out{in.size()};
   TRANSFORM(out(x, in.height() - y - 1) = in(x, y))
   return out;
 }
 
 template <typename Tile, Grid::Coord Width, Grid::Coord Height>
 Grid::Grid<Tile, Height, Width> Grid::transpose(const Grid<Tile, Width, Height> &in) {
-  Grid<Tile, Height, Width> out;
+  Grid<Tile, Height, Width> out{{in.height(), in.width()}};
   TRANSFORM(out(y, x) = in(x, y))
   return out;
 }

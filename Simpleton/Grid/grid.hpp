@@ -124,6 +124,15 @@ namespace Grid {
     static_assert(Height > 0, "Height must be greater than 0");
     
     Grid() = default;
+    // So that dynamic and static grids have compatible interfaces
+    explicit Grid(const Pos size) {
+      assert(size.x == Width);
+      assert(size.y == Height);
+    }
+    Grid(const Pos size, const Tile &tile)
+      : Grid{size} {
+      mTiles.fill(tile);
+    }
     explicit Grid(const Tile &tile) {
       mTiles.fill(tile);
     }
