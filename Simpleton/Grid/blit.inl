@@ -35,8 +35,8 @@ void Grid::blit(
   const Coord loY = smin(pos.y, dst.height());
   const Coord hiX = smin(loX + src.width(), dst.width());
   const Coord hiY = smin(loY + src.height(), dst.height());
-  for (Coord y = smax(loY, 0); y != hiY; ++y) {
-    for (Coord x = smax(loX, 0); x != hiX; ++x) {
+  for (Coord y = smax(loY, 0); y != smax(hiY, 0); ++y) {
+    for (Coord x = smax(loX, 0); x != smax(hiX, 0); ++x) {
       dst(x, y) = src(x - pos.x, y - pos.y);
     }
   }
