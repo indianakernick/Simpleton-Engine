@@ -18,11 +18,13 @@ void Grid::blit(
   const Grid<Tile, SrcWidth, SrcHeight> &src,
   const Pos pos
 ) {
-  const Coord width = std::min(src.width(), dst.width() - pos.x);
-  const Coord height = std::min(src.height(), dst.height() - pos.y);
-  for (const Coord y : Utils::range(height)) {
-    for (const Coord x : Utils::range(width)) {
-      dst(pos.x + x, pos.y + y) = src(x, y);
+  const Coord loX = std::min(pos.x, dst.width());
+  const Coord loY = std::min(pos.y, dst.height());
+  const Coord hiX = std::min(loX + src.width(), dst.width());
+  const Coord hiY = std::min(loY + src.height(), dst.height());
+  for (Coord y = loY; y != hiY; ++y) {
+    for (Coord x = loX; x != hiX; ++x) {
+      dst(x, y) = src(x - pos.x, y - pos.y);
     }
   }
 }
