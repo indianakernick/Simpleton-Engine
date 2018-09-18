@@ -12,11 +12,12 @@
 #include "grid.hpp"
 
 namespace Grid {
-  template <typename Tile, Coord DstWidth, Coord DstHeight, Coord SrcWidth, Coord SrcHeight>
+  template <typename Tile, Coord DstWidth, Coord DstHeight, Coord SrcWidth, Coord SrcHeight, typename Func>
   void blit(
     Grid<Tile, DstWidth, DstHeight> &,
     const Grid<Tile, SrcWidth, SrcHeight> &,
-    Pos = {0, 0}
+    Pos = {0, 0},
+    Func && = [] (Tile &dst, const Tile &src) {dst = src;}
   );
 }
 
