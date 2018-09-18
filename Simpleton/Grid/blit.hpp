@@ -16,8 +16,15 @@ namespace Grid {
   void blit(
     Grid<Tile, DstWidth, DstHeight> &,
     const Grid<Tile, SrcWidth, SrcHeight> &,
-    Pos = {0, 0},
-    Func && = [] (Tile &dst, const Tile &src) {dst = src;}
+    Func &&,
+    Pos = {0, 0}
+  );
+  
+  template <typename Tile, Coord DstWidth, Coord DstHeight, Coord SrcWidth, Coord SrcHeight>
+  void blit(
+    Grid<Tile, DstWidth, DstHeight> &,
+    const Grid<Tile, SrcWidth, SrcHeight> &,
+    Pos = {0, 0}
   );
 }
 

@@ -19,8 +19,8 @@ template <
 void Grid::blit(
   Grid<Tile, DstWidth, DstHeight> &dst,
   const Grid<Tile, SrcWidth, SrcHeight> &src,
-  const Pos pos,
-  Func &&copy
+  Func &&copy,
+  const Pos pos
 ) {
   // I realise now that Coord should be signed
   // I think changing it will break stuff
@@ -42,4 +42,21 @@ void Grid::blit(
       copy(dst(x, y), src(x - pos.x, y - pos.y));
     }
   }
+}
+
+template <
+  typename Tile,
+  Grid::Coord DstWidth,
+  Grid::Coord DstHeight,
+  Grid::Coord SrcWidth,
+  Grid::Coord SrcHeight
+>
+void Grid::blit(
+  Grid<Tile, DstWidth, DstHeight> &dst,
+  const Grid<Tile, SrcWidth, SrcHeight> &src,
+  const Pos pos
+) {
+  blit(dst, src, [] (Tile &dstTile, const Tile &srcTile) {
+    dstTile = srcTile;
+  }, pos);
 }
