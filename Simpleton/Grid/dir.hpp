@@ -230,7 +230,7 @@ namespace Grid {
     static_assert(!sameAxis(plusx, plusy), "PlusX and PlusY must be on different axes");
   
     ///Convert a direction to a 2D unit vector
-    static constexpr glm::tvec2<Number> conv(const Dir dir, const Number dist = Number{1}) {
+    constexpr glm::tvec2<Number> operator()(const Dir dir, const Number dist = Number{1}) const {
       constexpr Number zero{0};
       
       switch (dir) {
@@ -251,14 +251,12 @@ namespace Grid {
     }
   };
   
-  // Grid::ToVec<int>::conv(Grid::Dir::UP, 2)
-  // Grid::toVec(Grid::Dir::UP, 2)
+  // Grid::ToVec<int>{}(Grid::Dir::up, 2)
+  // Grid::toVec(Grid::Dir::up, 2)
   
-  ///Helper function for converting directions to 2D unit vectors
+  ///Helper for converting directions to 2D unit vectors
   template <typename Number>
-  constexpr glm::tvec2<Number> toVec(const Dir dir, const Number dist = Number{1}) {
-    return ToVec<Number>::conv(dir, dist);
-  }
+  constexpr ToVec<Number> toVec {};
   
   ///Configuration template for converting a 2D unit vector to a direction
   template <typename Number_, Dir PlusX = Dir::right, Dir PlusY = Dir::up, bool Exact = true>
@@ -271,7 +269,7 @@ namespace Grid {
     static_assert(!sameAxis(plusx, plusy), "PlusX and PlusY must be on different axes");
     
     ///Convert a 2D unit vector to a direction
-    static constexpr Dir conv(const glm::tvec2<Number> vec, const Number dist = Number{1}) {
+    constexpr Dir operator()(const glm::tvec2<Number> vec, const Number dist = Number{1}) const {
       using Vec = glm::tvec2<Number>;
       constexpr Number zero{0};
       
@@ -312,20 +310,16 @@ namespace Grid {
     }
   };
   
-  // Grid::FromVec<int>::conv(vec, 1)
+  // Grid::FromVec<int>{}(vec, 1)
   // Grid::fromVec(vec, 1)
   
-  ///Helper function for converting 2D unit vectors to directions
+  ///Helper for converting 2D unit vectors to directions
   template <typename Number>
-  constexpr Dir fromVec(const glm::tvec2<Number> vec, const Number dist = Number{1}) {
-    return FromVec<Number>::conv(vec, dist);
-  }
+  constexpr FromVec<Number> fromVec {};
   
-  ///Helper function for converting inexact 2D unit vectors to directions
+  ///Helper for converting inexact 2D unit vectors to directions
   template <typename Number>
-  constexpr Dir fromVarVec(const glm::tvec2<Number> vec, const Number dist = Number{1}) {
-    return FromVec<Number, Dir::right, Dir::up, false>::conv(vec, dist);
-  }
+  constexpr FromVec<Number, Dir::right, Dir::up, false> fromVarVec {};
   
   ///Convert a direction to a number
   template <typename Number>
