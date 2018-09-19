@@ -95,6 +95,7 @@
 #include "../Simpleton/Time/freq limiter.hpp"
 #include "../Simpleton/Time/benchmark.hpp"
 #include "../Simpleton/Time/main loop.hpp"
+#include "../Simpleton/Time/synchronizer.hpp"
 #include "../Simpleton/Time/frame.hpp"
 #include "../Simpleton/SDL/surface.hpp"
 #include "../Simpleton/SDL/paths.hpp"

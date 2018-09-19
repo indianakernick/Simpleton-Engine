@@ -91,6 +91,7 @@
 		452023B8214A927E006174DB /* blit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blit.hpp; sourceTree = "<group>"; };
 		452023B9214A927E006174DB /* blit.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = blit.inl; sourceTree = "<group>"; };
 		452023BA214F6682006174DB /* enum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = enum.hpp; sourceTree = "<group>"; };
+		452023BB21523D2B006174DB /* synchronizer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = synchronizer.hpp; sourceTree = "<group>"; };
 		4520AD6C1FE9D68400ECE3C1 /* static char buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "static char buffer.hpp"; sourceTree = "<group>"; };
 		4526A34A20A99EC500E4F542 /* one path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "one path.hpp"; sourceTree = "<group>"; };
 		4526A34B20A99EC500E4F542 /* one path.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "one path.inl"; sourceTree = "<group>"; };
@@ -693,6 +694,7 @@
 				4509F8E31F5BB83B00927A19 /* anim.hpp */,
 				450ED62E1FB93B43008F2902 /* progress speed anim.hpp */,
 				451586AC20D1187500DD4F2E /* benchmark.hpp */,
+				452023BB21523D2B006174DB /* synchronizer.hpp */,
 			);
 			path = Time;
 			sourceTree = "<group>";
