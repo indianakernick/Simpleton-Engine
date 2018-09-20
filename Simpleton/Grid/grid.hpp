@@ -155,7 +155,7 @@ namespace Grid {
       return Height;
     }
     static constexpr size_t area() {
-      return mTiles.size();
+      return static_cast<size_t>(Width * Height);
     }
     
     static bool outOfRange(const Pos pos) {
