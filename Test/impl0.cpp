@@ -160,6 +160,7 @@
 #include "../Simpleton/Grid/transform.hpp"
 #include "../Simpleton/Grid/grid.hpp"
 #include "../Simpleton/Grid/a star.hpp"
+#include "../Simpleton/Grid/distance.hpp"
 #include "../Simpleton/Grid/dir bits.hpp"
 #include "../Simpleton/Grid/pos.hpp"
 #include "../Simpleton/Grid/dir pair.hpp"
