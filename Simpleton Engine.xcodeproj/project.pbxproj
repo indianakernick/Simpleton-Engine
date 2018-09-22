@@ -312,6 +312,8 @@
 		45F623F5200C96A500AEB428 /* audio library.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "audio library.inl"; sourceTree = "<group>"; };
 		45F6242E200CB59900AEB428 /* music.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = music.hpp; sourceTree = "<group>"; };
 		45F6242F200CB59900AEB428 /* music.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = music.inl; sourceTree = "<group>"; };
+		45F678992155F80000A73D88 /* quad writer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "quad writer.hpp"; sourceTree = "<group>"; };
+		45F6789A2155F80000A73D88 /* quad writer.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "quad writer.inl"; sourceTree = "<group>"; };
 		45FA99411F3695E500F8C639 /* hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
 		45FA99481F36D6D400F8C639 /* simple anim.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "simple anim.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -730,6 +732,8 @@
 				4512454820B5654B0025A651 /* mouse pos.hpp */,
 				450E925A20B7F5B3003683B6 /* system cursors.inl */,
 				450E925920B7F5B3003683B6 /* system cursors.hpp */,
+				45F6789A2155F80000A73D88 /* quad writer.inl */,
+				45F678992155F80000A73D88 /* quad writer.hpp */,
 			);
 			path = SDL;
 			sourceTree = "<group>";
