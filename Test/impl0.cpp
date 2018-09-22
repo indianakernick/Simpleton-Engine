@@ -115,7 +115,6 @@
 #include "../Simpleton/SDL/font library.hpp"
 #include "../Simpleton/SDL/chunk.hpp"
 #include "../Simpleton/Sprite/json.hpp"
-#include "../Simpleton/Sprite/sdl.hpp"
 #include "../Simpleton/Sprite/sheet.hpp"
 #include "../Simpleton/Sprite/anim.hpp"
 #include "../Simpleton/Sprite/id.hpp"
