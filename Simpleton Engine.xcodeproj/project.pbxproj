@@ -130,7 +130,6 @@
 		454B2AFF203E930800D94D6A /* blit surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "blit surface.hpp"; sourceTree = "<group>"; };
 		454B2B00203E930900D94D6A /* surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = surface.inl; sourceTree = "<group>"; };
 		454B2B01203E930900D94D6A /* write surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "write surface.hpp"; sourceTree = "<group>"; };
-		454B2B02203E930900D94D6A /* realloc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = realloc.hpp; sourceTree = "<group>"; };
 		454B2B03203E930900D94D6A /* blit surface.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "blit surface.inl"; sourceTree = "<group>"; };
 		454B2B04203E930900D94D6A /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
 		454B2B07203E994D00D94D6A /* sheet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sheet.hpp; sourceTree = "<group>"; };
@@ -372,7 +371,6 @@
 		454B2AF9203E92D800D94D6A /* Surface */ = {
 			isa = PBXGroup;
 			children = (
-				454B2B02203E930900D94D6A /* realloc.hpp */,
 				454B2AFC203E930800D94D6A /* stb_image.h */,
 				454B2B04203E930900D94D6A /* stb_image_write.h */,
 				454B2B00203E930900D94D6A /* surface.inl */,
