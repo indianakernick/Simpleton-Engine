@@ -70,29 +70,29 @@ This an orthogonal direction enum that is unbelevibly useful in tile based games
 
 ```C++
 enum class Dir : uint8_t {
-  UP,
-  RIGHT,
-  DOWN,
-  LEFT
+  up,
+  right,
+  down,
+  left
 };
 ```
 
-But its so much more! I won't mention everything it has to offer here. There's `Grid::Dir::NONE` for representing a "null" direction. There's `Grid::opposite` to get the opposite direction. This function (and many others) use bit twiddling under the hood for maximum speed. Converting a direction to a `glm::vec` is quite handy. You can configure the conversion using template parameters:
+But its so much more! I won't mention everything it has to offer here. There's `Grid::Dir::none` for representing a "null" direction. There's `Grid::opposite` to get the opposite direction. This function (and many others) use bit twiddling under the hood for maximum speed. Converting a direction to a `glm::vec` is quite handy. You can configure the conversion using template parameters:
 
 ```
-using MyToVec = Grid::ToVec<float, Grid::Dir::RIGHT, Grid::Dir::DOWN>;
+constexpr Grid::ToVec<float, Grid::Dir::right, Grid::Dir::down> myToVec {};
 
 // later...
 
-const glm::vec2 vec = MyToVec::conv(dir);
+const glm::vec2 vec = myToVec(dir);
 ```
 
 The first template parameter is the type of the coordinates in the vector, the second template parameter is the direction of positive-x and the third template parameter is the direction of positive-y.
 
-One more thing I will mention is `Grid::DIR_RANGE`. This is a range that allows you to iterate the four directions in a range-based for loop. This feature is heavily used in the systems of __The Machine__. Here's a snippet from the input system in __The Machine__
+One more thing I will mention is `Grid::dir_range`. This is a range that allows you to iterate the four directions in a range-based for loop. This feature is heavily used in the systems of __The Machine__. Here's a snippet from the input system in __The Machine__
 
 ```C++
-for (const Grid::Dir dir : Grid::DIR_RANGE) {
+for (const Grid::Dir dir : Grid::dir_range) {
   if (isEnabled(states.dirs[static_cast<size_t>(dir)])) {
     return setDesiredDir(registry, dir);
   }
@@ -104,13 +104,13 @@ for (const Grid::Dir dir : Grid::DIR_RANGE) {
 This is a bitset with one bit for each direction. This (as well as Dir) is heavily used in the game logic of __The Machine__. There's lots of bit twiddling under the hood for maximum speed! It does all that you would expect a bitset to do. Here's an example:
 
 ```C++
-Grid::DirBits dirs = Grid::DirBits::RIGHT_LEFT;
-Grid::test(dirs, Grid::Dir::UP); // false
-Grid::test(dirs, Grid::Dir::LEFT); // true
-Grid::set(dirs, Grid::Dir::DOWN);
-Grid::reset(dirs, Grid::Dir::RIGHT);
-Grid::test(dirs, Grid::Dir::DOWN); // true
-Grid::test(dirs, Grid::Dir::RIGHT); // false
+Grid::DirBits dirs = Grid::DirBits::right_left;
+Grid::test(dirs, Grid::Dir::up); // false
+Grid::test(dirs, Grid::Dir::left); // true
+Grid::set(dirs, Grid::Dir::down);
+Grid::reset(dirs, Grid::Dir::right);
+Grid::test(dirs, Grid::Dir::down); // true
+Grid::test(dirs, Grid::Dir::right); // false
 ```
 
 ### [Camera 2D](https://github.com/Kerndog73/Simpleton-Engine/blob/master/Simpleton/Camera%202D)
@@ -367,7 +367,7 @@ Sprite::Anim walk{sheet.getIDfromName("walk 0 0"), 4};
 // now we need to select the group. This is done by doing 
 // sprite() + group * frames
 // or...
-Sprite::ID sprite = walk.sprite(Grid::Dir::DOWN);
+Sprite::ID sprite = walk.sprite(Grid::Dir::down);
 // equivalent to...
 Sprite::ID sprite = walk.sprite() + 2 * 4; 
 ```
