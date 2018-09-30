@@ -79,7 +79,7 @@ enum class Dir : uint8_t {
 
 But its so much more! I won't mention everything it has to offer here. There's `Grid::Dir::none` for representing a "null" direction. There's `Grid::opposite` to get the opposite direction. This function (and many others) use bit twiddling under the hood for maximum speed. Converting a direction to a `glm::vec` is quite handy. You can configure the conversion using template parameters:
 
-```
+```C++
 constexpr Grid::ToVec<float, Grid::Dir::right, Grid::Dir::down> myToVec {};
 
 // later...
