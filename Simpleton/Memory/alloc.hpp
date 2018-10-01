@@ -15,31 +15,28 @@
 
 namespace Memory {
   /// Allocate memory
-  inline void *alloc(const size_t bytes) {
-    return operator new(
-      bytes, std::align_val_t{alignof(std::max_align_t)}
-    );
+  template <typename Type = void>
+  Type *alloc(const size_t bytes, const size_t align = alignof(std::max_align_t)) {
+    return static_cast<Type *>(operator new(
+      bytes, std::align_val_t{align}
+    ));
   }
 
   /// Allocate uninitialized bytes
   inline std::byte *allocBytes(const size_t bytes) {
-    return static_cast<std::byte *>(alloc(bytes));
+    return alloc<std::byte>(bytes);
   }
   
   /// Allocate uninitialized object
   template <typename Object>
   Object *allocObj() {
-    return static_cast<Object *>(operator new(
-      sizeof(Object), std::align_val_t{alignof(Object)}
-    ));
+    return alloc<Object>(sizeof(Object), alignof(Object));
   }
   
   /// Allocate uninitialized array of objects
   template <typename Object>
   Object *allocArr(const size_t count) {
-    return static_cast<Object *>(operator new(
-      sizeof(Object) * count, std::align_val_t{alignof(Object)}
-    ));
+    return alloc<Object>(count * sizeof(Object), alignof(Object));
   }
 
   /// Deallocate memory
@@ -48,8 +45,9 @@ namespace Memory {
   }
   
   /// Reallocate memory
-  inline void *realloc(void *const ptr, const size_t oldSize, const size_t newSize) {
-    void *const newPtr = alloc(newSize);
+  template <typename Type = void>
+  Type *realloc(Type *const ptr, const size_t oldSize, const size_t newSize) {
+    Type *const newPtr = alloc<Type>(newSize);
     std::memcpy(newPtr, ptr, oldSize < newSize ? oldSize : newSize);
     dealloc(ptr);
     return newPtr;
