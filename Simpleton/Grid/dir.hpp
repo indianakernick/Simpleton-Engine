@@ -230,7 +230,7 @@ namespace Grid {
     static_assert(!sameAxis(plusx, plusy), "PlusX and PlusY must be on different axes");
   
     ///Convert a direction to a 2D unit vector
-    constexpr glm::tvec2<Number> operator()(const Dir dir, const Number dist = Number{1}) const {
+    glm::tvec2<Number> operator()(const Dir dir, const Number dist = Number{1}) const {
       constexpr Number zero{0};
       
       switch (dir) {

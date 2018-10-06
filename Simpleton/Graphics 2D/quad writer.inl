@@ -136,7 +136,7 @@ void G2D::Section::rotTilePos(
     {-0.5f, 0.5f}, {0.0f, 0.5f}, {0.5f, 0.5f}, {0.5f, 0.0f},
     {0.0f, 0.0f}
   };
-  constexpr glm::vec2 originPos = ORIGIN_POS[static_cast<size_t>(ORIGIN)];
+  const glm::vec2 originPos = ORIGIN_POS[static_cast<size_t>(ORIGIN)];
   
   const glm::vec2 origin = originPos * size;
   const float c = std::cos(angle);
