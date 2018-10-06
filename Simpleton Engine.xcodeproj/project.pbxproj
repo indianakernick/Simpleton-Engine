@@ -1192,6 +1192,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					GLM_FORCE_SILENT_WARNINGS,
+					"$(inherited)",
+				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"/usr/local/Cellar/glm/**",
@@ -1228,6 +1232,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = GLM_FORCE_SILENT_WARNINGS;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"/usr/local/Cellar/glm/**",
