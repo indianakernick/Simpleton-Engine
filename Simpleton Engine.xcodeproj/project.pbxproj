@@ -299,6 +299,8 @@
 		45C918E0202E628800AC4608 /* impl1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = impl1.cpp; sourceTree = "<group>"; };
 		45C9190B202FCF0800AC4608 /* rotate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rotate.hpp; sourceTree = "<group>"; };
 		45C9190C202FCF0800AC4608 /* rotate.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = rotate.inl; sourceTree = "<group>"; };
+		45D3C2A221698DE700B35206 /* sequence.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sequence.hpp; sourceTree = "<group>"; };
+		45D3C2A321698DE700B35206 /* sequence.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = sequence.inl; sourceTree = "<group>"; };
 		45DEA0321F7F757200B1DA72 /* parse string.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "parse string.inl"; sourceTree = "<group>"; };
 		45DEA0331F7F757200B1DA72 /* parse string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "parse string.hpp"; sourceTree = "<group>"; };
 		45DEA0371F80B36900B1DA72 /* tuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
@@ -498,6 +500,8 @@
 				45682654209981FC00BA6AE8 /* sheet tex.hpp */,
 				45BBA3E220D5EEBD006108C1 /* text.inl */,
 				45BBA3E120D5EEBD006108C1 /* text.hpp */,
+				45D3C2A321698DE700B35206 /* sequence.inl */,
+				45D3C2A221698DE700B35206 /* sequence.hpp */,
 			);
 			path = "Graphics 2D";
 			sourceTree = "<group>";

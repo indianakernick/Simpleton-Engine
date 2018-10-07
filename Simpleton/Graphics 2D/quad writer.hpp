@@ -96,6 +96,9 @@ namespace G2D {
     /// the texture is sampled as an axis-aligned rectangle
     template <PlusXY PLUS_XY = PlusXY::RIGHT_UP>
     void tileTex(std::string_view);
+    /// Set texture coordinates of vertices on the current quad to the
+    /// whitepixel. Asserts if the sprite sheet doesn't have a whitepixel
+    void whitepixel();
     
     /// Set the color of the current quad
     void color(glm::vec4);

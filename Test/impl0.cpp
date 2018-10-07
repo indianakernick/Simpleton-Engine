@@ -131,6 +131,7 @@
 #include "../Simpleton/Graphics 2D/surface.hpp"
 #include "../Simpleton/Graphics 2D/depth.hpp"
 #include "../Simpleton/Graphics 2D/renderer.hpp"
+#include "../Simpleton/Graphics 2D/sequence.hpp"
 #include "../Simpleton/Graphics 2D/load surface.hpp"
 #include "../Simpleton/Graphics 2D/geom types.hpp"
 #include "../Simpleton/Graphics 2D/write surface.hpp"

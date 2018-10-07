@@ -222,6 +222,18 @@ void G2D::Section::tileTex(const std::string_view name) {
   tileTex<PLUS_XY>(spriteSheet.getIDfromName(name));
 }
 
+inline void G2D::Section::whitepixel() {
+  assert(!quads.empty());
+  const glm::vec2 whitepixel = spriteSheet.getWhitepixel();
+  assert(whitepixel != Sprite::no_whitepixel);
+  
+  Quad &quad = quads.back();
+  quad[0].texCoord =
+  quad[1].texCoord =
+  quad[2].texCoord = 
+  quad[3].texCoord = whitepixel;
+}
+
 inline void G2D::Section::color(const glm::vec4 color) {
   assert(!quads.empty());
   
