@@ -27,7 +27,7 @@ inline Sprite::Rect Sprite::Sheet::getSprite(const std::string_view name) const 
 }
 
 inline bool Sprite::Sheet::hasWhitepixel() const {
-  return whitepixel != NO_WHITEPIXEL;
+  return whitepixel != no_whitepixel;
 }
 
 inline glm::vec2 Sprite::Sheet::getWhitepixel() const {
@@ -96,7 +96,7 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
       (whiteRect.min.y + whiteRect.max.y) / 2.0f
     };
   } else {
-    sheet.whitepixel = NO_WHITEPIXEL;
+    sheet.whitepixel = no_whitepixel;
   }
   
   return sheet;
