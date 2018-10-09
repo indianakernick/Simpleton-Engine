@@ -129,7 +129,7 @@ cam.setPos({2.0f, 3.0f});
 // before rendering
 Cam2D::Params params
 params.aspect = 16.0f / 9.0f; // the aspect ratio of the window
-params.delta = 1000.0f / 60.0f; // number of seconds since the last update
+params.delta = 1.0f / 60.0f; // number of seconds since the last update
 // no need to set params.delta if you're not animating
 
 // This does animation and recalculates the matricies
