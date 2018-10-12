@@ -161,7 +161,7 @@ Cam2D::Params params;
 params.aspect = 16.0f / 9.0f;
 // The number of seconds since the last update
 // You'll probably want to use a timer
-params.delta = 1000.0f / 60.0f;
+params.delta = 1.0f / 60.0f;
 
 // the order of the parameters following params doesn't matter
 // through the power of templates, everything will just work
