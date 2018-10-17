@@ -15,71 +15,80 @@ namespace Memory {
   class Zero {};
   class One {};
   
-  constexpr Zero ZERO_INIT {};
-  constexpr One ONE_INIT {};
+  constexpr Zero zero {};
+  constexpr One one {};
 
   class Buffer {
   public:
-    explicit Buffer(size_t);
-    Buffer(size_t, Zero);
-    Buffer(size_t, One);
-    Buffer(size_t, std::byte);
+    explicit Buffer(size_t) noexcept;
+    Buffer(size_t, Zero) noexcept;
+    Buffer(size_t, One) noexcept;
+    Buffer(size_t, std::byte) noexcept;
     
-    Buffer(Buffer &&);
-    Buffer &operator=(Buffer &&);
-    ~Buffer();
+    Buffer(Buffer &&) noexcept;
+    Buffer &operator=(Buffer &&) noexcept;
+    ~Buffer() noexcept;
     
-    bool operator==(const Buffer &) const;
-    bool operator!=(const Buffer &) const;
-    bool operator<(const Buffer &) const;
+    bool operator==(const Buffer &) const noexcept;
+    bool operator!=(const Buffer &) const noexcept;
+    bool operator<(const Buffer &) const noexcept;
+    bool operator>(const Buffer &) const noexcept;
+    bool operator<=(const Buffer &) const noexcept;
+    bool operator>=(const Buffer &) const noexcept;
     
-    void swap(Buffer &);
-    void copyFrom(const Buffer &);
-    void resize(size_t);
-    void resizeCopy(size_t);
+    void swap(Buffer &) noexcept;
+    void copyFrom(const Buffer &) noexcept;
+    
+    Buffer dup() const noexcept;
+    Buffer dup(size_t) const noexcept;
+    Buffer dup(size_t, std::byte) const noexcept;
+    
+    std::byte *findPtr(std::byte) noexcept;
+    const std::byte *findPtr(std::byte) const noexcept;
+    size_t findIdx(std::byte) const noexcept;
     
     template <typename T = std::byte>
-    T *data() {
+    T *data() noexcept {
       return reinterpret_cast<T *>(mData);
     }
     template <typename T = std::byte>
-    const T *data() const {
+    const T *data() const noexcept {
       return reinterpret_cast<const T *>(mData);
     }
     template <typename T = std::byte>
-    const T *cdata() const {
+    const T *cdata() const noexcept {
       return reinterpret_cast<const T *>(mData);
     }
     
     template <typename T = size_t>
-    T size() const {
+    T size() const noexcept {
       return static_cast<T>(mSize);
     }
     
     template <typename T = std::byte>
-    T *begin() {
+    T *begin() noexcept {
       return reinterpret_cast<T *>(mData);
     }
     template <typename T = std::byte>
-    T *end() {
+    T *end() noexcept {
       return reinterpret_cast<T *>(mData + mSize);
     }
     
     template <typename T = std::byte>
-    const T *begin() const {
+    const T *begin() const noexcept {
       return reinterpret_cast<const T *>(mData);
     }
     template <typename T = std::byte>
-    const T *end() const {
+    const T *end() const noexcept {
       return reinterpret_cast<const T *>(mData + mSize);
     }
     
     template <typename T = std::byte>
-    const T *cbegin() const {
+    const T *cbegin() const noexcept {
       return reinterpret_cast<const T *>(mData);
     }
     template <typename T = std::byte>
-    const T *cend() const {
+    const T *cend() const noexcept {
       return reinterpret_cast<const T *>(mData + mSize);
     }
   
@@ -87,6 +96,8 @@ namespace Memory {
     std::byte *mData;
     size_t mSize;
   };
+  
+  inline void swap(Buffer &, Buffer &);
 }
 
 #include "buffer.inl"
