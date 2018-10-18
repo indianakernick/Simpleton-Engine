@@ -11,12 +11,6 @@
 inline Memory::Buffer::Buffer(const size_t size) noexcept
   : mData{allocBytes(size)}, mSize{size} {}
 
-inline Memory::Buffer::Buffer(const size_t size, Zero) noexcept
-  : Buffer{size, std::byte{}} {}
-
-inline Memory::Buffer::Buffer(const size_t size, One) noexcept
-  : Buffer{size, ~std::byte{}} {}
-
 inline Memory::Buffer::Buffer(const size_t size, const std::byte byte) noexcept
   : Buffer{size} {
   std::memset(mData, static_cast<int>(byte), mSize);
@@ -46,12 +40,10 @@ inline bool Memory::Buffer::operator!=(const Buffer &other) const noexcept {
 }
 
 inline bool Memory::Buffer::operator<(const Buffer &other) const noexcept {
-  if (mSize < other.mSize) {
-    return true;
-  } else if (other.mSize < mSize) {
-    return false;
-  } else {
+  if (mSize == other.mSize) {
     return std::memcmp(mData, other.mData, mSize) < 0;
+  } else {
+    return mSize < other.mSize;
   }
 }
 
@@ -73,7 +65,7 @@ inline void Memory::Buffer::swap(Buffer &other) noexcept {
 }
 
 inline void Memory::Buffer::copyFrom(const Buffer &buffer) noexcept {
-  std::memcpy(mData, buffer.mData, mSize < buffer.mSize ? mSize : buffer.mSize);
+  std::memcpy(mData, buffer.mData, std::min(mSize, buffer.mSize));
 }
 
 inline Memory::Buffer Memory::Buffer::dup() const noexcept {
@@ -95,9 +87,7 @@ inline Memory::Buffer Memory::Buffer::dup(const size_t size, const std::byte byt
 }
 
 inline std::byte *Memory::Buffer::findPtr(const std::byte byte) noexcept {
-  return reinterpret_cast<std::byte *>(
-    std::memchr(mData, static_cast<int>(byte), mSize)
-  );
+  return const_cast<std::byte *>(std::as_const(*this).findPtr(byte));
 }
 
 inline const std::byte *Memory::Buffer::findPtr(const std::byte byte) const noexcept {
@@ -109,12 +99,12 @@ inline const std::byte *Memory::Buffer::findPtr(const std::byte byte) const noex
 inline size_t Memory::Buffer::findIdx(const std::byte byte) const noexcept {
   const std::byte *const ptr = findPtr(byte);
   if (ptr == nullptr) {
-    return mSize;
+    return ~size_t{};
   } else {
     return ptr - mData;
   }
 }
 
-inline void Memory::swap(Buffer &a, Buffer &b) {
+inline void Memory::swap(Buffer &a, Buffer &b) noexcept {
   a.swap(b);
 }

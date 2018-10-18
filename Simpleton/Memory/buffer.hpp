@@ -12,17 +12,9 @@
 #include "alloc.hpp"
 
 namespace Memory {
-  class Zero {};
-  class One {};
-  
-  constexpr Zero zero {};
-  constexpr One one {};
-
   class Buffer {
   public:
     explicit Buffer(size_t) noexcept;
-    Buffer(size_t, Zero) noexcept;
-    Buffer(size_t, One) noexcept;
     Buffer(size_t, std::byte) noexcept;
     
     Buffer(Buffer &&) noexcept;
@@ -97,7 +89,7 @@ namespace Memory {
     size_t mSize;
   };
   
-  inline void swap(Buffer &, Buffer &);
+  inline void swap(Buffer &, Buffer &) noexcept;
 }
 
 #include "buffer.inl"
