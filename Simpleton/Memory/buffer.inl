@@ -6,6 +6,7 @@
 //  Copyright © 2016 Indi Kernick. All rights reserved.
 //
 
+#include <cassert>
 #include <utility>
 
 inline Memory::Buffer::Buffer(const size_t size) noexcept
