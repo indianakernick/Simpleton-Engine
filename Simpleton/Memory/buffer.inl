@@ -13,7 +13,7 @@ inline Memory::Buffer::Buffer(const size_t size) noexcept
 
 inline Memory::Buffer::Buffer(const size_t size, const std::byte byte) noexcept
   : Buffer{size} {
-  std::memset(mData, static_cast<int>(byte), mSize);
+  fill(byte);
 }
 
 inline Memory::Buffer::Buffer(Buffer &&other) noexcept
@@ -32,6 +32,7 @@ inline Memory::Buffer::~Buffer() noexcept {
 }
 
 inline bool Memory::Buffer::operator==(const Buffer &other) const noexcept {
+  assert(mData);
   return mSize == other.mSize && std::memcmp(mData, other.mData, mSize) == 0;
 }
 
@@ -40,6 +41,7 @@ inline bool Memory::Buffer::operator!=(const Buffer &other) const noexcept {
 }
 
 inline bool Memory::Buffer::operator<(const Buffer &other) const noexcept {
+  assert(mData);
   if (mSize == other.mSize) {
     return std::memcmp(mData, other.mData, mSize) < 0;
   } else {
@@ -65,7 +67,15 @@ inline void Memory::Buffer::swap(Buffer &other) noexcept {
 }
 
 inline void Memory::Buffer::copyFrom(const Buffer &buffer) noexcept {
+  assert(mData);
   std::memcpy(mData, buffer.mData, std::min(mSize, buffer.mSize));
+}
+
+inline void Memory::Buffer::copyFrom(const Buffer &buffer, const std::byte byte) noexcept {
+  copyFrom(buffer);
+  if (mSize > buffer.mSize) {
+    fillLast(mSize - buffer.mSize, byte);
+  }
 }
 
 inline Memory::Buffer Memory::Buffer::dup() const noexcept {
@@ -79,11 +89,29 @@ inline Memory::Buffer Memory::Buffer::dup(const size_t size) const noexcept {
 }
 
 inline Memory::Buffer Memory::Buffer::dup(const size_t size, const std::byte byte) const noexcept {
-  Buffer buf = dup(size);
-  if (size > mSize) {
-    std::memset(buf.mData, static_cast<int>(byte), size - mSize);
-  }
+  Buffer buf{size};
+  buf.copyFrom(*this, byte);
   return buf;
+}
+
+inline void Memory::Buffer::zero() noexcept {
+  fill(std::byte{});
+}
+
+inline void Memory::Buffer::fill(const std::byte byte) noexcept {
+  fillFirst(mSize, byte);
+}
+
+inline void Memory::Buffer::fillFirst(const size_t size, const std::byte byte) noexcept {
+  assert(mData);
+  assert(size <= mSize);
+  std::memset(mData, static_cast<int>(byte), size);
+}
+
+inline void Memory::Buffer::fillLast(const size_t size, const std::byte byte) noexcept {
+  assert(mData);
+  assert(size <= mSize);
+  std::memset(mData + (mSize - size), static_cast<int>(byte), size);
 }
 
 inline std::byte *Memory::Buffer::findPtr(const std::byte byte) noexcept {
@@ -91,6 +119,7 @@ inline std::byte *Memory::Buffer::findPtr(const std::byte byte) noexcept {
 }
 
 inline const std::byte *Memory::Buffer::findPtr(const std::byte byte) const noexcept {
+  assert(mData);
   return reinterpret_cast<const std::byte *>(
     std::memchr(mData, static_cast<int>(byte), mSize)
   );

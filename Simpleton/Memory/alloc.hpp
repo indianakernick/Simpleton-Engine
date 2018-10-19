@@ -11,16 +11,8 @@
 
 #include <new>
 #include <cstring>
-#include <cstddef>
 
 namespace Memory {
-  /// Set std::terminate as the new_handler. Since Memory::alloc is noexcept,
-  /// the default new_handler will throw std::bad_alloc and std::terminate will
-  /// be called. This new handler calls std::terminate directly.
-  inline void setNewHandler() {
-    std::set_new_handler(std::terminate);
-  }
-
   /// Allocate memory. Allocation failure results in std::terminate
   template <typename Type = void>
   Type *alloc(const size_t bytes, const size_t align = alignof(std::max_align_t)) noexcept {
