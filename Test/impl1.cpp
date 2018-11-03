@@ -23,6 +23,7 @@
 #include "../Simpleton/Utils/smart const ref.hpp"
 #include "../Simpleton/Utils/multi dim array.hpp"
 #include "../Simpleton/Utils/combine hashes.hpp"
+#include "../Simpleton/Utils/partial apply.hpp"
 #include "../Simpleton/Utils/enum.hpp"
 #include "../Simpleton/Utils/strong alias.hpp"
 #include "../Simpleton/Utils/dispatcher.hpp"

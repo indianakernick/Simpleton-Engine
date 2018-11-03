@@ -164,6 +164,7 @@
 		454B2B3B2041867C00D94D6A /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		454D049E1FE63DDC00D3E560 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = ../../../../../../../usr/local/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.a; sourceTree = "<group>"; };
 		454D04A01FE63DFB00D3E560 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
+		455F41882183134100C62BBF /* partial apply.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "partial apply.hpp"; sourceTree = "<group>"; };
 		45682654209981FC00BA6AE8 /* sheet tex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "sheet tex.hpp"; sourceTree = "<group>"; };
 		45682655209981FC00BA6AE8 /* sheet tex.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sheet tex.inl"; sourceTree = "<group>"; };
 		4568265B2099D07500BA6AE8 /* filter surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "filter surface.hpp"; sourceTree = "<group>"; };
@@ -641,6 +642,7 @@
 				45F44362214226F400B28F05 /* atom.hpp */,
 				452023B7214A6798006174DB /* smart const ref.hpp */,
 				452023BA214F6682006174DB /* enum.hpp */,
+				455F41882183134100C62BBF /* partial apply.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

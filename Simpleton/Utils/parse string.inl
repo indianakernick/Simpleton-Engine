@@ -9,14 +9,7 @@
 #include <cerrno>
 #include <cstring>
 #include <functional>
-
-namespace Utils {
-  inline auto charEqualTo(const char ch) {
-    return [ch] (const char c) -> bool {
-      return c == ch;
-    };
-  }
-}
+#include "partial apply.hpp"
 
 inline Utils::ParsingError::ParsingError(
   const LineCol<> lineCol
@@ -207,7 +200,7 @@ inline Utils::ParseString &Utils::ParseString::advance() {
 }
 
 inline Utils::ParseString &Utils::ParseString::skip(const char c) {
-  skip(charEqualTo(c));
+  skip(equal_to(c));
   return *this;
 }
 
@@ -224,7 +217,7 @@ inline Utils::ParseString &Utils::ParseString::skipWhitespace() {
 }
 
 inline Utils::ParseString &Utils::ParseString::skipUntil(const char c) {
-  return skipUntil(charEqualTo(c));
+  return skipUntil(equal_to(c));
 }
 
 template <typename Pred>
@@ -500,11 +493,11 @@ Utils::ParseString &Utils::ParseString::copyWhile(std::string &dst, Pred &&pred)
 }
 
 inline size_t Utils::ParseString::copyUntil(char *const dst, const size_t dstSize, const char c) {
-  return copyUntil(dst, dstSize, charEqualTo(c));
+  return copyUntil(dst, dstSize, equal_to(c));
 }
 
 inline Utils::ParseString &Utils::ParseString::copyUntil(std::string &dst, const char c) {
-  return copyUntil(dst, charEqualTo(c));
+  return copyUntil(dst, equal_to(c));
 }
 
 template <typename Pred>
