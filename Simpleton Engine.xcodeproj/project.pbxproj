@@ -219,6 +219,7 @@
 		4592BAED1F11C50F00D1640D /* sdl app.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "sdl app.hpp"; sourceTree = "<group>"; };
 		4592BB111F11F86F00D1640D /* main loop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "main loop.hpp"; sourceTree = "<group>"; };
 		459BED5820BD5379001BDA25 /* rational.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rational.hpp; sourceTree = "<group>"; };
+		459DB45521916DCA00116694 /* algorithm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = algorithm.hpp; sourceTree = "<group>"; };
 		45A72331211BAA7B00BFE7FB /* string.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = string.hpp; sourceTree = "<group>"; };
 		45A723352125633700BFE7FB /* alloc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = alloc.hpp; sourceTree = "<group>"; };
 		45B32E4D1FF34F66007BA7F4 /* surface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = surface.hpp; sourceTree = "<group>"; };
@@ -643,6 +644,7 @@
 				452023B7214A6798006174DB /* smart const ref.hpp */,
 				452023BA214F6682006174DB /* enum.hpp */,
 				455F41882183134100C62BBF /* partial apply.hpp */,
+				459DB45521916DCA00116694 /* algorithm.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
