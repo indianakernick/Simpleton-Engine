@@ -28,7 +28,7 @@ namespace Utils {
   /// Return an iterator to an element in a sequence
   template <typename Container, typename Element>
   auto find(Container &c, const Element &e) {
-    return detail::find(c, e);
+    return detail::find(c, e, 1);
   }
 
   /// Determine whether an element exists in a sequence
