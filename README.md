@@ -1,5 +1,5 @@
 # Simpleton
-About 18000 lines of C++ that I've used to make a few games
+About [![](https://tokei.rs/b1/github/Kerndog73/Simpleton-Engine)](https://github.com/Aaronepower/tokei) of C++ that I've used to make a few games
 
 This isn't really a framework kind of game engine as it doesn't make any assumptions about the architecture of your game. It's a library. You can pick and choose the parts that you want to use and ignore the rest. Some parts of this library are very old and rarely used even by me. Some parts of this library aren't very good, they are there for backwards compatibility with some of my older games. But there are a few gems here and there (at least, I think they're pretty neat!). Most of the code is documented with comments. This README has a run-down of the stuff I use most often. Nothing in this library is really that complicated so this documentation might not be necessary.
 
