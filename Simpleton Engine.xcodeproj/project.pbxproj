@@ -1222,6 +1222,7 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
+					"-Wshadow",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1259,6 +1260,7 @@
 					"-Wpedantic",
 					"-Wextra-semi",
 					"-Wno-documentation",
+					"-Wshadow",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
