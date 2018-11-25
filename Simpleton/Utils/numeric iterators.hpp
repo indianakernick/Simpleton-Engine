@@ -38,9 +38,9 @@ namespace Utils {
       return *this;
     }
     constexpr AddingIterator operator++(int) {
-      const AddingIterator copy = *this;
+      AddingIterator copy = *this;
       value += Step;
-      return *this;
+      return copy;
     }
     
     constexpr value_type operator*() const {
