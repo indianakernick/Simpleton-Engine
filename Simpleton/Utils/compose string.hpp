@@ -45,6 +45,9 @@ namespace Utils {
     void write(const char *, size_t);
     ///Write a view of characters to the end of the string
     void write(std::string_view);
+    ///Write a string literal to the end of the string
+    template <size_t Size>
+    void write(const char (&)[Size]);
     
     ///Write a number as a human-readable string
     template <typename Number>

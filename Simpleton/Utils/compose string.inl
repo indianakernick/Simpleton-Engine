@@ -67,6 +67,15 @@ inline void Utils::ComposeString::write(const std::string_view view) {
   write(view.data(), view.size());
 }
 
+template <size_t Size>
+void Utils::ComposeString::write(const char (&str)[Size]) {
+  if constexpr (Size == 2) {
+    write(str[0]);
+  } else {
+    write(&str[0], Size - 1);
+  }
+}
+
 template <typename Number>
 void Utils::ComposeString::writeNumber(const Number num) {
   write(std::to_string(num));
