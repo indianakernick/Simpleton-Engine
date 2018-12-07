@@ -72,7 +72,7 @@ namespace Utils {
   template <typename Number>
   constexpr auto range(const Number begin, const Number end) {
     using Iterator = AddingIterator<Number>;
-    return Range<Iterator>{
+    return Range{
       Iterator{begin}, Iterator{end}
     };
   }
@@ -85,7 +85,7 @@ namespace Utils {
   template <typename Number>
   constexpr auto rangeRev(const Number begin, const Number end) {
     using Iterator = AddingIterator<Number, Number{0} - Number{1}>;
-    return Range<Iterator>{
+    return Range{
       Iterator{end - Number{1}}, Iterator{begin - Number{1}}
     };
   }
