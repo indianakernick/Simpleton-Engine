@@ -28,7 +28,6 @@
 #include "../Simpleton/Utils/strong alias.hpp"
 #include "../Simpleton/Utils/dispatcher.hpp"
 #include "../Simpleton/Utils/move test.hpp"
-#include "../Simpleton/Utils/algorithm.hpp"
 #include "../Simpleton/Utils/tuple.hpp"
 #include "../Simpleton/Utils/instance limiter.hpp"
 #include "../Simpleton/Utils/console color.hpp"
