@@ -11,6 +11,7 @@
 
 #include <cmath>
 #include "pos.hpp"
+#include <algorithm>
 
 namespace Grid {
   /// Euclidian distance squared
@@ -37,12 +38,14 @@ namespace Grid {
     return std::abs(a.y - b.y);
   }
   
-  /// The sum of the horizontal distance and the vertical distance (manhattan distance)
+  /// The sum of the horizontal distance and the vertical distance
+  /// (manhattan distance)
   inline Coord sumAxis(const Pos a, const Pos b) {
     return horiDist(a, b) + vertDist(a, b);
   }
   
-  /// The max of the horizontal distance and the vertical distance (chebyshev distance)
+  /// The max of the horizontal distance and the vertical distance
+  /// (chebyshev distance)
   inline Coord maxAxis(const Pos a, const Pos b) {
     return std::max(horiDist(a, b), vertDist(a, b));
   }
