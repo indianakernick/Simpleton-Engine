@@ -38,9 +38,8 @@ inline uint32_t Sprite::Sheet::getLength() const {
   return length;
 }
 
-inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
-  const Memory::Buffer file = Memory::readFile(atlasPath);
-  Utils::ParseString string(file.cdata<char>(), file.size());
+inline Sprite::Sheet Sprite::makeSheetFromData(const char *data, const size_t size) try {
+  Utils::ParseString string(data, size);
   Sheet sheet;
   
   string.expect("{\"length\":");
@@ -102,4 +101,9 @@ inline Sprite::Sheet Sprite::makeSheet(const std::string_view atlasPath) try {
   return sheet;
 } catch (std::exception &e) {
   throw AtlasReadError(e);
+}
+
+inline Sprite::Sheet Sprite::makeSheetFromFile(const std::string_view path) {
+  const Memory::Buffer file = Memory::readFile(path);
+  return makeSheetFromData(file.cdata<char>(), file.size());
 }
