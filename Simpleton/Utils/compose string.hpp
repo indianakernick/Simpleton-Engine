@@ -20,6 +20,10 @@ namespace Utils {
     explicit ComposeString(size_t = 4096);
     
     /// Get a pointer to the beginning of the string
+    const char *data() const;
+    /// Get the size of the string
+    size_t size() const;
+    /// Get a pointer to the beginning of the string
     char *begin();
     /// Get a pointer to the current character ready to be written to
     char *curr();
@@ -78,7 +82,7 @@ namespace Utils {
     
   private:
     std::unique_ptr<char []> string;
-    size_t size;
+    size_t length;
     size_t capacity;
     std::vector<bool> sepStack;
     

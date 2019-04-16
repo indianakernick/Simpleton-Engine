@@ -7,8 +7,16 @@
 //
 
 inline Utils::ComposeString::ComposeString(const size_t capacity)
-  : string{std::make_unique<char []>(capacity)}, size{0}, capacity{capacity} {
+  : string{std::make_unique<char []>(capacity)}, length{0}, capacity{capacity} {
   sepStack.reserve(CHAR_BIT);
+}
+
+inline const char *Utils::ComposeString::data() const {
+  return string.get();
+}
+
+inline size_t Utils::ComposeString::size() const {
+  return length;
 }
 
 inline char *Utils::ComposeString::begin() {
@@ -16,7 +24,7 @@ inline char *Utils::ComposeString::begin() {
 }
 
 inline char *Utils::ComposeString::curr() {
-  return string.get() + size;
+  return string.get() + length;
 }
 
 inline char *Utils::ComposeString::end() {
@@ -24,11 +32,11 @@ inline char *Utils::ComposeString::end() {
 }
 
 inline std::string_view Utils::ComposeString::view() const {
-  return {string.get(), size};
+  return {string.get(), length};
 }
 
 inline size_t Utils::ComposeString::freeSpace() const {
-  return capacity - size;
+  return capacity - length;
 }
 
 inline void Utils::ComposeString::reserve(const size_t newCap) {
@@ -38,31 +46,31 @@ inline void Utils::ComposeString::reserve(const size_t newCap) {
 }
 
 inline void Utils::ComposeString::reserveToFit(const size_t extra) {
-  if (size + extra > capacity) {
+  if (length + extra > capacity) {
     setCapacity((capacity + extra) * 2);
   }
 }
 
 inline void Utils::ComposeString::addSize(const size_t extra) {
-  size += extra;
+  length += extra;
 }
 
 inline bool Utils::ComposeString::empty() const {
-  return size == 0;
+  return length == 0;
 }
 
 inline void Utils::ComposeString::write(const char c) {
-  if (size == capacity) {
+  if (length == capacity) {
     setCapacity((capacity + 1) * 2);
   }
   *curr() = c;
-  ++size;
+  ++length;
 }
 
 inline void Utils::ComposeString::write(const std::string_view view) {
   reserveToFit(view.size());
   std::memcpy(curr(), view.data(), view.size());
-  size += view.size();
+  length += view.size();
 }
 
 template <size_t Size>
@@ -83,7 +91,7 @@ void Utils::ComposeString::writeNumber(const Number num) {
   reserveToFit(64);
   const auto [ptr, ec] = std::to_chars(curr(), end(), num);
   if (!ec) {
-    size = ptr - string.get();
+    length = ptr - string.get();
   }
   */
 }
@@ -129,10 +137,9 @@ inline void Utils::ComposeString::close() {
   sepStack.pop_back();
 }
 
-
 inline void Utils::ComposeString::setCapacity(const size_t newCap) {
   auto newStr = std::make_unique<char []>(newCap);
-  std::memcpy(newStr.get(), string.get(), size);
+  std::memcpy(newStr.get(), string.get(), length);
   string = std::move(newStr);
   capacity = newCap;
 }
