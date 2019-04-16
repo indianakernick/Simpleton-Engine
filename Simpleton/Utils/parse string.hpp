@@ -163,6 +163,13 @@ namespace Utils {
     /// equal to the supplied string
     ParseString &expect(std::string_view);
     
+    /// Throw a ExpectChar exception if the front character is not equal to
+    /// either of the supplied characters. Returns the matching character
+    char expectEither(char, char);
+    /// Throw a ExpectString exception if the front part of the string is not
+    /// equal to either of the supplied strings. Returns the matching string
+    std::string_view expectEither(std::string_view, std::string_view);
+    
     /// Throw a ExpectChar exception if the front character is not equal to the
     /// supplied character after all characters that satisfy the supplied
     /// predicate have been skipped.
@@ -197,8 +204,8 @@ namespace Utils {
     /// supplied characters
     bool checkAnyChar(std::string_view);
     
-    /// Interprets the front part of the string as a number. Returns a
-    /// positive error code on failure
+    /// Interprets the front part of the string as a number. Returns a positive
+    /// error code on failure
     template <typename Number>
     std::errc tryParseNumber(Number &);
     /// Interprets the front part of the string as a number. Throws an
@@ -292,6 +299,18 @@ namespace Utils {
     void advanceNoCheck();
     size_t minSize(size_t) const;
   };
+  
+  /*
+  
+  str.expect('{');
+  if (!str.check('}')) {
+    do {
+      ints.push_back(str.parseNumber<int>());
+      str.skipWhitespace();
+    } while (str.expectEither('}', ',') == ',');
+  }
+  
+  */
 }
 
 #include "parse string.inl"

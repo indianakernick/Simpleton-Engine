@@ -251,6 +251,26 @@ inline Utils::ParseString &Utils::ParseString::expect(const std::string_view vie
   return expect(view.data(), view.size());
 }
 
+inline char Utils::ParseString::expectEither(const char a, const char b) {
+  const char curr = *beg;
+  if (empty() || (curr != a && curr != b)) {
+    // @TODO dedicated exception?
+    throw ExpectChar(a, pos);
+  }
+  advanceNoCheck();
+  return curr;
+}
+
+inline std::string_view Utils::ParseString::expectEither(
+  const std::string_view a,
+  const std::string_view b
+) {
+  if (check(a)) return a;
+  if (check(b)) return b;
+  // @TODO dedicated exception?
+  throw ExpectString(a, pos);
+}
+
 template <typename Pred>
 inline Utils::ParseString &Utils::ParseString::expectAfter(const char c, Pred &&pred) {
   return skip(pred).expect(c);

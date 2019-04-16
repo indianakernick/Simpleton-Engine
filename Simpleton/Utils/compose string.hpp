@@ -86,7 +86,7 @@ namespace Utils {
   };
   
   /// Initialize at the beginning of the loop. Use to determine whether to write
-  /// a separator for a separated list. Faster but less conveinient than the
+  /// a separator for a separated list. Faster but less convenient than the
   /// ComposeString API
   class Separator {
   public:
