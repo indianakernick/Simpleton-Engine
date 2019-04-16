@@ -18,52 +18,52 @@ namespace Utils {
   public:
     explicit ComposeString(size_t = 4096);
     
-    ///Get a pointer to the beginning of the string
+    /// Get a pointer to the beginning of the string
     char *begin();
-    ///Get a pointer to the current character ready to be written to
+    /// Get a pointer to the current character ready to be written to
     char *curr();
-    ///Get a pointer to the character past the end of the string
+    /// Get a pointer to the character past the end of the string
     char *end();
-    ///Get a std::string_view of the composed string
+    /// Get a std::string_view of the composed string
     std::string_view view() const;
-    ///Get the amount of free space in the allocation
+    /// Get the amount of free space in the allocation
     size_t freeSpace() const;
     
-    ///Increase the capacity of the string
+    /// Increase the capacity of the string
     void reserve(size_t);
-    ///Increase the capacity of the string so that freeSpace is larger than the
-    ///given value
+    /// Increase the capacity of the string so that freeSpace is larger than the
+    /// given value
     void reserveToFit(size_t);
-    ///Increase the size of the string
+    /// Increase the size of the string
     void addSize(size_t);
-    ///Return true if the string is empty
+    /// Return true if the string is empty
     bool empty() const;
     
-    ///Write a character to the end of the string
+    /// Write a character to the end of the string
     void write(char);
-    ///Write an array of characters to the end of the string
+    /// Write an array of characters to the end of the string
     void write(const char *, size_t);
-    ///Write a view of characters to the end of the string
+    /// Write a view of characters to the end of the string
     void write(std::string_view);
-    ///Write a string literal to the end of the string
+    /// Write a string literal to the end of the string
     template <size_t Size>
     void write(const char (&)[Size]);
     
-    ///Write a number as a human-readable string
+    /// Write a number as a human-readable string
     template <typename Number>
     void writeNumber(Number);
     
-    ///Write an enum given names for all enumerators
+    /// Write an enum given names for all enumerators
     template <typename Enum>
     void writeEnum(Enum, const std::string_view *);
     
-    ///Open a pair of delimiter strings. The first string is written immediately
-    ///and the second string is pushed onto a stack. The second string will be
-    ///written when close is called.
+    /// Open a pair of delimiter strings. The first string is written
+    /// immediately and the second string is pushed onto a stack. The second
+    /// string will be written when close is called.
     void open(const std::string &, const std::string &);
-    ///Write the string stored from the cooresponding call to open
+    /// Write the string stored from the cooresponding call to open
     void close();
-    ///Call close until the stack of strings is empty
+    /// Call close until the stack of strings is empty
     void closeAll();
     
   private:

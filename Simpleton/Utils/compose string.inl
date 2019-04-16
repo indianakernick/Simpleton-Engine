@@ -7,7 +7,7 @@
 //
 
 inline Utils::ComposeString::ComposeString(const size_t capacity)
-  : string(std::make_unique<char []>(capacity)), size(0), capacity(capacity) {}
+  : string{std::make_unique<char []>(capacity)}, size{0}, capacity{capacity} {}
 
 inline char *Utils::ComposeString::begin() {
   return string.get();
