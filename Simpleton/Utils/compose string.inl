@@ -78,7 +78,7 @@ void Utils::ComposeString::write(const char (&str)[Size]) {
   if constexpr (Size == 2) {
     write(str[0]);
   } else {
-    write(&str[0], Size - 1);
+    write({&str[0], Size - 1});
   }
 }
 
