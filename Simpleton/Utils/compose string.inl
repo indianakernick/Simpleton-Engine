@@ -7,7 +7,9 @@
 //
 
 inline Utils::ComposeString::ComposeString(const size_t capacity)
-  : string{std::make_unique<char []>(capacity)}, size{0}, capacity{capacity} {}
+  : string{std::make_unique<char []>(capacity)}, size{0}, capacity{capacity} {
+  sepStack.reserve(CHAR_BIT);
+}
 
 inline char *Utils::ComposeString::begin() {
   return string.get();
@@ -57,14 +59,10 @@ inline void Utils::ComposeString::write(const char c) {
   ++size;
 }
 
-inline void Utils::ComposeString::write(const char *const d, const size_t s) {
-  reserveToFit(s);
-  std::memcpy(curr(), d, s);
-  size += s;
-}
-
 inline void Utils::ComposeString::write(const std::string_view view) {
-  write(view.data(), view.size());
+  reserveToFit(view.size());
+  std::memcpy(curr(), view.data(), view.size());
+  size += view.size();
 }
 
 template <size_t Size>
@@ -95,24 +93,42 @@ void Utils::ComposeString::writeEnum(const Enum e, const std::string_view *names
   write(names[static_cast<size_t>(e)]);
 }
 
-inline void Utils::ComposeString::open(const std::string &opening, const std::string &closing) {
-  write(opening);
-  closingStrings.push(closing);
+template <typename String>
+void Utils::ComposeString::open(String &&str) {
+  open();
+  write(std::forward<String>(str));
+}
+
+inline void Utils::ComposeString::open() {
+  sepStack.push_back(false);
+}
+
+template <typename String>
+void Utils::ComposeString::separate(String &&str) {
+  if (separate()) {
+    write(std::forward<String>(str));
+  }
+}
+
+inline bool Utils::ComposeString::separate() {
+  // Can't use std::exchange because of std::vector<bool>
+  // :-(
+  // There should have been a separate container called std::dynamic_bitset
+  const bool sep = sepStack.back();
+  sepStack.back() = true;
+  return sep;
+}
+
+template <typename String>
+void Utils::ComposeString::close(String &&str) {
+  close();
+  write(std::forward<String>(str));
 }
 
 inline void Utils::ComposeString::close() {
-  if (!closingStrings.empty()) {
-    write(closingStrings.top());
-    closingStrings.pop();
-  }
+  sepStack.pop_back();
 }
 
-inline void Utils::ComposeString::closeAll() {
-  while (!closingStrings.empty()) {
-    write(closingStrings.top());
-    closingStrings.pop();
-  }
-}
 
 inline void Utils::ComposeString::setCapacity(const size_t newCap) {
   auto newStr = std::make_unique<char []>(newCap);

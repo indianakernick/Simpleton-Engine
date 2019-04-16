@@ -9,7 +9,8 @@
 #ifndef engine_utils_compose_string_hpp
 #define engine_utils_compose_string_hpp
 
-#include <stack>
+#include <vector>
+#include <memory>
 #include <string>
 #include <string_view>
 
@@ -41,8 +42,6 @@ namespace Utils {
     
     /// Write a character to the end of the string
     void write(char);
-    /// Write an array of characters to the end of the string
-    void write(const char *, size_t);
     /// Write a view of characters to the end of the string
     void write(std::string_view);
     /// Write a string literal to the end of the string
@@ -57,23 +56,78 @@ namespace Utils {
     template <typename Enum>
     void writeEnum(Enum, const std::string_view *);
     
-    /// Open a pair of delimiter strings. The first string is written
-    /// immediately and the second string is pushed onto a stack. The second
-    /// string will be written when close is called.
-    void open(const std::string &, const std::string &);
-    /// Write the string stored from the cooresponding call to open
+    /// Open a separated list and write a string
+    template <typename String>
+    void open(String &&);
+    /// Open a separated list
+    void open();
+    
+    /// Write the separtor for a separated list. This should be called before
+    /// writing the list item
+    template <typename String>
+    void separate(String &&);
+    /// Return true if a separator should be written. This should be called
+    /// before writing the list item
+    bool separate();
+    
+    /// Close a separated list and write a string
+    template <typename String>
+    void close(String &&);
+    /// Close a separated list
     void close();
-    /// Call close until the stack of strings is empty
-    void closeAll();
     
   private:
     std::unique_ptr<char []> string;
     size_t size;
     size_t capacity;
-    std::stack<std::string> closingStrings;
+    std::vector<bool> sepStack;
     
     void setCapacity(size_t);
   };
+  
+  /// Initialize at the beginning of the loop. Use to determine whether to write
+  /// a separator for a separated list. Faster but less conveinient than the
+  /// ComposeString API
+  class Separator {
+  public:
+    /// Returns true if the separator should be written. Call this at the
+    /// beginning of the loop
+    explicit operator bool() {
+      return std::exchange(write, true);
+    }
+  
+  private:
+    bool write = false;
+  };
+  
+  /*
+   
+  str.open('{');
+  for (int i : ints) {
+    str.separate(", ");
+    str.write(i);
+  }
+  str.close('}');
+ 
+  str.write('{');
+  Utils::Separator sep;
+  for (int i : ints) {
+    if (sep) str.write(", ");
+    str.write(i);
+  }
+  str.write('}');
+ 
+  str.write('{');
+  bool write = false;
+  for (int i : ints) {
+    if (std::exchange(write, true)) {
+      str.write(", ");
+    }
+    str.write(i);
+  }
+  str.write('}');
+ 
+  */
 }
 
 #include "compose string.inl"
