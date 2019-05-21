@@ -200,7 +200,6 @@
 		457EB34C20C2183E0054E16F /* get.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = get.hpp; sourceTree = "<group>"; };
 		457EB34D20C22F6E0054E16F /* pred.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pred.hpp; sourceTree = "<group>"; };
 		457EB34E20C269DA0054E16F /* splice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = splice.hpp; sourceTree = "<group>"; };
-		457EB35220C296B40054E16F /* prototype.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = prototype.hpp; sourceTree = "<group>"; };
 		4584F40B1FCCF0C80062B93E /* combine hashes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "combine hashes.hpp"; sourceTree = "<group>"; };
 		4584F4101FCCF72E0062B93E /* matrix mul.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "matrix mul.hpp"; sourceTree = "<group>"; };
 		4584F4151FCE7D5B0062B93E /* digit stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "digit stack.hpp"; sourceTree = "<group>"; };
@@ -227,7 +226,6 @@
 		45B32EB41FF47E60007BA7F4 /* glm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glm.hpp; sourceTree = "<group>"; };
 		45B32EB71FF481FD007BA7F4 /* events.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = events.inl; sourceTree = "<group>"; };
 		45B32EB81FF481FD007BA7F4 /* events.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = events.hpp; sourceTree = "<group>"; };
-		45B32EBD1FF4852D007BA7F4 /* registry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = registry.hpp; sourceTree = "<group>"; };
 		45B32EBF1FF49318007BA7F4 /* entity id.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "entity id.hpp"; sourceTree = "<group>"; };
 		45B32EC11FF495DC007BA7F4 /* object types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "object types.hpp"; sourceTree = "<group>"; };
 		45B32EC31FF4A296007BA7F4 /* limit velocity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "limit velocity.hpp"; sourceTree = "<group>"; };
@@ -540,8 +538,6 @@
 		45B32EBC1FF484F2007BA7F4 /* ECS */ = {
 			isa = PBXGroup;
 			children = (
-				45B32EBD1FF4852D007BA7F4 /* registry.hpp */,
-				457EB35220C296B40054E16F /* prototype.hpp */,
 				45BBA3E020D5EBA1006108C1 /* load prototype.inl */,
 				45BBA3DF20D5EBA0006108C1 /* load prototype.hpp */,
 				450759681FF610EC0009B360 /* json.inl */,
@@ -890,6 +886,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 45B5E6961EF7C25200A6A3E2;
@@ -1092,7 +1089,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1142,7 +1139,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

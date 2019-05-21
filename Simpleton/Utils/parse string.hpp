@@ -197,6 +197,8 @@ namespace Utils {
     template <typename Pred>
     bool check(Pred &&);
     
+    // check after
+    
     /// Advances and returns true if the front character is equal to any of the
     /// supplied characters
     bool checkAnyChar(const char *, size_t);
