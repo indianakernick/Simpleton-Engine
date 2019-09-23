@@ -9,9 +9,9 @@
 #ifndef engine_opengl_opengl_hpp
 #define engine_opengl_opengl_hpp
 
+#include <SDL.h>
 #include <cassert>
 #include <iostream>
-#include <SDL2/SDL.h>
 
 #ifdef EMSCRIPTEN
 
@@ -20,7 +20,7 @@
 #else
 
 #include <GL/glew.h>
-#include <SDL2/SDL_opengl.h>
+#include <SDL_opengl.h>
 
 #endif // EMSCRIPTEN
 

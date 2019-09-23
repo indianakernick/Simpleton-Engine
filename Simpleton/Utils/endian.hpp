@@ -9,8 +9,8 @@
 #ifndef engine_utils_endian_hpp
 #define engine_utils_endian_hpp
 
+#include <SDL_endian.h>
 #include "int least.hpp"
-#include <SDL2/SDL_endian.h>
 
 namespace Utils {
   template <typename T>

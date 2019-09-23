@@ -10,9 +10,9 @@
 #define engine_sdl_window_hpp
 
 #include <string>
+#include <SDL_video.h>
+#include <SDL_mouse.h>
 #include <glm/vec2.hpp>
-#include <SDL2/SDL_video.h>
-#include <SDL2/SDL_mouse.h>
 #include "../Utils/generic raii.hpp"
 
 namespace SDL {

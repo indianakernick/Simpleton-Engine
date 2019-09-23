@@ -1208,6 +1208,7 @@
 					"/usr/local/Cellar/glm/**",
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
+					"/usr/local/Cellar/sdl2_mixer/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1246,6 +1247,7 @@
 					"/usr/local/Cellar/glm/**",
 					"/usr/local/Cellar/sdl2/**",
 					"/usr/local/Cellar/sdl2_ttf/**",
+					"/usr/local/Cellar/sdl2_mixer/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
