@@ -914,7 +914,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -RpX \"$PROJECT_DIR/Simpleton/\" $INSTALL_DIR";
+			shellScript = "INSTALL_DIR=/usr/local/include/Simpleton\nrm -dfR $INSTALL_DIR\nmkdir $INSTALL_DIR\ncp -RpX \"$PROJECT_DIR/Simpleton/\" $INSTALL_DIR\n";
 		};
 		454B2B182040E13200D94D6A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -927,7 +927,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cp \"$BUILT_PRODUCTS_DIR/$TARGET_NAME\" /usr/local/bin/pack";
+			shellScript = "cp \"$BUILT_PRODUCTS_DIR/$TARGET_NAME\" /usr/local/bin/pack\n";
 		};
 		45C918E2202E62BC00AC4608 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -940,7 +940,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# \"*\" for all modules \"*Utils*\" for just Utils module\nMODULE=\"*\"\n\nfind \"Simpleton\" -name \"*.hpp\" -path \"$MODULE\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null";
+			shellScript = "# \"*\" for all modules \"*Utils*\" for just Utils module\nMODULE=\"*\"\n\nfind \"Simpleton\" -name \"*.hpp\" -path \"$MODULE\" -not -path \"*Box2D*\" |\nxargs -I {} echo '#include \"../{}\"' |\ntee Test/impl0.cpp Test/impl1.cpp > /dev/null\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
